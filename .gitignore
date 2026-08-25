@@ -1,0 +1,11 @@
+.DS_Store
+.build/
+dist/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# API keys belong in the macOS Keychain, never in source control.
+.env
+.env.*
+!.env.example
