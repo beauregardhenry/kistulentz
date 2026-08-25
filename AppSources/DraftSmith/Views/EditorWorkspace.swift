@@ -84,7 +84,7 @@ struct EditorWorkspace: View {
                 viewModel.errorMessage = error.localizedDescription
             }
         }
-        .alert("Kistuletz", isPresented: Binding(
+        .alert("Kistulentz", isPresented: Binding(
             get: { viewModel.errorMessage != nil },
             set: { if !$0 { viewModel.errorMessage = nil } }
         )) {
@@ -120,7 +120,7 @@ struct EditorWorkspace: View {
                         .font(.system(size: 14, weight: .bold))
                         .foregroundStyle(.white)
                 }
-                Text("Kistuletz")
+                Text("Kistulentz")
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
             }
 

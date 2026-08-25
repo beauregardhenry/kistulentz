@@ -39,7 +39,7 @@ struct MarkdownDocument: FileDocument {
     private static let starterText = """
     # A clearer first draft
 
-    Good writing makes its point without making the reader work for it. Kistuletz highlights long sentences, passive voice, adverbs, and phrases that could be simpler.
+    Good writing makes its point without making the reader work for it. Kistulentz highlights long sentences, passive voice, adverbs, and phrases that could be simpler.
 
     Write or paste Markdown here. Set a target reading grade, then ask OpenAI or Claude for a polished revision when you are ready.
     """

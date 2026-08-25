@@ -4,7 +4,7 @@ set -euo pipefail
 PROJECT_ROOT="${0:A:h:h}"
 BUILD_ROOT="$PROJECT_ROOT/.build"
 DIST_ROOT="$PROJECT_ROOT/dist"
-APP_ROOT="$DIST_ROOT/Kistuletz.app"
+APP_ROOT="$DIST_ROOT/Kistulentz.app"
 
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 export CLANG_MODULE_CACHE_PATH="$BUILD_ROOT/ModuleCache"
@@ -27,17 +27,17 @@ BIN_PATH="$(swift build \
     --show-bin-path)/DraftSmith"
 
 if [[ ! -f "$BIN_PATH" ]]; then
-    print -u2 "Kistuletz executable was not found at $BIN_PATH"
+    print -u2 "Kistulentz executable was not found at $BIN_PATH"
     exit 1
 fi
 
 rm -rf "$APP_ROOT"
 mkdir -p "$APP_ROOT/Contents/MacOS" "$APP_ROOT/Contents/Resources"
-cp "$BIN_PATH" "$APP_ROOT/Contents/MacOS/Kistuletz"
+cp "$BIN_PATH" "$APP_ROOT/Contents/MacOS/Kistulentz"
 cp "$PROJECT_ROOT/scripts/Info.plist" "$APP_ROOT/Contents/Info.plist"
 print -n "APPL????" > "$APP_ROOT/Contents/PkgInfo"
 
-chmod +x "$APP_ROOT/Contents/MacOS/Kistuletz"
+chmod +x "$APP_ROOT/Contents/MacOS/Kistulentz"
 codesign --force --sign - --timestamp=none "$APP_ROOT"
 
 print "$APP_ROOT"

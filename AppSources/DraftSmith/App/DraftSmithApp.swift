@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct KistuletzApp: App {
+struct KistulentzApp: App {
     @StateObject private var settings = AppSettings()
 
     var body: some Scene {
@@ -29,5 +29,5 @@ struct KistuletzApp: App {
 }
 
 extension Notification.Name {
-    static let runAIReview = Notification.Name("Kistuletz.runAIReview")
+    static let runAIReview = Notification.Name("Kistulentz.runAIReview")
 }

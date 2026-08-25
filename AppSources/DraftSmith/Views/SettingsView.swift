@@ -15,7 +15,7 @@ struct SettingsView: View {
                         Text("Grade \(grade)").tag(grade)
                     }
                 }
-                Text("Kistuletz adjusts sentence-length guidance and asks the selected AI provider to rewrite toward this level.")
+                Text("Kistulentz adjusts sentence-length guidance and asks the selected AI provider to rewrite toward this level.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -43,7 +43,7 @@ struct SettingsView: View {
             }
 
             Section {
-                Label("Keys are saved in your Mac Keychain. Kistuletz sends document text only to the provider you choose when you run a review.", systemImage: "lock.shield")
+                Label("Keys are saved in your Mac Keychain. Kistulentz sends document text only to the provider you choose when you run a review.", systemImage: "lock.shield")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -56,7 +56,7 @@ struct SettingsView: View {
         }
         .formStyle(.grouped)
         .padding(.vertical, 8)
-        .navigationTitle("Kistuletz Settings")
+        .navigationTitle("Kistulentz Settings")
         .alert("Couldn’t save the key", isPresented: Binding(
             get: { errorMessage != nil },
             set: { if !$0 { errorMessage = nil } }

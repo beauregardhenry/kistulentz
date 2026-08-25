@@ -1,4 +1,4 @@
-KISTULETZ FOR MAC
+KISTULENTZ FOR MAC
 Published by Beau Henry
 
 SYSTEM REQUIREMENTS
@@ -6,8 +6,8 @@ SYSTEM REQUIREMENTS
 - Apple silicon or Intel Mac
 
 INSTALL
-1. Drag Kistuletz into the Applications folder.
-2. Open Kistuletz from Applications.
+1. Drag Kistulentz into the Applications folder.
+2. Open Kistulentz from Applications.
 
 FIRST-OPEN SECURITY MESSAGE
 Beau Henry does not yet have an Apple Developer account, so Apple cannot verify
@@ -15,21 +15,21 @@ the publisher automatically. macOS may prevent the first launch even though the
 app has been packaged without modifying your Mac's security settings.
 
 If macOS blocks the app:
-1. Try to open Kistuletz once and dismiss the warning.
+1. Try to open Kistulentz once and dismiss the warning.
 2. Open System Settings.
 3. Select Privacy & Security.
-4. Scroll to the Security section and click Open Anyway beside Kistuletz.
+4. Scroll to the Security section and click Open Anyway beside Kistulentz.
 5. Enter your Mac password and confirm Open.
 
 Do not disable Gatekeeper or run Terminal commands. After the one-time approval,
-Kistuletz will open normally.
+Kistulentz will open normally.
 
 PRIVACY
-Kistuletz analyzes readability and EPUB reference books locally. The EPUB can
+Kistulentz analyzes readability and EPUB reference books locally. The EPUB can
 guide style, vocabulary, tone, character, continuity, voice, and tempo even
 without an API key.
 
-Kistuletz contacts OpenAI or Anthropic only when you choose Polish. It then sends
+Kistulentz contacts OpenAI or Anthropic only when you choose Polish. It then sends
 the current Markdown, a local reference profile, and selected relevant EPUB
 excerpts to the provider you selected. It does not upload the complete EPUB.
 API keys are stored in the Mac Keychain.

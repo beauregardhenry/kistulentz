@@ -68,7 +68,7 @@ final class EPUBReferenceTests: XCTestCase {
             .appendingPathComponent("Fixtures", isDirectory: true)
             .appendingPathComponent("EPUBSource", isDirectory: true)
         let temporaryDirectory = FileManager.default.temporaryDirectory
-            .appendingPathComponent("Kistuletz-EPUB-Test-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("Kistulentz-EPUB-Test-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: temporaryDirectory, withIntermediateDirectories: true)
         let outputURL = temporaryDirectory.appendingPathComponent("fixture.epub")
 

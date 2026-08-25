@@ -266,7 +266,7 @@ enum WritingAIError: LocalizedError {
         case .missingModel:
             "Enter a model name in Settings."
         case .invalidResponse:
-            "The provider returned a response Kistuletz could not read. Try again or choose another model."
+            "The provider returned a response Kistulentz could not read. Try again or choose another model."
         case .network(let message):
             "The review could not connect: \(message)"
         case .api(let status, let message):

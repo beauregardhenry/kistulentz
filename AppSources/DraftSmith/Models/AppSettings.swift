@@ -30,6 +30,8 @@ final class AppSettings: ObservableObject {
         static let anthropicModel = "anthropicModel"
     }
 
+    private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
+
     @Published var provider: AIProvider {
         didSet { defaults.set(provider.rawValue, forKey: DefaultsKey.provider) }
     }
@@ -56,6 +58,8 @@ final class AppSettings: ObservableObject {
         self.defaults = defaults
         self.keychain = keychain
 
+        Self.migrateLegacyDefaults(into: defaults)
+
         provider = AIProvider(rawValue: defaults.string(forKey: DefaultsKey.provider) ?? "") ?? .openAI
         let savedGrade = defaults.integer(forKey: DefaultsKey.targetGrade)
         targetGrade = savedGrade == 0 ? 8 : min(max(savedGrade, 4), 16)
@@ -63,6 +67,21 @@ final class AppSettings: ObservableObject {
         anthropicModel = defaults.string(forKey: DefaultsKey.anthropicModel) ?? "claude-sonnet-4-6"
 
         refreshKeyStatus()
+    }
+
+    private static func migrateLegacyDefaults(into defaults: UserDefaults) {
+        guard let legacy = UserDefaults(suiteName: legacyBundleIdentifier) else { return }
+        let keys = [
+            DefaultsKey.provider,
+            DefaultsKey.targetGrade,
+            DefaultsKey.openAIModel,
+            DefaultsKey.anthropicModel
+        ]
+        for key in keys where defaults.object(forKey: key) == nil {
+            if let value = legacy.object(forKey: key) {
+                defaults.set(value, forKey: key)
+            }
+        }
     }
 
     func model(for provider: AIProvider) -> String {

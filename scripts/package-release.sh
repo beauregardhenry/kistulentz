@@ -6,13 +6,13 @@ BUILD_ROOT="$PROJECT_ROOT/.build"
 DIST_ROOT="$PROJECT_ROOT/dist"
 RELEASE_ROOT="$DIST_ROOT/releases"
 VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$PROJECT_ROOT/scripts/Info.plist")"
-APP_NAME="Kistuletz"
+APP_NAME="Kistulentz"
 RELEASE_NAME="$APP_NAME-$VERSION-macOS-universal"
 APP_PATH="$DIST_ROOT/$APP_NAME.app"
 ZIP_PATH="$RELEASE_ROOT/$RELEASE_NAME.zip"
 DMG_PATH="$RELEASE_ROOT/$RELEASE_NAME.dmg"
 CHECKSUM_PATH="$RELEASE_ROOT/SHA256SUMS.txt"
-STAGING_ROOT="$(mktemp -d "$BUILD_ROOT/kistuletz-release.XXXXXX")"
+STAGING_ROOT="$(mktemp -d "$BUILD_ROOT/kistulentz-release.XXXXXX")"
 PAYLOAD_ROOT="$STAGING_ROOT/$APP_NAME $VERSION"
 
 cleanup() {
@@ -24,7 +24,7 @@ trap cleanup EXIT
 
 mkdir -p "$RELEASE_ROOT" "$PAYLOAD_ROOT"
 cp -R "$APP_PATH" "$PAYLOAD_ROOT/$APP_NAME.app"
-cp "$PROJECT_ROOT/DistributionAssets/FIRST OPEN - Kistuletz.txt" "$PAYLOAD_ROOT/FIRST OPEN - Kistuletz.txt"
+cp "$PROJECT_ROOT/DistributionAssets/FIRST OPEN - Kistulentz.txt" "$PAYLOAD_ROOT/FIRST OPEN - Kistulentz.txt"
 ln -s /Applications "$PAYLOAD_ROOT/Applications"
 
 rm -f "$ZIP_PATH" "$DMG_PATH" "$CHECKSUM_PATH"

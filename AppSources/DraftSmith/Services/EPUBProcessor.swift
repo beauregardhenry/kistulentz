@@ -31,7 +31,7 @@ struct EPUBProcessor {
         }
 
         let extractionRoot = FileManager.default.temporaryDirectory
-            .appendingPathComponent("Kistuletz-EPUB-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("Kistulentz-EPUB-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: extractionRoot, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: extractionRoot) }
 
@@ -249,7 +249,7 @@ enum EPUBError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unavailable:
-            "Kistuletz could not access the EPUB extractor on this Mac."
+            "Kistulentz could not access the EPUB extractor on this Mac."
         case .archiveTooLarge:
             "This EPUB is too large to analyze safely."
         case .unsafeArchive:
@@ -257,7 +257,7 @@ enum EPUBError: LocalizedError {
         case .invalidContainer:
             "This file does not contain a valid EPUB container."
         case .invalidPackage:
-            "Kistuletz could not read this EPUB's package information."
+            "Kistulentz could not read this EPUB's package information."
         case .noReadableText:
             "No readable book text was found. The EPUB may be DRM-protected or image-only."
         case .extractionFailed(let detail):

@@ -1,6 +1,6 @@
-# Kistuletz
+# Kistulentz
 
-Kistuletz is a native, document-based Markdown editor for macOS Sequoia. It combines live Hemingway-style readability guidance with optional OpenAI or Anthropic editing.
+Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It combines live Hemingway-style readability guidance with optional OpenAI or Anthropic editing.
 
 ## Included
 
@@ -24,7 +24,7 @@ Xcode 26 or newer must be installed in `/Applications/Xcode.app`.
 ./scripts/build-app.sh
 ```
 
-The universal application is created at `dist/Kistuletz.app`. Copy it to `/Applications` if desired. The local build is ad-hoc signed; warning-free public distribution requires an Apple Developer ID certificate and notarization.
+The universal application is created at `dist/Kistulentz.app`. Copy it to `/Applications` if desired. The local build is ad-hoc signed; warning-free public distribution requires an Apple Developer ID certificate and notarization.
 
 ## Development
 
@@ -40,7 +40,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sa
 
 ## API setup
 
-Open Kistuletz Settings and paste an API key for OpenAI, Anthropic, or both. Model names remain editable so the app can use models enabled for each account without requiring a new app release.
+Open Kistulentz Settings and paste an API key for OpenAI, Anthropic, or both. Model names remain editable so the app can use models enabled for each account without requiring a new app release.
 
 Document text and EPUB reference books are analyzed locally until the user chooses **Polish**. At that point, the current Markdown, the local reference profile, and selected relevant excerpts from the EPUB are sent only to the selected provider. The complete EPUB is not uploaded.
 

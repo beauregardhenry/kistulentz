@@ -2,8 +2,8 @@ import Foundation
 import Security
 
 struct KeychainStore {
-    private let service = "com.beauhenry.kistuletz"
-    private let legacyService = "com.draftsmith.mac"
+    private let service = "com.beauhenry.kistulentz"
+    private let legacyServices = ["com.beauhenry.kistuletz", "com.draftsmith.mac"]
 
     func save(_ value: String, account: String) throws {
         guard let data = value.data(using: .utf8) else {
@@ -27,8 +27,12 @@ struct KeychainStore {
     }
 
     func read(account: String) -> String? {
-        read(account: account, service: service)
-            ?? read(account: account, service: legacyService)
+        for serviceName in [service] + legacyServices {
+            if let value = read(account: account, service: serviceName) {
+                return value
+            }
+        }
+        return nil
     }
 
     private func read(account: String, service: String) -> String? {
@@ -51,7 +55,7 @@ struct KeychainStore {
     }
 
     func delete(account: String) throws {
-        for serviceName in [service, legacyService] {
+        for serviceName in [service] + legacyServices {
             let query: [String: Any] = [
                 kSecClass as String: kSecClassGenericPassword,
                 kSecAttrService as String: serviceName,
