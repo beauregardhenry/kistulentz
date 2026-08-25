@@ -1,0 +1,2 @@
+b9cb8772176b89bdab0a619770c8b84eaad5ea1f7058458c875b3995ebaed880  Kistuletz-0.1.1-macOS-universal.zip
+1f06b5e293249fd1364c102d9272d26d190fde8fbac559d62ddce495c57c260b  Kistuletz-0.1.1-macOS-universal.dmg
