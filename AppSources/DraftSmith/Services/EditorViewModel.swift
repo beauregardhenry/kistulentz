@@ -9,6 +9,7 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var referenceAlignment = ReferenceAlignment.empty
     @Published private(set) var isLoadingReference = false
     @Published private(set) var isReviewing = false
+    @Published private(set) var dismissedSuggestions: [DismissedSuggestion] = []
     @Published var errorMessage: String?
     @Published var focusRequest: FocusRequest?
 
@@ -16,10 +17,20 @@ final class EditorViewModel: ObservableObject {
     private var reviewTask: Task<Void, Never>?
     private var referenceTask: Task<Void, Never>?
     private var reviewedText: String?
+    private var currentText = ""
+    private var currentDocumentKey: String?
+    private var hasConfiguredDocument = false
     private let service = WritingAIService()
+    private let dismissalStore: DismissedSuggestionStore
+
+    init(dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore()) {
+        self.dismissalStore = dismissalStore
+    }
 
     var allIssues: [WritingIssue] {
-        (analysis.issues + referenceAlignment.issues + aiIssues).sorted {
+        (analysis.issues + referenceAlignment.issues + aiIssues)
+            .filter { !isDismissed($0) }
+            .sorted {
             if $0.range.location == $1.range.location {
                 return $0.range.length > $1.range.length
             }
@@ -27,7 +38,38 @@ final class EditorViewModel: ObservableObject {
         }
     }
 
+    var visibleLocalIssues: [WritingIssue] {
+        analysis.issues.filter { !isDismissed($0) }
+    }
+
+    func configureDocument(url: URL?, text: String) {
+        let nextKey = url.map { $0.resolvingSymlinksInPath().standardizedFileURL.path }
+        currentText = text
+
+        guard !hasConfiguredDocument || nextKey != currentDocumentKey else {
+            pruneDismissals(for: text)
+            return
+        }
+
+        let sessionSuggestions = hasConfiguredDocument && currentDocumentKey == nil
+            ? dismissedSuggestions
+            : []
+        currentDocumentKey = nextKey
+        hasConfiguredDocument = true
+
+        if let nextKey {
+            dismissedSuggestions = Array(Set(dismissalStore.suggestions(for: nextKey) + sessionSuggestions))
+            pruneDismissals(for: text)
+        } else if !sessionSuggestions.isEmpty {
+            dismissedSuggestions = sessionSuggestions
+        } else {
+            dismissedSuggestions = []
+        }
+    }
+
     func scheduleAnalysis(text: String, targetGrade: Int, immediately: Bool = false) {
+        currentText = text
+        pruneDismissals(for: text)
         if let reviewedText, reviewedText != text {
             aiReview = nil
             aiIssues = []
@@ -131,8 +173,49 @@ final class EditorViewModel: ObservableObject {
         reviewedText = nil
     }
 
+    func preserveAIReview(afterAccepting issue: WritingIssue, in text: String) {
+        guard let aiReview else { return }
+        var refreshed = Self.makeIssues(from: aiReview.suggestions, in: text)
+        if issue.source == .ai {
+            refreshed.removeAll {
+                $0.category == issue.category
+                    && $0.excerpt == issue.excerpt
+                    && $0.replacement == issue.replacement
+            }
+        }
+        aiIssues = refreshed
+        reviewedText = text
+    }
+
     func focus(on issue: WritingIssue) {
         focusRequest = FocusRequest(id: UUID(), range: issue.range)
+    }
+
+    func decline(_ issue: WritingIssue, in text: String) {
+        currentText = text
+        guard let dismissal = DismissedSuggestion(issue: issue, in: text) else {
+            errorMessage = "That passage has changed, so the suggestion can no longer be declined."
+            return
+        }
+        guard !dismissedSuggestions.contains(dismissal) else { return }
+        dismissedSuggestions.append(dismissal)
+        saveDismissals()
+    }
+
+    private func isDismissed(_ issue: WritingIssue) -> Bool {
+        dismissedSuggestions.contains { $0.matches(issue, in: currentText) }
+    }
+
+    private func pruneDismissals(for text: String) {
+        let remaining = dismissedSuggestions.filter { $0.passageStillExists(in: text) }
+        guard remaining != dismissedSuggestions else { return }
+        dismissedSuggestions = remaining
+        saveDismissals()
+    }
+
+    private func saveDismissals() {
+        guard let currentDocumentKey else { return }
+        dismissalStore.save(dismissedSuggestions, for: currentDocumentKey)
     }
 
     private static func makeIssues(from suggestions: [AISuggestion], in text: String) -> [WritingIssue] {
@@ -154,7 +237,7 @@ final class EditorViewModel: ObservableObject {
             return WritingIssue(
                 category: category,
                 range: range,
-                excerpt: suggestion.original,
+                excerpt: source.substring(with: range),
                 message: suggestion.explanation,
                 replacement: suggestion.replacement,
                 source: .ai

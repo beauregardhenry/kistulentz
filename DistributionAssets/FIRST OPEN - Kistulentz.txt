@@ -29,6 +29,11 @@ Kistulentz analyzes readability and EPUB reference books locally. The EPUB can
 guide style, vocabulary, tone, character, continuity, voice, and tempo even
 without an API key.
 
+Declined writing suggestions are remembered in local app preferences so they
+stay hidden when a document is reopened. The Markdown file is not modified to
+store this information, and a declined suggestion returns after its matching
+passage or nearby context changes.
+
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
 hidden index used to reopen large libraries quickly. Folder and EPUB imports do

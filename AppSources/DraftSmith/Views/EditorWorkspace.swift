@@ -8,8 +8,11 @@ struct EditorWorkspace: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.undoManager) private var undoManager
     @StateObject private var viewModel = EditorViewModel()
+    @StateObject private var undoCoordinator = DocumentUndoCoordinator()
     @State private var showingReplaceConfirmation = false
+    @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
     @State private var showingReferenceLibrary = false
     @State private var selectedLibraryReferences: Set<String> = []
@@ -24,7 +27,7 @@ struct EditorWorkspace: View {
             HSplitView {
                 ReadabilitySidebar(
                     stats: viewModel.analysis.stats,
-                    issues: viewModel.analysis.issues,
+                    issues: viewModel.visibleLocalIssues,
                     targetGrade: settings.targetGrade,
                     onSelect: viewModel.focus
                 )
@@ -52,6 +55,8 @@ struct EditorWorkspace: View {
                     onRemoveReference: viewModel.clearReference,
                     onSelect: viewModel.focus,
                     onApply: apply,
+                    onDecline: decline,
+                    onApplyAll: prepareApplyAll,
                     onUsePolishedDraft: { showingReplaceConfirmation = true }
                 )
                 .frame(minWidth: 280, idealWidth: 320, maxWidth: 380)
@@ -59,6 +64,7 @@ struct EditorWorkspace: View {
         }
         .background(Color(nsColor: .windowBackgroundColor))
         .onAppear {
+            viewModel.configureDocument(url: fileURL, text: document.text)
             viewModel.scheduleAnalysis(
                 text: document.text,
                 targetGrade: settings.targetGrade,
@@ -67,6 +73,9 @@ struct EditorWorkspace: View {
         }
         .onChange(of: document.text) { _, newValue in
             viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
+        }
+        .onChange(of: fileURL) { _, newValue in
+            viewModel.configureDocument(url: newValue, text: document.text)
         }
         .onChange(of: settings.targetGrade) { _, newValue in
             viewModel.scheduleAnalysis(text: document.text, targetGrade: newValue, immediately: true)
@@ -109,13 +118,39 @@ struct EditorWorkspace: View {
         ) {
             Button("Replace Document", role: .destructive) {
                 if let polished = viewModel.aiReview?.polishedText {
-                    document.text = polished
+                    undoCoordinator.replaceText(
+                        with: polished,
+                        binding: $document.text,
+                        undoManager: undoManager,
+                        actionName: "Use Polished Draft"
+                    )
                     viewModel.clearAIReview()
                 }
             }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("You can use Undo to restore the current version.")
+        }
+        .confirmationDialog(
+            "Apply all safe suggestions?",
+            isPresented: Binding(
+                get: { pendingApplyAllPlan != nil },
+                set: { if !$0 { pendingApplyAllPlan = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            if let plan = pendingApplyAllPlan {
+                Button(applyAllButtonTitle(for: plan)) {
+                    applyAll(plan)
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                pendingApplyAllPlan = nil
+            }
+        } message: {
+            if let plan = pendingApplyAllPlan {
+                Text(applyAllMessage(for: plan))
+            }
         }
     }
 
@@ -223,19 +258,66 @@ struct EditorWorkspace: View {
     }
 
     private func apply(_ issue: WritingIssue) {
-        guard let replacement = issue.replacement else { return }
-        let source = document.text as NSString
-        var range = issue.range
-        if range.location == NSNotFound || NSMaxRange(range) > source.length || source.substring(with: range) != issue.excerpt {
-            range = source.range(of: issue.excerpt)
-        }
-        guard range.location != NSNotFound else {
+        let plan = SuggestionApplicationPlanner.planSingle(issue: issue, in: document.text)
+        guard plan.hasChanges else {
             viewModel.errorMessage = "That passage has changed, so the suggestion can no longer be applied."
             return
         }
 
-        document.text = source.replacingCharacters(in: range, with: replacement)
+        undoCoordinator.replaceText(
+            with: plan.resultText,
+            binding: $document.text,
+            undoManager: undoManager,
+            actionName: "Accept Suggestion"
+        )
+        viewModel.preserveAIReview(afterAccepting: issue, in: plan.resultText)
+    }
+
+    private func decline(_ issue: WritingIssue) {
+        viewModel.decline(issue, in: document.text)
+    }
+
+    private func prepareApplyAll() {
+        let plan = SuggestionApplicationPlanner.plan(issues: viewModel.allIssues, in: document.text)
+        guard plan.hasChanges else {
+            viewModel.errorMessage = plan.conflictCount > 0 || plan.staleCount > 0
+                ? "The available replacements overlap or no longer match this draft. Apply them one at a time."
+                : "No current suggestions include a concrete replacement."
+            return
+        }
+        pendingApplyAllPlan = plan
+    }
+
+    private func applyAll(_ plan: SuggestionApplicationPlan) {
+        undoCoordinator.replaceText(
+            with: plan.resultText,
+            binding: $document.text,
+            undoManager: undoManager,
+            actionName: "Apply All Suggestions"
+        )
         viewModel.clearAIReview()
+        pendingApplyAllPlan = nil
+    }
+
+    private func applyAllButtonTitle(for plan: SuggestionApplicationPlan) -> String {
+        "Apply \(plan.appliedCount) \(plan.appliedCount == 1 ? "Change" : "Changes")"
+    }
+
+    private func applyAllMessage(for plan: SuggestionApplicationPlan) -> String {
+        var parts = [
+            "Kistulentz will apply \(plan.appliedCount) concrete, non-overlapping \(plan.appliedCount == 1 ? "change" : "changes") as one edit."
+        ]
+        if plan.conflictCount > 0 {
+            parts.append("\(plan.conflictCount) overlapping \(plan.conflictCount == 1 ? "suggestion" : "suggestions") will be skipped.")
+        }
+        if plan.staleCount > 0 {
+            parts.append("\(plan.staleCount) changed \(plan.staleCount == 1 ? "passage" : "passages") will be skipped.")
+        }
+        if plan.advisoryCount > 0 {
+            parts.append("Advisory highlights without replacement text will remain.")
+        }
+        parts.append("You can undo the entire edit with Command-Z.")
+        return parts.joined(separator: " ")
     }
 }
 
@@ -371,7 +453,13 @@ private struct ReviewSidebar: View {
     let onRemoveReference: () -> Void
     let onSelect: (WritingIssue) -> Void
     let onApply: (WritingIssue) -> Void
+    let onDecline: (WritingIssue) -> Void
+    let onApplyAll: () -> Void
     let onUsePolishedDraft: () -> Void
+
+    private var hasApplicableSuggestions: Bool {
+        issues.contains { $0.replacement != nil && $0.replacement != $0.excerpt }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -384,6 +472,12 @@ private struct ReviewSidebar: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
+                if hasApplicableSuggestions {
+                    Button("Apply All", action: onApplyAll)
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                        .help("Apply concrete, non-overlapping changes")
+                }
                 Button(action: onRunReview) {
                     Image(systemName: "arrow.clockwise")
                 }
@@ -459,7 +553,12 @@ private struct ReviewSidebar: View {
                     }
 
                     ForEach(issues) { issue in
-                        IssueCard(issue: issue, onSelect: onSelect, onApply: onApply)
+                        IssueCard(
+                            issue: issue,
+                            onSelect: onSelect,
+                            onApply: onApply,
+                            onDecline: onDecline
+                        )
                     }
 
                     if issues.isEmpty {
@@ -604,6 +703,7 @@ private struct IssueCard: View {
     let issue: WritingIssue
     let onSelect: (WritingIssue) -> Void
     let onApply: (WritingIssue) -> Void
+    let onDecline: (WritingIssue) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -639,16 +739,24 @@ private struct IssueCard: View {
             .buttonStyle(.plain)
 
             if let replacement = issue.replacement {
-                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "arrow.turn.down.right")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Text(replacement)
                         .font(.system(size: 12.5, weight: .medium))
                         .lineLimit(3)
-                    Spacer()
-                    Button("Apply") { onApply(issue) }
-                        .buttonStyle(.bordered)
+                }
+            }
+
+            HStack(spacing: 7) {
+                Spacer()
+                Button("Decline") { onDecline(issue) }
+                    .buttonStyle(.bordered)
+                    .controlSize(.mini)
+                if issue.replacement != nil {
+                    Button("Accept") { onApply(issue) }
+                        .buttonStyle(.borderedProminent)
                         .controlSize(.mini)
                 }
             }
