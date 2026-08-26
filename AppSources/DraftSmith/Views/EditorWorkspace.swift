@@ -1,6 +1,23 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+private enum ProjectFolderAction {
+    case createInParent
+    case openExisting
+}
+
+private struct PendingProjectConfiguration: Identifiable {
+    enum Mode {
+        case createInParent
+        case prepareExisting
+    }
+
+    let id = UUID()
+    let url: URL
+    let initialName: String
+    let mode: Mode
+}
+
 struct EditorWorkspace: View {
     @Binding var document: MarkdownDocument
     let fileURL: URL?
@@ -11,11 +28,20 @@ struct EditorWorkspace: View {
     @Environment(\.undoManager) private var undoManager
     @StateObject private var viewModel = EditorViewModel()
     @StateObject private var undoCoordinator = DocumentUndoCoordinator()
+    @StateObject private var projectStore = WritingProjectStore()
     @State private var showingReplaceConfirmation = false
     @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
     @State private var showingReferenceLibrary = false
     @State private var selectedLibraryReferences: Set<String> = []
+    @State private var isWriteMode = false
+    @State private var showingProjectFolderImporter = false
+    @State private var projectFolderAction: ProjectFolderAction = .openExisting
+    @State private var pendingProjectConfiguration: PendingProjectConfiguration?
+    @State private var showingNewChapter = false
+    @State private var showingStyleEditor = false
+    @State private var showingRevisionHistory = false
+    @State private var showingNamedSnapshot = false
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
@@ -24,61 +50,104 @@ struct EditorWorkspace: View {
             topBar
             Divider()
 
-            HSplitView {
-                ReadabilitySidebar(
-                    stats: viewModel.analysis.stats,
-                    issues: viewModel.visibleLocalIssues,
-                    targetGrade: settings.targetGrade,
-                    onSelect: viewModel.focus
-                )
-                .frame(minWidth: 215, idealWidth: 235, maxWidth: 270)
-
+            if isWriteMode {
                 MarkdownTextView(
-                    text: $document.text,
-                    issues: viewModel.allIssues,
+                    text: activeTextBinding,
+                    issues: [],
                     focusRequest: viewModel.focusRequest
                 )
-                .frame(minWidth: 500)
+                .frame(minWidth: 600)
+            } else {
+                HSplitView {
+                    if projectStore.isOpen {
+                        ProjectSidebar(
+                            store: projectStore,
+                            onSelectSearchResult: selectSearchResult,
+                            onNewChapter: { showingNewChapter = true },
+                            onEditStyle: { showingStyleEditor = true },
+                            onShowHistory: { showingRevisionHistory = true },
+                            onCreateSnapshot: { showingNamedSnapshot = true },
+                            onCloseProject: closeProject
+                        )
+                        .frame(minWidth: 205, idealWidth: 225, maxWidth: 275)
+                    }
 
-                ReviewSidebar(
-                    issues: viewModel.allIssues,
-                    review: viewModel.aiReview,
-                    isReviewing: viewModel.isReviewing,
-                    provider: settings.provider,
-                    hasAPIKey: settings.hasKey(for: settings.provider),
-                    reference: viewModel.referenceBook,
-                    alignment: viewModel.referenceAlignment,
-                    isLoadingReference: viewModel.isLoadingReference,
-                    onRunReview: runReview,
-                    onOpenSettings: { openSettings() },
-                    onChooseReference: { showingReferenceLibrary = true },
-                    onRemoveReference: viewModel.clearReference,
-                    onSelect: viewModel.focus,
-                    onApply: apply,
-                    onDecline: decline,
-                    onApplyAll: prepareApplyAll,
-                    onUsePolishedDraft: { showingReplaceConfirmation = true }
-                )
-                .frame(minWidth: 280, idealWidth: 320, maxWidth: 380)
+                    ReadabilitySidebar(
+                        stats: viewModel.analysis.stats,
+                        issues: visibleLocalHighlightIssues,
+                        targetGrade: settings.targetGrade,
+                        onSelect: viewModel.focus
+                    )
+                    .frame(minWidth: 205, idealWidth: 225, maxWidth: 260)
+
+                    MarkdownTextView(
+                        text: activeTextBinding,
+                        issues: visibleHighlightIssues,
+                        focusRequest: viewModel.focusRequest
+                    )
+                    .frame(minWidth: 450)
+
+                    ReviewSidebar(
+                        issues: viewModel.allIssues,
+                        review: viewModel.aiReview,
+                        isReviewing: viewModel.isReviewing,
+                        provider: settings.provider,
+                        hasAPIKey: settings.hasKey(for: settings.provider),
+                        reference: viewModel.referenceBook,
+                        alignment: viewModel.referenceAlignment,
+                        isLoadingReference: viewModel.isLoadingReference,
+                        onRunReview: runReview,
+                        onOpenSettings: { openSettings() },
+                        onChooseReference: { showingReferenceLibrary = true },
+                        onRemoveReference: viewModel.clearReference,
+                        onSelect: viewModel.focus,
+                        onApply: apply,
+                        onDecline: decline,
+                        onApplyAll: prepareApplyAll,
+                        onUsePolishedDraft: { showingReplaceConfirmation = true }
+                    )
+                    .frame(minWidth: 280, idealWidth: 320, maxWidth: 380)
+                }
             }
         }
         .background(Color(nsColor: .windowBackgroundColor))
+        .navigationTitle(projectStore.isOpen ? projectStore.projectName : (fileURL?.lastPathComponent ?? "Untitled.md"))
         .onAppear {
-            viewModel.configureDocument(url: fileURL, text: document.text)
+            viewModel.configureDocument(url: activeFileURL, text: activeText)
             viewModel.scheduleAnalysis(
-                text: document.text,
+                text: activeText,
                 targetGrade: settings.targetGrade,
                 immediately: true
             )
         }
         .onChange(of: document.text) { _, newValue in
-            viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
+            if !projectStore.isOpen {
+                viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
+            }
+        }
+        .onChange(of: projectStore.text) { _, newValue in
+            if projectStore.isOpen {
+                viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
+            }
+        }
+        .onChange(of: projectStore.selectedFileURL) { _, newValue in
+            guard projectStore.isOpen else { return }
+            undoManager?.removeAllActions()
+            viewModel.clearAIReview()
+            viewModel.configureDocument(url: newValue, text: projectStore.text)
+            viewModel.scheduleAnalysis(
+                text: projectStore.text,
+                targetGrade: settings.targetGrade,
+                immediately: true
+            )
         }
         .onChange(of: fileURL) { _, newValue in
-            viewModel.configureDocument(url: newValue, text: document.text)
+            if !projectStore.isOpen {
+                viewModel.configureDocument(url: newValue, text: document.text)
+            }
         }
         .onChange(of: settings.targetGrade) { _, newValue in
-            viewModel.scheduleAnalysis(text: document.text, targetGrade: newValue, immediately: true)
+            viewModel.scheduleAnalysis(text: activeText, targetGrade: newValue, immediately: true)
         }
         .onReceive(NotificationCenter.default.publisher(for: .runAIReview)) { _ in
             runReview()
@@ -91,25 +160,61 @@ struct EditorWorkspace: View {
             switch result {
             case .success(let urls):
                 guard let url = urls.first else { return }
-                viewModel.importReference(from: url, draft: document.text)
+                viewModel.importReference(from: url, draft: activeText)
             case .failure(let error):
                 viewModel.errorMessage = error.localizedDescription
             }
         }
         .sheet(isPresented: $showingReferenceLibrary) {
             ReferenceLibraryView(selectedChoiceIDs: $selectedLibraryReferences) { reference in
-                viewModel.useReference(reference, draft: document.text)
+                viewModel.useReference(reference, draft: activeText)
             }
             .environmentObject(referenceLibrary)
             .environmentObject(settings)
         }
+        .fileImporter(
+            isPresented: $showingProjectFolderImporter,
+            allowedContentTypes: [.folder],
+            allowsMultipleSelection: false
+        ) { result in
+            handleProjectFolderResult(result)
+        }
+        .sheet(item: $pendingProjectConfiguration) { configuration in
+            ProjectConfigurationSheet(
+                title: configuration.mode == .createInParent ? "New Kistulentz Project" : "Set Up Project Folder",
+                initialName: configuration.initialName,
+                allowsNameEditing: configuration.mode == .createInParent
+            ) { name, kind in
+                configureProject(configuration, name: name, kind: kind)
+            }
+        }
+        .sheet(isPresented: $showingNewChapter) {
+            NewChapterSheet { projectStore.createChapter(named: $0) }
+        }
+        .sheet(isPresented: $showingStyleEditor) {
+            ProjectStyleEditorView(store: projectStore)
+        }
+        .sheet(isPresented: $showingRevisionHistory) {
+            RevisionHistoryView(store: projectStore)
+                .onDisappear { undoManager?.removeAllActions() }
+        }
+        .sheet(isPresented: $showingNamedSnapshot) {
+            NamedSnapshotSheet(chapterTitle: projectStore.selectedChapterTitle) { name in
+                projectStore.createSnapshot(name: name, reason: "Named snapshot")
+            }
+        }
         .alert("Kistulentz", isPresented: Binding(
-            get: { viewModel.errorMessage != nil },
-            set: { if !$0 { viewModel.errorMessage = nil } }
+            get: { viewModel.errorMessage != nil || projectStore.errorMessage != nil },
+            set: {
+                if !$0 {
+                    viewModel.errorMessage = nil
+                    projectStore.errorMessage = nil
+                }
+            }
         )) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(viewModel.errorMessage ?? "")
+            Text(viewModel.errorMessage ?? projectStore.errorMessage ?? "")
         }
         .confirmationDialog(
             "Replace this document with the polished draft?",
@@ -118,9 +223,10 @@ struct EditorWorkspace: View {
         ) {
             Button("Replace Document", role: .destructive) {
                 if let polished = viewModel.aiReview?.polishedText {
+                    projectStore.prepareForProgrammaticEdit(reason: "Before polished draft")
                     undoCoordinator.replaceText(
                         with: polished,
-                        binding: $document.text,
+                        binding: activeTextBinding,
                         undoManager: undoManager,
                         actionName: "Use Polished Draft"
                     )
@@ -154,6 +260,32 @@ struct EditorWorkspace: View {
         }
     }
 
+    private var activeText: String {
+        projectStore.isOpen ? projectStore.text : document.text
+    }
+
+    private var activeTextBinding: Binding<String> {
+        if projectStore.isOpen {
+            return Binding(
+                get: { projectStore.text },
+                set: { projectStore.updateText($0) }
+            )
+        }
+        return $document.text
+    }
+
+    private var activeFileURL: URL? {
+        projectStore.isOpen ? projectStore.selectedFileURL : fileURL
+    }
+
+    private var visibleHighlightIssues: [WritingIssue] {
+        viewModel.allIssues.filter { settings.isHighlightVisible($0.category) }
+    }
+
+    private var visibleLocalHighlightIssues: [WritingIssue] {
+        viewModel.visibleLocalIssues.filter { settings.isHighlightVisible($0.category) }
+    }
+
     private var topBar: some View {
         HStack(spacing: 14) {
             HStack(spacing: 9) {
@@ -171,16 +303,75 @@ struct EditorWorkspace: View {
 
             Divider().frame(height: 20)
 
+            Menu {
+                Button {
+                    projectFolderAction = .createInParent
+                    showingProjectFolderImporter = true
+                } label: {
+                    Label("New Project…", systemImage: "folder.badge.plus")
+                }
+                Button {
+                    projectFolderAction = .openExisting
+                    showingProjectFolderImporter = true
+                } label: {
+                    Label("Open Project…", systemImage: "folder")
+                }
+
+                if projectStore.isOpen {
+                    Divider()
+                    Button("New Chapter…") { showingNewChapter = true }
+                    Button("Edit Kistulentz Style…") { showingStyleEditor = true }
+                    Button("Create Snapshot…") { showingNamedSnapshot = true }
+                    Button("Revision History…") { showingRevisionHistory = true }
+                    Divider()
+                    Button("Close Project", action: closeProject)
+                }
+            } label: {
+                Image(systemName: projectStore.isOpen ? "folder.fill" : "folder")
+            }
+            .menuStyle(.borderlessButton)
+            .fixedSize()
+            .help(projectStore.isOpen ? projectStore.projectName : "Projects")
+
             VStack(alignment: .leading, spacing: 1) {
-                Text(fileURL?.lastPathComponent ?? "Untitled.md")
+                Text(activeFileURL?.lastPathComponent ?? "Untitled.md")
                     .font(.system(size: 13, weight: .medium))
                     .lineLimit(1)
-                Text("Markdown document")
+                Text(projectStore.isOpen
+                    ? "\(projectStore.projectName) · \(projectStore.projectKind?.title ?? "Project")"
+                    : "Markdown document")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
 
             Spacer()
+
+            Menu {
+                Button {
+                    isWriteMode.toggle()
+                } label: {
+                    Label(isWriteMode ? "Exit Write Mode" : "Enter Write Mode", systemImage: isWriteMode ? "sidebar.left" : "text.page")
+                }
+                Divider()
+                Text("Visible highlights")
+                ForEach(IssueCategory.allCases) { category in
+                    Button {
+                        settings.toggleHighlight(category)
+                    } label: {
+                        if settings.isHighlightVisible(category) {
+                            Label(category.title, systemImage: "checkmark")
+                        } else {
+                            Text(category.title)
+                        }
+                    }
+                }
+            } label: {
+                Image(systemName: isWriteMode ? "text.page.fill" : "highlighter")
+            }
+            .menuStyle(.borderlessButton)
+            .fixedSize()
+            .help(isWriteMode ? "Exit Write Mode" : "Writing view and highlights")
 
             Menu {
                 ForEach(AIProvider.allCases) { provider in
@@ -254,31 +445,35 @@ struct EditorWorkspace: View {
     }
 
     private func runReview() {
-        viewModel.runAIReview(text: document.text, settings: settings)
+        viewModel.runAIReview(text: activeText, settings: settings)
     }
 
     private func apply(_ issue: WritingIssue) {
-        let plan = SuggestionApplicationPlanner.planSingle(issue: issue, in: document.text)
+        let plan = SuggestionApplicationPlanner.planSingle(issue: issue, in: activeText)
         guard plan.hasChanges else {
             viewModel.errorMessage = "That passage has changed, so the suggestion can no longer be applied."
             return
         }
 
+        projectStore.prepareForProgrammaticEdit(reason: "Before accepting suggestion")
         undoCoordinator.replaceText(
             with: plan.resultText,
-            binding: $document.text,
+            binding: activeTextBinding,
             undoManager: undoManager,
             actionName: "Accept Suggestion"
         )
+        projectStore.recordStyleDecision(action: .accepted, issue: issue)
         viewModel.preserveAIReview(afterAccepting: issue, in: plan.resultText)
     }
 
     private func decline(_ issue: WritingIssue) {
-        viewModel.decline(issue, in: document.text)
+        if viewModel.decline(issue, in: activeText) {
+            projectStore.recordStyleDecision(action: .declined, issue: issue)
+        }
     }
 
     private func prepareApplyAll() {
-        let plan = SuggestionApplicationPlanner.plan(issues: viewModel.allIssues, in: document.text)
+        let plan = SuggestionApplicationPlanner.plan(issues: viewModel.allIssues, in: activeText)
         guard plan.hasChanges else {
             viewModel.errorMessage = plan.conflictCount > 0 || plan.staleCount > 0
                 ? "The available replacements overlap or no longer match this draft. Apply them one at a time."
@@ -289,14 +484,101 @@ struct EditorWorkspace: View {
     }
 
     private func applyAll(_ plan: SuggestionApplicationPlan) {
+        let appliedIDs = Set(plan.appliedIssueIDs)
+        let appliedIssues = viewModel.allIssues.filter { appliedIDs.contains($0.id) }
+        projectStore.prepareForProgrammaticEdit(reason: "Before applying all suggestions")
         undoCoordinator.replaceText(
             with: plan.resultText,
-            binding: $document.text,
+            binding: activeTextBinding,
             undoManager: undoManager,
             actionName: "Apply All Suggestions"
         )
+        for issue in appliedIssues {
+            projectStore.recordStyleDecision(action: .accepted, issue: issue)
+        }
         viewModel.clearAIReview()
         pendingApplyAllPlan = nil
+    }
+
+    private func handleProjectFolderResult(_ result: Result<[URL], Error>) {
+        switch result {
+        case .success(let urls):
+            guard let url = urls.first else { return }
+            switch projectFolderAction {
+            case .createInParent:
+                pendingProjectConfiguration = PendingProjectConfiguration(
+                    url: url,
+                    initialName: "Untitled Project",
+                    mode: .createInParent
+                )
+            case .openExisting:
+                if WritingProjectDisk.hasManifest(at: url) {
+                    do {
+                        try projectStore.openProject(at: url)
+                        activateProject()
+                    } catch {
+                        projectStore.errorMessage = error.localizedDescription
+                    }
+                } else {
+                    pendingProjectConfiguration = PendingProjectConfiguration(
+                        url: url,
+                        initialName: url.lastPathComponent,
+                        mode: .prepareExisting
+                    )
+                }
+            }
+        case .failure(let error):
+            projectStore.errorMessage = error.localizedDescription
+        }
+    }
+
+    private func configureProject(
+        _ configuration: PendingProjectConfiguration,
+        name: String,
+        kind: WritingProjectKind
+    ) {
+        do {
+            switch configuration.mode {
+            case .createInParent:
+                try projectStore.createProject(in: configuration.url, name: name, kind: kind)
+            case .prepareExisting:
+                try projectStore.prepareAndOpenProject(at: configuration.url, name: name, kind: kind)
+            }
+            activateProject()
+        } catch {
+            projectStore.errorMessage = error.localizedDescription
+        }
+    }
+
+    private func activateProject() {
+        undoManager?.removeAllActions()
+        viewModel.clearAIReview()
+        viewModel.configureDocument(url: projectStore.selectedFileURL, text: projectStore.text)
+        viewModel.scheduleAnalysis(
+            text: projectStore.text,
+            targetGrade: settings.targetGrade,
+            immediately: true
+        )
+    }
+
+    private func closeProject() {
+        projectStore.closeProject()
+        undoManager?.removeAllActions()
+        viewModel.clearAIReview()
+        viewModel.configureDocument(url: fileURL, text: document.text)
+        viewModel.scheduleAnalysis(
+            text: document.text,
+            targetGrade: settings.targetGrade,
+            immediately: true
+        )
+    }
+
+    private func selectSearchResult(_ result: ProjectSearchResult) {
+        projectStore.selectChapter(result.chapterPath)
+        Task { @MainActor in
+            await Task.yield()
+            viewModel.focus(on: result.range)
+        }
     }
 
     private func applyAllButtonTitle(for plan: SuggestionApplicationPlan) -> String {

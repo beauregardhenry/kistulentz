@@ -5,6 +5,11 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 ## Included
 
 - Native `.md` open, edit, save, autosave, and Undo support
+- Normal-folder projects for fiction and nonfiction manuscripts
+- Ordered Markdown chapters, manuscript-wide search, and combined project word counts
+- A project-local, editable `Kistulentz Style.md` that learns from accepted and declined suggestions
+- Persistent project snapshots with named versions, visual line comparisons, and protected restoration
+- Distraction-free Write mode and individually configurable highlight categories
 - Live reading-grade estimate, word count, sentence count, and reading time
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
 - macOS spelling and grammar checking while you type
@@ -58,3 +63,14 @@ The chosen Reference Library folder contains `Kistulentz Library.md`, per-book p
 Declined-suggestion records are stored in Kistulentz's local app preferences, not inside the Markdown document. They are removed automatically when the matching passage or nearby context changes.
 
 DRM-protected and image-only EPUB files do not expose readable book text and cannot be analyzed.
+
+## Projects
+
+Use the folder menu in the editor toolbar to create a project inside a chosen parent folder or open an existing folder. Existing Markdown files remain unchanged when a folder is set up as a project. Kistulentz adds:
+
+- `.kistulentz/project.json` for the project type and chapter order
+- `.kistulentz/history/` for persistent revision snapshots
+- `.kistulentz/style-decisions.json` for local accepted/declined preference records
+- `Kistulentz Style.md` at the project root for editable style instructions and learned preferences
+
+The manuscript itself remains a normal collection of `.md` files. Kistulentz saves a baseline snapshot before the first edit to a chapter in a session, before programmatic replacements, and before restoring an older snapshot. Named snapshots can be created at any time.

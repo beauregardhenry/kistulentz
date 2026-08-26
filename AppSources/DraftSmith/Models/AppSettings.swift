@@ -28,6 +28,7 @@ final class AppSettings: ObservableObject {
         static let targetGrade = "targetReadingGrade"
         static let openAIModel = "openAIModel"
         static let anthropicModel = "anthropicModel"
+        static let hiddenHighlightCategories = "hiddenHighlightCategories"
     }
 
     private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
@@ -48,6 +49,15 @@ final class AppSettings: ObservableObject {
         didSet { defaults.set(anthropicModel, forKey: DefaultsKey.anthropicModel) }
     }
 
+    @Published var hiddenHighlightCategories: Set<IssueCategory> {
+        didSet {
+            defaults.set(
+                hiddenHighlightCategories.map(\.rawValue).sorted(),
+                forKey: DefaultsKey.hiddenHighlightCategories
+            )
+        }
+    }
+
     @Published private(set) var hasOpenAIKey = false
     @Published private(set) var hasAnthropicKey = false
 
@@ -65,6 +75,10 @@ final class AppSettings: ObservableObject {
         targetGrade = savedGrade == 0 ? 8 : min(max(savedGrade, 4), 16)
         openAIModel = defaults.string(forKey: DefaultsKey.openAIModel) ?? "gpt-5.5"
         anthropicModel = defaults.string(forKey: DefaultsKey.anthropicModel) ?? "claude-sonnet-4-6"
+        hiddenHighlightCategories = Set(
+            (defaults.stringArray(forKey: DefaultsKey.hiddenHighlightCategories) ?? [])
+                .compactMap(IssueCategory.init(rawValue:))
+        )
 
         refreshKeyStatus()
     }
@@ -75,7 +89,8 @@ final class AppSettings: ObservableObject {
             DefaultsKey.provider,
             DefaultsKey.targetGrade,
             DefaultsKey.openAIModel,
-            DefaultsKey.anthropicModel
+            DefaultsKey.anthropicModel,
+            DefaultsKey.hiddenHighlightCategories
         ]
         for key in keys where defaults.object(forKey: key) == nil {
             if let value = legacy.object(forKey: key) {
@@ -109,6 +124,18 @@ final class AppSettings: ObservableObject {
         switch provider {
         case .openAI: hasOpenAIKey
         case .anthropic: hasAnthropicKey
+        }
+    }
+
+    func isHighlightVisible(_ category: IssueCategory) -> Bool {
+        !hiddenHighlightCategories.contains(category)
+    }
+
+    func toggleHighlight(_ category: IssueCategory) {
+        if hiddenHighlightCategories.contains(category) {
+            hiddenHighlightCategories.remove(category)
+        } else {
+            hiddenHighlightCategories.insert(category)
         }
     }
 

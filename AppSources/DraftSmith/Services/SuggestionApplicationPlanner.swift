@@ -7,13 +7,15 @@ struct SuggestionApplicationPlan: Equatable {
     let staleCount: Int
     let advisoryCount: Int
     let duplicateCount: Int
+    let appliedIssueIDs: [UUID]
 
     var hasChanges: Bool { appliedCount > 0 }
     var skippedCount: Int { conflictCount + staleCount + advisoryCount }
 }
 
 enum SuggestionApplicationPlanner {
-    private struct Candidate: Equatable {
+    private struct Candidate {
+        var issueIDs: [UUID]
         let range: NSRange
         let excerpt: String
         let replacement: String
@@ -36,11 +38,20 @@ enum SuggestionApplicationPlanner {
                 continue
             }
 
-            let candidate = Candidate(range: issue.range, excerpt: issue.excerpt, replacement: replacement)
-            if candidates.contains(candidate) {
+            if let duplicateIndex = candidates.firstIndex(where: {
+                $0.range == issue.range
+                    && $0.excerpt == issue.excerpt
+                    && $0.replacement == replacement
+            }) {
+                candidates[duplicateIndex].issueIDs.append(issue.id)
                 duplicateCount += 1
             } else {
-                candidates.append(candidate)
+                candidates.append(Candidate(
+                    issueIDs: [issue.id],
+                    range: issue.range,
+                    excerpt: issue.excerpt,
+                    replacement: replacement
+                ))
             }
         }
 
@@ -72,7 +83,8 @@ enum SuggestionApplicationPlanner {
             conflictCount: conflicting.count,
             staleCount: staleCount,
             advisoryCount: advisoryCount,
-            duplicateCount: duplicateCount
+            duplicateCount: duplicateCount,
+            appliedIssueIDs: applicable.flatMap(\.issueIDs)
         )
     }
 

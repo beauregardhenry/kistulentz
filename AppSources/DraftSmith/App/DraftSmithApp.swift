@@ -10,7 +10,7 @@ struct KistulentzApp: App {
             EditorWorkspace(document: file.$document, fileURL: file.fileURL)
                 .environmentObject(settings)
                 .environmentObject(referenceLibrary)
-                .frame(minWidth: 1_060, minHeight: 680)
+                .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
             CommandGroup(after: .textEditing) {

@@ -191,15 +191,21 @@ final class EditorViewModel: ObservableObject {
         focusRequest = FocusRequest(id: UUID(), range: issue.range)
     }
 
-    func decline(_ issue: WritingIssue, in text: String) {
+    func focus(on range: NSRange) {
+        focusRequest = FocusRequest(id: UUID(), range: range)
+    }
+
+    @discardableResult
+    func decline(_ issue: WritingIssue, in text: String) -> Bool {
         currentText = text
         guard let dismissal = DismissedSuggestion(issue: issue, in: text) else {
             errorMessage = "That passage has changed, so the suggestion can no longer be declined."
-            return
+            return false
         }
-        guard !dismissedSuggestions.contains(dismissal) else { return }
+        guard !dismissedSuggestions.contains(dismissal) else { return true }
         dismissedSuggestions.append(dismissal)
         saveDismissals()
+        return true
     }
 
     private func isDismissed(_ issue: WritingIssue) -> Bool {

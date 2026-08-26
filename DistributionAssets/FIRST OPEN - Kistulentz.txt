@@ -34,6 +34,12 @@ stay hidden when a document is reopened. The Markdown file is not modified to
 store this information, and a declined suggestion returns after its matching
 passage or nearby context changes.
 
+Kistulentz projects are normal folders of Markdown files. Project settings,
+chapter order, search metadata, and revision snapshots remain in a hidden
+.kistulentz folder inside the project. The editable Kistulentz Style.md file is
+also stored at the project root. None of these project features contact an AI
+provider.
+
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
 hidden index used to reopen large libraries quickly. Folder and EPUB imports do
