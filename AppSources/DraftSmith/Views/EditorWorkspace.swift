@@ -42,6 +42,9 @@ struct EditorWorkspace: View {
     @State private var showingStyleEditor = false
     @State private var showingRevisionHistory = false
     @State private var showingNamedSnapshot = false
+    @State private var editorSelection = NSRange(location: 0, length: 0)
+    @State private var pendingAIRequest: AIRequestPreview?
+    @State private var showingToneRequest = false
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
@@ -53,6 +56,7 @@ struct EditorWorkspace: View {
             if isWriteMode {
                 MarkdownTextView(
                     text: activeTextBinding,
+                    selection: $editorSelection,
                     issues: [],
                     focusRequest: viewModel.focusRequest
                 )
@@ -82,6 +86,7 @@ struct EditorWorkspace: View {
 
                     MarkdownTextView(
                         text: activeTextBinding,
+                        selection: $editorSelection,
                         issues: visibleHighlightIssues,
                         focusRequest: viewModel.focusRequest
                     )
@@ -92,7 +97,7 @@ struct EditorWorkspace: View {
                         review: viewModel.aiReview,
                         isReviewing: viewModel.isReviewing,
                         provider: settings.provider,
-                        hasAPIKey: settings.hasKey(for: settings.provider),
+                        hasAPIKey: settings.isProviderReady(settings.provider),
                         reference: viewModel.referenceBook,
                         alignment: viewModel.referenceAlignment,
                         isLoadingReference: viewModel.isLoadingReference,
@@ -132,6 +137,7 @@ struct EditorWorkspace: View {
         }
         .onChange(of: projectStore.selectedFileURL) { _, newValue in
             guard projectStore.isOpen else { return }
+            editorSelection = NSRange(location: 0, length: 0)
             undoManager?.removeAllActions()
             viewModel.clearAIReview()
             viewModel.configureDocument(url: newValue, text: projectStore.text)
@@ -201,6 +207,26 @@ struct EditorWorkspace: View {
         .sheet(isPresented: $showingNamedSnapshot) {
             NamedSnapshotSheet(chapterTitle: projectStore.selectedChapterTitle) { name in
                 projectStore.createSnapshot(name: name, reason: "Named snapshot")
+            }
+        }
+        .sheet(item: $pendingAIRequest) { preview in
+            AIRequestPreviewView(preview: preview) { confirmed in
+                pendingAIRequest = nil
+                executeAIRequest(confirmed)
+            }
+        }
+        .sheet(isPresented: $showingToneRequest) {
+            ToneRequestView { tone in
+                showingToneRequest = false
+                Task { @MainActor in
+                    await Task.yield()
+                    prepareRewrite(SelectionRewriteGoal(kind: .adjustTone, requestedTone: tone))
+                }
+            }
+        }
+        .sheet(item: $viewModel.rewritePresentation) { presentation in
+            SelectionRewriteResultView(presentation: presentation) { alternative in
+                applyRewrite(alternative, presentation: presentation)
             }
         }
         .alert("Kistulentz", isPresented: Binding(
@@ -392,6 +418,31 @@ struct EditorWorkspace: View {
             .fixedSize()
 
             Menu {
+                ForEach(SelectionRewriteKind.allCases) { kind in
+                    Button {
+                        if kind == .adjustTone {
+                            showingToneRequest = true
+                        } else {
+                            prepareRewrite(SelectionRewriteGoal(kind: kind, requestedTone: nil))
+                        }
+                    } label: {
+                        Label(kind.title, systemImage: kind.systemImage)
+                    }
+                    .disabled(kind == .matchReferences && viewModel.referenceBook == nil)
+                }
+            } label: {
+                if viewModel.isRewriting {
+                    ProgressView().controlSize(.small)
+                } else {
+                    Label("Rewrite", systemImage: "text.badge.star")
+                }
+            }
+            .menuStyle(.borderlessButton)
+            .fixedSize()
+            .disabled(selectedPassage == nil || viewModel.isRewriting)
+            .help(selectedPassage == nil ? "Select a passage to rewrite" : "Rewrite the selected passage")
+
+            Menu {
                 ForEach([5, 6, 7, 8, 9, 10, 11, 12], id: \.self) { grade in
                     Button("Grade \(grade)") { settings.targetGrade = grade }
                 }
@@ -445,7 +496,115 @@ struct EditorWorkspace: View {
     }
 
     private func runReview() {
-        viewModel.runAIReview(text: activeText, settings: settings)
+        guard validateSelectedProvider() else { return }
+        let style = projectStore.isOpen ? projectStore.styleText : nil
+        let reference = viewModel.referenceBook.map {
+            WritingAIService.referenceContext($0, relevantTo: activeText)
+        }
+        pendingAIRequest = AIRequestPreview(
+            purpose: .polish(targetGrade: settings.targetGrade),
+            provider: settings.provider,
+            model: settings.model(for: settings.provider),
+            primaryLabel: "Markdown draft",
+            primaryText: activeText,
+            styleGuide: style,
+            includesStyleGuide: style?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false,
+            referenceContext: reference,
+            includesReferenceContext: reference != nil,
+            sourceRange: nil,
+            sourceText: activeText
+        )
+    }
+
+    private var selectedPassage: (range: NSRange, text: String)? {
+        let source = activeText as NSString
+        guard editorSelection.location != NSNotFound,
+              editorSelection.length > 0,
+              NSMaxRange(editorSelection) <= source.length else { return nil }
+        return (editorSelection, source.substring(with: editorSelection))
+    }
+
+    private func prepareRewrite(_ goal: SelectionRewriteGoal) {
+        guard let selectedPassage else {
+            viewModel.errorMessage = "Select a passage before choosing a rewrite."
+            return
+        }
+        guard validateSelectedProvider() else { return }
+        if goal.kind == .matchReferences, viewModel.referenceBook == nil {
+            viewModel.errorMessage = "Choose at least one reference before matching its craft profile."
+            return
+        }
+
+        let style = projectStore.isOpen ? projectStore.styleText : nil
+        let reference = viewModel.referenceBook.map {
+            WritingAIService.referenceContext($0, relevantTo: selectedPassage.text, maxCharacters: 16_000)
+        }
+        pendingAIRequest = AIRequestPreview(
+            purpose: .selectionRewrite(goal: goal, targetGrade: settings.targetGrade),
+            provider: settings.provider,
+            model: settings.model(for: settings.provider),
+            primaryLabel: "Selected Markdown",
+            primaryText: selectedPassage.text,
+            styleGuide: style,
+            includesStyleGuide: style?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false,
+            referenceContext: reference,
+            includesReferenceContext: reference != nil,
+            sourceRange: selectedPassage.range,
+            sourceText: selectedPassage.text
+        )
+    }
+
+    private func validateSelectedProvider() -> Bool {
+        let provider = settings.provider
+        guard settings.isProviderReady(provider) else {
+            viewModel.errorMessage = provider.requiresAPIKey
+                ? "Add your \(provider.title) API key and choose a model in Settings first."
+                : "Open Settings, detect the Ollama models already on this Mac, and choose one first."
+            return false
+        }
+        return true
+    }
+
+    private func executeAIRequest(_ request: AIRequestPreview) {
+        switch request.purpose {
+        case .polish:
+            viewModel.runAIReview(request: request, matching: activeText, settings: settings)
+        case .selectionRewrite:
+            viewModel.runSelectionRewrite(request: request, settings: settings)
+        case .referenceDeepening:
+            break
+        }
+    }
+
+    private func applyRewrite(
+        _ alternative: RewriteAlternative,
+        presentation: SelectionRewritePresentation
+    ) {
+        guard let result = SelectionReplacementPlanner.replace(
+            in: activeText,
+            range: presentation.sourceRange,
+            expected: presentation.sourceText,
+            with: alternative.text
+        ) else {
+            viewModel.errorMessage = "That passage changed after the alternatives were created. Select it again and rerun the rewrite."
+            viewModel.rewritePresentation = nil
+            return
+        }
+
+        projectStore.prepareForProgrammaticEdit(reason: "Before selection rewrite")
+        undoCoordinator.replaceText(
+            with: result,
+            binding: activeTextBinding,
+            undoManager: undoManager,
+            actionName: presentation.goal.title
+        )
+        let replacementRange = NSRange(
+            location: presentation.sourceRange.location,
+            length: (alternative.text as NSString).length
+        )
+        editorSelection = replacementRange
+        viewModel.focus(on: replacementRange)
+        viewModel.rewritePresentation = nil
     }
 
     private func apply(_ issue: WritingIssue) {
@@ -793,9 +952,14 @@ private struct ReviewSidebar: View {
                         .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 11))
                     } else if !hasAPIKey {
                         VStack(alignment: .leading, spacing: 8) {
-                            Label("Connect \(provider.title)", systemImage: "key")
+                            Label(
+                                provider.requiresAPIKey ? "Connect \(provider.title)" : "Choose a local model",
+                                systemImage: provider.requiresAPIKey ? "key" : "desktopcomputer"
+                            )
                                 .font(.caption.weight(.semibold))
-                            Text("Local readability and EPUB comparisons work without a key. Connect for grammar corrections and deeper rewrites.")
+                            Text(provider.requiresAPIKey
+                                ? "Local readability and EPUB comparisons work without a key. Connect for grammar corrections and deeper rewrites."
+                                : "Kistulentz found no selected Ollama model. Open Settings to detect models already installed on this Mac.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                             Button("Open Settings", action: onOpenSettings)
@@ -849,7 +1013,9 @@ private struct ReviewSidebar: View {
                             systemImage: "checkmark.circle",
                             description: Text(hasAPIKey
                                 ? "Run an AI review for deeper grammar and rewriting suggestions."
-                                : "Local analysis is clear. Add an API key only when you want deeper AI suggestions.")
+                                : (provider.requiresAPIKey
+                                    ? "Local analysis is clear. Add an API key only when you want deeper AI suggestions."
+                                    : "Local analysis is clear. Choose an installed Ollama model for deeper local suggestions."))
                         )
                         .padding(.top, 12)
                     }

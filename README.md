@@ -1,6 +1,6 @@
 # Kistulentz
 
-Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It combines live Hemingway-style readability guidance with optional OpenAI or Anthropic editing.
+Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It combines live Hemingway-style readability guidance with optional OpenAI, Anthropic, or local Ollama editing.
 
 ## Included
 
@@ -22,8 +22,13 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - In-app corrections for titles, authors, and genres
 - Short attributed excerpts retained in per-book and combined Markdown profiles
 - Optional **Deepen w/ AI** analysis that never runs during local imports
-- OpenAI Responses API and Anthropic Messages API support
+- OpenAI Responses API, Anthropic Messages API, and local Ollama support
+- Automatic discovery of Ollama models already installed on the Mac; Kistulentz never installs Ollama or downloads models
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
+- Selection rewrites for target-grade simplification, shortening, grounded expansion, stronger verbs, a user-described tone, and matching selected references
+- Three distinct rewrite alternatives with explanations and grade estimates
+- A mandatory request preview showing provider, model, destination, exact instructions, draft or selection, project style guide, and reference excerpts before an AI action runs
+- Optional style-guide and reference material can be removed or redacted in the request preview
 - Accept or decline individual local and AI suggestions directly in the sidebar
 - Declined suggestions stay hidden after reopening a document until that exact passage or its nearby context changes
 - A confirmed **Apply All** action applies only concrete, non-overlapping replacements as one macOS Undo step
@@ -56,7 +61,9 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sa
 
 Open Kistulentz Settings and paste an API key for OpenAI, Anthropic, or both. Model names remain editable so the app can use models enabled for each account without requiring a new app release.
 
-Document text and EPUB reference books are analyzed locally until the user chooses **Polish** or **Deepen w/ AI**. Local imports never contact an AI provider. When one of those explicit commands is used, Kistulentz sends only the relevant Markdown, derived profile, and selected short excerpts to the chosen provider. Complete EPUB files and the complete Reference Library are not uploaded.
+For local AI, install and start Ollama separately, then choose **Detect Models** in Kistulentz Settings. Kistulentz lists models already present at Ollama's local address and does not install Ollama or download a model. Apple silicon uses Ollama's supported acceleration; Intel Macs use CPU inference and may be substantially slower for large models.
+
+Document text and EPUB reference books are analyzed locally until the user chooses **Polish**, **Rewrite**, or **Deepen w/ AI**. Local imports never contact an AI provider. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded.
 
 The chosen Reference Library folder contains `Kistulentz Library.md`, per-book profiles, combined author and genre profiles, AI insight files, and a hidden machine-readable index used for fast loading. Make metadata corrections inside Kistulentz so generated profiles remain synchronized.
 

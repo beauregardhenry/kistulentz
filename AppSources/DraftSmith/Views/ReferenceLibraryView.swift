@@ -13,6 +13,7 @@ struct ReferenceLibraryView: View {
     @State private var kind: LibraryReferenceKind = .book
     @State private var search = ""
     @State private var focusedBookID: UUID?
+    @State private var pendingAIRequest: AIRequestPreview?
 
     var body: some View {
         Group {
@@ -30,6 +31,16 @@ struct ReferenceLibraryView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(library.errorMessage ?? "")
+        }
+        .sheet(item: $pendingAIRequest) { preview in
+            AIRequestPreviewView(preview: preview) { confirmed in
+                pendingAIRequest = nil
+                library.deepen(
+                    choiceIDs: selectedChoiceIDs,
+                    settings: settings,
+                    preparedInput: confirmed.input
+                )
+            }
         }
     }
 
@@ -263,13 +274,15 @@ struct ReferenceLibraryView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Optional provider analysis")
                         .font(.callout.weight(.semibold))
-                    Text("Local import never calls a provider. Deepen sends only the combined profile and selected short excerpts.")
+                    Text(settings.provider.isLocal
+                        ? "Deepen uses the selected Ollama model on this Mac. You will preview the combined profile and excerpts first."
+                        : "Local import never calls a provider. You will preview the combined profile and selected short excerpts before Deepen sends them.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
                 Button {
-                    library.deepen(choiceIDs: selectedChoiceIDs, settings: settings)
+                    prepareDeepeningPreview()
                 } label: {
                     if library.isDeepening {
                         ProgressView().controlSize(.small)
@@ -278,7 +291,7 @@ struct ReferenceLibraryView: View {
                     }
                 }
                 .buttonStyle(.bordered)
-                .disabled(selectedChoiceIDs.isEmpty || library.isDeepening || !settings.hasKey(for: settings.provider))
+                .disabled(selectedChoiceIDs.isEmpty || library.isDeepening)
 
                 Button("Open Markdown", action: library.openKnowledgeBase)
                     .buttonStyle(.bordered)
@@ -300,6 +313,33 @@ struct ReferenceLibraryView: View {
         } else {
             focusedBookID = nil
         }
+    }
+
+    private func prepareDeepeningPreview() {
+        let provider = settings.provider
+        guard settings.isProviderReady(provider) else {
+            library.errorMessage = provider.requiresAPIKey
+                ? "Add your \(provider.title) API key and choose a model in Settings first."
+                : "Open Settings, detect the Ollama models already on this Mac, and choose one first."
+            return
+        }
+        guard let reference = library.reference(for: selectedChoiceIDs) else {
+            library.errorMessage = "Select at least one book, author, or genre to deepen."
+            return
+        }
+        pendingAIRequest = AIRequestPreview(
+            purpose: .referenceDeepening,
+            provider: provider,
+            model: settings.model(for: provider),
+            primaryLabel: "Combined profile and selected excerpts",
+            primaryText: ReferenceDeepeningService.input(for: reference),
+            styleGuide: nil,
+            includesStyleGuide: false,
+            referenceContext: nil,
+            includesReferenceContext: false,
+            sourceRange: nil,
+            sourceText: nil
+        )
     }
 
     private func chooseLibraryFolder() {

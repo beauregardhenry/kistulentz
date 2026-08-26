@@ -6,6 +6,9 @@ struct SettingsView: View {
     @State private var anthropicKey = ""
     @State private var statusMessage: String?
     @State private var errorMessage: String?
+    @State private var ollamaModels: [String] = []
+    @State private var isDetectingOllama = false
+    @State private var ollamaDetectionMessage = "Not checked"
 
     var body: some View {
         Form {
@@ -42,8 +45,45 @@ struct SettingsView: View {
                 keyButtons(provider: .anthropic, value: $anthropicKey)
             }
 
+            Section("Ollama · local AI") {
+                LabeledContent("Status") {
+                    HStack(spacing: 7) {
+                        if isDetectingOllama {
+                            ProgressView().controlSize(.small)
+                        }
+                        Text(ollamaDetectionMessage)
+                            .foregroundStyle(ollamaModels.isEmpty ? Color.secondary : Color.green)
+                    }
+                }
+
+                TextField("Selected model", text: $settings.ollamaModel)
+                    .textFieldStyle(.roundedBorder)
+
+                if !ollamaModels.isEmpty {
+                    Picker("Detected models", selection: $settings.ollamaModel) {
+                        if !ollamaModels.contains(settings.ollamaModel), !settings.ollamaModel.isEmpty {
+                            Text(settings.ollamaModel).tag(settings.ollamaModel)
+                        }
+                        ForEach(ollamaModels, id: \.self) { model in
+                            Text(model).tag(model)
+                        }
+                    }
+                }
+
+                HStack {
+                    Button("Detect Models") {
+                        Task { await detectOllama() }
+                    }
+                    .disabled(isDetectingOllama)
+
+                    Text("Kistulentz never installs Ollama or downloads models.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
             Section {
-                Label("Keys are saved in your Mac Keychain. Kistulentz sends document text only to the provider you choose when you run a review.", systemImage: "lock.shield")
+                Label("Keys are saved in your Mac Keychain. OpenAI and Anthropic requests show a privacy preview before anything is sent. Ollama runs through localhost on this Mac.", systemImage: "lock.shield")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -57,6 +97,9 @@ struct SettingsView: View {
         .formStyle(.grouped)
         .padding(.vertical, 8)
         .navigationTitle("Kistulentz Settings")
+        .task {
+            await detectOllama()
+        }
         .alert("Couldn’t save the key", isPresented: Binding(
             get: { errorMessage != nil },
             set: { if !$0 { errorMessage = nil } }
@@ -98,5 +141,27 @@ struct SettingsView: View {
                 }
             }
         }
+    }
+
+    @MainActor
+    private func detectOllama() async {
+        guard !isDetectingOllama else { return }
+        isDetectingOllama = true
+        do {
+            let models = try await OllamaService().installedModels()
+            ollamaModels = models
+            if models.isEmpty {
+                ollamaDetectionMessage = "Ollama found · no models installed"
+            } else {
+                ollamaDetectionMessage = "\(models.count) model\(models.count == 1 ? "" : "s") found"
+                if settings.ollamaModel.isEmpty || !models.contains(settings.ollamaModel) {
+                    settings.ollamaModel = models[0]
+                }
+            }
+        } catch {
+            ollamaModels = []
+            ollamaDetectionMessage = "Ollama not running"
+        }
+        isDetectingOllama = false
     }
 }

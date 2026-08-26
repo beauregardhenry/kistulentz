@@ -3,6 +3,7 @@ import Foundation
 enum AIProvider: String, CaseIterable, Identifiable {
     case openAI
     case anthropic
+    case ollama
 
     var id: String { rawValue }
 
@@ -10,15 +11,29 @@ enum AIProvider: String, CaseIterable, Identifiable {
         switch self {
         case .openAI: "OpenAI"
         case .anthropic: "Anthropic"
+        case .ollama: "Ollama (Local)"
         }
     }
 
-    var keychainAccount: String {
+    var keychainAccount: String? {
         switch self {
         case .openAI: "openai-api-key"
         case .anthropic: "anthropic-api-key"
+        case .ollama: nil
         }
     }
+
+    var requiresAPIKey: Bool { self != .ollama }
+
+    var destination: String {
+        switch self {
+        case .openAI: "api.openai.com"
+        case .anthropic: "api.anthropic.com"
+        case .ollama: "This Mac · localhost:11434"
+        }
+    }
+
+    var isLocal: Bool { self == .ollama }
 }
 
 @MainActor
@@ -28,6 +43,7 @@ final class AppSettings: ObservableObject {
         static let targetGrade = "targetReadingGrade"
         static let openAIModel = "openAIModel"
         static let anthropicModel = "anthropicModel"
+        static let ollamaModel = "ollamaModel"
         static let hiddenHighlightCategories = "hiddenHighlightCategories"
     }
 
@@ -47,6 +63,10 @@ final class AppSettings: ObservableObject {
 
     @Published var anthropicModel: String {
         didSet { defaults.set(anthropicModel, forKey: DefaultsKey.anthropicModel) }
+    }
+
+    @Published var ollamaModel: String {
+        didSet { defaults.set(ollamaModel, forKey: DefaultsKey.ollamaModel) }
     }
 
     @Published var hiddenHighlightCategories: Set<IssueCategory> {
@@ -75,6 +95,7 @@ final class AppSettings: ObservableObject {
         targetGrade = savedGrade == 0 ? 8 : min(max(savedGrade, 4), 16)
         openAIModel = defaults.string(forKey: DefaultsKey.openAIModel) ?? "gpt-5.5"
         anthropicModel = defaults.string(forKey: DefaultsKey.anthropicModel) ?? "claude-sonnet-4-6"
+        ollamaModel = defaults.string(forKey: DefaultsKey.ollamaModel) ?? ""
         hiddenHighlightCategories = Set(
             (defaults.stringArray(forKey: DefaultsKey.hiddenHighlightCategories) ?? [])
                 .compactMap(IssueCategory.init(rawValue:))
@@ -90,6 +111,7 @@ final class AppSettings: ObservableObject {
             DefaultsKey.targetGrade,
             DefaultsKey.openAIModel,
             DefaultsKey.anthropicModel,
+            DefaultsKey.ollamaModel,
             DefaultsKey.hiddenHighlightCategories
         ]
         for key in keys where defaults.object(forKey: key) == nil {
@@ -103,19 +125,22 @@ final class AppSettings: ObservableObject {
         switch provider {
         case .openAI: openAIModel.trimmingCharacters(in: .whitespacesAndNewlines)
         case .anthropic: anthropicModel.trimmingCharacters(in: .whitespacesAndNewlines)
+        case .ollama: ollamaModel.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 
     func apiKey(for provider: AIProvider) -> String? {
-        keychain.read(account: provider.keychainAccount)
+        guard let account = provider.keychainAccount else { return nil }
+        return keychain.read(account: account)
     }
 
     func saveAPIKey(_ value: String, for provider: AIProvider) throws {
+        guard let account = provider.keychainAccount else { return }
         let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
-            try keychain.delete(account: provider.keychainAccount)
+            try keychain.delete(account: account)
         } else {
-            try keychain.save(trimmed, account: provider.keychainAccount)
+            try keychain.save(trimmed, account: account)
         }
         refreshKeyStatus()
     }
@@ -124,7 +149,12 @@ final class AppSettings: ObservableObject {
         switch provider {
         case .openAI: hasOpenAIKey
         case .anthropic: hasAnthropicKey
+        case .ollama: !model(for: .ollama).isEmpty
         }
+    }
+
+    func isProviderReady(_ provider: AIProvider) -> Bool {
+        !model(for: provider).isEmpty && (!provider.requiresAPIKey || hasKey(for: provider))
     }
 
     func isHighlightVisible(_ category: IssueCategory) -> Bool {
@@ -140,7 +170,7 @@ final class AppSettings: ObservableObject {
     }
 
     private func refreshKeyStatus() {
-        hasOpenAIKey = keychain.read(account: AIProvider.openAI.keychainAccount) != nil
-        hasAnthropicKey = keychain.read(account: AIProvider.anthropic.keychainAccount) != nil
+        hasOpenAIKey = AIProvider.openAI.keychainAccount.flatMap { keychain.read(account: $0) } != nil
+        hasAnthropicKey = AIProvider.anthropic.keychainAccount.flatMap { keychain.read(account: $0) } != nil
     }
 }

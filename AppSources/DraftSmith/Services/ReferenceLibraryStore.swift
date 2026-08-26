@@ -249,14 +249,16 @@ final class ReferenceLibraryStore: ObservableObject {
         )
     }
 
-    func deepen(choiceIDs: Set<String>, settings: AppSettings) {
+    func deepen(choiceIDs: Set<String>, settings: AppSettings, preparedInput: String? = nil) {
         guard !isDeepening, let reference = reference(for: choiceIDs) else {
             errorMessage = "Select at least one book, author, or genre to deepen."
             return
         }
         let provider = settings.provider
-        guard let apiKey = settings.apiKey(for: provider), !apiKey.isEmpty else {
-            errorMessage = "Add your \(provider.title) API key in Settings before using Deepen with AI."
+        guard settings.isProviderReady(provider) else {
+            errorMessage = provider.requiresAPIKey
+                ? "Add your \(provider.title) API key and choose a model in Settings before using Deepen with AI."
+                : "Detect and choose an installed Ollama model in Settings before using Deepen with AI."
             return
         }
         let selectedChoices = LibraryReferenceKind.allCases.flatMap { choices(kind: $0) }
@@ -270,10 +272,10 @@ final class ReferenceLibraryStore: ObservableObject {
             guard let self else { return }
             do {
                 let result = try await self.deepeningService.deepen(
-                    reference: reference,
+                    input: preparedInput ?? ReferenceDeepeningService.input(for: reference),
                     provider: provider,
                     model: settings.model(for: provider),
-                    apiKey: apiKey
+                    apiKey: settings.apiKey(for: provider)
                 )
                 guard !Task.isCancelled else { return }
                 let title = selectedChoices.count == 1

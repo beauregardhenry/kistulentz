@@ -9,18 +9,22 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var referenceAlignment = ReferenceAlignment.empty
     @Published private(set) var isLoadingReference = false
     @Published private(set) var isReviewing = false
+    @Published private(set) var isRewriting = false
+    @Published var rewritePresentation: SelectionRewritePresentation?
     @Published private(set) var dismissedSuggestions: [DismissedSuggestion] = []
     @Published var errorMessage: String?
     @Published var focusRequest: FocusRequest?
 
     private var analysisTask: Task<Void, Never>?
     private var reviewTask: Task<Void, Never>?
+    private var rewriteTask: Task<Void, Never>?
     private var referenceTask: Task<Void, Never>?
     private var reviewedText: String?
     private var currentText = ""
     private var currentDocumentKey: String?
     private var hasConfiguredDocument = false
     private let service = WritingAIService()
+    private let rewriteService = SelectionRewriteService()
     private let dismissalStore: DismissedSuggestionStore
 
     init(dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore()) {
@@ -68,7 +72,18 @@ final class EditorViewModel: ObservableObject {
     }
 
     func scheduleAnalysis(text: String, targetGrade: Int, immediately: Bool = false) {
+        let previousText = currentText
         currentText = text
+        if previousText != text {
+            if isReviewing {
+                reviewTask?.cancel()
+                isReviewing = false
+            }
+            if isRewriting {
+                rewriteTask?.cancel()
+                isRewriting = false
+            }
+        }
         pruneDismissals(for: text)
         if let reviewedText, reviewedText != text {
             aiReview = nil
@@ -128,16 +143,8 @@ final class EditorViewModel: ObservableObject {
         clearAIReview()
     }
 
-    func runAIReview(text: String, settings: AppSettings) {
+    func runAIReview(request: AIRequestPreview, matching sourceText: String, settings: AppSettings) {
         guard !isReviewing else { return }
-        let provider = settings.provider
-        guard let key = settings.apiKey(for: provider), !key.isEmpty else {
-            errorMessage = "Add your \(provider.title) API key in Settings before running a review."
-            return
-        }
-
-        let model = settings.model(for: provider)
-        let grade = settings.targetGrade
         isReviewing = true
         errorMessage = nil
 
@@ -146,17 +153,17 @@ final class EditorViewModel: ObservableObject {
             guard let self else { return }
             do {
                 let review = try await service.review(
-                    text: text,
-                    targetGrade: grade,
-                    provider: provider,
-                    model: model,
-                    apiKey: key,
-                    reference: self.referenceBook
+                    request: request,
+                    apiKey: settings.apiKey(for: request.provider)
                 )
                 guard !Task.isCancelled else { return }
+                guard self.currentText == sourceText else {
+                    self.isReviewing = false
+                    return
+                }
                 self.aiReview = review
-                self.aiIssues = Self.makeIssues(from: review.suggestions, in: text)
-                self.reviewedText = text
+                self.aiIssues = Self.makeIssues(from: review.suggestions, in: sourceText)
+                self.reviewedText = sourceText
                 self.isReviewing = false
             } catch is CancellationError {
                 self.isReviewing = false
@@ -167,7 +174,42 @@ final class EditorViewModel: ObservableObject {
         }
     }
 
+    func runSelectionRewrite(request: AIRequestPreview, settings: AppSettings) {
+        guard !isRewriting,
+              case .selectionRewrite(let goal, _) = request.purpose,
+              let sourceRange = request.sourceRange,
+              let sourceText = request.sourceText else { return }
+
+        isRewriting = true
+        errorMessage = nil
+        rewriteTask?.cancel()
+        rewriteTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                let result = try await rewriteService.rewrite(
+                    request: request,
+                    apiKey: settings.apiKey(for: request.provider)
+                )
+                guard !Task.isCancelled else { return }
+                self.rewritePresentation = SelectionRewritePresentation(
+                    goal: goal,
+                    sourceRange: sourceRange,
+                    sourceText: sourceText,
+                    alternatives: result.alternatives
+                )
+                self.isRewriting = false
+            } catch is CancellationError {
+                self.isRewriting = false
+            } catch {
+                self.errorMessage = error.localizedDescription
+                self.isRewriting = false
+            }
+        }
+    }
+
     func clearAIReview() {
+        reviewTask?.cancel()
+        isReviewing = false
         aiReview = nil
         aiIssues = []
         reviewedText = nil

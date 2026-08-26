@@ -3,11 +3,12 @@ import SwiftUI
 
 struct MarkdownTextView: NSViewRepresentable {
     @Binding var text: String
+    @Binding var selection: NSRange
     let issues: [WritingIssue]
     let focusRequest: FocusRequest?
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
+        Coordinator(text: $text, selection: $selection)
     }
 
     func makeNSView(context: Context) -> NSScrollView {
@@ -59,6 +60,7 @@ struct MarkdownTextView: NSViewRepresentable {
 
         scrollView.documentView = textView
         context.coordinator.textView = textView
+        selection = textView.selectedRange()
         applyHighlights(to: textView)
         return scrollView
     }
@@ -124,16 +126,26 @@ struct MarkdownTextView: NSViewRepresentable {
 
     final class Coordinator: NSObject, NSTextViewDelegate {
         @Binding var text: String
+        @Binding var selection: NSRange
         weak var textView: NSTextView?
         var lastFocusID: UUID?
 
-        init(text: Binding<String>) {
+        init(text: Binding<String>, selection: Binding<NSRange>) {
             _text = text
+            _selection = selection
         }
 
         func textDidChange(_ notification: Notification) {
             guard let textView = notification.object as? NSTextView else { return }
             text = textView.string
+        }
+
+        func textViewDidChangeSelection(_ notification: Notification) {
+            guard let textView = notification.object as? NSTextView else { return }
+            let next = textView.selectedRange()
+            if selection != next {
+                selection = next
+            }
         }
     }
 }
