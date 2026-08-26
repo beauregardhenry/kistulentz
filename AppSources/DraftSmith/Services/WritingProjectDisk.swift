@@ -47,6 +47,7 @@ enum WritingProjectDisk {
         )
         try saveManifest(manifest, at: root)
         try ProjectStyleManager.prepare(at: root, projectName: manifest.name, kind: kind)
+        try ManuscriptProjectDisk.prepare(at: root, projectName: manifest.name, kind: kind)
     }
 
     static func loadManifest(at root: URL) throws -> WritingProjectManifest {
@@ -271,7 +272,7 @@ enum WritingProjectDisk {
             }
             guard values.isDirectory != true,
                   url.pathExtension.lowercased() == "md",
-                  url.lastPathComponent != styleFileName else { continue }
+                  !projectSupportFileNames.contains(url.lastPathComponent) else { continue }
             let standardized = url.standardizedFileURL.path
             guard standardized.hasPrefix(rootPath) else { continue }
             paths.append(String(standardized.dropFirst(rootPath.count)))
@@ -292,5 +293,13 @@ enum WritingProjectDisk {
 
     private static func isValidName(_ value: String) -> Bool {
         !value.isEmpty && !value.contains("/") && !value.contains(":") && value != "." && value != ".."
+    }
+
+    private static var projectSupportFileNames: Set<String> {
+        [
+            styleFileName,
+            ManuscriptProjectDisk.reportFileName,
+            ManuscriptProjectDisk.bibleFileName
+        ]
     }
 }

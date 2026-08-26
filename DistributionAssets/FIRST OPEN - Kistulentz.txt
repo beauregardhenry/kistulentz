@@ -37,15 +37,19 @@ passage or nearby context changes.
 Kistulentz projects are normal folders of Markdown files. Project settings,
 chapter order, search metadata, and revision snapshots remain in a hidden
 .kistulentz folder inside the project. The editable Kistulentz Style.md file is
-also stored at the project root. None of these project features contact an AI
-provider.
+also stored at the project root. Kistulentz Manuscript Report.md and the editable
+Kistulentz Bible.md update automatically using local analysis. Custom beta-reader
+definitions are stored in hidden project metadata; beta feedback is shown only
+for the current in-app session. None of these automatic project features contact
+an AI provider.
 
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
 hidden index used to reopen large libraries quickly. Folder and EPUB imports do
 not contact OpenAI, Anthropic, or Ollama.
 
-Kistulentz shows a request preview before Polish, Rewrite, or Deepen w/ AI. The
+Kistulentz shows a request preview before Polish, Rewrite, or Deepen w/ AI. This
+includes requested manuscript-report, Bible, and beta-reader deepening. The
 preview names the provider, model, and destination and shows the exact draft or
 selection, style guide, reference profile, and selected excerpts included in the
 request. Optional material can be excluded or redacted before confirming.

@@ -41,6 +41,7 @@ struct EditorWorkspace: View {
     @State private var showingNewChapter = false
     @State private var showingStyleEditor = false
     @State private var showingRevisionHistory = false
+    @State private var showingManuscriptInsights = false
     @State private var showingNamedSnapshot = false
     @State private var editorSelection = NSRange(location: 0, length: 0)
     @State private var pendingAIRequest: AIRequestPreview?
@@ -71,6 +72,7 @@ struct EditorWorkspace: View {
                             onEditStyle: { showingStyleEditor = true },
                             onShowHistory: { showingRevisionHistory = true },
                             onCreateSnapshot: { showingNamedSnapshot = true },
+                            onShowManuscriptInsights: { showingManuscriptInsights = true },
                             onCloseProject: closeProject
                         )
                         .frame(minWidth: 205, idealWidth: 225, maxWidth: 275)
@@ -118,6 +120,7 @@ struct EditorWorkspace: View {
         .background(Color(nsColor: .windowBackgroundColor))
         .navigationTitle(projectStore.isOpen ? projectStore.projectName : (fileURL?.lastPathComponent ?? "Untitled.md"))
         .onAppear {
+            projectStore.attachUndoManager(undoManager)
             viewModel.configureDocument(url: activeFileURL, text: activeText)
             viewModel.scheduleAnalysis(
                 text: activeText,
@@ -203,6 +206,15 @@ struct EditorWorkspace: View {
         .sheet(isPresented: $showingRevisionHistory) {
             RevisionHistoryView(store: projectStore)
                 .onDisappear { undoManager?.removeAllActions() }
+        }
+        .sheet(isPresented: $showingManuscriptInsights) {
+            ManuscriptInsightsView(
+                store: projectStore,
+                selectedPassage: selectedPassage?.text,
+                reference: viewModel.referenceBook,
+                onShowRevisionHistory: { showingRevisionHistory = true }
+            )
+            .environmentObject(settings)
         }
         .sheet(isPresented: $showingNamedSnapshot) {
             NamedSnapshotSheet(chapterTitle: projectStore.selectedChapterTitle) { name in
@@ -349,6 +361,7 @@ struct EditorWorkspace: View {
                     Button("Edit Kistulentz Style…") { showingStyleEditor = true }
                     Button("Create Snapshot…") { showingNamedSnapshot = true }
                     Button("Revision History…") { showingRevisionHistory = true }
+                    Button("Manuscript Insights…") { showingManuscriptInsights = true }
                     Divider()
                     Button("Close Project", action: closeProject)
                 }
@@ -571,7 +584,7 @@ struct EditorWorkspace: View {
             viewModel.runAIReview(request: request, matching: activeText, settings: settings)
         case .selectionRewrite:
             viewModel.runSelectionRewrite(request: request, settings: settings)
-        case .referenceDeepening:
+        case .referenceDeepening, .manuscriptReport, .manuscriptBible, .betaReader:
             break
         }
     }

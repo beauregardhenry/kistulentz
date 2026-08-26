@@ -7,6 +7,7 @@ struct ProjectSidebar: View {
     let onEditStyle: () -> Void
     let onShowHistory: () -> Void
     let onCreateSnapshot: () -> Void
+    let onShowManuscriptInsights: () -> Void
     let onCloseProject: () -> Void
 
     @State private var searchText = ""
@@ -29,6 +30,7 @@ struct ProjectSidebar: View {
                         Button("Edit Kistulentz Style…", action: onEditStyle)
                         Button("Revision History…", action: onShowHistory)
                         Button("Create Snapshot…", action: onCreateSnapshot)
+                        Button("Manuscript Insights…", action: onShowManuscriptInsights)
                         Divider()
                         Button("Close Project", action: onCloseProject)
                     } label: {
@@ -89,6 +91,11 @@ struct ProjectSidebar: View {
                 }
                 .buttonStyle(.borderless)
                 .help("Edit Kistulentz Style")
+                Button(action: onShowManuscriptInsights) {
+                    Image(systemName: "doc.text.magnifyingglass")
+                }
+                .buttonStyle(.borderless)
+                .help("Manuscript Insights")
                 Button(action: onShowHistory) {
                     Image(systemName: "clock.arrow.circlepath")
                 }

@@ -23,6 +23,12 @@ final class WritingProjectTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(
             atPath: root.appendingPathComponent("Kistulentz Style.md").path
         ))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: root.appendingPathComponent("Kistulentz Manuscript Report.md").path
+        ))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: root.appendingPathComponent("Kistulentz Bible.md").path
+        ))
     }
 
     func testPreparesExistingFolderWithoutChangingMarkdownFiles() throws {
