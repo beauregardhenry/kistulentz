@@ -91,6 +91,7 @@ struct EPUBProcessor {
             fileName: url.lastPathComponent,
             title: package.title?.nonEmpty ?? fallbackTitle,
             author: package.creator?.nonEmpty,
+            subjects: package.subjects,
             chapters: chapters,
             profile: profile
         )
@@ -298,6 +299,7 @@ private final class ContainerParser: NSObject, XMLParserDelegate {
 private final class PackageParser: NSObject, XMLParserDelegate {
     private(set) var title: String?
     private(set) var creator: String?
+    private(set) var subjects: [String] = []
     private(set) var manifest: [String: ManifestItem] = [:]
     private(set) var spine: [String] = []
     private var capture: String?
@@ -327,7 +329,7 @@ private final class PackageParser: NSObject, XMLParserDelegate {
             }
         case "itemref":
             if let idref = attributeDict["idref"] { spine.append(idref) }
-        case "title" where title == nil, "creator" where creator == nil:
+        case "title" where title == nil, "creator" where creator == nil, "subject":
             capture = name
             buffer = ""
         default:
@@ -350,6 +352,7 @@ private final class PackageParser: NSObject, XMLParserDelegate {
         let value = buffer.trimmingCharacters(in: .whitespacesAndNewlines)
         if name == "title", title == nil { title = value }
         if name == "creator", creator == nil { creator = value }
+        if name == "subject", !value.isEmpty, !subjects.contains(value) { subjects.append(value) }
         capture = nil
         buffer = ""
     }

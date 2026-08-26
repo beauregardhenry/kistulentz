@@ -186,15 +186,21 @@ struct WritingAIService {
 
         if let reference {
             let excerpts = reference.selectedExcerpts(relevantTo: text)
+            let learnedInsights = reference.learnedInsights.map {
+                "\n<learned_insights>\n\($0)\n</learned_insights>"
+            } ?? ""
             prompt += """
 
             <reference_profile title="\(reference.title)">
+            Books represented: \(reference.sourceCount)
+            Genres: \(reference.subjects.joined(separator: ", "))
             \(reference.profile.aiSummary)
             </reference_profile>
 
             <reference_excerpts>
             \(excerpts)
             </reference_excerpts>
+            \(learnedInsights)
             """
         }
 

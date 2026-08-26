@@ -4,6 +4,7 @@
     <dc:identifier id="book-id">kistulentz-fixture</dc:identifier>
     <dc:title>The Lantern Road</dc:title>
     <dc:creator>Beau Henry</dc:creator>
+    <dc:subject>Fantasy</dc:subject>
     <dc:language>en</dc:language>
   </metadata>
   <manifest>

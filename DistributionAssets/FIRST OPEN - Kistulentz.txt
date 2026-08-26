@@ -29,10 +29,16 @@ Kistulentz analyzes readability and EPUB reference books locally. The EPUB can
 guide style, vocabulary, tone, character, continuity, voice, and tempo even
 without an API key.
 
-Kistulentz contacts OpenAI or Anthropic only when you choose Polish. It then sends
-the current Markdown, a local reference profile, and selected relevant EPUB
-excerpts to the provider you selected. It does not upload the complete EPUB.
-API keys are stored in the Mac Keychain.
+The Reference Library is stored in a folder you choose. It contains Markdown
+profiles, short attributed excerpts, combined author and genre profiles, and a
+hidden index used to reopen large libraries quickly. Folder and EPUB imports do
+not contact OpenAI or Anthropic.
+
+Kistulentz contacts OpenAI or Anthropic only when you choose Polish or Deepen w/
+AI. It then sends the relevant Markdown, a local reference profile, and selected
+short EPUB excerpts to the provider you selected. It does not upload complete
+EPUB files or the complete Reference Library. API keys are stored in the Mac
+Keychain.
 
 DRM-protected or image-only EPUB files cannot be analyzed because they do not
 provide readable book text.

@@ -3,11 +3,13 @@ import SwiftUI
 @main
 struct KistulentzApp: App {
     @StateObject private var settings = AppSettings()
+    @StateObject private var referenceLibrary = ReferenceLibraryStore()
 
     var body: some Scene {
         DocumentGroup(newDocument: MarkdownDocument()) { file in
             EditorWorkspace(document: file.$document, fileURL: file.fileURL)
                 .environmentObject(settings)
+                .environmentObject(referenceLibrary)
                 .frame(minWidth: 1_060, minHeight: 680)
         }
         .commands {

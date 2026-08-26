@@ -6,10 +6,13 @@ struct EditorWorkspace: View {
     let fileURL: URL?
 
     @EnvironmentObject private var settings: AppSettings
+    @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
     @Environment(\.openSettings) private var openSettings
     @StateObject private var viewModel = EditorViewModel()
     @State private var showingReplaceConfirmation = false
     @State private var showingReferenceImporter = false
+    @State private var showingReferenceLibrary = false
+    @State private var selectedLibraryReferences: Set<String> = []
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
@@ -45,7 +48,7 @@ struct EditorWorkspace: View {
                     isLoadingReference: viewModel.isLoadingReference,
                     onRunReview: runReview,
                     onOpenSettings: { openSettings() },
-                    onChooseReference: { showingReferenceImporter = true },
+                    onChooseReference: { showingReferenceLibrary = true },
                     onRemoveReference: viewModel.clearReference,
                     onSelect: viewModel.focus,
                     onApply: apply,
@@ -83,6 +86,13 @@ struct EditorWorkspace: View {
             case .failure(let error):
                 viewModel.errorMessage = error.localizedDescription
             }
+        }
+        .sheet(isPresented: $showingReferenceLibrary) {
+            ReferenceLibraryView(selectedChoiceIDs: $selectedLibraryReferences) { reference in
+                viewModel.useReference(reference, draft: document.text)
+            }
+            .environmentObject(referenceLibrary)
+            .environmentObject(settings)
         }
         .alert("Kistulentz", isPresented: Binding(
             get: { viewModel.errorMessage != nil },
@@ -165,8 +175,17 @@ struct EditorWorkspace: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
 
-            Button {
-                showingReferenceImporter = true
+            Menu {
+                Button {
+                    showingReferenceLibrary = true
+                } label: {
+                    Label("Reference Library…", systemImage: "books.vertical.fill")
+                }
+                Button {
+                    showingReferenceImporter = true
+                } label: {
+                    Label("Quick EPUB Reference…", systemImage: "book.closed")
+                }
             } label: {
                 if viewModel.isLoadingReference {
                     ProgressView()
@@ -179,10 +198,10 @@ struct EditorWorkspace: View {
                     .lineLimit(1)
                 }
             }
-            .buttonStyle(.bordered)
+            .menuStyle(.borderlessButton)
             .disabled(viewModel.isLoadingReference)
             .frame(maxWidth: 170)
-            .help("Use an EPUB as a writing reference")
+            .help("Choose one or more writing references")
 
             Button(action: runReview) {
                 if viewModel.isReviewing {
@@ -528,24 +547,26 @@ private struct ReferenceCard: View {
                         .lineLimit(2)
                 }
 
-                Text("The book stays local. Selected excerpts are sent only when you run Polish.")
+                Text(reference.sourceCount == 1
+                    ? "The reference stays local. Selected excerpts are sent only when you run Polish."
+                    : "\(reference.sourceCount) books are combined locally. Selected excerpts are sent only when you run Polish.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
 
                 HStack {
-                    Button("Replace", action: onChoose)
+                    Button("Choose References", action: onChoose)
                         .controlSize(.small)
                     Button("Remove", role: .destructive, action: onRemove)
                         .controlSize(.small)
                 }
             } else {
-                Label("EPUB writing reference", systemImage: "books.vertical")
+                Label("Writing references", systemImage: "books.vertical")
                     .font(.callout.weight(.semibold))
                 Text("Compare this draft with a book’s voice, vocabulary, tone, characters, continuity, and tempo. The first analysis runs entirely on your Mac.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-                Button("Add EPUB reference", action: onChoose)
+                Button("Open Reference Library", action: onChoose)
                     .buttonStyle(.bordered)
                     .controlSize(.small)
             }

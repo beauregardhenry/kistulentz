@@ -70,6 +70,14 @@ final class EditorViewModel: ObservableObject {
         }
     }
 
+    func useReference(_ reference: EPUBReference, draft: String) {
+        referenceTask?.cancel()
+        referenceBook = reference
+        referenceAlignment = ReferenceComparison.analyze(draft: draft, against: reference)
+        isLoadingReference = false
+        clearAIReview()
+    }
+
     func clearReference() {
         referenceTask?.cancel()
         referenceBook = nil

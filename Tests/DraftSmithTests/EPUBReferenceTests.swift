@@ -11,6 +11,7 @@ final class EPUBReferenceTests: XCTestCase {
 
         XCTAssertEqual(reference.title, "The Lantern Road")
         XCTAssertEqual(reference.author, "Beau Henry")
+        XCTAssertEqual(reference.subjects, ["Fantasy"])
         XCTAssertEqual(reference.chapters.count, 2)
         XCTAssertGreaterThan(reference.profile.wordCount, 50)
         XCTAssertFalse(reference.profile.voice.isEmpty)

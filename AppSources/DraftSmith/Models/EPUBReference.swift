@@ -5,33 +5,42 @@ struct EPUBReference: Identifiable {
     let fileName: String
     let title: String
     let author: String?
+    let subjects: [String]
     let chapters: [ReferenceChapter]
     let profile: ReferenceProfile
+    let learnedInsights: String?
+    let sourceCount: Int
 
     init(
         id: UUID = UUID(),
         fileName: String,
         title: String,
         author: String?,
+        subjects: [String] = [],
         chapters: [ReferenceChapter],
-        profile: ReferenceProfile
+        profile: ReferenceProfile,
+        learnedInsights: String? = nil,
+        sourceCount: Int = 1
     ) {
         self.id = id
         self.fileName = fileName
         self.title = title
         self.author = author
+        self.subjects = subjects
         self.chapters = chapters
         self.profile = profile
+        self.learnedInsights = learnedInsights
+        self.sourceCount = sourceCount
     }
 }
 
-struct ReferenceChapter: Identifiable {
+struct ReferenceChapter: Identifiable, Codable {
     let id: Int
     let title: String
     let text: String
 }
 
-struct ReferenceProfile {
+struct ReferenceProfile: Codable {
     let wordCount: Int
     let chapterCount: Int
     let gradeLevel: Double

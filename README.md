@@ -11,6 +11,12 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - A target reading-grade setting
 - EPUB reference books for local style, vocabulary, tone, character, continuity, voice, and tempo analysis
 - Live local comparison between the Markdown draft and the selected EPUB
+- A user-chosen Markdown Reference Library designed for thousands of EPUB files
+- Individual EPUB and recursive folder imports with unchanged-file skipping
+- Combined profiles by book, author, and genre, with overlapping selections deduplicated
+- In-app corrections for titles, authors, and genres
+- Short attributed excerpts retained in per-book and combined Markdown profiles
+- Optional **Deepen w/ AI** analysis that never runs during local imports
 - OpenAI Responses API and Anthropic Messages API support
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
 - A complete polished Markdown revision with a confirmation step before replacement
@@ -42,6 +48,8 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sa
 
 Open Kistulentz Settings and paste an API key for OpenAI, Anthropic, or both. Model names remain editable so the app can use models enabled for each account without requiring a new app release.
 
-Document text and EPUB reference books are analyzed locally until the user chooses **Polish**. At that point, the current Markdown, the local reference profile, and selected relevant excerpts from the EPUB are sent only to the selected provider. The complete EPUB is not uploaded.
+Document text and EPUB reference books are analyzed locally until the user chooses **Polish** or **Deepen w/ AI**. Local imports never contact an AI provider. When one of those explicit commands is used, Kistulentz sends only the relevant Markdown, derived profile, and selected short excerpts to the chosen provider. Complete EPUB files and the complete Reference Library are not uploaded.
+
+The chosen Reference Library folder contains `Kistulentz Library.md`, per-book profiles, combined author and genre profiles, AI insight files, and a hidden machine-readable index used for fast loading. Make metadata corrections inside Kistulentz so generated profiles remain synchronized.
 
 DRM-protected and image-only EPUB files do not expose readable book text and cannot be analyzed.
