@@ -52,6 +52,14 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - A persistent Systemic Revision Center with seven passes, revision goals, and findings labeled by evidence strength
 - Explicit, previewed **Deepen w/ AI** revision analysis that adds suggestions but never edits manuscript files
 - Coordinated multi-file change previews with per-change inclusion, editable replacements, passage and overlap checks, per-file snapshots, rollback protection, and one guarded Undo/Redo action
+- A local Publish & Export workspace with an exact in-app content plan that follows Parts, Chapters, Scenes or Sections and respects each outline item's export inclusion
+- Four built-in starting profiles—Fiction Book, Nonfiction Book, Agent Submission, and Accessible EPUB—plus editable named custom profiles
+- Editable publication metadata, digital cover images, separate supplied print-cover PDFs, and generated front/back matter that can be edited or locked against regeneration
+- EPUB 3 with navigation, accessibility metadata, cover and inline images, citations, notes, and bibliography output
+- Print-interior PDF, reader PDF, and editable DOCX output with configurable trim/page size, type, spacing, margins, running matter, page numbers, and chapter openings
+- Parenthetical, footnote, and endnote citation modes using the project's bibliography system
+- A blocking local preflight for missing manuscript files, images, citation records, footnotes, and incompatible image formats, with explicit approval required for nonblocking warnings
+- Project-local publication profiles, setup, assets, checksums, and export history; finished publications go only to a folder chosen by the author
 - A complete polished Markdown revision with a confirmation step before replacement
 - API keys stored in the macOS Keychain
 
@@ -103,6 +111,8 @@ Use the folder menu in the editor toolbar to create a project inside a chosen pa
 - `.kistulentz/beta-readers.json` for custom beta-reader definitions
 - `.kistulentz/bibliography.json` for project source references, quotations, claim links, and citation style
 - `.kistulentz/revisions.json` for persistent systemic findings, classifications, statuses, and goals
+- `.kistulentz/publication.json` for publication metadata, named profiles, editable generated matter, checksums, and export history
+- `.kistulentz/publication-assets/` for project-local copies of selected cover assets
 - `Kistulentz Style.md` at the project root for editable style instructions and learned preferences
 - `Kistulentz Manuscript Report.md` at the project root for the combined local and requested AI report
 - `Kistulentz Bible.md` at the project root for the editable project knowledge base
@@ -117,6 +127,8 @@ Open **Systemic Revision Center** from the project sidebar or project menu. **Sc
 Open **Manuscript Insights** from the project sidebar or project menu. The Report and Bible are persistent Markdown files inside the project. Built-in and AI beta feedback is displayed in Kistulentz for the current session and does not create feedback files. Custom beta-reader definitions remain in the hidden project metadata so they are available when the project reopens.
 
 Open **Project Organization** from the project sidebar or project menu to use the Corkboard and Outliner. Kistulentz imports existing first-level folders as Parts, nested folders as Chapters, and Markdown files as the available Chapter, Scene, or Section items. Reordering cards changes only the outline and project reading order. It never moves a Markdown file in Finder by itself.
+
+Open **Publish & Export** from the project sidebar or project menu. Choose a named profile and output format, then review the exact local content preview. Inclusion and ordering changes in this preview remain temporary unless you explicitly save inclusions back to Project Organization. Publication Setup holds book metadata and cover assets. Generated Matter provides editable, lockable title, copyright, contents, notes, bibliography, and other pages; regeneration skips anything locked or manually edited. Run Preflight before export, resolve every error, and explicitly approve any remaining warnings. Kistulentz writes the finished EPUB, PDF, or DOCX only to the folder you choose and records its SHA-256 checksum inside project metadata. No publication export uses an AI provider.
 
 Choose **Organize Files to Match Outline…** only when you want the folder layout to follow the outline. Kistulentz shows every source and destination, keeps the existing filename unless you edit it, and refuses to proceed while a destination is unsafe or occupied. It snapshots affected documents before moving them, and the entire operation can be undone from the normal Edit menu. A Chapter’s level-two Markdown headings can likewise be previewed and selectively split into separate Scene or Section files; unchecked headings stay in the Chapter.
 

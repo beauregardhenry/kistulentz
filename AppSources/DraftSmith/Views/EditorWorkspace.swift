@@ -37,6 +37,7 @@ struct EditorWorkspace: View {
     @State private var showingResearchLibrary = false
     @State private var showingProjectResearch = false
     @State private var showingRevisionCenter = false
+    @State private var showingPublishExport = false
     @State private var selectedLibraryReferences: Set<String> = []
     @State private var isWriteMode = false
     @State private var showingProjectFolderImporter = false
@@ -81,6 +82,7 @@ struct EditorWorkspace: View {
                             onShowOrganization: { showingProjectOrganization = true },
                             onShowResearch: { showingProjectResearch = true },
                             onShowRevisionCenter: { showingRevisionCenter = true },
+                            onShowPublish: { showingPublishExport = true },
                             onCloseProject: closeProject
                         )
                         .frame(minWidth: 205, idealWidth: 225, maxWidth: 275)
@@ -206,6 +208,10 @@ struct EditorWorkspace: View {
         .sheet(isPresented: $showingRevisionCenter) {
             SystemicRevisionCenterView(store: projectStore, onNavigate: navigateToRevisionFinding)
                 .environmentObject(settings)
+                .environmentObject(researchLibrary)
+        }
+        .sheet(isPresented: $showingPublishExport) {
+            PublishExportView(store: projectStore)
                 .environmentObject(researchLibrary)
         }
         .fileImporter(
@@ -396,6 +402,7 @@ struct EditorWorkspace: View {
                     Button("Project Organization…") { showingProjectOrganization = true }
                     Button("Project Research…") { showingProjectResearch = true }
                     Button("Systemic Revision Center…") { showingRevisionCenter = true }
+                    Button("Publish & Export…") { showingPublishExport = true }
                     Divider()
                     Button("Close Project", action: closeProject)
                 }

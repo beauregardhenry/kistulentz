@@ -11,6 +11,7 @@ struct ProjectSidebar: View {
     let onShowOrganization: () -> Void
     let onShowResearch: () -> Void
     let onShowRevisionCenter: () -> Void
+    let onShowPublish: () -> Void
     let onCloseProject: () -> Void
 
     @State private var searchText = ""
@@ -37,6 +38,7 @@ struct ProjectSidebar: View {
                         Button("Project Organization…", action: onShowOrganization)
                         Button("Project Research…", action: onShowResearch)
                         Button("Systemic Revision Center…", action: onShowRevisionCenter)
+                        Button("Publish & Export…", action: onShowPublish)
                         Divider()
                         Button("Close Project", action: onCloseProject)
                     } label: {
@@ -117,6 +119,11 @@ struct ProjectSidebar: View {
                 }
                 .buttonStyle(.borderless)
                 .help("Systemic Revision Center")
+                Button(action: onShowPublish) {
+                    Image(systemName: "shippingbox")
+                }
+                .buttonStyle(.borderless)
+                .help("Publish & Export")
                 Button(action: onShowHistory) {
                     Image(systemName: "clock.arrow.circlepath")
                 }

@@ -22,6 +22,7 @@ final class WritingProjectStore: ObservableObject {
     @Published private(set) var projectBibliography = ProjectBibliographyArchive()
     @Published private(set) var researchNotesText = ""
     @Published private(set) var revisionArchive = SystemicRevisionArchive()
+    @Published private(set) var publicationArchive = PublicationArchive()
     @Published private(set) var isScanningRevisions = false
     @Published private(set) var revisionAISummary = ""
     @Published private(set) var preservesUndoAcrossFileRelocation = false
@@ -76,6 +77,7 @@ final class WritingProjectStore: ObservableObject {
         try ProjectOutlineDisk.prepare(at: root, manifest: loadedManifest)
         try ProjectResearchDisk.prepare(at: root, projectName: loadedManifest.name)
         try SystemicRevisionDisk.prepare(at: root)
+        try PublicationDisk.prepare(at: root, projectName: loadedManifest.name, projectKind: loadedManifest.kind)
         let loadedChapters = try WritingProjectDisk.loadChapters(at: root, manifest: loadedManifest)
         let loadedOutline = ProjectOutlineDisk.reconcile(
             try ProjectOutlineDisk.load(at: root),
@@ -97,6 +99,7 @@ final class WritingProjectStore: ObservableObject {
         projectBibliography = try ProjectResearchDisk.load(at: root)
         researchNotesText = try String(contentsOf: ProjectResearchDisk.notesURL(at: root), encoding: .utf8)
         revisionArchive = try SystemicRevisionDisk.load(at: root)
+        publicationArchive = try PublicationDisk.load(at: root)
         manuscriptAnalysis = nil
         lastBibleUpdate = nil
         hasCapturedBibleAutomaticBaseline = false
@@ -131,6 +134,7 @@ final class WritingProjectStore: ObservableObject {
         projectBibliography = ProjectBibliographyArchive()
         researchNotesText = ""
         revisionArchive = SystemicRevisionArchive()
+        publicationArchive = PublicationArchive()
         isScanningRevisions = false
         revisionAISummary = ""
         lastBibleUpdate = nil
@@ -410,6 +414,76 @@ final class WritingProjectStore: ObservableObject {
         }
         revisionAISummary = summary
         saveRevisionArchive()
+    }
+
+    func updatePublicationArchive(_ archive: PublicationArchive) {
+        guard let rootURL else { return }
+        do {
+            try PublicationDisk.save(archive, at: rootURL)
+            publicationArchive = archive
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func publicationPlan(
+        sources: [ResearchSource],
+        profileID: UUID? = nil,
+        format: PublicationExportFormat? = nil
+    ) throws -> PublicationExportPlan {
+        guard let rootURL, let manifest else { throw PublicationExportError.missingProject }
+        saveNow()
+        saveOutlineNow()
+        let selectedID = profileID ?? publicationArchive.selectedProfileID
+        guard let profile = publicationArchive.profiles.first(where: { $0.id == selectedID }) else {
+            throw PublicationExportError.missingProfile
+        }
+        return PublicationPlanBuilder.build(
+            projectName: manifest.name,
+            root: rootURL,
+            outline: outlineNodes,
+            archive: publicationArchive,
+            bibliography: projectBibliography,
+            librarySources: sources,
+            profile: profile,
+            format: format ?? profile.preferredFormat
+        )
+    }
+
+    func copyPublicationCover(from url: URL) {
+        guard let rootURL else { return }
+        do {
+            var archive = publicationArchive
+            archive.metadata.coverImageRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "cover", at: rootURL)
+            updatePublicationArchive(archive)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func copyPrintCover(from url: URL) {
+        guard let rootURL else { return }
+        do {
+            var archive = publicationArchive
+            archive.metadata.printCoverPDFRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "print-cover", at: rootURL)
+            updatePublicationArchive(archive)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func recordPublicationExport(_ result: PublicationExportResult, plan: PublicationExportPlan) {
+        var archive = publicationArchive
+        archive.history.insert(ExportHistoryRecord(
+            profileID: plan.profile.id,
+            profileName: plan.profile.name,
+            format: plan.format,
+            outputPath: result.outputURL.path,
+            sha256: result.sha256,
+            byteCount: result.byteCount,
+            warningCount: result.preflight.warnings.count
+        ), at: 0)
+        updatePublicationArchive(archive)
     }
 
     func makeRevisionChangeSet(findingIDs: Set<UUID>) throws -> RevisionChangeSet {

@@ -5,14 +5,17 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.8.0
-- A shared Research Library with citations, bibliography styles, source
-  attachments, and local OCR and indexing.
-- Project Research with quotations, claim links, Pandoc-style citations, and
-  Kistulentz Research Notes.md.
-- A Systemic Revision Center with local passes, optional previewed AI
-  deepening, persistent findings and goals, and safely previewed multi-file
-  changes with snapshots and Undo.
+NEW IN 0.9.0 FRIEND PREVIEW
+- A local Publish & Export workspace for EPUB 3, print-interior PDF, reader PDF,
+  and editable DOCX files.
+- Four built-in starting profiles plus named custom profiles, exact in-app
+  content planning, editable and lockable generated matter, covers, citations,
+  footnotes or endnotes, bibliographies, and layout controls.
+- Local preflight blocks missing files, images, and citations. Warnings require
+  explicit approval. Finished files go to a folder you choose; Kistulentz keeps
+  a checksum and export history inside the project.
+- Publication export is completely local and never sends writing to an AI
+  provider.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
@@ -50,6 +53,10 @@ Kistulentz Style.md file is also stored at the project root. Kistulentz Manuscri
 Report.md and the editable Kistulentz Bible.md update automatically using local
 analysis. Kistulentz Research Notes.md is also visible at the project root;
 structured bibliography and revision records stay in hidden project metadata.
+Publication setup, profiles, copied cover assets, checksums, and export history
+also stay inside hidden project metadata. Finished EPUB, PDF, and DOCX files are
+written only to the output folder selected during export.
+
 Custom beta-reader definitions are stored in hidden project metadata; beta
 feedback is shown only for the current in-app session. None of these automatic
 project features contact an AI provider.
