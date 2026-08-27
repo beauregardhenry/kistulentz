@@ -48,6 +48,7 @@ enum WritingProjectDisk {
         try saveManifest(manifest, at: root)
         try ProjectStyleManager.prepare(at: root, projectName: manifest.name, kind: kind)
         try ManuscriptProjectDisk.prepare(at: root, projectName: manifest.name, kind: kind)
+        try ProjectOutlineDisk.prepare(at: root, manifest: manifest)
     }
 
     static func loadManifest(at root: URL) throws -> WritingProjectManifest {
@@ -100,6 +101,10 @@ enum WritingProjectDisk {
     }
 
     static func createChapter(named name: String, at root: URL) throws -> String {
+        try createMarkdownFile(named: name, at: root)
+    }
+
+    static func createMarkdownFile(named name: String, at root: URL) throws -> String {
         var trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard isValidName(trimmed) else { throw WritingProjectError.invalidChapterName }
         if !trimmed.lowercased().hasSuffix(".md") { trimmed += ".md" }
@@ -110,6 +115,17 @@ enum WritingProjectDisk {
         let title = url.deletingPathExtension().lastPathComponent
         try "# \(title)\n\n".write(to: url, atomically: true, encoding: .utf8)
         return trimmed
+    }
+
+    static func uniqueMarkdownFileName(for title: String, at root: URL) -> String {
+        let base = HeadingSplitPlanner.safeFileComponent(title)
+        var candidate = "\(base).md"
+        var suffix = 2
+        while FileManager.default.fileExists(atPath: root.appendingPathComponent(candidate).path) {
+            candidate = "\(base) \(suffix).md"
+            suffix += 1
+        }
+        return candidate
     }
 
     static func createSnapshot(
@@ -160,6 +176,17 @@ enum WritingProjectDisk {
             contentsOf: historyURL(at: root).appendingPathComponent(snapshot.fileName),
             encoding: .utf8
         )
+    }
+
+    static func rewriteSnapshotPaths(_ mapping: [String: String], at root: URL) throws {
+        guard !mapping.isEmpty else { return }
+        var index = try loadSnapshotIndex(at: root)
+        for snapshotIndex in index.snapshots.indices {
+            if let updated = mapping[index.snapshots[snapshotIndex].chapterPath] {
+                index.snapshots[snapshotIndex].chapterPath = updated
+            }
+        }
+        try saveSnapshotIndex(index, at: root)
     }
 
     static func search(

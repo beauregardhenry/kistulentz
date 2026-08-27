@@ -8,6 +8,7 @@ struct ProjectSidebar: View {
     let onShowHistory: () -> Void
     let onCreateSnapshot: () -> Void
     let onShowManuscriptInsights: () -> Void
+    let onShowOrganization: () -> Void
     let onCloseProject: () -> Void
 
     @State private var searchText = ""
@@ -31,6 +32,7 @@ struct ProjectSidebar: View {
                         Button("Revision History…", action: onShowHistory)
                         Button("Create Snapshot…", action: onCreateSnapshot)
                         Button("Manuscript Insights…", action: onShowManuscriptInsights)
+                        Button("Project Organization…", action: onShowOrganization)
                         Divider()
                         Button("Close Project", action: onCloseProject)
                     } label: {
@@ -96,6 +98,11 @@ struct ProjectSidebar: View {
                 }
                 .buttonStyle(.borderless)
                 .help("Manuscript Insights")
+                Button(action: onShowOrganization) {
+                    Image(systemName: "rectangle.3.group")
+                }
+                .buttonStyle(.borderless)
+                .help("Project Organization")
                 Button(action: onShowHistory) {
                     Image(systemName: "clock.arrow.circlepath")
                 }
@@ -136,7 +143,6 @@ struct ProjectSidebar: View {
                         : Color.clear
                 )
             }
-            .onMove(perform: store.moveChapters)
         }
         .listStyle(.sidebar)
         .overlay {

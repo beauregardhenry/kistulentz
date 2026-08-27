@@ -35,13 +35,21 @@ store this information, and a declined suggestion returns after its matching
 passage or nearby context changes.
 
 Kistulentz projects are normal folders of Markdown files. Project settings,
-chapter order, search metadata, and revision snapshots remain in a hidden
-.kistulentz folder inside the project. The editable Kistulentz Style.md file is
-also stored at the project root. Kistulentz Manuscript Report.md and the editable
-Kistulentz Bible.md update automatically using local analysis. Custom beta-reader
-definitions are stored in hidden project metadata; beta feedback is shown only
-for the current in-app session. None of these automatic project features contact
-an AI provider.
+chapter order, the visual outline, planning fields, search metadata, and revision
+snapshots remain in a hidden .kistulentz folder inside the project. The editable
+Kistulentz Style.md file is also stored at the project root. Kistulentz Manuscript
+Report.md and the editable Kistulentz Bible.md update automatically using local
+analysis. Custom beta-reader definitions are stored in hidden project metadata;
+beta feedback is shown only for the current in-app session. None of these
+automatic project features contact an AI provider.
+
+Reordering Parts, Chapters, Scenes, or Sections on the Corkboard or Outliner does
+not move files in Finder. The separate Organize Files to Match Outline command
+shows every proposed move, blocks conflicts, creates snapshots, and requires
+approval. Splitting Chapter headings into separate Scene or Section files also
+shows a preview and creates a snapshot. Both operations support normal macOS Undo.
+Local and AI-generated synopsis suggestions remain separate from the author's
+synopsis unless the author explicitly chooses to use one.
 
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
@@ -49,10 +57,11 @@ hidden index used to reopen large libraries quickly. Folder and EPUB imports do
 not contact OpenAI, Anthropic, or Ollama.
 
 Kistulentz shows a request preview before Polish, Rewrite, or Deepen w/ AI. This
-includes requested manuscript-report, Bible, and beta-reader deepening. The
-preview names the provider, model, and destination and shows the exact draft or
-selection, style guide, reference profile, and selected excerpts included in the
-request. Optional material can be excluded or redacted before confirming.
+includes requested manuscript-report, Bible, beta-reader, and outline-synopsis
+deepening. The preview names the provider, model, and destination and shows the
+exact draft or selection, style guide, reference profile, and selected excerpts
+included in the request. Optional material can be excluded or redacted before
+confirming.
 
 OpenAI and Anthropic receive only the material confirmed in that preview. API
 keys are stored in the Mac Keychain. When Ollama is selected, the request goes

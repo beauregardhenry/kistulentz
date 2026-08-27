@@ -7,6 +7,12 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Native `.md` open, edit, save, autosave, and Undo support
 - Normal-folder projects for fiction and nonfiction manuscripts
 - Ordered Markdown chapters, manuscript-wide search, and combined project word counts
+- A visual Project Organization workspace with Corkboard and Outliner views for Parts, Chapters, and fiction Scenes or nonfiction Sections
+- Drag-and-drop outline ordering that does not move files in Finder unless the user separately previews and approves **Organize Files to Match Outline**
+- Editable outline cards with synopsis, status, purpose, labels, notes, export inclusion, target length, and fiction- or nonfiction-specific planning fields
+- Local synopsis suggestions, kept separate from the author’s synopsis, with an optional previewed **Deepen w/ AI** command
+- Previewed level-two-heading splitting into Scene or Section Markdown files, with snapshots and normal macOS Undo
+- Previewed physical file organization that retains filenames by default, allows destination edits, blocks conflicts, snapshots affected files, and supports Undo
 - A project-local, editable `Kistulentz Style.md` that learns from accepted and declined suggestions
 - An automatically updated, local `Kistulentz Manuscript Report.md` covering structure, pacing, continuity, people and characters, evidence, readability, repetition, voice, and priorities
 - An editable `Kistulentz Bible.md` that tracks names, places, organizations, terminology, timeline markers, and chapter facts while preserving author corrections and manual notes
@@ -81,6 +87,7 @@ DRM-protected and image-only EPUB files do not expose readable book text and can
 Use the folder menu in the editor toolbar to create a project inside a chosen parent folder or open an existing folder. Existing Markdown files remain unchanged when a folder is set up as a project. Kistulentz adds:
 
 - `.kistulentz/project.json` for the project type and chapter order
+- `.kistulentz/outline.json` for the visual Part, Chapter, Scene or Section hierarchy and planning fields
 - `.kistulentz/history/` for persistent revision snapshots
 - `.kistulentz/style-decisions.json` for local accepted/declined preference records
 - `.kistulentz/manuscript-cache.json` for the last generated Bible baseline and requested AI report notes
@@ -92,3 +99,9 @@ Use the folder menu in the editor toolbar to create a project inside a chosen pa
 The manuscript itself remains a normal collection of `.md` files; Kistulentz excludes its Style, Report, and Bible support files from the chapter list and manuscript word count. The report and Bible update locally after a short writing pause. Manual Bible corrections, deletions, and notes survive later updates. Kistulentz saves a baseline snapshot before the first edit to a chapter in a session, before programmatic replacements, before the first automatic Bible change in a session, before requested AI Bible notes, and before restoring an older snapshot. Named snapshots can be created at any time.
 
 Open **Manuscript Insights** from the project sidebar or project menu. The Report and Bible are persistent Markdown files inside the project. Built-in and AI beta feedback is displayed in Kistulentz for the current session and does not create feedback files. Custom beta-reader definitions remain in the hidden project metadata so they are available when the project reopens.
+
+Open **Project Organization** from the project sidebar or project menu to use the Corkboard and Outliner. Kistulentz imports existing first-level folders as Parts, nested folders as Chapters, and Markdown files as the available Chapter, Scene, or Section items. Reordering cards changes only the outline and project reading order. It never moves a Markdown file in Finder by itself.
+
+Choose **Organize Files to Match Outline…** only when you want the folder layout to follow the outline. Kistulentz shows every source and destination, keeps the existing filename unless you edit it, and refuses to proceed while a destination is unsafe or occupied. It snapshots affected documents before moving them, and the entire operation can be undone from the normal Edit menu. A Chapter’s level-two Markdown headings can likewise be previewed and selectively split into separate Scene or Section files; unchecked headings stay in the Chapter.
+
+Each outline item has an editable author synopsis and a separate suggested synopsis. **Suggest Locally** analyzes only project text on the Mac. **Deepen w/ AI** uses the standard request preview before sending the confirmed item and optional context to OpenAI or Anthropic, or to local Ollama. Neither command overwrites the author synopsis automatically.

@@ -73,7 +73,7 @@ struct ProjectSearchResult: Identifiable, Equatable {
 
 struct ProjectSnapshot: Codable, Identifiable, Equatable {
     let id: UUID
-    let chapterPath: String
+    var chapterPath: String
     let name: String
     let reason: String
     let createdAt: Date
