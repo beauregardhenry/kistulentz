@@ -24,6 +24,7 @@ struct EditorWorkspace: View {
 
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
+    @EnvironmentObject private var researchLibrary: ResearchLibraryStore
     @Environment(\.openSettings) private var openSettings
     @Environment(\.undoManager) private var undoManager
     @StateObject private var viewModel = EditorViewModel()
@@ -33,6 +34,9 @@ struct EditorWorkspace: View {
     @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
     @State private var showingReferenceLibrary = false
+    @State private var showingResearchLibrary = false
+    @State private var showingProjectResearch = false
+    @State private var showingRevisionCenter = false
     @State private var selectedLibraryReferences: Set<String> = []
     @State private var isWriteMode = false
     @State private var showingProjectFolderImporter = false
@@ -75,6 +79,8 @@ struct EditorWorkspace: View {
                             onCreateSnapshot: { showingNamedSnapshot = true },
                             onShowManuscriptInsights: { showingManuscriptInsights = true },
                             onShowOrganization: { showingProjectOrganization = true },
+                            onShowResearch: { showingProjectResearch = true },
+                            onShowRevisionCenter: { showingRevisionCenter = true },
                             onCloseProject: closeProject
                         )
                         .frame(minWidth: 205, idealWidth: 225, maxWidth: 275)
@@ -184,6 +190,23 @@ struct EditorWorkspace: View {
             }
             .environmentObject(referenceLibrary)
             .environmentObject(settings)
+        }
+        .sheet(isPresented: $showingResearchLibrary) {
+            ResearchLibraryView()
+                .environmentObject(researchLibrary)
+        }
+        .sheet(isPresented: $showingProjectResearch) {
+            ProjectResearchView(
+                projectStore: projectStore,
+                selectionText: selectedPassage?.text,
+                onInsertCitation: insertCitation
+            )
+            .environmentObject(researchLibrary)
+        }
+        .sheet(isPresented: $showingRevisionCenter) {
+            SystemicRevisionCenterView(store: projectStore, onNavigate: navigateToRevisionFinding)
+                .environmentObject(settings)
+                .environmentObject(researchLibrary)
         }
         .fileImporter(
             isPresented: $showingProjectFolderImporter,
@@ -371,6 +394,8 @@ struct EditorWorkspace: View {
                     Button("Revision History…") { showingRevisionHistory = true }
                     Button("Manuscript Insights…") { showingManuscriptInsights = true }
                     Button("Project Organization…") { showingProjectOrganization = true }
+                    Button("Project Research…") { showingProjectResearch = true }
+                    Button("Systemic Revision Center…") { showingRevisionCenter = true }
                     Divider()
                     Button("Close Project", action: closeProject)
                 }
@@ -476,6 +501,19 @@ struct EditorWorkspace: View {
 
             Menu {
                 Button {
+                    showingResearchLibrary = true
+                } label: {
+                    Label("Research Library…", systemImage: "doc.text.magnifyingglass")
+                }
+                if projectStore.isOpen {
+                    Button {
+                        showingProjectResearch = true
+                    } label: {
+                        Label("Project Research & Citations…", systemImage: "quote.opening")
+                    }
+                }
+                Divider()
+                Button {
                     showingReferenceLibrary = true
                 } label: {
                     Label("Reference Library…", systemImage: "books.vertical.fill")
@@ -538,6 +576,40 @@ struct EditorWorkspace: View {
         )
     }
 
+    private func insertCitation(_ source: ResearchSource, locator: String) {
+        let citation = CitationFormatter.markdownCitation(for: source, locator: locator)
+        let current = activeText as NSString
+        let selectionStart = editorSelection.location == NSNotFound
+            ? current.length
+            : min(max(0, editorSelection.location), current.length)
+        let selectionLength = min(max(0, editorSelection.length), current.length - selectionStart)
+        let safeLocation = selectionStart + selectionLength
+        let range = NSRange(location: safeLocation, length: 0)
+        let updated = current.replacingCharacters(in: range, with: citation)
+        if projectStore.isOpen { projectStore.prepareForProgrammaticEdit(reason: "Before inserting citation") }
+        undoCoordinator.replaceText(
+            with: updated,
+            binding: activeTextBinding,
+            undoManager: undoManager,
+            actionName: "Insert Citation"
+        )
+        editorSelection = NSRange(location: safeLocation + (citation as NSString).length, length: 0)
+    }
+
+    private func navigateToRevisionFinding(_ finding: SystemicRevisionFinding) {
+        guard let path = finding.chapterPath else { return }
+        projectStore.selectChapter(path)
+        Task { @MainActor in
+            await Task.yield()
+            let source = projectStore.text as NSString
+            guard !finding.excerpt.isEmpty else { return }
+            let range = source.range(of: finding.excerpt)
+            guard range.location != NSNotFound else { return }
+            editorSelection = range
+            viewModel.focus(on: range)
+        }
+    }
+
     private var selectedPassage: (range: NSRange, text: String)? {
         let source = activeText as NSString
         guard editorSelection.location != NSNotFound,
@@ -593,7 +665,7 @@ struct EditorWorkspace: View {
             viewModel.runAIReview(request: request, matching: activeText, settings: settings)
         case .selectionRewrite:
             viewModel.runSelectionRewrite(request: request, settings: settings)
-        case .referenceDeepening, .manuscriptReport, .manuscriptBible, .betaReader, .outlineSynopsis:
+        case .referenceDeepening, .manuscriptReport, .manuscriptBible, .betaReader, .outlineSynopsis, .systemicRevision:
             break
         }
     }

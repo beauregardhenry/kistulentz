@@ -526,7 +526,8 @@ enum ProjectFileOrganizer {
         let reserved = [
             WritingProjectDisk.styleFileName,
             ManuscriptProjectDisk.reportFileName,
-            ManuscriptProjectDisk.bibleFileName
+            ManuscriptProjectDisk.bibleFileName,
+            ProjectResearchDisk.notesFileName
         ]
         return !reserved.contains(components.last ?? "")
     }

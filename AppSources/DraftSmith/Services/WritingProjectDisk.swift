@@ -49,6 +49,8 @@ enum WritingProjectDisk {
         try ProjectStyleManager.prepare(at: root, projectName: manifest.name, kind: kind)
         try ManuscriptProjectDisk.prepare(at: root, projectName: manifest.name, kind: kind)
         try ProjectOutlineDisk.prepare(at: root, manifest: manifest)
+        try ProjectResearchDisk.prepare(at: root, projectName: manifest.name)
+        try SystemicRevisionDisk.prepare(at: root)
     }
 
     static func loadManifest(at root: URL) throws -> WritingProjectManifest {
@@ -326,7 +328,8 @@ enum WritingProjectDisk {
         [
             styleFileName,
             ManuscriptProjectDisk.reportFileName,
-            ManuscriptProjectDisk.bibleFileName
+            ManuscriptProjectDisk.bibleFileName,
+            ProjectResearchDisk.notesFileName
         ]
     }
 }

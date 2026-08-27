@@ -5,6 +5,15 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
+NEW IN 0.8.0
+- A shared Research Library with citations, bibliography styles, source
+  attachments, and local OCR and indexing.
+- Project Research with quotations, claim links, Pandoc-style citations, and
+  Kistulentz Research Notes.md.
+- A Systemic Revision Center with local passes, optional previewed AI
+  deepening, persistent findings and goals, and safely previewed multi-file
+  changes with snapshots and Undo.
+
 INSTALL
 1. Drag Kistulentz into the Applications folder.
 2. Open Kistulentz from Applications.
@@ -39,9 +48,11 @@ chapter order, the visual outline, planning fields, search metadata, and revisio
 snapshots remain in a hidden .kistulentz folder inside the project. The editable
 Kistulentz Style.md file is also stored at the project root. Kistulentz Manuscript
 Report.md and the editable Kistulentz Bible.md update automatically using local
-analysis. Custom beta-reader definitions are stored in hidden project metadata;
-beta feedback is shown only for the current in-app session. None of these
-automatic project features contact an AI provider.
+analysis. Kistulentz Research Notes.md is also visible at the project root;
+structured bibliography and revision records stay in hidden project metadata.
+Custom beta-reader definitions are stored in hidden project metadata; beta
+feedback is shown only for the current in-app session. None of these automatic
+project features contact an AI provider.
 
 Reordering Parts, Chapters, Scenes, or Sections on the Corkboard or Outliner does
 not move files in Finder. The separate Organize Files to Match Outline command
@@ -68,6 +79,17 @@ keys are stored in the Mac Keychain. When Ollama is selected, the request goes
 only to Ollama at localhost on the Mac. Kistulentz detects models already
 installed there; it does not install Ollama or download models. Complete EPUB
 files and the complete Reference Library are not uploaded.
+
+The separate Research Library is also stored in a folder you choose. Kistulentz
+can copy attachments into it or link to originals. PDF, EPUB, image, web archive,
+and text indexing stays local; scanned PDF and image text uses Apple's local OCR.
+DOI and ISBN lookups send only the typed identifier to Crossref or Open Library.
+
+The Systemic Revision Center scans locally by default. AI deepening uses the same
+mandatory request preview and only adds suggestions. It cannot write directly to
+manuscript files. Coordinated changes require a separate exact before-and-after
+preview, are rechecked for stale or overlapping passages, snapshot every affected
+file, and apply as one macOS Undo action.
 
 DRM-protected or image-only EPUB files cannot be analyzed because they do not
 provide readable book text.

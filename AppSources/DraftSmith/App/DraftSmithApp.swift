@@ -4,12 +4,14 @@ import SwiftUI
 struct KistulentzApp: App {
     @StateObject private var settings = AppSettings()
     @StateObject private var referenceLibrary = ReferenceLibraryStore()
+    @StateObject private var researchLibrary = ResearchLibraryStore()
 
     var body: some Scene {
         DocumentGroup(newDocument: MarkdownDocument()) { file in
             EditorWorkspace(document: file.$document, fileURL: file.fileURL)
                 .environmentObject(settings)
                 .environmentObject(referenceLibrary)
+                .environmentObject(researchLibrary)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {

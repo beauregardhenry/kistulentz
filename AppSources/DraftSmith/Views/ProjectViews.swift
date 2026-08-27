@@ -9,6 +9,8 @@ struct ProjectSidebar: View {
     let onCreateSnapshot: () -> Void
     let onShowManuscriptInsights: () -> Void
     let onShowOrganization: () -> Void
+    let onShowResearch: () -> Void
+    let onShowRevisionCenter: () -> Void
     let onCloseProject: () -> Void
 
     @State private var searchText = ""
@@ -33,6 +35,8 @@ struct ProjectSidebar: View {
                         Button("Create Snapshot…", action: onCreateSnapshot)
                         Button("Manuscript Insights…", action: onShowManuscriptInsights)
                         Button("Project Organization…", action: onShowOrganization)
+                        Button("Project Research…", action: onShowResearch)
+                        Button("Systemic Revision Center…", action: onShowRevisionCenter)
                         Divider()
                         Button("Close Project", action: onCloseProject)
                     } label: {
@@ -103,6 +107,16 @@ struct ProjectSidebar: View {
                 }
                 .buttonStyle(.borderless)
                 .help("Project Organization")
+                Button(action: onShowResearch) {
+                    Image(systemName: "books.vertical")
+                }
+                .buttonStyle(.borderless)
+                .help("Project Research")
+                Button(action: onShowRevisionCenter) {
+                    Image(systemName: "checklist")
+                }
+                .buttonStyle(.borderless)
+                .help("Systemic Revision Center")
                 Button(action: onShowHistory) {
                     Image(systemName: "clock.arrow.circlepath")
                 }

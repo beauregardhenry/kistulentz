@@ -17,7 +17,9 @@ let package = Package(
             linkerSettings: [
                 .linkedFramework("AppKit"),
                 .linkedFramework("NaturalLanguage"),
-                .linkedFramework("Security")
+                .linkedFramework("PDFKit"),
+                .linkedFramework("Security"),
+                .linkedFramework("Vision")
             ]
         ),
         .testTarget(
