@@ -26,6 +26,8 @@ trap cleanup EXIT
 mkdir -p "$RELEASE_ROOT" "$PAYLOAD_ROOT"
 cp -R "$APP_PATH" "$PAYLOAD_ROOT/$APP_NAME.app"
 cp "$PROJECT_ROOT/DistributionAssets/FIRST OPEN - Kistulentz.txt" "$PAYLOAD_ROOT/FIRST OPEN - Kistulentz.txt"
+cp "$PROJECT_ROOT/LICENSE" "$PAYLOAD_ROOT/LICENSE"
+cp "$PROJECT_ROOT/DistributionAssets/SOURCE CODE - Kistulentz.txt" "$PAYLOAD_ROOT/SOURCE CODE - Kistulentz.txt"
 if [[ -f "$RELEASE_NOTES_PATH" ]]; then
     cp "$RELEASE_NOTES_PATH" "$PAYLOAD_ROOT/${RELEASE_NOTES_PATH:t}"
 fi

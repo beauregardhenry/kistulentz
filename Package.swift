@@ -3,17 +3,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "DraftSmith",
+    name: "Kistulentz",
     platforms: [
         .macOS(.v15)
     ],
     products: [
-        .executable(name: "DraftSmith", targets: ["DraftSmith"])
+        .executable(name: "Kistulentz", targets: ["Kistulentz"])
     ],
     targets: [
         .executableTarget(
-            name: "DraftSmith",
-            path: "AppSources/DraftSmith",
+            name: "Kistulentz",
+            path: "AppSources/Kistulentz",
             linkerSettings: [
                 .linkedFramework("AppKit"),
                 .linkedFramework("NaturalLanguage"),
@@ -23,9 +23,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "DraftSmithTests",
-            dependencies: ["DraftSmith"],
-            path: "Tests/DraftSmithTests"
+            name: "KistulentzTests",
+            dependencies: ["Kistulentz"],
+            path: "Tests/KistulentzTests"
         )
     ],
     swiftLanguageModes: [.v5]

@@ -20,6 +20,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Six built-in beta readers for general, fiction, and nonfiction concerns, plus editable project-local custom readers
 - Local beta feedback for a selection, chapter, or whole manuscript, with optional previewed **Deepen w/ AI** feedback that remains in the app for the current session
 - Persistent project snapshots with named versions, visual line comparisons, and protected restoration
+- Automatic project-format migration with a pre-migration metadata backup, rolling last-known-good snapshots, and guided recovery that never replaces manuscript Markdown
 - Distraction-free Write mode and individually configurable highlight categories
 - Live reading-grade estimate, word count, sentence count, and reading time
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
@@ -76,7 +77,7 @@ The universal application is created at `dist/Kistulentz.app`. Copy it to `/Appl
 ## Development
 
 ```sh
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift run --disable-sandbox DraftSmith
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift run --disable-sandbox Kistulentz
 ```
 
 Run tests with:
@@ -113,12 +114,15 @@ Use the folder menu in the editor toolbar to create a project inside a chosen pa
 - `.kistulentz/revisions.json` for persistent systemic findings, classifications, statuses, and goals
 - `.kistulentz/publication.json` for publication metadata, named profiles, editable generated matter, checksums, and export history
 - `.kistulentz/publication-assets/` for project-local copies of selected cover assets
+- `.kistulentz-backups/` for hidden pre-migration, last-known-good, and pre-recovery metadata snapshots
 - `Kistulentz Style.md` at the project root for editable style instructions and learned preferences
 - `Kistulentz Manuscript Report.md` at the project root for the combined local and requested AI report
 - `Kistulentz Bible.md` at the project root for the editable project knowledge base
 - `Kistulentz Research Notes.md` at the project root for editable project-specific research notes
 
 The manuscript itself remains a normal collection of `.md` files; Kistulentz excludes its Style, Report, Bible, and Research Notes support files from the chapter list and manuscript word count. The report and Bible update locally after a short writing pause. Manual Bible corrections, deletions, and notes survive later updates. Kistulentz saves a baseline snapshot before the first edit to a chapter in a session, before programmatic replacements, before the first automatic Bible change in a session, before requested AI Bible notes, and before restoring an older snapshot. Named snapshots can be created at any time.
+
+When an older project opens, Kistulentz first copies its structured metadata into `.kistulentz-backups/`, then migrates that metadata to the current format. A successful open maintains up to three rolling last-known-good snapshots. If structured metadata later becomes unreadable, the recovery window can restore one of those snapshots; immediately before restoring, Kistulentz preserves the current failed metadata as another snapshot. These operations do not restore, replace, or edit manuscript Markdown files.
 
 Open **Research Library** from the Reference menu in the toolbar. The library folder is separate from any one writing project and contains a visible generated `Kistulentz Research Library.md`, managed attachment copies when selected, extracted local text indexes, and a hidden structured source index. Open **Project Research** to attach shared sources to a project, set its bibliography style, save quotations and claim links, edit its Research Notes, and insert citations without replacing selected manuscript prose.
 
@@ -133,3 +137,11 @@ Open **Publish & Export** from the project sidebar or project menu. Choose a nam
 Choose **Organize Files to Match Outline…** only when you want the folder layout to follow the outline. Kistulentz shows every source and destination, keeps the existing filename unless you edit it, and refuses to proceed while a destination is unsafe or occupied. It snapshots affected documents before moving them, and the entire operation can be undone from the normal Edit menu. A Chapter’s level-two Markdown headings can likewise be previewed and selectively split into separate Scene or Section files; unchecked headings stay in the Chapter.
 
 Each outline item has an editable author synopsis and a separate suggested synopsis. **Suggest Locally** analyzes only project text on the Mac. **Deepen w/ AI** uses the standard request preview before sending the confirmed item and optional context to OpenAI or Anthropic, or to local Ollama. Neither command overwrites the author synopsis automatically.
+
+## License
+
+Copyright © 2026 Beau Henry.
+
+Kistulentz is free software licensed under the GNU General Public License, version 3 or any later version. See [LICENSE](LICENSE).
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [PRIVACY.md](PRIVACY.md), [SECURITY.md](SECURITY.md), and [SUPPORT.md](SUPPORT.md) for project policies and help.

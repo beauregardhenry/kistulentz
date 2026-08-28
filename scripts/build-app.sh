@@ -24,7 +24,7 @@ BIN_PATH="$(swift build \
     --arch arm64 \
     --arch x86_64 \
     --disable-sandbox \
-    --show-bin-path)/DraftSmith"
+    --show-bin-path)/Kistulentz"
 
 if [[ ! -f "$BIN_PATH" ]]; then
     print -u2 "Kistulentz executable was not found at $BIN_PATH"
@@ -35,6 +35,7 @@ rm -rf "$APP_ROOT"
 mkdir -p "$APP_ROOT/Contents/MacOS" "$APP_ROOT/Contents/Resources"
 cp "$BIN_PATH" "$APP_ROOT/Contents/MacOS/Kistulentz"
 cp "$PROJECT_ROOT/scripts/Info.plist" "$APP_ROOT/Contents/Info.plist"
+cp "$PROJECT_ROOT/LICENSE" "$APP_ROOT/Contents/Resources/LICENSE"
 print -n "APPL????" > "$APP_ROOT/Contents/PkgInfo"
 
 chmod +x "$APP_ROOT/Contents/MacOS/Kistulentz"
