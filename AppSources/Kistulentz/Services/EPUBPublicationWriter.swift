@@ -61,7 +61,7 @@ enum EPUBPublicationWriter {
             let content = xhtmlDocument(
                 title: section.title,
                 language: book.plan.metadata.language,
-                body: "<section id=\"\(PublicationXML.slug(section.id))\">\(body)</section>"
+                body: "<section id=\"\(PublicationXML.slug(section.id))\" epub:type=\"\(semanticType(for: section.kind))\">\(body)</section>"
             )
             try content.write(to: text.appendingPathComponent(fileName), atomically: true, encoding: .utf8)
             if section.kind == .part || section.kind == .manuscript {
@@ -118,7 +118,14 @@ enum EPUBPublicationWriter {
         let list = entries.map {
             "<li class=\"level-\($0.depth)\"><a href=\"\(PublicationXML.escapeAttribute($0.href))\">\(PublicationXML.escape($0.title))</a></li>"
         }.joined(separator: "\n")
-        let landmarks = "<nav epub:type=\"landmarks\" hidden=\"hidden\"><h2>Landmarks</h2><ol><li><a epub:type=\"bodymatter\" href=\"\(PublicationXML.escapeAttribute(entries.first?.href ?? "text/section-001.xhtml"))\">Start of content</a></li></ol></nav>"
+        let sectionFiles = Dictionary(uniqueKeysWithValues: book.sections.enumerated().map { index, section in
+            (section.id, "text/section-\(String(format: "%03d", index + 1)).xhtml")
+        })
+        let bodyMatter = book.sections.first(where: { $0.kind == .manuscript })
+            .flatMap { sectionFiles[$0.id] }
+            ?? entries.first?.href
+            ?? "text/section-001.xhtml"
+        let landmarks = "<nav epub:type=\"landmarks\" hidden=\"hidden\"><h2>Landmarks</h2><ol><li><a epub:type=\"bodymatter\" href=\"\(PublicationXML.escapeAttribute(bodyMatter))\">Start of content</a></li></ol></nav>"
         return """
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE html>
@@ -148,12 +155,17 @@ enum EPUBPublicationWriter {
             metadata.description.isEmpty ? "" : "<dc:description>\(PublicationXML.escape(metadata.description))</dc:description>",
             metadata.publicationDate.isEmpty ? "" : "<dc:date>\(PublicationXML.escape(metadata.publicationDate))</dc:date>"
         ].filter { !$0.isEmpty }.joined(separator: "\n")
+        let allImagesHaveAltText = book.images.allSatisfy { !$0.altText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+            && (!hasCover || !metadata.coverAltText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        let hazardCanBeDetermined = images.allSatisfy { ["image/jpeg", "image/png"].contains($0.mediaType) }
         let accessibility = """
         <meta property="schema:accessMode">textual</meta>
-        <meta property="schema:accessModeSufficient">textual</meta>
+        \(!images.isEmpty ? "<meta property=\"schema:accessMode\">visual</meta>" : "")
+        \(allImagesHaveAltText ? "<meta property=\"schema:accessModeSufficient\">textual</meta>" : "")
         <meta property="schema:accessibilityFeature">tableOfContents</meta>
         <meta property="schema:accessibilityFeature">structuralNavigation</meta>
-        <meta property="schema:accessibilityHazard">none</meta>
+        \(allImagesHaveAltText && !images.isEmpty ? "<meta property=\"schema:accessibilityFeature\">alternativeText</meta>" : "")
+        \(hazardCanBeDetermined ? "<meta property=\"schema:accessibilityHazard\">none</meta>" : "")
         """
         let sectionManifest = (1...sectionCount).map {
             "<item id=\"section-\($0)\" href=\"text/section-\(String(format: "%03d", $0)).xhtml\" media-type=\"application/xhtml+xml\"/>"
@@ -211,5 +223,14 @@ enum EPUBPublicationWriter {
         nav ol { list-style: none; padding-left: 0; }
         nav .level-1 { margin-left: 1.5em; }
         """
+    }
+
+    private static func semanticType(for kind: ExportPlanItemKind) -> String {
+        switch kind {
+        case .frontMatter: "frontmatter"
+        case .part: "part bodymatter"
+        case .manuscript: "chapter bodymatter"
+        case .backMatter: "backmatter"
+        }
     }
 }

@@ -492,7 +492,8 @@ final class WritingProjectStore: ObservableObject {
             bibliography: projectBibliography,
             librarySources: sources,
             profile: profile,
-            format: format ?? profile.preferredFormat
+            format: format ?? profile.preferredFormat,
+            destinations: publicationArchive.selectedDestinations
         )
     }
 
@@ -524,7 +525,7 @@ final class WritingProjectStore: ObservableObject {
             profileID: plan.profile.id,
             profileName: plan.profile.name,
             format: plan.format,
-            outputPath: result.outputURL.path,
+            outputPath: (result.packageURL ?? result.outputURL).path,
             sha256: result.sha256,
             byteCount: result.byteCount,
             warningCount: result.preflight.warnings.count

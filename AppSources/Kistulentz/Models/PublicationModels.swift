@@ -1,6 +1,6 @@
 import Foundation
 
-enum PublicationExportFormat: String, Codable, CaseIterable, Identifiable {
+enum PublicationExportFormat: String, Codable, CaseIterable, Identifiable, Hashable {
     case epub
     case printPDF
     case readerPDF
@@ -30,6 +30,71 @@ enum PublicationExportFormat: String, Codable, CaseIterable, Identifiable {
         case .docx: "doc.text"
         }
     }
+}
+
+enum PublicationDestination: String, Codable, CaseIterable, Identifiable, Hashable {
+    case genericEPUB
+    case appleBooks
+    case kindleEbook
+    case kdpPrint
+    case ingramSparkEbook
+    case ingramSparkPrint
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .genericEPUB: "Generic EPUB 3.3"
+        case .appleBooks: "Apple Books"
+        case .kindleEbook: "Kindle / KDP eBook"
+        case .kdpPrint: "KDP Print"
+        case .ingramSparkEbook: "IngramSpark eBook"
+        case .ingramSparkPrint: "IngramSpark Print"
+        }
+    }
+
+    var shortTitle: String {
+        switch self {
+        case .genericEPUB: "EPUB 3.3"
+        case .appleBooks: "Apple Books"
+        case .kindleEbook: "Kindle"
+        case .kdpPrint: "KDP Print"
+        case .ingramSparkEbook: "Ingram eBook"
+        case .ingramSparkPrint: "Ingram Print"
+        }
+    }
+
+    var compatibleFormats: [PublicationExportFormat] {
+        switch self {
+        case .genericEPUB, .appleBooks, .kindleEbook, .ingramSparkEbook: [.epub]
+        case .kdpPrint, .ingramSparkPrint: [.printPDF]
+        }
+    }
+
+    var requirementURL: String {
+        switch self {
+        case .genericEPUB: "https://www.w3.org/TR/epub-33/"
+        case .appleBooks: "https://help.apple.com/itc/booksassetguide/en.lproj/static.html"
+        case .kindleEbook: "https://kdp.amazon.com/en_US/help/topic/G200634390/"
+        case .kdpPrint: "https://kdp.amazon.com/en_US/help/topic/G201857950"
+        case .ingramSparkEbook, .ingramSparkPrint: "https://www.ingramspark.com/hubfs/downloads/file-creation-guide.pdf"
+        }
+    }
+}
+
+enum PublicationPrintBleed: String, Codable, CaseIterable, Identifiable {
+    case none
+    case outside
+
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .none: "No Bleed"
+        case .outside: "0.125 in Outside Bleed"
+        }
+    }
+
+    var points: Double { self == .outside ? 9 : 0 }
 }
 
 enum ExportProfileKind: String, Codable, CaseIterable, Identifiable {
@@ -226,6 +291,7 @@ struct ExportProfile: Codable, Identifiable, Equatable {
     var includeFrontMatter: Bool
     var includeBackMatter: Bool
     var embedFontsInEPUB: Bool
+    var printBleed: PublicationPrintBleed
     var modifiedAt: Date
 
     init(
@@ -241,6 +307,7 @@ struct ExportProfile: Codable, Identifiable, Equatable {
         includeFrontMatter: Bool = true,
         includeBackMatter: Bool = true,
         embedFontsInEPUB: Bool = false,
+        printBleed: PublicationPrintBleed = .none,
         modifiedAt: Date = Date()
     ) {
         self.id = id
@@ -255,7 +322,32 @@ struct ExportProfile: Codable, Identifiable, Equatable {
         self.includeFrontMatter = includeFrontMatter
         self.includeBackMatter = includeBackMatter
         self.embedFontsInEPUB = embedFontsInEPUB
+        self.printBleed = printBleed
         self.modifiedAt = modifiedAt
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, kind, preferredFormat, layout, citationMode, includeBibliography
+        case includeCover, includeTableOfContents, includeFrontMatter, includeBackMatter
+        case embedFontsInEPUB, printBleed, modifiedAt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        kind = try container.decode(ExportProfileKind.self, forKey: .kind)
+        preferredFormat = try container.decode(PublicationExportFormat.self, forKey: .preferredFormat)
+        layout = try container.decode(PublicationLayout.self, forKey: .layout)
+        citationMode = try container.decode(PublicationCitationMode.self, forKey: .citationMode)
+        includeBibliography = try container.decode(Bool.self, forKey: .includeBibliography)
+        includeCover = try container.decode(Bool.self, forKey: .includeCover)
+        includeTableOfContents = try container.decode(Bool.self, forKey: .includeTableOfContents)
+        includeFrontMatter = try container.decode(Bool.self, forKey: .includeFrontMatter)
+        includeBackMatter = try container.decode(Bool.self, forKey: .includeBackMatter)
+        embedFontsInEPUB = try container.decodeIfPresent(Bool.self, forKey: .embedFontsInEPUB) ?? false
+        printBleed = try container.decodeIfPresent(PublicationPrintBleed.self, forKey: .printBleed) ?? .none
+        modifiedAt = try container.decode(Date.self, forKey: .modifiedAt)
     }
 
     static func builtIns(for kind: WritingProjectKind) -> [ExportProfile] {
@@ -413,6 +505,7 @@ struct PublicationArchive: Codable, Equatable {
     var metadata: PublicationMetadata
     var profiles: [ExportProfile]
     var selectedProfileID: UUID
+    var selectedDestinations: [PublicationDestination]
     var matter: [PublicationMatterItem]
     var history: [ExportHistoryRecord]
 
@@ -420,8 +513,27 @@ struct PublicationArchive: Codable, Equatable {
         metadata = PublicationMetadata(title: projectName)
         profiles = ExportProfile.builtIns(for: projectKind)
         selectedProfileID = profiles[0].id
+        selectedDestinations = profiles[0].preferredFormat == .epub ? [.genericEPUB] : []
         matter = PublicationMatterGenerator.defaultItems(metadata: metadata)
         history = []
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case schemaVersion, metadata, profiles, selectedProfileID, selectedDestinations, matter, history
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try container.decodeIfPresent(Int.self, forKey: .schemaVersion) ?? KistulentzProjectFormat.currentVersion
+        metadata = try container.decode(PublicationMetadata.self, forKey: .metadata)
+        let decodedProfiles = try container.decode([ExportProfile].self, forKey: .profiles)
+        let decodedSelectedProfileID = try container.decode(UUID.self, forKey: .selectedProfileID)
+        profiles = decodedProfiles
+        selectedProfileID = decodedSelectedProfileID
+        selectedDestinations = try container.decodeIfPresent([PublicationDestination].self, forKey: .selectedDestinations)
+            ?? (decodedProfiles.first(where: { $0.id == decodedSelectedProfileID })?.preferredFormat == .epub ? [.genericEPUB] : [])
+        matter = try container.decode([PublicationMatterItem].self, forKey: .matter)
+        history = try container.decodeIfPresent([ExportHistoryRecord].self, forKey: .history) ?? []
     }
 }
 
@@ -453,6 +565,7 @@ struct PublicationExportPlan: Equatable {
     var metadata: PublicationMetadata
     var bibliography: ProjectBibliographyArchive
     var sources: [ResearchSource]
+    var destinations: [PublicationDestination]
 
     var includedItems: [ExportPlanItem] { items.filter(\.isIncluded) }
     var manuscriptItems: [ExportPlanItem] { includedItems.filter { $0.kind == .manuscript } }
@@ -467,12 +580,31 @@ enum PublicationPreflightSeverity: String, Codable, CaseIterable, Identifiable {
     var title: String { rawValue.capitalized }
 }
 
+enum PublicationReadinessStatus: String, Codable, CaseIterable, Identifiable {
+    case actionRequired
+    case passedLocally
+    case externalValidationRequired
+    case manualReviewRequired
+
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .actionRequired: "Action Required"
+        case .passedLocally: "Passed Locally"
+        case .externalValidationRequired: "External Validation Required"
+        case .manualReviewRequired: "Manual Review Required"
+        }
+    }
+}
+
 struct PublicationPreflightFinding: Identifiable, Equatable {
     var id: String
     var severity: PublicationPreflightSeverity
     var title: String
     var detail: String
     var sourcePath: String?
+    var readinessStatus: PublicationReadinessStatus = .actionRequired
+    var requirementURL: String? = nil
 }
 
 struct PublicationPreflightReport: Equatable {
@@ -488,6 +620,41 @@ struct PublicationExportResult: Equatable {
     var sha256: String
     var byteCount: Int64
     var preflight: PublicationPreflightReport
+    var packageURL: URL? = nil
+    var reportMarkdownURL: URL? = nil
+    var reportPDFURL: URL? = nil
+    var validatorRuns: [PublicationValidatorRun] = []
+}
+
+struct PublicationValidatorRun: Codable, Identifiable, Equatable {
+    var id: String { validator.rawValue }
+    var validator: PublicationExternalValidator
+    var status: PublicationValidatorRunStatus
+    var summary: String
+    var output: String
+}
+
+enum PublicationExternalValidator: String, Codable, CaseIterable, Identifiable {
+    case epubCheck
+    case kindlePreviewer
+    case appleTransporter
+
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .epubCheck: "EPUBCheck"
+        case .kindlePreviewer: "Kindle Previewer"
+        case .appleTransporter: "Apple Transporter"
+        }
+    }
+}
+
+enum PublicationValidatorRunStatus: String, Codable, Equatable {
+    case passed
+    case failed
+    case available
+    case notInstalled
+    case notApplicable
 }
 
 enum PublicationExportError: LocalizedError, Equatable {

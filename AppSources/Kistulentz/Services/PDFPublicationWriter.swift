@@ -16,7 +16,9 @@ private struct PublicationPDFPage {
 enum PDFPublicationWriter {
     static func write(_ book: PublicationRenderedBook, to outputURL: URL, root: URL) throws {
         let layout = book.plan.profile.layout
-        let pageSize = CGSize(width: layout.pageSize.widthPoints, height: layout.pageSize.heightPoints)
+        let trimSize = CGSize(width: layout.pageSize.widthPoints, height: layout.pageSize.heightPoints)
+        let bleed = book.plan.format == .printPDF ? CGFloat(book.plan.profile.printBleed.points) : 0
+        let pageSize = CGSize(width: trimSize.width + bleed, height: trimSize.height + bleed * 2)
         var pages: [PublicationPDFPage] = []
 
         if book.plan.format == .readerPDF,
@@ -30,15 +32,27 @@ enum PDFPublicationWriter {
 
         var current = PublicationPDFPage()
         var y: CGFloat = 0
-        let top = CGFloat(layout.topMargin) + (layout.headerEnabled ? 18 : 0)
-        let bottom = CGFloat(layout.bottomMargin) + ((layout.footerEnabled || layout.pageNumbersEnabled) ? 18 : 0)
+        let topInset = CGFloat(layout.topMargin) + (layout.headerEnabled ? 18 : 0)
+        let bottomInset = CGFloat(layout.bottomMargin) + ((layout.footerEnabled || layout.pageNumbersEnabled) ? 18 : 0)
+
+        func trimRect(pageNumber: Int) -> CGRect {
+            guard bleed > 0 else { return CGRect(origin: .zero, size: trimSize) }
+            let isOdd = pageNumber % 2 == 1
+            return CGRect(x: isOdd ? 0 : bleed, y: bleed, width: trimSize.width, height: trimSize.height)
+        }
 
         func contentRect(pageNumber: Int) -> CGRect {
             let printMirrored = book.plan.format == .printPDF
             let isOdd = pageNumber % 2 == 1
             let left = CGFloat(printMirrored && isOdd ? layout.insideMargin : layout.outsideMargin)
             let right = CGFloat(printMirrored && isOdd ? layout.outsideMargin : layout.insideMargin)
-            return CGRect(x: left, y: top, width: pageSize.width - left - right, height: pageSize.height - top - bottom)
+            let trim = trimRect(pageNumber: pageNumber)
+            return CGRect(
+                x: trim.minX + left,
+                y: trim.minY + topInset,
+                width: trim.width - left - right,
+                height: trim.height - topInset - bottomInset
+            )
         }
 
         func finishPage() {
@@ -46,13 +60,13 @@ enum PDFPublicationWriter {
                 pages.append(current)
                 current = PublicationPDFPage()
             }
-            y = top
+            y = bleed + topInset
         }
 
         func ensurePage(sectionTitle: String) {
             if current.blocks.isEmpty {
                 current.sectionTitle = sectionTitle
-                y = top
+                y = bleed + topInset
             }
         }
 
@@ -137,7 +151,15 @@ enum PDFPublicationWriter {
             throw PublicationExportError.outputCreationFailed("The PDF destination could not be opened.")
         }
         for (index, page) in pages.enumerated() {
-            context.beginPDFPage(nil)
+            let pageNumber = index + 1
+            var pageInfo: [CFString: CFData] = [
+                kCGPDFContextMediaBox: rectangleData(CGRect(origin: .zero, size: pageSize)),
+                kCGPDFContextTrimBox: rectangleData(trimRect(pageNumber: pageNumber))
+            ]
+            if bleed > 0 {
+                pageInfo[kCGPDFContextBleedBox] = rectangleData(CGRect(origin: .zero, size: pageSize))
+            }
+            context.beginPDFPage(pageInfo as CFDictionary)
             context.saveGState()
             context.translateBy(x: 0, y: pageSize.height)
             context.scaleBy(x: 1, y: -1)
@@ -154,7 +176,12 @@ enum PDFPublicationWriter {
                     placed.attributedText?.draw(with: placed.rect, options: [.usesLineFragmentOrigin, .usesFontLeading])
                 }
             }
-            drawRunningMatter(page: page, pageNumber: index + 1, pageSize: pageSize, layout: layout)
+            drawRunningMatter(
+                page: page,
+                pageNumber: pageNumber,
+                trimRect: trimRect(pageNumber: pageNumber),
+                layout: layout
+            )
             NSGraphicsContext.restoreGraphicsState()
             context.restoreGState()
             context.endPDFPage()
@@ -245,24 +272,29 @@ enum PDFPublicationWriter {
         return chunks
     }
 
-    private static func drawRunningMatter(page: PublicationPDFPage, pageNumber: Int, pageSize: CGSize, layout: PublicationLayout) {
+    private static func drawRunningMatter(page: PublicationPDFPage, pageNumber: Int, trimRect: CGRect, layout: PublicationLayout) {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 8),
             .foregroundColor: NSColor.secondaryLabelColor
         ]
         if layout.headerEnabled, !page.sectionTitle.isEmpty {
             let title = NSAttributedString(string: page.sectionTitle, attributes: attributes)
-            title.draw(in: CGRect(x: layout.outsideMargin, y: max(12, layout.topMargin - 24), width: pageSize.width - layout.insideMargin - layout.outsideMargin, height: 12))
+            title.draw(in: CGRect(x: trimRect.minX + layout.outsideMargin, y: trimRect.minY + max(12, layout.topMargin - 24), width: trimRect.width - layout.insideMargin - layout.outsideMargin, height: 12))
         }
         if layout.footerEnabled {
             let footer = NSAttributedString(string: "Kistulentz publication proof", attributes: attributes)
-            footer.draw(in: CGRect(x: layout.outsideMargin, y: pageSize.height - layout.bottomMargin + 8, width: 180, height: 12))
+            footer.draw(in: CGRect(x: trimRect.minX + layout.outsideMargin, y: trimRect.maxY - layout.bottomMargin + 8, width: 180, height: 12))
         }
         if layout.pageNumbersEnabled {
             let number = NSAttributedString(string: String(pageNumber), attributes: attributes)
             let size = number.size()
-            number.draw(at: CGPoint(x: (pageSize.width - size.width) / 2, y: pageSize.height - max(18, layout.bottomMargin - 20)))
+            number.draw(at: CGPoint(x: trimRect.midX - size.width / 2, y: trimRect.maxY - max(18, layout.bottomMargin - 20)))
         }
+    }
+
+    private static func rectangleData(_ rectangle: CGRect) -> CFData {
+        var rectangle = rectangle
+        return Data(bytes: &rectangle, count: MemoryLayout<CGRect>.size) as CFData
     }
 
     private static func aspectFit(_ imageSize: CGSize, inside bounds: CGRect) -> CGRect {

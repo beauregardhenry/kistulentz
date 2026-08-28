@@ -5,16 +5,19 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.9.1 FRIEND PREVIEW
-- Older project metadata is migrated automatically only after Kistulentz creates
-  a complete pre-migration metadata snapshot.
-- Successful project opens keep up to three rolling last-known-good metadata
-  snapshots. If metadata cannot be read, Kistulentz offers guided recovery and
-  first preserves the failed version.
-- Migration and recovery never replace manuscript Markdown files and never send
-  project material to an AI provider.
-- Kistulentz is now open source under the GNU GPL v3 or later. The package
-  includes the license and corresponding-source information.
+NEW IN 0.9.2 FRIEND PREVIEW
+- Select one or several publication destinations independently from the book's
+  layout profile: EPUB 3.3, Apple Books, Kindle, KDP Print, IngramSpark eBook,
+  and IngramSpark Print.
+- Destination-aware preflight distinguishes what passed locally from what still
+  needs action, an external validator, or human review.
+- Every export creates a submission folder with the publication, separate cover
+  when supplied, checksums, a package manifest, and Markdown and PDF readiness
+  reports. Shareable diagnostics omit manuscript prose and excerpts.
+- Print export supports no bleed or 0.125-inch top, bottom, and outside bleed,
+  with proper PDF page boxes and no gutter bleed or printer marks.
+- Kistulentz runs EPUBCheck when its command-line tool is already installed and
+  detects Kindle Previewer and Apple Transporter without bundling them.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
@@ -52,9 +55,10 @@ Kistulentz Style.md file is also stored at the project root. Kistulentz Manuscri
 Report.md and the editable Kistulentz Bible.md update automatically using local
 analysis. Kistulentz Research Notes.md is also visible at the project root;
 structured bibliography and revision records stay in hidden project metadata.
-Publication setup, profiles, copied cover assets, checksums, and export history
-also stay inside hidden project metadata. Finished EPUB, PDF, and DOCX files are
-written only to the output folder selected during export.
+Publication setup, profiles, destinations, copied cover assets, checksums, and
+export history also stay inside hidden project metadata. Complete submission
+folders are written only to the output location selected during export. Their
+shareable reports and manifests omit manuscript prose and excerpts.
 
 Project metadata recovery snapshots are stored in a hidden .kistulentz-backups
 folder at the project root. Kistulentz keeps up to three rolling last-known-good
