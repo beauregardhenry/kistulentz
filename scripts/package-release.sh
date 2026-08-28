@@ -13,6 +13,7 @@ ZIP_PATH="$RELEASE_ROOT/$RELEASE_NAME.zip"
 DMG_PATH="$RELEASE_ROOT/$RELEASE_NAME.dmg"
 CHECKSUM_PATH="$RELEASE_ROOT/SHA256SUMS.txt"
 RELEASE_NOTES_PATH="$PROJECT_ROOT/DistributionAssets/RELEASE NOTES - $APP_NAME $VERSION.md"
+mkdir -p "$BUILD_ROOT"
 STAGING_ROOT="$(mktemp -d "$BUILD_ROOT/kistulentz-release.XXXXXX")"
 PAYLOAD_ROOT="$STAGING_ROOT/$APP_NAME $VERSION"
 
@@ -22,6 +23,13 @@ cleanup() {
 trap cleanup EXIT
 
 "$PROJECT_ROOT/scripts/build-app.sh"
+
+BUILT_ARCHS="$(lipo -archs "$APP_PATH/Contents/MacOS/$APP_NAME")"
+if [[ "$BUILT_ARCHS" != *arm64* || "$BUILT_ARCHS" != *x86_64* ]]; then
+    print -u2 "$RELEASE_NAME requires a universal build, but only '$BUILT_ARCHS' was produced."
+    print -u2 "Install Xcode 26 or newer at /Applications/Xcode.app and run this script again."
+    exit 1
+fi
 
 mkdir -p "$RELEASE_ROOT" "$PAYLOAD_ROOT"
 cp -R "$APP_PATH" "$PAYLOAD_ROOT/$APP_NAME.app"

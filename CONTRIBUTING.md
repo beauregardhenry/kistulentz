@@ -11,17 +11,21 @@ Thank you for helping improve Kistulentz. Contributions for fiction, nonfiction,
 
 ## Build and test
 
-Kistulentz requires macOS Sequoia 15 or later and Xcode 26 or newer installed at `/Applications/Xcode.app`.
+Kistulentz requires macOS Sequoia 15 or later. Xcode 26 or newer is needed to run the tests and to produce the universal application; the Command Line Tools alone are enough to build and run Kistulentz on your own Mac.
 
 ```sh
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sandbox
+swift test --disable-sandbox
 ```
 
-To build the universal Mac application:
+`swift test` reports `no such module 'XCTest'` when only the Command Line Tools are installed, because XCTest ships with Xcode.
+
+To build the Mac application:
 
 ```sh
 ./scripts/build-app.sh
 ```
+
+The script finds Xcode automatically and builds the universal application when it is present, so `DEVELOPER_DIR` only needs to be set when Xcode is installed somewhere other than `/Applications/Xcode.app`. Without Xcode it builds for the current architecture and says so. `./scripts/package-release.sh` always requires the universal build, so a release archive can never be published with one architecture missing.
 
 Changes that affect project metadata should include compatibility tests. Changes that can alter prose should preserve normal macOS Undo, create the appropriate project snapshot, and never overwrite manuscript Markdown without explicit author approval.
 
