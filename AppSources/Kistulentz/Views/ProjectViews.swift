@@ -146,8 +146,19 @@ struct ProjectSidebar: View {
     }
 
     private var chapterList: some View {
-        List {
+        let gradeLevels = Dictionary(
+            uniqueKeysWithValues: (store.manuscriptAnalysis?.chapters ?? []).map {
+                ($0.relativePath, $0.gradeLevel)
+            }
+        )
+
+        return List {
             ForEach(store.chapters) { chapter in
+                let detail = chapterDetail(
+                    chapter,
+                    gradeLevel: gradeLevels[chapter.relativePath]
+                )
+
                 Button {
                     store.selectChapter(chapter.relativePath)
                 } label: {
@@ -158,13 +169,15 @@ struct ProjectSidebar: View {
                             Text(chapter.title)
                                 .lineLimit(2)
                                 .foregroundStyle(.primary)
-                            Text("\(chapter.wordCount.formatted()) words")
+                            Text(detail)
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                         }
                         Spacer(minLength: 0)
                     }
                     .contentShape(Rectangle())
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("\(chapter.title), \(detail)")
                 }
                 .buttonStyle(.plain)
                 .listRowBackground(
@@ -180,6 +193,18 @@ struct ProjectSidebar: View {
                 ContentUnavailableView("No chapters", systemImage: "doc.badge.plus")
             }
         }
+    }
+
+    private func chapterDetail(_ chapter: ProjectChapter, gradeLevel: Double?) -> String {
+        let words = "\(chapter.wordCount.formatted()) words"
+        if let gradeLevel {
+            let grade = gradeLevel.formatted(.number.precision(.fractionLength(1)))
+            return "\(words) · Grade \(grade)"
+        }
+        if store.isAnalyzingManuscript {
+            return "\(words) · Calculating grade…"
+        }
+        return "\(words) · Grade unavailable"
     }
 
     private var searchResultList: some View {
