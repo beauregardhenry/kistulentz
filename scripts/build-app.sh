@@ -5,26 +5,57 @@ PROJECT_ROOT="${0:A:h:h}"
 BUILD_ROOT="$PROJECT_ROOT/.build"
 DIST_ROOT="$PROJECT_ROOT/dist"
 APP_ROOT="$DIST_ROOT/Kistulentz.app"
+XCODE_DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 
-export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+# A full Xcode installation supplies the xcbuild support needed for the
+# universal build. Prefer an explicit DEVELOPER_DIR, then Xcode in its usual
+# location, then whatever xcode-select points at. When only the Command Line
+# Tools are installed the app is still built, for this Mac's architecture only,
+# so a new contributor can run Kistulentz without installing Xcode first.
+resolve_developer_dir() {
+    if [[ -n "${DEVELOPER_DIR:-}" ]]; then
+        if [[ -x "$DEVELOPER_DIR/usr/bin/xcodebuild" ]]; then
+            export DEVELOPER_DIR
+            return 0
+        fi
+        print -u2 "DEVELOPER_DIR is set to '$DEVELOPER_DIR', which does not contain Xcode. Ignoring it."
+        unset DEVELOPER_DIR
+    fi
+
+    if [[ -x "$XCODE_DEVELOPER_DIR/usr/bin/xcodebuild" ]]; then
+        export DEVELOPER_DIR="$XCODE_DEVELOPER_DIR"
+        return 0
+    fi
+
+    local selected
+    selected="$(xcode-select --print-path 2>/dev/null || true)"
+    if [[ -n "$selected" && -x "$selected/usr/bin/xcodebuild" ]]; then
+        export DEVELOPER_DIR="$selected"
+        return 0
+    fi
+
+    return 1
+}
+
+typeset -a BUILD_FLAGS
+BUILD_FLAGS=(--configuration release --disable-sandbox)
+
+if resolve_developer_dir; then
+    BUILD_FLAGS+=(--arch arm64 --arch x86_64)
+else
+    print -u2 "Xcode was not found, so Kistulentz will be built for $(uname -m) only."
+    print -u2 "Install Xcode 26 or newer at /Applications/Xcode.app to build the universal application."
+fi
+
 export CLANG_MODULE_CACHE_PATH="$BUILD_ROOT/ModuleCache"
 export SWIFTPM_MODULECACHE_OVERRIDE="$BUILD_ROOT/ModuleCache"
 
 mkdir -p "$CLANG_MODULE_CACHE_PATH"
 
 cd "$PROJECT_ROOT"
-swift build \
-    --configuration release \
-    --arch arm64 \
-    --arch x86_64 \
-    --disable-sandbox
+swift build "${BUILD_FLAGS[@]}"
 
-BIN_PATH="$(swift build \
-    --configuration release \
-    --arch arm64 \
-    --arch x86_64 \
-    --disable-sandbox \
-    --show-bin-path)/Kistulentz"
+BIN_PATH="$(swift build "${BUILD_FLAGS[@]}" --show-bin-path)/Kistulentz"
 
 if [[ ! -f "$BIN_PATH" ]]; then
     print -u2 "Kistulentz executable was not found at $BIN_PATH"

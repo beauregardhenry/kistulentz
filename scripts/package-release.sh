@@ -24,6 +24,13 @@ trap cleanup EXIT
 
 "$PROJECT_ROOT/scripts/build-app.sh"
 
+BUILT_ARCHS="$(lipo -archs "$APP_PATH/Contents/MacOS/$APP_NAME")"
+if [[ "$BUILT_ARCHS" != *arm64* || "$BUILT_ARCHS" != *x86_64* ]]; then
+    print -u2 "$RELEASE_NAME requires a universal build, but only '$BUILT_ARCHS' was produced."
+    print -u2 "Install Xcode 26 or newer at /Applications/Xcode.app and run this script again."
+    exit 1
+fi
+
 mkdir -p "$RELEASE_ROOT" "$PAYLOAD_ROOT"
 cp -R "$APP_PATH" "$PAYLOAD_ROOT/$APP_NAME.app"
 cp "$PROJECT_ROOT/DistributionAssets/FIRST OPEN - Kistulentz.txt" "$PAYLOAD_ROOT/FIRST OPEN - Kistulentz.txt"

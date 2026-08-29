@@ -79,26 +79,27 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 
 ## Build the Mac app
 
-Xcode 26 or newer must be installed in `/Applications/Xcode.app`.
-
 ```sh
 ./scripts/build-app.sh
 ```
 
-The universal application is created at `dist/Kistulentz.app`. Copy it to `/Applications` if desired. The local build is ad-hoc signed; warning-free public distribution requires an Apple Developer ID certificate and notarization.
+The application is created at `dist/Kistulentz.app`. Copy it to `/Applications` if desired. The local build is ad-hoc signed; warning-free public distribution requires an Apple Developer ID certificate and notarization.
+
+Xcode 26 or newer produces the universal application. The script finds Xcode automatically, so `DEVELOPER_DIR` only needs to be set when Xcode is installed somewhere other than `/Applications/Xcode.app`. With only the Command Line Tools installed, the script reports that it is building for this Mac's architecture alone and produces a `dist/Kistulentz.app` that runs normally.
 
 ## Development
 
 ```sh
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift run --disable-sandbox Kistulentz
+swift run --disable-sandbox Kistulentz
 ```
 
 Run tests with:
 
 ```sh
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sandbox
+swift test --disable-sandbox
 ```
 
+The test suite uses XCTest, which ships with Xcode. On a Mac with only the Command Line Tools, `swift build` and `swift run` work but `swift test` reports `no such module 'XCTest'`.
 Before sharing a release candidate, build its ZIP and DMG and run the local integrity checks:
 
 ```sh
