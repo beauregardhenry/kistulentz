@@ -26,8 +26,11 @@ struct ResearchLibraryView: View {
                 Button("Choose Folder…") { showingLocationPicker = true }
                 if store.rootURL != nil {
                     Button("Show Markdown") { store.revealKnowledgeBase() }
-                    Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
                 }
+                Button("Close") { dismiss() }
+                    .keyboardShortcut(.cancelAction)
+                    .accessibilityLabel("Close Research Library")
+                    .help("Close the Research Library without changing its folder")
             }
             .padding()
             Divider()
@@ -40,6 +43,8 @@ struct ResearchLibraryView: View {
                 } actions: {
                     Button("Choose Folder…") { showingLocationPicker = true }
                         .buttonStyle(.borderedProminent)
+                    Button("Close") { dismiss() }
+                        .buttonStyle(.bordered)
                 }
             } else {
                 HSplitView {
@@ -71,6 +76,7 @@ struct ResearchLibraryView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 650)
+        .onExitCommand { dismiss() }
         .fileImporter(isPresented: $showingLocationPicker, allowedContentTypes: [.folder]) { result in
             do {
                 try store.open(at: result.get())
