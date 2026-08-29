@@ -86,10 +86,15 @@ enum ReferenceProfileBuilder {
 }
 
 enum ReferenceComparison {
-    static func analyze(draft: String, against reference: EPUBReference) -> ReferenceAlignment {
+    static func analyze(
+        draft: String,
+        against reference: EPUBReference,
+        draftStructure: StructuralProfile? = nil
+    ) -> ReferenceAlignment {
         guard !draft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return .empty }
         let draftChapter = ReferenceChapter(id: 0, title: "Current draft", text: draft)
         let draftProfile = ReferenceProfileBuilder.build(chapters: [draftChapter])
+            .addingStructuralProfile(draftStructure)
         let referenceProfile = reference.profile
         var score = 100
         var notes: [ReferenceNote] = []
@@ -135,6 +140,25 @@ enum ReferenceComparison {
                 : "Draft tempo is \(draftProfile.tempo); reference tempo is \(referenceProfile.tempo).",
             isAligned: tempoAligned
         ))
+
+        if let draftStructure = draftProfile.structuralProfile,
+           let referenceStructure = referenceProfile.structuralProfile {
+            let clauseDifference = abs(
+                draftStructure.averageClausesPerSentence - referenceStructure.averageClausesPerSentence
+            )
+            let subordinationDifference = abs(
+                draftStructure.subordinateSentenceRatio - referenceStructure.subordinateSentenceRatio
+            )
+            let structureAligned = clauseDifference <= 0.55 && subordinationDifference <= 0.16
+            if !structureAligned { score -= 12 }
+            notes.append(ReferenceNote(
+                title: "Sentence structure",
+                detail: structureAligned
+                    ? "Clause density and subordination are close to the reference profile."
+                    : "Draft averages \(draftStructure.averageClausesPerSentence.formatted(.number.precision(.fractionLength(1)))) clauses per sentence with \((draftStructure.subordinateSentenceRatio * 100).formatted(.number.precision(.fractionLength(0))))% using subordination; the reference averages \(referenceStructure.averageClausesPerSentence.formatted(.number.precision(.fractionLength(1)))) clauses and \((referenceStructure.subordinateSentenceRatio * 100).formatted(.number.precision(.fractionLength(0))))% subordination.",
+                isAligned: structureAligned
+            ))
+        }
 
         let issues = continuityIssues(in: draft, referenceNames: referenceProfile.characters)
         if !issues.isEmpty { score -= min(12, issues.count * 4) }

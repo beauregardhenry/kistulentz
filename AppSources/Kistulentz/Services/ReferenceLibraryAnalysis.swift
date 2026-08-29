@@ -60,7 +60,12 @@ enum ReferenceProfileCombiner {
             voice: voice,
             tone: rankedValues(profiles.flatMap(\.tone), limit: 8),
             vocabulary: rankedValues(profiles.flatMap(\.vocabulary), limit: 40),
-            characters: rankedValues(profiles.flatMap(\.characters), limit: 80)
+            characters: rankedValues(profiles.flatMap(\.characters), limit: 80),
+            structuralProfile: StructuralProfile.weightedMerge(
+                profiles.compactMap { profile in
+                    profile.structuralProfile.map { ($0, $0.sentencesAnalyzed) }
+                }
+            )
         )
     }
 

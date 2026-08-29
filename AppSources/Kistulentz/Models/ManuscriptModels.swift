@@ -87,6 +87,7 @@ struct ManuscriptAnalysis: Equatable {
     let citationCount: Int
     let adverbCount: Int
     let passiveVoiceCount: Int
+    let structuralProfile: StructuralProfile?
     var reportMarkdown: String
     var generatedBibleBlock: String
 
@@ -110,6 +111,7 @@ struct ManuscriptAnalysis: Equatable {
             citationCount: 0,
             adverbCount: 0,
             passiveVoiceCount: 0,
+            structuralProfile: nil,
             reportMarkdown: "",
             generatedBibleBlock: ""
         )
@@ -294,4 +296,5 @@ struct AIManuscriptMarkdownResponse: Decodable {
 struct ManuscriptProjectCache: Codable, Equatable {
     var generatedBibleBlock = ""
     var aiReportMarkdown: String?
+    var structuralProfile: StructuralProfile?
 }

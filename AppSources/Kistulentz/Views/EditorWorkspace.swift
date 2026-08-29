@@ -92,6 +92,8 @@ struct EditorWorkspace: View {
                         stats: viewModel.analysis.stats,
                         issues: visibleLocalHighlightIssues,
                         targetGrade: settings.targetGrade,
+                        isUsingBenepar: viewModel.isUsingBenepar,
+                        isAnalyzingStructure: viewModel.isAnalyzingStructure,
                         onSelect: viewModel.focus
                     )
                     .frame(minWidth: 205, idealWidth: 225, maxWidth: 260)
@@ -426,6 +428,7 @@ struct EditorWorkspace: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
             .help(projectStore.isOpen ? projectStore.projectName : "Projects")
+            .accessibilityLabel(projectStore.isOpen ? "Project: \(projectStore.projectName)" : "Projects")
 
             VStack(alignment: .leading, spacing: 1) {
                 Text(activeFileURL?.lastPathComponent ?? "Untitled.md")
@@ -466,6 +469,7 @@ struct EditorWorkspace: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
             .help(isWriteMode ? "Exit Write Mode" : "Writing view and highlights")
+            .accessibilityLabel(isWriteMode ? "Exit Write Mode" : "Writing view and highlights")
 
             Menu {
                 ForEach(AIProvider.allCases) { provider in
@@ -883,10 +887,12 @@ private struct ReadabilitySidebar: View {
     let stats: WritingStats
     let issues: [WritingIssue]
     let targetGrade: Int
+    let isUsingBenepar: Bool
+    let isAnalyzingStructure: Bool
     let onSelect: (WritingIssue) -> Void
 
     private let categories: [IssueCategory] = [
-        .adverb, .passiveVoice, .complexPhrase, .hardSentence, .veryHardSentence
+        .adverb, .passiveVoice, .structuralComplexity, .complexPhrase, .hardSentence, .veryHardSentence
     ]
 
     var body: some View {
@@ -900,6 +906,19 @@ private struct ReadabilitySidebar: View {
                     Text("Make every sentence earn its place.")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(.secondary)
+                }
+
+                if isAnalyzingStructure {
+                    HStack(spacing: 7) {
+                        ProgressView().controlSize(.small)
+                        Text("Checking sentence structure locally…")
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                } else if isUsingBenepar {
+                    Label("Benepar structural analysis active", systemImage: "checkmark.circle.fill")
+                        .font(.caption)
+                        .foregroundStyle(.green)
                 }
 
                 HStack(spacing: 14) {
@@ -1042,6 +1061,7 @@ private struct ReviewSidebar: View {
                 .buttonStyle(.borderless)
                 .disabled(isReviewing || !hasAPIKey)
                 .help("Run a new AI review")
+                .accessibilityLabel("Run a new AI review")
             }
             .padding(16)
 

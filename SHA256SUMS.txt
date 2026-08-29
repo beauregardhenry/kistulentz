@@ -1,2 +1,2 @@
-480cf24f6172ea8fd7570b3668ac4a0b48eb99d3c7c75e95ed31f0fee291b504  Kistulentz-0.3.0-macOS-universal.zip
-7e60cb1242728946bd9ea20ce0fcb0351b75cf5da9bd3cbb179d1e558647897d  Kistulentz-0.3.0-macOS-universal.dmg
+3493fa97580840a4938df5b319c05f028df0f7c3591daaa4147841cf0792773e  Kistulentz-0.9.4-macOS-universal.zip
+60fba41efb06afeb67ba872cc045222ea07eb6e82fe14de8787a5c3eba1803b0  Kistulentz-0.9.4-macOS-universal.dmg

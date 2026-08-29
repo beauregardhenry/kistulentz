@@ -76,6 +76,39 @@ final class ReferenceLibraryTests: XCTestCase {
         XCTAssertTrue(master.contains("Fantasy"))
     }
 
+    func testRecoveryJournalPreservesEveryCompletedBookUntilFullRegeneration() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let original = book(title: "Original", author: "Writer", genres: ["Fiction"])
+        let recovered = book(title: "Recovered", author: "Writer", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [original], insights: []), to: root)
+
+        try ReferenceLibraryDisk.appendRecoveryCheckpoint(recovered, at: root)
+
+        let interruptedLoad = try ReferenceLibraryDisk.load(from: root)
+        XCTAssertEqual(Set(interruptedLoad.books.map(\.title)), ["Original", "Recovered"])
+
+        try ReferenceLibraryDisk.regenerateKnowledgeBase(interruptedLoad, at: root)
+        let reopened = try ReferenceLibraryDisk.load(from: root)
+        XCTAssertEqual(Set(reopened.books.map(\.title)), ["Original", "Recovered"])
+    }
+
+    func testRecoveryJournalUsesNewestVersionOfAnUpdatedBook() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let original = book(title: "Draft Title", author: "Writer", genres: ["Fiction"])
+        var updated = original
+        updated.title = "Corrected Title"
+        updated.updatedAt = original.updatedAt.addingTimeInterval(30)
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [original], insights: []), to: root)
+
+        try ReferenceLibraryDisk.appendRecoveryCheckpoint(updated, at: root)
+
+        let reopened = try ReferenceLibraryDisk.load(from: root)
+        XCTAssertEqual(reopened.books.count, 1)
+        XCTAssertEqual(reopened.books.first?.title, "Corrected Title")
+    }
+
     @MainActor
     func testLoadsThousandsAndBuildsCombinedChoices() throws {
         let root = temporaryDirectory()

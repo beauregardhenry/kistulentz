@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 struct ReferenceLibraryView: View {
     @EnvironmentObject private var library: ReferenceLibraryStore
     @EnvironmentObject private var settings: AppSettings
+    @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
     @Environment(\.dismiss) private var dismiss
 
     @Binding var selectedChoiceIDs: Set<String>
@@ -14,6 +15,7 @@ struct ReferenceLibraryView: View {
     @State private var search = ""
     @State private var focusedBookID: UUID?
     @State private var pendingAIRequest: AIRequestPreview?
+    @State private var showingStructureRefreshConfirmation = false
 
     var body: some View {
         Group {
@@ -41,6 +43,18 @@ struct ReferenceLibraryView: View {
                     preparedInput: confirmed.input
                 )
             }
+        }
+        .confirmationDialog(
+            "Refresh every selected structural profile?",
+            isPresented: $showingStructureRefreshConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Refresh All Profiles") {
+                library.analyzeStructure(choiceIDs: selectedChoiceIDs, refreshExisting: true)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Kistulentz will re-run the local Benepar model for all selected books. Existing cached profiles remain available until each replacement finishes.")
         }
     }
 
@@ -230,6 +244,8 @@ struct ReferenceLibraryView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 ProgressView(value: Double(library.importCompleted), total: Double(max(library.importTotal, 1)))
+                    .accessibilityLabel("EPUB import progress")
+                    .accessibilityValue("\(library.importCompleted) of \(library.importTotal)")
                 Text("\(library.importCompleted)/\(library.importTotal)")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
@@ -240,6 +256,9 @@ struct ReferenceLibraryView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
+            Text("Each completed EPUB is checkpointed. Reimport the same selection after reopening to resume and skip unchanged books.")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
         }
         .padding(14)
         .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
@@ -266,6 +285,54 @@ struct ReferenceLibraryView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(selectedChoiceIDs.isEmpty)
+            }
+
+            Divider()
+
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Local sentence structure")
+                        .font(.callout.weight(.semibold))
+                    Text(beneparPack.isInstalled
+                        ? "Analyze selected books with Benepar and cache clause, phrase, subordination, and coordination patterns."
+                        : "Install the optional English language pack in Settings to add Benepar structural profiles.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                if library.isAnalyzingStructure {
+                    VStack(alignment: .trailing, spacing: 4) {
+                        ProgressView(
+                            value: Double(library.structuralAnalysisCompleted),
+                            total: Double(max(library.structuralAnalysisTotal, 1))
+                        )
+                        .frame(width: 130)
+                        .accessibilityLabel("Reference structure analysis progress")
+                        .accessibilityValue("\(library.structuralAnalysisCompleted) of \(library.structuralAnalysisTotal)")
+                        Text("\(library.structuralAnalysisCompleted)/\(library.structuralAnalysisTotal) · \(library.currentStructuralAnalysisName)")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                        Text("Completed profiles are checkpointed")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                        Button("Cancel", action: library.cancelStructuralAnalysis)
+                            .controlSize(.small)
+                    }
+                } else {
+                    Menu {
+                        Button("Analyze Missing Profiles") {
+                            library.analyzeStructure(choiceIDs: selectedChoiceIDs)
+                        }
+                        Button("Refresh All Profiles…") {
+                            showingStructureRefreshConfirmation = true
+                        }
+                    } label: {
+                        Label("Analyze Structure", systemImage: "point.3.connected.trianglepath.dotted")
+                    }
+                    .buttonStyle(.bordered)
+                    .disabled(selectedChoiceIDs.isEmpty || !beneparPack.isInstalled)
+                }
             }
 
             Divider()

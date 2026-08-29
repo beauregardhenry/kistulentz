@@ -1,8 +1,142 @@
 import AppKit
+import PDFKit
 import XCTest
 @testable import Kistulentz
 
 final class PublicationTests: XCTestCase {
+    func testSubmissionPackageContainsPrivateReadinessReportsAndChecksums() throws {
+        let root = temporaryDirectory()
+        let output = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: output)
+        }
+        let fixture = try String(contentsOf: publicationFixture("Fiction-Sample.md"), encoding: .utf8)
+        let secretSentence = "Mara reached the abandoned signal house before the storm closed the road."
+        try fixture.write(
+            to: root.appendingPathComponent("Opening.md"), atomically: true, encoding: .utf8
+        )
+        try makePNG(at: root.appendingPathComponent("cover.png"))
+        let coverInfo = try XCTUnwrap(PublicationImageInspector.rasterInfo(at: root.appendingPathComponent("cover.png")))
+        XCTAssertEqual(coverInfo.pixelWidth, 24)
+        XCTAssertEqual(coverInfo.pixelHeight, 24)
+        let node = OutlineNode(title: "Opening", kind: .chapter, relativePath: "Opening.md")
+        var archive = PublicationArchive(projectName: "Readiness Book", projectKind: .fiction)
+        archive.metadata.authors = ["Beau Henry"]
+        archive.metadata.coverImageRelativePath = "cover.png"
+        archive.metadata.coverAltText = "A blue square used as a test cover"
+        var profile = try XCTUnwrap(archive.profiles.first(where: { $0.kind == .fictionBook }))
+        profile.includeBibliography = false
+        let plan = PublicationPlanBuilder.build(
+            projectName: "Readiness Book",
+            root: root,
+            outline: [node],
+            archive: archive,
+            bibliography: ProjectBibliographyArchive(),
+            librarySources: [],
+            profile: profile,
+            format: .epub,
+            destinations: [.genericEPUB, .appleBooks]
+        )
+
+        let result = try PublicationExporter.export(
+            plan: plan,
+            root: root,
+            outputDirectory: output,
+            allowingWarnings: true
+        )
+
+        let package = try XCTUnwrap(result.packageURL)
+        let names = try FileManager.default.contentsOfDirectory(atPath: package.path)
+        XCTAssertTrue(names.contains(result.outputURL.lastPathComponent))
+        XCTAssertTrue(names.contains("Submission Readiness Report.md"))
+        XCTAssertTrue(names.contains("Submission Readiness Report.pdf"))
+        XCTAssertTrue(names.contains("package-manifest.json"))
+        XCTAssertTrue(names.contains("SHA256SUMS.txt"))
+        XCTAssertTrue(names.contains { $0.hasSuffix("-ebook-cover.png") })
+
+        let report = try String(contentsOf: try XCTUnwrap(result.reportMarkdownURL), encoding: .utf8)
+        XCTAssertTrue(report.contains("Submission Readiness Report"))
+        XCTAssertTrue(report.contains("External Validation Required"))
+        XCTAssertTrue(report.contains("intentionally contains no manuscript prose or excerpts"))
+        XCTAssertFalse(report.contains(secretSentence))
+        let reportPDF = try Data(contentsOf: try XCTUnwrap(result.reportPDFURL))
+        XCTAssertEqual(String(data: reportPDF.prefix(4), encoding: .ascii), "%PDF")
+        let reportDocument = try XCTUnwrap(PDFDocument(url: try XCTUnwrap(result.reportPDFURL)))
+        XCTAssertTrue(reportDocument.string?.contains("Kistulentz Submission Readiness Report") == true)
+        XCTAssertFalse(reportDocument.string?.contains(secretSentence) == true)
+
+        let manifest = try String(contentsOf: package.appendingPathComponent("package-manifest.json"), encoding: .utf8)
+        XCTAssertTrue(manifest.contains("\"manuscriptTextIncluded\" : false"))
+        XCTAssertFalse(manifest.contains(secretSentence))
+        let checksums = try String(contentsOf: package.appendingPathComponent("SHA256SUMS.txt"), encoding: .utf8)
+        XCTAssertTrue(checksums.contains(result.outputURL.lastPathComponent))
+        XCTAssertTrue(checksums.contains("Submission Readiness Report.pdf"))
+    }
+
+    func testPrintBleedCreatesMediaTrimAndBleedBoxesWithoutChangingTrimSize() throws {
+        let root = temporaryDirectory()
+        let output = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: output)
+        }
+        try String(contentsOf: publicationFixture("Nonfiction-Sample.md"), encoding: .utf8).write(
+            to: root.appendingPathComponent("Chapter.md"), atomically: true, encoding: .utf8
+        )
+        let node = OutlineNode(title: "Chapter One", kind: .chapter, relativePath: "Chapter.md")
+        var archive = PublicationArchive(projectName: "Bleed Book", projectKind: .nonfiction)
+        archive.metadata.authors = ["Beau Henry"]
+        var profile = try XCTUnwrap(archive.profiles.first(where: { $0.kind == .nonfictionBook }))
+        profile.includeCover = false
+        profile.includeBibliography = false
+        profile.printBleed = .outside
+        let plan = PublicationPlanBuilder.build(
+            projectName: "Bleed Book",
+            root: root,
+            outline: [node],
+            archive: archive,
+            bibliography: ProjectBibliographyArchive(),
+            librarySources: [],
+            profile: profile,
+            format: .printPDF,
+            destinations: [.kdpPrint, .ingramSparkPrint]
+        )
+
+        let result = try PublicationExporter.export(plan: plan, root: root, outputDirectory: output, allowingWarnings: true)
+        let document = try XCTUnwrap(PDFDocument(url: result.outputURL))
+        let firstPage = try XCTUnwrap(document.page(at: 0))
+        let media = firstPage.bounds(for: .mediaBox)
+        let trim = firstPage.bounds(for: .trimBox)
+        let bleed = firstPage.bounds(for: .bleedBox)
+        XCTAssertEqual(trim.width, profile.layout.pageSize.widthPoints, accuracy: 0.5)
+        XCTAssertEqual(trim.height, profile.layout.pageSize.heightPoints, accuracy: 0.5)
+        XCTAssertEqual(media.width, trim.width + 9, accuracy: 0.5)
+        XCTAssertEqual(media.height, trim.height + 18, accuracy: 0.5)
+        XCTAssertEqual(bleed.width, media.width, accuracy: 0.5)
+        XCTAssertEqual(bleed.height, media.height, accuracy: 0.5)
+        XCTAssertTrue(result.preflight.findings.contains { $0.id == "print-page-count" })
+    }
+
+    func testOlderPublicationMetadataDefaultsNewDestinationAndBleedFields() throws {
+        let archive = PublicationArchive(projectName: "Legacy", projectKind: .fiction)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: encoder.encode(archive)) as? [String: Any])
+        object.removeValue(forKey: "selectedDestinations")
+        var profiles = try XCTUnwrap(object["profiles"] as? [[String: Any]])
+        for index in profiles.indices { profiles[index].removeValue(forKey: "printBleed") }
+        object["profiles"] = profiles
+        let legacyData = try JSONSerialization.data(withJSONObject: object)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        let decoded = try decoder.decode(PublicationArchive.self, from: legacyData)
+
+        XCTAssertEqual(decoded.selectedDestinations, [.genericEPUB])
+        XCTAssertTrue(decoded.profiles.allSatisfy { $0.printBleed == .none })
+    }
+
     func testPublicationArchiveKeepsBuiltInsAndProtectsEditedMatter() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
@@ -170,6 +304,14 @@ final class PublicationTests: XCTestCase {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("Kistulentz-Publication-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
+    }
+
+    private func publicationFixture(_ name: String) -> URL {
+        URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Fixtures/Publication")
+            .appendingPathComponent(name)
     }
 
     private func makePNG(at url: URL) throws {

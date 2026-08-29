@@ -5,16 +5,20 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.9.1 FRIEND PREVIEW
-- Older project metadata is migrated automatically only after Kistulentz creates
-  a complete pre-migration metadata snapshot.
-- Successful project opens keep up to three rolling last-known-good metadata
-  snapshots. If metadata cannot be read, Kistulentz offers guided recovery and
-  first preserves the failed version.
-- Migration and recovery never replace manuscript Markdown files and never send
-  project material to an AI provider.
-- Kistulentz is now open source under the GNU GPL v3 or later. The package
-  includes the license and corresponding-source information.
+NEW IN 0.9.4 FRIEND PREVIEW
+- Kistulentz System Check verifies Markdown document support, local writing
+  analysis, optional AI and language-pack readiness, the Reference Library, and
+  publishing tools without contacting OpenAI or Anthropic.
+- A diagnostic Markdown report is exported only when you choose. It excludes
+  writing, EPUB excerpts, titles, filenames, paths, keys, accounts, and model
+  names.
+- Every completed bulk EPUB import and Benepar reference profile receives a
+  hidden recovery checkpoint. Reimporting the same selection after reopening
+  skips unchanged books and resumes outstanding work.
+- VoiceOver labels now cover the Markdown editor, primary project tools,
+  suggestion refresh, progress indicators, and publication-matter locks.
+- Release candidates receive native Apple-silicon and Intel tests plus universal
+  package, signature, Markdown-file, archive, disk-image, and checksum checks.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
@@ -52,9 +56,10 @@ Kistulentz Style.md file is also stored at the project root. Kistulentz Manuscri
 Report.md and the editable Kistulentz Bible.md update automatically using local
 analysis. Kistulentz Research Notes.md is also visible at the project root;
 structured bibliography and revision records stay in hidden project metadata.
-Publication setup, profiles, copied cover assets, checksums, and export history
-also stay inside hidden project metadata. Finished EPUB, PDF, and DOCX files are
-written only to the output folder selected during export.
+Publication setup, profiles, destinations, copied cover assets, checksums, and
+export history also stay inside hidden project metadata. Complete submission
+folders are written only to the output location selected during export. Their
+shareable reports and manifests omit manuscript prose and excerpts.
 
 Project metadata recovery snapshots are stored in a hidden .kistulentz-backups
 folder at the project root. Kistulentz keeps up to three rolling last-known-good
@@ -76,7 +81,12 @@ synopsis unless the author explicitly chooses to use one.
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
 hidden index used to reopen large libraries quickly. Folder and EPUB imports do
-not contact OpenAI, Anthropic, or Ollama.
+not contact OpenAI, Anthropic, or Ollama. Completed imports and optional Benepar
+profiles are checkpointed after each book so completed work survives interruption.
+
+Kistulentz System Check runs locally from the application menu. Its diagnostic
+report stays in the app unless you explicitly export it, and it never includes
+manuscript text, reference excerpts, filenames, paths, API keys, or account data.
 
 Kistulentz shows a request preview before Polish, Rewrite, or Deepen w/ AI. This
 includes requested manuscript-report, Bible, beta-reader, and outline-synopsis

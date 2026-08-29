@@ -38,6 +38,7 @@ struct PublishExportView: View {
     @State private var outputDirectory: URL?
     @State private var isExporting = false
     @State private var lastExportURL: URL?
+    @State private var lastReportURL: URL?
     @State private var errorMessage: String?
     @State private var showingWarningConfirmation = false
     @State private var authorsText = ""
@@ -112,6 +113,18 @@ struct PublishExportView: View {
                         ForEach(PublicationExportFormat.allCases) { Text($0.title).tag($0) }
                     }
                     .onChange(of: format) { _, _ in refreshPlan(preservingTemporaryPlan: true) }
+                }
+                VStack(alignment: .leading, spacing: 7) {
+                    Text("Publication destinations").font(.subheadline.weight(.semibold))
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 180), alignment: .leading)], alignment: .leading, spacing: 7) {
+                        ForEach(PublicationDestination.allCases) { destination in
+                            Toggle(destination.title, isOn: destinationBinding(destination))
+                                .toggleStyle(.checkbox)
+                        }
+                    }
+                    Text("Choose several when one file is intended for multiple stores. A destination that does not accept the selected format appears as a preflight error.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
                 Text("These inclusions and this order are temporary until you explicitly save inclusions to Project Organization.")
                     .font(.callout)
@@ -245,6 +258,8 @@ struct PublishExportView: View {
                                 if item.hasAuthorEdits { Text("Author edited").font(.caption).foregroundStyle(.orange) }
                                 Toggle(isOn: $item.isLocked) { Image(systemName: item.isLocked ? "lock.fill" : "lock.open") }
                                     .toggleStyle(.button).help(item.isLocked ? "Unlock this page" : "Lock this page")
+                                    .accessibilityLabel(item.isLocked ? "Unlock \(item.title)" : "Lock \(item.title)")
+                                    .accessibilityHint("Locked generated matter is preserved when publication matter is regenerated.")
                             }
                         }
                         .padding(12)
@@ -260,6 +275,8 @@ struct PublishExportView: View {
         if let index = draft.profiles.firstIndex(where: { $0.id == selectedProfileID }) {
             ExportProfileEditor(
                 profile: $draft.profiles[index],
+                destinations: draft.selectedDestinations,
+                onApplyDestinationPreset: applyDestinationPreset,
                 onSave: { persistDraft(); refreshPlan(preservingTemporaryPlan: true) },
                 onDuplicate: duplicateSelectedProfile,
                 onDelete: draft.profiles[index].kind == .custom ? deleteSelectedProfile : nil
@@ -289,9 +306,19 @@ struct PublishExportView: View {
                     HStack(alignment: .top, spacing: 10) {
                         Image(systemName: findingIcon(finding.severity)).foregroundStyle(findingColor(finding.severity))
                         VStack(alignment: .leading, spacing: 3) {
-                            Text(finding.title).font(.headline)
+                            HStack {
+                                Text(finding.title).font(.headline)
+                                Text(finding.readinessStatus.title)
+                                    .font(.caption2.weight(.semibold))
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(Color.secondary.opacity(0.12), in: Capsule())
+                            }
                             Text(finding.detail).font(.callout).foregroundStyle(.secondary)
                             if let path = finding.sourcePath { Text(path).font(.caption2.monospaced()).foregroundStyle(.tertiary) }
+                            if let address = finding.requirementURL, let url = URL(string: address) {
+                                Link("Official requirement", destination: url).font(.caption)
+                            }
                         }
                     }
                     .padding(.vertical, 3)
@@ -310,6 +337,7 @@ struct PublishExportView: View {
                 Spacer()
                 Button("Choose Output Folder…", action: chooseOutputFolder)
                 if let lastExportURL { Button("Reveal Last Export") { NSWorkspace.shared.activateFileViewerSelecting([lastExportURL]) } }
+                if let lastReportURL { Button("Open Readiness Report") { NSWorkspace.shared.open(lastReportURL) } }
                 Button(isExporting ? "Exporting…" : "Export \(format.title)") { requestExport() }
                     .buttonStyle(.borderedProminent)
                     .disabled(isExporting || outputDirectory == nil || preflight?.canExport != true)
@@ -432,6 +460,23 @@ struct PublishExportView: View {
         }
     }
 
+    private func destinationBinding(_ destination: PublicationDestination) -> Binding<Bool> {
+        Binding {
+            draft.selectedDestinations.contains(destination)
+        } set: { selected in
+            if selected {
+                if !draft.selectedDestinations.contains(destination) {
+                    draft.selectedDestinations.append(destination)
+                }
+            } else {
+                draft.selectedDestinations.removeAll { $0 == destination }
+            }
+            draft.selectedDestinations = PublicationDestination.allCases.filter { draft.selectedDestinations.contains($0) }
+            persistDraft()
+            refreshPlan(preservingTemporaryPlan: true)
+        }
+    }
+
     private func movePlanItems(from offsets: IndexSet, to destination: Int) {
         guard var current = plan else { return }
         current.items.move(fromOffsets: offsets, toOffset: destination)
@@ -458,6 +503,35 @@ struct PublishExportView: View {
         profile.modifiedAt = Date()
         draft.profiles.append(profile)
         selectedProfileID = profile.id
+        persistDraft()
+        refreshPlan(preservingTemporaryPlan: true)
+    }
+
+    private func applyDestinationPreset() {
+        guard let index = draft.profiles.firstIndex(where: { $0.id == selectedProfileID }) else { return }
+        let formats = Set(draft.selectedDestinations.flatMap(\.compatibleFormats))
+        guard formats.count == 1, let recommendedFormat = formats.first else {
+            errorMessage = draft.selectedDestinations.isEmpty
+                ? "Choose at least one publication destination before applying a preset."
+                : "The selected digital and print destinations require separate exports and separate profiles."
+            return
+        }
+        var profile = draft.profiles[index]
+        profile.preferredFormat = recommendedFormat
+        format = recommendedFormat
+        if recommendedFormat == .epub {
+            profile.includeCover = true
+            profile.includeTableOfContents = true
+        } else if recommendedFormat == .printPDF {
+            let minimumOuter = profile.printBleed == .outside ? 27.0 : 18.0
+            profile.layout.bodyFontSize = max(profile.layout.bodyFontSize, 7)
+            profile.layout.topMargin = max(profile.layout.topMargin, minimumOuter)
+            profile.layout.bottomMargin = max(profile.layout.bottomMargin, minimumOuter)
+            profile.layout.outsideMargin = max(profile.layout.outsideMargin, minimumOuter)
+            profile.layout.insideMargin = max(profile.layout.insideMargin, 27)
+        }
+        profile.modifiedAt = Date()
+        draft.profiles[index] = profile
         persistDraft()
         refreshPlan(preservingTemporaryPlan: true)
     }
@@ -522,7 +596,8 @@ struct PublishExportView: View {
                 }.value
                 store.recordPublicationExport(result, plan: plan)
                 draft = store.publicationArchive
-                lastExportURL = result.outputURL
+                lastExportURL = result.packageURL ?? result.outputURL
+                lastReportURL = result.reportPDFURL
                 preflight = result.preflight
                 pane = .history
             } catch {
@@ -552,12 +627,22 @@ struct PublishExportView: View {
 
 private struct ExportProfileEditor: View {
     @Binding var profile: ExportProfile
+    let destinations: [PublicationDestination]
+    let onApplyDestinationPreset: () -> Void
     let onSave: () -> Void
     let onDuplicate: () -> Void
     let onDelete: (() -> Void)?
 
     var body: some View {
         Form {
+            Section("Destination Preset") {
+                LabeledContent("Selected destinations", value: destinations.isEmpty ? "None" : destinations.map(\.shortTitle).joined(separator: ", "))
+                Text("Applying the preset chooses the required output format and raises locally checkable minimum settings. It does not replace your trim, typography, or design decisions.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Button("Apply Recommended Settings", action: onApplyDestinationPreset)
+                    .disabled(destinations.isEmpty)
+            }
             Section("Named Profile") {
                 TextField("Profile name", text: $profile.name)
                 LabeledContent("Starting point", value: profile.kind.title)
@@ -596,6 +681,12 @@ private struct ExportProfileEditor: View {
                 Picker("Chapter openings", selection: $profile.layout.chapterOpening) {
                     ForEach(PublicationChapterOpening.allCases) { Text($0.title).tag($0) }
                 }
+                Picker("Print bleed", selection: $profile.printBleed) {
+                    ForEach(PublicationPrintBleed.allCases) { Text($0.title).tag($0) }
+                }
+                Text("Use bleed only when artwork must reach the top, bottom, or outside trimmed edge. Kistulentz never adds gutter bleed or printer marks.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             Section {
                 HStack {

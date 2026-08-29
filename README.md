@@ -24,16 +24,20 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Distraction-free Write mode and individually configurable highlight categories
 - Live reading-grade estimate, word count, sentence count, and reading time
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
+- An optional, separately installed English language pack using Benepar for local clause, phrase-depth, subordination, coordination, fragment, adverb, and passive-voice signals
+- Orange advisory sentence-structure highlights that never trigger automatic prose replacement
 - macOS spelling and grammar checking while you type
 - A target reading-grade setting
 - EPUB reference books for local style, vocabulary, tone, character, continuity, voice, and tempo analysis
 - Live local comparison between the Markdown draft and the selected EPUB
 - A user-chosen Markdown Reference Library designed for thousands of EPUB files
+- Per-book recovery checkpoints that preserve completed bulk EPUB and structural-analysis work across interruption or relaunch
 - Individual EPUB and recursive folder imports with unchanged-file skipping
 - Combined profiles by book, author, and genre, with overlapping selections deduplicated
 - In-app corrections for titles, authors, and genres
 - Short attributed excerpts retained in per-book and combined Markdown profiles
 - Optional **Deepen w/ AI** analysis that never runs during local imports
+- Resumable, user-triggered Benepar analysis for selected books, authors, or genres, with completed profiles cached into the editable Markdown knowledge base, skipped on later missing-only runs, and combined across references
 - OpenAI Responses API, Anthropic Messages API, and local Ollama support
 - Automatic discovery of Ollama models already installed on the Mac; Kistulentz never installs Ollama or downloads models
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
@@ -60,6 +64,15 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Print-interior PDF, reader PDF, and editable DOCX output with configurable trim/page size, type, spacing, margins, running matter, page numbers, and chapter openings
 - Parenthetical, footnote, and endnote citation modes using the project's bibliography system
 - A blocking local preflight for missing manuscript files, images, citation records, footnotes, and incompatible image formats, with explicit approval required for nonblocking warnings
+- Independent multi-select publication destinations for Generic EPUB 3.3, Apple Books, Kindle/KDP eBook, KDP Print, IngramSpark eBook, and IngramSpark Print
+- Explicit destination presets that apply the required format and locally checkable minimum settings without replacing author-controlled trim and typography
+- Target-specific local checks for format, cover, navigation, accessibility structure, image dimensions, estimated print resolution, margins, bleed geometry, and final KDP gutter brackets
+- Complete submission folders containing the publication, a separate supplied cover when available, checksums, a package manifest, and Markdown and PDF Submission Readiness Reports
+- Explicit **Passed Locally**, **Action Required**, **External Validation Required**, and **Manual Review Required** statuses that never promise retailer acceptance
+- No-bleed and 0.125-inch outside-bleed print PDFs with MediaBox, TrimBox, and BleedBox data, no gutter bleed, and no printer marks
+- Automatic EPUBCheck execution when its command-line tool is already installed, with local detection of Kindle Previewer and Apple Transporter
+- Shareable publication diagnostics that exclude manuscript prose and excerpts
+- An in-app, local-only System Check with an explicitly exported privacy-safe diagnostic report
 - Project-local publication profiles, setup, assets, checksums, and export history; finished publications go only to a folder chosen by the author
 - A complete polished Markdown revision with a confirmation step before replacement
 - API keys stored in the macOS Keychain
@@ -87,6 +100,27 @@ swift test --disable-sandbox
 ```
 
 The test suite uses XCTest, which ships with Xcode. On a Mac with only the Command Line Tools, `swift build` and `swift run` work but `swift test` reports `no such module 'XCTest'`.
+Before sharing a release candidate, build its ZIP and DMG and run the local integrity checks:
+
+```sh
+./scripts/package-release.sh
+./scripts/verify-release.sh dist/Kistulentz.app --release-assets
+```
+
+Maintainers can also run the manual **Test release candidate** GitHub Actions workflow. It tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing a release.
+
+### Optional English structural-analysis pack
+
+The base app always keeps its native local analysis. In **Kistulentz Settings**, an author can separately confirm installation of the large English pack. Once installed, Benepar augments live Markdown guidance, manuscript reports, and selected EPUB profiles. Analysis stays on the Mac; the pack is not an AI provider and it does not rewrite prose automatically.
+
+Language packs are architecture-specific for Apple silicon and Intel. Maintainers can build the native pack with the pinned, checksum-verified standalone Python runtime:
+
+```sh
+./scripts/fetch-benepar-python-runtime.sh "$(uname -m)"
+./scripts/build-benepar-language-pack.sh ".build/benepar-runtimes/$(uname -m)" "$(uname -m)" 1.0.0
+```
+
+The manual **Build English language packs** GitHub Actions workflow builds and validates both architectures. It only publishes the dedicated pack release when its `publish_release` input is explicitly enabled.
 
 ## API setup
 
@@ -94,7 +128,7 @@ Open Kistulentz Settings and paste an API key for OpenAI, Anthropic, or both. Mo
 
 For local AI, install and start Ollama separately, then choose **Detect Models** in Kistulentz Settings. Kistulentz lists models already present at Ollama's local address and does not install Ollama or download a model. Apple silicon uses Ollama's supported acceleration; Intel Macs use CPU inference and may be substantially slower for large models.
 
-Document text, manuscript reports, project Bibles, beta-reader signals, research attachments, and EPUB reference books are analyzed locally until the user chooses **Polish**, **Rewrite**, a metadata lookup, or **Deepen w/ AI**. Local imports, OCR, indexing, revision scans, and automatic manuscript updates never contact an AI provider. DOI and ISBN lookup sends only the identifier to Crossref or Open Library. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded automatically.
+Document text, manuscript reports, project Bibles, beta-reader signals, research attachments, and EPUB reference books are analyzed locally until the user chooses **Polish**, **Rewrite**, a metadata lookup, or **Deepen w/ AI**. Local imports, OCR, indexing, Benepar parsing, revision scans, and automatic manuscript updates never contact an AI provider. Installing the optional English pack downloads only its program files and model from Kistulentz’s GitHub release. DOI and ISBN lookup sends only the identifier to Crossref or Open Library. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded automatically.
 
 The chosen Reference Library folder contains `Kistulentz Library.md`, per-book profiles, combined author and genre profiles, AI insight files, and a hidden machine-readable index used for fast loading. Make metadata corrections inside Kistulentz so generated profiles remain synchronized.
 
@@ -110,7 +144,7 @@ Use the folder menu in the editor toolbar to create a project inside a chosen pa
 - `.kistulentz/outline.json` for the visual Part, Chapter, Scene or Section hierarchy and planning fields
 - `.kistulentz/history/` for persistent revision snapshots
 - `.kistulentz/style-decisions.json` for local accepted/declined preference records
-- `.kistulentz/manuscript-cache.json` for the last generated Bible baseline and requested AI report notes
+- `.kistulentz/manuscript-cache.json` for the last generated Bible baseline, cached sentence-structure profile, and requested AI report notes
 - `.kistulentz/beta-readers.json` for custom beta-reader definitions
 - `.kistulentz/bibliography.json` for project source references, quotations, claim links, and citation style
 - `.kistulentz/revisions.json` for persistent systemic findings, classifications, statuses, and goals
@@ -134,7 +168,9 @@ Open **Manuscript Insights** from the project sidebar or project menu. The Repor
 
 Open **Project Organization** from the project sidebar or project menu to use the Corkboard and Outliner. Kistulentz imports existing first-level folders as Parts, nested folders as Chapters, and Markdown files as the available Chapter, Scene, or Section items. Reordering cards changes only the outline and project reading order. It never moves a Markdown file in Finder by itself.
 
-Open **Publish & Export** from the project sidebar or project menu. Choose a named profile and output format, then review the exact local content preview. Inclusion and ordering changes in this preview remain temporary unless you explicitly save inclusions back to Project Organization. Publication Setup holds book metadata and cover assets. Generated Matter provides editable, lockable title, copyright, contents, notes, bibliography, and other pages; regeneration skips anything locked or manually edited. Run Preflight before export, resolve every error, and explicitly approve any remaining warnings. Kistulentz writes the finished EPUB, PDF, or DOCX only to the folder you choose and records its SHA-256 checksum inside project metadata. No publication export uses an AI provider.
+Open **Publish & Export** from the project sidebar or project menu. Choose a named layout profile, output format, and one or several independent publication destinations, then review the exact local content preview. Inclusion and ordering changes in this preview remain temporary unless you explicitly save inclusions back to Project Organization. Publication Setup holds book metadata and cover assets. Generated Matter provides editable, lockable title, copyright, contents, notes, bibliography, and other pages; regeneration skips anything locked or manually edited. Print profiles can use no bleed or 0.125-inch top, bottom, and outside bleed.
+
+Run Preflight before export, resolve every error, and explicitly approve any remaining warnings. Kistulentz creates a complete submission folder in the location you choose. It contains the exported EPUB, PDF, or DOCX, a separate supplied cover when available, a package manifest, SHA-256 checksums, and Submission Readiness Reports in Markdown and PDF. The report separates locally verified conditions from required external validation and manual review; it is not retailer certification. Kistulentz runs EPUBCheck when its command-line tool is already installed and detects Kindle Previewer and Apple Transporter, but it does not bundle or install those tools. The report and manifest intentionally exclude manuscript prose and excerpts. No publication export uses an AI provider.
 
 Choose **Organize Files to Match Outline…** only when you want the folder layout to follow the outline. Kistulentz shows every source and destination, keeps the existing filename unless you edit it, and refuses to proceed while a destination is unsafe or occupied. It snapshots affected documents before moving them, and the entire operation can be undone from the normal Edit menu. A Chapter’s level-two Markdown headings can likewise be previewed and selectively split into separate Scene or Section files; unchecked headings stay in the Chapter.
 

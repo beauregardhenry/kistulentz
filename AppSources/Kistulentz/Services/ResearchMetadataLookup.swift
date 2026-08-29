@@ -82,7 +82,7 @@ struct ResearchMetadataLookupService {
 
     private func load(_ url: URL) async throws -> Data {
         var request = URLRequest(url: url)
-        request.setValue("Kistulentz/0.9.1 (https://github.com/beauregardhenry/kistulentz)", forHTTPHeaderField: "User-Agent")
+        request.setValue("Kistulentz/0.9.4 (https://github.com/beauregardhenry/kistulentz)", forHTTPHeaderField: "User-Agent")
         request.timeoutInterval = 20
         let (data, response) = try await dataLoader(request)
         guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {

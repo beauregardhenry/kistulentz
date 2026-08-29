@@ -46,6 +46,7 @@ struct ProjectSidebar: View {
                     }
                     .menuStyle(.borderlessButton)
                     .fixedSize()
+                    .accessibilityLabel("Project actions")
                 }
 
                 HStack(spacing: 12) {
@@ -70,6 +71,7 @@ struct ProjectSidebar: View {
                         }
                         .buttonStyle(.plain)
                         .foregroundStyle(.secondary)
+                        .accessibilityLabel("Clear manuscript search")
                     }
                 }
                 .padding(.horizontal, 9)
@@ -99,36 +101,43 @@ struct ProjectSidebar: View {
                 }
                 .buttonStyle(.borderless)
                 .help("Edit Kistulentz Style")
+                .accessibilityLabel("Edit Kistulentz Style")
                 Button(action: onShowManuscriptInsights) {
                     Image(systemName: "doc.text.magnifyingglass")
                 }
                 .buttonStyle(.borderless)
                 .help("Manuscript Insights")
+                .accessibilityLabel("Manuscript Insights")
                 Button(action: onShowOrganization) {
                     Image(systemName: "rectangle.3.group")
                 }
                 .buttonStyle(.borderless)
                 .help("Project Organization")
+                .accessibilityLabel("Project Organization")
                 Button(action: onShowResearch) {
                     Image(systemName: "books.vertical")
                 }
                 .buttonStyle(.borderless)
                 .help("Project Research")
+                .accessibilityLabel("Project Research")
                 Button(action: onShowRevisionCenter) {
                     Image(systemName: "checklist")
                 }
                 .buttonStyle(.borderless)
                 .help("Systemic Revision Center")
+                .accessibilityLabel("Systemic Revision Center")
                 Button(action: onShowPublish) {
                     Image(systemName: "shippingbox")
                 }
                 .buttonStyle(.borderless)
                 .help("Publish & Export")
+                .accessibilityLabel("Publish & Export")
                 Button(action: onShowHistory) {
                     Image(systemName: "clock.arrow.circlepath")
                 }
                 .buttonStyle(.borderless)
                 .help("Revision History")
+                .accessibilityLabel("Revision History")
             }
             .padding(.horizontal, 12)
             .frame(height: 38)

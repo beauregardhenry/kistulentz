@@ -1,0 +1,45 @@
+name: Test release candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-tests:
+    name: Native tests · ${{ matrix.architecture }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: arm64
+            runner: macos-15
+          - architecture: x86_64
+            runner: macos-15-intel
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run tests on native hardware
+        run: swift test --disable-sandbox
+      - name: Build native release executable
+        run: swift build --configuration release --arch "${{ matrix.architecture }}" --disable-sandbox
+
+  universal-package:
+    name: Universal package and integrity checks
+    needs: native-tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build ZIP, DMG, and checksums
+        run: ./scripts/package-release.sh
+      - name: Verify universal app and release assets
+        run: ./scripts/verify-release.sh dist/Kistulentz.app --release-assets
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Kistulentz-release-candidate
+          path: |
+            dist/releases/*.zip
+            dist/releases/*.dmg
+            dist/releases/SHA256SUMS.txt
+          if-no-files-found: error

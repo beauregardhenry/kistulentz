@@ -47,6 +47,8 @@ struct MarkdownTextView: NSViewRepresentable {
         textView.isAutomaticQuoteSubstitutionEnabled = false
         textView.isAutomaticDashSubstitutionEnabled = false
         textView.string = text
+        textView.setAccessibilityLabel("Markdown editor")
+        textView.setAccessibilityHelp("Edit the current Markdown document. Kistulentz highlights writing suggestions in this text area.")
 
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineSpacing = 7
@@ -161,6 +163,8 @@ private extension IssueCategory {
             NSColor.systemBlue.withAlphaComponent(0.20)
         case .passiveVoice:
             NSColor.systemGreen.withAlphaComponent(0.22)
+        case .structuralComplexity:
+            NSColor.systemOrange.withAlphaComponent(0.20)
         case .complexPhrase:
             NSColor.systemPurple.withAlphaComponent(0.20)
         case .spelling:

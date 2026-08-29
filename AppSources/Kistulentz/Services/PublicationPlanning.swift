@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import ImageIO
 
 enum PublicationDisk {
     private static let fileName = "publication.json"
@@ -91,7 +92,8 @@ enum PublicationPlanBuilder {
         bibliography: ProjectBibliographyArchive,
         librarySources: [ResearchSource],
         profile: ExportProfile,
-        format: PublicationExportFormat
+        format: PublicationExportFormat,
+        destinations: [PublicationDestination]? = nil
     ) -> PublicationExportPlan {
         var items: [ExportPlanItem] = []
         if profile.includeFrontMatter {
@@ -167,7 +169,8 @@ enum PublicationPlanBuilder {
             items: items,
             metadata: archive.metadata,
             bibliography: bibliography,
-            sources: librarySources.filter { sourceIDs.contains($0.id) }
+            sources: librarySources.filter { sourceIDs.contains($0.id) },
+            destinations: destinations ?? (format == .epub ? [.genericEPUB] : [])
         )
     }
 
@@ -291,11 +294,89 @@ enum PublicationMarkdownScanner {
     }
 }
 
+struct PublicationRasterImageInfo: Equatable {
+    var pixelWidth: Int
+    var pixelHeight: Int
+    var colorModel: String?
+
+    var pixelCount: Int { pixelWidth * pixelHeight }
+    var shortestSide: Int { min(pixelWidth, pixelHeight) }
+}
+
+enum PublicationImageInspector {
+    static func rasterInfo(at url: URL) -> PublicationRasterImageInfo? {
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+              let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
+              let width = properties[kCGImagePropertyPixelWidth] as? Int,
+              let height = properties[kCGImagePropertyPixelHeight] as? Int else { return nil }
+        return PublicationRasterImageInfo(
+            pixelWidth: width,
+            pixelHeight: height,
+            colorModel: properties[kCGImagePropertyColorModel] as? String
+        )
+    }
+
+    static func effectiveDPI(
+        image: PublicationRasterImageInfo,
+        layout: PublicationLayout
+    ) -> Double {
+        let contentWidth = max(1, layout.pageSize.widthPoints - layout.insideMargin - layout.outsideMargin)
+        let contentHeight = max(1, layout.pageSize.heightPoints - layout.topMargin - layout.bottomMargin) * 0.55
+        let scale = min(contentWidth / Double(image.pixelWidth), contentHeight / Double(image.pixelHeight))
+        let placedWidthInches = Double(image.pixelWidth) * scale / 72
+        let placedHeightInches = Double(image.pixelHeight) * scale / 72
+        return min(
+            Double(image.pixelWidth) / max(placedWidthInches, 0.01),
+            Double(image.pixelHeight) / max(placedHeightInches, 0.01)
+        )
+    }
+}
+
 enum PublicationPreflight {
     static func run(plan: PublicationExportPlan, root: URL) -> PublicationPreflightReport {
         var findings: [PublicationPreflightFinding] = []
-        func add(_ severity: PublicationPreflightSeverity, _ id: String, _ title: String, _ detail: String, _ path: String? = nil) {
-            findings.append(PublicationPreflightFinding(id: id, severity: severity, title: title, detail: detail, sourcePath: path))
+        func add(
+            _ severity: PublicationPreflightSeverity,
+            _ id: String,
+            _ title: String,
+            _ detail: String,
+            _ path: String? = nil,
+            readiness: PublicationReadinessStatus = .actionRequired,
+            requirementURL: String? = nil
+        ) {
+            findings.append(PublicationPreflightFinding(
+                id: id,
+                severity: severity,
+                title: title,
+                detail: detail,
+                sourcePath: path,
+                readinessStatus: readiness,
+                requirementURL: requirementURL
+            ))
+        }
+
+        if plan.destinations.isEmpty {
+            add(.warning, "destination-none", "No publication destination is selected", "Choose at least one destination to receive target-specific checks and a useful submission report.")
+        }
+        for destination in plan.destinations where !destination.compatibleFormats.contains(plan.format) {
+            add(
+                .error,
+                "destination-format-\(destination.rawValue)",
+                "\(destination.title) does not accept \(plan.format.title)",
+                "Choose \(destination.compatibleFormats.map(\.title).joined(separator: " or ")) or remove this destination from the current export.",
+                readiness: .actionRequired,
+                requirementURL: destination.requirementURL
+            )
+        }
+        for destination in plan.destinations where destination.compatibleFormats.contains(plan.format) {
+            add(
+                .information,
+                "destination-pass-\(destination.rawValue)",
+                "Format matches \(destination.title)",
+                "Kistulentz can run the local checks documented for this destination.",
+                readiness: .passedLocally,
+                requirementURL: destination.requirementURL
+            )
         }
 
         if plan.metadata.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -325,6 +406,7 @@ enum PublicationPreflight {
         }
         var referencedFootnotes: Set<String> = []
         var definedFootnotes: Set<String> = []
+        var rasterImages: [(path: String, info: PublicationRasterImageInfo)] = []
         for item in plan.includedItems {
             if item.kind == .manuscript, item.markdown.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 add(.warning, "empty-\(item.id)", "Included section is empty", "\(item.title) contains no exportable text.", item.sourcePath)
@@ -338,6 +420,8 @@ enum PublicationPreflight {
                 let url = PublicationMarkdownScanner.resolveImagePath(image.path, sourcePath: item.sourcePath, root: root)
                 if !FileManager.default.fileExists(atPath: url.path) {
                     add(.error, "image-\(item.id)-\(imageIndex)", "Image is missing", "The image path \(image.path) cannot be resolved.", item.sourcePath)
+                } else if let info = PublicationImageInspector.rasterInfo(at: url) {
+                    rasterImages.append((url.lastPathComponent, info))
                 }
                 if plan.format == .epub, PublicationMediaType.epub(for: url) == nil {
                     add(.error, "image-format-\(item.id)-\(imageIndex)", "Image format is not EPUB-compatible", "Convert \(url.lastPathComponent) to PNG, JPEG, GIF, SVG, or WebP.", item.sourcePath)
@@ -369,6 +453,9 @@ enum PublicationPreflight {
                 if plan.format == .docx, PublicationMediaType.docx(for: coverURL) == nil {
                     add(.error, "cover-format", "Cover format is not DOCX-compatible", "Use a PNG, JPEG, GIF, TIFF, or BMP cover image.")
                 }
+                if let info = PublicationImageInspector.rasterInfo(at: coverURL) {
+                    targetCoverChecks(plan: plan, coverURL: coverURL, info: info, add: add)
+                }
             } else {
                 add(.warning, "cover-none", "No cover image is selected", "The publication can still export, but digital editions will not contain a cover image.")
             }
@@ -388,6 +475,12 @@ enum PublicationPreflight {
                 add(.warning, "font-heading", "Heading font is unavailable", "Kistulentz will use a system sans-serif fallback instead of \(plan.profile.layout.headingFontName).")
             }
         }
+        if plan.format == .printPDF {
+            targetPrintChecks(plan: plan, rasterImages: rasterImages, add: add)
+        }
+        if plan.format == .epub {
+            targetEPUBChecks(plan: plan, rasterImages: rasterImages, add: add)
+        }
         if plan.profile.kind == .accessibleEPUB {
             for item in plan.manuscriptItems {
                 let levels = PublicationMarkdownScanner.headingLevels(in: item.markdown)
@@ -400,8 +493,127 @@ enum PublicationPreflight {
                     previous = level
                 }
             }
-            add(.information, "a11y-scope", "Accessibility preflight is not certification", "Kistulentz checks structure, navigation, language, images, and metadata locally. Human review and a dedicated EPUB conformance checker remain necessary before claiming WCAG or EPUB Accessibility conformance.")
+            add(
+                .information,
+                "a11y-scope",
+                "Accessibility review remains necessary",
+                "Kistulentz checks structure, navigation, language, images, and metadata locally. Human review and a dedicated EPUB conformance checker remain necessary before claiming WCAG or EPUB Accessibility conformance.",
+                readiness: .manualReviewRequired,
+                requirementURL: "https://www.w3.org/TR/epub-a11y-11/"
+            )
         }
         return PublicationPreflightReport(findings: findings)
+    }
+
+    private static func targetCoverChecks(
+        plan: PublicationExportPlan,
+        coverURL: URL,
+        info: PublicationRasterImageInfo,
+        add: (PublicationPreflightSeverity, String, String, String, String?, PublicationReadinessStatus, String?) -> Void
+    ) {
+        if plan.destinations.contains(.appleBooks), info.pixelCount > 5_600_000 {
+            add(.error, "apple-cover-pixels", "Apple Books cover exceeds 5.6 million pixels", "The selected cover is \(info.pixelWidth) × \(info.pixelHeight) pixels. Resize it before submission.", nil, .actionRequired, PublicationDestination.appleBooks.requirementURL)
+        }
+        if plan.destinations.contains(.kindleEbook) {
+            let extensionName = coverURL.pathExtension.lowercased()
+            if !["jpg", "jpeg", "tif", "tiff"].contains(extensionName) {
+                add(.warning, "kindle-cover-format", "Kindle requires a JPEG or TIFF marketing cover", "The embedded cover can remain in the EPUB, but supply a separate JPEG or TIFF cover for KDP.", nil, .actionRequired, "https://kdp.amazon.com/en_US/help/topic/G200645690")
+            }
+            if info.pixelWidth < 1_000 || info.pixelHeight < 625 {
+                add(.warning, "kindle-cover-size", "Kindle cover is below the documented minimum", "The selected cover is \(info.pixelWidth) × \(info.pixelHeight) pixels; KDP documents a 1,000 × 625 pixel minimum.", nil, .actionRequired, "https://kdp.amazon.com/en_US/help/topic/G200645690")
+            }
+        }
+        if plan.destinations.contains(.ingramSparkEbook) {
+            if !["jpg", "jpeg"].contains(coverURL.pathExtension.lowercased()) {
+                add(.warning, "ingram-cover-format", "IngramSpark eBook cover should be JPEG", "Supply the separate eBook cover as a JPEG even though the current image can be embedded in the EPUB.", nil, .actionRequired, PublicationDestination.ingramSparkEbook.requirementURL)
+            }
+            if info.shortestSide < 1_600 {
+                add(.warning, "ingram-cover-size", "IngramSpark cover is below 1,600 pixels on its shortest side", "The selected cover is \(info.pixelWidth) × \(info.pixelHeight) pixels.", nil, .actionRequired, PublicationDestination.ingramSparkEbook.requirementURL)
+            }
+            if let model = info.colorModel, model.localizedCaseInsensitiveCompare("RGB") != .orderedSame {
+                add(.warning, "ingram-cover-color", "IngramSpark eBook cover is not identified as RGB", "The detected color model is \(model). Verify or convert the separate cover before submission.", nil, .manualReviewRequired, PublicationDestination.ingramSparkEbook.requirementURL)
+            }
+        }
+    }
+
+    private static func targetEPUBChecks(
+        plan: PublicationExportPlan,
+        rasterImages: [(path: String, info: PublicationRasterImageInfo)],
+        add: (PublicationPreflightSeverity, String, String, String, String?, PublicationReadinessStatus, String?) -> Void
+    ) {
+        let retailerDestinations: [PublicationDestination] = [.appleBooks, .kindleEbook, .ingramSparkEbook]
+        if !plan.destinations.filter({ retailerDestinations.contains($0) }).isEmpty,
+           (!plan.profile.includeCover || plan.metadata.coverImageRelativePath == nil) {
+            add(.warning, "retailer-ebook-cover", "No retailer eBook cover will be packaged", "Choose and include a cover, or plan to create and supply one in the retailer's separate cover workflow.", nil, .actionRequired, plan.destinations.first(where: { retailerDestinations.contains($0) })?.requirementURL)
+        }
+        if plan.destinations.contains(.appleBooks) {
+            for image in rasterImages where image.info.pixelCount > 5_600_000 {
+                add(.error, "apple-image-\(PublicationHash.shortHash(image.path))", "Image exceeds Apple Books' pixel limit", "\(image.path) is \(image.info.pixelWidth) × \(image.info.pixelHeight) pixels, exceeding 5.6 million pixels.", image.path, .actionRequired, PublicationDestination.appleBooks.requirementURL)
+            }
+            add(.information, "apple-transporter", "Apple Transporter validation is still required", "Kistulentz cannot guarantee acceptance by Apple Books. Validate the finished EPUB during delivery with Apple's current Transporter workflow.", nil, .externalValidationRequired, PublicationDestination.appleBooks.requirementURL)
+        }
+        if plan.destinations.contains(.kindleEbook) {
+            if !plan.profile.includeTableOfContents {
+                add(.warning, "kindle-visible-toc", "A visible table of contents is disabled", "The EPUB still contains logical navigation, but KDP strongly recommends a visible HTML table of contents.", nil, .actionRequired, "https://kdp.amazon.com/en_US/help/topic/G201605710")
+            }
+            add(.information, "kindle-previewer", "Kindle Previewer review is required", "Open the finished EPUB in Kindle Previewer and inspect reflow, navigation, images, and typography before upload.", nil, .externalValidationRequired, PublicationDestination.kindleEbook.requirementURL)
+        }
+        if plan.destinations.contains(.ingramSparkEbook) {
+            if !isValidISBN13(plan.metadata.identifier) {
+                add(.warning, "ingram-ebook-isbn", "IngramSpark eBook identifier is not a valid ISBN-13", "Enter the eBook edition's own ISBN-13 in Publication Setup before submission.", nil, .actionRequired, PublicationDestination.ingramSparkEbook.requirementURL)
+            }
+            add(.information, "ingram-ebook-upload", "IngramSpark upload validation is required", "Kistulentz checks the local EPUB package, but IngramSpark's current upload validation remains authoritative.", nil, .externalValidationRequired, PublicationDestination.ingramSparkEbook.requirementURL)
+        }
+        add(.information, "epubcheck", "EPUBCheck validation is required", "Kistulentz will run EPUBCheck automatically when its command-line tool is installed. Otherwise, the submission report records that external validation remains outstanding.", nil, .externalValidationRequired, "https://github.com/w3c/epubcheck")
+        add(.information, "epub-visual-review", "Reading-system review is required", "Inspect the exported book in at least one representative reading system. Automated checks cannot judge every visual or semantic result.", nil, .manualReviewRequired, "https://www.w3.org/TR/epub-a11y-11/")
+    }
+
+    private static func targetPrintChecks(
+        plan: PublicationExportPlan,
+        rasterImages: [(path: String, info: PublicationRasterImageInfo)],
+        add: (PublicationPreflightSeverity, String, String, String, String?, PublicationReadinessStatus, String?) -> Void
+    ) {
+        let printTargets = plan.destinations.filter { [.kdpPrint, .ingramSparkPrint].contains($0) }
+        guard !printTargets.isEmpty else { return }
+        if plan.profile.layout.bodyFontSize < 7 {
+            add(.error, "print-font-size", "Body type is smaller than 7 points", "Increase the body font size for print submission.", nil, .actionRequired, PublicationDestination.kdpPrint.requirementURL)
+        }
+        let minimumOutside = plan.profile.printBleed == .outside ? 27.0 : 18.0
+        if plan.profile.layout.topMargin < minimumOutside ||
+            plan.profile.layout.bottomMargin < minimumOutside ||
+            plan.profile.layout.outsideMargin < minimumOutside {
+            add(.error, "print-outer-margins", "Print safety margins are too small", "Use at least \(minimumOutside / 72) inches for top, bottom, and outside margins with the selected bleed mode.", nil, .actionRequired, PublicationDestination.kdpPrint.requirementURL)
+        }
+        if plan.profile.layout.insideMargin < 27 {
+            add(.error, "print-gutter-minimum", "Inside gutter is below the smallest KDP minimum", "Use at least 0.375 inches. Longer books require a larger gutter after final pagination.", nil, .actionRequired, "https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6")
+        }
+        for image in rasterImages {
+            let dpi = PublicationImageInspector.effectiveDPI(image: image.info, layout: plan.profile.layout)
+            if dpi < 300 {
+                add(.warning, "print-image-dpi-\(PublicationHash.shortHash(image.path))", "Image may render below 300 DPI", "\(image.path) is estimated at \(Int(dpi.rounded())) DPI at its maximum placed size.", image.path, .actionRequired, PublicationDestination.kdpPrint.requirementURL)
+            }
+        }
+        add(.information, "print-bleed-geometry", "Print page geometry will be generated locally", plan.profile.printBleed == .outside ? "The PDF will include 0.125-inch top, bottom, and outside bleed with no gutter bleed or printer marks." : "The PDF will use the selected trim size without bleed or printer marks.", nil, .passedLocally, printTargets[0].requirementURL)
+        add(.information, "print-font-embedding", "Font embedding requires final-PDF verification", "Kistulentz verifies that the selected fonts are available before export. Confirm embedding in the completed PDF before submission.", nil, .externalValidationRequired, printTargets[0].requirementURL)
+        add(.information, "print-gutter-review", "Final page count and gutter require review", "Retailer gutter requirements depend on the final page count. The submission report records the generated page count so you can confirm the applicable bracket.", nil, .manualReviewRequired, printTargets[0].requirementURL)
+        if plan.destinations.contains(.ingramSparkPrint) {
+            if !isValidISBN13(plan.metadata.identifier) {
+                add(.warning, "ingram-print-isbn", "IngramSpark print identifier is not a valid ISBN-13", "Enter the print edition's ISBN-13 in Publication Setup before submission.", nil, .actionRequired, PublicationDestination.ingramSparkPrint.requirementURL)
+            }
+            add(.information, "ingram-color-review", "Print color handling requires review", "Kistulentz does not convert placed artwork to a printer-specific CMYK profile. Confirm image color and ink coverage for the selected IngramSpark print option.", nil, .manualReviewRequired, PublicationDestination.ingramSparkPrint.requirementURL)
+        }
+        if plan.metadata.printCoverPDFRelativePath == nil {
+            add(.warning, "print-cover-none", "No separate print-cover PDF is supplied", "The submission folder will contain the interior and readiness documents only. Add a cover made from the retailer's current template before submission.", nil, .actionRequired, printTargets[0].requirementURL)
+        }
+        add(.information, "print-cover-review", "Separate cover geometry requires review", "The supplied cover PDF is copied unchanged. Confirm trim, spine width, bleed, barcode area, and current template against the final page count.", nil, .manualReviewRequired, printTargets[0].requirementURL)
+    }
+
+    private static func isValidISBN13(_ value: String) -> Bool {
+        let digits = value.compactMap(\.wholeNumberValue)
+        guard digits.count == 13, digits[0] == 9, [7, 8].contains(digits[1]) else { return false }
+        let checksum = digits.prefix(12).enumerated().reduce(0) { partial, entry in
+            partial + entry.element * (entry.offset.isMultiple(of: 2) ? 1 : 3)
+        }
+        return (10 - checksum % 10) % 10 == digits[12]
     }
 }

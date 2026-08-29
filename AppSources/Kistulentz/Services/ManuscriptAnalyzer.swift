@@ -120,12 +120,44 @@ enum ManuscriptAnalyzer {
             citationCount: chapterMetrics.reduce(0) { $0 + $1.citationCount },
             adverbCount: chapterMetrics.reduce(0) { $0 + $1.adverbCount },
             passiveVoiceCount: chapterMetrics.reduce(0) { $0 + $1.passiveVoiceCount },
+            structuralProfile: nil,
             reportMarkdown: "",
             generatedBibleBlock: ""
         )
         result.reportMarkdown = renderReport(result)
         result.generatedBibleBlock = renderBibleBlock(result)
         return result
+    }
+
+    static func addingStructuralProfile(
+        _ structuralProfile: StructuralProfile,
+        to analysis: ManuscriptAnalysis
+    ) -> ManuscriptAnalysis {
+        var enriched = ManuscriptAnalysis(
+            projectName: analysis.projectName,
+            kind: analysis.kind,
+            chapters: analysis.chapters,
+            entities: analysis.entities,
+            keyTerms: analysis.keyTerms,
+            repeatedPhrases: analysis.repeatedPhrases,
+            timelineMarkers: analysis.timelineMarkers,
+            claimChecks: analysis.claimChecks,
+            continuityChecks: analysis.continuityChecks,
+            totalWords: analysis.totalWords,
+            totalSentences: analysis.totalSentences,
+            overallGrade: analysis.overallGrade,
+            averageSentenceWords: analysis.averageSentenceWords,
+            averageParagraphWords: analysis.averageParagraphWords,
+            dialogueRatio: analysis.dialogueRatio,
+            citationCount: analysis.citationCount,
+            adverbCount: analysis.adverbCount,
+            passiveVoiceCount: analysis.passiveVoiceCount,
+            structuralProfile: structuralProfile,
+            reportMarkdown: analysis.reportMarkdown,
+            generatedBibleBlock: analysis.generatedBibleBlock
+        )
+        enriched.reportMarkdown = renderReport(enriched)
+        return enriched
     }
 
     static func context(
@@ -245,11 +277,24 @@ enum ManuscriptAnalyzer {
             "- Overall estimated grade: **\(format(analysis.overallGrade))**",
             "- Chapter range: **\(format(gradeRange.0))–\(format(gradeRange.1))**",
             "- Adverbs flagged locally: **\(analysis.adverbCount)**",
-            "- Passive constructions flagged locally: **\(analysis.passiveVoiceCount)**",
-            "",
-            "## Repetition & Language",
-            ""
+            "- Passive constructions flagged locally: **\(analysis.passiveVoiceCount)**"
         ]
+        if let structure = analysis.structuralProfile {
+            lines += [
+                "",
+                "### Benepar Sentence Structure",
+                "",
+                "- Sentences analyzed: **\(structure.sentencesAnalyzed)**\(structure.isSampled ? " of \(structure.sentencesAvailable) available" : "")",
+                "- Average parse depth: **\(format(structure.averageTreeDepth))**; maximum: **\(structure.maximumTreeDepth)**",
+                "- Average clauses per sentence: **\(format(structure.averageClausesPerSentence))**",
+                "- Sentences using subordinate clauses: **\(Int((structure.subordinateSentenceRatio * 100).rounded()))%**",
+                "- Average longest noun phrase: **\(format(structure.averageLongestNounPhraseWords)) words**",
+                "- Sentences using coordination: **\(Int((structure.coordinationRatio * 100).rounded()))%**",
+                "",
+                "These are syntactic signals from the optional local English language pack. Fragments, dense clauses, and long phrases may be intentional, especially in fiction."
+            ]
+        }
+        lines += ["", "## Repetition & Language", ""]
         if analysis.repeatedPhrases.isEmpty {
             lines.append("No repeated three-word phrase crossed the local reporting threshold.")
         } else {

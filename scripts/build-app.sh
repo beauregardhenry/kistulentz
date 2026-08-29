@@ -64,9 +64,12 @@ fi
 
 rm -rf "$APP_ROOT"
 mkdir -p "$APP_ROOT/Contents/MacOS" "$APP_ROOT/Contents/Resources"
+mkdir -p "$APP_ROOT/Contents/Resources/LanguagePacks/Benepar"
 cp "$BIN_PATH" "$APP_ROOT/Contents/MacOS/Kistulentz"
 cp "$PROJECT_ROOT/scripts/Info.plist" "$APP_ROOT/Contents/Info.plist"
 cp "$PROJECT_ROOT/LICENSE" "$APP_ROOT/Contents/Resources/LICENSE"
+cp "$PROJECT_ROOT/LanguagePacks/Benepar/benepar_worker.py" "$APP_ROOT/Contents/Resources/LanguagePacks/Benepar/benepar_worker.py"
+cp "$PROJECT_ROOT/LanguagePacks/Benepar/NOTICE.md" "$APP_ROOT/Contents/Resources/LanguagePacks/Benepar/NOTICE.md"
 print -n "APPL????" > "$APP_ROOT/Contents/PkgInfo"
 
 chmod +x "$APP_ROOT/Contents/MacOS/Kistulentz"

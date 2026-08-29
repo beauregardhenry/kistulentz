@@ -26,6 +26,7 @@ To build the Mac application:
 ```
 
 The script finds Xcode automatically and builds the universal application when it is present, so `DEVELOPER_DIR` only needs to be set when Xcode is installed somewhere other than `/Applications/Xcode.app`. Without Xcode it builds for the current architecture and says so. `./scripts/package-release.sh` always requires the universal build, so a release archive can never be published with one architecture missing.
+The optional Benepar language pack is deliberately separate from the application. Its Python runtime, dependency versions, model, architecture, license files, archive size, and SHA-256 checksum must remain reproducible and pinned. Use the manual **Build English language packs** workflow to validate both Apple-silicon and Intel packs; leave publishing disabled for test builds.
 
 Changes that affect project metadata should include compatibility tests. Changes that can alter prose should preserve normal macOS Undo, create the appropriate project snapshot, and never overwrite manuscript Markdown without explicit author approval.
 

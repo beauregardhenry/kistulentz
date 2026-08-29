@@ -4,6 +4,7 @@ import SwiftUI
 @main
 struct KistulentzApp: App {
     @StateObject private var settings = AppSettings()
+    @StateObject private var beneparPack = BeneparLanguagePackManager()
     @StateObject private var referenceLibrary = ReferenceLibraryStore()
     @StateObject private var researchLibrary = ResearchLibraryStore()
 
@@ -11,19 +12,13 @@ struct KistulentzApp: App {
         DocumentGroup(newDocument: MarkdownDocument()) { file in
             EditorWorkspace(document: file.$document, fileURL: file.fileURL)
                 .environmentObject(settings)
+                .environmentObject(beneparPack)
                 .environmentObject(referenceLibrary)
                 .environmentObject(researchLibrary)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
-            CommandGroup(after: .appInfo) {
-                Button("View Kistulentz License") {
-                    KistulentzLegal.openLicense()
-                }
-                Button("Kistulentz Source Code") {
-                    KistulentzLegal.openSourceCode()
-                }
-            }
+            KistulentzSupportCommands()
             CommandGroup(after: .textEditing) {
                 Divider()
                 Button("Run AI Review") {
@@ -36,7 +31,36 @@ struct KistulentzApp: App {
         Settings {
             SettingsView()
                 .environmentObject(settings)
+                .environmentObject(beneparPack)
+                .environmentObject(referenceLibrary)
                 .frame(width: 540)
+        }
+
+        Window("Kistulentz System Check", id: "system-check") {
+            SystemCheckView()
+                .environmentObject(settings)
+                .environmentObject(beneparPack)
+                .environmentObject(referenceLibrary)
+        }
+        .defaultSize(width: 700, height: 620)
+    }
+}
+
+private struct KistulentzSupportCommands: Commands {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some Commands {
+        CommandGroup(after: .appInfo) {
+            Button("Kistulentz System Check…") {
+                openWindow(id: "system-check")
+            }
+            Divider()
+            Button("View Kistulentz License") {
+                KistulentzLegal.openLicense()
+            }
+            Button("Kistulentz Source Code") {
+                KistulentzLegal.openSourceCode()
+            }
         }
     }
 }
