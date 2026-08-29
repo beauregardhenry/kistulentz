@@ -30,7 +30,7 @@ struct EditorWorkspace: View {
     @StateObject private var viewModel = EditorViewModel()
     @StateObject private var undoCoordinator = DocumentUndoCoordinator()
     @StateObject private var projectStore = WritingProjectStore()
-    @State private var showingReplaceConfirmation = false
+    @State private var polishedDraftPlan: PolishedDraftPlan?
     @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
     @State private var showingReferenceLibrary = false
@@ -109,7 +109,9 @@ struct EditorWorkspace: View {
                     ReviewSidebar(
                         issues: viewModel.allIssues,
                         review: viewModel.aiReview,
+                        blockedAISuggestionCount: viewModel.blockedAISuggestionCount,
                         isReviewing: viewModel.isReviewing,
+                        isRewriting: viewModel.isRewriting,
                         provider: settings.provider,
                         hasAPIKey: settings.isProviderReady(settings.provider),
                         reference: viewModel.referenceBook,
@@ -122,8 +124,9 @@ struct EditorWorkspace: View {
                         onSelect: viewModel.focus,
                         onApply: apply,
                         onDecline: decline,
+                        onRewrite: prepareRewrite,
                         onApplyAll: prepareApplyAll,
-                        onUsePolishedDraft: { showingReplaceConfirmation = true }
+                        onReviewPolishedDraft: preparePolishedDraftReview
                     )
                     .frame(minWidth: 280, idealWidth: 320, maxWidth: 380)
                 }
@@ -294,6 +297,13 @@ struct EditorWorkspace: View {
                 applyRewrite(alternative, presentation: presentation)
             }
         }
+        .sheet(item: $polishedDraftPlan) { plan in
+            PolishedDraftReviewView(
+                plan: plan,
+                onApplySelected: { applyPolishedChanges($0, from: plan) },
+                onReplaceAll: { replaceWithPolishedDraft(from: plan) }
+            )
+        }
         .alert("Kistulentz", isPresented: Binding(
             get: { viewModel.errorMessage != nil || projectStore.errorMessage != nil },
             set: {
@@ -306,27 +316,6 @@ struct EditorWorkspace: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(viewModel.errorMessage ?? projectStore.errorMessage ?? "")
-        }
-        .confirmationDialog(
-            "Replace this document with the polished draft?",
-            isPresented: $showingReplaceConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button("Replace Document", role: .destructive) {
-                if let polished = viewModel.aiReview?.polishedText {
-                    projectStore.prepareForProgrammaticEdit(reason: "Before polished draft")
-                    undoCoordinator.replaceText(
-                        with: polished,
-                        binding: activeTextBinding,
-                        undoManager: undoManager,
-                        actionName: "Use Polished Draft"
-                    )
-                    viewModel.clearAIReview()
-                }
-            }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("You can use Undo to restore the current version.")
         }
         .confirmationDialog(
             "Apply all safe suggestions?",
@@ -648,6 +637,13 @@ struct EditorWorkspace: View {
             viewModel.errorMessage = "Select a passage before choosing a rewrite."
             return
         }
+        prepareRewrite(goal, passage: selectedPassage)
+    }
+
+    private func prepareRewrite(
+        _ goal: SelectionRewriteGoal,
+        passage selectedPassage: (range: NSRange, text: String)
+    ) {
         guard validateSelectedProvider() else { return }
         if goal.kind == .matchReferences, viewModel.referenceBook == nil {
             viewModel.errorMessage = "Choose at least one reference before matching its craft profile."
@@ -670,6 +666,51 @@ struct EditorWorkspace: View {
             includesReferenceContext: reference != nil,
             sourceRange: selectedPassage.range,
             sourceText: selectedPassage.text
+        )
+    }
+
+    private func prepareRewrite(_ issue: WritingIssue) {
+        let source = activeText as NSString
+        let range: NSRange
+        if issue.range.location != NSNotFound,
+           NSMaxRange(issue.range) <= source.length,
+           source.substring(with: issue.range) == issue.excerpt {
+            range = issue.range
+        } else {
+            let relocated = source.range(of: issue.excerpt)
+            guard relocated.location != NSNotFound,
+                  source.range(of: issue.excerpt, options: [], range: NSRange(
+                    location: NSMaxRange(relocated),
+                    length: source.length - NSMaxRange(relocated)
+                  )).location == NSNotFound else {
+                viewModel.errorMessage = "That passage changed, so Kistulentz cannot rewrite it safely."
+                return
+            }
+            range = relocated
+        }
+
+        let kind: SelectionRewriteKind
+        switch issue.category {
+        case .spelling, .grammar:
+            kind = .correct
+        case .adverb, .passiveVoice:
+            kind = .strengthenVerbs
+        case .referenceVoice where viewModel.referenceBook != nil:
+            kind = .matchReferences
+        case .hardSentence, .veryHardSentence, .structuralComplexity, .complexPhrase,
+             .aiSuggestion, .referenceVoice, .continuity:
+            kind = .simplify
+        }
+
+        editorSelection = range
+        viewModel.focus(on: range)
+        prepareRewrite(
+            SelectionRewriteGoal(
+                kind: kind,
+                requestedTone: nil,
+                issueInstruction: issue.message
+            ),
+            passage: (range, source.substring(with: range))
         )
     }
 
@@ -709,6 +750,24 @@ struct EditorWorkspace: View {
             viewModel.rewritePresentation = nil
             return
         }
+        let localConflicts = SuggestionRuleValidator.introducedCategories(
+            replacing: presentation.sourceRange,
+            in: activeText,
+            with: alternative.text,
+            targetGrade: settings.targetGrade
+        )
+        let documentConflicts = SuggestionRuleValidator.introducedCategories(
+            original: activeText,
+            replacement: result,
+            targetGrade: settings.targetGrade
+        )
+        let conflicts = IssueCategory.allCases.filter { category in
+            localConflicts.contains(category) || documentConflicts.contains(category)
+        }
+        guard conflicts.isEmpty else {
+            viewModel.errorMessage = "That alternative introduces a new local flag (\(conflicts.map(\.title).joined(separator: ", "))), so Kistulentz did not apply it."
+            return
+        }
 
         projectStore.prepareForProgrammaticEdit(reason: "Before selection rewrite")
         undoCoordinator.replaceText(
@@ -726,10 +785,87 @@ struct EditorWorkspace: View {
         viewModel.rewritePresentation = nil
     }
 
+    private func preparePolishedDraftReview() {
+        guard let review = viewModel.aiReview else { return }
+        let plan = PolishedDraftPlanner.plan(
+            original: activeText,
+            polished: review.polishedText,
+            targetGrade: settings.targetGrade
+        )
+        guard !plan.changes.isEmpty else {
+            viewModel.errorMessage = "The polished draft already matches this document."
+            return
+        }
+        polishedDraftPlan = plan
+    }
+
+    private func applyPolishedChanges(_ changeIDs: Set<UUID>, from plan: PolishedDraftPlan) {
+        guard activeText == plan.sourceText else {
+            polishedDraftPlan = nil
+            viewModel.errorMessage = "The document changed while the polished draft was open. Reopen it to review an updated comparison."
+            return
+        }
+        guard !changeIDs.isEmpty, let result = plan.applying(changeIDs: changeIDs) else {
+            viewModel.errorMessage = "Select at least one safe passage to apply."
+            return
+        }
+
+        projectStore.prepareForProgrammaticEdit(reason: "Before applying polished passages")
+        undoCoordinator.replaceText(
+            with: result,
+            binding: activeTextBinding,
+            undoManager: undoManager,
+            actionName: changeIDs.count == 1 ? "Apply Polished Passage" : "Apply Polished Passages"
+        )
+        viewModel.preserveAIReview(afterApplying: result)
+        polishedDraftPlan = nil
+    }
+
+    private func replaceWithPolishedDraft(from plan: PolishedDraftPlan) {
+        guard activeText == plan.sourceText else {
+            polishedDraftPlan = nil
+            viewModel.errorMessage = "The document changed while the polished draft was open. Reopen it to review an updated comparison."
+            return
+        }
+        guard plan.isFullReplacementSafe else {
+            viewModel.errorMessage = "Resolve or decline the passages that conflict with local rules before replacing the document."
+            return
+        }
+
+        projectStore.prepareForProgrammaticEdit(reason: "Before polished draft")
+        undoCoordinator.replaceText(
+            with: plan.polishedText,
+            binding: activeTextBinding,
+            undoManager: undoManager,
+            actionName: "Use Polished Draft"
+        )
+        viewModel.preserveAIReview(afterApplying: plan.polishedText)
+        polishedDraftPlan = nil
+    }
+
     private func apply(_ issue: WritingIssue) {
+        if let replacement = issue.replacement {
+            let conflicts = SuggestionRuleValidator.introducedCategories(
+                original: issue.excerpt,
+                replacement: replacement,
+                targetGrade: settings.targetGrade
+            )
+            guard conflicts.isEmpty else {
+                viewModel.errorMessage = "That suggestion now conflicts with a local rule, so Kistulentz did not apply it."
+                return
+            }
+        }
         let plan = SuggestionApplicationPlanner.planSingle(issue: issue, in: activeText)
         guard plan.hasChanges else {
             viewModel.errorMessage = "That passage has changed, so the suggestion can no longer be applied."
+            return
+        }
+        guard SuggestionRuleValidator.isSafe(
+            original: activeText,
+            replacement: plan.resultText,
+            targetGrade: settings.targetGrade
+        ) else {
+            viewModel.errorMessage = "That suggestion creates a new local flag in its surrounding passage, so Kistulentz did not apply it."
             return
         }
 
@@ -751,11 +887,27 @@ struct EditorWorkspace: View {
     }
 
     private func prepareApplyAll() {
-        let plan = SuggestionApplicationPlanner.plan(issues: viewModel.allIssues, in: activeText)
+        let safeIssues = viewModel.allIssues.filter { issue in
+            guard let replacement = issue.replacement else { return true }
+            return SuggestionRuleValidator.isSafe(
+                original: issue.excerpt,
+                replacement: replacement,
+                targetGrade: settings.targetGrade
+            )
+        }
+        let plan = SuggestionApplicationPlanner.plan(issues: safeIssues, in: activeText)
         guard plan.hasChanges else {
             viewModel.errorMessage = plan.conflictCount > 0 || plan.staleCount > 0
                 ? "The available replacements overlap or no longer match this draft. Apply them one at a time."
                 : "No current suggestions include a concrete replacement."
+            return
+        }
+        guard SuggestionRuleValidator.isSafe(
+            original: activeText,
+            replacement: plan.resultText,
+            targetGrade: settings.targetGrade
+        ) else {
+            viewModel.errorMessage = "Applying those suggestions together would create a new local flag. Apply them one at a time instead."
             return
         }
         pendingApplyAllPlan = plan
@@ -774,7 +926,7 @@ struct EditorWorkspace: View {
         for issue in appliedIssues {
             projectStore.recordStyleDecision(action: .accepted, issue: issue)
         }
-        viewModel.clearAIReview()
+        viewModel.preserveAIReview(afterApplying: plan.resultText)
         pendingApplyAllPlan = nil
     }
 
@@ -1114,7 +1266,9 @@ private struct StatCell: View {
 private struct ReviewSidebar: View {
     let issues: [WritingIssue]
     let review: AIReview?
+    let blockedAISuggestionCount: Int
     let isReviewing: Bool
+    let isRewriting: Bool
     let provider: AIProvider
     let hasAPIKey: Bool
     let reference: EPUBReference?
@@ -1127,8 +1281,9 @@ private struct ReviewSidebar: View {
     let onSelect: (WritingIssue) -> Void
     let onApply: (WritingIssue) -> Void
     let onDecline: (WritingIssue) -> Void
+    let onRewrite: (WritingIssue) -> Void
     let onApplyAll: () -> Void
-    let onUsePolishedDraft: () -> Void
+    let onReviewPolishedDraft: () -> Void
 
     private var hasApplicableSuggestions: Bool {
         issues.contains { $0.replacement != nil && $0.replacement != $0.excerpt }
@@ -1216,7 +1371,15 @@ private struct ReviewSidebar: View {
                                 .font(.callout)
                                 .foregroundStyle(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
-                            Button("Use polished draft", action: onUsePolishedDraft)
+                            if blockedAISuggestionCount > 0 {
+                                Label(
+                                    "Kistulentz withheld \(blockedAISuggestionCount) AI suggestion\(blockedAISuggestionCount == 1 ? "" : "s") that conflicted with local rules.",
+                                    systemImage: "shield.checkered"
+                                )
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                            }
+                            Button("Review polished draft…", action: onReviewPolishedDraft)
                                 .buttonStyle(.borderedProminent)
                                 .controlSize(.small)
                         }
@@ -1234,9 +1397,11 @@ private struct ReviewSidebar: View {
                     ForEach(issues) { issue in
                         IssueCard(
                             issue: issue,
+                            canRewrite: hasAPIKey && !isRewriting,
                             onSelect: onSelect,
                             onApply: onApply,
-                            onDecline: onDecline
+                            onDecline: onDecline,
+                            onRewrite: onRewrite
                         )
                     }
 
@@ -1382,9 +1547,11 @@ private struct ReferenceBadge: View {
 
 private struct IssueCard: View {
     let issue: WritingIssue
+    let canRewrite: Bool
     let onSelect: (WritingIssue) -> Void
     let onApply: (WritingIssue) -> Void
     let onDecline: (WritingIssue) -> Void
+    let onRewrite: (WritingIssue) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -1439,6 +1606,14 @@ private struct IssueCard: View {
                     Button("Accept") { onApply(issue) }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.mini)
+                } else {
+                    Button("Rewrite…") { onRewrite(issue) }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.mini)
+                        .disabled(!canRewrite)
+                        .help(canRewrite
+                            ? "Create three alternatives that address this card"
+                            : "Connect or choose an AI provider to create alternatives")
                 }
             }
         }
@@ -1450,5 +1625,223 @@ private struct IssueCard: View {
                 .frame(width: 3)
                 .padding(.vertical, 8)
         }
+    }
+}
+
+private enum PolishedDraftDecision {
+    case accepted
+    case declined
+}
+
+private struct PolishedDraftReviewView: View {
+    @Environment(\.dismiss) private var dismiss
+    let plan: PolishedDraftPlan
+    let onApplySelected: (Set<UUID>) -> Void
+    let onReplaceAll: () -> Void
+
+    @State private var decisions: [UUID: PolishedDraftDecision] = [:]
+    @State private var showingReplaceAllConfirmation = false
+
+    private var acceptedIDs: Set<UUID> {
+        Set(decisions.compactMap { $0.value == .accepted ? $0.key : nil })
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(alignment: .top, spacing: 14) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Review Polished Draft")
+                        .font(.title2.weight(.semibold))
+                    Text(summary)
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Button("Done") { dismiss() }
+                    .keyboardShortcut(.cancelAction)
+            }
+            .padding(20)
+
+            Divider()
+
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 14) {
+                    if !plan.isFullReplacementSafe {
+                        let conflictCount = max(
+                            plan.unsafeChanges.count,
+                            plan.introducedDocumentRuleCategories.count
+                        )
+                        Label(
+                            "Kistulentz blocked \(conflictCount) polished change\(conflictCount == 1 ? "" : "s") that would introduce new local flags.",
+                            systemImage: "shield.lefthalf.filled.badge.checkmark"
+                        )
+                        .font(.callout)
+                        .foregroundStyle(.orange)
+                        .padding(12)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.orange.opacity(0.09), in: RoundedRectangle(cornerRadius: 10))
+                    }
+
+                    ForEach(Array(plan.changes.enumerated()), id: \.element.id) { index, change in
+                        PolishedDraftChangeCard(
+                            number: index + 1,
+                            change: change,
+                            decision: decisions[change.id],
+                            onAccept: { decisions[change.id] = .accepted },
+                            onDecline: { decisions[change.id] = .declined }
+                        )
+                    }
+                }
+                .padding(20)
+            }
+
+            Divider()
+
+            HStack(spacing: 10) {
+                Text(acceptedIDs.isEmpty
+                    ? "No passages selected"
+                    : "\(acceptedIDs.count) passage\(acceptedIDs.count == 1 ? "" : "s") selected")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button("Replace All") {
+                    showingReplaceAllConfirmation = true
+                }
+                .buttonStyle(.bordered)
+                .disabled(!plan.isFullReplacementSafe)
+                .help(plan.isFullReplacementSafe
+                    ? "Replace the document with the complete polished draft"
+                    : "Replace All is unavailable because some passages conflict with local rules")
+                Button("Apply Selected") {
+                    onApplySelected(acceptedIDs)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(acceptedIDs.isEmpty)
+            }
+            .padding(16)
+        }
+        .frame(minWidth: 720, idealWidth: 820, minHeight: 580, idealHeight: 720)
+        .confirmationDialog(
+            "Replace the entire document with the polished draft?",
+            isPresented: $showingReplaceAllConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Replace All", role: .destructive, action: onReplaceAll)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("The complete replacement will be one normal Undo action. Your AI review will remain available.")
+        }
+    }
+
+    private var summary: String {
+        let count = plan.changes.count
+        return "Compare \(count) changed passage\(count == 1 ? "" : "s"). Accept individual changes, or replace the whole document after confirmation."
+    }
+}
+
+private struct PolishedDraftChangeCard: View {
+    let number: Int
+    let change: PolishedDraftChange
+    let decision: PolishedDraftDecision?
+    let onAccept: () -> Void
+    let onDecline: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("Passage \(number)")
+                    .font(.caption.weight(.semibold))
+                if !change.isSafe {
+                    Label("Blocked", systemImage: "exclamationmark.triangle.fill")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.orange)
+                } else if decision == .accepted {
+                    Label("Accepted", systemImage: "checkmark.circle.fill")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.green)
+                } else if decision == .declined {
+                    Label("Declined", systemImage: "xmark.circle.fill")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+
+            HStack(alignment: .top, spacing: 12) {
+                passageColumn(title: "CURRENT", text: change.originalText, color: .red)
+                Image(systemName: "arrow.right")
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 25)
+                passageColumn(title: "POLISHED", text: change.replacementText, color: .green)
+            }
+
+            if let message = change.safetyMessage {
+                Text(message)
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+            }
+
+            HStack(spacing: 8) {
+                Spacer()
+                decisionButton(
+                    title: "Decline",
+                    systemImage: "xmark",
+                    isSelected: decision == .declined,
+                    color: .secondary,
+                    action: onDecline
+                )
+                decisionButton(
+                    title: "Accept",
+                    systemImage: "checkmark",
+                    isSelected: decision == .accepted,
+                    color: .accentColor,
+                    action: onAccept
+                )
+                .disabled(!change.isSafe)
+            }
+        }
+        .padding(14)
+        .background(.background.opacity(0.8), in: RoundedRectangle(cornerRadius: 12))
+        .overlay {
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(change.isSafe ? Color.secondary.opacity(0.15) : Color.orange.opacity(0.45))
+        }
+    }
+
+    private func passageColumn(title: String, text: String, color: Color) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(.system(size: 9, weight: .bold))
+                .foregroundStyle(.secondary)
+            Text(text.isEmpty ? "(empty)" : text)
+                .font(.system(size: 13, design: .monospaced))
+                .foregroundStyle(text.isEmpty ? .secondary : .primary)
+                .textSelection(.enabled)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
+        .background(color.opacity(0.07), in: RoundedRectangle(cornerRadius: 8))
+    }
+
+    private func decisionButton(
+        title: String,
+        systemImage: String,
+        isSelected: Bool,
+        color: Color,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Label(title, systemImage: systemImage)
+                .font(.caption.weight(.semibold))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .foregroundStyle(isSelected ? Color.white : color)
+                .background(isSelected ? color : Color.clear, in: Capsule())
+                .overlay {
+                    Capsule().stroke(color.opacity(isSelected ? 0 : 0.45))
+                }
+        }
+        .buttonStyle(.plain)
     }
 }

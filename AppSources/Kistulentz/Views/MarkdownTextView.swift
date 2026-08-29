@@ -72,7 +72,9 @@ struct MarkdownTextView: NSViewRepresentable {
 
         if textView.string != text {
             let selection = textView.selectedRange()
-            textView.string = text
+            UndoRegistrationGuard.perform(on: textView.undoManager) {
+                textView.string = text
+            }
             if selection.location <= (text as NSString).length {
                 textView.setSelectedRange(NSRange(location: selection.location, length: 0))
             }
@@ -99,31 +101,33 @@ struct MarkdownTextView: NSViewRepresentable {
         paragraph.lineSpacing = 7
         paragraph.paragraphSpacing = 8
 
-        storage.beginEditing()
-        storage.removeAttribute(.backgroundColor, range: fullRange)
-        storage.addAttributes([
-            .font: NSFont.systemFont(ofSize: 17),
-            .foregroundColor: NSColor.labelColor,
-            .paragraphStyle: paragraph
-        ], range: fullRange)
+        UndoRegistrationGuard.perform(on: textView.undoManager) {
+            storage.beginEditing()
+            storage.removeAttribute(.backgroundColor, range: fullRange)
+            storage.addAttributes([
+                .font: NSFont.systemFont(ofSize: 17),
+                .foregroundColor: NSColor.labelColor,
+                .paragraphStyle: paragraph
+            ], range: fullRange)
 
-        let sentenceIssues = issues.filter {
-            $0.category == .hardSentence || $0.category == .veryHardSentence
-        }
-        let inlineIssues = issues.filter {
-            $0.category != .hardSentence && $0.category != .veryHardSentence
-        }
+            let sentenceIssues = issues.filter {
+                $0.category == .hardSentence || $0.category == .veryHardSentence
+            }
+            let inlineIssues = issues.filter {
+                $0.category != .hardSentence && $0.category != .veryHardSentence
+            }
 
-        for issue in sentenceIssues + inlineIssues {
-            guard issue.range.location != NSNotFound,
-                  NSMaxRange(issue.range) <= storage.length else { continue }
-            storage.addAttribute(
-                .backgroundColor,
-                value: issue.category.highlightColor,
-                range: issue.range
-            )
+            for issue in sentenceIssues + inlineIssues {
+                guard issue.range.location != NSNotFound,
+                      NSMaxRange(issue.range) <= storage.length else { continue }
+                storage.addAttribute(
+                    .backgroundColor,
+                    value: issue.category.highlightColor,
+                    range: issue.range
+                )
+            }
+            storage.endEditing()
         }
-        storage.endEditing()
     }
 
     final class Coordinator: NSObject, NSTextViewDelegate {
@@ -149,6 +153,18 @@ struct MarkdownTextView: NSViewRepresentable {
                 selection = next
             }
         }
+    }
+}
+
+enum UndoRegistrationGuard {
+    static func perform(on undoManager: UndoManager?, _ action: () -> Void) {
+        guard let undoManager, undoManager.isUndoRegistrationEnabled else {
+            action()
+            return
+        }
+        undoManager.disableUndoRegistration()
+        defer { undoManager.enableUndoRegistration() }
+        action()
     }
 }
 

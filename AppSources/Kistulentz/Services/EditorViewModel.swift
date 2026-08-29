@@ -8,6 +8,7 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var isAnalyzingStructure = false
     @Published private(set) var aiReview: AIReview?
     @Published private(set) var aiIssues: [WritingIssue] = []
+    @Published private(set) var blockedAISuggestionCount = 0
     @Published private(set) var referenceBook: EPUBReference?
     @Published private(set) var referenceAlignment = ReferenceAlignment.empty
     @Published private(set) var isLoadingReference = false
@@ -23,16 +24,23 @@ final class EditorViewModel: ObservableObject {
     private var reviewTask: Task<Void, Never>?
     private var rewriteTask: Task<Void, Never>?
     private var referenceTask: Task<Void, Never>?
-    private var reviewedText: String?
+    private var reviewedTextFingerprints: Set<ReviewedTextFingerprint> = []
+    private var reviewTargetGrade: Int?
     private var currentText = ""
     private var currentDocumentKey: String?
     private var hasConfiguredDocument = false
-    private let service = WritingAIService()
-    private let rewriteService = SelectionRewriteService()
+    private let service: WritingAIService
+    private let rewriteService: SelectionRewriteService
     private let dismissalStore: DismissedSuggestionStore
 
-    init(dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore()) {
+    init(
+        dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore(),
+        service: WritingAIService = WritingAIService(),
+        rewriteService: SelectionRewriteService = SelectionRewriteService()
+    ) {
         self.dismissalStore = dismissalStore
+        self.service = service
+        self.rewriteService = rewriteService
     }
 
     var allIssues: [WritingIssue] {
@@ -89,10 +97,13 @@ final class EditorViewModel: ObservableObject {
             }
         }
         pruneDismissals(for: text)
-        if let reviewedText, reviewedText != text {
-            aiReview = nil
-            aiIssues = []
-            self.reviewedText = nil
+        if aiReview != nil {
+            let fingerprint = ReviewedTextFingerprint(text)
+            if reviewTargetGrade == targetGrade, reviewedTextFingerprints.contains(fingerprint) {
+                refreshAIReviewIssues(in: text)
+            } else {
+                clearAIReview()
+            }
         }
         analysisTask?.cancel()
         isAnalyzingStructure = false
@@ -206,9 +217,22 @@ final class EditorViewModel: ObservableObject {
                     self.isReviewing = false
                     return
                 }
+                let targetGrade: Int
+                if case .polish(let requestedGrade) = request.purpose {
+                    targetGrade = requestedGrade
+                } else {
+                    targetGrade = settings.targetGrade
+                }
+                let suggestions = Self.makeIssues(
+                    from: review.suggestions,
+                    in: sourceText,
+                    targetGrade: targetGrade
+                )
                 self.aiReview = review
-                self.aiIssues = Self.makeIssues(from: review.suggestions, in: sourceText)
-                self.reviewedText = sourceText
+                self.aiIssues = suggestions.issues
+                self.blockedAISuggestionCount = suggestions.blockedCount
+                self.reviewTargetGrade = targetGrade
+                self.reviewedTextFingerprints = [ReviewedTextFingerprint(sourceText)]
                 self.isReviewing = false
             } catch is CancellationError {
                 self.isReviewing = false
@@ -257,12 +281,20 @@ final class EditorViewModel: ObservableObject {
         isReviewing = false
         aiReview = nil
         aiIssues = []
-        reviewedText = nil
+        blockedAISuggestionCount = 0
+        reviewTargetGrade = nil
+        reviewedTextFingerprints = []
     }
 
     func preserveAIReview(afterAccepting issue: WritingIssue, in text: String) {
-        guard let aiReview else { return }
-        var refreshed = Self.makeIssues(from: aiReview.suggestions, in: text)
+        guard let aiReview, let reviewTargetGrade else { return }
+        currentText = text
+        let result = Self.makeIssues(
+            from: aiReview.suggestions,
+            in: text,
+            targetGrade: reviewTargetGrade
+        )
+        var refreshed = result.issues
         if issue.source == .ai {
             refreshed.removeAll {
                 $0.category == issue.category
@@ -271,7 +303,15 @@ final class EditorViewModel: ObservableObject {
             }
         }
         aiIssues = refreshed
-        reviewedText = text
+        blockedAISuggestionCount = result.blockedCount
+        reviewedTextFingerprints.insert(ReviewedTextFingerprint(text))
+    }
+
+    func preserveAIReview(afterApplying text: String) {
+        guard aiReview != nil else { return }
+        currentText = text
+        reviewedTextFingerprints.insert(ReviewedTextFingerprint(text))
+        refreshAIReviewIssues(in: text)
     }
 
     func focus(on issue: WritingIssue) {
@@ -311,14 +351,40 @@ final class EditorViewModel: ObservableObject {
         dismissalStore.save(dismissedSuggestions, for: currentDocumentKey)
     }
 
-    private static func makeIssues(from suggestions: [AISuggestion], in text: String) -> [WritingIssue] {
+    private func refreshAIReviewIssues(in text: String) {
+        guard let aiReview, let reviewTargetGrade else { return }
+        let result = Self.makeIssues(
+            from: aiReview.suggestions,
+            in: text,
+            targetGrade: reviewTargetGrade
+        )
+        aiIssues = result.issues
+        blockedAISuggestionCount = result.blockedCount
+    }
+
+    private static func makeIssues(
+        from suggestions: [AISuggestion],
+        in text: String,
+        targetGrade: Int
+    ) -> (issues: [WritingIssue], blockedCount: Int) {
         let source = text as NSString
-        return suggestions.compactMap { suggestion in
+        var blockedCount = 0
+        let issues = suggestions.compactMap { suggestion -> WritingIssue? in
             var range = source.range(of: suggestion.original)
             if range.location == NSNotFound {
                 range = source.range(of: suggestion.original, options: [.caseInsensitive])
             }
             guard range.location != NSNotFound else { return nil }
+            let excerpt = source.substring(with: range)
+            guard SuggestionRuleValidator.introducedCategories(
+                replacing: range,
+                in: text,
+                with: suggestion.replacement,
+                targetGrade: targetGrade
+            ).isEmpty else {
+                blockedCount += 1
+                return nil
+            }
 
             let category: IssueCategory
             switch suggestion.category.lowercased() {
@@ -330,12 +396,23 @@ final class EditorViewModel: ObservableObject {
             return WritingIssue(
                 category: category,
                 range: range,
-                excerpt: source.substring(with: range),
+                excerpt: excerpt,
                 message: suggestion.explanation,
                 replacement: suggestion.replacement,
                 source: .ai
             )
         }
+        return (issues, blockedCount)
+    }
+}
+
+private struct ReviewedTextFingerprint: Hashable {
+    let utf16Length: Int
+    let hash: Int
+
+    init(_ text: String) {
+        utf16Length = (text as NSString).length
+        hash = text.hashValue
     }
 }
 

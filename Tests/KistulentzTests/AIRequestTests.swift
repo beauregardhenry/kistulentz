@@ -215,6 +215,63 @@ final class AIRequestTests: XCTestCase {
         }
     }
 
+    @MainActor
+    func testAIReviewSurvivesKnownApplyUndoAndRedoTextStates() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            let review = #"{"summary":"Clearer.","gradeEstimate":5,"polishedText":"We moved fast.","suggestions":[{"original":"quickly","replacement":"fast","explanation":"Use a direct word.","category":"concision"}]}"#
+            let body: [String: Any] = [
+                "message": ["role": "assistant", "content": review]
+            ]
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                try JSONSerialization.data(withJSONObject: body)
+            )
+        }
+
+        let suite = "AIReviewUndoTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let settings = AppSettings(defaults: defaults)
+        settings.provider = .ollama
+        settings.ollamaModel = "local-model"
+
+        let original = "We moved quickly."
+        let accepted = "We moved fast."
+        let viewModel = EditorViewModel(service: WritingAIService(session: session))
+        viewModel.configureDocument(url: nil, text: original)
+        let request = AIRequestPreview(
+            purpose: .polish(targetGrade: 8),
+            provider: .ollama,
+            model: "local-model",
+            primaryLabel: "Markdown draft",
+            primaryText: original,
+            styleGuide: nil,
+            includesStyleGuide: false,
+            referenceContext: nil,
+            includesReferenceContext: false,
+            sourceRange: nil,
+            sourceText: original
+        )
+
+        viewModel.runAIReview(request: request, matching: original, settings: settings)
+        while viewModel.isReviewing { await Task.yield() }
+        XCTAssertNotNil(viewModel.aiReview)
+        XCTAssertEqual(viewModel.aiIssues.count, 1)
+
+        viewModel.preserveAIReview(afterApplying: accepted)
+        viewModel.scheduleAnalysis(text: original, targetGrade: 8, immediately: true)
+        XCTAssertNotNil(viewModel.aiReview)
+        XCTAssertEqual(viewModel.aiIssues.count, 1)
+
+        viewModel.scheduleAnalysis(text: accepted, targetGrade: 8, immediately: true)
+        XCTAssertNotNil(viewModel.aiReview)
+        XCTAssertTrue(viewModel.aiIssues.isEmpty)
+
+        viewModel.scheduleAnalysis(text: "A manually changed draft.", targetGrade: 8, immediately: true)
+        XCTAssertNil(viewModel.aiReview)
+    }
+
     private func mockSession() -> URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [AIRequestMockURLProtocol.self]

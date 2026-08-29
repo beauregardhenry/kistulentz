@@ -27,4 +27,15 @@ final class DocumentUndoCoordinatorTests: XCTestCase {
         undoManager.redo()
         XCTAssertEqual(text, "Revised")
     }
+
+    func testBackgroundTextViewUpdatesDoNotCreateUndoActions() {
+        let undoManager = UndoManager()
+
+        UndoRegistrationGuard.perform(on: undoManager) {
+            undoManager.registerUndo(withTarget: self) { _ in }
+        }
+
+        XCTAssertFalse(undoManager.canUndo)
+        XCTAssertTrue(undoManager.isUndoRegistrationEnabled)
+    }
 }
