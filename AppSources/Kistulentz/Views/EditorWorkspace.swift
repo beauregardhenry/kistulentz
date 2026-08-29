@@ -921,38 +921,10 @@ private struct ReadabilitySidebar: View {
                         .foregroundStyle(.green)
                 }
 
-                HStack(spacing: 14) {
-                    ZStack {
-                        Circle()
-                            .stroke(Color.secondary.opacity(0.14), lineWidth: 8)
-                        Circle()
-                            .trim(from: 0, to: CGFloat(stats.readabilityScore) / 100)
-                            .stroke(
-                                stats.gradeLevel <= Double(targetGrade) + 1 ? Color.green : Color.orange,
-                                style: StrokeStyle(lineWidth: 8, lineCap: .round)
-                            )
-                            .rotationEffect(.degrees(-90))
-                        VStack(spacing: -1) {
-                            Text(stats.gradeLevel, format: .number.precision(.fractionLength(1)))
-                                .font(.system(size: 22, weight: .bold, design: .rounded))
-                            Text("GRADE")
-                                .font(.system(size: 8, weight: .bold))
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .frame(width: 82, height: 82)
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(stats.gradeLevel <= Double(targetGrade) + 1 ? "On target" : "Revise for clarity")
-                            .font(.headline)
-                        Text("Goal: grade \(targetGrade)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        Text("Score \(stats.readabilityScore)/100")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
+                GradeComparisonCard(
+                    gradeLevel: stats.gradeLevel,
+                    targetGrade: targetGrade
+                )
 
                 HStack(spacing: 0) {
                     StatCell(value: "\(stats.words)", label: "WORDS")
@@ -996,6 +968,130 @@ private struct ReadabilitySidebar: View {
             .padding(18)
         }
         .background(Color(nsColor: .controlBackgroundColor).opacity(0.68))
+    }
+}
+
+private struct GradeComparisonCard: View {
+    let gradeLevel: Double
+    let targetGrade: Int
+
+    private let maximumGrade = 18.0
+
+    private var isOnTarget: Bool {
+        gradeLevel <= Double(targetGrade) + 1
+    }
+
+    private var statusColor: Color {
+        isOnTarget ? .green : .orange
+    }
+
+    private var statusTitle: String {
+        isOnTarget ? "On target" : "Revise for clarity"
+    }
+
+    private var differenceDescription: String {
+        let difference = gradeLevel - Double(targetGrade)
+        let magnitude = abs(difference)
+
+        guard magnitude >= 0.05 else { return "Matches target grade" }
+
+        let amount = magnitude.formatted(.number.precision(.fractionLength(1)))
+        let unit = abs(magnitude - 1) < 0.05 ? "grade" : "grades"
+        return "\(amount) \(unit) \(difference > 0 ? "above" : "below") target"
+    }
+
+    private var accessibilitySummary: String {
+        let current = gradeLevel.formatted(.number.precision(.fractionLength(1)))
+        return "Current grade \(current). Target grade \(targetGrade). \(statusTitle). \(differenceDescription)."
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline, spacing: 16) {
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(gradeLevel, format: .number.precision(.fractionLength(1)))
+                        .font(.system(size: 30, weight: .bold, design: .rounded))
+                        .monospacedDigit()
+                    Text("CURRENT GRADE")
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundStyle(.secondary)
+                        .tracking(0.6)
+                }
+
+                Spacer(minLength: 8)
+
+                VStack(alignment: .trailing, spacing: 3) {
+                    Text(statusTitle)
+                        .font(.headline)
+                        .foregroundStyle(statusColor)
+                    Text(differenceDescription)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            GeometryReader { proxy in
+                let plotWidth = max(proxy.size.width - 10, 0)
+                let currentX = 5 + plotWidth * gradeFraction(gradeLevel)
+                let targetX = 5 + plotWidth * gradeFraction(Double(targetGrade))
+
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(Color.secondary.opacity(0.18))
+                        .frame(height: 4)
+                        .position(x: proxy.size.width / 2, y: 8)
+
+                    Rectangle()
+                        .fill(Color.primary.opacity(0.7))
+                        .frame(width: 2, height: 16)
+                        .position(x: targetX, y: 8)
+
+                    Circle()
+                        .fill(statusColor)
+                        .frame(width: 10, height: 10)
+                        .overlay(Circle().stroke(Color(nsColor: .controlBackgroundColor), lineWidth: 2))
+                        .position(x: currentX, y: 8)
+                }
+            }
+            .frame(height: 16)
+
+            HStack(spacing: 12) {
+                HStack(spacing: 5) {
+                    Circle()
+                        .fill(statusColor)
+                        .frame(width: 8, height: 8)
+                    Text("Current \(gradeLevel.formatted(.number.precision(.fractionLength(1))))")
+                }
+                HStack(spacing: 5) {
+                    Rectangle()
+                        .fill(Color.primary.opacity(0.7))
+                        .frame(width: 2, height: 10)
+                    Text("Target \(targetGrade)")
+                }
+                Spacer(minLength: 0)
+            }
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+
+            HStack {
+                Text("0")
+                Spacer()
+                Text("Grade level")
+                Spacer()
+                Text("18")
+            }
+            .font(.system(size: 8, weight: .medium))
+            .foregroundStyle(.tertiary)
+        }
+        .padding(14)
+        .background(.quaternary.opacity(0.45), in: RoundedRectangle(cornerRadius: 10))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Readability grade")
+        .accessibilityValue(accessibilitySummary)
+    }
+
+    private func gradeFraction(_ grade: Double) -> CGFloat {
+        CGFloat(max(0, min(maximumGrade, grade)) / maximumGrade)
     }
 }
 
