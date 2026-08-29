@@ -38,6 +38,8 @@ final class WritingProjectStore: ObservableObject {
     private var bibleSaveTask: Task<Void, Never>?
     private var outlineSaveTask: Task<Void, Never>?
     private var manuscriptCache = ManuscriptProjectCache()
+    private var lastStructuralAnalysisAt: Date?
+    private var lastStructuralAnalysisWordCount = 0
     private var hasCapturedBibleAutomaticBaseline = false
     private var hasCapturedBibleEditingBaseline = false
     private weak var projectUndoManager: UndoManager?
@@ -100,6 +102,8 @@ final class WritingProjectStore: ObservableObject {
             manuscriptReportText = try ManuscriptProjectDisk.loadReport(at: root)
             bibleText = try ManuscriptProjectDisk.loadBible(at: root)
             manuscriptCache = try ManuscriptProjectDisk.loadCache(at: root)
+            lastStructuralAnalysisAt = nil
+            lastStructuralAnalysisWordCount = 0
             customBetaReaders = try ManuscriptProjectDisk.loadCustomBetaReaders(at: root)
             projectBibliography = try ProjectResearchDisk.load(at: root)
             researchNotesText = try String(contentsOf: ProjectResearchDisk.notesURL(at: root), encoding: .utf8)
@@ -165,6 +169,8 @@ final class WritingProjectStore: ObservableObject {
         manuscriptReportText = ""
         bibleText = ""
         manuscriptCache = ManuscriptProjectCache()
+        lastStructuralAnalysisAt = nil
+        lastStructuralAnalysisWordCount = 0
         customBetaReaders = []
         outlineNodes = []
         projectBibliography = ProjectBibliographyArchive()
@@ -1463,16 +1469,37 @@ final class WritingProjectStore: ObservableObject {
         isAnalyzingManuscript = true
         manuscriptAnalysisTask = Task { [weak self] in
             if !immediately { try? await Task.sleep(for: .milliseconds(1_400)) }
-            guard !Task.isCancelled else { return }
-            let analysis = await Task.detached(priority: .utility) {
+            guard let self, !Task.isCancelled, self.rootURL == rootURL else { return }
+            var analysis = await Task.detached(priority: .utility) {
                 ManuscriptAnalyzer.analyze(
                     projectName: manifest.name,
                     kind: manifest.kind,
                     documents: documents
                 )
             }.value
-            guard !Task.isCancelled, self?.rootURL == rootURL else { return }
-            self?.applyLocalManuscriptAnalysis(analysis)
+            let wordCount = documents.reduce(0) { partial, document in
+                partial + document.text.split { $0.isWhitespace }.count
+            }
+            let shouldRefreshStructure = immediately
+                || self.manuscriptCache.structuralProfile == nil
+                || abs(wordCount - self.lastStructuralAnalysisWordCount) >= 100
+                || self.lastStructuralAnalysisAt.map { Date().timeIntervalSince($0) >= 60 } != false
+            if shouldRefreshStructure,
+               let structure = await BeneparService.shared.analyzeIfAvailable(
+                   text: ManuscriptStructuralSampler.text(from: documents),
+                   maximumSentences: 160,
+                   includeIssues: false
+               ) {
+                guard !Task.isCancelled, self.rootURL == rootURL else { return }
+                self.manuscriptCache.structuralProfile = structure.metrics
+                self.lastStructuralAnalysisAt = Date()
+                self.lastStructuralAnalysisWordCount = wordCount
+            }
+            if let structure = self.manuscriptCache.structuralProfile {
+                analysis = ManuscriptAnalyzer.addingStructuralProfile(structure, to: analysis)
+            }
+            guard !Task.isCancelled, self.rootURL == rootURL else { return }
+            self.applyLocalManuscriptAnalysis(analysis)
         }
     }
 

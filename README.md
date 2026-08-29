@@ -24,6 +24,8 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Distraction-free Write mode and individually configurable highlight categories
 - Live reading-grade estimate, word count, sentence count, and reading time
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
+- An optional, separately installed English language pack using Benepar for local clause, phrase-depth, subordination, coordination, fragment, adverb, and passive-voice signals
+- Orange advisory sentence-structure highlights that never trigger automatic prose replacement
 - macOS spelling and grammar checking while you type
 - A target reading-grade setting
 - EPUB reference books for local style, vocabulary, tone, character, continuity, voice, and tempo analysis
@@ -34,6 +36,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - In-app corrections for titles, authors, and genres
 - Short attributed excerpts retained in per-book and combined Markdown profiles
 - Optional **Deepen w/ AI** analysis that never runs during local imports
+- Resumable, user-triggered Benepar analysis for selected books, authors, or genres, with completed profiles cached into the editable Markdown knowledge base, skipped on later missing-only runs, and combined across references
 - OpenAI Responses API, Anthropic Messages API, and local Ollama support
 - Automatic discovery of Ollama models already installed on the Mac; Kistulentz never installs Ollama or downloads models
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
@@ -94,13 +97,26 @@ Run tests with:
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sandbox
 ```
 
+### Optional English structural-analysis pack
+
+The base app always keeps its native local analysis. In **Kistulentz Settings**, an author can separately confirm installation of the large English pack. Once installed, Benepar augments live Markdown guidance, manuscript reports, and selected EPUB profiles. Analysis stays on the Mac; the pack is not an AI provider and it does not rewrite prose automatically.
+
+Language packs are architecture-specific for Apple silicon and Intel. Maintainers can build the native pack with the pinned, checksum-verified standalone Python runtime:
+
+```sh
+./scripts/fetch-benepar-python-runtime.sh "$(uname -m)"
+./scripts/build-benepar-language-pack.sh ".build/benepar-runtimes/$(uname -m)" "$(uname -m)" 1.0.0
+```
+
+The manual **Build English language packs** GitHub Actions workflow builds and validates both architectures. It only publishes the dedicated pack release when its `publish_release` input is explicitly enabled.
+
 ## API setup
 
 Open Kistulentz Settings and paste an API key for OpenAI, Anthropic, or both. Model names remain editable so the app can use models enabled for each account without requiring a new app release.
 
 For local AI, install and start Ollama separately, then choose **Detect Models** in Kistulentz Settings. Kistulentz lists models already present at Ollama's local address and does not install Ollama or download a model. Apple silicon uses Ollama's supported acceleration; Intel Macs use CPU inference and may be substantially slower for large models.
 
-Document text, manuscript reports, project Bibles, beta-reader signals, research attachments, and EPUB reference books are analyzed locally until the user chooses **Polish**, **Rewrite**, a metadata lookup, or **Deepen w/ AI**. Local imports, OCR, indexing, revision scans, and automatic manuscript updates never contact an AI provider. DOI and ISBN lookup sends only the identifier to Crossref or Open Library. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded automatically.
+Document text, manuscript reports, project Bibles, beta-reader signals, research attachments, and EPUB reference books are analyzed locally until the user chooses **Polish**, **Rewrite**, a metadata lookup, or **Deepen w/ AI**. Local imports, OCR, indexing, Benepar parsing, revision scans, and automatic manuscript updates never contact an AI provider. Installing the optional English pack downloads only its program files and model from Kistulentz’s GitHub release. DOI and ISBN lookup sends only the identifier to Crossref or Open Library. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded automatically.
 
 The chosen Reference Library folder contains `Kistulentz Library.md`, per-book profiles, combined author and genre profiles, AI insight files, and a hidden machine-readable index used for fast loading. Make metadata corrections inside Kistulentz so generated profiles remain synchronized.
 
@@ -116,7 +132,7 @@ Use the folder menu in the editor toolbar to create a project inside a chosen pa
 - `.kistulentz/outline.json` for the visual Part, Chapter, Scene or Section hierarchy and planning fields
 - `.kistulentz/history/` for persistent revision snapshots
 - `.kistulentz/style-decisions.json` for local accepted/declined preference records
-- `.kistulentz/manuscript-cache.json` for the last generated Bible baseline and requested AI report notes
+- `.kistulentz/manuscript-cache.json` for the last generated Bible baseline, cached sentence-structure profile, and requested AI report notes
 - `.kistulentz/beta-readers.json` for custom beta-reader definitions
 - `.kistulentz/bibliography.json` for project source references, quotations, claim links, and citation style
 - `.kistulentz/revisions.json` for persistent systemic findings, classifications, statuses, and goals

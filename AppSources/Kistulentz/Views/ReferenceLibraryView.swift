@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 struct ReferenceLibraryView: View {
     @EnvironmentObject private var library: ReferenceLibraryStore
     @EnvironmentObject private var settings: AppSettings
+    @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
     @Environment(\.dismiss) private var dismiss
 
     @Binding var selectedChoiceIDs: Set<String>
@@ -14,6 +15,7 @@ struct ReferenceLibraryView: View {
     @State private var search = ""
     @State private var focusedBookID: UUID?
     @State private var pendingAIRequest: AIRequestPreview?
+    @State private var showingStructureRefreshConfirmation = false
 
     var body: some View {
         Group {
@@ -41,6 +43,18 @@ struct ReferenceLibraryView: View {
                     preparedInput: confirmed.input
                 )
             }
+        }
+        .confirmationDialog(
+            "Refresh every selected structural profile?",
+            isPresented: $showingStructureRefreshConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Refresh All Profiles") {
+                library.analyzeStructure(choiceIDs: selectedChoiceIDs, refreshExisting: true)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Kistulentz will re-run the local Benepar model for all selected books. Existing cached profiles remain available until each replacement finishes.")
         }
     }
 
@@ -266,6 +280,49 @@ struct ReferenceLibraryView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(selectedChoiceIDs.isEmpty)
+            }
+
+            Divider()
+
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Local sentence structure")
+                        .font(.callout.weight(.semibold))
+                    Text(beneparPack.isInstalled
+                        ? "Analyze selected books with Benepar and cache clause, phrase, subordination, and coordination patterns."
+                        : "Install the optional English language pack in Settings to add Benepar structural profiles.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                if library.isAnalyzingStructure {
+                    VStack(alignment: .trailing, spacing: 4) {
+                        ProgressView(
+                            value: Double(library.structuralAnalysisCompleted),
+                            total: Double(max(library.structuralAnalysisTotal, 1))
+                        )
+                        .frame(width: 130)
+                        Text("\(library.structuralAnalysisCompleted)/\(library.structuralAnalysisTotal) · \(library.currentStructuralAnalysisName)")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                        Button("Cancel", action: library.cancelStructuralAnalysis)
+                            .controlSize(.small)
+                    }
+                } else {
+                    Menu {
+                        Button("Analyze Missing Profiles") {
+                            library.analyzeStructure(choiceIDs: selectedChoiceIDs)
+                        }
+                        Button("Refresh All Profiles…") {
+                            showingStructureRefreshConfirmation = true
+                        }
+                    } label: {
+                        Label("Analyze Structure", systemImage: "point.3.connected.trianglepath.dotted")
+                    }
+                    .buttonStyle(.bordered)
+                    .disabled(selectedChoiceIDs.isEmpty || !beneparPack.isInstalled)
+                }
             }
 
             Divider()

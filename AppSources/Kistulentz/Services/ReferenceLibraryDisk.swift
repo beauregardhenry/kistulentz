@@ -215,7 +215,7 @@ enum ReferenceLibraryDisk {
     }
 
     private static func profileMarkdown(_ profile: ReferenceProfile) -> String {
-        """
+        var markdown = """
         ## Learned profile
 
         - Words analyzed: \(profile.wordCount)
@@ -229,6 +229,23 @@ enum ReferenceLibraryDisk {
         - Recurring vocabulary: \(profile.vocabulary.joined(separator: ", "))
         - Character names: \(profile.characters.joined(separator: ", "))
         """
+        if let structure = profile.structuralProfile {
+            markdown += """
+
+
+            ### Benepar sentence structure
+
+            - Sentences analyzed: \(structure.sentencesAnalyzed)\(structure.isSampled ? " of \(structure.sentencesAvailable) available" : "")
+            - Average parse depth: \(structure.averageTreeDepth.formatted(.number.precision(.fractionLength(1))))
+            - Average clauses per sentence: \(structure.averageClausesPerSentence.formatted(.number.precision(.fractionLength(1))))
+            - Sentences using subordination: \((structure.subordinateSentenceRatio * 100).formatted(.number.precision(.fractionLength(0))))%
+            - Average longest noun phrase: \(structure.averageLongestNounPhraseWords.formatted(.number.precision(.fractionLength(1)))) words
+            - Sentences using coordination: \((structure.coordinationRatio * 100).formatted(.number.precision(.fractionLength(0))))%
+
+            These locally derived syntax signals describe patterns, not errors or instructions to imitate distinctive prose.
+            """
+        }
+        return markdown
     }
 
     private static func writeManagedFiles(_ files: [String: String], directory: URL) throws {

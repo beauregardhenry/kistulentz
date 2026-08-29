@@ -1,0 +1,76 @@
+name: Build English language packs
+
+on:
+  workflow_dispatch:
+    inputs:
+      pack_version:
+        description: Language-pack version
+        required: true
+        default: 1.0.0
+      publish_release:
+        description: Publish assets to the language-pack-en-v1 release
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: arm64
+            runner: macos-15
+          - architecture: x86_64
+            runner: macos-15-intel
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch verified standalone Python
+        run: ./scripts/fetch-benepar-python-runtime.sh "${{ matrix.architecture }}"
+      - name: Build and validate pack offline
+        run: ./scripts/build-benepar-language-pack.sh ".build/benepar-runtimes/${{ matrix.architecture }}" "${{ matrix.architecture }}" "${{ inputs.pack_version }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benepar-${{ matrix.architecture }}
+          path: dist/language-packs/Kistulentz-English-Language-Pack-${{ inputs.pack_version }}-${{ matrix.architecture }}.zip
+          if-no-files-found: error
+
+  catalog:
+    needs: build
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: benepar-*
+          path: dist/language-packs
+          merge-multiple: true
+      - name: Create checksum-pinned catalog
+        run: ./scripts/create-benepar-catalog.sh "${{ inputs.pack_version }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Kistulentz-English-Language-Packs-${{ inputs.pack_version }}
+          path: dist/language-packs/*
+          if-no-files-found: error
+  publish:
+    if: ${{ inputs.publish_release }}
+    needs: catalog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Kistulentz-English-Language-Packs-${{ inputs.pack_version }}
+          path: dist/language-packs
+      - name: Publish dedicated language-pack release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view language-pack-en-v1 --repo "${{ github.repository }}" >/dev/null 2>&1 || \
+            gh release create language-pack-en-v1 --repo "${{ github.repository }}" --title "Kistulentz English Language Pack 1" --notes "Optional local English structural analysis for Kistulentz."
+          gh release upload language-pack-en-v1 dist/language-packs/* --repo "${{ github.repository }}" --clobber

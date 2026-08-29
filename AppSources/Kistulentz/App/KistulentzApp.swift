@@ -4,6 +4,7 @@ import SwiftUI
 @main
 struct KistulentzApp: App {
     @StateObject private var settings = AppSettings()
+    @StateObject private var beneparPack = BeneparLanguagePackManager()
     @StateObject private var referenceLibrary = ReferenceLibraryStore()
     @StateObject private var researchLibrary = ResearchLibraryStore()
 
@@ -11,6 +12,7 @@ struct KistulentzApp: App {
         DocumentGroup(newDocument: MarkdownDocument()) { file in
             EditorWorkspace(document: file.$document, fileURL: file.fileURL)
                 .environmentObject(settings)
+                .environmentObject(beneparPack)
                 .environmentObject(referenceLibrary)
                 .environmentObject(researchLibrary)
                 .frame(minWidth: 1_120, minHeight: 680)
@@ -36,6 +38,7 @@ struct KistulentzApp: App {
         Settings {
             SettingsView()
                 .environmentObject(settings)
+                .environmentObject(beneparPack)
                 .frame(width: 540)
         }
     }

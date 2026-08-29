@@ -92,6 +92,8 @@ struct EditorWorkspace: View {
                         stats: viewModel.analysis.stats,
                         issues: visibleLocalHighlightIssues,
                         targetGrade: settings.targetGrade,
+                        isUsingBenepar: viewModel.isUsingBenepar,
+                        isAnalyzingStructure: viewModel.isAnalyzingStructure,
                         onSelect: viewModel.focus
                     )
                     .frame(minWidth: 205, idealWidth: 225, maxWidth: 260)
@@ -883,10 +885,12 @@ private struct ReadabilitySidebar: View {
     let stats: WritingStats
     let issues: [WritingIssue]
     let targetGrade: Int
+    let isUsingBenepar: Bool
+    let isAnalyzingStructure: Bool
     let onSelect: (WritingIssue) -> Void
 
     private let categories: [IssueCategory] = [
-        .adverb, .passiveVoice, .complexPhrase, .hardSentence, .veryHardSentence
+        .adverb, .passiveVoice, .structuralComplexity, .complexPhrase, .hardSentence, .veryHardSentence
     ]
 
     var body: some View {
@@ -900,6 +904,19 @@ private struct ReadabilitySidebar: View {
                     Text("Make every sentence earn its place.")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(.secondary)
+                }
+
+                if isAnalyzingStructure {
+                    HStack(spacing: 7) {
+                        ProgressView().controlSize(.small)
+                        Text("Checking sentence structure locally…")
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                } else if isUsingBenepar {
+                    Label("Benepar structural analysis active", systemImage: "checkmark.circle.fill")
+                        .font(.caption)
+                        .foregroundStyle(.green)
                 }
 
                 HStack(spacing: 14) {

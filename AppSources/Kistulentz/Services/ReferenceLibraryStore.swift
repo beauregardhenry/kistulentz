@@ -9,6 +9,10 @@ final class ReferenceLibraryStore: ObservableObject {
     @Published private(set) var isImporting = false
     @Published private(set) var isSaving = false
     @Published private(set) var isDeepening = false
+    @Published private(set) var isAnalyzingStructure = false
+    @Published private(set) var structuralAnalysisCompleted = 0
+    @Published private(set) var structuralAnalysisTotal = 0
+    @Published private(set) var currentStructuralAnalysisName = ""
     @Published private(set) var importCompleted = 0
     @Published private(set) var importTotal = 0
     @Published private(set) var importFailures: [String] = []
@@ -20,6 +24,7 @@ final class ReferenceLibraryStore: ObservableObject {
     private var importTask: Task<Void, Never>?
     private var saveTask: Task<Void, Never>?
     private var deepeningTask: Task<Void, Never>?
+    private var structuralAnalysisTask: Task<Void, Never>?
     private let deepeningService = ReferenceDeepeningService()
     private let persistence = ReferenceLibraryPersistence()
 
@@ -202,6 +207,79 @@ final class ReferenceLibraryStore: ObservableObject {
         persist(regenerateKnowledgeBase: true)
     }
 
+    func analyzeStructure(choiceIDs: Set<String>, refreshExisting: Bool = false) {
+        let selectedIDs = selectedBookIDs(for: choiceIDs)
+        guard !selectedIDs.isEmpty else {
+            errorMessage = "Select at least one book, author, or genre to analyze."
+            return
+        }
+        let requestedIDs = refreshExisting
+            ? selectedIDs
+            : selectedIDs.filter { id in
+                books.first(where: { $0.id == id })?.profile.structuralProfile == nil
+            }
+        guard !requestedIDs.isEmpty else {
+            errorMessage = "Every selected reference already has a cached Benepar profile. Choose Refresh All Profiles if you want to rebuild them."
+            return
+        }
+        do {
+            guard try BeneparLanguagePackLocator.locate() != nil else {
+                errorMessage = "Install the English structural-analysis pack in Settings first."
+                return
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+            return
+        }
+
+        structuralAnalysisTask?.cancel()
+        isAnalyzingStructure = true
+        structuralAnalysisCompleted = 0
+        structuralAnalysisTotal = requestedIDs.count
+        currentStructuralAnalysisName = "Preparing selected references…"
+        errorMessage = nil
+
+        structuralAnalysisTask = Task { [weak self] in
+            guard let self else { return }
+            for id in requestedIDs {
+                guard !Task.isCancelled,
+                      let book = self.books.first(where: { $0.id == id }) else { continue }
+                self.currentStructuralAnalysisName = book.title
+                let analysis = await BeneparService.shared.analyzeIfAvailable(
+                    text: ReferenceStructuralSampler.text(from: book.excerpts),
+                    maximumSentences: 60,
+                    includeIssues: false,
+                    waitForAvailability: true
+                )
+                guard !Task.isCancelled else { break }
+                guard let analysis else {
+                    self.errorMessage = "Benepar could not finish \(book.title). Native reference analysis remains available."
+                    break
+                }
+                if let index = self.books.firstIndex(where: { $0.id == id }) {
+                    self.books[index].profile = self.books[index].profile.addingStructuralProfile(analysis.metrics)
+                    self.books[index].updatedAt = Date()
+                }
+                self.structuralAnalysisCompleted += 1
+                if self.structuralAnalysisCompleted.isMultiple(of: 25), let root = self.rootURL {
+                    let snapshot = ReferenceLibraryIndex(books: self.books, insights: self.insights)
+                    try? ReferenceLibraryDisk.saveIndex(snapshot, to: root)
+                }
+            }
+            self.isAnalyzingStructure = false
+            self.currentStructuralAnalysisName = ""
+            self.persist(regenerateKnowledgeBase: true)
+        }
+    }
+
+    func cancelStructuralAnalysis() {
+        structuralAnalysisTask?.cancel()
+        structuralAnalysisTask = nil
+        isAnalyzingStructure = false
+        currentStructuralAnalysisName = ""
+        persist(regenerateKnowledgeBase: true)
+    }
+
     func reference(for choiceIDs: Set<String>) -> EPUBReference? {
         let selectedChoices = LibraryReferenceKind.allCases.flatMap { choices(kind: $0) }
             .filter { choiceIDs.contains($0.id) }
@@ -247,6 +325,13 @@ final class ReferenceLibraryStore: ObservableObject {
             learnedInsights: relevantInsights.isEmpty ? nil : relevantInsights,
             sourceCount: selectedBooks.count
         )
+    }
+
+    private func selectedBookIDs(for choiceIDs: Set<String>) -> [UUID] {
+        let selectedChoices = LibraryReferenceKind.allCases.flatMap { choices(kind: $0) }
+            .filter { choiceIDs.contains($0.id) }
+        let selected = Set(selectedChoices.flatMap(\.bookIDs))
+        return books.map(\.id).filter { selected.contains($0) }
     }
 
     func deepen(choiceIDs: Set<String>, settings: AppSettings, preparedInput: String? = nil) {

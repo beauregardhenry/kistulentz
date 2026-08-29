@@ -23,6 +23,8 @@ To build the universal Mac application:
 ./scripts/build-app.sh
 ```
 
+The optional Benepar language pack is deliberately separate from the application. Its Python runtime, dependency versions, model, architecture, license files, archive size, and SHA-256 checksum must remain reproducible and pinned. Use the manual **Build English language packs** workflow to validate both Apple-silicon and Intel packs; leave publishing disabled for test builds.
+
 Changes that affect project metadata should include compatibility tests. Changes that can alter prose should preserve normal macOS Undo, create the appropriate project snapshot, and never overwrite manuscript Markdown without explicit author approval.
 
 ## Pull requests

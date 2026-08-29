@@ -6,6 +6,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
     case veryHardSentence
     case adverb
     case passiveVoice
+    case structuralComplexity
     case complexPhrase
     case spelling
     case grammar
@@ -21,6 +22,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .veryHardSentence: "Very hard to read"
         case .adverb: "Adverb"
         case .passiveVoice: "Passive voice"
+        case .structuralComplexity: "Sentence structure"
         case .complexPhrase: "Simpler alternative"
         case .spelling: "Spelling"
         case .grammar: "Grammar"
@@ -36,6 +38,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .veryHardSentence: "Very hard"
         case .adverb: "Adverbs"
         case .passiveVoice: "Passive"
+        case .structuralComplexity: "Structure"
         case .complexPhrase: "Phrases"
         case .spelling: "Spelling"
         case .grammar: "Grammar"
@@ -51,6 +54,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .veryHardSentence: Color(red: 0.93, green: 0.35, blue: 0.31)
         case .adverb: Color(red: 0.34, green: 0.63, blue: 0.95)
         case .passiveVoice: Color(red: 0.34, green: 0.76, blue: 0.55)
+        case .structuralComplexity: Color(red: 0.96, green: 0.50, blue: 0.22)
         case .complexPhrase: Color(red: 0.70, green: 0.48, blue: 0.91)
         case .spelling: Color(red: 0.92, green: 0.27, blue: 0.32)
         case .grammar: Color(red: 0.25, green: 0.68, blue: 0.85)

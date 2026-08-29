@@ -161,6 +161,8 @@ private extension IssueCategory {
             NSColor.systemBlue.withAlphaComponent(0.20)
         case .passiveVoice:
             NSColor.systemGreen.withAlphaComponent(0.22)
+        case .structuralComplexity:
+            NSColor.systemOrange.withAlphaComponent(0.20)
         case .complexPhrase:
             NSColor.systemPurple.withAlphaComponent(0.20)
         case .spelling:

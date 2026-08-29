@@ -3,6 +3,9 @@ import Foundation
 @MainActor
 final class EditorViewModel: ObservableObject {
     @Published private(set) var analysis = AnalysisResult.empty
+    @Published private(set) var structuralProfile: StructuralProfile?
+    @Published private(set) var isUsingBenepar = false
+    @Published private(set) var isAnalyzingStructure = false
     @Published private(set) var aiReview: AIReview?
     @Published private(set) var aiIssues: [WritingIssue] = []
     @Published private(set) var referenceBook: EPUBReference?
@@ -16,6 +19,7 @@ final class EditorViewModel: ObservableObject {
     @Published var focusRequest: FocusRequest?
 
     private var analysisTask: Task<Void, Never>?
+    private var analysisRequestID = UUID()
     private var reviewTask: Task<Void, Never>?
     private var rewriteTask: Task<Void, Never>?
     private var referenceTask: Task<Void, Never>?
@@ -91,16 +95,45 @@ final class EditorViewModel: ObservableObject {
             self.reviewedText = nil
         }
         analysisTask?.cancel()
+        isAnalyzingStructure = false
+        let requestID = UUID()
+        analysisRequestID = requestID
         analysisTask = Task { [weak self] in
             if !immediately {
                 try? await Task.sleep(for: .milliseconds(220))
             }
-            guard !Task.isCancelled else { return }
+            guard let self, !Task.isCancelled, self.analysisRequestID == requestID else { return }
             let result = ReadabilityEngine.analyze(text, targetGrade: targetGrade)
-            let alignment = self?.referenceBook.map { ReferenceComparison.analyze(draft: text, against: $0) } ?? .empty
-            guard !Task.isCancelled else { return }
-            self?.analysis = result
-            self?.referenceAlignment = alignment
+            let alignment = self.referenceBook.map { ReferenceComparison.analyze(draft: text, against: $0) } ?? .empty
+            self.analysis = result
+            self.referenceAlignment = alignment
+            self.structuralProfile = nil
+            self.isUsingBenepar = false
+
+            if !immediately {
+                try? await Task.sleep(for: .milliseconds(430))
+            }
+            guard !Task.isCancelled, self.analysisRequestID == requestID, self.currentText == text else { return }
+            self.isAnalyzingStructure = true
+            let parsed = await BeneparService.shared.analyzeIfAvailable(
+                text: text,
+                maximumSentences: 60,
+                includeIssues: true,
+                waitForAvailability: true
+            )
+            guard !Task.isCancelled, self.analysisRequestID == requestID, self.currentText == text else { return }
+            self.isAnalyzingStructure = false
+            guard let parsed else { return }
+            self.structuralProfile = parsed.metrics
+            self.isUsingBenepar = true
+            self.analysis = BeneparAnalysisMerger.merge(native: result, benepar: parsed)
+            self.referenceAlignment = self.referenceBook.map {
+                ReferenceComparison.analyze(
+                    draft: text,
+                    against: $0,
+                    draftStructure: parsed.metrics
+                )
+            } ?? .empty
         }
     }
 
@@ -116,8 +149,20 @@ final class EditorViewModel: ObservableObject {
             guard let self, !Task.isCancelled else { return }
             switch result {
             case .success(let reference):
-                self.referenceBook = reference
-                self.referenceAlignment = ReferenceComparison.analyze(draft: draft, against: reference)
+                let structure = await BeneparService.shared.analyzeIfAvailable(
+                    text: ReferenceStructuralSampler.text(from: reference),
+                    maximumSentences: 80,
+                    includeIssues: false,
+                    waitForAvailability: true
+                )
+                guard !Task.isCancelled else { return }
+                let enriched = reference.addingStructuralProfile(structure?.metrics)
+                self.referenceBook = enriched
+                self.referenceAlignment = ReferenceComparison.analyze(
+                    draft: draft,
+                    against: enriched,
+                    draftStructure: self.structuralProfile
+                )
                 self.isLoadingReference = false
                 self.clearAIReview()
             case .failure(let error):
