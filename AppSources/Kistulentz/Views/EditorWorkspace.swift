@@ -428,6 +428,7 @@ struct EditorWorkspace: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
             .help(projectStore.isOpen ? projectStore.projectName : "Projects")
+            .accessibilityLabel(projectStore.isOpen ? "Project: \(projectStore.projectName)" : "Projects")
 
             VStack(alignment: .leading, spacing: 1) {
                 Text(activeFileURL?.lastPathComponent ?? "Untitled.md")
@@ -468,6 +469,7 @@ struct EditorWorkspace: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
             .help(isWriteMode ? "Exit Write Mode" : "Writing view and highlights")
+            .accessibilityLabel(isWriteMode ? "Exit Write Mode" : "Writing view and highlights")
 
             Menu {
                 ForEach(AIProvider.allCases) { provider in
@@ -1059,6 +1061,7 @@ private struct ReviewSidebar: View {
                 .buttonStyle(.borderless)
                 .disabled(isReviewing || !hasAPIKey)
                 .help("Run a new AI review")
+                .accessibilityLabel("Run a new AI review")
             }
             .padding(16)
 

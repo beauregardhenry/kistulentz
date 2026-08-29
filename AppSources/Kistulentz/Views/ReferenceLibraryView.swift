@@ -244,6 +244,8 @@ struct ReferenceLibraryView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 ProgressView(value: Double(library.importCompleted), total: Double(max(library.importTotal, 1)))
+                    .accessibilityLabel("EPUB import progress")
+                    .accessibilityValue("\(library.importCompleted) of \(library.importTotal)")
                 Text("\(library.importCompleted)/\(library.importTotal)")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
@@ -254,6 +256,9 @@ struct ReferenceLibraryView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
+            Text("Each completed EPUB is checkpointed. Reimport the same selection after reopening to resume and skip unchanged books.")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
         }
         .padding(14)
         .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
@@ -302,10 +307,15 @@ struct ReferenceLibraryView: View {
                             total: Double(max(library.structuralAnalysisTotal, 1))
                         )
                         .frame(width: 130)
+                        .accessibilityLabel("Reference structure analysis progress")
+                        .accessibilityValue("\(library.structuralAnalysisCompleted) of \(library.structuralAnalysisTotal)")
                         Text("\(library.structuralAnalysisCompleted)/\(library.structuralAnalysisTotal) · \(library.currentStructuralAnalysisName)")
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                             .lineLimit(1)
+                        Text("Completed profiles are checkpointed")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
                         Button("Cancel", action: library.cancelStructuralAnalysis)
                             .controlSize(.small)
                     }

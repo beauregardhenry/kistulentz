@@ -18,14 +18,7 @@ struct KistulentzApp: App {
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
-            CommandGroup(after: .appInfo) {
-                Button("View Kistulentz License") {
-                    KistulentzLegal.openLicense()
-                }
-                Button("Kistulentz Source Code") {
-                    KistulentzLegal.openSourceCode()
-                }
-            }
+            KistulentzSupportCommands()
             CommandGroup(after: .textEditing) {
                 Divider()
                 Button("Run AI Review") {
@@ -39,7 +32,35 @@ struct KistulentzApp: App {
             SettingsView()
                 .environmentObject(settings)
                 .environmentObject(beneparPack)
+                .environmentObject(referenceLibrary)
                 .frame(width: 540)
+        }
+
+        Window("Kistulentz System Check", id: "system-check") {
+            SystemCheckView()
+                .environmentObject(settings)
+                .environmentObject(beneparPack)
+                .environmentObject(referenceLibrary)
+        }
+        .defaultSize(width: 700, height: 620)
+    }
+}
+
+private struct KistulentzSupportCommands: Commands {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some Commands {
+        CommandGroup(after: .appInfo) {
+            Button("Kistulentz System Check…") {
+                openWindow(id: "system-check")
+            }
+            Divider()
+            Button("View Kistulentz License") {
+                KistulentzLegal.openLicense()
+            }
+            Button("Kistulentz Source Code") {
+                KistulentzLegal.openSourceCode()
+            }
         }
     }
 }

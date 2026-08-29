@@ -31,6 +31,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - EPUB reference books for local style, vocabulary, tone, character, continuity, voice, and tempo analysis
 - Live local comparison between the Markdown draft and the selected EPUB
 - A user-chosen Markdown Reference Library designed for thousands of EPUB files
+- Per-book recovery checkpoints that preserve completed bulk EPUB and structural-analysis work across interruption or relaunch
 - Individual EPUB and recursive folder imports with unchanged-file skipping
 - Combined profiles by book, author, and genre, with overlapping selections deduplicated
 - In-app corrections for titles, authors, and genres
@@ -71,6 +72,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - No-bleed and 0.125-inch outside-bleed print PDFs with MediaBox, TrimBox, and BleedBox data, no gutter bleed, and no printer marks
 - Automatic EPUBCheck execution when its command-line tool is already installed, with local detection of Kindle Previewer and Apple Transporter
 - Shareable publication diagnostics that exclude manuscript prose and excerpts
+- An in-app, local-only System Check with an explicitly exported privacy-safe diagnostic report
 - Project-local publication profiles, setup, assets, checksums, and export history; finished publications go only to a folder chosen by the author
 - A complete polished Markdown revision with a confirmation step before replacement
 - API keys stored in the macOS Keychain
@@ -96,6 +98,15 @@ Run tests with:
 ```sh
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test --disable-sandbox
 ```
+
+Before sharing a release candidate, build its ZIP and DMG and run the local integrity checks:
+
+```sh
+./scripts/package-release.sh
+./scripts/verify-release.sh dist/Kistulentz.app --release-assets
+```
+
+Maintainers can also run the manual **Test release candidate** GitHub Actions workflow. It tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing a release.
 
 ### Optional English structural-analysis pack
 

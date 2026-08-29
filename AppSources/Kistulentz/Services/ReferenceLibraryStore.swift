@@ -22,9 +22,11 @@ final class ReferenceLibraryStore: ObservableObject {
     private static let locationKey = "referenceLibraryFolder"
     private let defaults: UserDefaults
     private var importTask: Task<Void, Never>?
+    private var importOperationID: UUID?
     private var saveTask: Task<Void, Never>?
     private var deepeningTask: Task<Void, Never>?
     private var structuralAnalysisTask: Task<Void, Never>?
+    private var structuralAnalysisOperationID: UUID?
     private let deepeningService = ReferenceDeepeningService()
     private let persistence = ReferenceLibraryPersistence()
 
@@ -116,6 +118,8 @@ final class ReferenceLibraryStore: ObservableObject {
             return
         }
         importTask?.cancel()
+        let operationID = UUID()
+        importOperationID = operationID
         isImporting = true
         importCompleted = 0
         importTotal = 0
@@ -128,10 +132,12 @@ final class ReferenceLibraryStore: ObservableObject {
             let discovered = await Task.detached(priority: .userInitiated) {
                 Self.discoverEPUBs(in: urls)
             }.value
-            guard !Task.isCancelled else { return }
+            guard !Task.isCancelled, self.importOperationID == operationID else { return }
             self.importTotal = discovered.count
 
             if discovered.isEmpty {
+                self.importOperationID = nil
+                self.importTask = nil
                 self.isImporting = false
                 self.currentImportName = ""
                 self.errorMessage = "No EPUB files were found in that selection."
@@ -139,7 +145,7 @@ final class ReferenceLibraryStore: ObservableObject {
             }
 
             for url in discovered {
-                guard !Task.isCancelled else { break }
+                guard !Task.isCancelled, self.importOperationID == operationID else { return }
                 self.currentImportName = url.lastPathComponent
                 let standardizedPath = url.standardizedFileURL.path
                 let existing = self.books.first(where: { $0.sourcePath == standardizedPath })
@@ -174,7 +180,7 @@ final class ReferenceLibraryStore: ObservableObject {
                     }
                 }.value
 
-                guard !Task.isCancelled else { break }
+                guard !Task.isCancelled, self.importOperationID == operationID else { return }
                 switch result {
                 case .success(let book):
                     if let position = self.books.firstIndex(where: { $0.id == book.id }) {
@@ -182,17 +188,23 @@ final class ReferenceLibraryStore: ObservableObject {
                     } else {
                         self.books.append(book)
                     }
+                    if let root = self.rootURL {
+                        do {
+                            try await self.persistence.checkpoint(book, to: root)
+                        } catch {
+                            self.errorMessage = "Imported work could not be checkpointed: \(error.localizedDescription)"
+                        }
+                    }
                 case .failure(let error):
                     self.importFailures.append("\(url.lastPathComponent): \(error.localizedDescription)")
                 }
                 self.importCompleted += 1
 
-                if self.importCompleted.isMultiple(of: 25), let root = self.rootURL {
-                    let snapshot = ReferenceLibraryIndex(books: self.books, insights: self.insights)
-                    try? ReferenceLibraryDisk.saveIndex(snapshot, to: root)
-                }
             }
 
+            guard self.importOperationID == operationID else { return }
+            self.importOperationID = nil
+            self.importTask = nil
             self.isImporting = false
             self.currentImportName = ""
             self.persist(regenerateKnowledgeBase: true)
@@ -202,6 +214,7 @@ final class ReferenceLibraryStore: ObservableObject {
     func cancelImport() {
         importTask?.cancel()
         importTask = nil
+        importOperationID = nil
         isImporting = false
         currentImportName = ""
         persist(regenerateKnowledgeBase: true)
@@ -233,6 +246,8 @@ final class ReferenceLibraryStore: ObservableObject {
         }
 
         structuralAnalysisTask?.cancel()
+        let operationID = UUID()
+        structuralAnalysisOperationID = operationID
         isAnalyzingStructure = true
         structuralAnalysisCompleted = 0
         structuralAnalysisTotal = requestedIDs.count
@@ -243,7 +258,8 @@ final class ReferenceLibraryStore: ObservableObject {
             guard let self else { return }
             for id in requestedIDs {
                 guard !Task.isCancelled,
-                      let book = self.books.first(where: { $0.id == id }) else { continue }
+                      self.structuralAnalysisOperationID == operationID else { return }
+                guard let book = self.books.first(where: { $0.id == id }) else { continue }
                 self.currentStructuralAnalysisName = book.title
                 let analysis = await BeneparService.shared.analyzeIfAvailable(
                     text: ReferenceStructuralSampler.text(from: book.excerpts),
@@ -251,7 +267,7 @@ final class ReferenceLibraryStore: ObservableObject {
                     includeIssues: false,
                     waitForAvailability: true
                 )
-                guard !Task.isCancelled else { break }
+                guard !Task.isCancelled, self.structuralAnalysisOperationID == operationID else { return }
                 guard let analysis else {
                     self.errorMessage = "Benepar could not finish \(book.title). Native reference analysis remains available."
                     break
@@ -259,13 +275,19 @@ final class ReferenceLibraryStore: ObservableObject {
                 if let index = self.books.firstIndex(where: { $0.id == id }) {
                     self.books[index].profile = self.books[index].profile.addingStructuralProfile(analysis.metrics)
                     self.books[index].updatedAt = Date()
+                    if let root = self.rootURL {
+                        do {
+                            try await self.persistence.checkpoint(self.books[index], to: root)
+                        } catch {
+                            self.errorMessage = "Structural-analysis work could not be checkpointed: \(error.localizedDescription)"
+                        }
+                    }
                 }
                 self.structuralAnalysisCompleted += 1
-                if self.structuralAnalysisCompleted.isMultiple(of: 25), let root = self.rootURL {
-                    let snapshot = ReferenceLibraryIndex(books: self.books, insights: self.insights)
-                    try? ReferenceLibraryDisk.saveIndex(snapshot, to: root)
-                }
             }
+            guard self.structuralAnalysisOperationID == operationID else { return }
+            self.structuralAnalysisOperationID = nil
+            self.structuralAnalysisTask = nil
             self.isAnalyzingStructure = false
             self.currentStructuralAnalysisName = ""
             self.persist(regenerateKnowledgeBase: true)
@@ -275,6 +297,7 @@ final class ReferenceLibraryStore: ObservableObject {
     func cancelStructuralAnalysis() {
         structuralAnalysisTask?.cancel()
         structuralAnalysisTask = nil
+        structuralAnalysisOperationID = nil
         isAnalyzingStructure = false
         currentStructuralAnalysisName = ""
         persist(regenerateKnowledgeBase: true)
@@ -490,6 +513,10 @@ final class ReferenceLibraryStore: ObservableObject {
 }
 
 private actor ReferenceLibraryPersistence {
+    func checkpoint(_ book: LibraryBook, to root: URL) throws {
+        try ReferenceLibraryDisk.appendRecoveryCheckpoint(book, at: root)
+    }
+
     func save(
         _ index: ReferenceLibraryIndex,
         to root: URL,

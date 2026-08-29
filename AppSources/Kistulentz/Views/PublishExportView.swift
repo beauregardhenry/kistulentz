@@ -258,6 +258,8 @@ struct PublishExportView: View {
                                 if item.hasAuthorEdits { Text("Author edited").font(.caption).foregroundStyle(.orange) }
                                 Toggle(isOn: $item.isLocked) { Image(systemName: item.isLocked ? "lock.fill" : "lock.open") }
                                     .toggleStyle(.button).help(item.isLocked ? "Unlock this page" : "Lock this page")
+                                    .accessibilityLabel(item.isLocked ? "Unlock \(item.title)" : "Lock \(item.title)")
+                                    .accessibilityHint("Locked generated matter is preserved when publication matter is regenerated.")
                             }
                         }
                         .padding(12)

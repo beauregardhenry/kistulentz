@@ -28,12 +28,12 @@ jobs:
             runner: macos-15-intel
     runs-on: ${{ matrix.runner }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Fetch verified standalone Python
         run: ./scripts/fetch-benepar-python-runtime.sh "${{ matrix.architecture }}"
       - name: Build and validate pack offline
         run: ./scripts/build-benepar-language-pack.sh ".build/benepar-runtimes/${{ matrix.architecture }}" "${{ matrix.architecture }}" "${{ inputs.pack_version }}"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: benepar-${{ matrix.architecture }}
           path: dist/language-packs/Kistulentz-English-Language-Pack-${{ inputs.pack_version }}-${{ matrix.architecture }}.zip
@@ -43,15 +43,15 @@ jobs:
     needs: build
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v8
         with:
           pattern: benepar-*
           path: dist/language-packs
           merge-multiple: true
       - name: Create checksum-pinned catalog
         run: ./scripts/create-benepar-catalog.sh "${{ inputs.pack_version }}"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Kistulentz-English-Language-Packs-${{ inputs.pack_version }}
           path: dist/language-packs/*
@@ -63,7 +63,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: Kistulentz-English-Language-Packs-${{ inputs.pack_version }}
           path: dist/language-packs

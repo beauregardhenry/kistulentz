@@ -47,6 +47,8 @@ struct MarkdownTextView: NSViewRepresentable {
         textView.isAutomaticQuoteSubstitutionEnabled = false
         textView.isAutomaticDashSubstitutionEnabled = false
         textView.string = text
+        textView.setAccessibilityLabel("Markdown editor")
+        textView.setAccessibilityHelp("Edit the current Markdown document. Kistulentz highlights writing suggestions in this text area.")
 
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineSpacing = 7

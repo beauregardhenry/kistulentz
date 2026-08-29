@@ -5,19 +5,20 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.9.2 FRIEND PREVIEW
-- Select one or several publication destinations independently from the book's
-  layout profile: EPUB 3.3, Apple Books, Kindle, KDP Print, IngramSpark eBook,
-  and IngramSpark Print.
-- Destination-aware preflight distinguishes what passed locally from what still
-  needs action, an external validator, or human review.
-- Every export creates a submission folder with the publication, separate cover
-  when supplied, checksums, a package manifest, and Markdown and PDF readiness
-  reports. Shareable diagnostics omit manuscript prose and excerpts.
-- Print export supports no bleed or 0.125-inch top, bottom, and outside bleed,
-  with proper PDF page boxes and no gutter bleed or printer marks.
-- Kistulentz runs EPUBCheck when its command-line tool is already installed and
-  detects Kindle Previewer and Apple Transporter without bundling them.
+NEW IN 0.9.4 FRIEND PREVIEW
+- Kistulentz System Check verifies Markdown document support, local writing
+  analysis, optional AI and language-pack readiness, the Reference Library, and
+  publishing tools without contacting OpenAI or Anthropic.
+- A diagnostic Markdown report is exported only when you choose. It excludes
+  writing, EPUB excerpts, titles, filenames, paths, keys, accounts, and model
+  names.
+- Every completed bulk EPUB import and Benepar reference profile receives a
+  hidden recovery checkpoint. Reimporting the same selection after reopening
+  skips unchanged books and resumes outstanding work.
+- VoiceOver labels now cover the Markdown editor, primary project tools,
+  suggestion refresh, progress indicators, and publication-matter locks.
+- Release candidates receive native Apple-silicon and Intel tests plus universal
+  package, signature, Markdown-file, archive, disk-image, and checksum checks.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
@@ -80,7 +81,12 @@ synopsis unless the author explicitly chooses to use one.
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
 hidden index used to reopen large libraries quickly. Folder and EPUB imports do
-not contact OpenAI, Anthropic, or Ollama.
+not contact OpenAI, Anthropic, or Ollama. Completed imports and optional Benepar
+profiles are checkpointed after each book so completed work survives interruption.
+
+Kistulentz System Check runs locally from the application menu. Its diagnostic
+report stays in the app unless you explicitly export it, and it never includes
+manuscript text, reference excerpts, filenames, paths, API keys, or account data.
 
 Kistulentz shows a request preview before Polish, Rewrite, or Deepen w/ AI. This
 includes requested manuscript-report, Bible, beta-reader, and outline-synopsis

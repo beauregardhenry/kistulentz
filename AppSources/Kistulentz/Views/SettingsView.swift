@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.openWindow) private var openWindow
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
     @State private var openAIKey = ""
@@ -24,6 +25,15 @@ struct SettingsView: View {
                 Text("Kistulentz adjusts sentence-length guidance and asks the selected AI provider to rewrite toward this level.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+            }
+
+            Section("System Check & Support") {
+                Text("Check Markdown file support, local analysis, optional language packs and AI, the Reference Library, and publishing tools without sending writing anywhere.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Button("Open Kistulentz System Check…") {
+                    openWindow(id: "system-check")
+                }
             }
 
             Section("English structural analysis · local") {
