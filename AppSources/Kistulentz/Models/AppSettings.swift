@@ -36,6 +36,80 @@ enum AIProvider: String, CaseIterable, Identifiable {
     var isLocal: Bool { self == .ollama }
 }
 
+struct AIModelChoice: Identifiable, Equatable {
+    let id: String
+    let name: String
+    let summary: String
+    let isRecommended: Bool
+
+    var menuTitle: String {
+        let recommendation = isRecommended ? " · Recommended" : ""
+        return "\(name) — \(summary)\(recommendation)"
+    }
+}
+
+enum AIModelCatalog {
+    static let openAI: [AIModelChoice] = [
+        AIModelChoice(
+            id: "gpt-5.6-terra",
+            name: "GPT-5.6 Terra",
+            summary: "Balanced quality and cost",
+            isRecommended: true
+        ),
+        AIModelChoice(
+            id: "gpt-5.6-sol",
+            name: "GPT-5.6 Sol",
+            summary: "Highest quality",
+            isRecommended: false
+        ),
+        AIModelChoice(
+            id: "gpt-5.6-luna",
+            name: "GPT-5.6 Luna",
+            summary: "Fastest and lowest cost",
+            isRecommended: false
+        )
+    ]
+
+    static let anthropic: [AIModelChoice] = [
+        AIModelChoice(
+            id: "claude-sonnet-5",
+            name: "Claude Sonnet 5",
+            summary: "Balanced speed and intelligence",
+            isRecommended: true
+        ),
+        AIModelChoice(
+            id: "claude-fable-5",
+            name: "Claude Fable 5",
+            summary: "Highest capability",
+            isRecommended: false
+        ),
+        AIModelChoice(
+            id: "claude-opus-4-8",
+            name: "Claude Opus 4.8",
+            summary: "Complex professional work",
+            isRecommended: false
+        ),
+        AIModelChoice(
+            id: "claude-haiku-4-5-20251001",
+            name: "Claude Haiku 4.5",
+            summary: "Fastest and lowest cost",
+            isRecommended: false
+        )
+    ]
+
+    static func choices(for provider: AIProvider) -> [AIModelChoice] {
+        switch provider {
+        case .openAI: openAI
+        case .anthropic: anthropic
+        case .ollama: []
+        }
+    }
+
+    static func recommendedModel(for provider: AIProvider) -> String {
+        choices(for: provider).first(where: \.isRecommended)?.id ?? ""
+    }
+}
+
 @MainActor
 final class AppSettings: ObservableObject {
     private enum DefaultsKey {
@@ -93,8 +167,10 @@ final class AppSettings: ObservableObject {
         provider = AIProvider(rawValue: defaults.string(forKey: DefaultsKey.provider) ?? "") ?? .openAI
         let savedGrade = defaults.integer(forKey: DefaultsKey.targetGrade)
         targetGrade = savedGrade == 0 ? 8 : min(max(savedGrade, 4), 16)
-        openAIModel = defaults.string(forKey: DefaultsKey.openAIModel) ?? "gpt-5.5"
-        anthropicModel = defaults.string(forKey: DefaultsKey.anthropicModel) ?? "claude-sonnet-4-6"
+        openAIModel = defaults.string(forKey: DefaultsKey.openAIModel)
+            ?? AIModelCatalog.recommendedModel(for: .openAI)
+        anthropicModel = defaults.string(forKey: DefaultsKey.anthropicModel)
+            ?? AIModelCatalog.recommendedModel(for: .anthropic)
         ollamaModel = defaults.string(forKey: DefaultsKey.ollamaModel) ?? ""
         hiddenHighlightCategories = Set(
             (defaults.stringArray(forKey: DefaultsKey.hiddenHighlightCategories) ?? [])

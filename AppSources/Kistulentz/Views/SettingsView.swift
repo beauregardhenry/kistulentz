@@ -93,8 +93,7 @@ struct SettingsView: View {
                 }
                 SecureField(settings.hasOpenAIKey ? "Enter a replacement key" : "API key", text: $openAIKey)
                     .textFieldStyle(.roundedBorder)
-                TextField("Model", text: $settings.openAIModel)
-                    .textFieldStyle(.roundedBorder)
+                ProviderModelPicker(provider: .openAI, selection: $settings.openAIModel)
                 keyButtons(provider: .openAI, value: $openAIKey)
             }
 
@@ -104,8 +103,7 @@ struct SettingsView: View {
                 }
                 SecureField(settings.hasAnthropicKey ? "Enter a replacement key" : "API key", text: $anthropicKey)
                     .textFieldStyle(.roundedBorder)
-                TextField("Model", text: $settings.anthropicModel)
-                    .textFieldStyle(.roundedBorder)
+                ProviderModelPicker(provider: .anthropic, selection: $settings.anthropicModel)
                 keyButtons(provider: .anthropic, value: $anthropicKey)
             }
 
@@ -252,5 +250,70 @@ struct SettingsView: View {
             ollamaDetectionMessage = "Ollama not running"
         }
         isDetectingOllama = false
+    }
+}
+
+private struct ProviderModelPicker: View {
+    private static let customChoice = "__kistulentz_custom_model__"
+
+    let provider: AIProvider
+    let choices: [AIModelChoice]
+    @Binding var selection: String
+    @State private var usesCustomModel: Bool
+
+    init(provider: AIProvider, selection: Binding<String>) {
+        let choices = AIModelCatalog.choices(for: provider)
+        self.provider = provider
+        self.choices = choices
+        _selection = selection
+        _usesCustomModel = State(
+            initialValue: !choices.contains(where: { $0.id == selection.wrappedValue })
+        )
+    }
+
+    var body: some View {
+        Picker("Model", selection: pickerSelection) {
+            ForEach(choices) { choice in
+                Text(choice.menuTitle).tag(choice.id)
+            }
+            Text("Custom…").tag(Self.customChoice)
+        }
+        .pickerStyle(.menu)
+
+        if usesCustomModel {
+            TextField("Custom model ID", text: $selection)
+                .textFieldStyle(.roundedBorder)
+                .accessibilityLabel("Custom \(provider.title) model ID")
+        }
+
+        Text(modelDescription)
+            .font(.caption)
+            .foregroundStyle(.secondary)
+    }
+
+    private var pickerSelection: Binding<String> {
+        Binding(
+            get: { usesCustomModel ? Self.customChoice : selection },
+            set: { newValue in
+                if newValue == Self.customChoice {
+                    if choices.contains(where: { $0.id == selection }) {
+                        selection = ""
+                    }
+                    usesCustomModel = true
+                } else {
+                    usesCustomModel = false
+                    selection = newValue
+                }
+            }
+        )
+    }
+
+    private var modelDescription: String {
+        if usesCustomModel {
+            return selection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                ? "Enter a model ID supplied by \(provider.title)."
+                : "Using the custom model ID saved for \(provider.title)."
+        }
+        return choices.first(where: { $0.id == selection })?.summary ?? "Choose a model."
     }
 }

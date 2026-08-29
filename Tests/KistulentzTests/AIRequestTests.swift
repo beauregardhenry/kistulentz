@@ -67,6 +67,34 @@ final class AIRequestTests: XCTestCase {
         XCTAssertTrue(AIProvider.ollama.isLocal)
     }
 
+    @MainActor
+    func testProviderModelCatalogDefaultsAndPreservesCustomModels() throws {
+        let suite = "AIModelCatalogTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        let settings = AppSettings(defaults: defaults)
+        XCTAssertEqual(settings.openAIModel, AIModelCatalog.recommendedModel(for: .openAI))
+        XCTAssertEqual(settings.anthropicModel, AIModelCatalog.recommendedModel(for: .anthropic))
+        XCTAssertTrue(AIModelCatalog.openAI.contains { $0.id == settings.openAIModel })
+        XCTAssertTrue(AIModelCatalog.anthropic.contains { $0.id == settings.anthropicModel })
+
+        settings.openAIModel = "future-openai-model"
+        settings.anthropicModel = "future-anthropic-model"
+
+        let reopened = AppSettings(defaults: defaults)
+        XCTAssertEqual(reopened.openAIModel, "future-openai-model")
+        XCTAssertEqual(reopened.anthropicModel, "future-anthropic-model")
+    }
+
+    func testProviderModelCatalogIdentifiersAreUnique() {
+        for provider in [AIProvider.openAI, .anthropic] {
+            let choices = AIModelCatalog.choices(for: provider)
+            XCTAssertEqual(Set(choices.map(\.id)).count, choices.count)
+            XCTAssertEqual(choices.filter(\.isRecommended).count, 1)
+        }
+    }
+
     func testDetectsModelsFromTheLocalOllamaTagsEndpoint() async throws {
         let session = mockSession()
         AIRequestMockURLProtocol.handler = { request in
