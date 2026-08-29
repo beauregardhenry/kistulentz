@@ -42,5 +42,13 @@ INTEL_ENTRY="$(catalog_entry x86_64)"
     print '}'
 } > "$CATALOG"
 
-/usr/bin/plutil -lint "$CATALOG" >/dev/null
+CATALOG_SCHEMA="$(/usr/bin/plutil -extract schemaVersion raw -o - "$CATALOG")"
+CATALOG_PACK_COUNT="$(/usr/bin/plutil -extract packs raw -o - "$CATALOG")"
+CATALOG_ARM_ARCHITECTURE="$(/usr/bin/plutil -extract packs.0.architecture raw -o - "$CATALOG")"
+CATALOG_INTEL_ARCHITECTURE="$(/usr/bin/plutil -extract packs.1.architecture raw -o - "$CATALOG")"
+if [[ "$CATALOG_SCHEMA" != "1" || "$CATALOG_PACK_COUNT" != "2" ||
+      "$CATALOG_ARM_ARCHITECTURE" != "arm64" || "$CATALOG_INTEL_ARCHITECTURE" != "x86_64" ]]; then
+    print -u2 "The generated catalog failed validation."
+    exit 1
+fi
 print "$CATALOG"
