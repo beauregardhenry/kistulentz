@@ -32,7 +32,7 @@
     <key>CFBundleIdentifier</key>
     <string>com.beauhenry.kistulentz</string>
     <key>CFBundleGetInfoString</key>
-    <string>Kistulentz 0.9.4, Beau Henry</string>
+    <string>Kistulentz 0.9.5, Beau Henry</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -40,9 +40,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.9.4</string>
+    <string>0.9.5</string>
     <key>CFBundleVersion</key>
-    <string>16</string>
+    <string>17</string>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.productivity</string>
     <key>LSMinimumSystemVersion</key>

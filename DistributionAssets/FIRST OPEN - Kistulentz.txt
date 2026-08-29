@@ -5,20 +5,21 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.9.4 FRIEND PREVIEW
-- Kistulentz System Check verifies Markdown document support, local writing
-  analysis, optional AI and language-pack readiness, the Reference Library, and
-  publishing tools without contacting OpenAI or Anthropic.
-- A diagnostic Markdown report is exported only when you choose. It excludes
-  writing, EPUB excerpts, titles, filenames, paths, keys, accounts, and model
-  names.
-- Every completed bulk EPUB import and Benepar reference profile receives a
-  hidden recovery checkpoint. Reimporting the same selection after reopening
-  skips unchanged books and resumes outstanding work.
-- VoiceOver labels now cover the Markdown editor, primary project tools,
-  suggestion refresh, progress indicators, and publication-matter locks.
-- Release candidates receive native Apple-silicon and Intel tests plus universal
-  package, signature, Markdown-file, archive, disk-image, and checksum checks.
+NEW IN 0.9.5 FRIEND PREVIEW
+- Review a polished draft passage by passage before changing the document.
+  Accept or decline each passage, apply only the selected passages, or confirm
+  Replace All when every proposed change passes Kistulentz's local checks.
+- Suggestion cards without a direct replacement now offer Rewrite, which creates
+  three alternatives aimed at the card's specific concern.
+- Kistulentz withholds AI suggestions that introduce a new local readability
+  flag and identifies blocked polished passages in the comparison.
+- Undo now reverses the applied writing change while keeping the AI review
+  available. Background scans and highlight refreshes no longer become Undo
+  actions.
+- Project document lists show each file's reading grade, and the readability
+  meter more clearly compares the measured grade with the author's target.
+- OpenAI and Anthropic model selection uses convenient model menus while still
+  preserving previously chosen compatible model identifiers.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
