@@ -72,5 +72,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release view language-pack-en-v1 --repo "${{ github.repository }}" >/dev/null 2>&1 || \
-            gh release create language-pack-en-v1 --repo "${{ github.repository }}" --title "Kistulentz English Language Pack 1" --notes "Optional local English structural analysis for Kistulentz."
+            gh release create language-pack-en-v1 --repo "${{ github.repository }}" --title "Kistulentz English Language Pack 1" --notes "Optional local English structural analysis for Kistulentz." --latest=false
           gh release upload language-pack-en-v1 dist/language-packs/* --repo "${{ github.repository }}" --clobber
