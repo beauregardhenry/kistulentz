@@ -17,15 +17,15 @@ catalog_entry() {
     local download_bytes="$(stat -f %z "$archive")"
     local sha256="$(shasum -a 256 "$archive" | awk '{print $1}')"
     local manifest="$(mktemp)"
-    trap 'rm -f "$manifest"' RETURN
     unzip -p "$archive" 'English/manifest.json' > "$manifest"
     local manifest_architecture="$(/usr/bin/plutil -extract architecture raw -o - "$manifest")"
     local manifest_version="$(/usr/bin/plutil -extract version raw -o - "$manifest")"
+    local installed_bytes="$(/usr/bin/plutil -extract installedBytes raw -o - "$manifest")"
+    rm -f "$manifest"
     if [[ "$manifest_architecture" != "$architecture" || "$manifest_version" != "$PACK_VERSION" ]]; then
         print -u2 "The manifest inside ${archive:t} does not match its catalog entry."
         exit 1
     fi
-    local installed_bytes="$(/usr/bin/plutil -extract installedBytes raw -o - "$manifest")"
     print -r -- "    {\"architecture\":\"$architecture\",\"version\":\"$PACK_VERSION\",\"downloadURL\":\"https://github.com/beauregardhenry/kistulentz/releases/download/$RELEASE_TAG/${archive:t}\",\"sha256\":\"$sha256\",\"downloadBytes\":$download_bytes,\"installedBytes\":$installed_bytes}"
 }
 
