@@ -50,14 +50,28 @@ enum SystemCheckService {
         }
     }
 
+    nonisolated static func declaresPlainTextDocuments(infoDictionary: [String: Any]?) -> Bool {
+        guard let documentTypes = infoDictionary?["CFBundleDocumentTypes"] as? [[String: Any]] else {
+            return false
+        }
+        return documentTypes.contains { declaration in
+            let extensions = declaration["CFBundleTypeExtensions"] as? [String] ?? []
+            let contentTypes = declaration["LSItemContentTypes"] as? [String] ?? []
+            return extensions.contains(where: { ["txt", "text"].contains($0.lowercased()) })
+                && contentTypes.contains("public.plain-text")
+        }
+    }
+
     private static func markdownDocumentCheck(bundle: Bundle) -> SystemCheckItem {
-        let declared = declaresMarkdownDocuments(infoDictionary: bundle.infoDictionary)
+        let markdownDeclared = declaresMarkdownDocuments(infoDictionary: bundle.infoDictionary)
+        let textDeclared = declaresPlainTextDocuments(infoDictionary: bundle.infoDictionary)
+        let declared = markdownDeclared && textDeclared
         return SystemCheckItem(
             id: "markdown-documents",
-            title: "Markdown document support",
+            title: "Writing document support",
             detail: declared
-                ? "The application declares support for opening and editing .md, .markdown, and .mdown files."
-                : "This build does not declare complete Markdown document support. Reinstall an official Kistulentz build before reporting a file-opening problem.",
+                ? "The application can directly edit Markdown and plain-text files. Word, RTF/RTFD, HTML, and OpenDocument files can be previewed and imported as separate Markdown copies."
+                : "This build does not declare complete Markdown and plain-text document support. Reinstall an official Kistulentz build before reporting a file-opening problem.",
             status: declared ? .passed : .attention
         )
     }

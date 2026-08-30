@@ -5,14 +5,22 @@ import XCTest
 final class SystemCheckTests: XCTestCase {
     func testRecognizesCompleteMarkdownDocumentDeclaration() {
         let info: [String: Any] = [
-            "CFBundleDocumentTypes": [[
-                "CFBundleTypeExtensions": ["md", "markdown", "mdown"],
-                "LSItemContentTypes": ["net.daringfireball.markdown"]
-            ]]
+            "CFBundleDocumentTypes": [
+                [
+                    "CFBundleTypeExtensions": ["md", "markdown", "mdown"],
+                    "LSItemContentTypes": ["net.daringfireball.markdown"]
+                ],
+                [
+                    "CFBundleTypeExtensions": ["txt", "text"],
+                    "LSItemContentTypes": ["public.plain-text"]
+                ]
+            ]
         ]
 
         XCTAssertTrue(SystemCheckService.declaresMarkdownDocuments(infoDictionary: info))
+        XCTAssertTrue(SystemCheckService.declaresPlainTextDocuments(infoDictionary: info))
         XCTAssertFalse(SystemCheckService.declaresMarkdownDocuments(infoDictionary: [:]))
+        XCTAssertFalse(SystemCheckService.declaresPlainTextDocuments(infoDictionary: [:]))
     }
 
     func testDiagnosticMarkdownContainsStatusesAndPrivacyBoundary() {

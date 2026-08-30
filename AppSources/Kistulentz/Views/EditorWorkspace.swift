@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -52,6 +53,8 @@ struct EditorWorkspace: View {
     @State private var editorSelection = NSRange(location: 0, length: 0)
     @State private var pendingAIRequest: AIRequestPreview?
     @State private var showingToneRequest = false
+    @State private var pendingDocumentImport: DocumentImportDraft?
+    @State private var isImportingDocument = false
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
@@ -219,6 +222,13 @@ struct EditorWorkspace: View {
             PublishExportView(store: projectStore)
                 .environmentObject(researchLibrary)
         }
+        .sheet(item: $pendingDocumentImport) { draft in
+            DocumentImportPreviewView(
+                draft: draft,
+                onCancel: { pendingDocumentImport = nil },
+                onSave: { decisions in saveImportedDocument(draft, decisions: decisions) }
+            )
+        }
         .fileImporter(
             isPresented: $showingProjectFolderImporter,
             allowedContentTypes: [.folder],
@@ -385,6 +395,16 @@ struct EditorWorkspace: View {
 
             Menu {
                 Button {
+                    chooseDocumentForImport()
+                } label: {
+                    Label("Import Document…", systemImage: "square.and.arrow.down")
+                }
+                .keyboardShortcut("i", modifiers: [.command, .shift])
+                .disabled(isImportingDocument)
+
+                Divider()
+
+                Button {
                     projectFolderAction = .createInParent
                     showingProjectFolderImporter = true
                 } label: {
@@ -412,7 +432,11 @@ struct EditorWorkspace: View {
                     Button("Close Project", action: closeProject)
                 }
             } label: {
-                Image(systemName: projectStore.isOpen ? "folder.fill" : "folder")
+                if isImportingDocument {
+                    ProgressView().controlSize(.small)
+                } else {
+                    Image(systemName: projectStore.isOpen ? "folder.fill" : "folder")
+                }
             }
             .menuStyle(.borderlessButton)
             .fixedSize()
@@ -567,6 +591,76 @@ struct EditorWorkspace: View {
         }
         .padding(.horizontal, 16)
         .frame(height: 55)
+    }
+
+    private func chooseDocumentForImport() {
+        let panel = NSOpenPanel()
+        panel.title = "Import a Document"
+        panel.message = "Choose a plain-text, Word, RTF, RTFD, HTML, or OpenDocument file. Kistulentz will create a separate Markdown copy."
+        panel.prompt = "Import"
+        panel.allowedContentTypes = DocumentImportFormat.importableContentTypes
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.treatsFilePackagesAsDirectories = false
+        panel.allowsMultipleSelection = false
+
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        isImportingDocument = true
+        Task { @MainActor in
+            do {
+                let draft = try await Task.detached(priority: .userInitiated) {
+                    try DocumentImportService.load(from: url)
+                }.value
+                pendingDocumentImport = draft
+            } catch {
+                viewModel.errorMessage = error.localizedDescription
+            }
+            isImportingDocument = false
+        }
+    }
+
+    private func saveImportedDocument(
+        _ draft: DocumentImportDraft,
+        decisions: [UUID: DocumentTrackedChangeDecision]
+    ) {
+        pendingDocumentImport = nil
+        Task { @MainActor in
+            await Task.yield()
+            let panel = NSSavePanel()
+            panel.title = "Save Markdown Copy"
+            panel.message = "The original \(draft.format.title) document will remain unchanged."
+            panel.prompt = "Save Copy"
+            panel.allowedContentTypes = [.markdownDocument]
+            panel.nameFieldStringValue = draft.suggestedMarkdownFilename
+            panel.canCreateDirectories = true
+            panel.isExtensionHidden = false
+
+            guard panel.runModal() == .OK, let outputURL = panel.url else { return }
+            isImportingDocument = true
+            do {
+                let result = try await Task.detached(priority: .userInitiated) {
+                    try DocumentImportService.save(draft, decisions: decisions, to: outputURL)
+                }.value
+                openImportedMarkdown(result.markdownURL)
+            } catch {
+                viewModel.errorMessage = error.localizedDescription
+            }
+            isImportingDocument = false
+        }
+    }
+
+    private func openImportedMarkdown(_ url: URL) {
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = true
+        NSWorkspace.shared.open(
+            [url],
+            withApplicationAt: Bundle.main.bundleURL,
+            configuration: configuration
+        ) { _, error in
+            if let error {
+                Task { @MainActor in viewModel.errorMessage = error.localizedDescription }
+            }
+        }
     }
 
     private func runReview() {

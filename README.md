@@ -4,7 +4,11 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 
 ## Included
 
-- Native `.md` open, edit, save, autosave, and Undo support
+- Native `.md`, `.markdown`, `.mdown`, `.txt`, and `.text` open, edit, save, autosave, and Undo support
+- Safe single-Markdown import for DOCX, RTF/RTFD, HTML, and OpenDocument Text files, with a conversion preview that never rewrites the source
+- Word tracked changes presented as accept-or-reject review cards before an imported Markdown copy can be saved
+- Imported headings, lists, emphasis, links, notes, comments, tables, and embedded images preserved where the source format exposes them; images go into a sibling assets folder
+- Local-only HTML import that refuses to download remote images or execute scripts
 - Normal-folder projects for fiction and nonfiction manuscripts
 - Ordered Markdown chapters, manuscript-wide search, and combined project word counts
 - A visual Project Organization workspace with Corkboard and Outliner views for Parts, Chapters, and fiction Scenes or nonfiction Sections

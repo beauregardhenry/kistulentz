@@ -30,6 +30,9 @@ read_plist() {
 [[ "$(read_plist CFBundleDocumentTypes:0:CFBundleTypeExtensions:1)" == "markdown" ]] || fail ".markdown support is missing"
 [[ "$(read_plist CFBundleDocumentTypes:0:CFBundleTypeExtensions:2)" == "mdown" ]] || fail ".mdown support is missing"
 [[ "$(read_plist CFBundleDocumentTypes:0:LSItemContentTypes:0)" == "net.daringfireball.markdown" ]] || fail "Markdown UTI is missing"
+[[ "$(read_plist CFBundleDocumentTypes:1:CFBundleTypeExtensions:0)" == "txt" ]] || fail ".txt support is missing"
+[[ "$(read_plist CFBundleDocumentTypes:1:CFBundleTypeExtensions:1)" == "text" ]] || fail ".text support is missing"
+[[ "$(read_plist CFBundleDocumentTypes:1:LSItemContentTypes:0)" == "public.plain-text" ]] || fail "plain-text UTI is missing"
 
 ARCHITECTURES="$(lipo -archs "$EXECUTABLE_PATH")"
 [[ " $ARCHITECTURES " == *" arm64 "* ]] || fail "Apple silicon executable slice is missing"
