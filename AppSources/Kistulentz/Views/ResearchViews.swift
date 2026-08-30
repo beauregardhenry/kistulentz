@@ -7,7 +7,6 @@ struct ResearchLibraryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedSourceID: UUID?
     @State private var draft: ResearchSource?
-    @State private var showingLocationPicker = false
     @State private var showingRecordImporter = false
     @State private var showingAttachmentImporter = false
     @State private var showingLookup = false
@@ -23,7 +22,7 @@ struct ResearchLibraryView: View {
                         .font(.caption).foregroundStyle(.secondary).lineLimit(1)
                 }
                 Spacer()
-                Button("Choose Folder…") { showingLocationPicker = true }
+                Button("Choose Folder…") { chooseLibraryFolder() }
                 if store.rootURL != nil {
                     Button("Show Markdown") { store.revealKnowledgeBase() }
                 }
@@ -41,7 +40,7 @@ struct ResearchLibraryView: View {
                 } description: {
                     Text("Kistulentz keeps citation records, managed attachments, and local text indexes in a folder you choose.")
                 } actions: {
-                    Button("Choose Folder…") { showingLocationPicker = true }
+                    Button("Choose Folder…") { chooseLibraryFolder() }
                         .buttonStyle(.borderedProminent)
                     Button("Close") { dismiss() }
                         .buttonStyle(.bordered)
@@ -77,11 +76,6 @@ struct ResearchLibraryView: View {
         }
         .frame(minWidth: 900, minHeight: 650)
         .onExitCommand { dismiss() }
-        .fileImporter(isPresented: $showingLocationPicker, allowedContentTypes: [.folder]) { result in
-            do {
-                try store.open(at: result.get())
-            } catch { store.errorMessage = error.localizedDescription }
-        }
         .fileImporter(isPresented: $showingRecordImporter, allowedContentTypes: [.data], allowsMultipleSelection: true) { result in
             do {
                 for url in try result.get() { _ = try store.importSources(from: url) }
@@ -123,6 +117,25 @@ struct ResearchLibraryView: View {
             get: { store.errorMessage != nil },
             set: { if !$0 { store.errorMessage = nil } }
         )) { Button("OK", role: .cancel) {} } message: { Text(store.errorMessage ?? "") }
+    }
+
+    private func chooseLibraryFolder() {
+        let panel = NSOpenPanel()
+        panel.title = "Choose a Research Library Folder"
+        panel.message = "Select an existing folder, or create a new folder for your research library."
+        panel.prompt = "Use Folder"
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.directoryURL = store.rootURL
+
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        do {
+            try store.open(at: url)
+        } catch {
+            store.errorMessage = error.localizedDescription
+        }
     }
 
     private var sourceList: some View {
