@@ -5,16 +5,19 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.9.6 FRIEND PREVIEW
-- The Research Library now always shows a Close button, including before its
-  storage folder has been chosen.
-- The first-use Research Library screen includes its own visible Close action.
-- Pressing Escape closes the Research Library from either its setup screen or
-  its normal source-management view.
-- Choose Folder now opens the native macOS folder chooser, where you can select
-  an existing folder or create a new one.
-- Closing the screen does not change the selected Research Library folder or
-  modify stored research records.
+NEW IN 0.10.0 FRIEND PREVIEW
+- Import TXT, DOCX, RTF, RTFD, HTML, and ODT documents through a native Mac
+  file chooser, then continue editing a Markdown copy in Kistulentz.
+- Review the converted Markdown, conversion notices, and extracted images
+  before choosing where to save it.
+- DOCX tracked insertions and deletions require individual or bulk Accept and
+  Reject decisions before the imported Markdown can be saved.
+- Headings, lists, emphasis, links, tables, notes, comments, and images are
+  preserved where the source format provides them clearly.
+- The original document is never overwritten. Imported images are copied into
+  a separate assets folder beside the saved Markdown file.
+- HTML imports remove active or remote content and do not download remote
+  images. Plain-text files can also open directly as editable documents.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
