@@ -11,6 +11,8 @@ NEW IN 0.9.6 FRIEND PREVIEW
 - The first-use Research Library screen includes its own visible Close action.
 - Pressing Escape closes the Research Library from either its setup screen or
   its normal source-management view.
+- Choose Folder now opens the native macOS folder chooser, where you can select
+  an existing folder or create a new one.
 - Closing the screen does not change the selected Research Library folder or
   modify stored research records.
 

@@ -7,6 +7,8 @@ Version 0.9.6 fixes a first-use Research Library screen that could not be dismis
 - The Research Library now always displays a **Close** button
 - Its initial folder-selection screen includes a second visible **Close** action
 - Pressing Escape dismisses the Research Library from both setup and normal library views
+- **Choose Folder…** now opens the native macOS folder chooser
+- The folder chooser can select an existing folder or create a new one
 - Closing the screen does not choose a folder, alter the existing library location, or modify stored research records
 
 ## Packaging
