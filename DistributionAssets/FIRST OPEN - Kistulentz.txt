@@ -5,19 +5,20 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.10.0 FRIEND PREVIEW
-- Import TXT, DOCX, RTF, RTFD, HTML, and ODT documents through a native Mac
-  file chooser, then continue editing a Markdown copy in Kistulentz.
-- Review the converted Markdown, conversion notices, and extracted images
-  before choosing where to save it.
-- DOCX tracked insertions and deletions require individual or bulk Accept and
-  Reject decisions before the imported Markdown can be saved.
-- Headings, lists, emphasis, links, tables, notes, comments, and images are
-  preserved where the source format provides them clearly.
-- The original document is never overwritten. Imported images are copied into
-  a separate assets folder beside the saved Markdown file.
-- HTML imports remove active or remote content and do not download remote
-  images. Plain-text files can also open directly as editable documents.
+NEW IN 0.11.0 FRIEND PREVIEW
+- The Project Import Assistant accepts multiple files, recursively selected
+  folders, or both, while leaving every source document untouched.
+- Arrange the import order and assign each document as a Part, Chapter, Scene,
+  or Section before conversion begins.
+- Preview each converted document, its conversion warnings, images, and tracked
+  changes. One failed file does not stop the remaining files.
+- Save the successful results as one combined Markdown file, a new Kistulentz
+  project, or additional documents in the currently open project.
+- Combined Markdown uses Part level-one headings, Chapter level-two headings,
+  and Scene or Section level-three headings. Existing headings shift down while
+  headings inside fenced code remain unchanged.
+- Imports show progress and can be cancelled. Existing combined Markdown files
+  are never replaced; choose a new filename instead.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

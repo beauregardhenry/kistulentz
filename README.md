@@ -6,6 +6,9 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 
 - Native `.md`, `.markdown`, `.mdown`, `.txt`, and `.text` open, edit, save, autosave, and Undo support
 - Safe single-Markdown import for DOCX, RTF/RTFD, HTML, and OpenDocument Text files, with a conversion preview that never rewrites the source
+- A Project Import Assistant for multiple explicit files, recursively selected folders, or both, with editable order and Part, Chapter, Scene, or Section assignments before conversion
+- Per-file batch progress, cancellation, conversion reports, tracked-change decisions, and failures that do not stop the remaining documents
+- Batch output as one hierarchically headed Markdown file, a new fiction or nonfiction project, or additional documents in the open project
 - Word tracked changes presented as accept-or-reject review cards before an imported Markdown copy can be saved
 - Imported headings, lists, emphasis, links, notes, comments, tables, and embedded images preserved where the source format exposes them; images go into a sibling assets folder
 - Local-only HTML import that refuses to download remote images or execute scripts
@@ -143,6 +146,8 @@ DRM-protected and image-only EPUB files do not expose readable book text and can
 ## Projects
 
 Use the folder menu in the editor toolbar to create a project inside a chosen parent folder or open an existing folder. Existing Markdown files remain unchanged when a folder is set up as a project. Kistulentz adds:
+
+Use **Project Import Assistant…** in the same folder menu to bring in several Markdown, TXT, DOCX, RTF, RTFD, HTML, or ODT documents at once. Add files, folders, or both; review their discovered order; edit each title and structural assignment; then convert. A failed source remains visible with its error while other sources continue. After previewing the converted Markdown and deciding any tracked changes, create one combined Markdown file, create and open a new project, or add the successful documents to the current project. Kistulentz never changes the source files and refuses to replace an existing combined Markdown export.
 
 - `.kistulentz/project.json` for the project type and chapter order
 - `.kistulentz/outline.json` for the visual Part, Chapter, Scene or Section hierarchy and planning fields

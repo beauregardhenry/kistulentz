@@ -64,6 +64,26 @@ final class WritingProjectStore: ObservableObject {
         try openProject(at: root)
     }
 
+    func importProjectDocuments(
+        _ conversions: [ProjectImportConversion],
+        decisions: [UUID: DocumentTrackedChangeDecision]
+    ) throws -> ProjectImportWriteResult {
+        guard let rootURL else { throw ProjectImportError.noCurrentProject }
+        saveNow()
+        guard !isDirty else { throw ProjectImportError.currentProjectSaveFailed }
+        try ProjectOutlineDisk.save(ProjectOutlineArchive(nodes: outlineNodes), at: rootURL)
+        let result = try ProjectImportOutputService.addToProject(
+            conversions,
+            decisions: decisions,
+            root: rootURL
+        )
+        manifest = try WritingProjectDisk.loadManifest(at: rootURL)
+        outlineNodes = try ProjectOutlineDisk.load(at: rootURL).nodes
+        try syncChaptersWithOutline(preferredSelection: result.selectedPath)
+        scheduleManuscriptAnalysis(immediately: true)
+        return result
+    }
+
     func prepareAndOpenProject(at root: URL, name: String, kind: WritingProjectKind) throws {
         try WritingProjectDisk.prepareExistingProject(at: root, name: name, kind: kind)
         try openProject(at: root)

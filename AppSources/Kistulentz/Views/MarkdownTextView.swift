@@ -20,7 +20,6 @@ struct MarkdownTextView: NSViewRepresentable {
         scrollView.backgroundColor = .textBackgroundColor
 
         let textView = NSTextView()
-        textView.delegate = context.coordinator
         textView.isRichText = false
         textView.isEditable = true
         textView.isSelectable = true
@@ -62,13 +61,21 @@ struct MarkdownTextView: NSViewRepresentable {
 
         scrollView.documentView = textView
         context.coordinator.textView = textView
-        selection = textView.selectedRange()
+        let textLength = (text as NSString).length
+        if selection.location != NSNotFound, NSMaxRange(selection) <= textLength {
+            textView.setSelectedRange(selection)
+        } else {
+            textView.setSelectedRange(NSRange(location: 0, length: 0))
+        }
         applyHighlights(to: textView)
+        textView.delegate = context.coordinator
         return scrollView
     }
 
     func updateNSView(_ scrollView: NSScrollView, context: Context) {
         guard let textView = scrollView.documentView as? NSTextView else { return }
+        context.coordinator.isApplyingSwiftUIUpdate = true
+        defer { context.coordinator.isApplyingSwiftUIUpdate = false }
 
         if textView.string != text {
             let selection = textView.selectedRange()
@@ -83,14 +90,18 @@ struct MarkdownTextView: NSViewRepresentable {
         applyHighlights(to: textView)
 
         if let request = focusRequest, request.id != context.coordinator.lastFocusID {
-            let length = (textView.string as NSString).length
-            if request.range.location != NSNotFound,
-               NSMaxRange(request.range) <= length {
+            context.coordinator.lastFocusID = request.id
+            DispatchQueue.main.async { [weak textView, weak coordinator = context.coordinator] in
+                guard let textView, let coordinator, coordinator.lastFocusID == request.id else { return }
+                let length = (textView.string as NSString).length
+                guard request.range.location != NSNotFound,
+                      NSMaxRange(request.range) <= length else { return }
+                coordinator.isApplyingSwiftUIUpdate = true
+                defer { coordinator.isApplyingSwiftUIUpdate = false }
                 textView.setSelectedRange(request.range)
                 textView.scrollRangeToVisible(request.range)
                 textView.window?.makeFirstResponder(textView)
             }
-            context.coordinator.lastFocusID = request.id
         }
     }
 
@@ -135,6 +146,7 @@ struct MarkdownTextView: NSViewRepresentable {
         @Binding var selection: NSRange
         weak var textView: NSTextView?
         var lastFocusID: UUID?
+        var isApplyingSwiftUIUpdate = false
 
         init(text: Binding<String>, selection: Binding<NSRange>) {
             _text = text
@@ -142,12 +154,14 @@ struct MarkdownTextView: NSViewRepresentable {
         }
 
         func textDidChange(_ notification: Notification) {
-            guard let textView = notification.object as? NSTextView else { return }
+            guard !isApplyingSwiftUIUpdate,
+                  let textView = notification.object as? NSTextView else { return }
             text = textView.string
         }
 
         func textViewDidChangeSelection(_ notification: Notification) {
-            guard let textView = notification.object as? NSTextView else { return }
+            guard !isApplyingSwiftUIUpdate,
+                  let textView = notification.object as? NSTextView else { return }
             let next = textView.selectedRange()
             if selection != next {
                 selection = next

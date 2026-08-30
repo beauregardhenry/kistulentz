@@ -55,6 +55,7 @@ struct EditorWorkspace: View {
     @State private var showingToneRequest = false
     @State private var pendingDocumentImport: DocumentImportDraft?
     @State private var isImportingDocument = false
+    @State private var showingProjectImportAssistant = false
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
@@ -229,6 +230,16 @@ struct EditorWorkspace: View {
                 onSave: { decisions in saveImportedDocument(draft, decisions: decisions) }
             )
         }
+        .sheet(isPresented: $showingProjectImportAssistant) {
+            ProjectImportAssistantView(
+                currentProjectName: projectStore.isOpen ? projectStore.projectName : nil,
+                addToCurrentProject: projectStore.isOpen ? { conversions, decisions in
+                    try projectStore.importProjectDocuments(conversions, decisions: decisions)
+                } : nil,
+                onComplete: completeProjectImport,
+                onCancel: { showingProjectImportAssistant = false }
+            )
+        }
         .fileImporter(
             isPresented: $showingProjectFolderImporter,
             allowedContentTypes: [.folder],
@@ -401,6 +412,12 @@ struct EditorWorkspace: View {
                 }
                 .keyboardShortcut("i", modifiers: [.command, .shift])
                 .disabled(isImportingDocument)
+
+                Button {
+                    showingProjectImportAssistant = true
+                } label: {
+                    Label("Project Import Assistant…", systemImage: "square.stack.3d.up.badge.a")
+                }
 
                 Divider()
 
@@ -659,6 +676,23 @@ struct EditorWorkspace: View {
         ) { _, error in
             if let error {
                 Task { @MainActor in viewModel.errorMessage = error.localizedDescription }
+            }
+        }
+    }
+
+    private func completeProjectImport(_ completion: ProjectImportCompletion) {
+        showingProjectImportAssistant = false
+        switch completion {
+        case .markdown(let url):
+            openImportedMarkdown(url)
+        case .project(let root):
+            do {
+                if projectStore.rootURL?.standardizedFileURL != root.standardizedFileURL {
+                    try projectStore.openProject(at: root)
+                }
+                activateProject()
+            } catch {
+                projectStore.errorMessage = error.localizedDescription
             }
         }
     }
