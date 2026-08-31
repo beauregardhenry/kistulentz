@@ -10,6 +10,7 @@ struct ProjectSidebar: View {
     let onShowManuscriptInsights: () -> Void
     let onShowOrganization: () -> Void
     let onShowResearch: () -> Void
+    let onShowProjectPolish: () -> Void
     let onShowRevisionCenter: () -> Void
     let onShowPublish: () -> Void
     let onCloseProject: () -> Void
@@ -37,6 +38,7 @@ struct ProjectSidebar: View {
                         Button("Manuscript Insights…", action: onShowManuscriptInsights)
                         Button("Project Organization…", action: onShowOrganization)
                         Button("Project Research…", action: onShowResearch)
+                        Button("Polish Project…", action: onShowProjectPolish)
                         Button("Systemic Revision Center…", action: onShowRevisionCenter)
                         Button("Publish & Export…", action: onShowPublish)
                         Divider()

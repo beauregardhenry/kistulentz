@@ -5,18 +5,18 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.13.0 FRIEND PREVIEW
-- Apple’s built-in English spelling and grammar services now create concrete
-  Kistulentz cards with corrections when macOS can supply a safe replacement.
-- These checks remain entirely local and do not require OpenAI, Anthropic,
-  Ollama, or the optional English structural-analysis pack.
-- Native corrections ignore fenced code, inline code, links, URLs, and HTML.
-- Local Polish now includes safe spelling and grammar corrections in its
-  passage-by-passage review instead of limiting itself to readability phrases.
-- Accepted project style choices can be reused during Local Polish; a declined
-  replacement is never applied automatically.
-- Every correction still passes Kistulentz’s local rule check before it can be
-  applied, and accepted changes remain normal macOS Undo operations.
+NEW IN 0.14.0 FRIEND PREVIEW
+- Polish Project checks every Markdown document locally and groups safe changes
+  into Spelling & Grammar, Clarity & Readability, and Style & Voice stages.
+- Review, edit, include, or exclude every changed passage. A failed document no
+  longer stops the rest of the scan, and a long scan can be cancelled.
+- Applying a project Polish rechecks exact text, refuses ambiguous or overlapping
+  replacements, snapshots every affected file, and creates one macOS Undo action.
+- Settings now includes Test Connection for OpenAI, Anthropic, and Ollama. These
+  checks verify only the saved key and selected model and never send manuscript,
+  project, reference, or prompt text.
+- Apple spelling and grammar, readability corrections, learned project style,
+  and all existing local Markdown protections remain available without cloud AI.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

@@ -42,6 +42,7 @@ struct EditorWorkspace: View {
     @State private var showingResearchLibrary = false
     @State private var showingProjectResearch = false
     @State private var showingRevisionCenter = false
+    @State private var showingProjectPolish = false
     @State private var showingPublishExport = false
     @State private var selectedLibraryReferences: Set<String> = []
     @State private var isWriteMode = false
@@ -93,6 +94,7 @@ struct EditorWorkspace: View {
                             onShowManuscriptInsights: { showingManuscriptInsights = true },
                             onShowOrganization: { showingProjectOrganization = true },
                             onShowResearch: { showingProjectResearch = true },
+                            onShowProjectPolish: { showingProjectPolish = true },
                             onShowRevisionCenter: { showingRevisionCenter = true },
                             onShowPublish: { showingPublishExport = true },
                             onCloseProject: closeProject
@@ -271,6 +273,10 @@ struct EditorWorkspace: View {
             SystemicRevisionCenterView(store: projectStore, onNavigate: navigateToRevisionFinding)
                 .environmentObject(settings)
                 .environmentObject(researchLibrary)
+        }
+        .sheet(isPresented: $showingProjectPolish) {
+            ProjectPolishView(store: projectStore)
+                .environmentObject(settings)
         }
         .sheet(isPresented: $showingPublishExport) {
             PublishExportView(store: projectStore)
@@ -527,6 +533,7 @@ struct EditorWorkspace: View {
                     Button("Manuscript Insights…") { showingManuscriptInsights = true }
                     Button("Project Organization…") { showingProjectOrganization = true }
                     Button("Project Research…") { showingProjectResearch = true }
+                    Button("Polish Project…") { showingProjectPolish = true }
                     Button("Systemic Revision Center…") { showingRevisionCenter = true }
                     Button("Publish & Export…") { showingPublishExport = true }
                     Divider()

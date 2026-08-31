@@ -19,6 +19,9 @@ struct SettingsView: View {
     @State private var isPullingOllamaModel = false
     @State private var showingLanguagePackConfirmation = false
     @State private var showingLanguagePackRemovalConfirmation = false
+    @State private var providerTestTask: Task<Void, Never>?
+    @State private var testingProvider: AIProvider?
+    @State private var providerTestResults: [AIProvider: ProviderTestDisplay] = [:]
 
     var body: some View {
         Form {
@@ -101,6 +104,7 @@ struct SettingsView: View {
                     .textFieldStyle(.roundedBorder)
                 ProviderModelPicker(provider: .openAI, selection: $settings.openAIModel)
                 keyButtons(provider: .openAI, value: $openAIKey)
+                connectionTestRow(provider: .openAI)
             }
 
             Section("Anthropic") {
@@ -111,6 +115,7 @@ struct SettingsView: View {
                     .textFieldStyle(.roundedBorder)
                 ProviderModelPicker(provider: .anthropic, selection: $settings.anthropicModel)
                 keyButtons(provider: .anthropic, value: $anthropicKey)
+                connectionTestRow(provider: .anthropic)
             }
 
             Section("Ollama · local AI") {
@@ -199,6 +204,8 @@ struct SettingsView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+
+                connectionTestRow(provider: .ollama)
             }
 
             Section {
@@ -220,7 +227,10 @@ struct SettingsView: View {
             beneparPack.refresh()
             await monitorOllama()
         }
-        .onDisappear { ollamaPullTask?.cancel() }
+        .onDisappear {
+            ollamaPullTask?.cancel()
+            providerTestTask?.cancel()
+        }
         .alert("Install the English language pack?", isPresented: $showingLanguagePackConfirmation) {
             Button("Cancel", role: .cancel) {}
             Button("Download and Install") {
@@ -273,6 +283,7 @@ struct SettingsView: View {
                 do {
                     try settings.saveAPIKey(value.wrappedValue, for: provider)
                     value.wrappedValue = ""
+                    providerTestResults[provider] = nil
                     statusMessage = "\(provider.title) key saved securely."
                 } catch {
                     errorMessage = error.localizedDescription
@@ -285,11 +296,72 @@ struct SettingsView: View {
                     do {
                         try settings.saveAPIKey("", for: provider)
                         value.wrappedValue = ""
+                        providerTestResults[provider] = nil
                         statusMessage = "\(provider.title) key removed."
                     } catch {
                         errorMessage = error.localizedDescription
                     }
                 }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func connectionTestRow(provider: AIProvider) -> some View {
+        HStack(spacing: 10) {
+            Button(testingProvider == provider ? "Testing…" : "Test Connection") {
+                testConnection(provider)
+            }
+            .disabled(testingProvider != nil || !settings.isProviderReady(provider))
+
+            if testingProvider == provider {
+                ProgressView().controlSize(.small)
+            } else if let result = providerTestResults[provider] {
+                Label(
+                    result.message,
+                    systemImage: result.succeeded
+                        ? "checkmark.circle.fill"
+                        : "exclamationmark.triangle.fill"
+                )
+                .font(.caption)
+                .foregroundStyle(result.succeeded ? Color.green : Color.orange)
+            }
+        }
+        Text("This checks only the saved key and selected model. No manuscript, project, reference, or prompt text is sent.")
+            .font(.caption)
+            .foregroundStyle(.secondary)
+    }
+
+    @MainActor
+    private func testConnection(_ provider: AIProvider) {
+        providerTestTask?.cancel()
+        testingProvider = provider
+        providerTestResults[provider] = nil
+        let model = settings.model(for: provider)
+        let apiKey = settings.apiKey(for: provider)
+        providerTestTask = Task {
+            defer {
+                if testingProvider == provider { testingProvider = nil }
+                providerTestTask = nil
+            }
+            do {
+                let result = try await ProviderConnectionTester().test(
+                    provider: provider,
+                    model: model,
+                    apiKey: apiKey
+                )
+                guard !Task.isCancelled else { return }
+                providerTestResults[provider] = ProviderTestDisplay(
+                    succeeded: true,
+                    message: result.message
+                )
+            } catch is CancellationError {
+                return
+            } catch {
+                providerTestResults[provider] = ProviderTestDisplay(
+                    succeeded: false,
+                    message: error.localizedDescription
+                )
             }
         }
     }
@@ -377,6 +449,11 @@ struct SettingsView: View {
     private func formattedBytes(_ bytes: Int64) -> String {
         ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
     }
+}
+
+private struct ProviderTestDisplay {
+    let succeeded: Bool
+    let message: String
 }
 
 private struct ProviderModelPicker: View {

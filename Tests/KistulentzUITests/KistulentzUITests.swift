@@ -58,7 +58,7 @@ final class KistulentzUITests: XCTestCase {
     func testDiagnosticExportPanelCanBeCancelled() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
-        let applicationMenu = app.menuBars.menuItems["Kistulentz"]
+        let applicationMenu = app.menuBars.menuBarItems["Kistulentz"].firstMatch
         XCTAssertTrue(applicationMenu.waitForExistence(timeout: 3))
         applicationMenu.click()
         let systemCheckItem = app.menuItems["Kistulentz System Check…"]

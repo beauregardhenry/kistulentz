@@ -569,8 +569,9 @@ final class WritingProjectStore: ObservableObject {
         catch { errorMessage = error.localizedDescription; return set }
     }
 
-    func applyRevisionChangeSet(_ set: RevisionChangeSet) {
-        guard let rootURL else { return }
+    @discardableResult
+    func applyRevisionChangeSet(_ set: RevisionChangeSet) -> Bool {
+        guard let rootURL else { return false }
         do {
             saveNow()
             let paths = Set(set.includedChanges.map(\.chapterPath))
@@ -606,9 +607,31 @@ final class WritingProjectStore: ObservableObject {
             try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
             registerRevisionUndo(expected: after, replacement: before, resolvedFindingIDs: checked.includedChanges.compactMap(\.findingID), undoing: true)
             scheduleManuscriptAnalysis(immediately: true)
+            return true
         } catch {
             errorMessage = error.localizedDescription
+            return false
         }
+    }
+
+    func projectPolishInputs() throws -> (
+        documents: [ManuscriptDocument],
+        styleDecisions: [ProjectStyleDecision]
+    ) {
+        guard let rootURL else { throw SystemicRevisionError.filesChanged }
+        saveNow()
+        guard !isDirty else { throw SystemicRevisionError.filesChanged }
+        let documents = try chapters.map { chapter in
+            ManuscriptDocument(
+                relativePath: chapter.relativePath,
+                title: chapter.title,
+                text: try WritingProjectDisk.readChapter(chapter.relativePath, at: rootURL)
+            )
+        }
+        return (
+            documents,
+            try ProjectStyleManager.loadDecisions(at: rootURL)
+        )
     }
 
     private func documentsByPath(for paths: Set<String>) throws -> [String: String] {

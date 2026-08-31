@@ -52,6 +52,8 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - OpenAI Responses API, Anthropic Messages API, and local Ollama support
 - Guided Ollama setup with automatic local-service detection, an installed-model menu, and a confirmed, cancellable recommended-model download with progress
 - A safe Local Polish fallback that combines concrete readability, Apple spelling and grammar, and accepted project-style replacements; protects Markdown code and links; honors declines; and never invents prose
+- A cancellable whole-project Polish scan with separate Spelling & Grammar, Clarity & Readability, and Style & Voice stages; editable passage previews; per-document failure reporting; exact-text validation; per-file snapshots; and one guarded Undo action
+- No-manuscript **Test Connection** controls for OpenAI, Anthropic, and Ollama that verify the saved key and selected model without sending project, reference, prompt, or manuscript text
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
 - Selection rewrites for target-grade simplification, shortening, grounded expansion, stronger verbs, a user-described tone, and matching selected references
 - Three distinct rewrite alternatives with explanations and grade estimates
