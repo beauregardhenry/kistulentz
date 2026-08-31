@@ -22,7 +22,7 @@ struct ResearchLibraryView: View {
                         .font(.caption).foregroundStyle(.secondary).lineLimit(1)
                 }
                 Spacer()
-                Button("Choose Folder…") { chooseLibraryFolder() }
+                Button("Choose Folder…") { Task { await chooseLibraryFolder() } }
                 if store.rootURL != nil {
                     Button("Show Markdown") { store.revealKnowledgeBase() }
                 }
@@ -40,7 +40,7 @@ struct ResearchLibraryView: View {
                 } description: {
                     Text("Kistulentz keeps citation records, managed attachments, and local text indexes in a folder you choose.")
                 } actions: {
-                    Button("Choose Folder…") { chooseLibraryFolder() }
+                    Button("Choose Folder…") { Task { await chooseLibraryFolder() } }
                         .buttonStyle(.borderedProminent)
                     Button("Close") { dismiss() }
                         .buttonStyle(.bordered)
@@ -119,18 +119,9 @@ struct ResearchLibraryView: View {
         )) { Button("OK", role: .cancel) {} } message: { Text(store.errorMessage ?? "") }
     }
 
-    private func chooseLibraryFolder() {
-        let panel = NSOpenPanel()
-        panel.title = "Choose a Research Library Folder"
-        panel.message = "Select an existing folder, or create a new folder for your research library."
-        panel.prompt = "Use Folder"
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.canCreateDirectories = true
-        panel.allowsMultipleSelection = false
-        panel.directoryURL = store.rootURL
-
-        guard panel.runModal() == .OK, let url = panel.url else { return }
+    @MainActor
+    private func chooseLibraryFolder() async {
+        guard let url = await MacFilePanel.chooseFolder(startingAt: store.rootURL) else { return }
         do {
             try store.open(at: url)
         } catch {

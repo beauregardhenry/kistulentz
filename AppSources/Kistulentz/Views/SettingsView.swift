@@ -347,7 +347,12 @@ struct SettingsView: View {
                 }
                 guard !Task.isCancelled else { throw CancellationError() }
                 await detectOllama()
-                settings.ollamaModel = OllamaService.recommendedWritingModel
+                let verifiedModel = try OllamaSetupVerifier.verifyDownloadedModel(
+                    OllamaService.recommendedWritingModel,
+                    in: ollamaModels
+                )
+                guard isOllamaReachable else { throw OllamaSetupError.modelNotVerified }
+                settings.ollamaModel = verifiedModel
                 settings.provider = .ollama
                 statusMessage = "The recommended Ollama model is ready and selected."
             } catch is CancellationError {

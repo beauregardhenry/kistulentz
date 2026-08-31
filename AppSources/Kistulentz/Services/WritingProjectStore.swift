@@ -1524,6 +1524,11 @@ final class WritingProjectStore: ObservableObject {
                 self.errorMessage = error.localizedDescription
                 return
             }
+            // Publish the native result before waiting for an optional external
+            // language pack to start. A cold Benepar worker can take seconds,
+            // but it must never delay Kistulentz's built-in report and Bible.
+            self.applyLocalManuscriptAnalysis(analysis)
+            guard !Task.isCancelled, self.rootURL == rootURL else { return }
             let shouldRefreshStructure = immediately
                 || self.manuscriptCache.structuralProfile == nil
                 || abs(wordCount - self.lastStructuralAnalysisWordCount) >= 100
@@ -1541,9 +1546,9 @@ final class WritingProjectStore: ObservableObject {
             }
             if let structure = self.manuscriptCache.structuralProfile {
                 analysis = ManuscriptAnalyzer.addingStructuralProfile(structure, to: analysis)
+                guard !Task.isCancelled, self.rootURL == rootURL else { return }
+                self.applyLocalManuscriptAnalysis(analysis)
             }
-            guard !Task.isCancelled, self.rootURL == rootURL else { return }
-            self.applyLocalManuscriptAnalysis(analysis)
         }
     }
 

@@ -5,21 +5,20 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.12.1 FRIEND PREVIEW
-- Kistulentz now prominently offers the optional English structural-analysis
-  pack on first launch. The confirmed local download turns itself on after
-  installation and can still be managed from Settings.
-- Ollama setup now links to the official installer, detects the local service,
-  lists installed models, and offers a confirmed recommended-model download
-  with visible progress and Cancel.
-- Polish now works without OpenAI, Anthropic, or Ollama. Local Polish reviews
-  safe built-in phrase corrections as individual passages and never sends the
-  document off the Mac.
-- Local Polish protects Markdown code, links, images, URLs, and HTML; it refuses
-  stale, overlapping, or rule-violating changes.
-- Local phrase corrections now preserve sentence capitalization.
-- Additional tests cover interrupted and malformed model downloads, server
-  failures, language-pack failures, prompt persistence, and local-polish safety.
+NEW IN 0.12.2 FRIEND PREVIEW
+- Research Library folder selection now opens as a normal Finder sheet, allows
+  creating a folder, and always returns to a closable library screen after Cancel.
+- The diagnostic-report save panel uses the same nonblocking sheet behavior.
+- A downloaded Ollama model is selected only after Kistulentz detects and
+  verifies it locally.
+- Native manuscript reports and the project Bible appear without waiting for
+  the optional English structural-analysis worker to start.
+- A checked-in Xcode UI-test host now covers first launch, Research Library
+  folder cancellation and closure, and diagnostic export cancellation.
+- Static macOS-saved DOCX, RTF, RTFD, HTML, ODT, and TXT documents join the
+  generated edge-case fixtures in import regression testing.
+- New failure tests protect an existing English pack from bad catalogs,
+  unavailable servers, corrupt archives, and unsafe internal paths.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

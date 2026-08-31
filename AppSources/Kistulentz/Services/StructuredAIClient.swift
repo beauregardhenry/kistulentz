@@ -308,6 +308,7 @@ struct OllamaPullProgress: Equatable {
 enum OllamaSetupError: LocalizedError {
     case invalidModelName
     case incompleteDownload
+    case modelNotVerified
 
     var errorDescription: String? {
         switch self {
@@ -315,7 +316,16 @@ enum OllamaSetupError: LocalizedError {
             "The Ollama model name is empty or contains unsupported characters."
         case .incompleteDownload:
             "Ollama ended the model download before reporting success. Try again; Ollama can reuse completed layers."
+        case .modelNotVerified:
+            "Ollama finished the download, but Kistulentz could not verify the model. Refresh Models before selecting Ollama."
         }
+    }
+}
+
+enum OllamaSetupVerifier {
+    static func verifyDownloadedModel(_ model: String, in installedModels: [String]) throws -> String {
+        guard installedModels.contains(model) else { throw OllamaSetupError.modelNotVerified }
+        return model
     }
 }
 

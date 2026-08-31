@@ -46,4 +46,29 @@ final class SystemCheckTests: XCTestCase {
         XCTAssertTrue(markdown.contains("excludes document and manuscript text"))
         XCTAssertTrue(markdown.contains("did not contact OpenAI or Anthropic"))
     }
+
+    func testDiagnosticMarkdownContainsNoSecretPlaceholdersOrHomeDirectory() {
+        let report = SystemCheckReport(
+            generatedAt: Date(timeIntervalSince1970: 0),
+            appVersion: "0.12.2",
+            buildNumber: "25",
+            bundleIdentifier: "com.beauhenry.kistulentz",
+            macOSVersion: "Version 15.0",
+            architecture: "arm64",
+            items: [
+                SystemCheckItem(
+                    id: "providers",
+                    title: "Optional AI providers",
+                    detail: "Configured providers: OpenAI. Cloud providers were not contacted.",
+                    status: .passed
+                )
+            ]
+        )
+
+        let markdown = report.markdown()
+        let forbidden = ["sk-test-secret", "PRIVATE MANUSCRIPT CANARY", FileManager.default.homeDirectoryForCurrentUser.path]
+        for value in forbidden {
+            XCTAssertFalse(markdown.contains(value), "Diagnostic report leaked: \(value)")
+        }
+    }
 }

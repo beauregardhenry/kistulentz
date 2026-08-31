@@ -3,6 +3,32 @@ import XCTest
 @testable import Kistulentz
 
 final class DocumentImportTests: XCTestCase {
+    func testStaticMacOSSavedDocumentsImportWithoutChangingTheirBytes() throws {
+        let fixtureRoot = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Fixtures/RealImports", isDirectory: true)
+        let names = [
+            "macOS-Saved.docx",
+            "macOS-Saved.rtf",
+            "macOS-Saved.rtfd",
+            "macOS-Saved.html",
+            "macOS-Saved.odt",
+            "Fixture-Source.txt"
+        ]
+
+        for name in names {
+            let source = fixtureRoot.appendingPathComponent(name)
+            let before = try fixtureFingerprint(source)
+            let draft = try DocumentImportService.load(from: source)
+            let markdown = draft.renderedMarkdown(decisions: [:])
+
+            XCTAssertTrue(markdown.contains("Real Application Fixture"), name)
+            XCTAssertTrue(markdown.contains("document services"), name)
+            XCTAssertEqual(try fixtureFingerprint(source), before, name)
+        }
+    }
+
     func testPlainTextCanBeEditedDirectlyAndImportedAsASafeMarkdownCopy() throws {
         XCTAssertTrue(MarkdownDocument.readableContentTypes.contains(.plainText))
         XCTAssertTrue(MarkdownDocument.writableContentTypes.contains(.plainText))
@@ -255,6 +281,19 @@ final class DocumentImportTests: XCTestCase {
         try process.run()
         process.waitUntilExit()
         XCTAssertEqual(process.terminationStatus, 0)
+    }
+
+    private func fixtureFingerprint(_ url: URL) throws -> String {
+        var isDirectory: ObjCBool = false
+        if FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory), isDirectory.boolValue {
+            let children = try FileManager.default.contentsOfDirectory(atPath: url.path).sorted()
+            return try children.map { child in
+                let data = try Data(contentsOf: url.appendingPathComponent(child))
+                return "\(child):\(data.count):\(data.hashValue)"
+            }.joined(separator: "|")
+        }
+        let data = try Data(contentsOf: url)
+        return "\(data.count):\(data.hashValue)"
     }
 
     private func temporaryDirectory() -> URL {

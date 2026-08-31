@@ -85,6 +85,8 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Automatic EPUBCheck execution when its command-line tool is already installed, with local detection of Kindle Previewer and Apple Transporter
 - Shareable publication diagnostics that exclude manuscript prose and excerpts
 - An in-app, local-only System Check with an explicitly exported privacy-safe diagnostic report
+- Finder-style Research Library and diagnostic panels that remain cancellable and keep their parent screen usable
+- A checked-in Xcode UI-test host covering first launch, Research Library folder selection and closure, and diagnostic export cancellation
 - Project-local publication profiles, setup, assets, checksums, and export history; finished publications go only to a folder chosen by the author
 - A complete polished Markdown revision with a confirmation step before replacement
 - API keys stored in the macOS Keychain
@@ -111,6 +113,8 @@ Run tests with:
 swift test --disable-sandbox
 ```
 
+The canonical application continues to build with Swift Package Manager. `Kistulentz.xcodeproj` is a minimal UI-test host generated from `project.yml`; maintainers can regenerate it with `./scripts/regenerate-xcode-project.sh` after installing XcodeGen.
+
 The test suite uses XCTest, which ships with Xcode. On a Mac with only the Command Line Tools, `swift build` and `swift run` work but `swift test` reports `no such module 'XCTest'`.
 Before sharing a release candidate, build its ZIP and DMG and run the local integrity checks:
 
@@ -119,7 +123,7 @@ Before sharing a release candidate, build its ZIP and DMG and run the local inte
 ./scripts/verify-release.sh dist/Kistulentz.app --release-assets
 ```
 
-Maintainers can also run the manual **Test release candidate** GitHub Actions workflow. It tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing a release.
+Maintainers can also run the manual **Test release candidate** GitHub Actions workflow. It runs macOS UI regressions, tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing a release.
 
 The manual **Test 1.0 scale targets** workflow exercises the approved large-work targets on native Apple silicon and Intel runners. See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [ACCESSIBILITY.md](ACCESSIBILITY.md) before publishing a release candidate.
 

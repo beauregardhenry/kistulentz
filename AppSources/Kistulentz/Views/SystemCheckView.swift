@@ -67,7 +67,7 @@ struct SystemCheckView: View {
                 }
                 .disabled(isRunning)
                 Button("Export Diagnostic Report…") {
-                    exportReport()
+                    Task { await exportReport() }
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(report == nil || isRunning)
@@ -101,14 +101,16 @@ struct SystemCheckView: View {
         isRunning = false
     }
 
-    private func exportReport() {
+    @MainActor
+    private func exportReport() async {
         guard let report else { return }
-        let panel = NSSavePanel()
-        panel.title = "Export Kistulentz Diagnostic Report"
-        panel.nameFieldStringValue = "Kistulentz Diagnostics \(Date.now.formatted(.iso8601.year().month().day())).md"
-        panel.canCreateDirectories = true
-        panel.allowedContentTypes = [UTType(filenameExtension: "md") ?? .plainText]
-        guard panel.runModal() == .OK, let destination = panel.url else { return }
+        let configuration = SavePanelConfiguration(
+            title: "Export Kistulentz Diagnostic Report",
+            suggestedFilename: "Kistulentz Diagnostics \(Date.now.formatted(.iso8601.year().month().day())).md",
+            allowedContentTypes: [UTType(filenameExtension: "md") ?? .plainText],
+            canCreateDirectories: true
+        )
+        guard let destination = await MacFilePanel.chooseSaveDestination(configuration: configuration) else { return }
         do {
             try report.markdown().write(to: destination, atomically: true, encoding: .utf8)
             message = "Diagnostic report exported."

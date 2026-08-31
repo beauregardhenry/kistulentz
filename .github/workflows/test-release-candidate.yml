@@ -7,6 +7,14 @@ permissions:
   contents: read
 
 jobs:
+  macos-ui-tests:
+    name: macOS UI regression tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run the checked-in Xcode UI test host
+        run: xcodebuild -project Kistulentz.xcodeproj -scheme Kistulentz -destination 'platform=macOS' test
+
   native-tests:
     name: Native tests · ${{ matrix.architecture }}
     strategy:
@@ -27,7 +35,7 @@ jobs:
 
   universal-package:
     name: Universal package and integrity checks
-    needs: native-tests
+    needs: [native-tests, macos-ui-tests]
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6

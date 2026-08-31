@@ -247,6 +247,20 @@ final class AIRequestTests: XCTestCase {
         }
     }
 
+    func testOllamaIsSelectedOnlyAfterTheDownloadedModelIsDetected() throws {
+        XCTAssertEqual(
+            try OllamaSetupVerifier.verifyDownloadedModel("writer:4b", in: ["other:latest", "writer:4b"]),
+            "writer:4b"
+        )
+        XCTAssertThrowsError(
+            try OllamaSetupVerifier.verifyDownloadedModel("writer:4b", in: ["other:latest"])
+        ) { error in
+            guard case OllamaSetupError.modelNotVerified = error else {
+                return XCTFail("Expected modelNotVerified, received \(error).")
+            }
+        }
+    }
+
     func testOllamaRewriteUsesStructuredNonStreamingLocalRequest() async throws {
         let session = mockSession()
         AIRequestMockURLProtocol.handler = { request in

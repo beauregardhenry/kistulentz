@@ -41,6 +41,6 @@ struct MarkdownDocument: FileDocument {
 
     Good writing makes its point without making the reader work for it. Kistulentz highlights long sentences, passive voice, adverbs, and phrases that could be simpler.
 
-    Write or paste Markdown here. Set a target reading grade, then ask OpenAI or Claude for a polished revision when you are ready.
+    Write or paste Markdown here. Set a target reading grade, then use Local Polish for private built-in corrections. Connect Ollama, OpenAI, or Anthropic only when you want generative rewriting.
     """
 }
