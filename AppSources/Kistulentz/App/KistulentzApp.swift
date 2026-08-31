@@ -47,6 +47,7 @@ struct KistulentzApp: App {
         }
         .defaultSize(width: 700, height: 620)
     }
+
 }
 
 @MainActor

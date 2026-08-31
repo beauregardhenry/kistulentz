@@ -42,7 +42,7 @@ final class KistulentzUITests: XCTestCase {
         XCTAssertTrue(title.waitForExistence(timeout: 5))
         app.buttons["Choose Folder…"].firstMatch.click()
 
-        let cancel = app.buttons["Cancel"]
+        let cancel = app.buttons.matching(identifier: "CancelButton").firstMatch
         XCTAssertTrue(cancel.waitForExistence(timeout: 5))
         cancel.click()
         XCTAssertTrue(title.waitForExistence(timeout: 2))
@@ -63,7 +63,7 @@ final class KistulentzUITests: XCTestCase {
         XCTAssertTrue(export.isEnabled)
         export.click()
 
-        let cancel = app.buttons["Cancel"]
+        let cancel = app.buttons.matching(identifier: "CancelButton").firstMatch
         XCTAssertTrue(cancel.waitForExistence(timeout: 5))
         cancel.click()
         XCTAssertTrue(export.waitForExistence(timeout: 2))
@@ -76,5 +76,10 @@ final class KistulentzUITests: XCTestCase {
         ]
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
+        // DocumentGroup initially presents the standard Open panel when no
+        // restoration state exists. Command-N creates the isolated test draft
+        // and leaves the user's filesystem untouched.
+        app.typeKey("n", modifierFlags: .command)
+        XCTAssertTrue(app.buttons["Reference"].waitForExistence(timeout: 8))
     }
 }
