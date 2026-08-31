@@ -1,5 +1,10 @@
 import Foundation
 
+enum PolishedDraftOrigin: Equatable {
+    case local
+    case ai
+}
+
 struct PolishedDraftChange: Identifiable, Equatable {
     let id: UUID
     let originalRange: NSRange
@@ -36,6 +41,7 @@ struct PolishedDraftPlan: Identifiable, Equatable {
     let polishedText: String
     let changes: [PolishedDraftChange]
     let introducedDocumentRuleCategories: [IssueCategory]
+    let origin: PolishedDraftOrigin
 
     var safeChanges: [PolishedDraftChange] { changes.filter(\.isSafe) }
     var unsafeChanges: [PolishedDraftChange] { changes.filter { !$0.isSafe } }
@@ -132,14 +138,16 @@ enum PolishedDraftPlanner {
         original: String,
         polished: String,
         targetGrade: Int,
-        detailedLineLimit: Int = 900
+        detailedLineLimit: Int = 900,
+        origin: PolishedDraftOrigin = .ai
     ) -> PolishedDraftPlan {
         guard original != polished else {
             return PolishedDraftPlan(
                 sourceText: original,
                 polishedText: polished,
                 changes: [],
-                introducedDocumentRuleCategories: []
+                introducedDocumentRuleCategories: [],
+                origin: origin
             )
         }
 
@@ -201,7 +209,8 @@ enum PolishedDraftPlanner {
                 original: original,
                 replacement: polished,
                 targetGrade: targetGrade
-            )
+            ),
+            origin: origin
         )
     }
 

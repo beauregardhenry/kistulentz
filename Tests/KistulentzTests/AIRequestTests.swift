@@ -5,6 +5,7 @@ import XCTest
 final class AIRequestTests: XCTestCase {
     override func tearDown() {
         AIRequestMockURLProtocol.handler = nil
+        DelayedOllamaURLProtocol.reset()
         super.tearDown()
     }
 
@@ -114,6 +115,136 @@ final class AIRequestTests: XCTestCase {
         let models = try await OllamaService(session: session).installedModels()
 
         XCTAssertEqual(models, ["gemma3:latest", "llama3.2:latest"])
+    }
+
+    @MainActor
+    func testDownloadsRecommendedOllamaModelWithStreamingProgress() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            XCTAssertEqual(request.url?.absoluteString, "http://localhost:11434/api/pull")
+            XCTAssertEqual(request.httpMethod, "POST")
+            let data = try XCTUnwrap(request.bodyData)
+            let body = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+            XCTAssertEqual(body["model"] as? String, OllamaService.recommendedWritingModel)
+            XCTAssertEqual(body["stream"] as? Bool, true)
+            let response = """
+            {"status":"pulling manifest"}
+            {"status":"downloading","completed":50,"total":100}
+            {"status":"success","completed":100,"total":100}
+
+            """
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data(response.utf8)
+            )
+        }
+        var progress: [OllamaPullProgress] = []
+
+        try await OllamaService(session: session).pullModel(
+            OllamaService.recommendedWritingModel
+        ) { progress.append($0) }
+
+        XCTAssertEqual(progress.count, 3)
+        XCTAssertEqual(progress.last?.status, "success")
+        XCTAssertEqual(progress.last?.fractionCompleted, 1)
+    }
+
+    @MainActor
+    func testOllamaModelDownloadRejectsIncompleteAndInvalidResponses() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            let response = #"{"status":"downloading","completed":50,"total":100}"#
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data(response.utf8)
+            )
+        }
+
+        do {
+            try await OllamaService(session: session).pullModel("test:4b") { _ in }
+            XCTFail("An interrupted model pull must not be reported as successful.")
+        } catch let error as OllamaSetupError {
+            guard case .incompleteDownload = error else {
+                return XCTFail("Expected incompleteDownload, received \(error).")
+            }
+        }
+
+        AIRequestMockURLProtocol.handler = { request in
+            let response = "not-json\n"
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data(response.utf8)
+            )
+        }
+        do {
+            try await OllamaService(session: session).pullModel("test:4b") { _ in }
+            XCTFail("Malformed progress must be rejected.")
+        } catch let error as WritingAIError {
+            guard case .invalidResponse = error else {
+                return XCTFail("Expected invalidResponse, received \(error).")
+            }
+        }
+    }
+
+    @MainActor
+    func testOllamaModelDownloadCanBeCancelled() async throws {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [DelayedOllamaURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+        let task = Task {
+            try await OllamaService(session: session).pullModel("test:4b") { _ in }
+        }
+
+        try await Task.sleep(for: .milliseconds(50))
+        task.cancel()
+
+        do {
+            try await task.value
+            XCTFail("A cancelled model pull must not finish successfully.")
+        } catch is CancellationError {
+            XCTAssertTrue(DelayedOllamaURLProtocol.wasStopped)
+        }
+    }
+
+    @MainActor
+    func testOllamaModelDownloadRejectsUnsafeModelNameBeforeNetworking() async {
+        do {
+            try await OllamaService(session: mockSession()).pullModel("bad model\nname") { _ in }
+            XCTFail("Unsafe model names must be rejected.")
+        } catch let error as OllamaSetupError {
+            guard case .invalidModelName = error else {
+                return XCTFail("Expected invalidModelName, received \(error).")
+            }
+        } catch {
+            XCTFail("Expected an OllamaSetupError, received \(error).")
+        }
+    }
+
+    @MainActor
+    func testOllamaModelDownloadSurfacesHTTPFailure() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            (
+                HTTPURLResponse(
+                    url: request.url!,
+                    statusCode: 503,
+                    httpVersion: nil,
+                    headerFields: nil
+                )!,
+                Data()
+            )
+        }
+
+        do {
+            try await OllamaService(session: session).pullModel("test:4b") { _ in }
+            XCTFail("An HTTP failure must not be reported as a successful model download.")
+        } catch let error as WritingAIError {
+            guard case let .api(status, message) = error else {
+                return XCTFail("Expected an API error, received \(error).")
+            }
+            XCTAssertEqual(status, 503)
+            XCTAssertTrue(message.contains("test:4b"))
+        }
     }
 
     func testOllamaRewriteUsesStructuredNonStreamingLocalRequest() async throws {
@@ -301,6 +432,51 @@ private final class AIRequestMockURLProtocol: URLProtocol {
     }
 
     override func stopLoading() {}
+}
+
+private final class DelayedOllamaURLProtocol: URLProtocol {
+    private static let lock = NSLock()
+    private static var stopped = false
+    private var workItem: DispatchWorkItem?
+
+    static var wasStopped: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return stopped
+    }
+
+    static func reset() {
+        lock.lock()
+        stopped = false
+        lock.unlock()
+    }
+
+    override class func canInit(with request: URLRequest) -> Bool { true }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+
+    override func startLoading() {
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            let response = HTTPURLResponse(
+                url: self.request.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+            self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            self.client?.urlProtocol(self, didLoad: Data(#"{"status":"success"}"#.utf8))
+            self.client?.urlProtocolDidFinishLoading(self)
+        }
+        self.workItem = workItem
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2, execute: workItem)
+    }
+
+    override func stopLoading() {
+        workItem?.cancel()
+        Self.lock.lock()
+        Self.stopped = true
+        Self.lock.unlock()
+    }
 }
 
 private extension URLRequest {

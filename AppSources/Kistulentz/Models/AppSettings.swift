@@ -120,6 +120,7 @@ final class AppSettings: ObservableObject {
         static let ollamaModel = "ollamaModel"
         static let hiddenHighlightCategories = "hiddenHighlightCategories"
         static let hasCompletedOnboarding = "hasCompletedOnboarding"
+        static let hasAcknowledgedEnglishPackPrompt = "hasAcknowledgedEnglishPackPrompt"
     }
 
     private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
@@ -154,12 +155,14 @@ final class AppSettings: ObservableObject {
     }
 
     @Published private(set) var hasCompletedOnboarding: Bool
+    @Published private(set) var hasAcknowledgedEnglishPackPrompt: Bool
 
     @Published private(set) var hasOpenAIKey = false
     @Published private(set) var hasAnthropicKey = false
 
     private let defaults: UserDefaults
     private let keychain: KeychainStore
+    private var hasClaimedEnglishPackPromptThisLaunch = false
 
     init(defaults: UserDefaults = .standard, keychain: KeychainStore = KeychainStore()) {
         self.defaults = defaults
@@ -180,6 +183,9 @@ final class AppSettings: ObservableObject {
                 .compactMap(IssueCategory.init(rawValue:))
         )
         hasCompletedOnboarding = defaults.bool(forKey: DefaultsKey.hasCompletedOnboarding)
+        hasAcknowledgedEnglishPackPrompt = defaults.bool(
+            forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt
+        )
 
         refreshKeyStatus()
     }
@@ -193,7 +199,8 @@ final class AppSettings: ObservableObject {
             DefaultsKey.anthropicModel,
             DefaultsKey.ollamaModel,
             DefaultsKey.hiddenHighlightCategories,
-            DefaultsKey.hasCompletedOnboarding
+            DefaultsKey.hasCompletedOnboarding,
+            DefaultsKey.hasAcknowledgedEnglishPackPrompt
         ]
         for key in keys where defaults.object(forKey: key) == nil {
             if let value = legacy.object(forKey: key) {
@@ -253,6 +260,18 @@ final class AppSettings: ObservableObject {
     func completeOnboarding() {
         hasCompletedOnboarding = true
         defaults.set(true, forKey: DefaultsKey.hasCompletedOnboarding)
+    }
+
+    func acknowledgeEnglishPackPrompt() {
+        hasAcknowledgedEnglishPackPrompt = true
+        defaults.set(true, forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt)
+    }
+
+    func claimEnglishPackPrompt() -> Bool {
+        guard !hasAcknowledgedEnglishPackPrompt,
+              !hasClaimedEnglishPackPromptThisLaunch else { return false }
+        hasClaimedEnglishPackPromptThisLaunch = true
+        return true
     }
 
     private func refreshKeyStatus() {

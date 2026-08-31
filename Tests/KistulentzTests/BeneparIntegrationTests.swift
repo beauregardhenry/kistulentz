@@ -3,6 +3,11 @@ import XCTest
 @testable import Kistulentz
 
 final class BeneparIntegrationTests: XCTestCase {
+    override func tearDown() {
+        BeneparMockURLProtocol.handler = nil
+        super.tearDown()
+    }
+
     func testRealLanguagePackWhenFixturePathIsProvided() async throws {
         guard let path = ProcessInfo.processInfo.environment["KISTULENTZ_TEST_BENEPAR_PACK"],
               !path.isEmpty else {
@@ -251,6 +256,34 @@ final class BeneparIntegrationTests: XCTestCase {
         XCTAssertEqual(installed.manifest.version, "1.0.0")
     }
 
+    @MainActor
+    func testLanguagePackManagerRejectsMalformedCatalogWithoutChangingInstallation() async throws {
+        let root = temporaryDirectory().appendingPathComponent("English", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root.deletingLastPathComponent()) }
+        let catalogURL = URL(string: "https://example.invalid/catalog.json")!
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [BeneparMockURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+        BeneparMockURLProtocol.handler = { request in
+            XCTAssertEqual(request.url, catalogURL)
+            return (
+                HTTPURLResponse(url: catalogURL, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data("not-json".utf8)
+            )
+        }
+        let manager = BeneparLanguagePackManager(
+            rootURL: root,
+            catalogURL: catalogURL,
+            session: session
+        )
+
+        await manager.install()
+
+        XCTAssertFalse(manager.isInstalled)
+        XCTAssertNotNil(manager.errorMessage)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.path))
+    }
+
     private func profile(
         sentencesAnalyzed: Int,
         sentencesAvailable: Int,
@@ -277,4 +310,28 @@ final class BeneparIntegrationTests: XCTestCase {
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
     }
+}
+
+private final class BeneparMockURLProtocol: URLProtocol {
+    static var handler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
+
+    override class func canInit(with request: URLRequest) -> Bool { true }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+
+    override func startLoading() {
+        guard let handler = Self.handler else {
+            client?.urlProtocol(self, didFailWithError: URLError(.badServerResponse))
+            return
+        }
+        do {
+            let (response, data) = try handler(request)
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: data)
+            client?.urlProtocolDidFinishLoading(self)
+        } catch {
+            client?.urlProtocol(self, didFailWithError: error)
+        }
+    }
+
+    override func stopLoading() {}
 }

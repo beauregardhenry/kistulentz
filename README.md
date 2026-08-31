@@ -35,7 +35,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Live reading-grade estimate, word count, sentence count, and reading time
 - Background readability, reference comparison, and manuscript-wide analysis that keeps large-document work away from the interface thread
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
-- An optional, separately installed English language pack using Benepar for local clause, phrase-depth, subordination, coordination, fragment, adverb, and passive-voice signals
+- A prominent first-run prompt for the optional English Benepar pack, which turns on automatically after its confirmed local installation
 - Orange advisory sentence-structure highlights that never trigger automatic prose replacement
 - macOS spelling and grammar checking while you type
 - A target reading-grade setting
@@ -50,7 +50,8 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Optional **Deepen w/ AI** analysis that never runs during local imports
 - Resumable, user-triggered Benepar analysis for selected books, authors, or genres, with completed profiles cached into the editable Markdown knowledge base, skipped on later missing-only runs, and combined across references
 - OpenAI Responses API, Anthropic Messages API, and local Ollama support
-- Automatic discovery of Ollama models already installed on the Mac; Kistulentz never installs Ollama or downloads models
+- Guided Ollama setup with automatic local-service detection, an installed-model menu, and a confirmed, cancellable recommended-model download with progress
+- A safe Local Polish fallback that offers only concrete built-in replacements, protects Markdown code and links, and never invents prose
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
 - Selection rewrites for target-grade simplification, shortening, grounded expansion, stronger verbs, a user-described tone, and matching selected references
 - Three distinct rewrite alternatives with explanations and grade estimates
@@ -124,7 +125,7 @@ The manual **Test 1.0 scale targets** workflow exercises the approved large-work
 
 ### Optional English structural-analysis pack
 
-The base app always keeps its native local analysis. In **Kistulentz Settings**, an author can separately confirm installation of the large English pack. Once installed, Benepar augments live Markdown guidance, manuscript reports, and selected EPUB profiles. Analysis stays on the Mac; the pack is not an AI provider and it does not rewrite prose automatically.
+The base app always keeps its native local analysis. On first launch, Kistulentz prominently offers a separately confirmed download of the large English pack; the same control remains available in **Kistulentz Settings**. Once installed, Benepar turns on automatically and augments live Markdown guidance, manuscript reports, and selected EPUB profiles. Analysis stays on the Mac; the pack is not an AI provider and it does not rewrite prose automatically.
 
 Language packs are architecture-specific for Apple silicon and Intel. Maintainers can build the native pack with the pinned, checksum-verified standalone Python runtime:
 
@@ -139,9 +140,9 @@ The manual **Build English language packs** GitHub Actions workflow builds and v
 
 Open Kistulentz Settings and paste an API key for OpenAI, Anthropic, or both. Model names remain editable so the app can use models enabled for each account without requiring a new app release.
 
-For local AI, install and start Ollama separately, then choose **Detect Models** in Kistulentz Settings. Kistulentz lists models already present at Ollama's local address and does not install Ollama or download a model. Apple silicon uses Ollama's supported acceleration; Intel Macs use CPU inference and may be substantially slower for large models.
+For local AI, Kistulentz Settings links to Ollama’s official macOS installer and watches for the local service to start. It lists models already present at Ollama's local address. With explicit confirmation, Kistulentz can ask that local service to download and select the recommended `qwen3.5:4b` writing model, showing progress and a Cancel command. Kistulentz does not silently install Ollama or a model. Apple silicon uses Ollama's supported acceleration; Intel Macs use CPU inference and may be substantially slower for large models.
 
-Document text, manuscript reports, project Bibles, beta-reader signals, research attachments, and EPUB reference books are analyzed locally until the user chooses **Polish**, **Rewrite**, a metadata lookup, or **Deepen w/ AI**. Local imports, OCR, indexing, Benepar parsing, revision scans, and automatic manuscript updates never contact an AI provider. Installing the optional English pack downloads only its program files and model from Kistulentz’s GitHub release. DOI and ISBN lookup sends only the identifier to Crossref or Open Library. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded automatically.
+Document text, manuscript reports, project Bibles, beta-reader signals, research attachments, and EPUB reference books are analyzed locally until the user chooses an AI-backed **Polish**, **Rewrite**, metadata lookup, or **Deepen w/ AI**. If no selected AI provider is ready, **Polish** instead creates a review of safe rule-based changes entirely on the Mac. Local imports, OCR, indexing, Benepar parsing, revision scans, Local Polish, and automatic manuscript updates never contact an AI provider. Installing the optional English pack downloads only its program files and model from Kistulentz’s GitHub release. A confirmed Ollama model download sends the chosen model name to the Ollama service on this Mac; Ollama manages the model download. DOI and ISBN lookup sends only the identifier to Crossref or Open Library. Before an AI request runs, Kistulentz shows its destination and the exact writing material assembled for the request. OpenAI and Anthropic requests send only the confirmed material to the selected cloud provider. Ollama writing requests stay on the Mac at `localhost:11434`. Complete EPUB files and the complete Reference Library are not uploaded automatically.
 
 The chosen Reference Library folder contains `Kistulentz Library.md`, per-book profiles, combined author and genre profiles, AI insight files, and a hidden machine-readable index used for fast loading. Make metadata corrections inside Kistulentz so generated profiles remain synchronized.
 

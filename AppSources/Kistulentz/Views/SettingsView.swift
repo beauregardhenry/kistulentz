@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct SettingsView: View {
@@ -10,7 +11,12 @@ struct SettingsView: View {
     @State private var errorMessage: String?
     @State private var ollamaModels: [String] = []
     @State private var isDetectingOllama = false
+    @State private var isOllamaReachable = false
     @State private var ollamaDetectionMessage = "Not checked"
+    @State private var showingRecommendedModelConfirmation = false
+    @State private var ollamaPullProgress: OllamaPullProgress?
+    @State private var ollamaPullTask: Task<Void, Never>?
+    @State private var isPullingOllamaModel = false
     @State private var showingLanguagePackConfirmation = false
     @State private var showingLanguagePackRemovalConfirmation = false
 
@@ -114,31 +120,82 @@ struct SettingsView: View {
                             ProgressView().controlSize(.small)
                         }
                         Text(ollamaDetectionMessage)
-                            .foregroundStyle(ollamaModels.isEmpty ? Color.secondary : Color.green)
+                            .foregroundStyle(isOllamaReachable ? Color.green : Color.secondary)
                     }
                 }
 
-                TextField("Selected model", text: $settings.ollamaModel)
-                    .textFieldStyle(.roundedBorder)
-
-                if !ollamaModels.isEmpty {
+                if isPullingOllamaModel {
+                    VStack(alignment: .leading, spacing: 8) {
+                        if let fraction = ollamaPullProgress?.fractionCompleted {
+                            ProgressView(value: fraction)
+                        } else {
+                            ProgressView()
+                        }
+                        Text(ollamaProgressDescription)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Button("Cancel Model Download", role: .cancel) {
+                            ollamaPullTask?.cancel()
+                        }
+                    }
+                } else if isOllamaReachable, !ollamaModels.isEmpty {
                     Picker("Detected models", selection: $settings.ollamaModel) {
                         if !ollamaModels.contains(settings.ollamaModel), !settings.ollamaModel.isEmpty {
-                            Text(settings.ollamaModel).tag(settings.ollamaModel)
+                            Text("Unavailable · (settings.ollamaModel)").tag(settings.ollamaModel)
                         }
                         ForEach(ollamaModels, id: \.self) { model in
-                            Text(model).tag(model)
+                            Text(model == OllamaService.recommendedWritingModel
+                                ? "\(model) · Recommended"
+                                : model)
+                                .tag(model)
                         }
+                    }
+
+                    HStack {
+                        Button("Use Ollama for Polish and Rewrite") {
+                            settings.provider = .ollama
+                            statusMessage = "Ollama is now the selected writing provider."
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!ollamaModels.contains(settings.ollamaModel))
+
+                        if !ollamaModels.contains(OllamaService.recommendedWritingModel) {
+                            Button("Get Recommended Model…") {
+                                showingRecommendedModelConfirmation = true
+                            }
+                        }
+                    }
+                } else if isOllamaReachable {
+                    Text("Ollama is running, but it has no local models yet.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Button("Download and Use Recommended Model…") {
+                        showingRecommendedModelConfirmation = true
+                    }
+                    .buttonStyle(.borderedProminent)
+                } else {
+                    Text("Install and open Ollama, then Kistulentz will detect it automatically and help you add a writing model.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    HStack {
+                        Button("Get Ollama…") {
+                            NSWorkspace.shared.open(OllamaService.downloadURL)
+                            ollamaDetectionMessage = "Waiting for Ollama to start…"
+                        }
+                        .buttonStyle(.borderedProminent)
+                        Button("Check Again") {
+                            Task { await detectOllama() }
+                        }
+                        .disabled(isDetectingOllama)
                     }
                 }
 
                 HStack {
-                    Button("Detect Models") {
+                    Button("Refresh Models") {
                         Task { await detectOllama() }
                     }
-                    .disabled(isDetectingOllama)
-
-                    Text("Kistulentz never installs Ollama or downloads models.")
+                    .disabled(isDetectingOllama || isPullingOllamaModel)
+                    Text("Ollama and its models stay on this Mac. Every download requires confirmation.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -161,8 +218,9 @@ struct SettingsView: View {
         .navigationTitle("Kistulentz Settings")
         .task {
             beneparPack.refresh()
-            await detectOllama()
+            await monitorOllama()
         }
+        .onDisappear { ollamaPullTask?.cancel() }
         .alert("Install the English language pack?", isPresented: $showingLanguagePackConfirmation) {
             Button("Cancel", role: .cancel) {}
             Button("Download and Install") {
@@ -179,6 +237,12 @@ struct SettingsView: View {
         } message: {
             Text("Kistulentz will delete the downloaded parser runtime and model. Native readability, spelling, grammar, and AI features will continue to work.")
         }
+        .alert("Download the recommended Ollama model?", isPresented: $showingRecommendedModelConfirmation) {
+            Button("Cancel", role: .cancel) {}
+            Button("Download and Use") { startRecommendedModelDownload() }
+        } message: {
+            Text("Kistulentz will ask Ollama to download \(OllamaService.recommendedWritingModel). The model needs several GB of local storage. Progress is shown here, and you can cancel while it downloads.")
+        }
         .alert("English language pack", isPresented: Binding(
             get: { beneparPack.errorMessage != nil },
             set: { if !$0 { beneparPack.errorMessage = nil } }
@@ -187,7 +251,7 @@ struct SettingsView: View {
         } message: {
             Text(beneparPack.errorMessage ?? "")
         }
-        .alert("Couldn’t save the key", isPresented: Binding(
+        .alert("Kistulentz Settings", isPresented: Binding(
             get: { errorMessage != nil },
             set: { if !$0 { errorMessage = nil } }
         )) {
@@ -236,20 +300,77 @@ struct SettingsView: View {
         isDetectingOllama = true
         do {
             let models = try await OllamaService().installedModels()
+            isOllamaReachable = true
             ollamaModels = models
             if models.isEmpty {
                 ollamaDetectionMessage = "Ollama found · no models installed"
             } else {
                 ollamaDetectionMessage = "\(models.count) model\(models.count == 1 ? "" : "s") found"
                 if settings.ollamaModel.isEmpty || !models.contains(settings.ollamaModel) {
-                    settings.ollamaModel = models[0]
+                    settings.ollamaModel = models.contains(OllamaService.recommendedWritingModel)
+                        ? OllamaService.recommendedWritingModel
+                        : models[0]
                 }
             }
         } catch {
+            isOllamaReachable = false
             ollamaModels = []
             ollamaDetectionMessage = "Ollama not running"
         }
         isDetectingOllama = false
+    }
+
+    @MainActor
+    private func monitorOllama() async {
+        await detectOllama()
+        while !Task.isCancelled, !isOllamaReachable {
+            try? await Task.sleep(for: .seconds(2))
+            guard !Task.isCancelled else { return }
+            await detectOllama()
+        }
+    }
+
+    @MainActor
+    private func startRecommendedModelDownload() {
+        guard isOllamaReachable, !isPullingOllamaModel else { return }
+        isPullingOllamaModel = true
+        ollamaPullProgress = OllamaPullProgress(
+            status: "Starting download…",
+            completedBytes: nil,
+            totalBytes: nil
+        )
+        errorMessage = nil
+        ollamaPullTask = Task {
+            do {
+                try await OllamaService().pullModel(OllamaService.recommendedWritingModel) { progress in
+                    ollamaPullProgress = progress
+                }
+                guard !Task.isCancelled else { throw CancellationError() }
+                await detectOllama()
+                settings.ollamaModel = OllamaService.recommendedWritingModel
+                settings.provider = .ollama
+                statusMessage = "The recommended Ollama model is ready and selected."
+            } catch is CancellationError {
+                statusMessage = "Ollama model download cancelled."
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+            isPullingOllamaModel = false
+            ollamaPullProgress = nil
+            ollamaPullTask = nil
+        }
+    }
+
+    private var ollamaProgressDescription: String {
+        guard let progress = ollamaPullProgress else { return "Preparing the local model…" }
+        if let completed = progress.completedBytes, let total = progress.totalBytes {
+            return "\(progress.status) · \(formattedBytes(completed)) of \(formattedBytes(total))"
+        }
+        return progress.status
+    }
+
+    private func formattedBytes(_ bytes: Int64) -> String {
+        ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
     }
 }
 

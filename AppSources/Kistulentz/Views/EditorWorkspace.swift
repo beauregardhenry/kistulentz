@@ -24,6 +24,7 @@ struct EditorWorkspace: View {
     let fileURL: URL?
 
     @EnvironmentObject private var settings: AppSettings
+    @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
     @EnvironmentObject private var researchLibrary: ResearchLibraryStore
     @EnvironmentObject private var draftRecovery: DraftRecoveryManager
@@ -60,6 +61,7 @@ struct EditorWorkspace: View {
     @State private var isImportingDocument = false
     @State private var showingProjectImportAssistant = false
     @State private var showingWelcome = false
+    @State private var showingEnglishPackPrompt = false
     @State private var showingDraftRecovery = false
     @State private var didPresentStartup = false
 
@@ -201,6 +203,14 @@ struct EditorWorkspace: View {
         .onChange(of: settings.targetGrade) { _, newValue in
             viewModel.scheduleAnalysis(text: activeText, targetGrade: newValue, immediately: true)
         }
+        .onChange(of: beneparPack.isInstalled) { _, isInstalled in
+            guard isInstalled else { return }
+            viewModel.scheduleAnalysis(
+                text: activeText,
+                targetGrade: settings.targetGrade,
+                immediately: true
+            )
+        }
         .onReceive(NotificationCenter.default.publisher(for: .runAIReview)) { _ in
             runReview()
         }
@@ -295,6 +305,13 @@ struct EditorWorkspace: View {
                 onContinue: completeWelcome
             )
             .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $showingEnglishPackPrompt) {
+            EnglishPackPromptView(
+                onNotNow: finishEnglishPackPrompt,
+                onInstalled: finishEnglishPackPrompt
+            )
+            .environmentObject(beneparPack)
         }
         .sheet(isPresented: $showingDraftRecovery, onDismiss: presentWelcomeAfterRecovery) {
             DraftRecoveryView(manager: draftRecovery) {
@@ -671,7 +688,9 @@ struct EditorWorkspace: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(viewModel.isReviewing)
-            .help("Review with \(settings.provider.title) (⇧⌘R)")
+            .help(settings.isProviderReady(settings.provider)
+                ? "Review with \(settings.provider.title) (⇧⌘R)"
+                : "Polish locally on this Mac (⇧⌘R)")
         }
         .padding(.horizontal, 16)
         .frame(height: 55)
@@ -691,14 +710,30 @@ struct EditorWorkspace: View {
         didPresentStartup = true
         if !draftRecovery.pendingEntries.isEmpty {
             showingDraftRecovery = true
+        } else {
+            presentNextStartupStep()
+        }
+    }
+
+    private func presentWelcomeAfterRecovery() {
+        presentNextStartupStep()
+    }
+
+    private func presentNextStartupStep() {
+        beneparPack.refresh()
+        if !beneparPack.isInstalled, settings.claimEnglishPackPrompt() {
+            showingEnglishPackPrompt = true
         } else if !settings.hasCompletedOnboarding {
             showingWelcome = true
         }
     }
 
-    private func presentWelcomeAfterRecovery() {
-        if !settings.hasCompletedOnboarding {
-            showingWelcome = true
+    private func finishEnglishPackPrompt() {
+        settings.acknowledgeEnglishPackPrompt()
+        showingEnglishPackPrompt = false
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(180))
+            if !settings.hasCompletedOnboarding { showingWelcome = true }
         }
     }
 
@@ -840,7 +875,10 @@ struct EditorWorkspace: View {
     }
 
     private func runReview() {
-        guard validateSelectedProvider() else { return }
+        guard settings.isProviderReady(settings.provider) else {
+            runLocalPolish()
+            return
+        }
         let style = projectStore.isOpen ? projectStore.styleText : nil
         let reference = viewModel.referenceBook.map {
             WritingAIService.referenceContext($0, relevantTo: activeText)
@@ -858,6 +896,22 @@ struct EditorWorkspace: View {
             sourceRange: nil,
             sourceText: activeText
         )
+    }
+
+    private func runLocalPolish() {
+        let result = LocalPolishService.polish(
+            text: activeText,
+            targetGrade: settings.targetGrade,
+            issues: viewModel.visibleLocalIssues
+        )
+        guard let plan = result.plan else {
+            let advisory = result.advisoryCount == 0
+                ? "No local correction is needed."
+                : "\(result.advisoryCount) advisory highlight\(result.advisoryCount == 1 ? " remains" : "s remain") for your judgment."
+            viewModel.errorMessage = "Local Polish found no concrete change it could make safely. \(advisory) Set up Ollama for private generative rewriting, or connect OpenAI or Anthropic for cloud rewriting."
+            return
+        }
+        polishedDraftPlan = plan
     }
 
     private func insertCitation(_ source: ResearchSource, locator: String) {
@@ -1107,7 +1161,7 @@ struct EditorWorkspace: View {
             with: plan.polishedText,
             binding: activeTextBinding,
             undoManager: undoManager,
-            actionName: "Use Polished Draft"
+            actionName: plan.origin == .local ? "Use Local Polish" : "Use Polished Draft"
         )
         viewModel.preserveAIReview(afterApplying: plan.polishedText)
         polishedDraftPlan = nil
@@ -1580,9 +1634,9 @@ private struct ReviewSidebar: View {
                     Image(systemName: "arrow.clockwise")
                 }
                 .buttonStyle(.borderless)
-                .disabled(isReviewing || !hasAPIKey)
-                .help("Run a new AI review")
-                .accessibilityLabel("Run a new AI review")
+                .disabled(isReviewing)
+                .help(hasAPIKey ? "Run a new AI review" : "Run a safe local polish")
+                .accessibilityLabel(hasAPIKey ? "Run a new AI review" : "Run a safe local polish")
             }
             .padding(16)
 
@@ -1610,19 +1664,19 @@ private struct ReviewSidebar: View {
                         .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 11))
                     } else if !hasAPIKey {
                         VStack(alignment: .leading, spacing: 8) {
-                            Label(
-                                provider.requiresAPIKey ? "Connect \(provider.title)" : "Choose a local model",
-                                systemImage: provider.requiresAPIKey ? "key" : "desktopcomputer"
-                            )
+                            Label("Local Polish is ready", systemImage: "checkmark.shield")
                                 .font(.caption.weight(.semibold))
-                            Text(provider.requiresAPIKey
-                                ? "Local readability and EPUB comparisons work without a key. Connect for grammar corrections and deeper rewrites."
-                                : "Kistulentz found no selected Ollama model. Open Settings to detect models already installed on this Mac.")
+                            Text("Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
-                            Button("Open Settings", action: onOpenSettings)
-                                .buttonStyle(.borderedProminent)
-                                .controlSize(.small)
+                            HStack {
+                                Button("Polish Locally", action: onRunReview)
+                                    .buttonStyle(.borderedProminent)
+                                    .controlSize(.small)
+                                Button("Set Up Deeper AI…", action: onOpenSettings)
+                                    .buttonStyle(.bordered)
+                                    .controlSize(.small)
+                            }
                         }
                         .padding(12)
                         .background(.background.opacity(0.75), in: RoundedRectangle(cornerRadius: 11))
@@ -1681,9 +1735,7 @@ private struct ReviewSidebar: View {
                             systemImage: "checkmark.circle",
                             description: Text(hasAPIKey
                                 ? "Run an AI review for deeper grammar and rewriting suggestions."
-                                : (provider.requiresAPIKey
-                                    ? "Local analysis is clear. Add an API key only when you want deeper AI suggestions."
-                                    : "Local analysis is clear. Choose an installed Ollama model for deeper local suggestions."))
+                                : "Local analysis is clear. Set up Ollama or a cloud provider only when you want generative rewriting.")
                         )
                         .padding(.top, 12)
                     }
@@ -1763,8 +1815,8 @@ private struct ReferenceCard: View {
                 }
 
                 Text(reference.sourceCount == 1
-                    ? "The reference stays local. Selected excerpts are sent only when you run Polish."
-                    : "\(reference.sourceCount) books are combined locally. Selected excerpts are sent only when you run Polish.")
+                    ? "The reference stays local. Selected excerpts are sent only when you confirm an AI-backed Polish."
+                    : "\(reference.sourceCount) books are combined locally. Selected excerpts are sent only when you confirm an AI-backed Polish.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
 
@@ -1920,7 +1972,7 @@ private struct PolishedDraftReviewView: View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 14) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Review Polished Draft")
+                    Text(plan.origin == .local ? "Review Local Polish" : "Review Polished Draft")
                         .font(.title2.weight(.semibold))
                     Text(summary)
                         .font(.callout)
@@ -1999,13 +2051,18 @@ private struct PolishedDraftReviewView: View {
             Button("Replace All", role: .destructive, action: onReplaceAll)
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("The complete replacement will be one normal Undo action. Your AI review will remain available.")
+            Text(plan.origin == .local
+                ? "The complete local replacement will be one normal Undo action. No writing was sent anywhere."
+                : "The complete replacement will be one normal Undo action. Your AI review will remain available.")
         }
     }
 
     private var summary: String {
         let count = plan.changes.count
-        return "Compare \(count) changed passage\(count == 1 ? "" : "s"). Accept individual changes, or replace the whole document after confirmation."
+        let source = plan.origin == .local
+            ? "Built-in rules created these changes entirely on this Mac."
+            : "The selected AI provider created these changes."
+        return "\(source) Compare \(count) changed passage\(count == 1 ? "" : "s"). Accept individual changes, or replace the whole document after confirmation."
     }
 }
 

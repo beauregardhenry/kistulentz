@@ -129,3 +129,85 @@ struct WelcomeView: View {
         .accessibilityHint(detail)
     }
 }
+
+struct EnglishPackPromptView: View {
+    @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
+
+    let onNotNow: () -> Void
+    let onInstalled: () -> Void
+
+    @State private var installTask: Task<Void, Never>?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack(alignment: .top, spacing: 15) {
+                Image(systemName: "text.magnifyingglass")
+                    .font(.system(size: 30, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: 58, height: 58)
+                    .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 14))
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Enable Better Local Analysis")
+                        .font(.title2.bold())
+                    Text("Download Kistulentz’s English structural-analysis pack.")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 10) {
+                Label("More precise clause, phrase-depth, subordination, coordination, fragment, adverb, and passive-voice signals", systemImage: "checkmark.circle")
+                Label("Automatically used after installation—there is no separate switch to remember", systemImage: "bolt.circle")
+                Label("Runs entirely on this Mac and never uploads your writing", systemImage: "lock.shield")
+            }
+            .font(.callout)
+
+            Text("The download includes a local runtime and the Benepar English model. It needs more than 1 GB of storage. Native Kistulentz analysis remains available if you choose Not Now.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            if beneparPack.isInstalling {
+                VStack(alignment: .leading, spacing: 8) {
+                    ProgressView()
+                    Text(beneparPack.activityMessage)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .accessibilityElement(children: .combine)
+            } else if let error = beneparPack.errorMessage {
+                Label(error, systemImage: "exclamationmark.triangle")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+            }
+
+            HStack {
+                if beneparPack.isInstalling {
+                    Button("Cancel Download", role: .cancel) {
+                        installTask?.cancel()
+                    }
+                } else {
+                    Button("Not Now", role: .cancel, action: onNotNow)
+                }
+                Spacer()
+                Button(beneparPack.errorMessage == nil ? "Download and Enable" : "Try Again") {
+                    beneparPack.errorMessage = nil
+                    installTask = Task {
+                        await beneparPack.install()
+                        if beneparPack.isInstalled { onInstalled() }
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .keyboardShortcut(.defaultAction)
+                .disabled(beneparPack.isInstalling)
+            }
+        }
+        .padding(26)
+        .frame(minWidth: 580, idealWidth: 620)
+        .interactiveDismissDisabled(beneparPack.isInstalling)
+        .onDisappear {
+            if !beneparPack.isInstalled { installTask?.cancel() }
+        }
+    }
+}

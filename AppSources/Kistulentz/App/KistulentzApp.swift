@@ -24,7 +24,7 @@ struct KistulentzApp: App {
             KistulentzSupportCommands()
             CommandGroup(after: .textEditing) {
                 Divider()
-                Button("Run AI Review") {
+                Button("Polish Document") {
                     NotificationCenter.default.post(name: .runAIReview, object: nil)
                 }
                 .keyboardShortcut("r", modifiers: [.command, .shift])

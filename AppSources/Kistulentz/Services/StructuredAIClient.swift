@@ -192,6 +192,9 @@ struct StructuredAIClient {
 }
 
 struct OllamaService {
+    static let recommendedWritingModel = "qwen3.5:4b"
+    static let downloadURL = URL(string: "https://ollama.com/download")!
+
     private let session: URLSession
 
     init(session: URLSession = .shared) {
@@ -216,6 +219,104 @@ struct OllamaService {
             throw WritingAIError.ollamaUnavailable
         }
     }
+
+    func pullModel(
+        _ rawModel: String,
+        onProgress: @escaping @MainActor (OllamaPullProgress) -> Void
+    ) async throws {
+        let model = rawModel.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !model.isEmpty,
+              model.count <= 200,
+              model.allSatisfy({ $0.isLetter || $0.isNumber || ".-_:/".contains($0) }) else {
+            throw OllamaSetupError.invalidModelName
+        }
+
+        var request = URLRequest(
+            url: StructuredAIClient.ollamaBaseURL.appendingPathComponent("api/pull")
+        )
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: [
+            "model": model,
+            "stream": true
+        ])
+
+        do {
+            let (bytes, response) = try await session.bytes(for: request)
+            guard let http = response as? HTTPURLResponse else {
+                throw WritingAIError.invalidResponse
+            }
+            guard (200...299).contains(http.statusCode) else {
+                throw WritingAIError.api(
+                    status: http.statusCode,
+                    message: "Ollama could not download \(model)."
+                )
+            }
+
+            var completedSuccessfully = false
+            for try await line in bytes.lines {
+                try Task.checkCancellation()
+                guard !line.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { continue }
+                guard let data = line.data(using: .utf8),
+                      let response = try? JSONDecoder().decode(OllamaPullResponse.self, from: data) else {
+                    throw WritingAIError.invalidResponse
+                }
+                if let error = response.error?.trimmingCharacters(in: .whitespacesAndNewlines),
+                   !error.isEmpty {
+                    throw WritingAIError.api(status: http.statusCode, message: error)
+                }
+                guard let status = response.status?.trimmingCharacters(in: .whitespacesAndNewlines),
+                      !status.isEmpty else {
+                    throw WritingAIError.invalidResponse
+                }
+                let progress = OllamaPullProgress(
+                    status: status,
+                    completedBytes: response.completed,
+                    totalBytes: response.total
+                )
+                await onProgress(progress)
+                if status.lowercased() == "success" {
+                    completedSuccessfully = true
+                }
+            }
+            guard completedSuccessfully else { throw OllamaSetupError.incompleteDownload }
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch let error as URLError where error.code == .cancelled && Task.isCancelled {
+            throw CancellationError()
+        } catch let error as WritingAIError {
+            throw error
+        } catch let error as OllamaSetupError {
+            throw error
+        } catch {
+            throw WritingAIError.ollamaUnavailable
+        }
+    }
+}
+
+struct OllamaPullProgress: Equatable {
+    let status: String
+    let completedBytes: Int64?
+    let totalBytes: Int64?
+
+    var fractionCompleted: Double? {
+        guard let completedBytes, let totalBytes, totalBytes > 0 else { return nil }
+        return min(max(Double(completedBytes) / Double(totalBytes), 0), 1)
+    }
+}
+
+enum OllamaSetupError: LocalizedError {
+    case invalidModelName
+    case incompleteDownload
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidModelName:
+            "The Ollama model name is empty or contains unsupported characters."
+        case .incompleteDownload:
+            "Ollama ended the model download before reporting success. Try again; Ollama can reuse completed layers."
+        }
+    }
 }
 
 private struct OllamaModelsResponse: Decodable {
@@ -225,6 +326,13 @@ private struct OllamaModelsResponse: Decodable {
 private struct OllamaModelResponse: Decodable {
     let name: String
     let model: String
+}
+
+private struct OllamaPullResponse: Decodable {
+    let status: String?
+    let completed: Int64?
+    let total: Int64?
+    let error: String?
 }
 
 private extension String {

@@ -157,16 +157,31 @@ struct ReadabilityEngine {
                 continue
             }
             for match in regex.matches(in: text, range: fullRange) {
+                let excerpt = source.substring(with: match.range)
                 issues.append(WritingIssue(
                     category: .complexPhrase,
                     range: match.range,
-                    excerpt: source.substring(with: match.range),
+                    excerpt: excerpt,
                     message: "Use a simpler alternative.",
-                    replacement: replacement
+                    replacement: preservingCapitalization(of: replacement, matching: excerpt)
                 ))
             }
         }
         return issues
+    }
+
+    private static func preservingCapitalization(of replacement: String, matching source: String) -> String {
+        let letters = source.filter(\.isLetter)
+        if !letters.isEmpty, letters == letters.uppercased() {
+            return replacement.uppercased()
+        }
+        guard let first = source.first,
+              first.isLetter,
+              first.isUppercase,
+              let replacementFirst = replacement.first else {
+            return replacement
+        }
+        return replacementFirst.uppercased() + replacement.dropFirst()
     }
 
     private static func wordMatches(in text: String) -> [String] {

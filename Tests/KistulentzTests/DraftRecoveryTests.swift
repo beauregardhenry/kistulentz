@@ -137,6 +137,31 @@ final class DraftRecoveryTests: XCTestCase {
         XCTAssertTrue(AppSettings(defaults: defaults).hasCompletedOnboarding)
     }
 
+    @MainActor
+    func testEnglishPackPromptChoicePersists() throws {
+        let suite = "Kistulentz-English-Pack-Prompt-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let settings = AppSettings(defaults: defaults)
+        XCTAssertFalse(settings.hasAcknowledgedEnglishPackPrompt)
+
+        settings.acknowledgeEnglishPackPrompt()
+
+        XCTAssertTrue(AppSettings(defaults: defaults).hasAcknowledgedEnglishPackPrompt)
+    }
+
+    @MainActor
+    func testEnglishPackPromptCanOnlyBeClaimedByOneWindowPerLaunch() throws {
+        let suite = "Kistulentz-English-Pack-Claim-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let settings = AppSettings(defaults: defaults)
+
+        XCTAssertTrue(settings.claimEnglishPackPrompt())
+        XCTAssertFalse(settings.claimEnglishPackPrompt())
+        XCTAssertFalse(settings.hasAcknowledgedEnglishPackPrompt)
+    }
+
     func testFictionAndNonfictionSamplesAreSeparateEditableProjects() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }

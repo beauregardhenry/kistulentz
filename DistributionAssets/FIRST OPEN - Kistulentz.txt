@@ -5,22 +5,21 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.12.0 FRIEND PREVIEW
-- A first-launch Welcome window provides direct paths to create a project, open
-  a document, import several documents, or create editable fiction and
-  nonfiction sample projects in a folder you choose.
-- After an abnormal quit, Draft Recovery Review compares locally recovered
-  writing with the saved file. A recovered copy can be saved separately;
-  replacing the saved file requires confirmation and a last-second stale check.
-- Live readability and reference comparisons run away from the interface thread.
-  Manuscript-wide analysis waits until editing pauses and loads project files in
-  the background.
-- A change-aware chapter index makes large projects faster to reopen while
-  invalidating cached metadata whenever a source document changes.
-- VoiceOver labels and keyboard access have been expanded across importing,
-  research, revision goals, project organization, onboarding, and recovery.
-- Dedicated scale tests cover two million manuscript words across 2,000 project
-  documents, 1,000-file imports, and a 5,000-book Reference Library.
+NEW IN 0.12.1 FRIEND PREVIEW
+- Kistulentz now prominently offers the optional English structural-analysis
+  pack on first launch. The confirmed local download turns itself on after
+  installation and can still be managed from Settings.
+- Ollama setup now links to the official installer, detects the local service,
+  lists installed models, and offers a confirmed recommended-model download
+  with visible progress and Cancel.
+- Polish now works without OpenAI, Anthropic, or Ollama. Local Polish reviews
+  safe built-in phrase corrections as individual passages and never sends the
+  document off the Mac.
+- Local Polish protects Markdown code, links, images, URLs, and HTML; it refuses
+  stale, overlapping, or rule-violating changes.
+- Local phrase corrections now preserve sentence capitalization.
+- Additional tests cover interrupted and malformed model downloads, server
+  failures, language-pack failures, prompt persistence, and local-polish safety.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

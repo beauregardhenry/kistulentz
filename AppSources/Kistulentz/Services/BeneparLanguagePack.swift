@@ -103,15 +103,18 @@ final class BeneparLanguagePackManager: ObservableObject {
     private let rootURL: URL
     private let catalogURL: URL
     private let fileManager: FileManager
+    private let session: URLSession
 
     init(
         rootURL: URL = BeneparLanguagePackLocator.defaultRootURL(),
         catalogURL: URL = BeneparLanguagePackManager.catalogURL,
-        fileManager: FileManager = .default
+        fileManager: FileManager = .default,
+        session: URLSession = .shared
     ) {
         self.rootURL = rootURL
         self.catalogURL = catalogURL
         self.fileManager = fileManager
+        self.session = session
         refresh()
     }
 
@@ -141,7 +144,7 @@ final class BeneparLanguagePackManager: ObservableObject {
         errorMessage = nil
         activityMessage = "Checking the English language pack…"
         do {
-            let (catalogData, response) = try await URLSession.shared.data(from: catalogURL)
+            let (catalogData, response) = try await session.data(from: catalogURL)
             guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
                 throw BeneparLanguagePackError.catalogUnavailable
             }
@@ -163,7 +166,7 @@ final class BeneparLanguagePackManager: ObservableObject {
             }
 
             activityMessage = "Downloading the English structural-analysis pack…"
-            let (downloadedURL, downloadResponse) = try await URLSession.shared.download(from: entry.downloadURL)
+            let (downloadedURL, downloadResponse) = try await session.download(from: entry.downloadURL)
             guard let http = downloadResponse as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
                 throw BeneparLanguagePackError.catalogUnavailable
             }
@@ -192,6 +195,12 @@ final class BeneparLanguagePackManager: ObservableObject {
             await BeneparService.shared.reset()
             refresh()
             activityMessage = "English structural analysis is ready."
+        } catch is CancellationError {
+            refresh()
+            activityMessage = "English language-pack installation cancelled."
+        } catch let error as URLError where error.code == .cancelled {
+            refresh()
+            activityMessage = "English language-pack installation cancelled."
         } catch {
             errorMessage = error.localizedDescription
             refresh()
