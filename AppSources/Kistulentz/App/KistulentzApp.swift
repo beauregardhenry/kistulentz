@@ -22,6 +22,9 @@ struct KistulentzApp: App {
         }
         .commands {
             KistulentzSupportCommands()
+#if UI_TEST_HOST
+            KistulentzUITestCommands()
+#endif
             CommandGroup(after: .textEditing) {
                 Divider()
                 Button("Polish Document") {
@@ -46,9 +49,45 @@ struct KistulentzApp: App {
                 .environmentObject(referenceLibrary)
         }
         .defaultSize(width: 700, height: 620)
+
+#if UI_TEST_HOST
+        Window("Kistulentz UI Test Workspace", id: "ui-test-workspace") {
+            KistulentzUITestWorkspace()
+                .environmentObject(settings)
+                .environmentObject(beneparPack)
+                .environmentObject(referenceLibrary)
+                .environmentObject(researchLibrary)
+                .environmentObject(draftRecovery)
+                .frame(minWidth: 1_120, minHeight: 680)
+        }
+        .defaultSize(width: 1_120, height: 680)
+#endif
     }
 
 }
+
+#if UI_TEST_HOST
+private struct KistulentzUITestCommands: Commands {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some Commands {
+        CommandGroup(after: .newItem) {
+            Button("Open UI Test Workspace") {
+                openWindow(id: "ui-test-workspace")
+            }
+            .keyboardShortcut("u", modifiers: [.command, .option])
+        }
+    }
+}
+
+private struct KistulentzUITestWorkspace: View {
+    @State private var document = MarkdownDocument()
+
+    var body: some View {
+        EditorWorkspace(document: $document, fileURL: nil)
+    }
+}
+#endif
 
 @MainActor
 final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {

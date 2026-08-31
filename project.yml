@@ -26,6 +26,7 @@ targets:
         PRODUCT_NAME: Kistulentz
         INFOPLIST_FILE: scripts/Info.plist
         GENERATE_INFOPLIST_FILE: NO
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: UI_TEST_HOST
     dependencies:
       - sdk: AppKit.framework
       - sdk: NaturalLanguage.framework
