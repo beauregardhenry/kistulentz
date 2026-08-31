@@ -76,13 +76,8 @@ final class KistulentzUITests: XCTestCase {
         ]
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
-        // DocumentGroup may present the standard Open panel when no restoration
-        // state exists. The Xcode-only host already opened an isolated draft,
-        // so dismissing this panel exposes that workspace.
-        let initialCancel = app.buttons.matching(identifier: "CancelButton").firstMatch
-        if initialCancel.waitForExistence(timeout: 3) {
-            initialCancel.click()
-        }
+        // The Xcode-only host opens a frontmost isolated draft. DocumentGroup's
+        // normal Open panel may remain behind it and must not be clicked.
         XCTAssertTrue(app.buttons["Reference"].waitForExistence(timeout: 8))
     }
 }
