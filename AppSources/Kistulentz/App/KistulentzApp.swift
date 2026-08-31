@@ -9,8 +9,27 @@ struct KistulentzApp: App {
     @StateObject private var referenceLibrary = ReferenceLibraryStore()
     @StateObject private var researchLibrary = ResearchLibraryStore()
     @StateObject private var draftRecovery = DraftRecoveryManager.shared
+#if UI_TEST_HOST
+    @State private var uiTestDocument = MarkdownDocument()
+#endif
 
+    @SceneBuilder
     var body: some Scene {
+#if UI_TEST_HOST
+        WindowGroup("Kistulentz UI Test Workspace") {
+            EditorWorkspace(document: $uiTestDocument, fileURL: nil)
+                .environmentObject(settings)
+                .environmentObject(beneparPack)
+                .environmentObject(referenceLibrary)
+                .environmentObject(researchLibrary)
+                .environmentObject(draftRecovery)
+                .frame(minWidth: 1_120, minHeight: 680)
+        }
+        .commands {
+            KistulentzSupportCommands()
+            KistulentzPolishCommands()
+        }
+#else
         DocumentGroup(newDocument: MarkdownDocument()) { file in
             EditorWorkspace(document: file.$document, fileURL: file.fileURL)
                 .environmentObject(settings)
@@ -22,14 +41,9 @@ struct KistulentzApp: App {
         }
         .commands {
             KistulentzSupportCommands()
-            CommandGroup(after: .textEditing) {
-                Divider()
-                Button("Polish Document") {
-                    NotificationCenter.default.post(name: .runAIReview, object: nil)
-                }
-                .keyboardShortcut("r", modifiers: [.command, .shift])
-            }
+            KistulentzPolishCommands()
         }
+#endif
 
         Settings {
             SettingsView()
@@ -53,51 +67,22 @@ struct KistulentzApp: App {
 
 @MainActor
 final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
-#if UI_TEST_HOST
-    private var uiTestWindow: NSWindow?
-
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        guard ProcessInfo.processInfo.environment["KISTULENTZ_UI_TESTING"] == "1" else { return }
-        let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 1_120, height: 680),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable],
-            backing: .buffered,
-            defer: false
-        )
-        window.title = "Kistulentz UI Test Workspace"
-        window.center()
-        window.contentView = NSHostingView(rootView: KistulentzUITestWorkspace())
-        window.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
-        uiTestWindow = window
-    }
-#endif
-
     func applicationWillTerminate(_ notification: Notification) {
         DraftRecoveryManager.shared.endSession()
     }
 }
 
-#if UI_TEST_HOST
-private struct KistulentzUITestWorkspace: View {
-    @State private var document = MarkdownDocument()
-    @StateObject private var settings = AppSettings()
-    @StateObject private var beneparPack = BeneparLanguagePackManager()
-    @StateObject private var referenceLibrary = ReferenceLibraryStore()
-    @StateObject private var researchLibrary = ResearchLibraryStore()
-    @StateObject private var draftRecovery = DraftRecoveryManager.shared
-
-    var body: some View {
-        EditorWorkspace(document: $document, fileURL: nil)
-            .environmentObject(settings)
-            .environmentObject(beneparPack)
-            .environmentObject(referenceLibrary)
-            .environmentObject(researchLibrary)
-            .environmentObject(draftRecovery)
-            .frame(minWidth: 1_120, minHeight: 680)
+private struct KistulentzPolishCommands: Commands {
+    var body: some Commands {
+        CommandGroup(after: .textEditing) {
+            Divider()
+            Button("Polish Document") {
+                NotificationCenter.default.post(name: .runAIReview, object: nil)
+            }
+            .keyboardShortcut("r", modifiers: [.command, .shift])
+        }
     }
 }
-#endif
 
 private struct KistulentzSupportCommands: Commands {
     @Environment(\.openWindow) private var openWindow
