@@ -229,17 +229,20 @@ struct ProjectImportAssistantView: View {
                     .buttonStyle(.borderless)
                     .disabled(index == 0)
                     .help("Move earlier")
+                    .accessibilityLabel("Move \(source.title) earlier")
                     Button { moveSource(from: index, by: 1) } label: {
                         Image(systemName: "arrow.down")
                     }
                     .buttonStyle(.borderless)
                     .disabled(index == sources.count - 1)
                     .help("Move later")
+                    .accessibilityLabel("Move \(source.title) later")
                     Button(role: .destructive) { removeSource(source.id) } label: {
                         Image(systemName: "trash")
                     }
                     .buttonStyle(.borderless)
                     .help("Remove from import")
+                    .accessibilityLabel("Remove \(source.title) from import")
                 }
             }
         }

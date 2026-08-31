@@ -55,6 +55,7 @@ final class WritingProjectStore: ObservableObject {
         chapters.first(where: { $0.relativePath == selectedChapterPath })?.title ?? "No chapter"
     }
     var combinedWordCount: Int { chapters.reduce(0) { $0 + $1.wordCount } }
+    var hasUnsavedChapterChanges: Bool { isDirty }
 
     var reportFileURL: URL? { rootURL.map(ManuscriptProjectDisk.reportURL) }
     var bibleFileURL: URL? { rootURL.map(ManuscriptProjectDisk.bibleURL) }
@@ -1479,26 +1480,49 @@ final class WritingProjectStore: ObservableObject {
     private func scheduleManuscriptAnalysis(immediately: Bool = false) {
         manuscriptAnalysisTask?.cancel()
         guard let rootURL, let manifest else { return }
-        let documents: [ManuscriptDocument]
-        do {
-            documents = try manuscriptDocuments()
-        } catch {
-            errorMessage = error.localizedDescription
-            return
-        }
+        let chapterSnapshot = chapters
+        let selectedPathSnapshot = selectedChapterPath
+        let selectedTextSnapshot = text
         isAnalyzingManuscript = true
         manuscriptAnalysisTask = Task { [weak self] in
             if !immediately { try? await Task.sleep(for: .milliseconds(1_400)) }
             guard let self, !Task.isCancelled, self.rootURL == rootURL else { return }
-            var analysis = await Task.detached(priority: .utility) {
-                ManuscriptAnalyzer.analyze(
-                    projectName: manifest.name,
-                    kind: manifest.kind,
-                    documents: documents
-                )
+            let loaded = await Task.detached(priority: .utility) {
+                Result {
+                    let documents = try Self.loadManuscriptDocuments(
+                        chapters: chapterSnapshot,
+                        selectedPath: selectedPathSnapshot,
+                        selectedText: selectedTextSnapshot,
+                        rootURL: rootURL
+                    )
+                    let analysis = ManuscriptAnalyzer.analyze(
+                        projectName: manifest.name,
+                        kind: manifest.kind,
+                        documents: documents
+                    )
+                    let wordCount = documents.reduce(0) {
+                        $0 + WritingProjectDisk.wordCount(in: $1.text)
+                    }
+                    return (
+                        analysis: analysis,
+                        wordCount: wordCount,
+                        structuralSample: ManuscriptStructuralSampler.text(from: documents)
+                    )
+                }
             }.value
-            let wordCount = documents.reduce(0) { partial, document in
-                partial + document.text.split { $0.isWhitespace }.count
+            guard !Task.isCancelled, self.rootURL == rootURL else { return }
+            var analysis: ManuscriptAnalysis
+            let wordCount: Int
+            let structuralSample: String
+            switch loaded {
+            case .success(let work):
+                analysis = work.analysis
+                wordCount = work.wordCount
+                structuralSample = work.structuralSample
+            case .failure(let error):
+                self.isAnalyzingManuscript = false
+                self.errorMessage = error.localizedDescription
+                return
             }
             let shouldRefreshStructure = immediately
                 || self.manuscriptCache.structuralProfile == nil
@@ -1506,7 +1530,7 @@ final class WritingProjectStore: ObservableObject {
                 || self.lastStructuralAnalysisAt.map { Date().timeIntervalSince($0) >= 60 } != false
             if shouldRefreshStructure,
                let structure = await BeneparService.shared.analyzeIfAvailable(
-                   text: ManuscriptStructuralSampler.text(from: documents),
+                   text: structuralSample,
                    maximumSentences: 160,
                    includeIssues: false
                ) {
@@ -1564,9 +1588,23 @@ final class WritingProjectStore: ObservableObject {
 
     private func manuscriptDocuments() throws -> [ManuscriptDocument] {
         guard let rootURL else { return [] }
-        return try chapters.map { chapter in
-            let chapterText = chapter.relativePath == selectedChapterPath
-                ? text
+        return try Self.loadManuscriptDocuments(
+            chapters: chapters,
+            selectedPath: selectedChapterPath,
+            selectedText: text,
+            rootURL: rootURL
+        )
+    }
+
+    nonisolated private static func loadManuscriptDocuments(
+        chapters: [ProjectChapter],
+        selectedPath: String?,
+        selectedText: String,
+        rootURL: URL
+    ) throws -> [ManuscriptDocument] {
+        try chapters.map { chapter in
+            let chapterText = chapter.relativePath == selectedPath
+                ? selectedText
                 : try WritingProjectDisk.readChapter(chapter.relativePath, at: rootURL)
             return ManuscriptDocument(
                 relativePath: chapter.relativePath,

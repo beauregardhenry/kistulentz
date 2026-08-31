@@ -119,6 +119,7 @@ final class AppSettings: ObservableObject {
         static let anthropicModel = "anthropicModel"
         static let ollamaModel = "ollamaModel"
         static let hiddenHighlightCategories = "hiddenHighlightCategories"
+        static let hasCompletedOnboarding = "hasCompletedOnboarding"
     }
 
     private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
@@ -152,6 +153,8 @@ final class AppSettings: ObservableObject {
         }
     }
 
+    @Published private(set) var hasCompletedOnboarding: Bool
+
     @Published private(set) var hasOpenAIKey = false
     @Published private(set) var hasAnthropicKey = false
 
@@ -176,6 +179,7 @@ final class AppSettings: ObservableObject {
             (defaults.stringArray(forKey: DefaultsKey.hiddenHighlightCategories) ?? [])
                 .compactMap(IssueCategory.init(rawValue:))
         )
+        hasCompletedOnboarding = defaults.bool(forKey: DefaultsKey.hasCompletedOnboarding)
 
         refreshKeyStatus()
     }
@@ -188,7 +192,8 @@ final class AppSettings: ObservableObject {
             DefaultsKey.openAIModel,
             DefaultsKey.anthropicModel,
             DefaultsKey.ollamaModel,
-            DefaultsKey.hiddenHighlightCategories
+            DefaultsKey.hiddenHighlightCategories,
+            DefaultsKey.hasCompletedOnboarding
         ]
         for key in keys where defaults.object(forKey: key) == nil {
             if let value = legacy.object(forKey: key) {
@@ -243,6 +248,11 @@ final class AppSettings: ObservableObject {
         } else {
             hiddenHighlightCategories.insert(category)
         }
+    }
+
+    func completeOnboarding() {
+        hasCompletedOnboarding = true
+        defaults.set(true, forKey: DefaultsKey.hasCompletedOnboarding)
     }
 
     private func refreshKeyStatus() {

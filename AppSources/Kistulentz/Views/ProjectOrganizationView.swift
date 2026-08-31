@@ -154,6 +154,7 @@ struct ProjectOrganizationView: View {
                         Button { searchText = "" } label: { Image(systemName: "xmark.circle.fill") }
                             .buttonStyle(.plain)
                             .foregroundStyle(.secondary)
+                            .accessibilityLabel("Clear organization filter")
                     }
                 }
                 .padding(.horizontal, 9)
@@ -503,6 +504,7 @@ private struct OutlineRow: View {
                 .frame(width: 68, alignment: .leading)
             Button(action: onOpen) { Image(systemName: row.node.kind.isContainer ? "rectangle.stack" : "pencil") }
                 .buttonStyle(.borderless)
+                .accessibilityLabel(row.node.kind.isContainer ? "Open \(row.node.title)" : "Edit \(row.node.title)")
         }
         .padding(.horizontal, 10)
         .frame(height: 48)

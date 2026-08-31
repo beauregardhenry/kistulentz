@@ -56,6 +56,35 @@ final class WritingProjectTests: XCTestCase {
         XCTAssertEqual(manifest.chapterOrder, ["Introduction.md"])
     }
 
+    func testChapterIndexReusesUnchangedMetadataAndInvalidatesChangedFiles() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Indexed", kind: .nonfiction)
+        var manifest = try WritingProjectDisk.loadManifest(at: root)
+
+        let first = try WritingProjectDisk.loadChapters(at: root, manifest: manifest)
+        XCTAssertEqual(first.first?.title, "Draft")
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: root.appendingPathComponent(".kistulentz/chapter-index.json").path
+        ))
+
+        let draftURL = root.appendingPathComponent("Draft.md")
+        try "# Revised Title\n\nMore words now appear here.\n".write(
+            to: draftURL,
+            atomically: true,
+            encoding: .utf8
+        )
+        try FileManager.default.setAttributes(
+            [.modificationDate: Date().addingTimeInterval(2)],
+            ofItemAtPath: draftURL.path
+        )
+        manifest = try WritingProjectDisk.loadManifest(at: root)
+        let refreshed = try WritingProjectDisk.loadChapters(at: root, manifest: manifest)
+
+        XCTAssertEqual(refreshed.first?.title, "Revised Title")
+        XCTAssertEqual(refreshed.first?.wordCount, 7)
+    }
+
     @MainActor
     func testProjectStoreAutosavesAndReopensChapterOrderAndHistory() throws {
         let parent = temporaryDirectory()

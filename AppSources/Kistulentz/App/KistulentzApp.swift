@@ -3,10 +3,12 @@ import SwiftUI
 
 @main
 struct KistulentzApp: App {
+    @NSApplicationDelegateAdaptor(KistulentzAppDelegate.self) private var appDelegate
     @StateObject private var settings = AppSettings()
     @StateObject private var beneparPack = BeneparLanguagePackManager()
     @StateObject private var referenceLibrary = ReferenceLibraryStore()
     @StateObject private var researchLibrary = ResearchLibraryStore()
+    @StateObject private var draftRecovery = DraftRecoveryManager.shared
 
     var body: some Scene {
         DocumentGroup(newDocument: MarkdownDocument()) { file in
@@ -15,6 +17,7 @@ struct KistulentzApp: App {
                 .environmentObject(beneparPack)
                 .environmentObject(referenceLibrary)
                 .environmentObject(researchLibrary)
+                .environmentObject(draftRecovery)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
@@ -46,6 +49,13 @@ struct KistulentzApp: App {
     }
 }
 
+@MainActor
+final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
+    func applicationWillTerminate(_ notification: Notification) {
+        DraftRecoveryManager.shared.endSession()
+    }
+}
+
 private struct KistulentzSupportCommands: Commands {
     @Environment(\.openWindow) private var openWindow
 
@@ -60,6 +70,14 @@ private struct KistulentzSupportCommands: Commands {
             }
             Button("Kistulentz Source Code") {
                 KistulentzLegal.openSourceCode()
+            }
+        }
+        CommandGroup(after: .help) {
+            Button("Welcome to Kistulentz…") {
+                NotificationCenter.default.post(name: .showKistulentzWelcome, object: nil)
+            }
+            Button("Draft Recovery…") {
+                NotificationCenter.default.post(name: .showDraftRecovery, object: nil)
             }
         }
     }
@@ -89,4 +107,6 @@ private enum KistulentzLegal {
 
 extension Notification.Name {
     static let runAIReview = Notification.Name("Kistulentz.runAIReview")
+    static let showKistulentzWelcome = Notification.Name("Kistulentz.showWelcome")
+    static let showDraftRecovery = Notification.Name("Kistulentz.showDraftRecovery")
 }

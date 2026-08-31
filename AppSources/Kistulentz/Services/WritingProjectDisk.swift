@@ -6,6 +6,18 @@ enum WritingProjectDisk {
     private static let manifestFileName = "project.json"
     private static let historyDirectoryName = "history"
     private static let historyIndexFileName = "index.json"
+    private static let chapterIndexFileName = "chapter-index.json"
+
+    private struct ChapterIndexEntry: Codable {
+        let fileSize: Int
+        let modificationMilliseconds: Int64
+        let title: String
+        let wordCount: Int
+    }
+
+    private struct ChapterIndex: Codable {
+        var entries: [String: ChapterIndexEntry] = [:]
+    }
 
     static func hasManifest(at root: URL) -> Bool {
         FileManager.default.fileExists(atPath: manifestURL(at: root).path)
@@ -78,14 +90,45 @@ enum WritingProjectDisk {
         let known = Set(discovered)
         var ordered = manifest.chapterOrder.filter { known.contains($0) }
         ordered.append(contentsOf: discovered.filter { !ordered.contains($0) })
-        return try ordered.map { relativePath in
-            let text = try readChapter(relativePath, at: root)
-            return ProjectChapter(
-                relativePath: relativePath,
-                title: chapterTitle(from: text, fallback: URL(fileURLWithPath: relativePath).deletingPathExtension().lastPathComponent),
-                wordCount: wordCount(in: text)
+        let cached = loadChapterIndex(at: root)
+        var refreshed = ChapterIndex()
+        let chapters = try ordered.map { relativePath in
+            let url = chapterURL(relativePath, at: root)
+            let values = try url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey])
+            let fileSize = values.fileSize ?? 0
+            let modified = Int64((values.contentModificationDate?.timeIntervalSince1970 ?? 0) * 1_000)
+            let chapter: ProjectChapter
+
+            if let entry = cached.entries[relativePath],
+               entry.fileSize == fileSize,
+               entry.modificationMilliseconds == modified {
+                chapter = ProjectChapter(
+                    relativePath: relativePath,
+                    title: entry.title,
+                    wordCount: entry.wordCount
+                )
+            } else {
+                let text = try readChapter(relativePath, at: root)
+                chapter = ProjectChapter(
+                    relativePath: relativePath,
+                    title: chapterTitle(
+                        from: text,
+                        fallback: URL(fileURLWithPath: relativePath).deletingPathExtension().lastPathComponent
+                    ),
+                    wordCount: wordCount(in: text)
+                )
+            }
+
+            refreshed.entries[relativePath] = ChapterIndexEntry(
+                fileSize: fileSize,
+                modificationMilliseconds: modified,
+                title: chapter.title,
+                wordCount: chapter.wordCount
             )
+            return chapter
         }
+        try? saveChapterIndex(refreshed, at: root)
+        return chapters
     }
 
     static func readChapter(_ relativePath: String, at root: URL) throws -> String {
@@ -282,6 +325,22 @@ enum WritingProjectDisk {
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
         try encoder.encode(index).write(to: historyIndexURL(at: root), options: .atomic)
+    }
+
+    private static func loadChapterIndex(at root: URL) -> ChapterIndex {
+        let url = metadataURL(at: root).appendingPathComponent(chapterIndexFileName)
+        guard let data = try? Data(contentsOf: url) else { return ChapterIndex() }
+        return (try? JSONDecoder().decode(ChapterIndex.self, from: data)) ?? ChapterIndex()
+    }
+
+    private static func saveChapterIndex(_ index: ChapterIndex, at root: URL) throws {
+        try prepareDirectories(at: root)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        try encoder.encode(index).write(
+            to: metadataURL(at: root).appendingPathComponent(chapterIndexFileName),
+            options: .atomic
+        )
     }
 
     private static func scanMarkdownPaths(at root: URL) throws -> [String] {

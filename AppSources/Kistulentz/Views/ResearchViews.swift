@@ -153,6 +153,7 @@ struct ResearchLibraryView: View {
                     Button("Export All as CSL-JSON…") { export(format: "json") }
                 } label: { Image(systemName: "plus") }
                 .menuStyle(.borderlessButton).fixedSize()
+                .accessibilityLabel("Add, look up, import, or export research sources")
             }
             .padding(10)
             List(selection: $selectedSourceID) {
@@ -238,6 +239,7 @@ private struct ResearchSourceEditor: View {
                                 source.creators.removeAll { $0.id == creator.id }
                             } label: { Image(systemName: "minus.circle") }
                             .buttonStyle(.plain)
+                            .accessibilityLabel("Remove creator")
                         }
                     }
                     Button("Add Creator") { source.creators.append(ResearchCreator()) }
@@ -283,6 +285,7 @@ private struct ResearchSourceEditor: View {
                             Spacer()
                             Button("Open") { onOpenAttachment(attachment) }
                             Button(role: .destructive) { onRemoveAttachment(attachment) } label: { Image(systemName: "trash") }
+                                .accessibilityLabel("Remove \(attachment.displayName)")
                         }
                     }
                     Button("Add PDF, EPUB, Web Archive, Image, or Text…", action: onAddAttachment)

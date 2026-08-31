@@ -5,20 +5,22 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.11.0 FRIEND PREVIEW
-- The Project Import Assistant accepts multiple files, recursively selected
-  folders, or both, while leaving every source document untouched.
-- Arrange the import order and assign each document as a Part, Chapter, Scene,
-  or Section before conversion begins.
-- Preview each converted document, its conversion warnings, images, and tracked
-  changes. One failed file does not stop the remaining files.
-- Save the successful results as one combined Markdown file, a new Kistulentz
-  project, or additional documents in the currently open project.
-- Combined Markdown uses Part level-one headings, Chapter level-two headings,
-  and Scene or Section level-three headings. Existing headings shift down while
-  headings inside fenced code remain unchanged.
-- Imports show progress and can be cancelled. Existing combined Markdown files
-  are never replaced; choose a new filename instead.
+NEW IN 0.12.0 FRIEND PREVIEW
+- A first-launch Welcome window provides direct paths to create a project, open
+  a document, import several documents, or create editable fiction and
+  nonfiction sample projects in a folder you choose.
+- After an abnormal quit, Draft Recovery Review compares locally recovered
+  writing with the saved file. A recovered copy can be saved separately;
+  replacing the saved file requires confirmation and a last-second stale check.
+- Live readability and reference comparisons run away from the interface thread.
+  Manuscript-wide analysis waits until editing pauses and loads project files in
+  the background.
+- A change-aware chapter index makes large projects faster to reopen while
+  invalidating cached metadata whenever a source document changes.
+- VoiceOver labels and keyboard access have been expanded across importing,
+  research, revision goals, project organization, onboarding, and recovery.
+- Dedicated scale tests cover two million manuscript words across 2,000 project
+  documents, 1,000-file imports, and a 5,000-book Reference Library.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
@@ -65,6 +67,13 @@ Project metadata recovery snapshots are stored in a hidden .kistulentz-backups
 folder at the project root. Kistulentz keeps up to three rolling last-known-good
 snapshots and retains pre-migration and pre-recovery snapshots. Recovery changes
 structured project metadata only; it does not replace manuscript Markdown.
+
+Draft recovery journals are stored locally in the user's Application Support
+folder while an editing window is active. They are removed after a successfully
+saved normal close or application quit; unresolved local work remains available.
+If Kistulentz stops abnormally, the next launch
+offers a comparison and never replaces a saved file automatically. Resolved or
+discarded recovery journals are removed.
 
 Custom beta-reader definitions are stored in hidden project metadata; beta
 feedback is shown only for the current in-app session. None of these automatic

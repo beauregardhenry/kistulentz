@@ -5,6 +5,8 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 ## Included
 
 - Native `.md`, `.markdown`, `.mdown`, `.txt`, and `.text` open, edit, save, autosave, and Undo support
+- A first-launch Welcome window with create, open, multi-document import, and optional editable fiction and nonfiction sample projects
+- Local abnormal-quit draft journals with side-by-side Recovery Review, save-copy, confirmed replacement, stale-file protection, and discard actions
 - Safe single-Markdown import for DOCX, RTF/RTFD, HTML, and OpenDocument Text files, with a conversion preview that never rewrites the source
 - A Project Import Assistant for multiple explicit files, recursively selected folders, or both, with editable order and Part, Chapter, Scene, or Section assignments before conversion
 - Per-file batch progress, cancellation, conversion reports, tracked-change decisions, and failures that do not stop the remaining documents
@@ -14,6 +16,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Local-only HTML import that refuses to download remote images or execute scripts
 - Normal-folder projects for fiction and nonfiction manuscripts
 - Ordered Markdown chapters, manuscript-wide search, and combined project word counts
+- Change-aware cached chapter metadata for faster reopening of large projects
 - A visual Project Organization workspace with Corkboard and Outliner views for Parts, Chapters, and fiction Scenes or nonfiction Sections
 - Drag-and-drop outline ordering that does not move files in Finder unless the user separately previews and approves **Organize Files to Match Outline**
 - Editable outline cards with synopsis, status, purpose, labels, notes, export inclusion, target length, and fiction- or nonfiction-specific planning fields
@@ -30,6 +33,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Automatic project-format migration with a pre-migration metadata backup, rolling last-known-good snapshots, and guided recovery that never replaces manuscript Markdown
 - Distraction-free Write mode and individually configurable highlight categories
 - Live reading-grade estimate, word count, sentence count, and reading time
+- Background readability, reference comparison, and manuscript-wide analysis that keeps large-document work away from the interface thread
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
 - An optional, separately installed English language pack using Benepar for local clause, phrase-depth, subordination, coordination, fragment, adverb, and passive-voice signals
 - Orange advisory sentence-structure highlights that never trigger automatic prose replacement
@@ -115,6 +119,8 @@ Before sharing a release candidate, build its ZIP and DMG and run the local inte
 ```
 
 Maintainers can also run the manual **Test release candidate** GitHub Actions workflow. It tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing a release.
+
+The manual **Test 1.0 scale targets** workflow exercises the approved large-work targets on native Apple silicon and Intel runners. See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [ACCESSIBILITY.md](ACCESSIBILITY.md) before publishing a release candidate.
 
 ### Optional English structural-analysis pack
 

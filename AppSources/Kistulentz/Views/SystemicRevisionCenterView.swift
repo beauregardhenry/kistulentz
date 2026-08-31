@@ -89,13 +89,17 @@ struct SystemicRevisionCenterView: View {
                 HStack {
                     Text("Revision Goals").font(.headline)
                     Spacer()
-                    Button { showingGoalEditor = true } label: { Image(systemName: "plus") }.buttonStyle(.plain)
+                    Button { showingGoalEditor = true } label: { Image(systemName: "plus") }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Add revision goal")
                 }
                 ForEach(store.revisionArchive.goals.filter { $0.revisionPass == selectedPass }) { goal in
                     HStack(alignment: .top) {
                         Button { store.toggleRevisionGoal(goal.id) } label: {
                             Image(systemName: goal.isComplete ? "checkmark.circle.fill" : "circle")
-                        }.buttonStyle(.plain)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(goal.isComplete ? "Mark \(goal.title) incomplete" : "Mark \(goal.title) complete")
                         VStack(alignment: .leading, spacing: 2) {
                             Text(goal.title).strikethrough(goal.isComplete).lineLimit(2)
                             if !goal.notes.isEmpty { Text(goal.notes).font(.caption).foregroundStyle(.secondary).lineLimit(2) }

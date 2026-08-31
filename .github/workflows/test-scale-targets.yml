@@ -1,0 +1,27 @@
+name: Test 1.0 scale targets
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scale-targets:
+    name: Scale targets · ${{ matrix.architecture }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: arm64
+            runner: macos-15
+          - architecture: x86_64
+            runner: macos-15-intel
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    env:
+      KISTULENTZ_RUN_SCALE_TESTS: "1"
+    steps:
+      - uses: actions/checkout@v6
+      - name: Exercise approved v1 scale targets
+        run: swift test --disable-sandbox --filter ScaleTargetTests

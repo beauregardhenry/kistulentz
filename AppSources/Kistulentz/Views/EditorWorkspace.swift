@@ -26,11 +26,14 @@ struct EditorWorkspace: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
     @EnvironmentObject private var researchLibrary: ResearchLibraryStore
+    @EnvironmentObject private var draftRecovery: DraftRecoveryManager
     @Environment(\.openSettings) private var openSettings
     @Environment(\.undoManager) private var undoManager
+    @Environment(\.scenePhase) private var scenePhase
     @StateObject private var viewModel = EditorViewModel()
     @StateObject private var undoCoordinator = DocumentUndoCoordinator()
     @StateObject private var projectStore = WritingProjectStore()
+    @StateObject private var draftRecoveryCoordinator = DraftRecoveryCoordinator()
     @State private var polishedDraftPlan: PolishedDraftPlan?
     @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
@@ -56,10 +59,13 @@ struct EditorWorkspace: View {
     @State private var pendingDocumentImport: DocumentImportDraft?
     @State private var isImportingDocument = false
     @State private var showingProjectImportAssistant = false
+    @State private var showingWelcome = false
+    @State private var showingDraftRecovery = false
+    @State private var didPresentStartup = false
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
-    var body: some View {
+    private var editorLayout: some View {
         VStack(spacing: 0) {
             topBar
             Divider()
@@ -136,25 +142,33 @@ struct EditorWorkspace: View {
                 }
             }
         }
+    }
+
+    private var lifecycleConfiguredView: some View {
+        editorLayout
         .background(Color(nsColor: .windowBackgroundColor))
         .navigationTitle(projectStore.isOpen ? projectStore.projectName : (fileURL?.lastPathComponent ?? "Untitled.md"))
         .onAppear {
             projectStore.attachUndoManager(undoManager)
             viewModel.configureDocument(url: activeFileURL, text: activeText)
+            configureDraftRecovery()
             viewModel.scheduleAnalysis(
                 text: activeText,
                 targetGrade: settings.targetGrade,
                 immediately: true
             )
+            presentStartupIfNeeded()
         }
         .onChange(of: document.text) { _, newValue in
             if !projectStore.isOpen {
                 viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
+                draftRecoveryCoordinator.schedule(text: newValue)
             }
         }
         .onChange(of: projectStore.text) { _, newValue in
             if projectStore.isOpen {
                 viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
+                draftRecoveryCoordinator.schedule(text: newValue)
             }
         }
         .onChange(of: projectStore.selectedFileURL) { _, newValue in
@@ -170,11 +184,19 @@ struct EditorWorkspace: View {
                 targetGrade: settings.targetGrade,
                 immediately: true
             )
+            Task { @MainActor in
+                await Task.yield()
+                configureDraftRecovery()
+            }
         }
         .onChange(of: fileURL) { _, newValue in
             if !projectStore.isOpen {
                 viewModel.configureDocument(url: newValue, text: document.text)
+                configureDraftRecovery()
             }
+        }
+        .onChange(of: scenePhase) { _, newValue in
+            if newValue != .active { draftRecoveryCoordinator.flush() }
         }
         .onChange(of: settings.targetGrade) { _, newValue in
             viewModel.scheduleAnalysis(text: activeText, targetGrade: newValue, immediately: true)
@@ -182,7 +204,28 @@ struct EditorWorkspace: View {
         .onReceive(NotificationCenter.default.publisher(for: .runAIReview)) { _ in
             runReview()
         }
-        .fileImporter(
+        .onReceive(NotificationCenter.default.publisher(for: .showKistulentzWelcome)) { _ in
+            showingWelcome = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .showDraftRecovery)) { _ in
+            draftRecovery.reloadPendingEntries()
+            showingDraftRecovery = true
+        }
+        .onDisappear {
+            draftRecoveryCoordinator.flush()
+            if projectStore.isOpen {
+                projectStore.saveNow()
+                if !projectStore.hasUnsavedChapterChanges {
+                    draftRecoveryCoordinator.close()
+                }
+            } else {
+                draftRecoveryCoordinator.close()
+            }
+        }
+    }
+
+    private var libraryConfiguredView: some View {
+        lifecycleConfiguredView.fileImporter(
             isPresented: $showingReferenceImporter,
             allowedContentTypes: [epubType],
             allowsMultipleSelection: false
@@ -223,7 +266,10 @@ struct EditorWorkspace: View {
             PublishExportView(store: projectStore)
                 .environmentObject(researchLibrary)
         }
-        .sheet(item: $pendingDocumentImport) { draft in
+    }
+
+    private var importConfiguredView: some View {
+        libraryConfiguredView.sheet(item: $pendingDocumentImport) { draft in
             DocumentImportPreviewView(
                 draft: draft,
                 onCancel: { pendingDocumentImport = nil },
@@ -239,6 +285,21 @@ struct EditorWorkspace: View {
                 onComplete: completeProjectImport,
                 onCancel: { showingProjectImportAssistant = false }
             )
+        }
+        .sheet(isPresented: $showingWelcome) {
+            WelcomeView(
+                onCreateProject: beginProjectFromWelcome,
+                onOpenDocument: openDocumentFromWelcome,
+                onImportDocuments: beginImportFromWelcome,
+                onOpenSample: createSampleProject,
+                onContinue: completeWelcome
+            )
+            .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $showingDraftRecovery, onDismiss: presentWelcomeAfterRecovery) {
+            DraftRecoveryView(manager: draftRecovery) {
+                showingDraftRecovery = false
+            }
         }
         .fileImporter(
             isPresented: $showingProjectFolderImporter,
@@ -256,7 +317,10 @@ struct EditorWorkspace: View {
                 configureProject(configuration, name: name, kind: kind)
             }
         }
-        .sheet(isPresented: $showingNewChapter) {
+    }
+
+    private var projectConfiguredView: some View {
+        importConfiguredView.sheet(isPresented: $showingNewChapter) {
             NewChapterSheet { projectStore.createChapter(named: $0) }
         }
         .sheet(isPresented: $showingStyleEditor) {
@@ -325,7 +389,10 @@ struct EditorWorkspace: View {
                 onReplaceAll: { replaceWithPolishedDraft(from: plan) }
             )
         }
-        .alert("Kistulentz", isPresented: Binding(
+    }
+
+    var body: some View {
+        projectConfiguredView.alert("Kistulentz", isPresented: Binding(
             get: { viewModel.errorMessage != nil || projectStore.errorMessage != nil },
             set: {
                 if !$0 {
@@ -608,6 +675,81 @@ struct EditorWorkspace: View {
         }
         .padding(.horizontal, 16)
         .frame(height: 55)
+    }
+
+    private func configureDraftRecovery() {
+        draftRecoveryCoordinator.configure(
+            title: activeFileURL?.lastPathComponent ?? "Untitled.md",
+            fileURL: activeFileURL,
+            projectRootURL: projectStore.rootURL,
+            text: activeText
+        )
+    }
+
+    private func presentStartupIfNeeded() {
+        guard !didPresentStartup else { return }
+        didPresentStartup = true
+        if !draftRecovery.pendingEntries.isEmpty {
+            showingDraftRecovery = true
+        } else if !settings.hasCompletedOnboarding {
+            showingWelcome = true
+        }
+    }
+
+    private func presentWelcomeAfterRecovery() {
+        if !settings.hasCompletedOnboarding {
+            showingWelcome = true
+        }
+    }
+
+    private func completeWelcome() {
+        settings.completeOnboarding()
+        showingWelcome = false
+    }
+
+    private func beginProjectFromWelcome() {
+        completeWelcome()
+        projectFolderAction = .createInParent
+        showingProjectFolderImporter = true
+    }
+
+    private func openDocumentFromWelcome() {
+        completeWelcome()
+        let panel = NSOpenPanel()
+        panel.title = "Open a Markdown Document"
+        panel.prompt = "Open"
+        panel.allowedContentTypes = [.markdownDocument, .plainText]
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = false
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        openImportedMarkdown(url)
+    }
+
+    private func beginImportFromWelcome() {
+        completeWelcome()
+        showingProjectImportAssistant = true
+    }
+
+    private func createSampleProject(_ kind: WritingProjectKind) {
+        completeWelcome()
+        let panel = NSOpenPanel()
+        panel.title = "Choose a Folder for the \(kind.title) Sample"
+        panel.message = "Kistulentz will create a new editable sample-project folder here without replacing existing files."
+        panel.prompt = "Create Sample Here"
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        guard panel.runModal() == .OK, let parent = panel.url else { return }
+
+        do {
+            let root = try SampleProjectBuilder.create(in: parent, kind: kind)
+            try projectStore.openProject(at: root)
+            activateProject()
+        } catch {
+            projectStore.errorMessage = error.localizedDescription
+        }
     }
 
     private func chooseDocumentForImport() {

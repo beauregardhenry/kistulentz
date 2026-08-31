@@ -114,8 +114,18 @@ final class EditorViewModel: ObservableObject {
                 try? await Task.sleep(for: .milliseconds(220))
             }
             guard let self, !Task.isCancelled, self.analysisRequestID == requestID else { return }
-            let result = ReadabilityEngine.analyze(text, targetGrade: targetGrade)
-            let alignment = self.referenceBook.map { ReferenceComparison.analyze(draft: text, against: $0) } ?? .empty
+            let reference = self.referenceBook
+            let computed = await Task.detached(priority: .userInitiated) {
+                let result = ReadabilityEngine.analyze(text, targetGrade: targetGrade)
+                let alignment = reference.map {
+                    ReferenceComparison.analyze(draft: text, against: $0)
+                } ?? .empty
+                return (result, alignment)
+            }.value
+            guard !Task.isCancelled,
+                  self.analysisRequestID == requestID,
+                  self.currentText == text else { return }
+            let (result, alignment) = computed
             self.analysis = result
             self.referenceAlignment = alignment
             self.structuralProfile = nil

@@ -163,6 +163,8 @@ struct ReferenceLibraryView: View {
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("\(choice.title), \(choice.subtitle)")
+                    .accessibilityValue(selectedChoiceIDs.contains(choice.id) ? "Selected" : "Not selected")
                 }
             }
             .listStyle(.sidebar)
