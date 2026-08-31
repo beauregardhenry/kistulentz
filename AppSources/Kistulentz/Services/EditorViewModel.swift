@@ -8,6 +8,7 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var isAnalyzingStructure = false
     @Published private(set) var aiReview: AIReview?
     @Published private(set) var aiIssues: [WritingIssue] = []
+    @Published private(set) var systemIssues: [WritingIssue] = []
     @Published private(set) var blockedAISuggestionCount = 0
     @Published private(set) var referenceBook: EPUBReference?
     @Published private(set) var referenceAlignment = ReferenceAlignment.empty
@@ -44,7 +45,7 @@ final class EditorViewModel: ObservableObject {
     }
 
     var allIssues: [WritingIssue] {
-        (analysis.issues + referenceAlignment.issues + aiIssues)
+        (analysis.issues + systemIssues + referenceAlignment.issues + aiIssues)
             .filter { !isDismissed($0) }
             .sorted {
             if $0.range.location == $1.range.location {
@@ -55,7 +56,7 @@ final class EditorViewModel: ObservableObject {
     }
 
     var visibleLocalIssues: [WritingIssue] {
-        analysis.issues.filter { !isDismissed($0) }
+        (analysis.issues + systemIssues).filter { !isDismissed($0) }
     }
 
     func configureDocument(url: URL?, text: String) {
@@ -87,6 +88,7 @@ final class EditorViewModel: ObservableObject {
         let previousText = currentText
         currentText = text
         if previousText != text {
+            systemIssues = []
             if isReviewing {
                 reviewTask?.cancel()
                 isReviewing = false
@@ -126,7 +128,12 @@ final class EditorViewModel: ObservableObject {
                   self.analysisRequestID == requestID,
                   self.currentText == text else { return }
             let (result, alignment) = computed
+            let nativeIssues = NativeWritingService.issues(in: text)
+            guard !Task.isCancelled,
+                  self.analysisRequestID == requestID,
+                  self.currentText == text else { return }
             self.analysis = result
+            self.systemIssues = nativeIssues
             self.referenceAlignment = alignment
             self.structuralProfile = nil
             self.isUsingBenepar = false

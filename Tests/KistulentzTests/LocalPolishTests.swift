@@ -125,4 +125,62 @@ final class LocalPolishTests: XCTestCase {
         XCTAssertNil(result.plan)
         XCTAssertEqual(result.appliedCount, 0)
     }
+
+    func testLocalPolishAppliesAcceptedProjectStylePreferences() throws {
+        let decision = ProjectStyleDecision(
+            action: .accepted,
+            category: .complexPhrase,
+            excerpt: "utilize",
+            replacement: "use",
+            count: 2,
+            lastUsedAt: Date()
+        )
+
+        let result = LocalPolishService.polish(
+            text: "We utilize tools and utilize notes.",
+            targetGrade: 8,
+            issues: [],
+            styleDecisions: [decision]
+        )
+
+        XCTAssertEqual(result.appliedCount, 2)
+        XCTAssertEqual(try XCTUnwrap(result.plan).polishedText, "We use tools and use notes.")
+    }
+
+    func testDeclinedProjectStylePreferenceIsNeverApplied() {
+        let accepted = ProjectStyleDecision(
+            action: .accepted,
+            category: .complexPhrase,
+            excerpt: "utilize",
+            replacement: "use",
+            count: 3,
+            lastUsedAt: Date()
+        )
+        let declined = ProjectStyleDecision(
+            action: .declined,
+            category: .complexPhrase,
+            excerpt: "utilize",
+            replacement: "use",
+            count: 1,
+            lastUsedAt: Date()
+        )
+        let text = "We utilize tools."
+        let issue = WritingIssue(
+            category: .complexPhrase,
+            range: (text as NSString).range(of: "utilize"),
+            excerpt: "utilize",
+            message: "Use a simpler word.",
+            replacement: "use"
+        )
+
+        let result = LocalPolishService.polish(
+            text: text,
+            targetGrade: 8,
+            issues: [issue],
+            styleDecisions: [accepted, declined]
+        )
+
+        XCTAssertNil(result.plan)
+        XCTAssertEqual(result.appliedCount, 0)
+    }
 }

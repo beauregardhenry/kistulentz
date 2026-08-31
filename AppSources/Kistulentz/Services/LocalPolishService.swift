@@ -11,9 +11,22 @@ enum LocalPolishService {
     static func polish(
         text: String,
         targetGrade: Int,
-        issues suppliedIssues: [WritingIssue]? = nil
+        issues suppliedIssues: [WritingIssue]? = nil,
+        styleDecisions: [ProjectStyleDecision] = []
     ) -> LocalPolishResult {
-        let issues = suppliedIssues ?? ReadabilityEngine.analyze(text, targetGrade: targetGrade).issues
+        let declinedPairs = Set(styleDecisions.compactMap { decision -> StyleReplacement? in
+            guard decision.action == .declined, let replacement = decision.replacement else { return nil }
+            return StyleReplacement(excerpt: decision.excerpt, replacement: replacement)
+        })
+        let baseIssues = suppliedIssues ?? ReadabilityEngine.analyze(text, targetGrade: targetGrade).issues
+        let issues = baseIssues.filter { issue in
+            guard let replacement = issue.replacement else { return true }
+            return !declinedPairs.contains(StyleReplacement(excerpt: issue.excerpt, replacement: replacement))
+        } + learnedStyleIssues(
+            in: text,
+            decisions: styleDecisions,
+            excluding: declinedPairs
+        )
         let source = text as NSString
         let protectedRanges = MarkdownProtectedRangeFinder.ranges(in: text)
         var safeConcreteIssues: [WritingIssue] = []
@@ -83,9 +96,51 @@ enum LocalPolishService {
             skippedCount: skippedCount
         )
     }
+
+    private static func learnedStyleIssues(
+        in text: String,
+        decisions: [ProjectStyleDecision],
+        excluding declinedPairs: Set<StyleReplacement>
+    ) -> [WritingIssue] {
+        let source = text as NSString
+        let fullRange = NSRange(location: 0, length: source.length)
+        var issues: [WritingIssue] = []
+        var seen = Set<StyleReplacement>()
+
+        for decision in decisions where decision.action == .accepted {
+            guard let replacement = decision.replacement,
+                  !decision.excerpt.isEmpty,
+                  replacement != decision.excerpt else { continue }
+            let pair = StyleReplacement(excerpt: decision.excerpt, replacement: replacement)
+            guard !declinedPairs.contains(pair), seen.insert(pair).inserted else { continue }
+
+            var searchRange = fullRange
+            while searchRange.length > 0 {
+                let range = source.range(of: decision.excerpt, options: [], range: searchRange)
+                guard range.location != NSNotFound else { break }
+                issues.append(WritingIssue(
+                    category: decision.category,
+                    range: range,
+                    excerpt: decision.excerpt,
+                    message: "Apply this project’s learned style preference.",
+                    replacement: replacement,
+                    source: .local
+                ))
+                let next = NSMaxRange(range)
+                guard next < source.length else { break }
+                searchRange = NSRange(location: next, length: source.length - next)
+            }
+        }
+        return issues
+    }
 }
 
-private enum MarkdownProtectedRangeFinder {
+private struct StyleReplacement: Hashable {
+    let excerpt: String
+    let replacement: String
+}
+
+enum MarkdownProtectedRangeFinder {
     private static let patterns = [
         #"```[\s\S]*?```"#,
         #"~~~[\s\S]*?~~~"#,

@@ -5,20 +5,18 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.12.2 FRIEND PREVIEW
-- Research Library folder selection now opens as a normal Finder sheet, allows
-  creating a folder, and always returns to a closable library screen after Cancel.
-- The diagnostic-report save panel uses the same nonblocking sheet behavior.
-- A downloaded Ollama model is selected only after Kistulentz detects and
-  verifies it locally.
-- Native manuscript reports and the project Bible appear without waiting for
-  the optional English structural-analysis worker to start.
-- A checked-in Xcode UI-test host now covers first launch, Research Library
-  folder cancellation and closure, and diagnostic export cancellation.
-- Static macOS-saved DOCX, RTF, RTFD, HTML, ODT, and TXT documents join the
-  generated edge-case fixtures in import regression testing.
-- New failure tests protect an existing English pack from bad catalogs,
-  unavailable servers, corrupt archives, and unsafe internal paths.
+NEW IN 0.13.0 FRIEND PREVIEW
+- Apple’s built-in English spelling and grammar services now create concrete
+  Kistulentz cards with corrections when macOS can supply a safe replacement.
+- These checks remain entirely local and do not require OpenAI, Anthropic,
+  Ollama, or the optional English structural-analysis pack.
+- Native corrections ignore fenced code, inline code, links, URLs, and HTML.
+- Local Polish now includes safe spelling and grammar corrections in its
+  passage-by-passage review instead of limiting itself to readability phrases.
+- Accepted project style choices can be reused during Local Polish; a declined
+  replacement is never applied automatically.
+- Every correction still passes Kistulentz’s local rule check before it can be
+  applied, and accepted changes remain normal macOS Undo operations.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

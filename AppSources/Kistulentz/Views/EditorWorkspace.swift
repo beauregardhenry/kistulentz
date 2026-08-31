@@ -900,10 +900,14 @@ struct EditorWorkspace: View {
     }
 
     private func runLocalPolish() {
+        let styleDecisions = projectStore.rootURL.flatMap {
+            try? ProjectStyleManager.loadDecisions(at: $0)
+        } ?? []
         let result = LocalPolishService.polish(
             text: activeText,
             targetGrade: settings.targetGrade,
-            issues: viewModel.visibleLocalIssues
+            issues: viewModel.visibleLocalIssues,
+            styleDecisions: styleDecisions
         )
         guard let plan = result.plan else {
             let advisory = result.advisoryCount == 0

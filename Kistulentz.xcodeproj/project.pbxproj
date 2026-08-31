@@ -74,6 +74,7 @@
 		A4E46259C1A76CD0A5F5F8D0 /* PublicationPlanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEED71DA8E86865AD8D22A4 /* PublicationPlanning.swift */; };
 		A596CE23AE4EFFE3776B6020 /* BeneparLanguagePack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AB853B50483904D5F5ABC1 /* BeneparLanguagePack.swift */; };
 		A7418D51CF49839BE2562961 /* AIRequestViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF499D28203EAEC8BEE7F5 /* AIRequestViews.swift */; };
+		A853920442BA125F23692032 /* NativeWritingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */; };
 		B0068AC701780783E6F9EA43 /* SelectionReplacementPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6D6120FE63E3735B10F3C9 /* SelectionReplacementPlanner.swift */; };
 		B03D8246A24BFC97FE50CCA2 /* ReferenceLibraryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3A2106CCC89E183BE9736 /* ReferenceLibraryModels.swift */; };
 		B4DE365172E25702643DE67D /* SelectionRewriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855A46364FFE630F1D29A3D4 /* SelectionRewriteService.swift */; };
@@ -194,6 +195,7 @@
 		CED3AE612CCEF6208E69CA7A /* CitationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitationFormatter.swift; sourceTree = "<group>"; };
 		D88A8ECEC32BE102F9EAC6CC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		DB21EB85D8683AC3A6913D76 /* PolishedDraftPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishedDraftPlanner.swift; sourceTree = "<group>"; };
+		DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeWritingService.swift; sourceTree = "<group>"; };
 		DE69AF877F1E25736EB3DF3D /* ReferenceLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibraryView.swift; sourceTree = "<group>"; };
 		DF93037A6E2055A59ED2A510 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
 		E015FC573E72F2B6FDBDDB83 /* ProjectImportAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectImportAssistantView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				E1CC0ACFD66F71700B1C6E43 /* ManuscriptAIService.swift */,
 				9A40D2FFC85F5E2ECC42D615 /* ManuscriptAnalyzer.swift */,
 				B40912B39C188C95FEE4899C /* ManuscriptProjectDisk.swift */,
+				DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */,
 				110FDF6E4D12C6CD265D1C5F /* OutlineAIService.swift */,
 				22A2910B127816E39CF382BD /* PDFPublicationWriter.swift */,
 				DB21EB85D8683AC3A6913D76 /* PolishedDraftPlanner.swift */,
@@ -524,6 +527,7 @@
 				41D8206DA3081534BAB3B126 /* ManuscriptProjectDisk.swift in Sources */,
 				70302F22D3D823F56ACA57F8 /* MarkdownDocument.swift in Sources */,
 				E9E16A08AAE1B606EDEEEB37 /* MarkdownTextView.swift in Sources */,
+				A853920442BA125F23692032 /* NativeWritingService.swift in Sources */,
 				217FB9DC1CA6040196ECD454 /* OutlineAIService.swift in Sources */,
 				00F66123B8254702099E0333 /* OutlineModels.swift in Sources */,
 				EC954E7B8C12E900FC541D45 /* PDFPublicationWriter.swift in Sources */,

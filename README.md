@@ -23,7 +23,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Local synopsis suggestions, kept separate from the author’s synopsis, with an optional previewed **Deepen w/ AI** command
 - Previewed level-two-heading splitting into Scene or Section Markdown files, with snapshots and normal macOS Undo
 - Previewed physical file organization that retains filenames by default, allows destination edits, blocks conflicts, snapshots affected files, and supports Undo
-- A project-local, editable `Kistulentz Style.md` that learns from accepted and declined suggestions
+- A project-local, editable `Kistulentz Style.md` that learns from accepted and declined suggestions and safely informs later Local Polish reviews
 - An automatically updated, local `Kistulentz Manuscript Report.md` covering structure, pacing, continuity, people and characters, evidence, readability, repetition, voice, and priorities
 - An editable `Kistulentz Bible.md` that tracks names, places, organizations, terminology, timeline markers, and chapter facts while preserving author corrections and manual notes
 - Bible change summaries, normal macOS Undo, and persistent pre-update snapshots in Revision History
@@ -37,7 +37,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
 - A prominent first-run prompt for the optional English Benepar pack, which turns on automatically after its confirmed local installation
 - Orange advisory sentence-structure highlights that never trigger automatic prose replacement
-- macOS spelling and grammar checking while you type
+- Actionable spelling and grammar cards from Apple’s built-in English writing services, with code, links, URLs, and HTML excluded
 - A target reading-grade setting
 - EPUB reference books for local style, vocabulary, tone, character, continuity, voice, and tempo analysis
 - Live local comparison between the Markdown draft and the selected EPUB
@@ -51,7 +51,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Resumable, user-triggered Benepar analysis for selected books, authors, or genres, with completed profiles cached into the editable Markdown knowledge base, skipped on later missing-only runs, and combined across references
 - OpenAI Responses API, Anthropic Messages API, and local Ollama support
 - Guided Ollama setup with automatic local-service detection, an installed-model menu, and a confirmed, cancellable recommended-model download with progress
-- A safe Local Polish fallback that offers only concrete built-in replacements, protects Markdown code and links, and never invents prose
+- A safe Local Polish fallback that combines concrete readability, Apple spelling and grammar, and accepted project-style replacements; protects Markdown code and links; honors declines; and never invents prose
 - AI grammar, spelling, clarity, continuity, and rewriting suggestions informed by selected EPUB excerpts
 - Selection rewrites for target-grade simplification, shortening, grounded expansion, stronger verbs, a user-described tone, and matching selected references
 - Three distinct rewrite alternatives with explanations and grade estimates
