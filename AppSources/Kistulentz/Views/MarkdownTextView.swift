@@ -40,8 +40,11 @@ struct MarkdownTextView: NSViewRepresentable {
         textView.textColor = .labelColor
         textView.backgroundColor = .textBackgroundColor
         textView.insertionPointColor = .labelColor
-        textView.isContinuousSpellCheckingEnabled = true
-        textView.isGrammarCheckingEnabled = true
+        // Kistulentz requests Apple spelling and grammar in the background and
+        // renders those results with its other review cards. Enabling TextKit's
+        // second live pass here makes a large paste perform the same work twice.
+        textView.isContinuousSpellCheckingEnabled = false
+        textView.isGrammarCheckingEnabled = false
         textView.isAutomaticSpellingCorrectionEnabled = false
         textView.isAutomaticQuoteSubstitutionEnabled = false
         textView.isAutomaticDashSubstitutionEnabled = false
@@ -68,6 +71,7 @@ struct MarkdownTextView: NSViewRepresentable {
             textView.setSelectedRange(NSRange(location: 0, length: 0))
         }
         applyHighlights(to: textView)
+        context.coordinator.lastHighlightedIssues = issues
         textView.delegate = context.coordinator
         return scrollView
     }
@@ -77,7 +81,8 @@ struct MarkdownTextView: NSViewRepresentable {
         context.coordinator.isApplyingSwiftUIUpdate = true
         defer { context.coordinator.isApplyingSwiftUIUpdate = false }
 
-        if textView.string != text {
+        let replacedText = textView.string != text
+        if replacedText {
             let selection = textView.selectedRange()
             UndoRegistrationGuard.perform(on: textView.undoManager) {
                 textView.string = text
@@ -87,7 +92,10 @@ struct MarkdownTextView: NSViewRepresentable {
             }
         }
 
-        applyHighlights(to: textView)
+        if replacedText || context.coordinator.lastHighlightedIssues != issues {
+            applyHighlights(to: textView)
+            context.coordinator.lastHighlightedIssues = issues
+        }
 
         if let request = focusRequest, request.id != context.coordinator.lastFocusID {
             context.coordinator.lastFocusID = request.id
@@ -146,6 +154,7 @@ struct MarkdownTextView: NSViewRepresentable {
         @Binding var selection: NSRange
         weak var textView: NSTextView?
         var lastFocusID: UUID?
+        var lastHighlightedIssues: [WritingIssue] = []
         var isApplyingSwiftUIUpdate = false
 
         init(text: Binding<String>, selection: Binding<NSRange>) {

@@ -4,10 +4,10 @@ import XCTest
 
 @MainActor
 final class NativeWritingServiceTests: XCTestCase {
-    func testAppleWritingServicesReturnActionableEnglishCorrections() throws {
+    func testAppleWritingServicesReturnActionableEnglishCorrections() async throws {
         let text = "This sentnce is unclear. These is wrong."
 
-        let issues = NativeWritingService.issues(in: text)
+        let issues = await NativeWritingService.issues(in: text)
         let spelling = try XCTUnwrap(issues.first {
             $0.category == .spelling && $0.excerpt == "sentnce"
         })
@@ -22,7 +22,7 @@ final class NativeWritingServiceTests: XCTestCase {
         XCTAssertFalse(grammar.message.isEmpty)
     }
 
-    func testAppleWritingServicesIgnoreMarkdownProtectedContent() {
+    func testAppleWritingServicesIgnoreMarkdownProtectedContent() async {
         let text = """
         `sentnce` stays literal.
 
@@ -35,7 +35,7 @@ final class NativeWritingServiceTests: XCTestCase {
         This sentnce should be corrected.
         """
 
-        let issues = NativeWritingService.issues(in: text)
+        let issues = await NativeWritingService.issues(in: text)
         let spellingRanges = issues
             .filter { $0.category == .spelling && $0.excerpt == "sentnce" }
             .map(\.range)
@@ -47,7 +47,25 @@ final class NativeWritingServiceTests: XCTestCase {
         )
     }
 
-    func testEmptyTextReturnsImmediately() {
-        XCTAssertTrue(NativeWritingService.issues(in: "").isEmpty)
+    func testEmptyTextReturnsImmediately() async {
+        let issues = await NativeWritingService.issues(in: "")
+        XCTAssertTrue(issues.isEmpty)
+    }
+
+    func testLargePastedDocumentDoesNotBlockTheMainActor() async {
+        let paragraph = "A persistent agent needs a computer, dependencies, credentials, network access, logs, permissions, and working state.\n\n"
+        let text = String(repeating: paragraph, count: 360)
+        XCTAssertGreaterThan(text.utf8.count, 37_000)
+
+        let mainActorResponded = expectation(description: "The interface remains responsive")
+        let checkingTask = Task { @MainActor in
+            await NativeWritingService.issues(in: text, maximumIssues: 25)
+        }
+        Task { @MainActor in
+            mainActorResponded.fulfill()
+        }
+
+        await fulfillment(of: [mainActorResponded], timeout: 0.5)
+        _ = await checkingTask.value
     }
 }

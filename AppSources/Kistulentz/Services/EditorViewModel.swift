@@ -128,7 +128,7 @@ final class EditorViewModel: ObservableObject {
                   self.analysisRequestID == requestID,
                   self.currentText == text else { return }
             let (result, alignment) = computed
-            let nativeIssues = NativeWritingService.issues(in: text)
+            let nativeIssues = await NativeWritingService.issues(in: text)
             guard !Task.isCancelled,
                   self.analysisRequestID == requestID,
                   self.currentText == text else { return }

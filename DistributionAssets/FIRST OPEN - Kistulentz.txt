@@ -5,18 +5,13 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.14.0 FRIEND PREVIEW
-- Polish Project checks every Markdown document locally and groups safe changes
-  into Spelling & Grammar, Clarity & Readability, and Style & Voice stages.
-- Review, edit, include, or exclude every changed passage. A failed document no
-  longer stops the rest of the scan, and a long scan can be cancelled.
-- Applying a project Polish rechecks exact text, refuses ambiguous or overlapping
-  replacements, snapshots every affected file, and creates one macOS Undo action.
-- Settings now includes Test Connection for OpenAI, Anthropic, and Ollama. These
-  checks verify only the saved key and selected model and never send manuscript,
-  project, reference, or prompt text.
-- Apple spelling and grammar, readability corrections, learned project style,
-  and all existing local Markdown protections remain available without cloud AI.
+NEW IN 0.14.1 FRIEND PREVIEW
+- Pasting a long document no longer makes the editor wait for Apple spelling and
+  grammar analysis on the interface thread.
+- Kistulentz avoids a duplicate live text-checking pass after a paste.
+- Highlights are repainted only when the document or its findings change,
+  preventing unnecessary full-document work while typing and pasting.
+- Large-paste responsiveness is now covered by an automated regression test.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

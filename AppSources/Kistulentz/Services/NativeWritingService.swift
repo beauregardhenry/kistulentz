@@ -10,7 +10,7 @@ enum NativeWritingService {
         language: String = "en_US",
         maximumIssues: Int = 100,
         checker: NSSpellChecker = .shared
-    ) -> [WritingIssue] {
+    ) async -> [WritingIssue] {
         guard !text.isEmpty, maximumIssues > 0 else { return [] }
 
         let source = text as NSString
@@ -19,21 +19,27 @@ enum NativeWritingService {
         let tag = NSSpellChecker.uniqueSpellDocumentTag()
         defer { checker.closeSpellDocument(withTag: tag) }
 
+        let checkingTypes = NSTextCheckingResult.CheckingType.spelling.rawValue
+            | NSTextCheckingResult.CheckingType.grammar.rawValue
         var issues: [WritingIssue] = []
         let orthography = NSOrthography(
             dominantScript: "Latn",
             languageMap: ["Latn": [language]]
         )
-        let spellingResults = checker.check(
-            text,
-            range: fullRange,
-            types: NSTextCheckingResult.CheckingType.spelling.rawValue,
-            options: [.orthography: orthography],
-            inSpellDocumentWithTag: tag,
-            orthography: nil,
-            wordCount: nil
-        )
+        let results: [NSTextCheckingResult] = await withCheckedContinuation { continuation in
+            checker.requestChecking(
+                of: text,
+                range: fullRange,
+                types: checkingTypes,
+                options: [.orthography: orthography],
+                inSpellDocumentWithTag: tag
+            ) { _, results, _, _ in
+                continuation.resume(returning: results)
+            }
+        }
+        guard !Task.isCancelled else { return [] }
 
+        let spellingResults = results.filter { $0.resultType == .spelling }
         for result in spellingResults where issues.count < maximumIssues {
             let range = result.range
             guard isValid(range, in: source), !intersectsProtected(range, protectedRanges) else { continue }
@@ -55,21 +61,11 @@ enum NativeWritingService {
             ))
         }
 
-        var searchOffset = 0
-        while searchOffset < source.length, issues.count < maximumIssues {
-            var rawDetails: NSArray?
-            let sentenceRange = checker.checkGrammar(
-                of: text,
-                startingAt: searchOffset,
-                language: language,
-                wrap: false,
-                inSpellDocumentWithTag: tag,
-                details: &rawDetails
-            )
-            guard sentenceRange.location != NSNotFound,
-                  isValid(sentenceRange, in: source) else { break }
-
-            for case let detail as NSDictionary in rawDetails ?? [] where issues.count < maximumIssues {
+        let grammarResults = results.filter { $0.resultType == .grammar }
+        for result in grammarResults where issues.count < maximumIssues {
+            let sentenceRange = result.range
+            guard isValid(sentenceRange, in: source) else { continue }
+            for detail in result.grammarDetails ?? [] where issues.count < maximumIssues {
                 let relativeRange = (detail[NSGrammarRange] as? NSValue)?.rangeValue
                     ?? NSRange(location: 0, length: sentenceRange.length)
                 let range = NSRange(
@@ -79,15 +75,7 @@ enum NativeWritingService {
                 guard isValid(range, in: source), !intersectsProtected(range, protectedRanges) else { continue }
                 let excerpt = source.substring(with: range)
                 let corrections = detail[NSGrammarCorrections] as? [String] ?? []
-                let replacement = bestGrammarCorrection(
-                    corrections,
-                    sentenceRange: sentenceRange,
-                    issueRange: range,
-                    in: text,
-                    language: language,
-                    checker: checker,
-                    tag: tag
-                )
+                let replacement = corrections.first { !$0.isEmpty && $0 != excerpt }
                 let message = (detail[NSGrammarUserDescription] as? String)
                     ?? "macOS found a possible grammar problem."
                 issues.append(WritingIssue(
@@ -99,82 +87,12 @@ enum NativeWritingService {
                     source: .system
                 ))
             }
-
-            let nextOffset = NSMaxRange(sentenceRange)
-            searchOffset = nextOffset > searchOffset ? nextOffset : searchOffset + 1
         }
 
         return issues.sorted {
             if $0.range.location == $1.range.location { return $0.range.length > $1.range.length }
             return $0.range.location < $1.range.location
         }
-    }
-
-    private static func bestGrammarCorrection(
-        _ corrections: [String],
-        sentenceRange: NSRange,
-        issueRange: NSRange,
-        in text: String,
-        language: String,
-        checker: NSSpellChecker,
-        tag: Int
-    ) -> String? {
-        guard !corrections.isEmpty else { return nil }
-        let source = text as NSString
-        let sentence = source.substring(with: sentenceRange)
-        let relativeRange = NSRange(
-            location: issueRange.location - sentenceRange.location,
-            length: issueRange.length
-        )
-        let baselineCount = grammarIssueCount(
-            in: sentence,
-            language: language,
-            checker: checker,
-            tag: tag
-        )
-        var best: (replacement: String, count: Int)?
-
-        for correction in corrections where !correction.isEmpty {
-            let candidate = (sentence as NSString).replacingCharacters(in: relativeRange, with: correction)
-            let count = grammarIssueCount(
-                in: candidate,
-                language: language,
-                checker: checker,
-                tag: tag
-            )
-            if best == nil || count < best!.count {
-                best = (correction, count)
-            }
-        }
-        guard let best, best.count < baselineCount else { return nil }
-        return best.replacement
-    }
-
-    private static func grammarIssueCount(
-        in text: String,
-        language: String,
-        checker: NSSpellChecker,
-        tag: Int
-    ) -> Int {
-        let source = text as NSString
-        var offset = 0
-        var count = 0
-        while offset < source.length, count < 20 {
-            var details: NSArray?
-            let range = checker.checkGrammar(
-                of: text,
-                startingAt: offset,
-                language: language,
-                wrap: false,
-                inSpellDocumentWithTag: tag,
-                details: &details
-            )
-            guard range.location != NSNotFound, isValid(range, in: source) else { break }
-            count += max(1, details?.count ?? 0)
-            let nextOffset = NSMaxRange(range)
-            offset = nextOffset > offset ? nextOffset : offset + 1
-        }
-        return count
     }
 
     private static func intersectsProtected(_ range: NSRange, _ protectedRanges: [NSRange]) -> Bool {

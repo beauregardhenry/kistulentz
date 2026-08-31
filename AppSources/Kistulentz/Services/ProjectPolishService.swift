@@ -123,7 +123,7 @@ struct ProjectPolishService {
         _ document: ManuscriptDocument,
         _ targetGrade: Int,
         _ styleDecisions: [ProjectStyleDecision]
-    ) throws -> ProjectPolishDocumentAnalysis
+    ) async throws -> ProjectPolishDocumentAnalysis
 
     private let documentAnalyzer: DocumentAnalyzer
     private let cancellationRequested: () -> Bool
@@ -156,7 +156,7 @@ struct ProjectPolishService {
             }
             onProgress(index, documents.count, document.title)
             do {
-                let analysis = try documentAnalyzer(document, targetGrade, styleDecisions)
+                let analysis = try await documentAnalyzer(document, targetGrade, styleDecisions)
                 changes.append(contentsOf: analysis.changes)
                 advisoryCount += analysis.advisoryCount
                 skippedCount += analysis.skippedCount
@@ -205,12 +205,12 @@ struct ProjectPolishService {
         _ document: ManuscriptDocument,
         targetGrade: Int,
         styleDecisions: [ProjectStyleDecision]
-    ) throws -> ProjectPolishDocumentAnalysis {
+    ) async throws -> ProjectPolishDocumentAnalysis {
         let localIssues = ReadabilityEngine.analyze(
             document.text,
             targetGrade: targetGrade
         ).issues
-        let nativeIssues = NativeWritingService.issues(in: document.text)
+        let nativeIssues = await NativeWritingService.issues(in: document.text)
         let suppliedIssues = localIssues + nativeIssues
         let result = LocalPolishService.polish(
             text: document.text,
