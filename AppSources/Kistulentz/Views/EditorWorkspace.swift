@@ -678,6 +678,7 @@ struct EditorWorkspace: View {
             .disabled(viewModel.isLoadingReference)
             .frame(maxWidth: 170)
             .help("Choose one or more writing references")
+            .accessibilityIdentifier("ReferenceMenu")
 
             Button(action: runReview) {
                 if viewModel.isReviewing {

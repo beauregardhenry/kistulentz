@@ -83,14 +83,10 @@ final class KistulentzUITests: XCTestCase {
         ]
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
-        // The Xcode-only host opens a frontmost isolated draft. DocumentGroup's
-        // normal Open panel may remain behind it and must not be clicked.
-        XCTAssertTrue(referenceControl.waitForExistence(timeout: 8))
+        XCTAssertTrue(app.windows.firstMatch.waitForExistence(timeout: 8))
     }
 
     private var referenceControl: XCUIElement {
-        app.descendants(matching: .any)
-            .matching(NSPredicate(format: "label == %@", "Reference"))
-            .firstMatch
+        app.descendants(matching: .any)["ReferenceMenu"].firstMatch
     }
 }
