@@ -76,14 +76,13 @@ final class KistulentzUITests: XCTestCase {
         ]
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
-        // DocumentGroup initially presents the standard Open panel when no
-        // restoration state exists. Close it, then open the isolated workspace
-        // compiled only into the Xcode UI-test host.
+        // DocumentGroup may present the standard Open panel when no restoration
+        // state exists. The Xcode-only host already opened an isolated draft,
+        // so dismissing this panel exposes that workspace.
         let initialCancel = app.buttons.matching(identifier: "CancelButton").firstMatch
         if initialCancel.waitForExistence(timeout: 3) {
             initialCancel.click()
         }
-        app.typeKey("u", modifierFlags: [.command, .option])
         XCTAssertTrue(app.buttons["Reference"].waitForExistence(timeout: 8))
     }
 }
