@@ -10,10 +10,17 @@ jobs:
   macos-ui-tests:
     name: macOS UI regression tests
     runs-on: macos-15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v6
       - name: Run the checked-in Xcode UI test host
-        run: xcodebuild -project Kistulentz.xcodeproj -scheme Kistulentz -destination 'platform=macOS' test
+        run: >-
+          xcodebuild -project Kistulentz.xcodeproj -scheme Kistulentz
+          -destination 'platform=macOS'
+          -test-timeouts-enabled YES
+          -default-test-execution-time-allowance 45
+          -maximum-test-execution-time-allowance 60
+          test
 
   native-tests:
     name: Native tests · ${{ matrix.architecture }}
