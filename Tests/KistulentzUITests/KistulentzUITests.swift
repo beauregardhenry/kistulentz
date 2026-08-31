@@ -33,7 +33,7 @@ final class KistulentzUITests: XCTestCase {
     func testResearchLibraryFolderChooserCancelsAndLibraryCloses() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
-        let referenceMenu = app.buttons["Reference"]
+        let referenceMenu = referenceControl
         XCTAssertTrue(referenceMenu.waitForExistence(timeout: 8))
         referenceMenu.click()
         app.menuItems["Research Library…"].click()
@@ -78,6 +78,12 @@ final class KistulentzUITests: XCTestCase {
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
         // The Xcode-only host opens a frontmost isolated draft. DocumentGroup's
         // normal Open panel may remain behind it and must not be clicked.
-        XCTAssertTrue(app.buttons["Reference"].waitForExistence(timeout: 8))
+        XCTAssertTrue(referenceControl.waitForExistence(timeout: 8))
+    }
+
+    private var referenceControl: XCUIElement {
+        app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label == %@", "Reference"))
+            .firstMatch
     }
 }
