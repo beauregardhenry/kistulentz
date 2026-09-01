@@ -2,25 +2,29 @@
 # Bildungsromans
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 7
 
 ## Learned profile
 
-- Words analyzed: 381547
-- Reading grade: 2.8
-- Average sentence: 8.4 words
-- Average paragraph: 11.8 words
-- Dialogue share: 34%
-- Voice: mixed or shifting perspective
+- Words analyzed: 786756
+- Reading grade: 3.9
+- Average sentence: 11.8 words
+- Average paragraph: 27.6 words
+- Dialogue share: 37%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: don’t, going, ain’t, anything, began, better, can’t, didn’t, enough, heart, house, night, nothing, people, place, reckon, seemed, that’s, things, thought, three, won’t, chapter, couldn’t, cried, girls, gutenberg, happy, herself, himself, looking, moment, nigger, presently, pretty, project, quite, rather, river, school
-- Character names: Amy, Ben Rogers, Huck, Huck Finn, Jim, Mary, Peter, Tom, Tom Sawyer, Annie, Aunt Polly, Becky, Becky Thatcher, Ben, Beth, Bill, Bob, Boggs, Brooke, Buck, De, Dey, Esther, Frank, Fred, George, Gutenberg, Hagar, Hannah, Harney, Harvey, Huckleberry, Huckleberry Finn, Hucky, Hugo, Injun Joe, Jack, Jackson, Jeff Thatcher, Jo, Joe, Joe Harper, John, Judge, Judge Thatcher, Juliet, Kate, Laurence, Laurie, Le, Madame, Marmee, Mary Jane, Meg, Miss Kate, Miss Mary Jane, Miss Sophia, Miss Watson, Mother, Mr, Mr. Brooke, Mr. Davis, Mr. Laurence, Mrs. Harper, Mrs. March, Mrs. Moffat, Mrs. Thatcher, Muff Potter, Ned, Pap, Pip, Polly, Potter, Robin Hood, Sallie, Sid, Susan, Teddy, Uncle Harvey, Widow Douglas
+- Tone: dialogue-forward, balanced, rhythmically varied, direct, rhythmically even, energetic, narrative-forward
+- Recurring vocabulary: night, don’t, house, going, heart, himself, place, that’s, things, anything, began, better, can’t, child, cried, didn’t, moment, nothing, people, replied, seemed, shall, thought, without, won’t, young, ain’t, enough, girls, herself, looking, pretty, reckon, round, school, though, three, anne’s, answered, arrow
+- Character names: Mr, Tom, Dick, Jack, Mary, Mrs, Amy, Ben Rogers, Bill, Buck, Hannah, Huck, Huck Finn, Jane, Jim, John, Peter, Tom Sawyer, Alicia, Allan, Anne, Anne Shirley, Annie, Arblaster, Aunt Polly, Barney, Barry, Becky, Becky Thatcher, Bedwin, Ben, Bennet, Beth, Bill Sikes, Blewett, Bob, Boggs, Brooke, Brownlow, Buck M’Cann, Bumble, Button, Carmody, Carter, Charley, Charley Bates, Charlie Sloane, Charlotte, Cordelia, Corney, Daniel, Daniel Brackley, Dawkins, De, Dey, Diana, Dick Shelton, Dicky, Duckworth, Ellis, Ellis Duckworth, Em, Emmeline, Emmeline Lestrange, Esther, Fagin, Fang, Frank, Fred, Frisco, Gamfield, George, Gilbert, Gilbert Blythe, Giles, Green Gables, Gutenberg, Hagar, Hammond, Harney
 
 ## Books
 - [Adventures of Huckleberry Finn](../Books/ED046AD7-93DC-4645-B7B2-1DBCBD68E9B2.md)
+- [Anne of Green Gables](../Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md)
 - [Little Women](../Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md)
+- [Oliver Twist](../Books/2F1D0CB3-82FD-4509-BDAA-0E67FC9CA799.md)
 - [The Adventures of Tom Sawyer, Complete](../Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md)
+- [The Black Arrow](../Books/A555B44C-89E6-4599-BA25-745CB505D8C1.md)
+- [The Blue Lagoon](../Books/ECDD124D-D95A-407F-BFE4-085E9839318A.md)
 
 ## Representative excerpts
 
@@ -36,6 +40,18 @@ _Mid-book rhythm_
 
 > CHAPTER XX. They asked us considerable many questions; wanted to know what we covered up the raft that way for, and laid by in the daytime instead of running—was Jim a runaway nigger? Says I: “Goodness sakes, would a runaway nigger run south?” No, they allowed he wouldn’t. I had to account for things some way, so I says: “My folks was living in Pike County, in Missouri, where I was born, and they all died off but me and pa and my brother Ike. Pa, he ’lowed he’d break up and go down and live with Uncle Ben, who’s got a little one-horse place on the river, forty-four mile below Orleans. Pa was pretty poor, and had some debts; so when he’d squared up there warn’t nothing left but sixteen dollars and our nigger, Jim. That warn’t enough to take us fourteen hundred mile, deck passage nor no other way.
 
+### Anne of Green Gables: Section 22
+
+_Mid-book rhythm_
+
+> XX A Good Imagination Gone Wrong Spring had come once more to Green Gables⁠—the beautiful, capricious, reluctant Canadian spring, lingering along through April and May in a succession of sweet, fresh, chilly days, with pink sunsets and miracles of resurrection and growth. The maples in Lovers’ Lane were red budded and little curly ferns pushed up around the Dryad’s Bubble. Away up in the barrens, behind Mr. Silas Sloane’s place, the Mayflowers blossomed out, pink and white stars of sweetness under their brown leaves. All the school girls and boys had one golden afternoon gathering them, coming home in the clear, echoing twilight with arms and baskets full of flowery spoil. “I’m so sorry for people who live in lands where there are no Mayflowers,” said Anne. “Diana says perhaps they have something better, but there couldn’t be anything better than Mayflowers, could there, Marilla?
+
+### Anne of Green Gables: Section 4
+
+_Dialogue and character voice_
+
+> II Matthew Cuthbert Is Surprised Matthew Cuthbert and the sorrel mare jogged comfortably over the eight miles to Bright River. It was a pretty road, running along between snug farmsteads, with now and again a bit of balsamy fir wood to drive through or a hollow where wild plums hung out their filmy bloom. The air was sweet with the breath of many apple orchards and the meadows sloped away in the distance to horizon mists of pearl and purple; while “The little birds sang as if it were The one day of summer in all the year.” Matthew enjoyed the drive after his own fashion, except during the moments when he met women and had to nod to them⁠—for in Prince Edward Island you are supposed to nod to all and sundry you meet on the road whether you know them or not. Matthew dreaded all women except Marilla and Mrs.
+
 ### Little Women: Section 1
 
 _Opening voice_
@@ -47,6 +63,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > PART 2 In order that we may start afresh and go to Meg’s wedding... CHAPTER TWENTY-FOUR GOSSIP In order that we may start afresh and go to Meg’s wedding with free minds, it will be well to begin with a little gossip about the Marches. And here let me premise that if any of the elders think there is too much ‘lovering’ in the story, as I fear they may (I’m not afraid the young folks will make that objection), I can only say with Mrs. March, “What can you expect when I have four gay girls in the house, and a dashing young neighbor over the way?” The three years that have passed have brought but few changes to the quiet family. The war is over, and Mr.
+
+### Oliver Twist: Section 30
+
+_Mid-book rhythm_
+
+> XXVIII Looks After Oliver, and Proceeds with His Adventures “Wolves tear your throats!” muttered Sikes, grinding his teeth. “I wish I was among some of you; you’d howl the hoarser for it.” As Sikes growled forth this imprecation, with the most desperate ferocity that his desperate nature was capable of, he rested the body of the wounded boy across his bended knee; and turned his head, for an instant, to look back at his pursuers. There was little to be made out, in the mist and darkness; but the loud shouting of men vibrated through the air, and the barking of the neighbouring dogs, roused by the sound of the alarm bell, resounded in every direction. “Stop, you white-livered hound!” cried the robber, shouting after Toby Crackit, who, making the best use of his long legs, was already ahead. “Stop!” The repetition of the word, brought Toby to a dead standstill.
+
+### Oliver Twist: Section 53
+
+_Dialogue and character voice_
+
+> LI Affording an Explanation of More Mysteries Than One, and Comprehending a Proposal of Marriage with No Word of Settlement or Pin-Money The events narrated in the last chapter were yet but two days old, when Oliver found himself, at three o’clock in the afternoon, in a travelling-carriage rolling fast towards his native town. Mrs. Maylie, and Rose, and Mrs. Bedwin, and the good doctor were with him: and Mr. Brownlow followed in a post-chaise, accompanied by one other person whose name had not been mentioned. They had not talked much upon the way; for Oliver was in a flutter of agitation and uncertainty which deprived him of the power of collecting his thoughts, and almost of speech, and appeared to have scarcely less effect on his companions, who shared it, in at least an equal degree. He and the two ladies had been very carefully made acquainted by Mr.
 
 ### The Adventures of Tom Sawyer, Complete: Section 1
 

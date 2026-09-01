@@ -2,25 +2,39 @@
 # F. Scott Fitzgerald
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 51710
-- Reading grade: 4.7
+- Words analyzed: 396497
+- Reading grade: 4.5
 - Average sentence: 12.6 words
-- Average paragraph: 26.3 words
+- Average paragraph: 28.2 words
 - Dialogue share: 26%
-- Voice: mixed or shifting perspective
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically varied
-- Recurring vocabulary: don’t, house, didn’t, night, going, moment, gatsby’s, people, voice, began, thought, sport, toward, white, that’s, young, heard, afternoon, light, suddenly, years, seemed, wasn’t, hands
-- Character names: Gatsby, Tom, Wilson, Daisy, Miss Baker, Mr. Gatsby, Michaelis, Mrs. Wilson, Tom Buchanan, Myrtle, Catherine, Jordan Baker, Gutenberg, Jay Gatsby, Mr. Wolfshiem, George, Mr. McKee, Mr. Sloane, Dan Cody, Mrs. McKee, Jordan, Lucille, Myrtle Wilson, Jimmy, Mr. Carraway, Biloxi, Carraway, James Gatz, Mr. Gatz, Project Gutenberg
+- Tone: narrative-forward, rhythmically varied, direct, balanced
+- Recurring vocabulary: began, didn’t, don’t, going, hands, house, moment, night, people, seemed, suddenly, that’s, thought, toward, voice, young, afternoon, gatsby’s, heard, light, sport, three, wasn’t, white, years, basil, can’t, cried, himself, things, you’re
+- Character names: Biloxi, Carraway, Catherine, Daisy, Dan Cody, Gatsby, George, James Gatz, Jay Gatsby, Jimmy, Jordan, Jordan Baker, Lucille, Michaelis, Miss Baker, Mr, Mrs, Myrtle, Myrtle Wilson, Tom, Tom Buchanan, Wilson, Ahearn, Babe, Bernice, Betty, Carhart, Carlyle, Chester, Clark, Eckleburg, Ella Kaye, Evylyn, Gatz, George Wilson, Gilly, Gutenberg, Harold, Harry, Horace, Julie, Kieth, Klipspringer, Lois, Macy, Marcia, Marjorie, McIntyre, McKee, Mr. Carraway, Mr. Gatsby, Mr. Gatz, Mr. McKee, Mr. Sloane, Mr. Wolfshiem, Mrs. McKee, Mrs. Wilson, Nolak, Otis, Perry, Piper, Project Gutenberg, Sally Carrol, Samuel, Sloane, Tate, Warren, Wessel
 
 ## Books
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
+- [The Great Gatsby](../Books/9DF1EFE6-3977-4A5A-B775-B2BE5B7345CB.md)
 
 ## Representative excerpts
+
+### Short Fiction: Section 22
+
+_Mid-book rhythm_
+
+> Winter Dreams I Some of the caddies were poor as sin and lived in one-room houses with a neurasthenic cow in the front yard, but Dexter Green’s father owned the second best grocery-store in Black Bear⁠—the best one was “The Hub,” patronized by the wealthy people from Sherry Island⁠—and Dexter caddied only for pocket-money. In the fall when the days became crisp and gray, and the long Minnesota winter shut down like the white lid of a box, Dexter’s skis moved over the snow that hid the fairways of the golf course. At these times the country gave him a feeling of profound melancholy⁠—it offended him that the links should lie in enforced fallowness, haunted by ragged sparrows for the long season. It was dreary, too, that on the tees where the gay colors fluttered in summer there were now only the desolate sandboxes knee-deep in crusted ice.
+
+### Short Fiction: Section 15
+
+_Dialogue and character voice_
+
+> May Day There had been a war fought and won and the great city of the conquering people was crossed with triumphal arches and vivid with thrown flowers of white, red, and rose. All through the long spring days the returning soldiers marched up the chief highway behind the strump of drums and the joyous, resonant wind of the brasses, while merchants and clerks left their bickerings and figurings and, crowding to the windows, turned their white-bunched faces gravely upon the passing battalions.
 
 ### The Great Gatsby: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > VI About this time an ambitious young reporter from New York arrived one morning at Gatsby’s door and asked him if he had anything to say. “Anything to say about what?” inquired Gatsby politely. “Why—any statement to give out.” It transpired after a confused five minutes that the man had heard Gatsby’s name around his office in a connection which he either wouldn’t reveal or didn’t fully understand. This was his day off and with laudable initiative he had hurried out “to see.” It was a random shot, and yet the reporter’s instinct was right. Gatsby’s notoriety, spread about by the hundreds who had accepted his hospitality and so become authorities upon his past, had increased all summer until he fell just short of being news. Contemporary legends such as the “underground pipeline to Canada”
+
+### The Great Gatsby: Section 9
+
+_Mid-book rhythm_
+
+> IV On Sunday morning while church bells rang in the villages alongshore, the world and its mistress returned to Gatsby’s house and twinkled hilariously on his lawn. “He’s a bootlegger,” said the young ladies, moving somewhere between his cocktails and his flowers. “One time he killed a man who had found out that he was nephew to Von Hindenburg and second cousin to the devil. Reach me a rose, honey, and pour me a last drop into that there crystal glass.” Once I wrote down on the empty spaces of a timetable the names of those who came to Gatsby’s house that summer. It is an old timetable now, disintegrating at its folds, and headed “This schedule in effect July 5th, 1922.” But I can still read the grey names, and they will give you a better impression than my generalities of those who accepted Gatsby’s hospitality and paid him the subtle tribute of knowing nothing whatever about him.
+
+### The Great Gatsby: Section 12
+
+_Dialogue and character voice_
+
+> VII It was when curiosity about Gatsby was at its highest that the lights in his house failed to go on one Saturday night⁠—and, as obscurely as it had begun, his career as Trimalchio was over. Only gradually did I become aware that the automobiles which turned expectantly into his drive stayed for just a minute and then drove sulkily away. Wondering if he were sick I went over to find out⁠—an unfamiliar butler with a villainous face squinted at me suspiciously from the door. “Is Mr. Gatsby sick?” “Nope.” After a pause he added “sir” in a dilatory, grudging way. “I hadn’t seen him around, and I was rather worried. Tell him Mr. Carraway came over.” “Who?” he demanded rudely. “Carraway.” “Carraway. All right, I’ll tell him.” Abruptly he slammed the door.

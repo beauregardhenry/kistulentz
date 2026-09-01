@@ -2,25 +2,77 @@
 # Ghost stories
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 45912
-- Reading grade: 3.4
-- Average sentence: 7.9 words
-- Average paragraph: 11.7 words
-- Dialogue share: 21%
+- Words analyzed: 842042
+- Reading grade: 6.7
+- Average sentence: 19.9 words
+- Average paragraph: 58.4 words
+- Dialogue share: 32%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: myself, nothing, without, moment, don’t, things, quite, place, course, straight, house, child, indeed, round, didn’t, least, night, window, small, question, sense, person, works, anything
-- Character names: Mrs. Grose, Miles, Bly, Gutenberg, Jessel, Miss Jessel, Douglas, Grose, Luke, Mrs, Peter Quint, Project Gutenberg, Gutenberg Literary Archive Foundation, Flora, Griffin, Gutenberg Literary, Mrs. Griffin, Quint
+- Tempo: steady
+- Tone: rhythmically varied, balanced, dialogue-forward, narrative-forward, direct, measured, rhythmically even
+- Recurring vocabulary: house, moment, night, nothing, place, quite, don’t, heard, himself, seemed, though, thought, without, course, light, myself, round, stood, anything, going, morning, rather, suddenly, window, across, began, behind, child, church, didn’t, doctor, enough, evening, father, front, however, indeed, least, looking, outside
+- Character names: Mr, Mrs, Dr, John, Anderson, Jim, Abdul, Abney, Andy, Ann Clark, Anstruther, Arthur, Arthur Vezin, Asmodelius, Assheton, Bircham, Blanche, Bly, Brown, Bruder, Bruder Asmodelius, Bruder Harris, Bruder Kalkmann, Bruder Meyer, Bruder Pagel, Bruder Schliemann, Charles Linkworth, Collins, Colonel O’Mara, Colonel Wragge, Connor, Cooper, Darcy, Dawkins, Dennistoun, Dick, Douglas, Douw, Dwyer, Edward, Eldred, Ellen, Ellen Heathcote, Emily, Everard, Felix Pender, Fitzgerald, Flame, Flora, Francis Purcell, Frank, Franklyn, Garrett, Gavon, George, Gerard Douw, Gregory, Griffin, Grose, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harrington, Harris, Harry, Heathcote, Herr Harris, Horus, Hubbard, Hugh, Humphreys, Ilsé, Inglis, Jack, Jensen, Jessel, Jim Soolivan, John Silence, Kalkmann, Karswell
 
 ## Books
+- [Ghost Stories](../Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md)
+- [John Silence Stories](../Books/6A31FCE5-2847-4CA1-866C-DC461BE3CCD3.md)
+- [Short Fiction](../Books/233E9C32-6ADC-4AF8-AAB2-CAB10464FBA4.md)
+- [Short Fiction](../Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
 
 ## Representative excerpts
+
+### Ghost Stories: Section 17
+
+_Mid-book rhythm_
+
+> The Other Bed I had gone out to Switzerland just before Christmas, expecting, from experience, a month of divinely renovating weather, of skating all day in brilliant sun, and basking in the hot frost of that windless atmosphere. Occasionally, as I knew, there might be a snowfall, which would last perhaps for forty-eight hours at the outside, and would be succeeded by another ten days of cloudless perfection, cold even to zero at night, but irradiated all day long by the unflecked splendour of the sun. Instead the climatic conditions were horrible. Day after day a gale screamed through this upland valley that should have been so windless and serene, bringing with it a tornado of sleet that changed to snow by night.
+
+### Ghost Stories: Section 18
+
+_Dialogue and character voice_
+
+> The Thing in the Hall The following pages are the account given me by Dr. Assheton of the Thing in the Hall. I took notes, as copious as my quickness of hand allowed me, from his dictation, and subsequently read to him this narrative in its transcribed and connected form. This was on the day before his death, which indeed probably occurred within an hour after I had left him, and, as readers of inquests and such atrocious literature may remember, I had to give evidence before the coroner’s jury. Only a week before Dr. Assheton had to give similar evidence, but as a medical expert, with regard to the death of his friend, Louis Fielder, which occurred in a manner identical with his own. As a specialist, he said he believed that his friend had committed suicide while of unsound mind, and the verdict was brought in accordingly. But in the inquest held over Dr.
+
+### John Silence Stories: Section 7
+
+_Mid-book rhythm_
+
+> Case III The Nemesis of Fire I By some means which I never could fathom, John Silence always contrived to keep the compartment to himself, and as the train had a clear run of two hours before the first stop, there was ample time to go over the preliminary facts of the case. He had telephoned to me that very morning, and even through the disguise of the miles of wire the thrill of incalculable adventure had sounded in his voice. “As if it were an ordinary country visit,” he called, in reply to my question; “and don’t forget to bring your gun.” “With blank cartridges, I suppose?” for I knew his rigid principles with regard to the taking of life, and guessed that the guns were merely for some obvious purpose of disguise. Then he thanked me for coming, mentioned the train, snapped down the receiver, and left me, vibrating with the excitement of anticipation, to do my packing.
+
+### John Silence Stories: Section 5
+
+_Dialogue and character voice_
+
+> Case I A Psychical Invasion I “And what is it makes you think I could be of use in this particular case?” asked Dr. John Silence, looking across somewhat sceptically at the Swedish lady in the chair facing him. “Your sympathetic heart and your knowledge of occultism⁠—” “Oh, please⁠—that dreadful word!” he interrupted, holding up a finger with a gesture of impatience. “Well, then,” she laughed, “your wonderful clairvoyant gift and your trained psychic knowledge of the processes by which a personality may be disintegrated and destroyed⁠—these strange studies you’ve been experimenting with all these years⁠—” “If it’s only a case of multiple personality I must really cry off,” interrupted the doctor again hastily, a bored expression in his eyes. “It’s not that; now, please, be serious, for I want your help,” she said; “and if I choose my words poorly you must be patient with my ignorance.
+
+### Short Fiction: Section 23
+
+_Mid-book rhythm_
+
+> Borrhomeo the Astrologer A Monkish Tale At the period of the famous plague of Milan in 1630, a frenzy of superstition seized upon the population high and low. Old prophecies of a diabolical visitation reserved for their city, in that particular year of grace, prepared the way for this wild panic of the imagination. When the plague broke out terror seems to have acted to a degree scarcely paralleled upon the fancy or the credulity of the people. Excitement in very many cases produced absolutely the hallucinations of madness.
+
+### Short Fiction: Section 15
+
+_Dialogue and character voice_
+
+> Spalatro From the Notes of Fra Giacomo Part I The Spalatro, surnamed Barbone, of whom we speak, was not the illustrious bandit of Napoleon’s early time, who assumed, or acquired, that name, but the celebrated original, who first bore it two centuries since. This man was nobly born, lost his parents early, squandered his fortune, and then “took to the road” professionally. He speedily became one of the most powerful, if not the most powerful, of Italian robbers of any age.
+
+### Short Fiction: Section 16
+
+_Mid-book rhythm_
+
+> Martin’s Close Some few years back I was staying with the rector of a parish in the West, where the society to which I belong owns property. I was to go over some of this land: and, on the first morning of my visit, soon after breakfast, the estate carpenter and general handy man, John Hill, was announced as in readiness to accompany us. The rector asked which part of the parish we were to visit that morning. The estate map was produced, and when we had showed him our round, he put his finger on a particular spot. “Don’t forget,” he said, “to ask John Hill about Martin’s Close when you get there. I should like to hear what he tells you.” “What ought he to tell us?” I said. “I haven’t the slightest idea,” said the rector, “or, if that is not exactly true, it will do till lunchtime.” And here he was called away.
+
+### Short Fiction: Section 18
+
+_Dialogue and character voice_
+
+> The Residence at Whitminster Dr. Ashton⁠—Thomas Ashton, Doctor of Divinity⁠—sat in his study, habited in a dressing-gown, and with a silk cap on his shaven head⁠—his wig being for the time taken off and placed on its block on a side table. He was a man of some fifty-five years, strongly made, of a sanguine complexion, an angry eye, and a long upper lip. Face and eye were lighted up at the moment when I picture him by the level ray of an afternoon sun that shone in upon him through a tall sash window, giving on the west. The room into which it shone was also tall, lined with bookcases, and, where the wall showed between them, panelled.
 
 ### The Turn of the Screw: Section 1
 

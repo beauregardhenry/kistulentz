@@ -3,440 +3,1967 @@
 
 This local knowledge base contains derived writing profiles and short, attributed excerpts selected from imported EPUB files.
 
-- Books: 76
-- Authors: 47
-- Genres: 302
+- Books: 528
+- Authors: 254
+- Genres: 1170
 - AI deepening records: 0
 
 ## Authors
-- [Arthur Conan Doyle](Authors/arthur-conan-doyle-4eb08050.md) — 1 book
+- [A. A. Milne](Authors/a-a-milne-1b1c3d7c.md) — 3 books
+- [A. E. W. Mason](Authors/a-e-w-mason-9877b322.md) — 1 book
+- [A. N. Afanasyev](Authors/a-n-afanasyev-d9957dc8.md) — 1 book
+- [Abu al-ʻAlaʼ al-Maʻarri](Authors/abu-al-ʻalaʼ-al-maʻarri-8d7128bb.md) — 1 book
+- [Adam Smith](Authors/adam-smith-dad5956b.md) — 1 book
+- [Aeschylus](Authors/aeschylus-f30349cf.md) — 4 books
+- [Aesop](Authors/aesop-bc973a04.md) — 1 book
+- [Agatha Christie](Authors/agatha-christie-864e8fd9.md) — 6 books
+- [Akutagawa Ryūnosuke](Authors/akutagawa-ryunosuke-9521c8ce.md) — 1 book
+- [Aldous Huxley](Authors/aldous-huxley-d58f8b98.md) — 2 books
+- [Aleksandr Kuprin](Authors/aleksandr-kuprin-2e8416fc.md) — 1 book
+- [Alexander Mackenzie](Authors/alexander-mackenzie-3231c6d5.md) — 1 book
+- [Alexandre Dumas](Authors/alexandre-dumas-fe41ba3b.md) — 4 books
+- [Algernon Blackwood](Authors/algernon-blackwood-cc708360.md) — 1 book
+- [Algis Budrys](Authors/algis-budrys-b358501f.md) — 1 book
+- [Ambrose Bierce](Authors/ambrose-bierce-920abad9.md) — 2 books
+- [Andre Norton](Authors/andre-norton-f5e5ea3d.md) — 2 books
+- [Anna Katharine Green](Authors/anna-katharine-green-4b9f48d6.md) — 1 book
+- [Anna Sewell](Authors/anna-sewell-4fdec50e.md) — 1 book
+- [Anne Brontë](Authors/anne-bronte-bc2b0e40.md) — 1 book
+- [Anonymous](Authors/anonymous-1393e42b.md) — 3 books
+- [Anthony Hope](Authors/anthony-hope-e78fc322.md) — 1 book
+- [Anthony Trollope](Authors/anthony-trollope-c4b92971.md) — 1 book
+- [Anton Chekhov](Authors/anton-chekhov-b2b8ba72.md) — 3 books
+- [Aristotle](Authors/aristotle-d0e1a4b6.md) — 1 book
+- [Arthur B. Reeve](Authors/arthur-b-reeve-ac18b5aa.md) — 1 book
+- [Arthur Conan Doyle](Authors/arthur-conan-doyle-4eb08050.md) — 8 books
+- [Arthur Machen](Authors/arthur-machen-797a03f3.md) — 1 book
+- [Arthur Quiller-Couch](Authors/arthur-quiller-couch-7b225239.md) — 1 book
 - [Ayn Rand](Authors/ayn-rand-960f98d0.md) — 1 book
+- [Baroness Orczy](Authors/baroness-orczy-ab4fb37b.md) — 12 books
+- [Beatrix Potter](Authors/beatrix-potter-74524cfd.md) — 1 book
 - [Benjamin Franklin](Authors/benjamin-franklin-fc2c0858.md) — 2 books
+- [Bertrand Russell](Authors/bertrand-russell-35642da9.md) — 2 books
+- [Booker T. Washington](Authors/booker-t-washington-ecbe7330.md) — 1 book
+- [C. S. Forester](Authors/c-s-forester-2704b7f0.md) — 1 book
+- [Carey Rockwell](Authors/carey-rockwell-4917561b.md) — 1 book
+- [Catherine Louisa Pirkis](Authors/catherine-louisa-pirkis-e13e5aaa.md) — 1 book
+- [Charles A. Lindbergh](Authors/charles-a-lindbergh-1e426c72.md) — 1 book
+- [Charles Babbage](Authors/charles-babbage-e1220c40.md) — 1 book
+- [Charles Beaumont](Authors/charles-beaumont-bc40d97e.md) — 1 book
+- [Charles Darwin](Authors/charles-darwin-a5863c26.md) — 1 book
+- [Charles Dickens](Authors/charles-dickens-648c0852.md) — 2 books
+- [Charles W. Chesnutt](Authors/charles-w-chesnutt-c2b643cc.md) — 1 book
+- [Charlotte Brontë](Authors/charlotte-bronte-165dc377.md) — 1 book
 - [Charlotte Perkins Gilman](Authors/charlotte-perkins-gilman-f2743751.md) — 1 book
-- [D. H. Lawrence](Authors/d-h-lawrence-662fc0dc.md) — 1 book
-- [Edgar Allan Poe](Authors/edgar-allan-poe-db141307.md) — 2 books
-- [Edith Wharton](Authors/edith-wharton-e8ce6a9d.md) — 2 books
+- [Christopher Marlowe](Authors/christopher-marlowe-a56798b3.md) — 2 books
+- [Cicero](Authors/cicero-415ee500.md) — 1 book
+- [Clark Ashton Smith](Authors/clark-ashton-smith-a4724a70.md) — 1 book
+- [Clifford D. Simak](Authors/clifford-d-simak-39cb1a2b.md) — 1 book
+- [Confucius](Authors/confucius-26f488f7.md) — 1 book
+- [Cordwainer Smith](Authors/cordwainer-smith-38e5d28d.md) — 1 book
+- [D. H. Lawrence](Authors/d-h-lawrence-662fc0dc.md) — 3 books
+- [Daphne du Maurier](Authors/daphne-du-maurier-43902aba.md) — 1 book
+- [Dashiell Hammett](Authors/dashiell-hammett-a542fa75.md) — 1 book
+- [David Hume](Authors/david-hume-ede3b9ff.md) — 1 book
+- [Dornford Yates](Authors/dornford-yates-217e157c.md) — 2 books
+- [Dorothy L. Sayers](Authors/dorothy-l-sayers-c40ef589.md) — 1 book
+- [E. E. Cummings](Authors/e-e-cummings-367e14fd.md) — 1 book
+- [E. F. Benson](Authors/e-f-benson-92125384.md) — 1 book
+- [E. F. Knight](Authors/e-f-knight-3f2419d4.md) — 1 book
+- [E. M. Forster](Authors/e-m-forster-a9800b00.md) — 4 books
+- [E. Nesbit](Authors/e-nesbit-744a1e5f.md) — 1 book
+- [E. Pauline Johnson](Authors/e-pauline-johnson-b244916e.md) — 1 book
+- [E. W. Hornung](Authors/e-w-hornung-3c39f1f1.md) — 3 books
+- [Earl Derr Biggers](Authors/earl-derr-biggers-c99332c7.md) — 3 books
+- [Edgar Allan Poe](Authors/edgar-allan-poe-db141307.md) — 5 books
+- [Edgar Rice Burroughs](Authors/edgar-rice-burroughs-3bd32e66.md) — 16 books
+- [Edgar Saltus](Authors/edgar-saltus-72f35213.md) — 1 book
+- [Edgar Wallace](Authors/edgar-wallace-6b044cab.md) — 17 books
+- [Edith Wharton](Authors/edith-wharton-e8ce6a9d.md) — 3 books
+- [Edward Lear](Authors/edward-lear-6cd44e1f.md) — 1 book
+- [Ellis Parker Butler](Authors/ellis-parker-butler-40ab1f2c.md) — 1 book
 - [Emily Dickinson](Authors/emily-dickinson-544c6bab.md) — 2 books
 - [Emperor of Rome Marcus Aurelius](Authors/emperor-of-rome-marcus-aurelius-5288fa51.md) — 1 book
-- [Ernest Hemingway](Authors/ernest-hemingway-bc7db899.md) — 3 books
-- [F. Scott Fitzgerald](Authors/f-scott-fitzgerald-45f2d032.md) — 1 book
-- [Frederick Douglass](Authors/frederick-douglass-2da391bd.md) — 2 books
+- [Ernest Hemingway](Authors/ernest-hemingway-bc7db899.md) — 6 books
+- [Ernest Thompson Seton](Authors/ernest-thompson-seton-ee66bf83.md) — 1 book
+- [Eugene O’Neill](Authors/eugene-o-neill-2c59642c.md) — 1 book
+- [F. Scott Fitzgerald](Authors/f-scott-fitzgerald-45f2d032.md) — 3 books
+- [Frances Hodgson Burnett](Authors/frances-hodgson-burnett-f188e7e0.md) — 1 book
+- [Frank Belknap Long](Authors/frank-belknap-long-6720d16b.md) — 1 book
+- [Frank Hamilton Cushing](Authors/frank-hamilton-cushing-202ebb53.md) — 1 book
+- [Frank Norris](Authors/frank-norris-a89ab4b1.md) — 1 book
+- [Franklin W. Dixon](Authors/franklin-w-dixon-143c58a2.md) — 9 books
+- [Frederick Douglass](Authors/frederick-douglass-2da391bd.md) — 3 books
+- [Frederik Pohl](Authors/frederik-pohl-a4378264.md) — 1 book
 - [Friedrich Wilhelm Nietzsche](Authors/friedrich-wilhelm-nietzsche-525b3124.md) — 1 book
+- [Fritz Leiber](Authors/fritz-leiber-8cc36b7e.md) — 1 book
+- [Fyodor Dostoevsky](Authors/fyodor-dostoevsky-c5b82d34.md) — 4 books
 - [Fyodor Dostoyevsky](Authors/fyodor-dostoyevsky-151b2f96.md) — 2 books
+- [Fyodor Sologub](Authors/fyodor-sologub-57d32ae8.md) — 1 book
+- [G. K. Chesterton](Authors/g-k-chesterton-f3200db4.md) — 8 books
+- [Gaston Leroux](Authors/gaston-leroux-76fff1a4.md) — 1 book
+- [George Bernard Shaw](Authors/george-bernard-shaw-362ea9c6.md) — 4 books
+- [George MacDonald](Authors/george-macdonald-8a84bfe3.md) — 1 book
+- [Graham Greene](Authors/graham-greene-d5b1bcc8.md) — 1 book
+- [Gustave Flaubert](Authors/gustave-flaubert-7cacdff5.md) — 2 books
+- [Guy de Maupassant](Authors/guy-de-maupassant-b8a5aa6f.md) — 2 books
+- [H. Beam Piper](Authors/h-beam-piper-72594065.md) — 1 book
+- [H. C. Bailey](Authors/h-c-bailey-2290e497.md) — 1 book
+- [H. C. McNeile](Authors/h-c-mcneile-e0e4760b.md) — 3 books
+- [H. G. Wells](Authors/h-g-wells-9a43319e.md) — 1 book
 - [H. L. Mencken](Authors/h-l-mencken-85bc270b.md) — 3 books
-- [H. P. Lovecraft](Authors/h-p-lovecraft-aea17620.md) — 1 book
+- [H. P. Lovecraft](Authors/h-p-lovecraft-aea17620.md) — 3 books
+- [H. Rider Haggard](Authors/h-rider-haggard-86f70c0a.md) — 6 books
+- [H. de Vere Stacpoole](Authors/h-de-vere-stacpoole-798a4187.md) — 1 book
 - [Harriet Beecher Stowe](Authors/harriet-beecher-stowe-4bae8f44.md) — 1 book
-- [Henry David Thoreau](Authors/henry-david-thoreau-75285cfb.md) — 3 books
-- [Henry James](Authors/henry-james-cffd1f4b.md) — 1 book
+- [Harry Harrison](Authors/harry-harrison-85f37b50.md) — 1 book
+- [Helen Keller](Authors/helen-keller-8128a689.md) — 1 book
+- [Henry David Thoreau](Authors/henry-david-thoreau-75285cfb.md) — 4 books
+- [Henry James](Authors/henry-james-cffd1f4b.md) — 2 books
+- [Henry Kuttner](Authors/henry-kuttner-3070e5f2.md) — 1 book
+- [Henry Lawson](Authors/henry-lawson-d4ade057.md) — 1 book
 - [Henry Wadsworth Longfellow](Authors/henry-wadsworth-longfellow-16ab7f7b.md) — 1 book
-- [Herman Melville](Authors/herman-melville-8e7c4908.md) — 2 books
-- [Homer](Authors/homer-7c43587a.md) — 2 books
+- [Herman Melville](Authors/herman-melville-8e7c4908.md) — 4 books
+- [Hermann Hesse](Authors/hermann-hesse-f6db4c64.md) — 1 book
+- [Herminie Templeton Kavanagh](Authors/herminie-templeton-kavanagh-1cbd98ae.md) — 1 book
+- [Hjalmar Söderberg](Authors/hjalmar-soderberg-26f04afb.md) — 1 book
+- [Homer](Authors/homer-7c43587a.md) — 4 books
+- [Honoré de Balzac](Authors/honore-de-balzac-bbe0e75f.md) — 3 books
+- [Hugh Lofting](Authors/hugh-lofting-1875922f.md) — 2 books
 - [Isa Glenn](Authors/isa-glenn-c53d2bf8.md) — 1 book
-- [Jack London](Authors/jack-london-3c1404de.md) — 3 books
-- [James Fenimore Cooper](Authors/james-fenimore-cooper-59547355.md) — 1 book
-- [Jane Austen](Authors/jane-austen-1547a47c.md) — 1 book
-- [John Muir](Authors/john-muir-bcd44e4f.md) — 2 books
-- [Kate Chopin](Authors/kate-chopin-97c4f28c.md) — 1 book
+- [Isaac Asimov](Authors/isaac-asimov-ca4944da.md) — 2 books
+- [Ivan Bunin](Authors/ivan-bunin-127d0847.md) — 1 book
+- [J. Sheridan Le Fanu](Authors/j-sheridan-le-fanu-15cf72b4.md) — 1 book
+- [Jack London](Authors/jack-london-3c1404de.md) — 9 books
+- [Jacob Grimm](Authors/jacob-grimm-fb7c1737.md) — 1 book
+- [James Fenimore Cooper](Authors/james-fenimore-cooper-59547355.md) — 2 books
+- [James Joyce](Authors/james-joyce-1cbadeb3.md) — 2 books
+- [James Stephens](Authors/james-stephens-3c3c6e84.md) — 1 book
+- [Jane Addams](Authors/jane-addams-e7d2b83c.md) — 1 book
+- [Jane Austen](Authors/jane-austen-1547a47c.md) — 4 books
+- [Jean-Jacques Rousseau](Authors/jean-jacques-rousseau-d32e9d7f.md) — 1 book
+- [John Buchan](Authors/john-buchan-c8206f94.md) — 6 books
+- [John Bunyan](Authors/john-bunyan-6acd84be.md) — 1 book
+- [John Donne](Authors/john-donne-709c050c.md) — 1 book
+- [John Locke](Authors/john-locke-5c2f4b1c.md) — 1 book
+- [John Milton](Authors/john-milton-3888ed4e.md) — 1 book
+- [John Muir](Authors/john-muir-bcd44e4f.md) — 3 books
+- [John Stuart Mill](Authors/john-stuart-mill-69439f5c.md) — 1 book
+- [Jonas Lie](Authors/jonas-lie-1e8904b9.md) — 1 book
+- [Jonathan Swift](Authors/jonathan-swift-d9db9069.md) — 1 book
+- [Joseph Conrad](Authors/joseph-conrad-bc9d1644.md) — 1 book
+- [Joseph Jacobs](Authors/joseph-jacobs-e5c782d0.md) — 1 book
+- [Joshua Slocum](Authors/joshua-slocum-38af37ee.md) — 1 book
+- [Jules Verne](Authors/jules-verne-7af23246.md) — 10 books
+- [Julius Caesar](Authors/julius-caesar-768f1c2e.md) — 1 book
+- [Kahlil Gibran](Authors/kahlil-gibran-b215b532.md) — 5 books
+- [Kate Chopin](Authors/kate-chopin-97c4f28c.md) — 3 books
 - [Kurt Vonnegut](Authors/kurt-vonnegut-2866cb62.md) — 1 book
 - [L. Frank Baum](Authors/l-frank-baum-388c780c.md) — 2 books
+- [L. M. Montgomery](Authors/l-m-montgomery-74aee44d.md) — 1 book
+- [Langston Hughes](Authors/langston-hughes-d1d60e7f.md) — 1 book
+- [Leo Tolstoy](Authors/leo-tolstoy-aa02c8df.md) — 5 books
+- [Leonid Andreyev](Authors/leonid-andreyev-ce894817.md) — 1 book
 - [Lewis Carroll](Authors/lewis-carroll-6c7ed169.md) — 1 book
+- [Lord Dunsany](Authors/lord-dunsany-ebc850fa.md) — 2 books
+- [Louis Joseph Vance](Authors/louis-joseph-vance-c8349b04.md) — 1 book
 - [Louisa May Alcott](Authors/louisa-may-alcott-6b320738.md) — 1 book
-- [Mark Twain](Authors/mark-twain-4fa60c01.md) — 9 books
-- [Nathaniel Hawthorne](Authors/nathaniel-hawthorne-2b3f38ee.md) — 1 book
-- [Oscar Wilde](Authors/oscar-wilde-908fe07f.md) — 1 book
-- [P. T. Barnum](Authors/p-t-barnum-f787ea99.md) — 1 book
-- [Philip K. Dick](Authors/philip-k-dick-863333e1.md) — 1 book
+- [Ludovico Ariosto](Authors/ludovico-ariosto-8053ce63.md) — 1 book
+- [Ludwig Wittgenstein](Authors/ludwig-wittgenstein-cd9577c9.md) — 1 book
+- [M. R. James](Authors/m-r-james-35408f01.md) — 1 book
+- [Mack Reynolds](Authors/mack-reynolds-d305a2f7.md) — 1 book
+- [Manly Wade Wellman](Authors/manly-wade-wellman-8bc4e066.md) — 1 book
+- [Marie de France](Authors/marie-de-france-f0fab89a.md) — 1 book
+- [Mark Twain](Authors/mark-twain-4fa60c01.md) — 12 books
+- [Mary Austin](Authors/mary-austin-b17642db.md) — 1 book
+- [Mary De Morgan](Authors/mary-de-morgan-bdbd45f6.md) — 3 books
+- [Mary P. Hamlin](Authors/mary-p-hamlin-17e9bac4.md) — 1 book
+- [Mary Shelley](Authors/mary-shelley-5f54e3db.md) — 2 books
+- [Maurice Leblanc](Authors/maurice-leblanc-fb4ca702.md) — 3 books
+- [Max Beerbohm](Authors/max-beerbohm-b9c3a6c1.md) — 1 book
+- [Mourning Dove](Authors/mourning-dove-379861fb.md) — 1 book
+- [Nathaniel Hawthorne](Authors/nathaniel-hawthorne-2b3f38ee.md) — 3 books
+- [Nella Larsen](Authors/nella-larsen-9155e07d.md) — 1 book
+- [Nikolai Gogol](Authors/nikolai-gogol-aa8209ea.md) — 1 book
+- [Noel Loomis](Authors/noel-loomis-da3780e7.md) — 1 book
+- [O. Henry](Authors/o-henry-5b53b236.md) — 1 book
+- [Oscar Wilde](Authors/oscar-wilde-908fe07f.md) — 6 books
+- [P. G. Wodehouse](Authors/p-g-wodehouse-311cc261.md) — 6 books
+- [P. T. Barnum](Authors/p-t-barnum-f787ea99.md) — 2 books
+- [Pearl S. Buck](Authors/pearl-s-buck-5ad1af78.md) — 1 book
+- [Philip K. Dick](Authors/philip-k-dick-863333e1.md) — 2 books
+- [Philip Wylie](Authors/philip-wylie-c668701f.md) — 1 book
+- [Phillis Wheatley](Authors/phillis-wheatley-7dda97d7.md) — 1 book
+- [Poul Anderson](Authors/poul-anderson-fbfbdfa8.md) — 1 book
+- [R. A. Lafferty](Authors/r-a-lafferty-e1bc54b4.md) — 1 book
+- [R. D. Blackmore](Authors/r-d-blackmore-f9498919.md) — 1 book
+- [R. M. Ballantyne](Authors/r-m-ballantyne-e25667e5.md) — 1 book
+- [Rafael Sabatini](Authors/rafael-sabatini-3d29edb5.md) — 3 books
 - [Ralph Waldo Emerson](Authors/ralph-waldo-emerson-e78374a6.md) — 2 books
+- [Ray Bradbury](Authors/ray-bradbury-1faac727.md) — 2 books
+- [René Descartes](Authors/rene-descartes-a3656267.md) — 1 book
+- [Richard F. Burton](Authors/richard-f-burton-63094a0e.md) — 1 book
+- [Richard Hughes](Authors/richard-hughes-7c536729.md) — 1 book
+- [Richard Jefferies](Authors/richard-jefferies-4c567f3f.md) — 1 book
+- [Ring Lardner](Authors/ring-lardner-d5e7d02c.md) — 4 books
+- [Robert E. Howard](Authors/robert-e-howard-7fee99c8.md) — 2 books
+- [Robert Frost](Authors/robert-frost-b057d257.md) — 1 book
+- [Robert Louis Stevenson](Authors/robert-louis-stevenson-8bf02eee.md) — 5 books
+- [Robert Sheckley](Authors/robert-sheckley-930ac65d.md) — 1 book
+- [Robert W. Chambers](Authors/robert-w-chambers-76effc5c.md) — 1 book
+- [Rudyard Kipling](Authors/rudyard-kipling-1208ce1c.md) — 3 books
+- [Russell Thorndike](Authors/russell-thorndike-831fb26c.md) — 1 book
+- [S. M. Mitra](Authors/s-m-mitra-99d6c038.md) — 1 book
+- [Saki](Authors/saki-9745e18b.md) — 1 book
+- [Samuel Pepys](Authors/samuel-pepys-fba17363.md) — 1 book
+- [Samuel Taylor Coleridge](Authors/samuel-taylor-coleridge-81962b12.md) — 1 book
+- [Selma Lagerlöf](Authors/selma-lagerlof-64516ef7.md) — 1 book
+- [Sherwood Anderson](Authors/sherwood-anderson-a87d0fa7.md) — 1 book
+- [Sinclair Lewis](Authors/sinclair-lewis-ef67813b.md) — 1 book
 - [Sir Thomas Malory](Authors/sir-thomas-malory-b33f57f0.md) — 1 book
-- [Stephen Crane](Authors/stephen-crane-c9252555.md) — 1 book
+- [Solomon Northup](Authors/solomon-northup-8f0a2afc.md) — 1 book
+- [Sophocles](Authors/sophocles-75ca443e.md) — 4 books
+- [Stanley G. Weinbaum](Authors/stanley-g-weinbaum-3ed8e7bc.md) — 1 book
+- [Stephen Crane](Authors/stephen-crane-c9252555.md) — 2 books
+- [Sun Tzu](Authors/sun-tzu-1fd4cfd2.md) — 1 book
+- [T. E. Lawrence](Authors/t-e-lawrence-9aac4b50.md) — 1 book
+- [Tanizaki Jun’ichirō](Authors/tanizaki-jun-ichiro-f7e68a7f.md) — 1 book
+- [Thomas De Quincey](Authors/thomas-de-quincey-f77eb86e.md) — 1 book
+- [Thomas Hardy](Authors/thomas-hardy-f279e311.md) — 5 books
+- [Thomas Hobbes](Authors/thomas-hobbes-e1110b2c.md) — 1 book
+- [Thomas Malory](Authors/thomas-malory-529e74c4.md) — 1 book
+- [Thomas Paine](Authors/thomas-paine-95aa954f.md) — 4 books
 - [Upton Sinclair](Authors/upton-sinclair-7131cef7.md) — 2 books
+- [Victor Hugo](Authors/victor-hugo-910bc0dc.md) — 1 book
+- [Virgil](Authors/virgil-c87be231.md) — 1 book
+- [Virginia Woolf](Authors/virginia-woolf-bcf2aba5.md) — 2 books
+- [Vladimir Korolenko](Authors/vladimir-korolenko-67c6c597.md) — 1 book
+- [Voltairine de Cleyre](Authors/voltairine-de-cleyre-45874631.md) — 1 book
+- [Vsevolod Garshin](Authors/vsevolod-garshin-19e95082.md) — 1 book
+- [W. E. B. Du Bois](Authors/w-e-b-du-bois-5f77b66e.md) — 2 books
+- [W. H. Hudson](Authors/w-h-hudson-89d2fbfd.md) — 1 book
+- [W. Somerset Maugham](Authors/w-somerset-maugham-606a47c3.md) — 2 books
+- [W. W. Jacobs](Authors/w-w-jacobs-a5510b87.md) — 1 book
 - [Walt Whitman](Authors/walt-whitman-7b0d68b4.md) — 1 book
-- [Washington Irving](Authors/washington-irving-67274211.md) — 2 books
-- [William Faulkner](Authors/william-faulkner-3eeadb72.md) — 1 book
-- [William Shakespeare](Authors/william-shakespeare-11391173.md) — 1 book
+- [Walter M. Miller Jr.](Authors/walter-m-miller-jr-51bfcf4e.md) — 1 book
+- [Walter Scott](Authors/walter-scott-b9cda73c.md) — 2 books
+- [Washington Irving](Authors/washington-irving-67274211.md) — 3 books
+- [William Carlos Williams](Authors/william-carlos-williams-e63879e2.md) — 1 book
+- [William Congreve](Authors/william-congreve-44df5099.md) — 1 book
+- [William Craft](Authors/william-craft-221a1978.md) — 1 book
+- [William Faulkner](Authors/william-faulkner-3eeadb72.md) — 3 books
+- [William James](Authors/william-james-f3f3e7b9.md) — 1 book
+- [William Morris](Authors/william-morris-2a172558.md) — 3 books
+- [William Shakespeare](Authors/william-shakespeare-11391173.md) — 19 books
+- [Winston Churchill](Authors/winston-churchill-56abce0a.md) — 1 book
+- [Woodrow Wilson](Authors/woodrow-wilson-9a7987b4.md) — 1 book
+- [Xavier de Maistre](Authors/xavier-de-maistre-91c247a0.md) — 1 book
+- [Zane Grey](Authors/zane-grey-34dd2f44.md) — 1 book
+- [Zitkála-Šá](Authors/zitkala-sa-83e14154.md) — 2 books
 - [active 12th century de Troyes Chrétien](Authors/active-12th-century-de-troyes-chretien-f4fe8a5c.md) — 1 book
 - [graf Leo Tolstoy](Authors/graf-leo-tolstoy-e0a2ab99.md) — 1 book
+- [Émile Zola](Authors/emile-zola-8ba3d1d4.md) — 1 book
 
 ## Genres
 
-- [1500-1600](Genres/1500-1600-b6f0d957.md) — 1 book
+- [-30 B.C. -- Drama](Genres/30-b-c-drama-c6a38814.md) — 1 book
+- [-30 B.C. -- Fiction](Genres/30-b-c-fiction-2e366a28.md) — 1 book
+- [-approximately 1540 -- Drama](Genres/approximately-1540-drama-a13f1c63.md) — 1 book
+- [1189-1199 -- Fiction](Genres/1189-1199-fiction-27befea5.md) — 1 book
+- [1216-1272 -- Fiction](Genres/1216-1272-fiction-19d9c215.md) — 1 book
+- [1455-1485 -- Fiction](Genres/1455-1485-fiction-71069c5c.md) — 1 book
+- [1500-1600](Genres/1500-1600-b6f0d957.md) — 2 books
+- [1500-1700](Genres/1500-1700-adda9e57.md) — 1 book
+- [1500-1700 -- Biography](Genres/1500-1700-biography-60447767.md) — 1 book
+- [1564-1616--Tragedies](Genres/1564-1616-tragedies-881841e5.md) — 1 book
+- [1610-1643 -- Fiction](Genres/1610-1643-fiction-17e62db5.md) — 1 book
+- [1625-1649 -- Fiction](Genres/1625-1649-fiction-3a11615b.md) — 1 book
+- [1628-1688](Genres/1628-1688-2b025445.md) — 1 book
+- [1633-1703 -- Diaries](Genres/1633-1703-diaries-aa68fc1d.md) — 1 book
+- [1643-1715 -- Fiction](Genres/1643-1715-fiction-c50216be.md) — 2 books
+- [1660-1685 -- Sources](Genres/1660-1685-sources-d8c17c31.md) — 1 book
+- [1685 -- Fiction](Genres/1685-fiction-6c46cadb.md) — 1 book
 - [1706-1790](Genres/1706-1790-75a4f648.md) — 2 books
 - [1706-1790 -- Correspondence](Genres/1706-1790-correspondence-47eaf0c6.md) — 1 book
-- [1754-1763 -- Fiction](Genres/1754-1763-fiction-c431fec9.md) — 1 book
-- [1800-1815 -- Campaigns -- Russia -- Fiction](Genres/1800-1815-campaigns-russia-fiction-6a1933c5.md) — 1 book
-- [1801-1825 -- Fiction](Genres/1801-1825-fiction-e6455cf4.md) — 1 book
-- [1809-1849](Genres/1809-1849-6f9c269e.md) — 1 book
-- [1818-1895](Genres/1818-1895-7f3a970c.md) — 2 books
+- [1729-1797. Reflections on the revolution in France](Genres/1729-1797-reflections-on-the-revolution-in-france-64d562b9.md) — 1 book
+- [1745-1746 -- Fiction](Genres/1745-1746-fiction-8fcf9ecd.md) — 1 book
+- [1754-1763 -- Fiction](Genres/1754-1763-fiction-c431fec9.md) — 2 books
+- [1757-1804](Genres/1757-1804-1844660d.md) — 1 book
+- [1757-1804--Drama](Genres/1757-1804-drama-d7bfb660.md) — 1 book
+- [1769-1821 -- Drama](Genres/1769-1821-drama-f1f9463e.md) — 1 book
+- [1783-1859 -- Travel -- England](Genres/1783-1859-travel-england-12137e5f.md) — 1 book
+- [1789-1799 -- Causes](Genres/1789-1799-causes-d3d58f86.md) — 1 book
+- [1789-1799 -- Fiction](Genres/1789-1799-fiction-81a34b71.md) — 9 books
+- [1791-1871](Genres/1791-1871-4af4c0d7.md) — 1 book
+- [1800-1815 -- Campaigns -- Russia -- Fiction](Genres/1800-1815-campaigns-russia-fiction-6a1933c5.md) — 2 books
+- [1800-1815--Veterans--Fiction](Genres/1800-1815-veterans-fiction-33323fe4.md) — 1 book
+- [1800-1859](Genres/1800-1859-47c0b166.md) — 1 book
+- [1801-1825 -- Fiction](Genres/1801-1825-fiction-e6455cf4.md) — 2 books
+- [1808-1863?](Genres/1808-1863-427fcfe9.md) — 1 book
+- [1809-1849](Genres/1809-1849-6f9c269e.md) — 3 books
+- [1809-1852 -- Translations into English](Genres/1809-1852-translations-into-english-161f3679.md) — 1 book
+- [1818-1895](Genres/1818-1895-7f3a970c.md) — 3 books
+- [1835-1910](Genres/1835-1910-b9d1debe.md) — 1 book
 - [1835-1910 -- Travel](Genres/1835-1910-travel-aaa80b15.md) — 1 book
 - [1835-1910 -- Travel -- Mississippi River](Genres/1835-1910-travel-mississippi-river-c0b5603a.md) — 1 book
-- [1835-1910 -- Travel -- West (U.S.)](Genres/1835-1910-travel-west-u-s-b98f32cb.md) — 1 book
+- [1835-1910 -- Travel -- West (U.S.)](Genres/1835-1910-travel-west-u-s-b98f32cb.md) — 2 books
 - [1837-1901 -- Fiction](Genres/1837-1901-fiction-a6dbda7a.md) — 1 book
+- [1838-1914](Genres/1838-1914-48a59a4b.md) — 1 book
 - [1838-1914 -- Travel -- Sierra Nevada (Calif. and Nev.)](Genres/1838-1914-travel-sierra-nevada-calif-and-nev-1a332689.md) — 1 book
+- [1856-1915](Genres/1856-1915-de7f8da0.md) — 1 book
 - [1857-1924 -- Criticism and interpretation](Genres/1857-1924-criticism-and-interpretation-6ae95a2c.md) — 1 book
-- [1861-1865 -- Fiction](Genres/1861-1865-fiction-53347cb3.md) — 1 book
+- [1860-1904 -- Translations into English](Genres/1860-1904-translations-into-english-1e7eb314.md) — 1 book
+- [1860-1904--Translations into English](Genres/1860-1904-translations-into-english-6ca68a07.md) — 2 books
+- [1861-1865 -- Fiction](Genres/1861-1865-fiction-53347cb3.md) — 3 books
+- [1863-1927 -- Translations into English](Genres/1863-1927-translations-into-english-574251d7.md) — 1 book
+- [1870-1938 -- Translations into English](Genres/1870-1938-translations-into-english-90994cbd.md) — 1 book
+- [1870-1953 -- Translations into English](Genres/1870-1953-translations-into-english-9421aead.md) — 1 book
+- [1871-1919 -- Translations into English](Genres/1871-1919-translations-into-english-4232b7fd.md) — 1 book
 - [1871-1945 -- Criticism and interpretation](Genres/1871-1945-criticism-and-interpretation-a8bb9156.md) — 1 book
+- [1874-1936](Genres/1874-1936-8a6f4c85.md) — 2 books
+- [1874-1965 -- Travel -- China](Genres/1874-1965-travel-china-a58a8890.md) — 1 book
+- [1876-1938](Genres/1876-1938-83648ef4.md) — 1 book
+- [1880-1968](Genres/1880-1968-61f9956a.md) — 1 book
 - [1886-1931 -- Fiction](Genres/1886-1931-fiction-fd1570e0.md) — 1 book
-- [1914-1918 -- Fiction](Genres/1914-1918-fiction-3aa2de52.md) — 1 book
-- [Abolitionists -- United States -- Biography](Genres/abolitionists-united-states-biography-2912d02b.md) — 2 books
-- [Accident victims -- Fiction](Genres/accident-victims-fiction-9393e870.md) — 1 book
+- [1890- -- Fiction](Genres/1890-fiction-a4ef098e.md) — 1 book
+- [1914-1918](Genres/1914-1918-b2700c29.md) — 1 book
+- [1914-1918 -- Caricature and cartoons](Genres/1914-1918-caricature-and-cartoons-ca1f2fb4.md) — 1 book
+- [1914-1918 -- Fiction](Genres/1914-1918-fiction-3aa2de52.md) — 7 books
+- [1914-1918 -- France -- Fiction](Genres/1914-1918-france-fiction-38269dd4.md) — 1 book
+- [1914-1918 -- Humor](Genres/1914-1918-humor-53ccd739.md) — 1 book
+- [1914-1918 -- Veterans -- Fiction](Genres/1914-1918-veterans-fiction-3b5cc8af.md) — 3 books
+- [1914-1918--England--Fiction](Genres/1914-1918-england-fiction-fe6d257d.md) — 1 book
+- [1914-1918--Fiction](Genres/1914-1918-fiction-5973ca08.md) — 1 book
+- [1916-1918](Genres/1916-1918-f299b275.md) — 1 book
+- [58-51 B.C.](Genres/58-51-b-c-58b62027.md) — 1 book
+- [83 B.C.?-30 B.C. -- Drama](Genres/83-b-c-30-b-c-drama-b7cd8d1a.md) — 1 book
+- [85 B.C.?-42 B.C. -- Drama](Genres/85-b-c-42-b-c-drama-c3f9fad3.md) — 1 book
+- [A. I. (Aleksandr Ivanovich)](Genres/a-i-aleksandr-ivanovich-cae92c19.md) — 1 book
+- [Abolitionists -- United States -- Biography](Genres/abolitionists-united-states-biography-2912d02b.md) — 3 books
+- [Absence and presumption of death -- Fiction](Genres/absence-and-presumption-of-death-fiction-4ba05cb5.md) — 1 book
+- [Accident victims -- Fiction](Genres/accident-victims-fiction-9393e870.md) — 2 books
+- [Achilles (Mythological character)](Genres/achilles-mythological-character-55300d92.md) — 1 book
+- [Adam (Biblical figure) -- Poetry](Genres/adam-biblical-figure-poetry-66337592.md) — 1 book
 - [Adams](Genres/adams-a3470fde.md) — 1 book
-- [Adultery -- Fiction](Genres/adultery-fiction-e0d21703.md) — 2 books
-- [Adventure](Genres/adventure-eb5b1d96.md) — 9 books
-- [Adventure stories](Genres/adventure-stories-6169b901.md) — 6 books
-- [African American abolitionists -- Biography](Genres/african-american-abolitionists-biography-8b69602a.md) — 2 books
+- [Adoptees -- Fiction](Genres/adoptees-fiction-3255d829.md) — 1 book
+- [Adultery -- Fiction](Genres/adultery-fiction-e0d21703.md) — 6 books
+- [Adventure](Genres/adventure-eb5b1d96.md) — 82 books
+- [Adventure and adventurers -- Fiction](Genres/adventure-and-adventurers-fiction-7b3e1ff6.md) — 4 books
+- [Adventure and adventurers--Fiction](Genres/adventure-and-adventurers-fiction-71e71325.md) — 1 book
+- [Adventure stories](Genres/adventure-stories-6169b901.md) — 63 books
+- [Aeneas (Legendary character) -- Poetry](Genres/aeneas-legendary-character-poetry-69b517b8.md) — 1 book
+- [Aeronautics -- Flights](Genres/aeronautics-flights-41c1c6e2.md) — 1 book
+- [Africa](Genres/africa-8299154b.md) — 1 book
+- [Africa -- Fiction](Genres/africa-fiction-eb47c135.md) — 8 books
+- [African American abolitionists -- Biography](Genres/african-american-abolitionists-biography-8b69602a.md) — 3 books
+- [African American boys--Fiction](Genres/african-american-boys-fiction-15e60bcf.md) — 1 book
+- [African American women -- Fiction](Genres/african-american-women-fiction-77bef6a6.md) — 2 books
+- [African American women cooks](Genres/african-american-women-cooks-7f033526.md) — 1 book
 - [African American women cooks -- Fiction](Genres/african-american-women-cooks-fiction-b488886d.md) — 1 book
-- [African Americans -- Fiction](Genres/african-americans-fiction-ed54d5fc.md) — 1 book
+- [African Americans](Genres/african-americans-453c7373.md) — 1 book
+- [African Americans -- Biography](Genres/african-americans-biography-8d90d5f3.md) — 2 books
+- [African Americans -- Fiction](Genres/african-americans-fiction-ed54d5fc.md) — 3 books
+- [Agamemnon](Genres/agamemnon-6948c50b.md) — 2 books
+- [Aging parents -- Drama](Genres/aging-parents-drama-92850ebb.md) — 1 book
 - [Ahab](Genres/ahab-a5801783.md) — 1 book
-- [American](Genres/american-ce5302e3.md) — 5 books
-- [American -- 19th century -- Biography](Genres/american-19th-century-biography-3fb95c6c.md) — 2 books
-- [American -- Homes and haunts -- West (U.S.)](Genres/american-homes-and-haunts-west-u-s-b91a38ba.md) — 1 book
+- [Air pilots -- Biography](Genres/air-pilots-biography-410fe0fa.md) — 1 book
+- [Air pilots -- Fiction](Genres/air-pilots-fiction-b6d86ac9.md) — 1 book
+- [Alcoholics -- Fiction](Genres/alcoholics-fiction-d2e895b6.md) — 1 book
+- [Alerte (Yacht)](Genres/alerte-yacht-d5c099a7.md) — 1 book
+- [Alexander](Genres/alexander-b954c50f.md) — 1 book
+- [Alienation (Social psychology) -- Fiction](Genres/alienation-social-psychology-fiction-c3dac1ec.md) — 1 book
+- [Allan (Fictitious character) -- Fiction](Genres/allan-fictitious-character-fiction-ec544a88.md) — 4 books
+- [Alternative histories (Fiction)](Genres/alternative-histories-fiction-5dca5efe.md) — 1 book
+- [Amazon River -- Fiction](Genres/amazon-river-fiction-3d91fe87.md) — 1 book
+- [American](Genres/american-ce5302e3.md) — 31 books
+- [American -- 19th century -- Biography](Genres/american-19th-century-biography-3fb95c6c.md) — 4 books
+- [American -- Homes and haunts -- West (U.S.)](Genres/american-homes-and-haunts-west-u-s-b91a38ba.md) — 2 books
 - [American essays -- 20th century](Genres/american-essays-20th-century-7c98be1d.md) — 1 book
-- [American fiction -- 19th century](Genres/american-fiction-19th-century-4fcd1e70.md) — 1 book
-- [American fiction -- 20th century](Genres/american-fiction-20th-century-210bb06d.md) — 1 book
+- [American fiction -- 19th century](Genres/american-fiction-19th-century-4fcd1e70.md) — 3 books
+- [American fiction -- 20th century](Genres/american-fiction-20th-century-210bb06d.md) — 6 books
+- [American fiction--20th century](Genres/american-fiction-20th-century-9dc657e7.md) — 2 books
 - [American literature -- History and criticism](Genres/american-literature-history-and-criticism-ba0da390.md) — 3 books
 - [American literature -- History and criticism -- Theory](Genres/american-literature-history-and-criticism-theory-f9119a12.md) — 1 book
-- [American poetry](Genres/american-poetry-fc0c38ef.md) — 3 books
+- [American poetry](Genres/american-poetry-fc0c38ef.md) — 5 books
 - [American poetry -- 19th century](Genres/american-poetry-19th-century-a0882b88.md) — 1 book
+- [American poetry -- 20th century](Genres/american-poetry-20th-century-aefe96b5.md) — 2 books
+- [American poetry -- African American authors](Genres/american-poetry-african-american-authors-9b79777a.md) — 1 book
+- [American wit and humor](Genres/american-wit-and-humor-42380370.md) — 1 book
 - [Americanisms](Genres/americanisms-80532017.md) — 1 book
-- [Americans -- France -- Fiction](Genres/americans-france-fiction-cf5a9af0.md) — 1 book
+- [Americans -- Africa -- Fiction](Genres/americans-africa-fiction-c69f6b35.md) — 1 book
+- [Americans -- England -- History -- 19th century](Genres/americans-england-history-19th-century-1eb73cce.md) — 1 book
+- [Americans -- France -- Fiction](Genres/americans-france-fiction-cf5a9af0.md) — 2 books
 - [Americans -- Great Britain -- Fiction](Genres/americans-great-britain-fiction-b013e2ea.md) — 1 book
 - [Americans -- Spain -- Fiction](Genres/americans-spain-fiction-ae879b4e.md) — 1 book
-- [Animal welfare -- Fiction](Genres/animal-welfare-fiction-8467288c.md) — 1 book
+- [Amulets--Fiction](Genres/amulets-fiction-a69d52a9.md) — 1 book
+- [Anarchism -- Literary collections](Genres/anarchism-literary-collections-8264955a.md) — 1 book
+- [Andreyev](Genres/andreyev-f25af15a.md) — 1 book
+- [Animal welfare -- Fiction](Genres/animal-welfare-fiction-8467288c.md) — 2 books
+- [Animals -- Anecdotes](Genres/animals-anecdotes-b323a1b2.md) — 1 book
+- [Animals -- Biography](Genres/animals-biography-ce8ffba4.md) — 1 book
+- [Animals -- Fiction](Genres/animals-fiction-801f2b46.md) — 2 books
+- [Animals -- Juvenile fiction](Genres/animals-juvenile-fiction-570dd9a6.md) — 3 books
+- [Antarctica](Genres/antarctica-f76202be.md) — 1 book
+- [Antarctica -- Fiction](Genres/antarctica-fiction-7b1a7d1c.md) — 1 book
+- [Antigone (Mythological character) -- Drama](Genres/antigone-mythological-character-drama-466e9dd7.md) — 3 books
+- [Anton Pavlovich](Genres/anton-pavlovich-d0319cab.md) — 3 books
+- [Antonius](Genres/antonius-30707be4.md) — 1 book
+- [Apes -- Fiction](Genres/apes-fiction-1c49eaca.md) — 1 book
+- [Apocalyptic fiction](Genres/apocalyptic-fiction-4004421f.md) — 1 book
+- [Apologetics](Genres/apologetics-2dd8fd86.md) — 2 books
 - [Appearance (Philosophy) -- Fiction](Genres/appearance-philosophy-fiction-b68ff42c.md) — 1 book
-- [Aristocracy (Social class) -- Fiction](Genres/aristocracy-social-class-fiction-2fd0a0b9.md) — 1 book
-- [Aristocracy (Social class) -- Russia -- Fiction](Genres/aristocracy-social-class-russia-fiction-d23cba7c.md) — 1 book
-- [Arthurian romances](Genres/arthurian-romances-331eec5b.md) — 2 books
+- [Apples](Genres/apples-f2636942.md) — 1 book
+- [Arab countries--History--Arab Revolt](Genres/arab-countries-history-arab-revolt-4f018a02.md) — 1 book
+- [Arabic poetry -- Translations into English](Genres/arabic-poetry-translations-into-english-41732dfa.md) — 1 book
+- [Arctic regions -- Fiction](Genres/arctic-regions-fiction-21dd312a.md) — 1 book
+- [Aristocracy (Social class) -- Fiction](Genres/aristocracy-social-class-fiction-2fd0a0b9.md) — 2 books
+- [Aristocracy (Social class) -- Russia -- Fiction](Genres/aristocracy-social-class-russia-fiction-d23cba7c.md) — 2 books
+- [Arsène (Fictitious character) -- Fiction](Genres/arsene-fictitious-character-fiction-78a4076f.md) — 3 books
+- [Arthur](Genres/arthur-2c48a2cb.md) — 1 book
+- [Arthur Conan](Genres/arthur-conan-dec93892.md) — 1 book
+- [Arthurian romances](Genres/arthurian-romances-331eec5b.md) — 4 books
 - [Arthurian romances -- Adaptations](Genres/arthurian-romances-adaptations-86e9bde5.md) — 1 book
+- [Arts -- Philosophy](Genres/arts-philosophy-fda7d47c.md) — 1 book
+- [Arts and morals](Genres/arts-and-morals-889f9d42.md) — 1 book
 - [Ashley](Genres/ashley-c4d650ec.md) — 1 book
-- [Authors](Genres/authors-d7f80c51.md) — 3 books
-- [Autobiographical fiction](Genres/autobiographical-fiction-ee450402.md) — 1 book
-- [Battle of](Genres/battle-of-26d81f9e.md) — 1 book
+- [Assassins -- Drama](Genres/assassins-drama-67623ac7.md) — 1 book
+- [Astronauts -- Fiction](Genres/astronauts-fiction-b4ccc42a.md) — 1 book
+- [Astronauts -- Juvenile fiction](Genres/astronauts-juvenile-fiction-e397c523.md) — 1 book
+- [Athens (Greece) -- Drama](Genres/athens-greece-drama-949935c2.md) — 1 book
+- [Attempted murder -- Fiction](Genres/attempted-murder-fiction-416c6f17.md) — 1 book
+- [Australia -- Social life and customs -- Fiction](Genres/australia-social-life-and-customs-fiction-e11c5bd7.md) — 1 book
+- [Authors](Genres/authors-d7f80c51.md) — 8 books
+- [Authorship--Fiction](Genres/authorship-fiction-973c950d.md) — 1 book
+- [Autobiographical fiction](Genres/autobiographical-fiction-ee450402.md) — 3 books
+- [Automobile theft -- Juvenile fiction](Genres/automobile-theft-juvenile-fiction-7672deae.md) — 1 book
+- [Avarice -- Fiction](Genres/avarice-fiction-8481d50a.md) — 1 book
+- [Babbage](Genres/babbage-49341db3.md) — 1 book
+- [Balkan Peninsula -- Fiction](Genres/balkan-peninsula-fiction-5b65a02a.md) — 1 book
+- [Balloons -- Fiction](Genres/balloons-fiction-746691aa.md) — 1 book
+- [Baseball](Genres/baseball-4d6d5ed3.md) — 1 book
+- [Baseball players -- Fiction](Genres/baseball-players-fiction-a7a67f86.md) — 1 book
+- [Baseball stories](Genres/baseball-stories-f735ec30.md) — 1 book
+- [Battle of](Genres/battle-of-26d81f9e.md) — 2 books
+- [Belgians -- England -- Fiction](Genres/belgians-england-fiction-6fe84fe1.md) — 1 book
 - [Benjamin](Genres/benjamin-6ae7910d.md) — 2 books
-- [Bildungsromans](Genres/bildungsromans-829d667e.md) — 3 books
-- [Boys -- Fiction](Genres/boys-fiction-3f3ff9d2.md) — 2 books
+- [Beresford](Genres/beresford-31b5edcb.md) — 1 book
+- [Bertie (Fictitious character) -- Fiction](Genres/bertie-fictitious-character-fiction-13208bf3.md) — 1 book
+- [Betrayal -- Fiction](Genres/betrayal-fiction-2b54c61f.md) — 1 book
+- [Bible -- History of Biblical events -- Fiction](Genres/bible-history-of-biblical-events-fiction-d621a39d.md) — 1 book
+- [Bible. Genesis -- History of Biblical events -- Poetry](Genres/bible-genesis-history-of-biblical-events-poetry-ca16a8c6.md) — 1 book
+- [Bible. New Testament--History of Biblical events--Fiction](Genres/bible-new-testament-history-of-biblical-events-fiction-f36ccd41.md) — 1 book
+- [Bildungsromans](Genres/bildungsromans-829d667e.md) — 7 books
+- [Biographical fiction](Genres/biographical-fiction-bcde3dd8.md) — 1 book
+- [Black people -- Fiction](Genres/black-people-fiction-5af64566.md) — 1 book
+- [Blacks in the theater](Genres/blacks-in-the-theater-1330cd82.md) — 1 book
+- [Blakeney](Genres/blakeney-49656faa.md) — 7 books
+- [Blind musicians -- Fiction](Genres/blind-musicians-fiction-837196aa.md) — 1 book
+- [Booker T.](Genres/booker-t-ced0b99a.md) — 1 book
+- [Boys -- Fiction](Genres/boys-fiction-3f3ff9d2.md) — 5 books
+- [Brazil -- Social life and customs -- Fiction](Genres/brazil-social-life-and-customs-fiction-b6182ac3.md) — 1 book
 - [Brett (Fictitious character) -- Fiction](Genres/brett-fictitious-character-fiction-bdcadb59.md) — 1 book
+- [Bridge players](Genres/bridge-players-b528c18d.md) — 1 book
+- [British -- Africa](Genres/british-africa-b739d3ed.md) — 1 book
+- [British -- Africa -- Fiction](Genres/british-africa-fiction-9fbd3b24.md) — 1 book
+- [British -- Caribbean Area -- Fiction](Genres/british-caribbean-area-fiction-5e70407a.md) — 1 book
+- [British -- Foreign countries -- Fiction](Genres/british-foreign-countries-fiction-52d4ca42.md) — 1 book
+- [British -- France -- Fiction](Genres/british-france-fiction-88b9ff57.md) — 5 books
+- [British -- Sudan -- Fiction](Genres/british-sudan-fiction-3e340bd8.md) — 1 book
+- [British -- Uruguay -- Fiction](Genres/british-uruguay-fiction-be055714.md) — 1 book
+- [Britons -- Drama](Genres/britons-drama-59e6ad65.md) — 1 book
 - [Britons -- Fiction](Genres/britons-fiction-e39d2f6b.md) — 1 book
-- [Brothers -- Fiction](Genres/brothers-fiction-8a98fb53.md) — 1 book
-- [Bumppo](Genres/bumppo-dae3ee2c.md) — 1 book
-- [California -- Description and travel](Genres/california-description-and-travel-8494a216.md) — 1 book
+- [Brothers -- Drama](Genres/brothers-drama-4754cb5d.md) — 1 book
+- [Brothers -- Fiction](Genres/brothers-fiction-8a98fb53.md) — 3 books
+- [Brothers -- Juvenile fiction](Genres/brothers-juvenile-fiction-c9000aad.md) — 9 books
+- [Brothers and sisters -- Drama](Genres/brothers-and-sisters-drama-1407468f.md) — 1 book
+- [Brown](Genres/brown-ea78181e.md) — 5 books
+- [Brutus](Genres/brutus-eb49a34e.md) — 1 book
+- [Bulldog (Fictitious character) -- Fiction](Genres/bulldog-fictitious-character-fiction-d9dcf591.md) — 3 books
+- [Bumppo](Genres/bumppo-dae3ee2c.md) — 2 books
+- [Bunin](Genres/bunin-ab69cee2.md) — 1 book
+- [Bunyan](Genres/bunyan-16da432e.md) — 1 book
+- [Burglars -- Fiction](Genres/burglars-fiction-4cdc97ee.md) — 3 books
+- [Burial -- Fiction](Genres/burial-fiction-51eeee82.md) — 1 book
+- [Buried treasure--Fiction](Genres/buried-treasure-fiction-48d48f31.md) — 1 book
+- [Burke](Genres/burke-b9106be2.md) — 1 book
+- [Businessmen -- Fiction](Genres/businessmen-fiction-5030933d.md) — 1 book
+- [Cabinet officers -- Great Britain -- Diaries](Genres/cabinet-officers-great-britain-diaries-742878fe.md) — 1 book
+- [Caesar](Genres/caesar-116cad45.md) — 1 book
+- [California -- Description and travel](Genres/california-description-and-travel-8494a216.md) — 2 books
 - [California -- Fiction](Genres/california-fiction-dc31dc8f.md) — 1 book
-- [Canada](Genres/canada-359cefaa.md) — 1 book
+- [California -- History](Genres/california-history-4b5d2885.md) — 1 book
+- [California -- Social life and customs](Genres/california-social-life-and-customs-9b03f460.md) — 1 book
+- [Camping -- Juvenile fiction](Genres/camping-juvenile-fiction-eb71464e.md) — 1 book
+- [Canada](Genres/canada-359cefaa.md) — 2 books
+- [Canadian -- Description and travel](Genres/canadian-description-and-travel-2bf2ac90.md) — 1 book
+- [Cape Cod (Mass.) -- Description and travel](Genres/cape-cod-mass-description-and-travel-cf0861c4.md) — 1 book
 - [Captain (Fictitious character) -- Fiction](Genres/captain-fictitious-character-fiction-f4a9a0b6.md) — 1 book
-- [Cats -- Juvenile fiction](Genres/cats-juvenile-fiction-6b168891.md) — 1 book
-- [Chancellorsville](Genres/chancellorsville-2fa4c29b.md) — 1 book
-- [Chicago (Ill.) -- Fiction](Genres/chicago-ill-fiction-8ed9b6db.md) — 1 book
-- [Children -- Fiction](Genres/children-fiction-e13b4524.md) — 1 book
-- [Children's stories](Genres/children-s-stories-25cbbe68.md) — 1 book
+- [Cargo ships--Fiction](Genres/cargo-ships-fiction-417c7b85.md) — 1 book
+- [Caribbean Area -- Fiction](Genres/caribbean-area-fiction-32edfeb7.md) — 1 book
+- [Carson (Fictitious character) -- Fiction](Genres/carson-fictitious-character-fiction-44edee6b.md) — 1 book
+- [Castaways -- Fiction](Genres/castaways-fiction-748e0f39.md) — 1 book
+- [Catholics -- Fiction](Genres/catholics-fiction-a37c337c.md) — 4 books
+- [Cats -- Juvenile fiction](Genres/cats-juvenile-fiction-6b168891.md) — 2 books
+- [Challenger](Genres/challenger-57ad3a58.md) — 1 book
+- [Chancellorsville](Genres/chancellorsville-2fa4c29b.md) — 2 books
+- [Charity-schools -- Fiction](Genres/charity-schools-fiction-eb1e6eb9.md) — 1 book
+- [Charles](Genres/charles-a35a1378.md) — 1 book
+- [Chekhov](Genres/chekhov-f3dc6e62.md) — 3 books
+- [Chemistry teachers -- Fiction](Genres/chemistry-teachers-fiction-83448a5d.md) — 1 book
+- [Chesterton](Genres/chesterton-c7ec574f.md) — 2 books
+- [Chicago (Ill.) -- Fiction](Genres/chicago-ill-fiction-8ed9b6db.md) — 2 books
+- [Children -- Conduct of life -- Juvenile fiction](Genres/children-conduct-of-life-juvenile-fiction-c61ab87d.md) — 1 book
+- [Children -- Drama](Genres/children-drama-dd97ac3c.md) — 1 book
+- [Children -- Fiction](Genres/children-fiction-e13b4524.md) — 2 books
+- [Children of clergy -- Fiction](Genres/children-of-clergy-fiction-397e5d1d.md) — 1 book
+- [Children of the rich -- Fiction](Genres/children-of-the-rich-fiction-4e11ce30.md) — 2 books
+- [Children's Books](Genres/children-s-books-108d83e6.md) — 1 book
+- [Children's stories](Genres/children-s-stories-25cbbe68.md) — 6 books
+- [Children--Fiction](Genres/children-fiction-f09eb614.md) — 1 book
+- [China -- Description and travel](Genres/china-description-and-travel-6e36c392.md) — 1 book
+- [China -- Fiction](Genres/china-fiction-6de1266f.md) — 1 book
+- [Chinese](Genres/chinese-e8bfcbc8.md) — 1 book
+- [Christian fiction](Genres/christian-fiction-84ee556e.md) — 2 books
+- [Christian literature](Genres/christian-literature-50a98b4b.md) — 1 book
+- [Christian women saints -- Fiction](Genres/christian-women-saints-fiction-86dad701.md) — 1 book
+- [Christianity -- Essence](Genres/christianity-essence-e8078c07.md) — 1 book
+- [Christmas -- Juvenile fiction](Genres/christmas-juvenile-fiction-5e6f623d.md) — 1 book
+- [Christopher Robin (Fictitious character) -- Juvenile fiction](Genres/christopher-robin-fictitious-character-juvenile-fiction-31cf2272.md) — 1 book
 - [Chrétien](Genres/chretien-386ebfc2.md) — 1 book
-- [Civil disobedience](Genres/civil-disobedience-4e214c85.md) — 2 books
-- [Clergy -- Fiction](Genres/clergy-fiction-906f5251.md) — 1 book
-- [Conduct of life -- Fiction](Genres/conduct-of-life-fiction-cfe29203.md) — 1 book
+- [Circus performers -- Fiction](Genres/circus-performers-fiction-92d61d73.md) — 1 book
+- [City and town life -- Fiction](Genres/city-and-town-life-fiction-2b0fbc4b.md) — 1 book
+- [City and town life--Fiction](Genres/city-and-town-life-fiction-5b4aa86c.md) — 1 book
+- [Civil disobedience](Genres/civil-disobedience-4e214c85.md) — 3 books
+- [Civilization](Genres/civilization-388bd060.md) — 2 books
+- [Classical literature](Genres/classical-literature-46600914.md) — 1 book
+- [Cleopatra](Genres/cleopatra-31ea565e.md) — 2 books
+- [Clergy -- Fiction](Genres/clergy-fiction-906f5251.md) — 6 books
+- [Coal miners -- Fiction](Genres/coal-miners-fiction-3a07866e.md) — 1 book
+- [Coal mines and mining -- Fiction](Genres/coal-mines-and-mining-fiction-f2b61a05.md) — 2 books
+- [Comedies](Genres/comedies-86daddf1.md) — 11 books
+- [Comedy](Genres/comedy-c245cb7c.md) — 1 book
+- [Communism -- Fiction](Genres/communism-fiction-a13310c9.md) — 1 book
+- [Communism -- Soviet Union -- History](Genres/communism-soviet-union-history-1e21f43b.md) — 1 book
+- [Composers -- Fiction](Genres/composers-fiction-72ed2cf4.md) — 1 book
+- [Composers--Fiction](Genres/composers-fiction-b9b2b1b9.md) — 1 book
+- [Conan (Fictitious character) -- Fiction](Genres/conan-fictitious-character-fiction-dbfee4f1.md) — 1 book
+- [Concentration camp inmates -- Fiction](Genres/concentration-camp-inmates-fiction-4042ae06.md) — 1 book
+- [Concentration camps -- Fiction](Genres/concentration-camps-fiction-af6b03ca.md) — 1 book
+- [Conduct of life -- Fiction](Genres/conduct-of-life-fiction-cfe29203.md) — 2 books
+- [Conduct of life -- Juvenile fiction](Genres/conduct-of-life-juvenile-fiction-9e9c537f.md) — 4 books
+- [Conflict of generations -- Drama](Genres/conflict-of-generations-drama-79cf475b.md) — 1 book
+- [Conformity -- Fiction](Genres/conformity-fiction-e5413ae7.md) — 1 book
 - [Conrad](Genres/conrad-e0b36176.md) — 1 book
+- [Conspiracies -- Drama](Genres/conspiracies-drama-704bc3d8.md) — 2 books
+- [Continental Op (Fictitious character)--Fiction (LCSH)](Genres/continental-op-fictitious-character-fiction-lcsh-3901ff48.md) — 1 book
+- [Conversion](Genres/conversion-3b27d534.md) — 1 book
 - [Copyists -- Fiction](Genres/copyists-fiction-ed1d79c7.md) — 1 book
+- [Corbett](Genres/corbett-6c2c2113.md) — 1 book
+- [Cornwall (England : County) -- Fiction](Genres/cornwall-england-county-fiction-55713771.md) — 1 book
+- [Counterfeits and counterfeiting -- Juvenile fiction](Genres/counterfeits-and-counterfeiting-juvenile-fiction-9e790cd3.md) — 1 book
+- [Country homes -- Fiction](Genres/country-homes-fiction-692aea72.md) — 2 books
 - [Courage -- Juvenile fiction](Genres/courage-juvenile-fiction-2b5bff0b.md) — 1 book
+- [Courtship -- Drama](Genres/courtship-drama-d045bfca.md) — 2 books
+- [Courtship -- Fiction](Genres/courtship-fiction-dc9b147a.md) — 1 book
+- [Cousins -- Fiction](Genres/cousins-fiction-e818440e.md) — 2 books
 - [Cousins -- Juvenile fiction](Genres/cousins-juvenile-fiction-eb45a665.md) — 1 book
-- [Crime](Genres/crime-d5d3569e.md) — 15 books
+- [Cowardice -- Fiction](Genres/cowardice-fiction-36cab291.md) — 1 book
+- [Craft](Genres/craft-91790f9e.md) — 1 book
+- [Craig (Fictitious character) -- Fiction](Genres/craig-fictitious-character-fiction-764893cd.md) — 1 book
+- [Crime](Genres/crime-d5d3569e.md) — 137 books
 - [Crime -- Psychological aspects -- Fiction](Genres/crime-psychological-aspects-fiction-3aada54b.md) — 1 book
+- [Criminals -- England -- Fiction](Genres/criminals-england-fiction-ec37abed.md) — 2 books
+- [Criminals -- Fiction](Genres/criminals-fiction-a4554d3a.md) — 2 books
 - [Criticism -- United States](Genres/criticism-united-states-c917f2f0.md) — 1 book
 - [Cthulhu (Fictitious character) -- Fiction](Genres/cthulhu-fictitious-character-fiction-3b739fae.md) — 1 book
-- [Detective and mystery stories](Genres/detective-and-mystery-stories-b0779c4a.md) — 2 books
-- [Didactic fiction](Genres/didactic-fiction-a2c9e1ac.md) — 3 books
-- [Dogs -- Fiction](Genres/dogs-fiction-4df14f38.md) — 1 book
-- [Domestic fiction](Genres/domestic-fiction-bb213ca5.md) — 5 books
+- [Culture conflict -- Fiction](Genres/culture-conflict-fiction-c9ba4525.md) — 1 book
+- [Dakota Indians -- Folklore](Genres/dakota-indians-folklore-a6a98779.md) — 1 book
+- [Danish -- Translations into English](Genres/danish-translations-into-english-c65f2b18.md) — 1 book
+- [Dantès](Genres/dantes-d6f5b1a2.md) — 1 book
+- [Deafblind women -- United States -- Biography](Genres/deafblind-women-united-states-biography-c1d0366f.md) — 1 book
+- [Death -- Fiction](Genres/death-fiction-4fedc69c.md) — 1 book
+- [Denmark -- Drama](Genres/denmark-drama-d2a7796b.md) — 1 book
+- [Dentists -- Fiction](Genres/dentists-fiction-18414a9e.md) — 1 book
+- [Detective and mystery stories](Genres/detective-and-mystery-stories-b0779c4a.md) — 42 books
+- [Diamond mines and mining -- Fiction](Genres/diamond-mines-and-mining-fiction-facf95db.md) — 1 book
+- [Diarists -- Great Britain -- Diaries](Genres/diarists-great-britain-diaries-56c21186.md) — 1 book
+- [Dickson (Fictitious character) -- Fiction](Genres/dickson-fictitious-character-fiction-bf080db0.md) — 1 book
+- [Didactic fiction](Genres/didactic-fiction-a2c9e1ac.md) — 9 books
+- [Dinosaurs -- Fiction](Genres/dinosaurs-fiction-8e970283.md) — 2 books
+- [Disabled veterans -- Fiction](Genres/disabled-veterans-fiction-2b2f5599.md) — 1 book
+- [Discovery and exploration](Genres/discovery-and-exploration-6f5bf3a5.md) — 1 book
+- [Disguise -- Fiction](Genres/disguise-fiction-5651cfa0.md) — 1 book
+- [Dogs -- Fiction](Genres/dogs-fiction-4df14f38.md) — 2 books
+- [Dogs -- Juvenile fiction](Genres/dogs-juvenile-fiction-b089e631.md) — 1 book
+- [Domestic fiction](Genres/domestic-fiction-bb213ca5.md) — 11 books
 - [Dorothy (Fictitious character) -- Juvenile fiction](Genres/dorothy-fictitious-character-juvenile-fiction-21cf5a68.md) — 1 book
-- [Douglass](Genres/douglass-97d0acec.md) — 2 books
+- [Douglass](Genres/douglass-97d0acec.md) — 3 books
+- [Doyle](Genres/doyle-ed12efab.md) — 1 book
 - [Dragons -- Juvenile fiction](Genres/dragons-juvenile-fiction-8de2fd1e.md) — 1 book
+- [Dragons -- Poetry](Genres/dragons-poetry-97295b6e.md) — 1 book
+- [Dreams -- Fiction](Genres/dreams-fiction-82ac356c.md) — 1 book
 - [Dreams -- Juvenile fiction](Genres/dreams-juvenile-fiction-31a160c5.md) — 1 book
 - [Dreiser](Genres/dreiser-69da25aa.md) — 1 book
-- [Edgar Allan](Genres/edgar-allan-9ad2ca63.md) — 1 book
-- [England -- Fiction](Genres/england-fiction-417d7132.md) — 2 books
-- [English](Genres/english-272a0afb.md) — 1 book
-- [English drama -- Early modern and Elizabethan](Genres/english-drama-early-modern-and-elizabethan-13025f2f.md) — 1 book
+- [Drummond](Genres/drummond-bbbb8436.md) — 3 books
+- [Dublin (Ireland)--Fiction](Genres/dublin-ireland-fiction-512e1053.md) — 1 book
+- [Dysfunctional families -- Fiction](Genres/dysfunctional-families-fiction-842c5c61.md) — 1 book
+- [Dystopias -- Fiction](Genres/dystopias-fiction-cfa486bd.md) — 1 book
+- [Earth (Planet) -- Core -- Fiction](Genres/earth-planet-core-fiction-f8bc85da.md) — 2 books
+- [Earthquakes -- Fiction](Genres/earthquakes-fiction-233bf13c.md) — 1 book
+- [Economics](Genres/economics-35de6719.md) — 2 books
+- [Edgar Allan](Genres/edgar-allan-9ad2ca63.md) — 3 books
+- [Edmond (Fictitious character) -- Fiction](Genres/edmond-fictitious-character-fiction-6125baef.md) — 1 book
+- [Edmund](Genres/edmund-28960b60.md) — 1 book
+- [Educators -- United States -- Biography](Genres/educators-united-states-biography-ec0cca0b.md) — 1 book
+- [Eeyore (Fictitious character) -- Juvenile fiction](Genres/eeyore-fictitious-character-juvenile-fiction-f548dc07.md) — 1 book
+- [Egypt -- History -- 332-30 B.C. -- Fiction](Genres/egypt-history-332-30-b-c-fiction-10604def.md) — 1 book
+- [Electra (Greek mythological figure) -- Drama](Genres/electra-greek-mythological-figure-drama-a4247710.md) — 1 book
+- [Ellen](Genres/ellen-c7da00ad.md) — 1 book
+- [Emperor of the French](Genres/emperor-of-the-french-28c9ed36.md) — 1 book
+- [England -- Drama](Genres/england-drama-60aca472.md) — 1 book
+- [England -- Fiction](Genres/england-fiction-417d7132.md) — 18 books
+- [England -- Juvenile fiction](Genres/england-juvenile-fiction-93093a42.md) — 1 book
+- [England -- Social life and customs -- 19th century](Genres/england-social-life-and-customs-19th-century-d83b4fab.md) — 1 book
+- [England -- Social life and customs -- Fiction](Genres/england-social-life-and-customs-fiction-aa109148.md) — 2 books
+- [England) -- Drama](Genres/england-drama-792fb32d.md) — 1 book
+- [England--Fiction](Genres/england-fiction-af08fa66.md) — 2 books
+- [England--Social life and customs--20th century--Fiction](Genres/england-social-life-and-customs-20th-century-fiction-2f873678.md) — 1 book
+- [English](Genres/english-272a0afb.md) — 49 books
+- [English (Old)](Genres/english-old-d7162bf3.md) — 1 book
+- [English -- 20th century -- Biography](Genres/english-20th-century-biography-2449c009.md) — 1 book
+- [English -- Early modern](Genres/english-early-modern-957f3279.md) — 1 book
+- [English -- History and criticism](Genres/english-history-and-criticism-69dee0c2.md) — 1 book
+- [English drama](Genres/english-drama-7b5f0f11.md) — 1 book
+- [English drama (Comedy)](Genres/english-drama-comedy-27e53353.md) — 1 book
+- [English drama -- Early modern and Elizabethan](Genres/english-drama-early-modern-and-elizabethan-13025f2f.md) — 2 books
+- [English essays](Genres/english-essays-ea4ea1e6.md) — 1 book
+- [English fiction -- 19th century](Genres/english-fiction-19th-century-7b072c22.md) — 2 books
+- [English fiction -- 20th century](Genres/english-fiction-20th-century-75a9eb98.md) — 6 books
+- [English fiction -- History and criticism](Genres/english-fiction-history-and-criticism-4c97653e.md) — 1 book
 - [English language](Genres/english-language-c1304512.md) — 1 book
 - [English language -- Rhetoric](Genres/english-language-rhetoric-38f03433.md) — 1 book
+- [English poetry -- 19th century](Genres/english-poetry-19th-century-6b733a22.md) — 1 book
+- [English poetry -- Early modern](Genres/english-poetry-early-modern-f96514a4.md) — 1 book
+- [English wit and humor](Genres/english-wit-and-humor-c1ab9918.md) — 1 book
 - [Enslaved persons -- United States -- Biography](Genres/enslaved-persons-united-states-biography-ec779bca.md) — 1 book
-- [Epic poetry](Genres/epic-poetry-a6560d7f.md) — 2 books
+- [Epic literature](Genres/epic-literature-35a1ecdd.md) — 1 book
+- [Epic poetry](Genres/epic-poetry-a6560d7f.md) — 8 books
+- [Epistolary fiction](Genres/epistolary-fiction-a34ba0d4.md) — 2 books
 - [Equator -- Description and travel](Genres/equator-description-and-travel-61be5395.md) — 1 book
-- [Essays](Genres/essays-dd5b0ac7.md) — 1 book
-- [Ethics](Genres/ethics-33cecb0d.md) — 2 books
-- [Europe -- Description and travel](Genres/europe-description-and-travel-4c6338d5.md) — 1 book
+- [Erinyes (Greek mythology) -- Drama](Genres/erinyes-greek-mythology-drama-497dfe23.md) — 1 book
+- [Erotic stories](Genres/erotic-stories-39ceb084.md) — 1 book
+- [Essays](Genres/essays-dd5b0ac7.md) — 2 books
+- [Ethics](Genres/ethics-33cecb0d.md) — 3 books
+- [Ethics -- China](Genres/ethics-china-4c2ef3e1.md) — 1 book
+- [Etiquette -- Fiction](Genres/etiquette-fiction-3a13c97d.md) — 1 book
+- [Europe -- Description and travel](Genres/europe-description-and-travel-4c6338d5.md) — 2 books
+- [Eve (Biblical figure) -- Poetry](Genres/eve-biblical-figure-poetry-147d54d8.md) — 1 book
+- [Evolution (Biology)](Genres/evolution-biology-df031a9e.md) — 1 book
+- [Ex-convicts -- Fiction](Genres/ex-convicts-fiction-a0c56d60.md) — 1 book
+- [Executions and executioners -- Fiction](Genres/executions-and-executioners-fiction-304735dd.md) — 2 books
+- [Exiles -- Drama](Genres/exiles-drama-5bbf40d7.md) — 1 book
+- [Exiles--Fiction](Genres/exiles-fiction-2f53292f.md) — 1 book
+- [Exmoor (England) -- Fiction](Genres/exmoor-england-fiction-9f4ec7d3.md) — 1 book
 - [Expatriation -- Fiction](Genres/expatriation-fiction-89fc1b8f.md) — 1 book
+- [Experience (Religion)](Genres/experience-religion-120d3dde.md) — 1 book
+- [Experimental fiction](Genres/experimental-fiction-c21a7e39.md) — 1 book
+- [Extraterrestrial beings--Fiction](Genres/extraterrestrial-beings-fiction-89152e8c.md) — 2 books
+- [Fables](Genres/fables-fb0b2693.md) — 1 book
+- [Fairy plays](Genres/fairy-plays-508a4f8e.md) — 1 book
+- [Fairy tales](Genres/fairy-tales-ff4df7ba.md) — 6 books
+- [Fairy tales -- Germany](Genres/fairy-tales-germany-2048d1f6.md) — 1 book
+- [Fairy tales -- India](Genres/fairy-tales-india-19fe0eaf.md) — 1 book
+- [Fairy tales -- Ireland](Genres/fairy-tales-ireland-c437e503.md) — 1 book
+- [Fairy tales--Ireland](Genres/fairy-tales-ireland-e2b20619.md) — 1 book
+- [Fall of man -- Poetry](Genres/fall-of-man-poetry-524350c7.md) — 1 book
+- [False arrest -- Fiction](Genres/false-arrest-fiction-b066a896.md) — 1 book
+- [Falstaff](Genres/falstaff-1150166d.md) — 1 book
+- [Family -- Juvenile fiction](Genres/family-juvenile-fiction-d337af24.md) — 1 book
+- [Family life -- England -- Fiction](Genres/family-life-england-fiction-8436b813.md) — 1 book
 - [Family life -- New England -- Fiction](Genres/family-life-new-england-fiction-1d275f4c.md) — 1 book
-- [Fantasy](Genres/fantasy-45e97f30.md) — 4 books
-- [Fantasy fiction](Genres/fantasy-fiction-cf188aa5.md) — 4 books
-- [Fantasy literature](Genres/fantasy-literature-a65bc3b6.md) — 2 books
+- [Fantasy](Genres/fantasy-45e97f30.md) — 43 books
+- [Fantasy fiction](Genres/fantasy-fiction-cf188aa5.md) — 37 books
+- [Fantasy literature](Genres/fantasy-literature-a65bc3b6.md) — 5 books
 - [Fantasy poetry](Genres/fantasy-poetry-e3533cb4.md) — 1 book
-- [Farm life -- Fiction](Genres/farm-life-fiction-d8d68774.md) — 1 book
-- [Fathers and sons -- Fiction](Genres/fathers-and-sons-fiction-ae005392.md) — 1 book
+- [Farm life -- Fiction](Genres/farm-life-fiction-d8d68774.md) — 2 books
+- [Father (Fictitious character) -- Fiction](Genres/father-fictitious-character-fiction-72cb7d9b.md) — 4 books
+- [Fathers -- Death -- Drama](Genres/fathers-death-drama-7299e0c7.md) — 1 book
+- [Fathers -- Drama](Genres/fathers-drama-be9a2418.md) — 1 book
+- [Fathers and daughters -- Drama](Genres/fathers-and-daughters-drama-76de649d.md) — 3 books
+- [Fathers and daughters -- Fiction](Genres/fathers-and-daughters-fiction-ed8d60df.md) — 3 books
+- [Fathers and sons -- Fiction](Genres/fathers-and-sons-fiction-ae005392.md) — 5 books
+- [Faust](Genres/faust-8e73f2c1.md) — 1 book
+- [Female friendship -- Fiction](Genres/female-friendship-fiction-afc9b290.md) — 1 book
+- [Feminism -- Literary collections](Genres/feminism-literary-collections-4b89f36c.md) — 1 book
 - [Feminist fiction](Genres/feminist-fiction-6f32bbb7.md) — 1 book
-- [Feral dogs -- Fiction](Genres/feral-dogs-fiction-cfa0016b.md) — 1 book
-- [Fiction](Genres/fiction-d4252016.md) — 1 book
-- [First loves -- Fiction](Genres/first-loves-fiction-5ba790e3.md) — 1 book
+- [Feral dogs -- Fiction](Genres/feral-dogs-fiction-cfa0016b.md) — 2 books
+- [Fiction](Genres/fiction-d4252016.md) — 5 books
+- [Fiction -- Technique](Genres/fiction-technique-79762b44.md) — 1 book
+- [First loves -- Fiction](Genres/first-loves-fiction-5ba790e3.md) — 2 books
+- [First loves--Fiction](Genres/first-loves-fiction-59cbacfb.md) — 2 books
+- [Florence (Italy) -- Drama](Genres/florence-italy-drama-ffb196a0.md) — 1 book
+- [Flower vending -- Drama](Genres/flower-vending-drama-337b0815.md) — 1 book
+- [Folklore -- Germany](Genres/folklore-germany-94d871df.md) — 1 book
+- [Folklore -- India](Genres/folklore-india-d8967f11.md) — 1 book
+- [Folklore -- Ireland](Genres/folklore-ireland-22952ea2.md) — 1 book
+- [Folklore -- Russia](Genres/folklore-russia-abb77240.md) — 1 book
+- [Forensic scientists -- Fiction](Genres/forensic-scientists-fiction-96efe7a2.md) — 1 book
+- [Fossils -- Collection and preservation -- Fiction](Genres/fossils-collection-and-preservation-fiction-e1fdd1df.md) — 1 book
+- [France](Genres/france-2bc2d767.md) — 1 book
+- [France -- Fiction](Genres/france-fiction-618c4d9d.md) — 1 book
+- [France -- History -- 19th century -- Fiction](Genres/france-history-19th-century-fiction-630bcf15.md) — 1 book
+- [France -- History -- Louis XIII](Genres/france-history-louis-xiii-1d592ee6.md) — 1 book
+- [France -- History -- Louis XIV](Genres/france-history-louis-xiv-ee905083.md) — 2 books
+- [France -- History -- Revolution](Genres/france-history-revolution-50eb3134.md) — 10 books
+- [France -- Politics and government -- 1870-1940 -- Fiction](Genres/france-politics-and-government-1870-1940-fiction-33d3a3d6.md) — 1 book
+- [France -- Social life and customs -- 19th century -- Fiction](Genres/france-social-life-and-customs-19th-century-fiction-6e792b43.md) — 2 books
+- [France--Social life and customs--19th century--Fiction](Genres/france-social-life-and-customs-19th-century-fiction-4628ca24.md) — 1 book
 - [Franklin](Genres/franklin-7feda4fa.md) — 2 books
-- [Frederick](Genres/frederick-5f6dbece.md) — 2 books
+- [Frederick](Genres/frederick-5f6dbece.md) — 3 books
+- [French](Genres/french-3160b48a.md) — 2 books
+- [French -- England -- London -- Fiction](Genres/french-england-london-fiction-a1cb87f6.md) — 1 book
+- [French -- Translations into English](Genres/french-translations-into-english-a42476a7.md) — 2 books
+- [French fiction -- Translations into English](Genres/french-fiction-translations-into-english-3d56d73c.md) — 3 books
+- [French literature](Genres/french-literature-2e2d87b9.md) — 2 books
+- [French literature -- Translations into English](Genres/french-literature-translations-into-english-eed601af.md) — 1 book
+- [French--Translations into English](Genres/french-translations-into-english-bb035f7a.md) — 1 book
 - [Friendship -- Juvenile fiction](Genres/friendship-juvenile-fiction-5bb28a34.md) — 1 book
-- [Frontier and pioneer life -- Fiction](Genres/frontier-and-pioneer-life-fiction-f08ace3c.md) — 1 book
+- [Frontier and pioneer life -- California](Genres/frontier-and-pioneer-life-california-bed6d036.md) — 1 book
+- [Frontier and pioneer life -- Fiction](Genres/frontier-and-pioneer-life-fiction-f08ace3c.md) — 3 books
 - [Fugitive slaves -- Fiction](Genres/fugitive-slaves-fiction-ca6eab65.md) — 1 book
 - [Fugitive slaves -- Maryland -- Biography](Genres/fugitive-slaves-maryland-biography-aff09cb0.md) — 1 book
+- [Fugitive slaves -- United States -- Biography](Genres/fugitive-slaves-united-states-biography-2def333d.md) — 1 book
+- [Fur trade -- Canada](Genres/fur-trade-canada-83312c51.md) — 1 book
+- [Fur traders -- Fiction](Genres/fur-traders-fiction-126ce968.md) — 1 book
+- [Fyodor](Genres/fyodor-dcb133d6.md) — 1 book
+- [G. K. (Gilbert Keith)](Genres/g-k-gilbert-keith-e32d279e.md) — 2 books
 - [Gale](Genres/gale-8ade8972.md) — 1 book
+- [Gamekeepers -- Fiction](Genres/gamekeepers-fiction-d1792ceb.md) — 1 book
+- [Gaul -- History -- Gallic Wars](Genres/gaul-history-gallic-wars-53b55880.md) — 1 book
+- [Gawain (Legendary character) -- Romances](Genres/gawain-legendary-character-romances-a531169a.md) — 1 book
+- [Generals -- Rome -- Drama](Genres/generals-rome-drama-f7bb946d.md) — 1 book
 - [German](Genres/german-24f94a11.md) — 1 book
-- [Ghost stories](Genres/ghost-stories-1319f229.md) — 1 book
+- [Germanic](Genres/germanic-169cf090.md) — 1 book
+- [Germany -- Drama](Genres/germany-drama-da5b2607.md) — 1 book
+- [Ghost stories](Genres/ghost-stories-1319f229.md) — 5 books
 - [Ghosts -- Fiction](Genres/ghosts-fiction-7cdebb80.md) — 1 book
+- [Gods](Genres/gods-9d0aed72.md) — 1 book
+- [Gogol](Genres/gogol-7d6721ce.md) — 1 book
+- [Gold mines and mining -- Fiction](Genres/gold-mines-and-mining-fiction-103edf27.md) — 1 book
+- [Gold mines and mining -- Juvenile fiction](Genres/gold-mines-and-mining-juvenile-fiction-2ca3233c.md) — 1 book
+- [Golf stories](Genres/golf-stories-6f082999.md) — 1 book
 - [Good and evil -- Juvenile fiction](Genres/good-and-evil-juvenile-fiction-dc98c7f6.md) — 1 book
-- [Governesses -- Fiction](Genres/governesses-fiction-67cf9ead.md) — 1 book
+- [Governesses -- Fiction](Genres/governesses-fiction-67cf9ead.md) — 2 books
+- [Governesses--Fiction](Genres/governesses-fiction-b6f8279c.md) — 1 book
 - [Government](Genres/government-dba50dd5.md) — 1 book
+- [Grandfathers -- Juvenile fiction](Genres/grandfathers-juvenile-fiction-2faffdb1.md) — 1 book
+- [Grandparent and child -- Juvenile fiction](Genres/grandparent-and-child-juvenile-fiction-d56b6953.md) — 1 book
+- [Great Britain -- History -- 19th century -- Fiction](Genres/great-britain-history-19th-century-fiction-c22dce3f.md) — 1 book
+- [Great Britain -- History -- 19th century -- Juvenile fiction](Genres/great-britain-history-19th-century-juvenile-fiction-cddff23d.md) — 1 book
+- [Great Britain -- History -- Charles I](Genres/great-britain-history-charles-i-a2e94c4c.md) — 1 book
+- [Great Britain -- History -- Charles II](Genres/great-britain-history-charles-ii-b3612111.md) — 1 book
+- [Great Britain -- History -- Henry III](Genres/great-britain-history-henry-iii-a3ccea00.md) — 1 book
+- [Great Britain -- History -- Richard I](Genres/great-britain-history-richard-i-17ea38a7.md) — 1 book
 - [Great Britain -- History -- Victoria](Genres/great-britain-history-victoria-e391a6c9.md) — 1 book
-- [Greek -- Translations into English](Genres/greek-translations-into-english-20b674fa.md) — 2 books
+- [Great Britain -- History -- Wars of the Roses](Genres/great-britain-history-wars-of-the-roses-341e7494.md) — 1 book
+- [Great Britain -- Politics and government -- 1760-1820](Genres/great-britain-politics-and-government-1760-1820-487ab46a.md) — 1 book
+- [Greece -- Drama](Genres/greece-drama-92060775.md) — 1 book
+- [Greek -- Translations into English](Genres/greek-translations-into-english-20b674fa.md) — 5 books
+- [Greek drama (Tragedy) -- Translations into English](Genres/greek-drama-tragedy-translations-into-english-d00ad834.md) — 4 books
+- [Guardian and ward -- Fiction](Genres/guardian-and-ward-fiction-89656c18.md) — 1 book
+- [Guilt -- Fiction](Genres/guilt-fiction-98d64900.md) — 2 books
+- [Gulliver](Genres/gulliver-abc49a5e.md) — 1 book
+- [Hamilton](Genres/hamilton-4ba5c460.md) — 1 book
+- [Hamlet (Legendary character) -- Drama](Genres/hamlet-legendary-character-drama-861ee2a7.md) — 1 book
+- [Hannay](Genres/hannay-baf22bd4.md) — 5 books
+- [Happiness -- Early works to 1800](Genres/happiness-early-works-to-1800-94739669.md) — 1 book
+- [Hardy Boys (Fictitious characters) -- Juvenile fiction](Genres/hardy-boys-fictitious-characters-juvenile-fiction-cf5dbd9f.md) — 9 books
+- [Haunted houses -- Fiction](Genres/haunted-houses-fiction-3c7bc52b.md) — 2 books
 - [Hawaii -- Description and travel](Genres/hawaii-description-and-travel-eb635dda.md) — 1 book
+- [Heathlands -- Fiction](Genres/heathlands-fiction-74498da1.md) — 1 book
+- [Helen](Genres/helen-a44ef946.md) — 1 book
 - [Henry David](Genres/henry-david-e173761f.md) — 1 book
-- [Historical Fiction](Genres/historical-fiction-dfa14763.md) — 23 books
-- [Holmes](Genres/holmes-25852bb5.md) — 1 book
+- [Hercule (Fictitious character) -- Fiction](Genres/hercule-fictitious-character-fiction-534981a5.md) — 1 book
+- [Hindus -- Folklore](Genres/hindus-folklore-a3d79989.md) — 1 book
+- [Historical Fiction](Genres/historical-fiction-dfa14763.md) — 157 books
+- [Historical drama](Genres/historical-drama-40b37137.md) — 1 book
+- [Holmes](Genres/holmes-25852bb5.md) — 6 books
 - [Home -- Juvenile fiction](Genres/home-juvenile-fiction-c48696a6.md) — 1 book
-- [Homer -- Translations into English](Genres/homer-translations-into-english-7523e315.md) — 2 books
-- [Horror](Genres/horror-4041d269.md) — 17 books
-- [Horror tales](Genres/horror-tales-47b70a9d.md) — 2 books
+- [Home ownership--Fiction](Genres/home-ownership-fiction-86880e3a.md) — 1 book
+- [Homer -- Translations into English](Genres/homer-translations-into-english-7523e315.md) — 3 books
+- [Honolulu (Hawaii)--Fiction](Genres/honolulu-hawaii-fiction-1fc2dccf.md) — 1 book
+- [Horror](Genres/horror-4041d269.md) — 148 books
+- [Horror tales](Genres/horror-tales-47b70a9d.md) — 17 books
+- [Horses -- Juvenile fiction](Genres/horses-juvenile-fiction-de742531.md) — 1 book
 - [Hudson River (N.Y. and N.J.) -- Fiction](Genres/hudson-river-n-y-and-n-j-fiction-a0b54c3a.md) — 1 book
-- [Humorous stories](Genres/humorous-stories-31093565.md) — 3 books
+- [Hudson River Valley (N.Y. and N.J.) -- Fiction](Genres/hudson-river-valley-n-y-and-n-j-93ba454e.md) — 1 book
+- [Human experimentation in medicine -- Fiction](Genres/human-experimentation-in-medicine-fiction-cb6c776d.md) — 1 book
+- [Human-alien encounters -- Fiction](Genres/human-alien-encounters-fiction-3e510be6.md) — 2 books
+- [Human-alien encounters--Fiction](Genres/human-alien-encounters-fiction-35009fe6.md) — 4 books
+- [Human-animal communication -- Juvenile fiction](Genres/human-animal-communication-juvenile-fiction-5000f921.md) — 2 books
+- [Humorists](Genres/humorists-a22bd3d6.md) — 2 books
+- [Humorous poetry](Genres/humorous-poetry-68b18cf3.md) — 1 book
+- [Humorous stories](Genres/humorous-stories-31093565.md) — 17 books
 - [Huneker](Genres/huneker-5c5b4634.md) — 1 book
-- [Illegitimate children -- Fiction](Genres/illegitimate-children-fiction-efb003fb.md) — 2 books
+- [Hunting guides -- Fiction](Genres/hunting-guides-fiction-4cf7c56d.md) — 4 books
+- [Husband and wife -- Fiction](Genres/husband-and-wife-fiction-1d43392b.md) — 1 book
+- [Iceboating -- Juvenile fiction](Genres/iceboating-juvenile-fiction-f7934686.md) — 1 book
+- [Identity (Psychology) -- Fiction](Genres/identity-psychology-fiction-426b04f6.md) — 2 books
+- [Illegitimate children -- Fiction](Genres/illegitimate-children-fiction-efb003fb.md) — 4 books
+- [Illyria -- Drama](Genres/illyria-drama-5f1fbbf2.md) — 1 book
+- [Imaginary -- Early works to 1800](Genres/imaginary-early-works-to-1800-40bdf64f.md) — 1 book
+- [Imaginary -- Fiction](Genres/imaginary-fiction-a234588b.md) — 2 books
+- [Imaginary places](Genres/imaginary-places-7da14df0.md) — 1 book
 - [Imaginary places -- Juvenile fiction](Genres/imaginary-places-juvenile-fiction-d8cc9030.md) — 1 book
+- [Imagination -- Fiction](Genres/imagination-fiction-a21385ec.md) — 1 book
 - [Immigrants -- Fiction](Genres/immigrants-fiction-e83409af.md) — 1 book
-- [Impostors and imposture](Genres/impostors-and-imposture-b78259d3.md) — 1 book
-- [Impostors and imposture -- Fiction](Genres/impostors-and-imposture-fiction-6e58b71e.md) — 1 book
+- [Impostors and imposture](Genres/impostors-and-imposture-b78259d3.md) — 2 books
+- [Impostors and imposture -- Fiction](Genres/impostors-and-imposture-fiction-6e58b71e.md) — 2 books
+- [Incest -- Fiction](Genres/incest-fiction-5e103e0b.md) — 2 books
 - [Indexes](Genres/indexes-9bd2c623.md) — 1 book
+- [India -- Fiction](Genres/india-fiction-eb9cf87b.md) — 2 books
+- [Indians of North America -- Canada](Genres/indians-of-north-america-canada-6ff7ef57.md) — 1 book
+- [Indians of North America--Fiction](Genres/indians-of-north-america-fiction-7b910437.md) — 1 book
+- [Indigenous peoples -- Fiction](Genres/indigenous-peoples-fiction-849163e5.md) — 1 book
 - [Individuality -- Fiction](Genres/individuality-fiction-1cf6fcc0.md) — 1 book
 - [Infants switched at birth -- Fiction](Genres/infants-switched-at-birth-fiction-1225b0fa.md) — 1 book
-- [Inheritance and succession -- Fiction](Genres/inheritance-and-succession-fiction-d2a6f567.md) — 1 book
-- [John](Genres/john-41db10de.md) — 1 book
+- [Infertility -- Fiction](Genres/infertility-fiction-36285c3c.md) — 1 book
+- [Inheritance and succession -- Drama](Genres/inheritance-and-succession-drama-4fc68aa8.md) — 1 book
+- [Inheritance and succession -- Fiction](Genres/inheritance-and-succession-fiction-d2a6f567.md) — 3 books
+- [Inheritance and succession -- Juvenile fiction](Genres/inheritance-and-succession-juvenile-fiction-2de4606f.md) — 1 book
+- [Intellectuals -- Fiction](Genres/intellectuals-fiction-7592c87b.md) — 1 book
+- [Intellectuals -- Germany -- Fiction](Genres/intellectuals-germany-fiction-85c248cc.md) — 1 book
+- [Intellectuals--Fiction](Genres/intellectuals-fiction-412b73a4.md) — 1 book
+- [Intelligence service -- Great Britain -- Fiction](Genres/intelligence-service-great-britain-fiction-7e80d486.md) — 3 books
+- [Interpersonal relations -- Fiction](Genres/interpersonal-relations-fiction-d92fc958.md) — 1 book
+- [Interplanetary voyages -- Juvenile fiction](Genres/interplanetary-voyages-juvenile-fiction-3090dfdd.md) — 1 book
+- [Interracial marriage--Drama](Genres/interracial-marriage-drama-e37af87c.md) — 1 book
+- [Inventions](Genres/inventions-a5b53cac.md) — 1 book
+- [Inventors -- Fiction](Genres/inventors-fiction-b51dc0c2.md) — 1 book
+- [Ireland--Fiction](Genres/ireland-fiction-ad092515.md) — 1 book
+- [Ireland--Social life and customs--Fiction](Genres/ireland-social-life-and-customs-fiction-532f4cf7.md) — 1 book
+- [Irish -- India -- Fiction](Genres/irish-india-fiction-836c1ad6.md) — 1 book
+- [Irish poetry](Genres/irish-poetry-8d7ccec7.md) — 1 book
+- [Irving](Genres/irving-30388aa3.md) — 1 book
+- [Islands -- Drama](Genres/islands-drama-2bf83769.md) — 1 book
+- [Islands -- Fiction](Genres/islands-fiction-9efb032d.md) — 1 book
+- [Islands -- Juvenile fiction](Genres/islands-juvenile-fiction-d68f9da4.md) — 2 books
+- [Italian -- Translations into English](Genres/italian-translations-into-english-7e370e09.md) — 1 book
+- [Italy -- Drama](Genres/italy-drama-43d92f4f.md) — 1 book
+- [Italy -- History -- 1268-1492 -- Fiction](Genres/italy-history-1268-1492-fiction-7853438e.md) — 1 book
+- [Ivan Alekseevich](Genres/ivan-alekseevich-e61cbd03.md) — 1 book
+- [Ivanhoe](Genres/ivanhoe-680d3b38.md) — 1 book
+- [Jacobite Rebellion](Genres/jacobite-rebellion-5d3049e6.md) — 1 book
+- [Jane (Fictitious character)--Fiction](Genres/jane-fictitious-character-fiction-8a573336.md) — 1 book
+- [Japan -- Social life and customs -- Fiction](Genres/japan-social-life-and-customs-fiction-21dd366f.md) — 1 book
+- [Japanese -- Translations into English](Genres/japanese-translations-into-english-fc9b91d8.md) — 1 book
+- [Japanese fiction -- Translations into English](Genres/japanese-fiction-translations-into-english-8ab52837.md) — 1 book
+- [Jealousy--Drama](Genres/jealousy-drama-dc59bc61.md) — 1 book
+- [Jeeves (Fictitious character) -- Fiction](Genres/jeeves-fictitious-character-fiction-273fd9f1.md) — 1 book
+- [Jesus Christ--Fiction](Genres/jesus-christ-fiction-8fd8fa7f.md) — 1 book
+- [Jewel thieves -- Fiction](Genres/jewel-thieves-fiction-fdce9d4a.md) — 1 book
+- [Jews -- England -- Fiction](Genres/jews-england-fiction-6d7437b4.md) — 1 book
+- [Jews -- Malta -- Drama](Genres/jews-malta-drama-bd08e655.md) — 1 book
+- [Jews--Italy--Drama](Genres/jews-italy-drama-51da25c7.md) — 1 book
+- [John](Genres/john-41db10de.md) — 5 books
+- [John (Fictitious character) -- Fiction](Genres/john-fictitious-character-fiction-4222d52a.md) — 1 book
 - [Joseph](Genres/joseph-34ed5338.md) — 1 book
-- [King of Ithaca (Mythological character)](Genres/king-of-ithaca-mythological-character-37a8b010.md) — 2 books
+- [Journalists -- Fiction](Genres/journalists-fiction-2fdfb9e2.md) — 1 book
+- [Judgment Day--Fiction](Genres/judgment-day-fiction-5611adb1.md) — 1 book
+- [Juliet (Fictitious character) -- Drama](Genres/juliet-fictitious-character-drama-6e6c747d.md) — 1 book
+- [Julius -- Assassination -- Drama](Genres/julius-assassination-drama-bce9e43a.md) — 1 book
+- [Jungle animals -- Fiction](Genres/jungle-animals-fiction-4fd54341.md) — 2 books
+- [Jungles -- Fiction](Genres/jungles-fiction-efde15db.md) — 2 books
+- [Juvenile](Genres/juvenile-8ecb8e21.md) — 1 book
+- [Kansas--Fiction](Genres/kansas-fiction-25c59186.md) — 1 book
+- [Keller](Genres/keller-53eff3a4.md) — 1 book
+- [Kennedy](Genres/kennedy-b456da66.md) — 1 book
+- [Kidnapping -- Fiction](Genres/kidnapping-fiction-b222a75b.md) — 2 books
+- [Kidnapping in literature](Genres/kidnapping-in-literature-2238e273.md) — 1 book
+- [Kidnapping victims -- Fiction](Genres/kidnapping-victims-fiction-691c62f0.md) — 1 book
+- [Kidnapping--Fiction](Genres/kidnapping-fiction-cb20846a.md) — 1 book
+- [King (Legendary character) -- Drama](Genres/king-legendary-character-drama-cf1ddd9a.md) — 1 book
+- [King -- Legends](Genres/king-legends-c8b57ced.md) — 1 book
+- [King of Argos (Mythological character) -- Drama](Genres/king-of-argos-mythological-character-drama-c1b9c105.md) — 2 books
+- [King of Ithaca (Mythological character)](Genres/king-of-ithaca-mythological-character-37a8b010.md) — 3 books
+- [King of Mycenae (Mythological character) -- Drama](Genres/king-of-mycenae-mythological-character-drama-ef886ecb.md) — 2 books
+- [King of Scotland](Genres/king-of-scotland-b8cebe0f.md) — 1 book
 - [Kings Canyon National Park (Calif.)](Genres/kings-canyon-national-park-calif-175f08b8.md) — 1 book
+- [Kings and rulers -- Drama](Genres/kings-and-rulers-drama-2dcdf35b.md) — 1 book
 - [Kings and rulers -- Fiction](Genres/kings-and-rulers-fiction-e4fc23d1.md) — 1 book
-- [Klondike River Valley (Yukon) -- Fiction](Genres/klondike-river-valley-yukon-fiction-406a4eab.md) — 1 book
-- [Knights and knighthood -- Fiction](Genres/knights-and-knighthood-fiction-c5a14716.md) — 1 book
+- [Kings and rulers -- Succession -- Drama](Genres/kings-and-rulers-succession-drama-c9bf352c.md) — 1 book
+- [Klondike River Valley (Yukon) -- Fiction](Genres/klondike-river-valley-yukon-fiction-406a4eab.md) — 3 books
+- [Knights and knighthood -- Fiction](Genres/knights-and-knighthood-fiction-c5a14716.md) — 3 books
+- [Knights and knighthood -- Poetry](Genres/knights-and-knighthood-poetry-cba61ac5.md) — 1 book
+- [Knowledge](Genres/knowledge-a7fc582d.md) — 2 books
+- [Kriemhild (Legendary character)](Genres/kriemhild-legendary-character-b8b561c7.md) — 1 book
+- [Kuprin](Genres/kuprin-854d8909.md) — 1 book
+- [Labor disputes -- Fiction](Genres/labor-disputes-fiction-86fa5434.md) — 1 book
+- [Lamas -- Fiction](Genres/lamas-fiction-14c4c2a4.md) — 1 book
+- [Landlord and tenant -- Fiction](Genres/landlord-and-tenant-fiction-77507b78.md) — 1 book
+- [Language and languages -- Philosophy](Genres/language-and-languages-philosophy-f22de7e3.md) — 1 book
+- [Latin -- Translations into English](Genres/latin-translations-into-english-3d3ec875.md) — 1 book
+- [Lays -- Translations into English](Genres/lays-translations-into-english-54d80cbc.md) — 1 book
+- [Lear](Genres/lear-24ad70ad.md) — 1 book
 - [Legal stories](Genres/legal-stories-560c2601.md) — 1 book
+- [Legends -- British Columbia -- Vancouver](Genres/legends-british-columbia-vancouver-325ba866.md) — 1 book
+- [Legends -- Rome -- Poetry](Genres/legends-rome-poetry-330de087.md) — 1 book
+- [Lemuel (Fictitious character) -- Fiction](Genres/lemuel-fictitious-character-fiction-7b6bba53.md) — 1 book
+- [Leonid](Genres/leonid-ecc55a45.md) — 1 book
+- [Liberty -- Early works to 1800](Genres/liberty-early-works-to-1800-27f00789.md) — 1 book
 - [Life](Genres/life-bf3075ad.md) — 1 book
+- [Life -- Fiction](Genres/life-fiction-48a4549f.md) — 1 book
+- [Limericks](Genres/limericks-51639870.md) — 1 book
+- [Linguistics teachers -- Drama](Genres/linguistics-teachers-drama-88557172.md) — 1 book
 - [Literature -- History and criticism](Genres/literature-history-and-criticism-5b871484.md) — 1 book
 - [Literature and society -- United States](Genres/literature-and-society-united-states-e07ab908.md) — 1 book
 - [Lithuanian Americans -- Fiction](Genres/lithuanian-americans-fiction-68f3c09c.md) — 1 book
+- [Local](Genres/local-249f1fb6.md) — 1 book
+- [Logic](Genres/logic-3c762b6e.md) — 1 book
+- [London (England) -- Drama](Genres/london-england-drama-cca04795.md) — 2 books
+- [London (England) -- Fiction](Genres/london-england-fiction-cd71afb6.md) — 3 books
 - [London (England) -- History -- 1800-1950 -- Fiction](Genres/london-england-history-1800-1950-fiction-a7016754.md) — 1 book
+- [London (England) -- History -- 18th century -- Fiction](Genres/london-england-history-18th-century-fiction-cf1a9182.md) — 1 book
+- [London (England)--Fiction](Genres/london-england-fiction-d98b81a4.md) — 1 book
+- [Loneliness -- Fiction](Genres/loneliness-fiction-8bd6ec4c.md) — 1 book
 - [Long Island (N.Y.) -- Fiction](Genres/long-island-n-y-fiction-3a224760.md) — 1 book
-- [Louisiana -- Social life and customs -- Fiction](Genres/louisiana-social-life-and-customs-fiction-e2de3366.md) — 1 book
-- [Love stories](Genres/love-stories-dea5a674.md) — 2 books
+- [Long Island (N.Y.)--Fiction](Genres/long-island-n-y-fiction-e17a9ea3.md) — 1 book
+- [Lookalikes -- Fiction](Genres/lookalikes-fiction-437de3b5.md) — 1 book
+- [Lord (Fictitious character)](Genres/lord-fictitious-character-bf66cba5.md) — 1 book
+- [Lost continents -- Fiction](Genres/lost-continents-fiction-7f6122d6.md) — 1 book
+- [Louisiana -- Social life and customs -- Fiction](Genres/louisiana-social-life-and-customs-fiction-e2de3366.md) — 3 books
+- [Love -- Fiction](Genres/love-fiction-fa447292.md) — 1 book
+- [Love stories](Genres/love-stories-dea5a674.md) — 17 books
+- [Lupin](Genres/lupin-41149593.md) — 3 books
+- [Macbeth](Genres/macbeth-3ae0e51f.md) — 1 book
 - [Magic -- Juvenile fiction](Genres/magic-juvenile-fiction-27d6f82f.md) — 1 book
-- [Male friendship -- Fiction](Genres/male-friendship-fiction-2ccb7475.md) — 2 books
-- [Man-woman relationships -- Fiction](Genres/man-woman-relationships-fiction-1001f87e.md) — 1 book
-- [Mark](Genres/mark-1f3b3fa2.md) — 3 books
+- [Magic--Fiction](Genres/magic-fiction-d9a2c1c6.md) — 1 book
+- [Magicians -- Drama](Genres/magicians-drama-c712634f.md) — 2 books
+- [Male friendship -- Fiction](Genres/male-friendship-fiction-2ccb7475.md) — 3 books
+- [Man-woman relationships -- Drama](Genres/man-woman-relationships-drama-15cabb25.md) — 2 books
+- [Man-woman relationships -- Fiction](Genres/man-woman-relationships-fiction-1001f87e.md) — 5 books
+- [Man-woman relationships--Fiction](Genres/man-woman-relationships-fiction-b6b6591c.md) — 1 book
+- [Manners and customs -- Fiction](Genres/manners-and-customs-fiction-2656d517.md) — 4 books
+- [Marcus](Genres/marcus-32f1ee2b.md) — 1 book
+- [Marcus Junius](Genres/marcus-junius-b74402b9.md) — 1 book
+- [Marie](Genres/marie-907ecaa4.md) — 1 book
+- [Mark](Genres/mark-1f3b3fa2.md) — 5 books
+- [Marple](Genres/marple-d8ae072b.md) — 1 book
+- [Marquesas Islands (French Polynesia) -- Fiction](Genres/marquesas-islands-french-polynesia-fiction-6942c3d0.md) — 1 book
 - [Marriage -- Fiction](Genres/marriage-fiction-a53efe69.md) — 1 book
-- [Married people -- Fiction](Genres/married-people-fiction-4c209fac.md) — 1 book
-- [Married women -- Fiction](Genres/married-women-fiction-f6dd1592.md) — 2 books
+- [Married people -- Drama](Genres/married-people-drama-d2eec148.md) — 1 book
+- [Married people -- Fiction](Genres/married-people-fiction-4c209fac.md) — 3 books
+- [Married people--Fiction](Genres/married-people-fiction-3a5275eb.md) — 1 book
+- [Married women -- Drama](Genres/married-women-drama-3205c73b.md) — 2 books
+- [Married women -- Fiction](Genres/married-women-fiction-f6dd1592.md) — 8 books
 - [Married women -- Psychology -- Fiction](Genres/married-women-psychology-fiction-9072ce0b.md) — 1 book
+- [Married women--Fiction](Genres/married-women-fiction-330b848a.md) — 1 book
+- [Mars (Planet) -- Fiction](Genres/mars-planet-fiction-7bcdd71b.md) — 1 book
+- [Mars (Planet) -- Juvenile fiction](Genres/mars-planet-juvenile-fiction-af71053b.md) — 1 book
+- [Mars (Planet)--Fiction](Genres/mars-planet-fiction-b5567502.md) — 1 book
+- [Martians -- Fiction](Genres/martians-fiction-129720f7.md) — 1 book
+- [Massachusetts -- Fiction](Genres/massachusetts-fiction-641eeebc.md) — 1 book
 - [Master and servant -- Fiction](Genres/master-and-servant-fiction-d93e5ddc.md) — 1 book
-- [Mate selection -- Fiction](Genres/mate-selection-fiction-d0b61338.md) — 1 book
+- [Mate selection -- Fiction](Genres/mate-selection-fiction-d0b61338.md) — 3 books
+- [Mathematicians -- Great Britain -- Biography](Genres/mathematicians-great-britain-biography-4aede837.md) — 1 book
+- [Maugham](Genres/maugham-9183297e.md) — 1 book
+- [McCunn](Genres/mccunn-8d1c181d.md) — 1 book
 - [Meat industry and trade -- Fiction](Genres/meat-industry-and-trade-fiction-8e6f35ec.md) — 1 book
 - [Medieval](Genres/medieval-8cb435e5.md) — 1 book
-- [Memoir](Genres/memoir-2e60f899.md) — 44 books
+- [Memoir](Genres/memoir-2e60f899.md) — 366 books
+- [Men -- Germany -- Psychology -- Fiction](Genres/men-germany-psychology-fiction-8853130b.md) — 1 book
 - [Men -- Psychology -- Fiction](Genres/men-psychology-fiction-18c4acad.md) — 1 book
 - [Mentally ill -- Fiction](Genres/mentally-ill-fiction-c67cb92d.md) — 1 book
-- [Mentally ill women -- Fiction](Genres/mentally-ill-women-fiction-a16d186e.md) — 1 book
-- [Middle East -- Description and travel](Genres/middle-east-description-and-travel-a98a4cff.md) — 1 book
+- [Mentally ill women -- Fiction](Genres/mentally-ill-women-fiction-a16d186e.md) — 2 books
+- [Messina (Italy) -- Drama](Genres/messina-italy-drama-685e082f.md) — 1 book
+- [Metaphysics](Genres/metaphysics-c563a69b.md) — 1 book
+- [Mice -- Juvenile fiction](Genres/mice-juvenile-fiction-e84aaff8.md) — 1 book
+- [Middle East -- Description and travel](Genres/middle-east-description-and-travel-a98a4cff.md) — 2 books
+- [Middle class -- England -- Fiction](Genres/middle-class-england-fiction-278cd700.md) — 1 book
+- [Middle-aged men -- Fiction](Genres/middle-aged-men-fiction-4f9d727e.md) — 1 book
+- [Middle-aged women--Fiction](Genres/middle-aged-women-fiction-7e0f4a08.md) — 1 book
+- [Midlands (England) -- Fiction](Genres/midlands-england-fiction-4cef0f05.md) — 1 book
+- [Military art and science -- Early works to 1800](Genres/military-art-and-science-early-works-to-1800-653b5c09.md) — 1 book
 - [Military deserters -- Fiction](Genres/military-deserters-fiction-4d63fefa.md) — 1 book
 - [Military hospitals -- Fiction](Genres/military-hospitals-fiction-d05fe856.md) — 1 book
-- [Mississippi -- Fiction](Genres/mississippi-fiction-b1471a13.md) — 1 book
+- [Millionaires -- Fiction](Genres/millionaires-fiction-ba252973.md) — 1 book
+- [Missing persons -- Fiction](Genres/missing-persons-fiction-7af3debc.md) — 2 books
+- [Missing persons -- Juvenile fiction](Genres/missing-persons-juvenile-fiction-f69228e4.md) — 1 book
+- [Missing persons--Fiction](Genres/missing-persons-fiction-68915caf.md) — 1 book
+- [Mississippi -- Fiction](Genres/mississippi-fiction-b1471a13.md) — 3 books
 - [Mississippi River -- Description and travel](Genres/mississippi-river-description-and-travel-22f2434c.md) — 1 book
+- [Mississippi River -- Fiction](Genres/mississippi-river-fiction-7902977a.md) — 1 book
 - [Missouri -- Fiction](Genres/missouri-fiction-60ca054c.md) — 3 books
+- [Mistaken identity -- Drama](Genres/mistaken-identity-drama-8596b961.md) — 2 books
+- [Mistresses--Fiction](Genres/mistresses-fiction-f6cbdc4c.md) — 1 book
+- [Moneylenders--Drama](Genres/moneylenders-drama-28bae62d.md) — 1 book
+- [Moneymaking projects -- Fiction](Genres/moneymaking-projects-fiction-f4906aca.md) — 1 book
+- [Monmouth's Rebellion](Genres/monmouth-s-rebellion-16ea5309.md) — 1 book
+- [Monroe doctrine](Genres/monroe-doctrine-1cc7ae85.md) — 1 book
+- [Monsters -- Poetry](Genres/monsters-poetry-475f6102.md) — 1 book
+- [Montana -- Juvenile fiction](Genres/montana-juvenile-fiction-dd2995f0.md) — 1 book
+- [Morgues--Fiction](Genres/morgues-fiction-962a0971.md) — 2 books
+- [Mormon women -- Fiction](Genres/mormon-women-fiction-3f69dafe.md) — 1 book
+- [Motherless families -- Fiction](Genres/motherless-families-fiction-7489fc56.md) — 1 book
 - [Mothers and daughters -- Fiction](Genres/mothers-and-daughters-fiction-78beb112.md) — 1 book
+- [Mothers and sons -- Fiction](Genres/mothers-and-sons-fiction-bd4928a8.md) — 1 book
+- [Motion picture actors and actresses--Fiction](Genres/motion-picture-actors-and-actresses-fiction-7783eae2.md) — 1 book
 - [Mountain ecology -- California](Genres/mountain-ecology-california-6eba790e.md) — 1 book
 - [Mountains -- Juvenile fiction](Genres/mountains-juvenile-fiction-2bde308c.md) — 1 book
-- [Muir](Genres/muir-b6c46aa2.md) — 1 book
+- [Mowgli (Fictitious character) -- Fiction](Genres/mowgli-fictitious-character-fiction-a7672e2b.md) — 1 book
+- [Muir](Genres/muir-b6c46aa2.md) — 2 books
+- [Mulliner family (Fictitious characters) -- Fiction](Genres/mulliner-family-fictitious-characters-fiction-f1a68be3.md) — 1 book
 - [Murder -- Fiction](Genres/murder-fiction-589ea314.md) — 1 book
-- [Mystery](Genres/mystery-586aa686.md) — 4 books
+- [Murder -- Investigation -- Fiction](Genres/murder-investigation-fiction-f2add780.md) — 3 books
+- [Murder victims' families -- Drama](Genres/murder-victims-families-drama-7a904266.md) — 1 book
+- [Murderers -- Fiction](Genres/murderers-fiction-f50612d2.md) — 1 book
+- [Muscle strength -- Fiction](Genres/muscle-strength-fiction-30040531.md) — 1 book
+- [Musical fiction](Genres/musical-fiction-48e51675.md) — 2 books
+- [Muslims -- Fiction](Genres/muslims-fiction-a09c87d6.md) — 1 book
+- [Mutiny--Fiction](Genres/mutiny-fiction-8e39c6de.md) — 1 book
+- [Mystery](Genres/mystery-586aa686.md) — 86 books
+- [Mystery and detective stories](Genres/mystery-and-detective-stories-69c96e11.md) — 10 books
+- [Mystery fiction](Genres/mystery-fiction-30ded278.md) — 2 books
+- [Mysticism -- Poetry](Genres/mysticism-poetry-108fc9be.md) — 2 books
+- [Mysticism--Poetry](Genres/mysticism-poetry-47d2979f.md) — 2 books
+- [Mythology](Genres/mythology-564bd89e.md) — 1 book
 - [N.Y.) -- Fiction](Genres/n-y-fiction-ec8a9d7a.md) — 1 book
 - [Names](Genres/names-afb728ff.md) — 1 book
 - [Names -- United States](Genres/names-united-states-6913c260.md) — 1 book
-- [Napoleonic Wars](Genres/napoleonic-wars-6911e492.md) — 1 book
+- [Nantucket Island (Mass.)--Fiction](Genres/nantucket-island-mass-fiction-327f7490.md) — 1 book
+- [Napier](Genres/napier-dbdcf4f3.md) — 1 book
+- [Naples (Italy) -- Fiction](Genres/naples-italy-fiction-b2506526.md) — 1 book
+- [Napoleon I](Genres/napoleon-i-628c4226.md) — 1 book
+- [Napoleonic Wars](Genres/napoleonic-wars-6911e492.md) — 3 books
 - [National characteristics](Genres/national-characteristics-93a937a8.md) — 1 book
 - [National parks and reserves -- United States](Genres/national-parks-and-reserves-united-states-2ec93743.md) — 1 book
-- [Natty (Fictitious character) -- Fiction](Genres/natty-fictitious-character-fiction-48276990.md) — 1 book
-- [Natural history -- California](Genres/natural-history-california-c84bed5e.md) — 1 book
+- [Natty (Fictitious character) -- Fiction](Genres/natty-fictitious-character-fiction-48276990.md) — 2 books
+- [Natural history -- California](Genres/natural-history-california-c84bed5e.md) — 2 books
+- [Natural history -- Juvenile fiction](Genres/natural-history-juvenile-fiction-6d302744.md) — 1 book
 - [Natural history -- Massachusetts -- Walden Woods](Genres/natural-history-massachusetts-walden-woods-d3dd0c32.md) — 1 book
-- [Natural history -- Sierra Nevada (Calif. and Nev.)](Genres/natural-history-sierra-nevada-calif-and-nev-8ce6f382.md) — 1 book
-- [Naturalists -- United States -- Biography](Genres/naturalists-united-states-biography-3b2186d1.md) — 1 book
-- [Nature](Genres/nature-f8bb5018.md) — 1 book
-- [Nature stories](Genres/nature-stories-c561f469.md) — 1 book
-- [New England -- Fiction](Genres/new-england-fiction-4f0b6f07.md) — 2 books
+- [Natural history -- Sierra Nevada (Calif. and Nev.)](Genres/natural-history-sierra-nevada-calif-and-nev-8ce6f382.md) — 2 books
+- [Natural selection](Genres/natural-selection-9377de1d.md) — 1 book
+- [Naturalists -- United States -- Biography](Genres/naturalists-united-states-biography-3b2186d1.md) — 2 books
+- [Nature](Genres/nature-f8bb5018.md) — 2 books
+- [Nature stories](Genres/nature-stories-c561f469.md) — 2 books
+- [Netherlands -- History -- 17th century -- Fiction](Genres/netherlands-history-17th-century-fiction-1820fa5a.md) — 2 books
+- [New England -- Fiction](Genres/new-england-fiction-4f0b6f07.md) — 3 books
+- [New Hampshire -- Poetry](Genres/new-hampshire-poetry-fd219718.md) — 1 book
 - [New Orleans (La.) -- Fiction](Genres/new-orleans-la-fiction-8baacfc4.md) — 1 book
-- [New York (N.Y.) -- Fiction](Genres/new-york-n-y-fiction-8bb6ea51.md) — 2 books
+- [New York (N.Y.) -- Drama](Genres/new-york-n-y-drama-7bf0d030.md) — 1 book
+- [New York (N.Y.) -- Fiction](Genres/new-york-n-y-fiction-8bb6ea51.md) — 5 books
 - [New York (N.Y.) -- Social life and customs -- Fiction](Genres/new-york-n-y-social-life-and-customs-cbbdc91a.md) — 1 book
 - [New York (State) -- History -- 1775-1865 -- Fiction](Genres/new-york-state-history-1775-1865-fiction-5eccef7a.md) — 2 books
+- [Nibelungen](Genres/nibelungen-ecad955c.md) — 1 book
 - [Nick (Fictitious character) -- Fiction](Genres/nick-fictitious-character-fiction-bf6c1478.md) — 1 book
-- [Northern -- Fiction](Genres/northern-fiction-776a8d81.md) — 1 book
-- [Odysseus](Genres/odysseus-8063652d.md) — 2 books
+- [Nightmares -- Fiction](Genres/nightmares-fiction-4895917e.md) — 1 book
+- [Nihilism -- Fiction](Genres/nihilism-fiction-aa57ec42.md) — 1 book
+- [Nikolai Vasilevich](Genres/nikolai-vasilevich-28b7308c.md) — 1 book
+- [Nobility -- Fiction](Genres/nobility-fiction-d47bd1bb.md) — 1 book
+- [Nobility -- Great Britain -- Fiction](Genres/nobility-great-britain-fiction-528da1a9.md) — 3 books
+- [Nonsense verses](Genres/nonsense-verses-aec452c9.md) — 1 book
+- [North -- Fiction](Genres/north-fiction-7dea68d5.md) — 1 book
+- [Northern -- Fiction](Genres/northern-fiction-776a8d81.md) — 3 books
+- [Northup](Genres/northup-9bb313ec.md) — 1 book
+- [Northwest](Genres/northwest-9d42532b.md) — 1 book
+- [Northwest Territories -- Fiction](Genres/northwest-territories-fiction-9a3c4961.md) — 1 book
+- [Novelists--Fiction](Genres/novelists-fiction-d9dee475.md) — 1 book
+- [Nuclear warfare -- Fiction](Genres/nuclear-warfare-fiction-6d828001.md) — 1 book
+- [Occultism -- Fiction](Genres/occultism-fiction-f88819fa.md) — 1 book
+- [Ocean travel -- Fiction](Genres/ocean-travel-fiction-d5bd600d.md) — 1 book
+- [Odysseus](Genres/odysseus-8063652d.md) — 3 books
+- [Oedipus (Greek mythological figure) -- Drama](Genres/oedipus-greek-mythological-figure-drama-1fe3c013.md) — 3 books
+- [Ohio -- Social life and customs -- Fiction](Genres/ohio-social-life-and-customs-fiction-f064e240.md) — 1 book
+- [Opera -- Fiction](Genres/opera-fiction-8d23e16c.md) — 2 books
+- [Orestes](Genres/orestes-8cecfaef.md) — 2 books
+- [Orphans -- Fiction](Genres/orphans-fiction-507c7e53.md) — 4 books
+- [Outlaws -- Fiction](Genres/outlaws-fiction-c41fd888.md) — 1 book
 - [Oz (Imaginary place) -- Juvenile fiction](Genres/oz-imaginary-place-juvenile-fiction-3ace438d.md) — 2 books
-- [Passing (Identity) -- Fiction](Genres/passing-identity-fiction-ddaaadb9.md) — 1 book
-- [People with mental disabilities -- Fiction](Genres/people-with-mental-disabilities-fiction-f4dab053.md) — 1 book
+- [Padua (Italy) -- Drama](Genres/padua-italy-drama-dee76d58.md) — 1 book
+- [Painters--Fiction](Genres/painters-fiction-7f7fe9ad.md) — 1 book
+- [Parables](Genres/parables-2e050b6e.md) — 2 books
+- [Paranormal fiction](Genres/paranormal-fiction-392dfcbd.md) — 8 books
+- [Paris (France) -- Fiction](Genres/paris-france-fiction-431f95c5.md) — 2 books
+- [Paris (France) -- History -- 1870-1940 -- Fiction](Genres/paris-france-history-1870-1940-fiction-d1df0b0c.md) — 1 book
+- [Parking garages](Genres/parking-garages-2f31c135.md) — 1 book
+- [Parties--Fiction](Genres/parties-fiction-e09c20f1.md) — 1 book
+- [Passing (Identity) -- Fiction](Genres/passing-identity-fiction-ddaaadb9.md) — 2 books
+- [Pastoral drama](Genres/pastoral-drama-7e74a124.md) — 1 book
+- [Pastoral fiction](Genres/pastoral-fiction-7cb077e5.md) — 3 books
+- [People with disabilities--Fiction](Genres/people-with-disabilities-fiction-28dc15cb.md) — 1 book
+- [People with mental disabilities -- Fiction](Genres/people-with-mental-disabilities-fiction-f4dab053.md) — 2 books
+- [People with visual disabilities -- Fiction](Genres/people-with-visual-disabilities-fiction-9531c145.md) — 1 book
+- [Pepys](Genres/pepys-5d2d3f84.md) — 1 book
+- [Percy](Genres/percy-4aebeb84.md) — 7 books
 - [Personal -- United States](Genres/personal-united-states-9a232f79.md) — 1 book
-- [Pet theft -- Fiction](Genres/pet-theft-fiction-287c1bcf.md) — 1 book
-- [Philosophy](Genres/philosophy-80314f89.md) — 2 books
+- [Peru -- Social life and customs -- Fiction](Genres/peru-social-life-and-customs-fiction-40089aa5.md) — 1 book
+- [Pet theft -- Fiction](Genres/pet-theft-fiction-287c1bcf.md) — 2 books
+- [Peter](Genres/peter-39848c84.md) — 1 book
+- [Phantom of the Opera (Fictitious character) -- Fiction](Genres/phantom-of-the-opera-fictitious-character-fiction-75c79c9c.md) — 1 book
+- [Philoctetes (Mythological character) -- Drama](Genres/philoctetes-mythological-character-drama-de6a12dd.md) — 1 book
+- [Philosophy](Genres/philosophy-80314f89.md) — 4 books
+- [Philosophy -- Introductions](Genres/philosophy-introductions-2d16d8d8.md) — 1 book
+- [Philosophy and religion](Genres/philosophy-and-religion-124de29f.md) — 2 books
+- [Physicians -- Fiction](Genres/physicians-fiction-22b6b152.md) — 1 book
+- [Piglet (Fictitious character) -- Juvenile fiction](Genres/piglet-fictitious-character-juvenile-fiction-402e4716.md) — 1 book
 - [Pilots and pilotage -- Mississippi River](Genres/pilots-and-pilotage-mississippi-river-3fea75df.md) — 1 book
+- [Pirates -- Fiction](Genres/pirates-fiction-820b3fa6.md) — 4 books
+- [Pirates -- Juvenile fiction](Genres/pirates-juvenile-fiction-47b22b90.md) — 1 book
+- [Pirates--Fiction](Genres/pirates-fiction-d6691730.md) — 1 book
 - [Plantation life -- Fiction](Genres/plantation-life-fiction-e1a40914.md) — 1 book
+- [Plantation life -- Louisiana -- History -- 19th century](Genres/plantation-life-louisiana-history-19th-century-3dd5116c.md) — 1 book
 - [Plantation life -- Maryland -- History -- 19th century](Genres/plantation-life-maryland-history-19th-century-6146555e.md) — 1 book
-- [Poe](Genres/poe-779b4d19.md) — 1 book
-- [Political fiction](Genres/political-fiction-4c3f4b10.md) — 2 books
+- [Poe](Genres/poe-779b4d19.md) — 3 books
+- [Poirot](Genres/poirot-8a6bf284.md) — 1 book
+- [Police -- England -- Fiction](Genres/police-england-fiction-e505ed58.md) — 1 book
+- [Police -- Fiction](Genres/police-fiction-b1e2102d.md) — 1 book
+- [Police--Hawaii--Honolulu--Fiction](Genres/police-hawaii-honolulu-fiction-c66fecfe.md) — 3 books
+- [Political fiction](Genres/political-fiction-4c3f4b10.md) — 7 books
+- [Political refugees -- Drama](Genres/political-refugees-drama-3fc9eed7.md) — 1 book
+- [Political science](Genres/political-science-7e29b7bc.md) — 4 books
+- [Political science -- Early works to 1800](Genres/political-science-early-works-to-1800-8055ed6b.md) — 4 books
+- [Political science--Fiction](Genres/political-science-fiction-3ef55cdb.md) — 1 book
+- [Polygamy -- Fiction](Genres/polygamy-fiction-9bbe07eb.md) — 1 book
+- [Poor families -- Fiction](Genres/poor-families-fiction-21af829f.md) — 1 book
 - [Portraits -- Fiction](Genres/portraits-fiction-b181e337.md) — 1 book
-- [Private investigators -- England -- Fiction](Genres/private-investigators-england-fiction-60241ef8.md) — 1 book
-- [Psychological fiction](Genres/psychological-fiction-29ebc0be.md) — 9 books
+- [Post-apocalyptic fiction](Genres/post-apocalyptic-fiction-117fe25d.md) — 1 book
+- [Power (Social sciences) -- Fiction](Genres/power-social-sciences-fiction-b8e43ebc.md) — 1 book
+- [Prehistoric peoples -- Fiction](Genres/prehistoric-peoples-fiction-2a6100ab.md) — 2 books
+- [Princes -- Drama](Genres/princes-drama-dfe4a9d3.md) — 1 book
+- [Princesses -- Fiction](Genres/princesses-fiction-2ebdb7dc.md) — 1 book
+- [Prisoners -- Fiction](Genres/prisoners-fiction-8fbb5cb9.md) — 1 book
+- [Private investigators -- England -- Fiction](Genres/private-investigators-england-fiction-60241ef8.md) — 8 books
+- [Private investigators--Fiction (LCSH)](Genres/private-investigators-fiction-lcsh-1802e18e.md) — 1 book
+- [Professor (Fictitious character) -- Fiction](Genres/professor-fictitious-character-fiction-cdc1cedd.md) — 1 book
+- [Prose poems](Genres/prose-poems-1615aa7c.md) — 2 books
+- [Psychics -- Fiction](Genres/psychics-fiction-be53f883.md) — 1 book
+- [Psychological fiction](Genres/psychological-fiction-29ebc0be.md) — 22 books
+- [Psychology](Genres/psychology-6a06e885.md) — 1 book
+- [Quatermain](Genres/quatermain-1cffe5be.md) — 4 books
+- [Queen of Egypt](Genres/queen-of-egypt-d39683b3.md) — 2 books
+- [Queens -- Egypt -- Drama](Genres/queens-egypt-drama-f36790ed.md) — 1 book
+- [Questions and answers--Fiction](Genres/questions-and-answers-fiction-2914b65e.md) — 1 book
+- [Rabbits -- Juvenile fiction](Genres/rabbits-juvenile-fiction-30dd41cc.md) — 1 book
 - [Race relations -- Fiction](Genres/race-relations-fiction-3af431e6.md) — 2 books
+- [Raffles (Fictitious character) -- Fiction](Genres/raffles-fictitious-character-fiction-5adddb54.md) — 3 books
+- [Rafts -- Fiction](Genres/rafts-fiction-69a98268.md) — 1 book
+- [Railroad travel -- Fiction](Genres/railroad-travel-fiction-6a2a3025.md) — 1 book
+- [Rationalism](Genres/rationalism-e36e8a30.md) — 1 book
 - [Ravens -- Poetry](Genres/ravens-poetry-449dc10c.md) — 1 book
+- [Regicides -- Drama](Genres/regicides-drama-c9326afa.md) — 1 book
+- [Regression (Civilization) -- Fiction](Genres/regression-civilization-fiction-b996e2da.md) — 1 book
+- [Regret in literature](Genres/regret-in-literature-2deb4abe.md) — 1 book
+- [Rejection (Psychology) -- Drama](Genres/rejection-psychology-drama-c739318a.md) — 1 book
+- [Rejection (Psychology) -- Fiction](Genres/rejection-psychology-fiction-5582c92f.md) — 2 books
+- [Religion](Genres/religion-4ac43229.md) — 1 book
+- [Religious](Genres/religious-d33059d2.md) — 1 book
+- [Reporters and reporting -- Fiction](Genres/reporters-and-reporting-fiction-e59fb82a.md) — 1 book
 - [Resistance to](Genres/resistance-to-56ce3703.md) — 1 book
-- [Revenge -- Fiction](Genres/revenge-fiction-6d7cb222.md) — 1 book
+- [Revenge -- Drama](Genres/revenge-drama-c6ad52bd.md) — 1 book
+- [Revenge -- Fiction](Genres/revenge-fiction-6d7cb222.md) — 5 books
+- [Revenge--Fiction](Genres/revenge-fiction-807a695a.md) — 1 book
+- [Revolutionaries -- Fiction](Genres/revolutionaries-fiction-366ca10f.md) — 1 book
+- [Revolutionaries--Fiction](Genres/revolutionaries-fiction-a809b052.md) — 1 book
+- [Revolutions -- Fiction](Genres/revolutions-fiction-88fcd3bd.md) — 1 book
+- [Revolutions--Fiction](Genres/revolutions-fiction-cc80f903.md) — 1 book
 - [Rich people -- Fiction](Genres/rich-people-fiction-5f9cf066.md) — 1 book
+- [Rich people--Crimes against--Fiction](Genres/rich-people-crimes-against-fiction-e88db016.md) — 1 book
+- [Rich people--Fiction](Genres/rich-people-fiction-641c0330.md) — 1 book
+- [Richard (Fictitious character) -- Fiction](Genres/richard-fictitious-character-fiction-c41fff2d.md) — 5 books
 - [Rip (Fictitious character) -- Fiction](Genres/rip-fictitious-character-fiction-10d06d7b.md) — 1 book
-- [Romance](Genres/romance-8101d2d9.md) — 20 books
-- [Romances -- Translations into English](Genres/romances-translations-into-english-5b48712e.md) — 1 book
+- [Robbers and outlaws -- Juvenile fiction](Genres/robbers-and-outlaws-juvenile-fiction-17489f96.md) — 2 books
+- [Robots -- Fiction](Genres/robots-fiction-81aae149.md) — 1 book
+- [Robots--Fiction](Genres/robots-fiction-81c6190d.md) — 2 books
+- [Roland (Legendary character) -- Romances](Genres/roland-legendary-character-romances-d9802ff3.md) — 1 book
+- [Roman -- Early works to 1800](Genres/roman-early-works-to-1800-bad119ca.md) — 1 book
+- [Romance](Genres/romance-8101d2d9.md) — 135 books
+- [Romances -- Translations into English](Genres/romances-translations-into-english-5b48712e.md) — 2 books
 - [Romans à clef](Genres/romans-a-clef-6edae1c8.md) — 1 book
+- [Rome -- Politics and government -- 265-30 B.C.](Genres/rome-politics-and-government-265-30-b-c-454cc6d5.md) — 1 book
+- [Romeo (Fictitious character) -- Drama](Genres/romeo-fictitious-character-drama-e4c6ea0c.md) — 1 book
+- [Romney Marsh (England: Marsh) -- Fiction](Genres/romney-marsh-england-marsh-fiction-5c42c70a.md) — 1 book
 - [Runaway children -- Fiction](Genres/runaway-children-fiction-1fc2e7a0.md) — 1 book
-- [Rural poor -- Fiction](Genres/rural-poor-fiction-e09309db.md) — 1 book
-- [Russia -- History -- Alexander I](Genres/russia-history-alexander-i-bb846179.md) — 1 book
-- [Russia -- Social life and customs -- 1533-1917 -- Fiction](Genres/russia-social-life-and-customs-1533-1917-fiction-552cce17.md) — 1 book
+- [Runaway husbands -- Drama](Genres/runaway-husbands-drama-8b04d8bd.md) — 2 books
+- [Rural poor -- Fiction](Genres/rural-poor-fiction-e09309db.md) — 2 books
+- [Russia (Federation)--Fiction](Genres/russia-federation-fiction-3e7d8fcd.md) — 1 book
+- [Russia -- Fiction](Genres/russia-fiction-95a185e0.md) — 5 books
+- [Russia -- History -- 1801-1917 -- Fiction](Genres/russia-history-1801-1917-fiction-6f1d74c2.md) — 1 book
+- [Russia -- History -- Alexander I](Genres/russia-history-alexander-i-bb846179.md) — 2 books
+- [Russia -- Officials and employees -- Fiction](Genres/russia-officials-and-employees-fiction-b71c0a9a.md) — 1 book
+- [Russia -- Social life and customs -- 1533-1917 -- Fiction](Genres/russia-social-life-and-customs-1533-1917-fiction-552cce17.md) — 3 books
+- [Russia -- Social life and customs -- Fiction](Genres/russia-social-life-and-customs-fiction-f8450495.md) — 6 books
+- [Russian -- Translations into English](Genres/russian-translations-into-english-b2c9a1d7.md) — 6 books
+- [Russian drama -- Translations into English](Genres/russian-drama-translations-into-english-29a2ecda.md) — 1 book
+- [Russian fiction -- Translations into English](Genres/russian-fiction-translations-into-english-8487fd87.md) — 2 books
+- [Sahara -- Fiction](Genres/sahara-fiction-d9896e8f.md) — 1 book
+- [Sailors -- Fiction](Genres/sailors-fiction-8c75ca6c.md) — 1 book
 - [Saint Petersburg (Russia) -- Fiction](Genres/saint-petersburg-russia-fiction-36d0a5d5.md) — 1 book
-- [Satire](Genres/satire-2fb517c3.md) — 1 book
+- [Salem (Mass.) -- Fiction](Genres/salem-mass-fiction-1f280849.md) — 1 book
+- [Samuel](Genres/samuel-dab262fe.md) — 1 book
+- [San Francisco (Calif.) -- Fiction](Genres/san-francisco-calif-fiction-9161cd3d.md) — 2 books
+- [San Francisco (Calif.)--Fiction](Genres/san-francisco-calif-fiction-343be639.md) — 1 book
+- [San Francisco (Calif.)--Fiction (LCSH)](Genres/san-francisco-calif-fiction-lcsh-416416f0.md) — 1 book
+- [Sanskrit literature -- Translations into English](Genres/sanskrit-literature-translations-into-english-221143bc.md) — 1 book
+- [Satire](Genres/satire-2fb517c3.md) — 6 books
 - [Sawyer](Genres/sawyer-389424ce.md) — 1 book
-- [Science fiction](Genres/science-fiction-7b7602b6.md) — 3 books
-- [Sea stories](Genres/sea-stories-438ded89.md) — 1 book
+- [Schools -- Fiction](Genres/schools-fiction-cc93a0a1.md) — 1 book
+- [Science fiction](Genres/science-fiction-7b7602b6.md) — 38 books
+- [Science fiction--Periodicals](Genres/science-fiction-periodicals-487dab2d.md) — 2 books
+- [Science--Methodology](Genres/science-methodology-74e11ab0.md) — 1 book
+- [Scientific expeditions -- Fiction](Genres/scientific-expeditions-fiction-4d60ac21.md) — 1 book
+- [Scotland -- Fiction](Genres/scotland-fiction-bf04d9a8.md) — 2 books
+- [Scotland -- History -- 18th century -- Fiction](Genres/scotland-history-18th-century-fiction-bbde874e.md) — 4 books
+- [Scotland -- Kings and rulers -- Drama](Genres/scotland-kings-and-rulers-drama-39f810a8.md) — 1 book
+- [Sea stories](Genres/sea-stories-438ded89.md) — 9 books
+- [Sealers (Persons) -- Fiction](Genres/sealers-persons-fiction-9b798dd4.md) — 1 book
+- [Sealing ships -- Fiction](Genres/sealing-ships-fiction-ff7f9148.md) — 1 book
+- [Seduction -- Fiction](Genres/seduction-fiction-5974b804.md) — 1 book
 - [Self-actualization (Psychology) -- Fiction](Genres/self-actualization-psychology-fiction-46407e6b.md) — 1 book
 - [Sequoia National Park (Calif.)](Genres/sequoia-national-park-calif-f7598464.md) — 1 book
+- [Sex role -- Drama](Genres/sex-role-drama-c1fdf9e9.md) — 1 book
 - [Sex role -- Fiction](Genres/sex-role-fiction-f5cea9db.md) — 1 book
-- [Sherlock (Fictitious character) -- Fiction](Genres/sherlock-fictitious-character-fiction-2a1e862c.md) — 1 book
-- [Ship captains -- Fiction](Genres/ship-captains-fiction-9e755d7f.md) — 1 book
-- [Short stories](Genres/short-stories-50659607.md) — 4 books
-- [Siblings -- Fiction](Genres/siblings-fiction-ddc5c962.md) — 1 book
-- [Sisters -- Fiction](Genres/sisters-fiction-deddd6c0.md) — 2 books
+- [Shakespeare](Genres/shakespeare-a7adc246.md) — 1 book
+- [Sherlock (Fictitious character) -- Fiction](Genres/sherlock-fictitious-character-fiction-2a1e862c.md) — 6 books
+- [Ship captains -- Fiction](Genres/ship-captains-fiction-9e755d7f.md) — 3 books
+- [Ship captains--Fiction](Genres/ship-captains-fiction-aef0ae61.md) — 1 book
+- [Shipwreck survival -- Drama](Genres/shipwreck-survival-drama-e109089c.md) — 1 book
+- [Shipwreck survival -- Juvenile fiction](Genres/shipwreck-survival-juvenile-fiction-a59c1caa.md) — 1 book
+- [Shipwreck victims -- Drama](Genres/shipwreck-victims-drama-96b02abf.md) — 2 books
+- [Shipwreck victims--Fiction](Genres/shipwreck-victims-fiction-3ae30399.md) — 1 book
+- [Shipwrecks -- Fiction](Genres/shipwrecks-fiction-7def38b2.md) — 1 book
+- [Shipwrecks -- Juvenile fiction](Genres/shipwrecks-juvenile-fiction-affc8f73.md) — 1 book
+- [Shipwrecks--Fiction](Genres/shipwrecks-fiction-9b5aaf26.md) — 1 book
+- [Short Fiction](Genres/short-fiction-c58b9fd8.md) — 1 book
+- [Short stories](Genres/short-stories-50659607.md) — 73 books
+- [Shylock (Fictitious character)--Drama](Genres/shylock-fictitious-character-drama-5c5b5f55.md) — 1 book
+- [Siberia (Russia)--Fiction](Genres/siberia-russia-fiction-445042df.md) — 1 book
+- [Siblings](Genres/siblings-b0669112.md) — 1 book
+- [Siblings -- Fiction](Genres/siblings-fiction-ddc5c962.md) — 2 books
+- [Siegfried (Legendary character)](Genres/siegfried-legendary-character-9b56ed6f.md) — 1 book
+- [Sierra Nevada (Calif. and Nev.)](Genres/sierra-nevada-calif-and-nev-c34ba567.md) — 1 book
+- [Silence](Genres/silence-42b48f90.md) — 1 book
+- [Single men -- Fiction](Genres/single-men-fiction-76d6013c.md) — 2 books
+- [Sir](Genres/sir-82488519.md) — 1 book
+- [Sir (Fictitious character) -- Drama](Genres/sir-fictitious-character-drama-a4a962b7.md) — 1 book
+- [Sir (Fictitious character) -- Fiction](Genres/sir-fictitious-character-fiction-98b85400.md) — 6 books
+- [Sisters -- Fiction](Genres/sisters-fiction-deddd6c0.md) — 3 books
 - [Slavery -- Fiction](Genres/slavery-fiction-f4ceac0d.md) — 1 book
-- [Sled dogs -- Fiction](Genres/sled-dogs-fiction-9a8398af.md) — 1 book
-- [Social classes -- Fiction](Genres/social-classes-fiction-cab209b2.md) — 1 book
+- [Slaves -- Georgia -- Biography](Genres/slaves-georgia-biography-11ec7ab5.md) — 1 book
+- [Slaves -- United States -- Biography](Genres/slaves-united-states-biography-50f05ac4.md) — 2 books
+- [Slaves' writings](Genres/slaves-writings-7d333fef.md) — 2 books
+- [Sled dogs -- Fiction](Genres/sled-dogs-fiction-9a8398af.md) — 2 books
+- [Smugglers -- Fiction](Genres/smugglers-fiction-1a8a82d9.md) — 2 books
+- [Smuggling -- Fiction](Genres/smuggling-fiction-e88cdcdd.md) — 1 book
+- [Social classes -- Drama](Genres/social-classes-drama-21850e3a.md) — 2 books
+- [Social classes -- Fiction](Genres/social-classes-fiction-cab209b2.md) — 6 books
+- [Social contract](Genres/social-contract-72ba7355.md) — 1 book
+- [Social ethics](Genres/social-ethics-bd7f9a83.md) — 1 book
+- [Social problems](Genres/social-problems-eeb6f50d.md) — 1 book
+- [Social sciences](Genres/social-sciences-678ceace.md) — 1 book
+- [Soldiers -- Fiction](Genres/soldiers-fiction-a34768b6.md) — 2 books
 - [Soldiers -- United States -- Fiction](Genres/soldiers-united-states-fiction-d7fe5478.md) — 1 book
 - [Solitude](Genres/solitude-102f2aea.md) — 1 book
+- [Sologub](Genres/sologub-355387d8.md) — 1 book
+- [Solomon](Genres/solomon-28cb5d8c.md) — 1 book
+- [South Africa -- Fiction](Genres/south-africa-fiction-73f0ab97.md) — 1 book
+- [South America -- Fiction](Genres/south-america-fiction-506ac201.md) — 1 book
+- [South America--Fiction](Genres/south-america-fiction-6e22f55a.md) — 1 book
 - [Southern States -- Fiction](Genres/southern-states-fiction-8f04032a.md) — 1 book
+- [Southern States -- Social life and customs -- Fiction](Genres/southern-states-social-life-and-customs-fiction-517bc86f.md) — 1 book
+- [Soviet Union -- Fiction](Genres/soviet-union-fiction-d6a8ca8d.md) — 1 book
+- [Soviet Union -- Social conditions](Genres/soviet-union-social-conditions-1167c320.md) — 1 book
+- [Soviet Union -- Social life and customs -- Fiction](Genres/soviet-union-social-life-and-customs-fiction-2fde6252.md) — 1 book
+- [Space and time -- Fiction](Genres/space-and-time-fiction-ce998473.md) — 1 book
+- [Space colonies -- Fiction](Genres/space-colonies-fiction-5b9ab4d8.md) — 1 book
+- [Space flight--Fiction](Genres/space-flight-fiction-1ed1e9c4.md) — 2 books
+- [Space ships -- Fiction](Genres/space-ships-fiction-336d1564.md) — 1 book
+- [Space ships--Fiction](Genres/space-ships-fiction-9250bcae.md) — 2 books
+- [Space warfare -- Fiction](Genres/space-warfare-fiction-ebcd1e47.md) — 1 book
 - [Spain -- History -- Alfonso XIII](Genres/spain-history-alfonso-xiii-6e0faa82.md) — 1 book
+- [Speech and social status -- Drama](Genres/speech-and-social-status-drama-bb726c67.md) — 1 book
+- [Spirits -- Drama](Genres/spirits-drama-6833d36a.md) — 1 book
 - [Spouses -- Fiction](Genres/spouses-fiction-1ab1ba57.md) — 1 book
+- [Spy stories](Genres/spy-stories-7df46651.md) — 6 books
+- [Squirrels -- Juvenile fiction](Genres/squirrels-juvenile-fiction-bdbdfaaa.md) — 1 book
+- [Stanley Featherstonehaugh (Fictitious character) -- Fiction](Genres/stanley-featherstonehaugh-fictitious-character-fiction-6afe5dac.md) — 1 book
+- [State](Genres/state-ee63aaad.md) — 2 books
 - [Statesmen -- United States -- Biography](Genres/statesmen-united-states-biography-e538c8f9.md) — 2 books
 - [Stockyards -- Fiction](Genres/stockyards-fiction-40cb4ce7.md) — 1 book
 - [Stoics](Genres/stoics-aa51d8c1.md) — 1 book
-- [Strikes and lockouts -- Fiction](Genres/strikes-and-lockouts-fiction-5538f7a1.md) — 1 book
-- [Supernatural -- Fiction](Genres/supernatural-fiction-afc1ce2a.md) — 1 book
+- [Stone carving -- Fiction](Genres/stone-carving-fiction-658f1542.md) — 1 book
+- [Stowaways--Fiction](Genres/stowaways-fiction-2d95b429.md) — 1 book
+- [Strikes and lockouts -- Fiction](Genres/strikes-and-lockouts-fiction-5538f7a1.md) — 2 books
+- [Submarines (Ships) -- Fiction](Genres/submarines-ships-fiction-fa63bbf8.md) — 1 book
+- [Subterranean -- Fiction](Genres/subterranean-fiction-de651821.md) — 1 book
+- [Suburban life--Fiction](Genres/suburban-life-fiction-a4803c56.md) — 1 book
+- [Sudan -- Fiction](Genres/sudan-fiction-33c2b1a8.md) — 1 book
+- [Suicide victims--Fiction](Genres/suicide-victims-fiction-7043a949.md) — 1 book
+- [Superintendent Battle (Fictitious character) -- Fiction](Genres/superintendent-battle-fictitious-character-fiction-21993957.md) — 1 book
+- [Supernatural -- Fiction](Genres/supernatural-fiction-afc1ce2a.md) — 2 books
+- [Survival -- Fiction](Genres/survival-fiction-ede5d61a.md) — 1 book
+- [Survival skills -- Juvenile fiction](Genres/survival-skills-juvenile-fiction-9cd3dc0e.md) — 1 book
+- [Suspense fiction](Genres/suspense-fiction-52017581.md) — 2 books
+- [Sussex (England) -- Fiction](Genres/sussex-england-fiction-47250840.md) — 1 book
+- [Swamps -- Fiction](Genres/swamps-fiction-50e8b5c7.md) — 1 book
+- [Swedish -- Translations into English](Genres/swedish-translations-into-english-fa1a8037.md) — 1 book
+- [Swedish fiction](Genres/swedish-fiction-7523d579.md) — 1 book
+- [Swedish fiction -- Translations into English](Genres/swedish-fiction-translations-into-english-3d321944.md) — 1 book
+- [Swordsmen -- Fiction](Genres/swordsmen-fiction-32c8f8d5.md) — 3 books
+- [Symbolic and mathematical](Genres/symbolic-and-mathematical-82015367.md) — 1 book
 - [Tales](Genres/tales-aa5e3b29.md) — 1 book
+- [Tales -- India](Genres/tales-india-46bc1f91.md) — 2 books
+- [Tales -- Ireland](Genres/tales-ireland-454e1d7f.md) — 1 book
+- [Tarzan (Fictitious character) -- Fiction](Genres/tarzan-fictitious-character-fiction-7bc67a4e.md) — 11 books
+- [Teddy bears -- Juvenile fiction](Genres/teddy-bears-juvenile-fiction-e55140d9.md) — 1 book
+- [Teenage girls -- Fiction](Genres/teenage-girls-fiction-a8480327.md) — 1 book
+- [Telepathy -- Fiction](Genres/telepathy-fiction-2aaf737c.md) — 1 book
+- [Terminally ill -- Fiction](Genres/terminally-ill-fiction-64671fdb.md) — 1 book
+- [Terrorists -- Russia -- Fiction](Genres/terrorists-russia-fiction-7b6de0a8.md) — 1 book
+- [The -- Early works to 1800](Genres/the-early-works-to-1800-1c866b4f.md) — 2 books
+- [Theft -- Juvenile fiction](Genres/theft-juvenile-fiction-fdd6521f.md) — 1 book
 - [Theodore](Genres/theodore-c3e93b83.md) — 1 book
+- [Theology -- Early works to 1800](Genres/theology-early-works-to-1800-81ad22d3.md) — 1 book
+- [Theory of](Genres/theory-of-85876cf7.md) — 2 books
 - [Thoreau](Genres/thoreau-e877b154.md) — 1 book
-- [Thriller](Genres/thriller-babbc842.md) — 4 books
-- [Time travel -- Fiction](Genres/time-travel-fiction-46436adc.md) — 2 books
+- [Thriller](Genres/thriller-babbc842.md) — 48 books
+- [Time -- Fiction](Genres/time-fiction-e19aacb6.md) — 1 book
+- [Time travel -- Fiction](Genres/time-travel-fiction-46436adc.md) — 5 books
+- [Time travel--Fiction](Genres/time-travel-fiction-cca001ac.md) — 2 books
+- [Toleration -- Early works to 1800](Genres/toleration-early-works-to-1800-2aae8d0d.md) — 1 book
 - [Tom (Fictitious character) -- Fiction](Genres/tom-fictitious-character-fiction-b41db0e9.md) — 1 book
+- [Tom (Fictitious character) -- Juvenile fiction](Genres/tom-fictitious-character-juvenile-fiction-c374ba47.md) — 1 book
+- [Tommy (Fictitious character) -- Fiction](Genres/tommy-fictitious-character-fiction-1b061523.md) — 1 book
+- [Toys -- Juvenile fiction](Genres/toys-juvenile-fiction-137bd1a3.md) — 1 book
+- [Traffic accidents--Fiction](Genres/traffic-accidents-fiction-5d1e3d6e.md) — 1 book
+- [Tragedies](Genres/tragedies-403237a0.md) — 11 books
+- [Tragicomedy](Genres/tragicomedy-4faeba4d.md) — 1 book
+- [Transatlantic flights](Genres/transatlantic-flights-c6cb0ee8.md) — 1 book
+- [Travel -- Fiction](Genres/travel-fiction-b394f306.md) — 1 book
+- [Travelers -- Fiction](Genres/travelers-fiction-398788e4.md) — 1 book
+- [Treasure troves](Genres/treasure-troves-a369c76d.md) — 1 book
+- [Treasure troves -- Fiction](Genres/treasure-troves-fiction-b3b50a58.md) — 1 book
 - [Trials (Murder) -- Fiction](Genres/trials-murder-fiction-85a48329.md) — 1 book
-- [Triangles (Interpersonal relations) -- Fiction](Genres/triangles-interpersonal-relations-fiction-b5a56fc1.md) — 2 books
-- [Twain](Genres/twain-d0fcc7bf.md) — 3 books
+- [Triangles (Interpersonal relations) -- Fiction](Genres/triangles-interpersonal-relations-fiction-b5a56fc1.md) — 7 books
+- [Triangles (Interpersonal relations)--Fiction](Genres/triangles-interpersonal-relations-fiction-1ba67e7d.md) — 1 book
+- [Trinidad](Genres/trinidad-753a6882.md) — 1 book
+- [Trojan War](Genres/trojan-war-2388f6b3.md) — 1 book
+- [Trojan War -- Drama](Genres/trojan-war-drama-21a4072b.md) — 1 book
+- [Tuberculosis -- Patients -- Fiction](Genres/tuberculosis-patients-fiction-97fc29ac.md) — 1 book
+- [Tuppence (Fictitious character) -- Fiction](Genres/tuppence-fictitious-character-fiction-17557cde.md) — 1 book
+- [Tuskegee Institute](Genres/tuskegee-institute-1478dd42.md) — 1 book
+- [Twain](Genres/twain-d0fcc7bf.md) — 5 books
+- [Twins -- Drama](Genres/twins-drama-9ba76309.md) — 2 books
+- [Ukridge](Genres/ukridge-c4afda1d.md) — 1 book
+- [Underwater exploration -- Fiction](Genres/underwater-exploration-fiction-be924fed.md) — 1 book
 - [United States -- Civilization](Genres/united-states-civilization-13ed9e7a.md) — 1 book
-- [United States -- History -- Civil War](Genres/united-states-history-civil-war-6486aee7.md) — 1 book
-- [United States -- History -- French and Indian War](Genres/united-states-history-french-and-indian-war-980ba63c.md) — 1 book
-- [Va.](Genres/va-6903e419.md) — 1 book
+- [United States -- History -- Civil War](Genres/united-states-history-civil-war-6486aee7.md) — 3 books
+- [United States -- History -- French and Indian War](Genres/united-states-history-french-and-indian-war-980ba63c.md) — 2 books
+- [United States -- Politics and government -- 1913-1921](Genres/united-states-politics-and-government-1913-1921-f14d216d.md) — 1 book
+- [United States -- Social conditions -- 1865-1918](Genres/united-states-social-conditions-1865-1918-d9847070.md) — 2 books
+- [Unskilled labor -- Drama](Genres/unskilled-labor-drama-4e8e7c16.md) — 1 book
+- [Uruguay -- Fiction](Genres/uruguay-fiction-3f335369.md) — 1 book
+- [Utah -- Fiction](Genres/utah-fiction-9e4e2541.md) — 1 book
+- [Va.](Genres/va-6903e419.md) — 2 books
+- [Valets -- Fiction](Genres/valets-fiction-a74559f6.md) — 1 book
+- [Vampires -- India -- Folklore](Genres/vampires-india-folklore-857f1dda.md) — 1 book
 - [Van Winkle](Genres/van-winkle-93a367aa.md) — 1 book
-- [Virginia -- History -- Civil War](Genres/virginia-history-civil-war-ef7714a6.md) — 1 book
-- [Voyages and travels](Genres/voyages-and-travels-36624526.md) — 1 book
-- [Voyages around the world](Genres/voyages-around-the-world-3b3704d0.md) — 1 book
+- [Vendetta -- Drama](Genres/vendetta-drama-8e76ca7f.md) — 1 book
+- [Venice (Italy)--Drama](Genres/venice-italy-drama-70b9809b.md) — 1 book
+- [Venus (Planet) -- Fiction](Genres/venus-planet-fiction-c111dbea.md) — 1 book
+- [Verona (Italy) -- Drama](Genres/verona-italy-drama-bf2f1608.md) — 1 book
+- [Virginia -- History -- Civil War](Genres/virginia-history-civil-war-ef7714a6.md) — 2 books
+- [Voyages](Genres/voyages-a47cc10e.md) — 3 books
+- [Voyages and travels](Genres/voyages-and-travels-36624526.md) — 4 books
+- [Voyages and travels -- Fiction](Genres/voyages-and-travels-fiction-56f31204.md) — 2 books
+- [Voyages and travels -- Juvenile fiction](Genres/voyages-and-travels-juvenile-fiction-f7e8d31b.md) — 1 book
+- [Voyages around the world](Genres/voyages-around-the-world-3b3704d0.md) — 2 books
+- [Voyages around the world--Fiction](Genres/voyages-around-the-world-fiction-852a074e.md) — 1 book
+- [W. Somerset (William Somerset)](Genres/w-somerset-william-somerset-62d8a0b7.md) — 1 book
 - [Wall Street (New York](Genres/wall-street-new-york-a5d7fb90.md) — 1 book
-- [War stories](Genres/war-stories-c2c276a9.md) — 4 books
+- [War -- Early works to 1800](Genres/war-early-works-to-1800-cc2c8242.md) — 1 book
+- [War stories](Genres/war-stories-c2c276a9.md) — 21 books
 - [War wounds -- Fiction](Genres/war-wounds-fiction-4b91d0d8.md) — 1 book
-- [West (U.S.) -- Description and travel](Genres/west-u-s-description-and-travel-d135e86f.md) — 1 book
-- [West (U.S.) -- Intellectual life -- 19th century](Genres/west-u-s-intellectual-life-19th-century-5507e222.md) — 1 book
+- [Washington](Genres/washington-f75c2f8d.md) — 2 books
+- [Wealth -- Juvenile fiction](Genres/wealth-juvenile-fiction-966956e6.md) — 1 book
+- [Well water](Genres/well-water-aeeac9e9.md) — 1 book
+- [Wessex (England) -- Fiction](Genres/wessex-england-fiction-a940816e.md) — 5 books
+- [West (U.S.) -- Description and travel](Genres/west-u-s-description-and-travel-d135e86f.md) — 2 books
+- [West (U.S.) -- Intellectual life -- 19th century](Genres/west-u-s-intellectual-life-19th-century-5507e222.md) — 2 books
+- [West Indians -- England -- Fiction](Genres/west-indians-england-fiction-812bb42f.md) — 1 book
+- [Western -- Fiction](Genres/western-fiction-d4ae38cc.md) — 1 book
+- [Western stories](Genres/western-stories-c553f4fa.md) — 2 books
 - [Whaling -- Fiction](Genres/whaling-fiction-2b4b4f96.md) — 1 book
+- [Whaling ships--Fiction](Genres/whaling-ships-fiction-ae0b08e7.md) — 1 book
+- [Wild men -- Fiction](Genres/wild-men-fiction-ccebb6b4.md) — 1 book
 - [Wilderness areas -- Massachusetts -- Walden Woods](Genres/wilderness-areas-massachusetts-walden-woods-ef01d89e.md) — 1 book
-- [Wolfdogs -- Fiction](Genres/wolfdogs-fiction-b5640e88.md) — 1 book
+- [William](Genres/william-efab401d.md) — 2 books
+- [Wimsey](Genres/wimsey-13f863d1.md) — 1 book
+- [Windsor (Berkshire](Genres/windsor-berkshire-be8b5a2e.md) — 1 book
+- [Winnie-the-Pooh (Fictitious character) -- Juvenile fiction](Genres/winnie-the-pooh-fictitious-character-juvenile-fiction-edb445b1.md) — 1 book
+- [Wives -- Drama](Genres/wives-drama-34720a23.md) — 1 book
+- [Wolfdogs -- Fiction](Genres/wolfdogs-fiction-b5640e88.md) — 2 books
+- [Women -- England -- Fiction](Genres/women-england-fiction-8eda1443.md) — 2 books
+- [Women -- Social and moral questions](Genres/women-social-and-moral-questions-86841057.md) — 1 book
+- [Women adventurers](Genres/women-adventurers-4c7e1b56.md) — 1 book
+- [Women detectives--England--Fiction](Genres/women-detectives-england-fiction-7bc677c0.md) — 1 book
+- [Women farmers -- Fiction](Genres/women-farmers-fiction-e086461e.md) — 1 book
 - [Women novelists -- Fiction](Genres/women-novelists-fiction-e9e41326.md) — 1 book
+- [Women peasants -- Fiction](Genres/women-peasants-fiction-4bb03a46.md) — 1 book
+- [Women ranchers -- Fiction](Genres/women-ranchers-fiction-12b904d1.md) — 1 book
+- [Women's rights](Genres/women-s-rights-74c11804.md) — 1 book
+- [Wooster](Genres/wooster-5a5702ae.md) — 1 book
 - [Working class -- Fiction](Genres/working-class-fiction-373515d6.md) — 2 books
-- [World War](Genres/world-war-3e2e72d2.md) — 1 book
+- [World War](Genres/world-war-3e2e72d2.md) — 15 books
+- [Yankton Indians -- Government relations](Genres/yankton-indians-government-relations-447987f9.md) — 1 book
+- [Yankton Indians -- Social conditions](Genres/yankton-indians-social-conditions-fe7b040d.md) — 1 book
+- [Yankton women -- Biography](Genres/yankton-women-biography-8144b369.md) — 1 book
 - [Yellowstone National Park](Genres/yellowstone-national-park-e46769c9.md) — 1 book
 - [Yosemite National Park (Calif.)](Genres/yosemite-national-park-calif-3c586ddd.md) — 1 book
-- [Young men -- Fiction](Genres/young-men-fiction-12ad5bd6.md) — 1 book
-- [Young women -- Fiction](Genres/young-women-fiction-ad0dfb53.md) — 2 books
+- [Young men -- Fiction](Genres/young-men-fiction-12ad5bd6.md) — 2 books
+- [Young men--Fiction](Genres/young-men-fiction-a2c5d957.md) — 2 books
+- [Young women -- Fiction](Genres/young-women-fiction-ad0dfb53.md) — 8 books
+- [Youth -- Drama](Genres/youth-drama-6a726f32.md) — 1 book
+- [Yukon River Valley (Yukon and Alaska) -- Fiction](Genres/yukon-river-valley-yukon-and-alaska-fiction-f4583d7d.md) — 1 book
+- [Zines](Genres/zines-ba45a90d.md) — 2 books
+- [Zitkala-Sa](Genres/zitkala-sa-83e14154.md) — 1 book
+- [Zuni Indians -- Folklore](Genres/zuni-indians-folklore-4f0db85e.md) — 1 book
+- [active 11th century -- Drama](Genres/active-11th-century-drama-835aa93d.md) — 1 book
 - [active 12th century](Genres/active-12th-century-3dd43a21.md) — 1 book
+- [active 12th century -- Translations into English](Genres/active-12th-century-translations-into-english-ec1ad6a2.md) — 1 book
+- [de France](Genres/de-france-e6bd07a6.md) — 1 book
 - [de Troyes](Genres/de-troyes-fa805016.md) — 1 book
-- [etc.](Genres/etc-c4415f60.md) — 1 book
+- [etc.](Genres/etc-c4415f60.md) — 2 books
+- [genius](Genres/genius-38cf1722.md) — 1 book
 - [in literature](Genres/in-literature-7225f34b.md) — 1 book
+- [vocabularies](Genres/vocabularies-151bc000.md) — 1 book
 
 ## Books
 
 - [2 B R 0 2 B](Books/17C4004A-FB11-4F38-8F34-4D53FA7BDF2E.md) — Kurt Vonnegut
 - [A Book of Prefaces](Books/8E05AF21-52D6-4D6A-BAB6-A216B7C2A6AD.md) — H. L. Mencken
 - [A Connecticut Yankee in King Arthur's Court](Books/A5DD5A9F-9C99-4931-BA33-F1088AD975F1.md) — Mark Twain
+- [A Farewell to Arms](Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md) — Ernest Hemingway
+- [A High Wind in Jamaica](Books/8A68D93A-32DA-4268-AC97-1CEBAE4FBDD3.md) — Richard Hughes
+- [A Midsummer Night’s Dream](Books/0CA653B0-CCE3-4B4B-8704-7BFDD7D23D57.md) — William Shakespeare
+- [A Tale of Two Cities](Books/E224E072-062D-49C1-8281-FF9027477F36.md) — Charles Dickens
+- [A Thief in the Night](Books/40E8B12C-4C43-4CDD-A5F2-4887A84D1F13.md) — E. W. Hornung
+- [A Treatise of Human Nature](Books/6414B1C0-8AB5-4F83-9D59-B1975850D2C4.md) — David Hume
+- [A Woman of No Importance](Books/934EED71-EFE9-4449-91C6-808DAAAC905A.md) — Oscar Wilde
 - [A farewell to arms](Books/CF72CA27-3ED2-4D0B-B949-2F8F13569041.md) — Ernest Hemingway
 - [Adventures of Huckleberry Finn](Books/ED046AD7-93DC-4645-B7B2-1DBCBD68E9B2.md) — Mark Twain
+- [After London](Books/BD5A4C69-C84E-4433-809A-9F3E4A35294B.md) — Richard Jefferies
+- [Agamemnon](Books/5516FE98-FDA4-4F7F-A1D8-24A1269D6F55.md) — Aeschylus
+- [Agamemnon](Books/786FFEFA-0B5D-4CB8-BEA4-8A07078A8380.md) — Aeschylus
 - [Alice's Adventures in Wonderland](Books/A76E7C30-7CE8-4B66-A0D7-F527434B674B.md) — Lewis Carroll
+- [Allan Quatermain](Books/52F31C59-EFF6-43F7-9446-877CB0E96C03.md) — H. Rider Haggard
+- [Allan Quatermain Stories](Books/516C697F-7657-492A-B266-1035C2073CCF.md) — H. Rider Haggard
+- [All’s Well That Ends Well](Books/02D165CA-C030-4EE1-9BD6-6A90F394FE01.md) — William Shakespeare
+- [American Indian Stories](Books/DC4FA6FB-7FE2-4B18-94CB-E1EF24AC1434.md) — Zitkála-Šá
+- [An Antarctic Mystery](Books/B07C646D-EC55-4927-A8E3-C7FDC454592B.md) — Jules Verne
+- [An Ideal Husband](Books/E1B01324-866D-46FE-93D5-C423EB2ECC59.md) — Oscar Wilde
+- [Analects](Books/BA82DEBF-08BE-4577-8603-91614AAD87D4.md) — Confucius
+- [Anna Karenina](Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md) — Leo Tolstoy
+- [Anne of Green Gables](Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md) — L. M. Montgomery
 - [Anthem](Books/8BAEF5C3-053B-4781-ABA9-181EB85B2CE2.md) — Ayn Rand
+- [Antigone](Books/4413B0AE-6F3E-498D-8AFC-5620399F018D.md) — Sophocles
+- [Antony and Cleopatra](Books/F8692394-63AD-417C-BAB2-65EBF2DC7E43.md) — William Shakespeare
+- [Around the World in Eighty Days](Books/D78BDAF1-BC42-445C-9ADA-DFB464242C82.md) — Jules Verne
+- [Arsène Lupin Versus Herlock Sholmes](Books/F4B880EF-BFEC-4AAF-AC53-FDFD94785070.md) — Maurice Leblanc
+- [As I Lay Dying](Books/1D1C7061-A494-4FFF-BACE-FEE48EAC9A6A.md) — William Faulkner
+- [As You Like It](Books/9C2D7C70-806D-410C-95DB-86422B7E3C9D.md) — William Shakespeare
+- [Ashenden](Books/9AE25B84-43D4-431D-8E1F-E78C6D116855.md) — W. Somerset Maugham
+- [Aspects of the Novel](Books/9E1D9033-E123-4A26-B19A-A73DA8B1F228.md) — E. M. Forster
+- [At the Mountains of Madness](Books/CF9C1AF5-31C8-4BA1-BC16-D56A3D0DE475.md) — H. P. Lovecraft
 - [Autobiography of Benjamin Franklin](Books/36D10C57-716F-4BC6-BAFC-645FF08DF515.md) — Benjamin Franklin
+- [Babbitt](Books/3289091D-28CA-4DCC-BA1B-93C199BC5801.md) — Sinclair Lewis
 - [Bartleby, the Scrivener: A Story of Wall-Street](Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md) — Herman Melville
+- [Behind That Curtain](Books/312921AA-113B-40E5-93BE-05F65245C556.md) — Earl Derr Biggers
+- [Bel Ami](Books/591376BF-D9FE-4411-8ED3-9C4D34C89970.md) — Guy de Maupassant
+- [Bellarion the Fortunate](Books/C9CBA5F4-66FE-4E91-8DCD-7B074E230A0C.md) — Rafael Sabatini
+- [Beowulf](Books/5040E95D-0E1D-474D-B658-93F7255A288C.md) — Anonymous
 - [Beyond Good and Evil](Books/7325DA2E-E663-49DC-93E0-87E829E8B764.md) — Friedrich Wilhelm Nietzsche
+- [Beyond Thirty](Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md) — Edgar Rice Burroughs
+- [Black Beauty](Books/4057CCD9-601D-4610-866D-1F15C4A8A3D7.md) — Anna Sewell
+- [Blind Corner](Books/5D28CCD7-8B5A-446A-91B4-30A4633BCB6F.md) — Dornford Yates
+- [Blue Hand](Books/B91C524F-2BCF-4F70-903D-36EBEA262372.md) — Edgar Wallace
+- [Bulldog Drummond](Books/4513F14C-F744-4BA0-89B1-D2F6F931DED5.md) — H. C. McNeile
+- [Call Mr. Fortune](Books/1F68F31A-AA32-4414-B116-4B3C93BDD75E.md) — H. C. Bailey
+- [Can Such Things Be?](Books/17C1079C-2E49-4BDD-83D9-D485E4FD248F.md) — Ambrose Bierce
+- [Captain Blood](Books/B15BDB89-D911-404F-80D9-3C623CC15589.md) — Rafael Sabatini
+- [Catriona](Books/497657E2-3F7B-474C-8D6D-E2C0D5F5FB1F.md) — Robert Louis Stevenson
+- [Children’s Stories](Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md) — Oscar Wilde
+- [Cleopatra](Books/36058611-761B-4D3F-BC43-3DF67C3DDF2B.md) — H. Rider Haggard
+- [Cogewea, the Half-Blood](Books/E6AD992C-BB58-4807-9722-E5E9D41A3405.md) — Mourning Dove
+- [Commentaries on the Gallic War](Books/555D9213-CE97-4864-919A-E71A4F1451B7.md) — Julius Caesar
+- [Conan Stories](Books/C9F91FFC-0937-4510-A37F-D5D5163A86C5.md) — Robert E. Howard
+- [Continental Op Stories](Books/92EDF66B-F0B7-4584-B229-4A5F525977B8.md) — Dashiell Hammett
+- [Craig Kennedy Stories](Books/2DDC7ADE-E788-4880-9354-3FBC5B7E6F50.md) — Arthur B. Reeve
 - [Crime and Punishment](Books/CB9F10BE-C785-454C-8EB5-4ED84B162D31.md) — Fyodor Dostoyevsky
+- [Crome Yellow](Books/85F34883-36B5-48B5-B256-D9F006F788D7.md) — Aldous Huxley
+- [Darby O’Gill and the Good People](Books/1BB84BED-6408-482C-918B-39064E37F1A2.md) — Herminie Templeton Kavanagh
+- [Democracy and Social Ethics](Books/427AB8EE-6344-464B-8C72-28F01F147F59.md) — Jane Addams
+- [Demons](Books/75AAB312-A2DA-401C-8D4D-21E36D1B8522.md) — Fyodor Dostoevsky
+- [Doctor Syn](Books/56771839-E8CE-4E46-9EAB-8DD2A8086B80.md) — Russell Thorndike
 - [Dorothy and the Wizard in Oz](Books/4DFFBED4-FB87-40FD-BE7F-0A8B93EE5E72.md) — L. Frank Baum
+- [Dubliners](Books/B97DA2E7-F7DA-48AC-9BCE-7617370C6BA7.md) — James Joyce
 - [East of Eden](Books/A1BFD5AA-C21A-451C-B0F2-C43A708C21FC.md) — Isa Glenn
+- [El Dorado](Books/F405733F-BF33-4FF8-8FC0-856C2D7B7762.md) — Baroness Orczy
+- [Essays](Books/226D7A38-C83A-4DFD-BB2F-525FA59FC9CA.md) — Henry David Thoreau
+- [Essays](Books/26D4DDC4-FE52-4D8D-B009-5CF361319D82.md) — Thomas Paine
 - [Essays by Ralph Waldo Emerson](Books/205BB4C2-B465-4D91-8C09-FB6FA0201803.md) — Ralph Waldo Emerson
 - [Ethan Frome](Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md) — Edith Wharton
+- [Ethan Frome](Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md) — Edith Wharton
+- [Fables](Books/6DFCE33A-6CBF-4062-82B7-AC0DF3B3492A.md) — Aesop
+- [Far from the Madding Crowd](Books/70470CBB-9CB0-4037-ACAB-6047AFA2479E.md) — Thomas Hardy
 - [Fenimore Cooper's Literary Offences](Books/0C1C9E54-BED7-444F-B49A-05B71E5694BE.md) — Mark Twain
+- [Fifty-One Tales](Books/65E981EA-7BF0-4885-82BF-CBA2AE64C9D5.md) — Lord Dunsany
+- [Five Weeks in a Balloon](Books/564274E3-64C1-43EC-9823-2BFEF761C4FC.md) — Jules Verne
 - [Following the Equator: A Journey Around the World](Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md) — Mark Twain
 - [Four Arthurian Romances](Books/BFFC3AAD-BDC5-4567-B344-83382F2CEA2A.md) — active 12th century de Troyes Chrétien
+- [Fred Gross Stories](Books/C45A20AE-2B01-4E69-9898-77E89D961478.md) — Ring Lardner
+- [Germinal](Books/919A4D92-DCB6-413E-9B55-76DB5FD6FC59.md) — Émile Zola
+- [Ghost Stories](Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md) — E. F. Benson
+- [Giant’s Bread](Books/8C41294A-84FE-4FD9-A677-E7FE1369BE86.md) — Agatha Christie
+- [Gladiator](Books/1D521F7C-57D8-4EE0-ACB9-1F79D45DA3D9.md) — Philip Wylie
+- [Golf Stories](Books/1DB751CA-1BE6-4D0F-BBB2-E5198C1980CB.md) — P. G. Wodehouse
+- [Greenmantle](Books/2315EB37-7FDA-4785-9E34-C215E58D4467.md) — John Buchan
+- [Gullible’s Travels](Books/46484840-1AF1-4166-9700-4A11A57B3DED.md) — Ring Lardner
+- [Gulliver’s Travels](Books/C3584C46-895E-4EE4-9DC5-5954506F75CE.md) — Jonathan Swift
+- [Hamilton](Books/8EFD0FAD-8804-46EF-A73C-890427971114.md) — Mary P. Hamlin
+- [Hamlet](Books/28DEB3C7-5F29-4D5D-AC1B-80DA3D2941D5.md) — William Shakespeare
+- [Heretics](Books/1EDE6E0A-E34C-4511-86B4-D60F585491E9.md) — G. K. Chesterton
+- [Hindu Tales from the Sanskrit](Books/FF102E21-2202-4BB3-A88E-D2FF047FDBF0.md) — S. M. Mitra
+- [His Last Bow](Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md) — Arthur Conan Doyle
+- [Household Tales](Books/BC7C2FBC-FCF2-4093-8ED0-C8FE3CC6ECF3.md) — Jacob Grimm
+- [Hunting for Hidden Gold](Books/070A3190-5FFD-4A8A-A1D7-215054BD90E3.md) — Franklin W. Dixon
+- [Huntingtower](Books/534B5714-6330-416F-89DC-A2EBED4C2C3F.md) — John Buchan
+- [I Will Repay](Books/EE1420DD-42C1-45EF-A6C3-3DD1708274F8.md) — Baroness Orczy
+- [In the Midst of Life](Books/8A4E71F0-81BD-4F82-9B5C-02442AB01C3A.md) — Ambrose Bierce
 - [Index of the Project Gutenberg Works of Henry David Thoreau](Books/20DFDF06-FD09-4E00-AED6-882B4FC889A6.md) — Henry David Thoreau
+- [Indian Fairy Tales](Books/7CCB8889-7605-46F5-866A-0BE4AB4935EF.md) — Joseph Jacobs
+- [Irish Fairy Tales](Books/652FCA03-A423-471E-AE0A-1907FAB0E4C8.md) — James Stephens
+- [Ivanhoe](Books/C2611716-5F13-48E1-A248-8CFB0DF89049.md) — Walter Scott
+- [Jack Keefe Stories](Books/FD1C7295-58D9-49B9-AF99-DA46403CED94.md) — Ring Lardner
+- [Jacob’s Room](Books/B7388E23-4426-4D38-BAC1-486C823DA7D9.md) — Virginia Woolf
+- [Jane Eyre](Books/862ED974-72FF-475C-A1B4-A649ABA15EFB.md) — Charlotte Brontë
+- [Jeeves Stories](Books/592B8ACE-4B06-4E70-9479-2E49CAD7BBEE.md) — P. G. Wodehouse
+- [Jesus the Son of Man](Books/65B41869-3660-4028-AA6C-D30BE23F7694.md) — Kahlil Gibran
+- [Jibby Jones](Books/216055F7-E991-473A-A788-F9CE95334AA0.md) — Ellis Parker Butler
+- [John Silence Stories](Books/6A31FCE5-2847-4CA1-866C-DC461BE3CCD3.md) — Algernon Blackwood
+- [Journals](Books/D80EDB16-78C8-4445-A84E-8464F738662D.md) — Alexander Mackenzie
+- [Journey to the Center of the Earth](Books/06A26BC1-47F2-4533-B65E-FFF2F12ECBC8.md) — Jules Verne
+- [Journey to the Center of the Earth](Books/25226025-591E-480D-9168-06B8E051706B.md) — Jules Verne
+- [Julius Caesar](Books/D9F27150-9A97-4764-B8BB-165523312512.md) — William Shakespeare
+- [Jungle Tales of Tarzan](Books/1C26F9AB-4F29-4B08-A815-8C05B13C561C.md) — Edgar Rice Burroughs
+- [Just So Stories](Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md) — Rudyard Kipling
+- [Kidnapped](Books/97B01DE7-A22E-4074-A4CE-A1FA18B39AF3.md) — Robert Louis Stevenson
+- [Kim](Books/37A6FA59-425B-4CC5-A738-5AC4C7FB00D5.md) — Rudyard Kipling
 - [King Arthur and the Knights of the Round Table](Books/AEDA64CD-C6CF-4A3D-9D46-5D3FB34A7CD4.md) — Sir Thomas Malory
+- [King Lear](Books/C022B1D4-8225-472D-96C5-4BD8242F7CEF.md) — William Shakespeare
 - [King Midas: a Romance](Books/0E11AF7D-2AE2-437A-97A7-F1B8ED125F77.md) — Upton Sinclair
+- [King Solomon’s Mines](Books/478B6639-E701-4D09-9D99-ABF16B05409F.md) — H. Rider Haggard
+- [Lady Chatterley’s Lover](Books/35BF24CF-4D51-41AE-AD44-647324261333.md) — D. H. Lawrence
+- [Lais](Books/BF0EA437-3E0B-453B-8D93-6DE7AC65225B.md) — Marie de France
+- [Le Morte d’Arthur](Books/EE981D9A-24CF-4182-9932-BD5D537EB2CC.md) — Thomas Malory
 - [Leaves of Grass](Books/98EA5DAF-B1EC-4BD4-8479-015AD60F6A6F.md) — Walt Whitman
+- [Legends of Vancouver](Books/08E0AA71-C9CA-4B45-844D-595352D7230A.md) — E. Pauline Johnson
+- [Les Misérables](Books/54C22B5C-C854-4041-B905-90ED4A05AB72.md) — Victor Hugo
+- [Leviathan](Books/A8BEBEDD-6A78-4D58-9930-60BE6E21BB5C.md) — Thomas Hobbes
 - [Life on the Mississippi](Books/37B7B288-947A-4452-B397-94B8707D337F.md) — Mark Twain
+- [Little Lord Fauntleroy](Books/C63227F2-356A-4BEF-897B-4AB7EC8B2F11.md) — Frances Hodgson Burnett
 - [Little Women](Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md) — Louisa May Alcott
+- [Lord Arthur Savile’s Crime and Other Stories](Books/7C4FA643-F964-439C-BD3F-21FC9AACEB4B.md) — Oscar Wilde
+- [Lord Arthur Savile’s Crime and Other Stories](Books/AE827DF5-44D7-48A5-8888-926CFC6C8CDA.md) — Oscar Wilde
+- [Lord Peter Views the Body](Books/92A8249B-224C-4E2C-8D90-41B86501A3DE.md) — Dorothy L. Sayers
+- [Lord Tony’s Wife](Books/A855A2C0-C1BE-4FBC-956D-8D511FFECCC3.md) — Baroness Orczy
+- [Lorna Doone](Books/0A45C08C-A329-415C-B8AC-16498DE5DB60.md) — R. D. Blackmore
+- [Lost Face](Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md) — Jack London
+- [Macbeth](Books/EE078B7D-9121-4D2F-9175-8805BED782F9.md) — William Shakespeare
+- [Maiwa’s Revenge](Books/F0DE9445-E508-4483-9477-FFDCD6501B28.md) — H. Rider Haggard
+- [Manalive](Books/B9C3B0E0-ECE8-4AFB-BD16-B5C8FAE3CC6E.md) — G. K. Chesterton
+- [Mansfield Park](Books/AA2BDFD7-B608-4192-BC7F-67079F09D869.md) — Jane Austen
+- [McTeague](Books/8A3FC784-334D-4B9C-A35B-D3C06B502E94.md) — Frank Norris
 - [Meditations](Books/8042EE51-3745-41F4-A6F7-12F47276331D.md) — Emperor of Rome Marcus Aurelius
 - [Memoirs of Benjamin Franklin; Written by Himself. \[Vol. 2 of 2\] / With his Most Interesting Essays, Letters, and Miscellaneous Writings; Familiar, Moral, Political, Economical, and Philosophical, Selected with Care from All His Published Productions, and Comprising Whatever Is Most Entertaining and Valuable to the General Reader](Books/25B3973C-8C33-4DEC-B696-FE50B72043D7.md) — Benjamin Franklin
 - [Men without women](Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md) — Ernest Hemingway
 - [Moby Dick; Or, The Whale](Books/8EED98A3-73C5-4C4D-B943-2EBCE6CDA5D5.md) — Herman Melville
+- [Mr. Mulliner Stories](Books/BC6A63D9-09A6-49C3-9BDA-BC9804F51615.md) — P. G. Wodehouse
+- [Mr. Standfast](Books/6FABB4C5-0118-4C59-92DF-47D609A66433.md) — John Buchan
+- [Mrs. Dalloway](Books/C609E03C-A92E-4301-8AEC-C21DB54B92A6.md) — Virginia Woolf
+- [Much Ado About Nothing](Books/D9AB4888-263D-4E8B-BA32-A8AFBF83448C.md) — William Shakespeare
 - [My Bondage and My Freedom](Books/6E44812A-E1CA-4FEA-90B9-CC2F23978084.md) — Frederick Douglass
+- [My First Summer in the Sierra](Books/85EAC71C-97AE-4464-8025-074E99BADD64.md) — John Muir
+- [Narrative of the Life of Frederick Douglass](Books/F0759194-183E-493D-825F-6D8DD5323EB3.md) — Frederick Douglass
 - [Narrative of the Life of Frederick Douglass, an American Slave](Books/02C39B47-8A9F-4267-8DFD-A5940B0CADE3.md) — Frederick Douglass
 - [Nature](Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md) — Ralph Waldo Emerson
+- [New Hampshire](Books/12A69B9C-979B-49BE-997C-532A2B67C6A1.md) — Robert Frost
+- [Nicomachean Ethics](Books/DD151E0F-1FCD-44DA-9C20-D4E694AA0463.md) — Aristotle
+- [Nonsense Books](Books/3C115034-37FA-4374-9E7E-E2BAC88914E9.md) — Edward Lear
+- [Not Without Laughter](Books/C84F695A-72A9-4D40-8924-E54201BCA2DA.md) — Langston Hughes
+- [Notes from Underground](Books/F2F70316-110C-4FEC-918E-E293E7F281F4.md) — Fyodor Dostoevsky
+- [Oedipus Rex](Books/D62F4D4A-34E0-4956-AE10-CD2D282DE59C.md) — Sophocles
+- [Oedipus at Colonus](Books/D33A4258-271F-4862-A46C-FD5989BE1C8D.md) — Sophocles
+- [Old Indian Legends](Books/62A08849-045C-4B5B-A20D-FF189BA1D1A8.md) — Zitkála-Šá
+- [Oliver Twist](Books/2F1D0CB3-82FD-4509-BDAA-0E67FC9CA799.md) — Charles Dickens
+- [On a Chinese Screen](Books/7AF4E65C-A95D-4306-B332-1411C72A9FE4.md) — W. Somerset Maugham
+- [On a Pincushion](Books/24FF9241-00C1-4936-9186-A839610E3FA6.md) — Mary De Morgan
 - [On the Duty of Civil Disobedience](Books/BCDE62B6-FB87-48CF-A6A3-28FC16221F09.md) — Henry David Thoreau
+- [Orlando Furioso](Books/3A1EE7B4-43E8-45D8-9B20-3DAF2E45C912.md) — Ludovico Ariosto
+- [Orthodoxy](Books/1307C541-02BD-4DFD-811B-797AA466580E.md) — G. K. Chesterton
+- [Othello](Books/46083AB2-3D35-4ED1-A763-90AE4C5EE8A1.md) — William Shakespeare
 - [Our National Parks](Books/8700D61F-D818-4A85-84C0-85189596F2B9.md) — John Muir
+- [Paradise Lost](Books/48EAD193-5720-4A5C-8692-9EB5695F829E.md) — John Milton
+- [Partners in Crime](Books/77BED452-3EC1-4A65-8DFE-C531A20BD810.md) — Agatha Christie
+- [Passages from the Life of a Philosopher](Books/19A57E6A-C76F-46ED-B8F9-0C717D5DA7FF.md) — Charles Babbage
+- [Payment Deferred](Books/E7B36F81-335D-44A0-BF15-3E56685595F7.md) — C. S. Forester
+- [Perishable Goods](Books/1E3E3E45-91ED-4697-94FA-577CA9BB6163.md) — Dornford Yates
+- [Persuasion](Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md) — Jane Austen
+- [Philoctetes](Books/5A3445E0-A649-40F3-BF0B-F857390E456B.md) — Sophocles
+- [Philosophical Works](Books/91513010-B2B7-4CFF-AF18-C5AE534BD8D9.md) — René Descartes
+- [Pimpernel and Rosemary](Books/A5EC2717-0CF0-4423-8B16-D146EA2170F0.md) — Baroness Orczy
+- [Pirates of Venus](Books/4E627EE7-4C1A-431A-8F54-5FB07CDE8D37.md) — Edgar Rice Burroughs
 - [Poems by Emily Dickinson, Series One](Books/7F67F5CB-CC22-49CD-8D73-976D67304E41.md) — Emily Dickinson
 - [Poems by Emily Dickinson, Three Series, Complete](Books/98CB80E4-ECCA-4B7A-8EAF-EDBEDB19C3DE.md) — Emily Dickinson
+- [Poems on Various Subjects, Religious and Moral](Books/DF8E61E8-AA3F-4A43-BA54-B1CDE378ABEB.md) — Phillis Wheatley
+- [Poetry](Books/1B240C4F-C43B-4968-A5C5-BABC8300DE69.md) — John Donne
+- [Poetry](Books/76424F94-F7A4-4A88-8E29-74C06C17F623.md) — James Joyce
+- [Poetry](Books/E1885C28-A2DB-457F-B5E6-C46D5EE63B3F.md) — William Carlos Williams
+- [Poetry](Books/03FA39A1-39CC-4E96-9BC2-197E4CB20EB4.md) — William Shakespeare
+- [Point Counter Point](Books/C180BB96-F04C-4EB6-8B3B-A9CBFA65F5D4.md) — Aldous Huxley
+- [Poirot Investigates](Books/DA0B3FE2-54DD-4A9C-B15A-5967F67B4809.md) — Agatha Christie
 - [Prejudices, first series](Books/C2D5E195-9B03-4837-B986-12AB45B4F7D2.md) — H. L. Mencken
+- [Pygmalion](Books/31979540-7989-4E44-B2BF-6EDD57152DB9.md) — George Bernard Shaw
+- [Riders of the Purple Sage](Books/484815A8-A6EC-4625-BA9A-C6DED1563712.md) — Zane Grey
 - [Rip Van Winkle](Books/D9F4D198-46E8-445F-9B18-A824D5E23F73.md) — Washington Irving
+- [Romeo and Juliet](Books/BC0FF1D5-C41C-4CAE-94B6-F48A0B96C28A.md) — William Shakespeare
+- [Room 13](Books/4B79C267-89C1-45C7-B018-BDC6A1E2E427.md) — Edgar Wallace
 - [Roughing It](Books/0FBD4219-E6C9-4560-8575-BA69C5314EE2.md) — Mark Twain
+- [Roughing It](Books/0CE9012E-AACF-466B-B2D5-6CF3445B6ECB.md) — Mark Twain
+- [Running a Thousand Miles for Freedom](Books/F6F36C83-0D26-4531-92FA-25A4003D1E41.md) — William Craft
+- [Russian Folktales](Books/C4E5B1DE-A652-497A-84E4-7E4ACE2DCC3B.md) — A. N. Afanasyev
+- [Sailing Alone Around the World](Books/BF702BC7-1E06-4927-9B35-BAF483DB1899.md) — Joshua Slocum
+- [Savrola](Books/6279F876-441F-4758-875C-86CD2E15D799.md) — Winston Churchill
+- [School Stories](Books/C39CC81F-4348-45FF-88AA-5C1FF008B85B.md) — P. G. Wodehouse
 - [Sense and Sensibility](Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md) — Jane Austen
+- [Sense and Sensibility](Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md) — Jane Austen
+- [Seven Pillars of Wisdom](Books/3FA07147-7B14-45EC-A0EC-3CAF8F819A83.md) — T. E. Lawrence
+- [Short Fiction](Books/28BEFD12-BA87-4341-928F-6C212F09EFC1.md) — Edgar Allan Poe
+- [Short Fiction](Books/53316201-814F-4714-9D77-7EEAA566723E.md) — Mary Shelley
+- [Short Fiction](Books/5F0262A2-5555-4440-90B1-A948DE124D20.md) — Ray Bradbury
+- [Short Fiction](Books/6192826A-C799-446A-BF8F-B781ADD383CD.md) — E. M. Forster
+- [Short Fiction](Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md) — Ernest Hemingway
+- [Short Fiction](Books/2D133761-8ECC-4E70-B721-15D45CAD7811.md) — Gustave Flaubert
+- [Short Fiction](Books/28F446D6-13DA-407E-871B-FFF512A4EA44.md) — Kate Chopin
+- [Short Fiction](Books/F734DB8F-18A1-44C3-8C82-F53CD4EB4B71.md) — Thomas Hardy
+- [Short Fiction](Books/242273B5-963A-4416-9C81-42C1BA677D82.md) — Akutagawa Ryūnosuke
+- [Short Fiction](Books/EA0F67C9-8FD9-47E9-BBC0-29DFFEBCD9C2.md) — Aleksandr Kuprin
+- [Short Fiction](Books/9C941238-2266-4BA5-B2CD-1F9F6C7822FF.md) — Algis Budrys
+- [Short Fiction](Books/F68BDE11-8B41-42E6-8087-ACBA16E6BF01.md) — Andre Norton
+- [Short Fiction](Books/1481AE97-4571-4128-9931-E03D5B25B229.md) — Anthony Trollope
+- [Short Fiction](Books/0C18904C-C6AC-4201-A909-5BC924977DDA.md) — Anton Chekhov
+- [Short Fiction](Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md) — Arthur Machen
+- [Short Fiction](Books/6C01240E-87D9-4C76-A0B7-8AA4B498034B.md) — Beatrix Potter
+- [Short Fiction](Books/0D1773E5-F6C8-423B-9422-79DB12462E5D.md) — Catherine Louisa Pirkis
+- [Short Fiction](Books/6CA6B449-9148-45CD-9A9A-F643E105DF2A.md) — Charles Beaumont
+- [Short Fiction](Books/B838C3B4-422E-4207-B8EE-0CF7E28BEA8A.md) — Clark Ashton Smith
+- [Short Fiction](Books/B4104ACD-8751-46A3-8CE7-72777AC95FAB.md) — Clifford D. Simak
+- [Short Fiction](Books/60E1B90C-58B2-43AC-A68D-3C931F0634E0.md) — Cordwainer Smith
+- [Short Fiction](Books/BFEBCB8F-FA6C-43BE-B4BD-CD5E03AFEC60.md) — Daphne du Maurier
+- [Short Fiction](Books/5FFD0BE2-62DB-4A7C-9A29-EF38FF3C825C.md) — E. M. Forster
+- [Short Fiction](Books/D8BDAAFA-DE1A-4F5F-9C04-F220A3D54AD0.md) — Edgar Allan Poe
+- [Short Fiction](Books/371F14D9-4B15-4462-A311-570176E2BE12.md) — Edgar Saltus
+- [Short Fiction](Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md) — Ernest Hemingway
+- [Short Fiction](Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md) — F. Scott Fitzgerald
+- [Short Fiction](Books/87CADE27-8A89-42DB-9235-A97C42C936A6.md) — Frank Belknap Long
+- [Short Fiction](Books/7203B04C-2236-4B1B-991D-79C515DD4A33.md) — Frederik Pohl
+- [Short Fiction](Books/FCCF6D0F-A2ED-4329-93A0-211EBE0CE794.md) — Fritz Leiber
+- [Short Fiction](Books/7D302623-52DF-4015-909D-3ECCB8400C0C.md) — Fyodor Sologub
+- [Short Fiction](Books/8227C284-ABF0-400A-8193-1DE53BF2DE60.md) — George MacDonald
+- [Short Fiction](Books/67102796-3492-471F-97E8-2D3FC940FBB8.md) — Gustave Flaubert
+- [Short Fiction](Books/579B7B74-3280-4558-85F2-9E9F25489474.md) — Guy de Maupassant
+- [Short Fiction](Books/6DD666FE-AB60-4B11-A54A-3A881683CD6D.md) — H. Beam Piper
+- [Short Fiction](Books/635FCFD4-B245-45A0-8140-6F94A21EE9DA.md) — H. G. Wells
+- [Short Fiction](Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md) — H. P. Lovecraft
+- [Short Fiction](Books/9833F5E4-CED0-4289-BEEF-A12B0508787F.md) — Harry Harrison
+- [Short Fiction](Books/8C31D700-9155-433B-BEB8-D5B944E02C37.md) — Henry Kuttner
+- [Short Fiction](Books/132F152E-693D-442C-BABD-C9CDD7EBA5D6.md) — Herman Melville
+- [Short Fiction](Books/85B909D7-0442-4A79-841D-D027CFA2E788.md) — Hjalmar Söderberg
+- [Short Fiction](Books/2C37E58B-6135-439E-842F-91F93E641864.md) — Ivan Bunin
+- [Short Fiction](Books/233E9C32-6ADC-4AF8-AAB2-CAB10464FBA4.md) — J. Sheridan Le Fanu
+- [Short Fiction](Books/40FB11AD-07A9-45B8-A6FA-109EE49C74DE.md) — Jonas Lie
+- [Short Fiction](Books/DDE9DED2-203E-4C70-98C1-F935E6492A20.md) — Kate Chopin
+- [Short Fiction](Books/4693CBD1-2407-4D4D-AA4A-0373B61DC211.md) — Leo Tolstoy
+- [Short Fiction](Books/C57F6B77-842B-4D9D-AE7F-DC54D6FBD5D3.md) — Leonid Andreyev
+- [Short Fiction](Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md) — M. R. James
+- [Short Fiction](Books/7C73B6CE-19AF-4D76-98C6-CE302CCEE6B9.md) — Mack Reynolds
+- [Short Fiction](Books/1DABB0DA-2B91-4BFC-B0E1-A7F8E43DCB2A.md) — Manly Wade Wellman
+- [Short Fiction](Books/9DF0999E-892A-42F6-AC67-98F33B187CAB.md) — Mary Shelley
+- [Short Fiction](Books/B7CF001F-8FAC-477E-A13F-BA7439FFC107.md) — Nella Larsen
+- [Short Fiction](Books/C58E1328-510D-4666-8180-CE1EE65B537B.md) — Nikolai Gogol
+- [Short Fiction](Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md) — O. Henry
+- [Short Fiction](Books/4D646767-98CA-4F88-8B14-80BF98E549E9.md) — P. G. Wodehouse
+- [Short Fiction](Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md) — Philip K. Dick
+- [Short Fiction](Books/11B6CA7B-461E-4E56-82F8-5B605156D578.md) — Poul Anderson
+- [Short Fiction](Books/031B1822-5DAC-4919-A354-4BA4598607D4.md) — R. A. Lafferty
+- [Short Fiction](Books/DC049A92-E654-4952-8AC5-CC496B75C82B.md) — Ray Bradbury
+- [Short Fiction](Books/A5847CBD-6206-4483-9BD7-CCAF81C665E2.md) — Ring Lardner
+- [Short Fiction](Books/D80AFB83-8CB5-4997-840A-A184365F8481.md) — Robert E. Howard
+- [Short Fiction](Books/D12F12D2-D07A-42DA-AEA3-C11B211C3C6A.md) — Robert Sheckley
+- [Short Fiction](Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md) — Saki
+- [Short Fiction](Books/F292C5DB-3C52-4272-9D25-206C7B85A300.md) — Selma Lagerlöf
+- [Short Fiction](Books/6B6F9841-9DE1-4277-A8B4-12F87FD1E910.md) — Stanley G. Weinbaum
+- [Short Fiction](Books/5AC0F7D8-80B7-4A1E-A370-27E2F60BD992.md) — Tanizaki Jun’ichirō
+- [Short Fiction](Books/B56E9362-1833-4321-A00E-4743AED30529.md) — Thomas Hardy
+- [Short Fiction](Books/1B9A32A2-78E6-4A1A-B0AD-18D4797F34E0.md) — Vladimir Korolenko
+- [Short Fiction](Books/2D843B80-972F-458F-B8EA-685E290EF346.md) — Voltairine de Cleyre
+- [Short Fiction](Books/CFD1BE27-28FA-45BD-BC4D-A5D17E95958F.md) — Vsevolod Garshin
+- [Short Fiction](Books/0CEAD891-DE35-445C-830D-27C242F36CDF.md) — Walter M. Miller Jr.
+- [Short Fiction](Books/F53A3CD5-28E4-41C6-826D-3299F7FF213C.md) — Xavier de Maistre
+- [Short Science Fiction](Books/92084061-D341-4079-B02B-B4AC66491131.md) — Isaac Asimov
+- [Short Science Fiction](Books/5913FEFF-D0A3-4955-A1BA-94BACF6EA0CD.md) — Isaac Asimov
+- [Short Science Fiction](Books/DBD8CA59-64A4-46FA-866C-73C274FACA2F.md) — Noel Loomis
+- [Shorts from Scenes from Private Life](Books/DBD7123B-29E7-4484-954F-B0B239145E79.md) — Honoré de Balzac
+- [Sir Gawain and the Green Knight](Books/BFD59996-CC74-449F-9A36-2A2905940A60.md) — Anonymous
+- [Sir Percy Hits Back](Books/F5C4E229-4498-495F-AFA6-F8E3C660C810.md) — Baroness Orczy
+- [Stand by for Mars!](Books/394094CC-BCC3-4249-B047-97E7C9FBD850.md) — Carey Rockwell
+- [Steppenwolf](Books/8F5ACE5B-1161-4C72-BE2F-73A5025F5D12.md) — Hermann Hesse
 - [Studies in Classic American Literature](Books/A1B1D0A6-4E8D-46E6-BA24-B5357DD40247.md) — D. H. Lawrence
+- [Suspiria de Profundis](Books/C0859A9B-8D0F-46CC-A8ED-7546B0BFD68B.md) — Thomas De Quincey
+- [Tarzan and the Ant Men](Books/6E11321C-777D-4087-A215-6D97D4282BDD.md) — Edgar Rice Burroughs
+- [Tarzan and the Golden Lion](Books/ABA09281-833F-43A3-9C6A-157DA40057D7.md) — Edgar Rice Burroughs
+- [Tarzan and the Jewels of Opar](Books/E2479C9F-3135-4004-BF6C-FE08D5CD113B.md) — Edgar Rice Burroughs
+- [Tarzan of the Apes](Books/B0FBAFFA-8B8A-420D-BA86-A504DDD1CC01.md) — Edgar Rice Burroughs
+- [Tarzan the Terrible](Books/D41CF8ED-AD00-4286-9157-03A1D55173E7.md) — Edgar Rice Burroughs
+- [Tarzan the Untamed](Books/F42B9E07-F17F-42CA-84C7-54B95678781E.md) — Edgar Rice Burroughs
+- [Tarzan, Lord of the Jungle](Books/8DFAA58F-DFCB-4841-B6A3-BD5B287CBC78.md) — Edgar Rice Burroughs
+- [Terror Keep](Books/CC9314C3-481E-463D-9E2D-E7C818612242.md) — Edgar Wallace
+- [Tess of the d’Urbervilles](Books/14A7C844-81C6-4759-8E1E-395972D47B3A.md) — Thomas Hardy
 - [The Adventures of Sherlock Holmes](Books/4A481179-3905-447B-9B4B-52D1246DD60D.md) — Arthur Conan Doyle
+- [The Adventures of Sherlock Holmes](Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md) — Arthur Conan Doyle
 - [The Adventures of Tom Sawyer, Complete](Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md) — Mark Twain
+- [The Aeneid](Books/A53A93AF-2360-43AA-8A06-6BC67771857A.md) — Virgil
+- [The Age of Reason](Books/2381E057-FC3B-4A96-BFEE-495332317A28.md) — Thomas Paine
+- [The Amateur Cracksman](Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md) — E. W. Hornung
+- [The American Crisis](Books/B0F30610-550F-4FC7-A8F5-DB72B9260FCF.md) — Thomas Paine
 - [The American Language / A Preliminary Inquiry into the Development of English in the United States](Books/2CA65016-8046-41E2-A393-B0FA9D6EA43E.md) — H. L. Mencken
+- [The Apple Cart](Books/F756FA2E-3190-4040-AACC-36980C9B6ED3.md) — George Bernard Shaw
+- [The Art of War](Books/73114919-F705-40B4-B931-F0EDF68C952A.md) — Sun Tzu
+- [The Autobiography of Mark Twain](Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md) — Mark Twain
+- [The Avenger](Books/804C3344-FC00-44DD-9CB3-B0018119EA00.md) — Edgar Wallace
 - [The Awakening, and Selected Short Stories](Books/CE51DB43-7A5A-4002-B3E5-5203C823D585.md) — Kate Chopin
+- [The Beasts of Tarzan](Books/1CB1EE31-DE65-4E65-BA9D-A4DF115BD71E.md) — Edgar Rice Burroughs
+- [The Black Arrow](Books/A555B44C-89E6-4599-BA25-745CB505D8C1.md) — Robert Louis Stevenson
+- [The Black Gang](Books/3518182F-4869-4902-A704-F01283879F66.md) — H. C. McNeile
+- [The Black Mask](Books/72058380-BE2E-4FA8-AD38-4834BD773078.md) — E. W. Hornung
+- [The Blue Lagoon](Books/ECDD124D-D95A-407F-BFE4-085E9839318A.md) — H. de Vere Stacpoole
+- [The Book of Wonder](Books/D5A3CAD6-23A0-4F9C-B1D6-69806D0EAF8B.md) — Lord Dunsany
 - [The Brothers Karamazov](Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md) — Fyodor Dostoyevsky
+- [The Brothers Karamazov](Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md) — Fyodor Dostoevsky
+- [The Call of the Wild](Books/ED95A4B8-1FE4-4E9D-AB82-3C77D8A45CFD.md) — Jack London
+- [The Casebook of Sherlock Holmes](Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md) — Arthur Conan Doyle
+- [The Child of the Cavern](Books/EBF33503-26F3-4C1B-9312-575529D14B19.md) — Jules Verne
+- [The Chinese Parrot](Books/1BA301D8-A4A0-467F-8C05-C618BCE17AFA.md) — Earl Derr Biggers
+- [The Clue of the New Pin](Books/3FCE8075-8056-4D83-9608-5805CA049888.md) — Edgar Wallace
+- [The Clue of the Twisted Candle](Books/7D293F4A-090A-4BF6-99D9-6202456EBC6B.md) — Edgar Wallace
+- [The Comedy of Errors](Books/DB84D839-9AB6-41FC-90FC-4F2EDBF64F92.md) — William Shakespeare
 - [The Complete Poetical Works of Henry Wadsworth Longfellow](Books/D1309924-77AB-42C5-8038-271D77B092F3.md) — Henry Wadsworth Longfellow
 - [The Complete Works of William Shakespeare](Books/77215495-099F-4FA4-A57B-B79019AC6B8D.md) — William Shakespeare
+- [The Confessions of Arsène Lupin](Books/EAC5960B-D125-4D16-85F6-1CF8B879BBD8.md) — Maurice Leblanc
+- [The Conjure Woman](Books/17947445-CB15-4413-B18E-133521AB1859.md) — Charles W. Chesnutt
+- [The Coral Island](Books/B1654965-FFAB-4615-B83B-31D82EC5E736.md) — R. M. Ballantyne
+- [The Council of Justice](Books/7EE65772-7F1E-43A1-9099-581BD796FFC3.md) — Edgar Wallace
+- [The Count of Monte Cristo](Books/81A34060-2136-46C2-8808-AF22C812BEE5.md) — Alexandre Dumas
+- [The Courts of the Morning](Books/7F4283D9-4CA8-4387-9E35-5226A5FE1ABE.md) — John Buchan
+- [The Cruise of the Alerte](Books/2A1E3CE2-3932-4FF7-9CB8-71349FDFAA79.md) — E. F. Knight
+- [The Defiant Agents](Books/C1C301DB-D863-48E0-9F48-5B87C2EDB480.md) — Andre Norton
 - [The Descent of Man and Other Stories](Books/7433F945-B8D6-49E6-A9A5-4951EDA3A9AC.md) — Edith Wharton
+- [The Diary](Books/670D9FA0-7816-47E1-B36B-DC12A81D2A8A.md) — Samuel Pepys
+- [The Door with Seven Locks](Books/5923B3E1-C4B1-4F2C-9A27-0A96F165593A.md) — Edgar Wallace
+- [The Elusive Pimpernel](Books/C716D8F5-98A1-4DD2-BF12-2D6CD00C6399.md) — Baroness Orczy
+- [The Enormous Room](Books/10AB5BA0-2796-4A31-90F8-EBAD52EBECBC.md) — E. E. Cummings
+- [The Eumenides](Books/F14D6596-EFB2-4E11-A376-D3D551110849.md) — Aeschylus
+- [The Extraordinary Adventures of Arsène Lupin, Gentleman-Burglar](Books/0D6622BA-4843-463A-B3C9-07316BB79DE7.md) — Maurice Leblanc
 - [The Eyes Have It](Books/F2FCCE60-E492-439D-A76A-423067D50671.md) — Philip K. Dick
+- [The Fall of Robespierre](Books/606A8C95-B501-4D36-853B-E6D726047DF4.md) — Samuel Taylor Coleridge
+- [The First Sir Percy](Books/1FB2BFCF-08F3-4BC4-A12C-1E3DFD7971BD.md) — Baroness Orczy
+- [The Forerunner](Books/26224D6C-CA92-4CAE-A3CE-7AF10DA480BE.md) — Kahlil Gibran
+- [The Four Feathers](Books/BFCAEE62-036E-40F1-9313-F34DCC0F6876.md) — A. E. W. Mason
+- [The Four Just Men](Books/714DD324-FFA2-4A34-BF60-9F49595459D9.md) — Edgar Wallace
+- [The Fur Country](Books/133D7A41-86E3-4A37-A565-7D5A6D9C6CA5.md) — Jules Verne
+- [The Giant Raft](Books/4546D9E0-A37B-461F-B1F3-E3BB75011631.md) — Jules Verne
+- [The Great Airport Mystery](Books/D03FB408-0B0F-4D40-8682-B1ED0DE6CD2B.md) — Franklin W. Dixon
 - [The Great Gatsby](Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md) — F. Scott Fitzgerald
+- [The Great Gatsby](Books/9DF1EFE6-3977-4A5A-B775-B2BE5B7345CB.md) — F. Scott Fitzgerald
+- [The Hairy Ape](Books/FE40BA9F-6774-4EAA-8C33-A3C6BB50786D.md) — Eugene O’Neill
+- [The House Without a Key](Books/76F874D4-B934-46E5-A9B2-7DC330722F8B.md) — Earl Derr Biggers
+- [The House at Pooh Corner](Books/530F530A-AE9D-430F-96E1-3A6D1E305465.md) — A. A. Milne
+- [The House of the Dead](Books/83BC8611-76C2-452B-A9C4-A1EC7987403C.md) — Fyodor Dostoevsky
+- [The House of the Seven Gables](Books/A7C6ACB9-6532-41C9-AF87-D3CAD6629AAB.md) — Nathaniel Hawthorne
+- [The House on the Cliff](Books/B8C376A1-E724-46AE-A28A-2D5550C1F6D8.md) — Franklin W. Dixon
+- [The Humbugs of the World](Books/8C37E9CC-F136-4584-9011-7475E6A639D3.md) — P. T. Barnum
 - [The Humbugs of the World / An Account of Humbugs, Delusions, Impositions, Quackeries, Deceits and Deceivers Generally, in All Ages](Books/E74A1309-5B35-430A-B32A-2D9F96FAEA62.md) — P. T. Barnum
+- [The Iliad](Books/C00A6B3A-BF65-4194-976E-444C07438260.md) — Homer
+- [The Incredulity of Father Brown](Books/81518D11-E6DD-4B4B-9073-A205D12805BC.md) — G. K. Chesterton
+- [The Innocence of Father Brown](Books/A08E9FD9-5919-468C-9E7C-04C3FD49A188.md) — G. K. Chesterton
 - [The Innocents Abroad](Books/D1854AF8-409B-4868-A06A-820257E8A613.md) — Mark Twain
+- [The Innocents Abroad](Books/5C0775CF-C8B8-437F-9AEE-E5525FB08BC8.md) — Mark Twain
+- [The Jealousies of a Country Town](Books/489BC01E-B3F6-4D86-AABB-E008C8492ED2.md) — Honoré de Balzac
+- [The Jew of Malta](Books/95F1DA79-BC9C-47DB-89E4-BB4D63ACB9E1.md) — Christopher Marlowe
 - [The Jungle](Books/2D55F5EC-8562-421D-8CC2-35A5FA87ADCA.md) — Upton Sinclair
+- [The Jungle Book](Books/C653A429-FF59-4DAA-B45D-A300A1EECBAF.md) — Rudyard Kipling
+- [The Just Men of Cordova](Books/2C45F7BD-82CB-40A9-8BCB-40A61759BFE3.md) — Edgar Wallace
+- [The King in Yellow](Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md) — Robert W. Chambers
+- [The Lady of the Barge](Books/62B3F40E-F391-4E03-B606-D38F2E68F412.md) — W. W. Jacobs
+- [The Land That Time Forgot](Books/659DAA74-5C49-4D6A-9A6C-D6F4991BEE1D.md) — Edgar Rice Burroughs
+- [The Land of Little Rain](Books/45B435F1-CEF9-4812-9758-AC6DA46648A1.md) — Mary Austin
+- [The Last of the Mohicans](Books/FDAB0174-55A5-4C21-8B6D-D633333427F1.md) — James Fenimore Cooper
 - [The Last of the Mohicans; A narrative of 1757](Books/550041B1-2BA8-418F-9C39-6F08CB99B55B.md) — James Fenimore Cooper
+- [The Laughing Cavalier](Books/7B30CFC4-3334-4CDC-A1CB-11D0B264F5E6.md) — Baroness Orczy
+- [The Law of the Four Just Men](Books/5DFA9000-0F80-4034-93F3-F807901893CE.md) — Edgar Wallace
+- [The League of the Scarlet Pimpernel](Books/A893B526-7079-4814-B395-C55F6AF21E8E.md) — Baroness Orczy
 - [The Legend of Sleepy Hollow](Books/0A44FD76-CF22-487B-BA44-7AC00B3F53D5.md) — Washington Irving
+- [The Libation Bearers](Books/78C56DB5-9AE7-46E6-9669-580DB02387AC.md) — Aeschylus
+- [The Lily of the Valley](Books/D27F230B-43AE-4587-B5B3-5F4642B65E18.md) — Honoré de Balzac
+- [The Lone Wolf](Books/44B3C3B7-E2D0-424A-8A7E-4871892F642F.md) — Louis Joseph Vance
+- [The Lost Girl](Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md) — D. H. Lawrence
+- [The Lost World](Books/92BDCAFC-8825-45F7-9568-F8EDCE206321.md) — Arthur Conan Doyle
+- [The Luzumiyat](Books/96A8BFB7-C1E6-4C8E-84EF-E17E2E5AA797.md) — Abu al-ʻAlaʼ al-Maʻarri
+- [The Madman](Books/5F7F3D81-1B35-48AF-A174-63F40BB7C35D.md) — Kahlil Gibran
+- [The Man Who Knew](Books/EEF9FBB4-FEDE-4FF4-BCB9-39E8D9F6A41E.md) — Edgar Wallace
+- [The Man Within](Books/7FB9976E-A041-4F70-9B0D-6343719B1999.md) — Graham Greene
+- [The Man in the Brown Suit](Books/21775D97-805B-4CD7-8314-1CD228742B63.md) — Agatha Christie
+- [The Man of Destiny](Books/AFB2537E-F5AD-47EE-8C14-81D577862B01.md) — George Bernard Shaw
+- [The Maracot Deep](Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md) — Arthur Conan Doyle
+- [The Master of Ballantrae](Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md) — Robert Louis Stevenson
+- [The Melody of Death](Books/7ECB5922-A12F-4D5A-B807-D7A052A0D325.md) — Edgar Wallace
+- [The Memoirs of Sherlock Holmes](Books/139F0EF6-12CB-412C-B747-66947E57D123.md) — Arthur Conan Doyle
+- [The Merchant of Venice](Books/0D79755C-148F-4618-B188-8291BFD734ED.md) — William Shakespeare
+- [The Merry Wives of Windsor](Books/D16AB367-2DD4-4F81-89F6-97AFDE4F13D2.md) — William Shakespeare
+- [The Mind of Mr. J. G. Reeder](Books/7155C166-21B4-4030-A6CA-A61F44F0E053.md) — Edgar Wallace
+- [The Missing Chums](Books/3C3961BF-5C18-424D-9637-49F47E466492.md) — Franklin W. Dixon
+- [The Mother](Books/D1078FFE-C87F-418B-B16F-B353CCC26CF7.md) — Pearl S. Buck
 - [The Mountains of California](Books/DA8C1F86-6C5F-4677-B462-E6B5E8A82B67.md) — John Muir
+- [The Mucker](Books/51ECEA12-65F8-40E8-AEC4-BC065F39CEA8.md) — Edgar Rice Burroughs
+- [The Murder at the Vicarage](Books/8659DE35-C91C-475C-BC2F-6ABA8C329B4D.md) — Agatha Christie
+- [The Mystery of Cabin Island](Books/8DAE9CDD-404A-479A-9A79-72EA69DFAE60.md) — Franklin W. Dixon
+- [The Narrative of Arthur Gordon Pym of Nantucket](Books/99706ED7-E9F6-409D-8318-473DBA8BFDF5.md) — Edgar Allan Poe
+- [The Necklace of Princess Fiorimonde](Books/CAA14087-5E63-4532-B1FA-30D9F8DA2BB2.md) — Mary De Morgan
+- [The New Freedom](Books/B4EC6F60-9803-47BB-A8FD-2D4B7275871E.md) — Woodrow Wilson
+- [The Nibelungenlied](Books/7068A63D-295F-42FA-8488-486411E9E419.md) — Anonymous
+- [The Nigger of the Narcissus](Books/B5E8C3BF-C593-407F-872B-FFB86170B141.md) — Joseph Conrad
+- [The Odyssey](Books/C945079C-AC32-4190-A09D-23C198C904DF.md) — Homer
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](Books/BA3B84A4-169F-4B40-804A-6CDA495B790B.md) — Homer
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](Books/B2311001-F34E-4668-84D8-AAB8245CFA57.md) — Homer
+- [The Old Man in the Corner](Books/EBFC1BDB-4AFB-43DE-9496-84E24C296C5A.md) — Baroness Orczy
+- [The Origin of Species](Books/B4CC08FA-BC80-4752-B206-361D34F1A2BD.md) — Charles Darwin
+- [The Outlaw of Torn](Books/7DE08BC8-1895-4FCF-9112-F1000493168C.md) — Edgar Rice Burroughs
+- [The Phantom of the Opera](Books/135F9C57-D3A4-48A9-9069-2805D4F88146.md) — Gaston Leroux
 - [The Picture of Dorian Gray](Books/186EE454-E11F-4E42-A7E9-C582FB94CA22.md) — Oscar Wilde
+- [The Pilgrim’s Progress](Books/7260C8A4-0C37-4908-B053-4C85751DF80F.md) — John Bunyan
+- [The Power of Darkness](Books/BD49101C-CAE7-4BAD-AFDF-F19566E05C76.md) — Leo Tolstoy
+- [The Practice and Theory of Bolshevism](Books/437979BF-7CF3-487B-AFD5-96C4B80FC2AB.md) — Bertrand Russell
+- [The Prisoner of Zenda](Books/A4A2D9E2-06EE-4BAC-A5C7-DA61B165AEC0.md) — Anthony Hope
+- [The Problems of Philosophy](Books/72D2F5F3-C802-464A-875E-AC85BE62F209.md) — Bertrand Russell
+- [The Prophet](Books/E1528CD9-5F01-4850-B19E-D86DE0CB0021.md) — Kahlil Gibran
+- [The Prophet](Books/9BD88F10-D755-40E2-812C-A85C20BDF962.md) — Kahlil Gibran
+- [The Purple Land](Books/BDD04CF0-47FA-4893-BD09-B0225C266AE7.md) — W. H. Hudson
+- [The Quest of the Silver Fleece](Books/8D64A15B-2039-4303-9CC6-AC3AA45E32EB.md) — W. E. B. Du Bois
 - [The Raven, and The Philosophy of Composition](Books/ED32F5AA-11C5-4446-82CB-411488A85C5C.md) — Edgar Allan Poe
+- [The Red Badge of Courage](Books/740D98B2-02F8-47BD-92B2-CC698A6F595F.md) — Stephen Crane
 - [The Red Badge of Courage: An Episode of the American Civil War](Books/88A43F81-52E0-4551-8D47-CCB76841C2E3.md) — Stephen Crane
+- [The Red House Mystery](Books/BACBEA39-B830-40F1-B9E0-90A7365B446F.md) — A. A. Milne
+- [The Return of Sherlock Holmes](Books/D19602D6-4986-4F3A-8191-83C0F905B413.md) — Arthur Conan Doyle
+- [The Return of Tarzan](Books/14797A02-94E3-4112-8FCF-DEE015C98343.md) — Edgar Rice Burroughs
+- [The Return of the Native](Books/18842CF9-474F-4A11-AA22-371DA9B597B9.md) — Thomas Hardy
+- [The Rights of Man](Books/DC130EE3-C650-46E0-A5BC-D49F7AF28C19.md) — Thomas Paine
+- [The Roots of the Mountains](Books/96D5CC00-DC6A-47E2-B90A-99A98CF2FDCA.md) — William Morris
 - [The Scarlet Letter](Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md) — Nathaniel Hawthorne
+- [The Scarlet Letter](Books/D38EC361-7724-43A9-8688-B6931CC647CA.md) — Nathaniel Hawthorne
+- [The Scarlet Pimpernel](Books/FB5923E1-B75A-4DED-954F-0ECB157A0179.md) — Baroness Orczy
+- [The Sea Hawk](Books/9D1C03FF-B1E0-403D-8F88-82DDDA2284FF.md) — Rafael Sabatini
+- [The Sea-Wolf](Books/7A163332-7787-4A84-B3DA-49A5361AF86E.md) — Jack London
+- [The Seagull](Books/D1D9E1D1-25B7-419C-82B4-ED645FBC57C8.md) — Anton Chekhov
+- [The Secret House](Books/2DDDEC42-DF7E-4E9D-A4B5-BBBA99952EEA.md) — Edgar Wallace
+- [The Secret of Father Brown](Books/ADC595DB-C4F6-49EB-B32B-C8F6460D0520.md) — G. K. Chesterton
+- [The Secret of the Caves](Books/2A85F61B-3E11-4D07-8CCF-1A9A6D85CE8B.md) — Franklin W. Dixon
+- [The Secret of the Old Mill](Books/E1091E68-51CC-44FF-A4AF-76AA10298D73.md) — Franklin W. Dixon
+- [The Seven Dials Mystery](Books/703DFD5E-EE15-46E0-9E73-E13B4B99B820.md) — Agatha Christie
+- [The Shore Road Mystery](Books/157EF2C1-4961-4D7D-A564-76DCA940C56E.md) — Franklin W. Dixon
+- [The Sketchbook of Geoffrey Crayon, Gent.](Books/C9A443B8-889F-4600-A0BE-5B0589907E6A.md) — Washington Irving
+- [The Social Contract](Books/BBED71D7-8A90-47BB-B070-F76AC406796A.md) — Jean-Jacques Rousseau
+- [The Son of Tarzan](Books/CD5E2513-C09D-4495-8591-1416FE05E260.md) — Edgar Rice Burroughs
+- [The Son of the Wolf](Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md) — Jack London
+- [The Souls of Black Folk](Books/71CEEAB7-577C-4275-B4A1-F41B17F8F1D2.md) — W. E. B. Du Bois
+- [The Sound and the Fury](Books/B56CCC8B-ADB5-4CEC-83A0-B2F9D902CFBE.md) — William Faulkner
+- [The Special Correspondent](Books/D5FE565B-C52D-4821-8E2D-E353245F543F.md) — Jules Verne
+- [The Splendid Spur](Books/5D069875-3103-4DA0-AD5B-364499C5A03B.md) — Arthur Quiller-Couch
+- [The Square Emerald](Books/DF9CDCD8-400C-4AF1-B3A0-1CAA512124BB.md) — Edgar Wallace
+- [The Story of Doctor Dolittle](Books/87A45FF5-E591-49F4-953D-F3D5C1335418.md) — Hugh Lofting
+- [The Story of My Life](Books/F7119EBE-8D2A-4165-93FA-72B94B5447FA.md) — Helen Keller
+- [The Story of the Treasure Seekers](Books/53F44F6B-3F84-4255-A93D-40A8C317F8DE.md) — E. Nesbit
+- [The Subjection of Women](Books/B2550963-C612-46FA-BB36-3559AD6C279B.md) — John Stuart Mill
 - [The Sun Also Rises](Books/5CEAA30B-BF4D-4511-A770-26E28776877A.md) — Ernest Hemingway
+- [The Sundering Flood](Books/3364D67D-66B1-48BC-A0D6-ADB73A228F9D.md) — William Morris
+- [The Survivors of the Chancellor](Books/0961F477-ACBC-4682-9147-B2E00C4E861E.md) — Jules Verne
+- [The Sword of Damocles](Books/28461A01-8141-4C30-991A-5A00B38B78E3.md) — Anna Katharine Green
+- [The Taming of the Shrew](Books/93427583-6CCA-411A-B642-16949719BFC2.md) — William Shakespeare
+- [The Tempest](Books/E52C73DB-F26E-43F8-9E71-BEF56FC73994.md) — William Shakespeare
+- [The Tenant of Wildfell Hall](Books/A39B3C0D-7D3E-4854-A382-97C351FAA110.md) — Anne Brontë
+- [The Third Round](Books/F198F685-F32D-4BDC-B58B-81BB6D8DCAF4.md) — H. C. McNeile
+- [The Thirty-Nine Steps](Books/8709201F-2E6F-4577-A284-3F75A58EE727.md) — John Buchan
+- [The Three Hostages](Books/2F8BABAA-1F42-4393-B2A5-04108B600866.md) — John Buchan
+- [The Three Just Men](Books/A6973305-DD7D-4CC1-8052-8A6385B67D39.md) — Edgar Wallace
+- [The Three Musketeers](Books/684063C0-2D66-48E7-BAA5-703223E73126.md) — Alexandre Dumas
+- [The Tower Treasure](Books/45019793-2533-4C26-8283-5F47AD71B2AF.md) — Franklin W. Dixon
 - [The Tragedy of Pudd'nhead Wilson](Books/91EDE7E9-8E45-46E3-8CB8-A79B05F3290C.md) — Mark Twain
+- [The Tragical History of Doctor Faustus](Books/C0317513-5574-430C-9FF7-762137C1B05E.md) — Christopher Marlowe
+- [The Triumph of the Scarlet Pimpernel](Books/D5087C10-95B2-499C-9B5B-066329C9CFC8.md) — Baroness Orczy
 - [The Turn of the Screw](Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md) — Henry James
+- [The Turn of the Screw](Books/8529E49B-5D3E-40C1-9886-96906FB455F2.md) — Henry James
 - [The Valley of the Moon](Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md) — Jack London
+- [The Varieties of Religious Experience](Books/B1222CDB-E1A8-4B7F-85F6-5C90280DFFF5.md) — William James
+- [The Vicomte de Bragelonne](Books/3D7CFCF7-606D-47D6-B46C-F1C95C593A6D.md) — Alexandre Dumas
+- [The Voyages of Doctor Dolittle](Books/B4E5027A-E96F-4FBA-8DD5-EE77A51BEF14.md) — Hugh Lofting
+- [The Water of the Wondrous Isles](Books/0291AC39-E5E2-44CB-BD62-D36A1BF3AC89.md) — William Morris
+- [The Way of the World](Books/5A857635-5054-4EDB-8264-AED12A7AD597.md) — William Congreve
+- [The Wealth of Nations](Books/B695BD3A-DF62-4ABD-BFDA-C1CB52CE5164.md) — Adam Smith
+- [The Windfairies](Books/64C9C593-C10A-457F-AF1D-3356D1376D9B.md) — Mary De Morgan
+- [The Wisdom of Father Brown](Books/5B4349AB-C34E-40A0-96F1-2AF5E770C130.md) — G. K. Chesterton
 - [The Wonderful Wizard of Oz](Books/5C0551C0-C4F6-4CA8-B7B8-4D34AB8F3531.md) — L. Frank Baum
 - [The Works of Edgar Allan Poe — Volume 1](Books/3FE1260F-E736-4671-80C2-7DF5638935F2.md) — Edgar Allan Poe
+- [The Works of Max Beerbohm](Books/59082727-6447-47DC-9625-67F9DBFC39FA.md) — Max Beerbohm
 - [The Yellow Wallpaper](Books/3EFCB100-C8FC-4098-BAAB-2D6E3BB0B8BE.md) — Charlotte Perkins Gilman
 - [The call of Cthulhu](Books/AD320115-98F9-4795-BA81-A4D8DED280D2.md) — H. P. Lovecraft
 - [The call of the wild](Books/30BF27F3-CC02-46CC-8CE2-9046D310B2F5.md) — Jack London
 - [The sound and the fury](Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md) — William Faulkner
+- [Tractatus Logico-Philosophicus](Books/7F51E844-4F9D-4A8E-AC0D-6F3C061A4E82.md) — Ludwig Wittgenstein
+- [Treasure Island](Books/7A7FD9AA-0B3F-43AD-A305-8AE6C42B798A.md) — Robert Louis Stevenson
+- [Tusculan Disputations](Books/F40E9FF3-5229-4B1A-B41F-3C1450A0E3EB.md) — Cicero
+- [Twelfth Night](Books/903A6475-51CC-4379-AF04-8E3D9D9103F1.md) — William Shakespeare
+- [Twelve Years a Slave](Books/2A2155B4-C49B-4371-A7BA-303006532E54.md) — Solomon Northup
+- [Twenty Years After](Books/5CCBC784-E93D-4BF7-9C43-84D990A169FD.md) — Alexandre Dumas
+- [Two Treatises of Government](Books/096DE377-B223-4D80-A337-0364D4CAA082.md) — John Locke
+- [Typee](Books/1251A293-D2FF-4EAF-9EC2-E08942374DBF.md) — Herman Melville
+- [Ukridge Stories](Books/DA332843-8616-447F-BDD5-C86B00130D2A.md) — P. G. Wodehouse
 - [Uncle Tom's Cabin](Books/6CAED790-DF2B-452A-9C4C-92B00356F2FA.md) — Harriet Beecher Stowe
+- [Uncle Vanya](Books/B4A5C456-7F71-45AF-B9CA-B605F08EB6B4.md) — Anton Chekhov
+- [Up from Slavery](Books/6A4B72C7-6C5A-478F-8F09-699BD09E185C.md) — Booker T. Washington
+- [Vikram and the Vampire](Books/4930CFF2-D344-4FC1-967E-E01C0003CB6E.md) — Richard F. Burton
 - [Walden, and On The Duty Of Civil Disobedience](Books/5CD7BE2D-462E-4024-9D04-9ACF194BB95D.md) — Henry David Thoreau
 - [War and Peace](Books/7F6ABC84-93E3-4FF3-B5CA-F4A05CED182D.md) — graf Leo Tolstoy
+- [War and Peace](Books/FEB46721-EB3E-4498-8BD1-46DB874BBD08.md) — Leo Tolstoy
+- [Waverley](Books/FC92C4DD-84D9-46E6-AC3B-CA932E77036B.md) — Walter Scott
+- [What Is Art?](Books/A124D998-BEC0-4F08-8843-8FD944EA92B9.md) — Leo Tolstoy
+- [What’s Wrong with the World](Books/63227F11-904A-4BD2-846E-6B56E331BD61.md) — G. K. Chesterton
+- [When God Laughs](Books/F1B8023A-5748-4ED4-AB0B-633E40802E58.md) — Jack London
+- [When the World Shook](Books/DE2D3AE7-7CC7-452A-9201-897F6D8767C9.md) — H. Rider Haggard
+- [Where Angels Fear to Tread](Books/B2A1F27C-26CF-49B5-8438-C08B1F973CEF.md) — E. M. Forster
+- [While the Billy Boils](Books/A6D99FCE-7EFE-47FF-BDAB-5337E6850F7A.md) — Henry Lawson
 - [White Fang](Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md) — Jack London
+- [White Fang](Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md) — Jack London
+- [Wild Animals I Have Known](Books/87713F5D-D3D4-4ED4-B8A7-162E62E59C85.md) — Ernest Thompson Seton
+- [Winesburg, Ohio](Books/0D51BA81-438C-4A1D-AD84-F433CCEC687A.md) — Sherwood Anderson
+- [Winnie-the-Pooh](Books/66247FE6-E2BF-4D37-ABF8-7EF40F024C6B.md) — A. A. Milne
+- [You Never Can Tell](Books/8338DABC-67FE-483B-9465-302D3125C570.md) — George Bernard Shaw
+- [Zuni Folktales](Books/69AE0444-0097-4630-990D-242F4A9C3FB1.md) — Frank Hamilton Cushing
+- [“We”](Books/0BE6B84F-4AB5-4A92-904D-A7881053F0CD.md) — Charles A. Lindbergh

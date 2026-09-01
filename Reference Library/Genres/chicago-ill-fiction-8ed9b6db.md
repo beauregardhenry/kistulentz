@@ -2,25 +2,38 @@
 # Chicago (Ill.) -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 154400
-- Reading grade: 3.7
-- Average sentence: 9.1 words
-- Average paragraph: 12.9 words
-- Dialogue share: 12%
+- Words analyzed: 205903
+- Reading grade: 3.4
+- Average sentence: 9.7 words
+- Average paragraph: 15.8 words
+- Dialogue share: 20%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: place, night, himself, money, house, dollars, people, three, things, nothing, family, without, hands, children, morning, began, stood, hundred, world, gutenberg, enough, thought, floor, women
-- Character names: Jurgis, Marija, Elzbieta, Teta Elzbieta, Stanislovas, Jonas, Antanas, Jokubas, Brown, Jadvyga, Tamoszius, Grandmother Majauszkiene, Madame Haupt, Connor, Dede Antanas, Scully, Kristoforas, Mikolas, Teta, Antanas Rudkus, Durham, Marija Berczynskas, Tamoszius Kuszleika, Cousin Marija, Henderson, Jones, Miss Henderson, Aniele, Bridewell, Jack Duane
+- Tone: direct, dialogue-forward, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: dollars, night, people, thought, three, without, ain’t, began, can’t, children, couldn’t, didn’t, don’t, enough, family, floor, gettin, gutenberg, hands, himself, house, hundred, missus, money, morning, nothin, nothing, place, pretty, round, somethin, stood, that’s, they’s, things, wasn’t, women, won’t, world, wouldn’t
+- Character names: Ada, Aniele, Antanas, Antanas Rudkus, Archibald, Bess, Bessie, Bill, Bishop, Bridewell, Brown, Carmen, Collins, Connor, Cousin Marija, Dede Antanas, Don, Durham, Elzbieta, Flamingo, Frau, Fred, Garrett, Genevieve, Grandmother Majauszkiene, Harry, Hatch, Henderson, Jack Duane, Jadvyga, Jake, Jim, Joe, Jokubas, Jonas, Jones, Joss, Jurgis, Kristoforas, Louis, Madame Haupt, Marija, Marija Berczynskas, Marion, Messenger, Mikolas, Miss Henderson, Mr, Mr., Mrs, Potter, Quinn, Scully, Stanislovas, Tamoszius, Tamoszius Kuszleika, Teta, Teta Elzbieta, Tuttle, Wilson
 
 ## Books
+- [Gullible’s Travels](../Books/46484840-1AF1-4166-9700-4A11A57B3DED.md)
 - [The Jungle](../Books/2D55F5EC-8562-421D-8CC2-35A5FA87ADCA.md)
 
 ## Representative excerpts
+
+### Gullible’s Travels: Section 7
+
+_Mid-book rhythm_
+
+> Gullible’s Travels I I promised the Wife that if anybody ast me what kind of a time did I have at Palm Beach I’d say I had a swell time. And if they ast me who did we meet I’d tell ’em everybody that was worth meetin’. And if they ast me didn’t the trip cost a lot I’d say Yes; but it was worth the money. I promised her I wouldn’t spill none o’ the real details. But if you can’t break a promise you made to your own wife what kind of a promise can you break? Answer me that, Edgar. I’m not one o’ these kind o’ people that’d keep a joke to themself just because the joke was on them. But they’s plenty of our friends that I wouldn’t have ’em hear about it for the world. I wouldn’t tell you, only I know you’re not the village gossip and won’t crack it to anybody. Not even to your own Missus, see? I don’t trust no women.
+
+### Gullible’s Travels: Section 9
+
+_Dialogue and character voice_
+
+> Three Without, Doubled I They ain’t no immediate chance o’ you gettin’ ast out to our house to dinner⁠—not w’ile round steak and General Motors is sellin’ at the same price and common dog biscuit’s ten cents a loaf. But you might have nothin’ decent to do some evenin’ and happen to drop in on the Missus and I for a call; so I feel like I ought to give you a little warnin’ in case that comes off. You know they’s lots o’ words that’s called fightin’ words. Some o’ them starts a brawl, no matter who they’re spoke to. You can’t call nobody a liar without expectin’ to lose a couple o’ milk teeth⁠—that is, if the party addressed has got somethin’ besides lemon juice in his veins and ain’t had the misfortune to fall asleep on the Panhandle tracks and be separated from his most prominent legs and arms.
 
 ### The Jungle: Section 1
 

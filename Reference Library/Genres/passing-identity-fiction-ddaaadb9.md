@@ -2,25 +2,38 @@
 # Passing (Identity) -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 57118
-- Reading grade: 3.2
-- Average sentence: 7.6 words
-- Average paragraph: 10.0 words
-- Dialogue share: 37%
+- Words analyzed: 88247
+- Reading grade: 3.6
+- Average sentence: 8.9 words
+- Average paragraph: 20.2 words
+- Dialogue share: 35%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: house, himself, project, don’t, twins, ain’t, knife, wilson’s, thought, nigger, three, night, years, people, began, finger, white, young, without, gwine, person, calendar, chapter, going
-- Character names: Tom, Wilson, Roxy, Luigi, Judge, Judge Driscoll, Pudd’nhead Wilson, Roxana, Chambers, Angelo, Blake, Tom Driscoll, Rowena, Louis, Howard, Dawson, Driscoll, Pudd’nhead, Dey, Gutenberg, Marse Tom, Dave, Mrs. Pratt, Pratt, Twain, Buckstone, Dah, Mr. Driscoll, Patsy Cooper, Pembroke Howard
+- Tone: dialogue-forward, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: don’t, going, people, thought, white, ain’t, began, calendar, can’t, chapter, clare’s, couldn’t, didn’t, feeling, finger, gwine, hadn’t, herself, himself, house, knife, looking, nigger, night, nothing, person, project, seemed, small, smile, things, though, three, twins, voice, wilson’s, without, woman, words, wouldn’t
+- Character names: Angelo, Annie, Annie Poole, Bellew, Bill Lowndes, Blake, Bob Kendry, Brian, Buckstone, Chambers, Clare, Clare Kendry, Dah, Dave, Dawson, Dey, Driscoll, Felise, Fred, Gertrude, Gutenberg, Howard, Hugh, Hugh Wentworth, Irene, Irene Redfield, Jack, Jim Hammer, John Bellew, Judge, Judge Driscoll, Junior, Louis, Luigi, Margery, Marse Tom, Mistah Lowndes, Mr, Mr. Driscoll, Mrs, Mrs. Pratt, Nig, Obadiah, Patsy Cooper, Pembroke Howard, Pratt, Pudd’nhead, Pudd’nhead Wilson, Redfield, Rene, Rowena, Roxana, Roxy, Ted, Tom, Tom Driscoll, Twain, Wentworth, Wilson, Zulena
 
 ## Books
+- [Short Fiction](../Books/B7CF001F-8FAC-477E-A13F-BA7439FFC107.md)
 - [The Tragedy of Pudd'nhead Wilson](../Books/91EDE7E9-8E45-46E3-8CB8-A79B05F3290C.md)
 
 ## Representative excerpts
+
+### Short Fiction: Section 4
+
+_Mid-book rhythm_
+
+> Sanctuary I On the Southern coast, between Merton and Shawboro, there is a strip of desolation some half a mile wide and nearly ten miles long between the sea and old fields of ruined plantations. Skirting the edge of this narrow jungle is a partly grown-over road which still shows traces of furrows made by the wheels of wagons that have long since rotted away or been cut into firewood. This road is little used, now that the state has built its new highway a bit to the west and wagons are less numerous than automobiles. In the forsaken road a man was walking swiftly. But in spite of his hurry, at every step he set down his feet with infinite care for the night was windless and the heavy silence intensified each sound; even the breaking of a twig could be plainly heard. And the man had need of caution as well as haste.
+
+### Short Fiction: Section 3
+
+_Dialogue and character voice_
+
+> Passing For Carl Van Vechten and Fania Marinoff One three centuries removed From the scenes his fathers loved, Spicy grove, cinnamon tree, What is Africa to me? Countée Cullen Part I Encounter I It was the last letter in Irene Redfield’s little pile of morning mail. After her other ordinary and clearly directed letters the long envelope of thin Italian paper with its almost illegible scrawl seemed out of place and alien. And there was, too, something mysterious and slightly furtive about it. A thin sly thing which bore no return address to betray the sender. Not that she hadn’t immediately known who its sender was. Some two years ago she had one very like it in outward appearance. Furtive, but yet in some peculiar, determined way a little flaunting. Purple ink. Foreign paper of extraordinary size. It had been, Irene noted, postmarked in New York the day before.
 
 ### The Tragedy of Pudd'nhead Wilson: Section 1
 

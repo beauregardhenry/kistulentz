@@ -2,26 +2,40 @@
 # Philosophy
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 82802
-- Reading grade: 6.3
-- Average sentence: 9.0 words
-- Average paragraph: 11.5 words
-- Dialogue share: 19%
+- Words analyzed: 205628
+- Reading grade: 9.5
+- Average sentence: 25.6 words
+- Average paragraph: 57.3 words
+- Dialogue share: 20%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: nature, power, spirit, things, truth, without, world, agreement, beauty, conscience, copyright, electronic, europe, everything, forms, german, himself, hitherto, however, human, language, light, matter, means, moral, morality, natural, objects, people, perhaps, philosophers, philosophy, reason, shall, states, taste, terms, themselves, thought, woman
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, Adam, Aristophanes, Augustine, Beethoven, Byron, Caesar, Cagliostro, Christian, Descartes, Epicurus, Evil, Florentine, Frederick, Galiani, Gods, Goethe, Hegel, Jean Paul, Jesus, Kant, Locke, Michael Angelo, Napoleon, Pascal, Plato, Plotinus, Rousseau, Schopenhauer, Schumann, Shakspeare, Socrates, Spinoza, Swedenborg
+- Tempo: deliberate
+- Tone: direct, narrative-forward, rhythmically even, rhythmically varied, dialogue-forward, measured
+- Recurring vocabulary: things, without, nature, truth, cannot, himself, objects, others, people, power, reason, spirit, thought, world, agreement, beauty, called, cause, certain, clearly, conceive, conduct, conscience, copyright, doubt, electronic, europe, everything, existence, forms, german, government, heard, hitherto, however, human, ideas, indeed, knowledge, language
+- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, Tsze-hsiâ, Yû, Adam, Archimedes, Aristophanes, Aristotle, Augustine, Beethoven, Byron, Caesar, Cagliostro, Chieh, Chieh-nî, Chih, Christian, Chung, Chung-kung, Chung-nî, Châu, Chî K’ang, Chî Lû, Ch’ih, Confucius, Descartes, Duke Hwan, Epicurus, Essays, Evil, Florentine, Frederick, Galiani, Gods, Goethe, Hegel, Hwan, Hûi, Jean Paul, Jesus, Kant, Kwan, Kwan Chung, Latin, Locke, Michael Angelo, Napoleon, Pascal, Plato, Plotinus, Rousseau, Schopenhauer, Schumann, Shakspeare, Shang, Shih, Shun, Socrates, Spinoza, Swedenborg, Tsze-chang, Tsze-kung, Tsâi, Wei, Yen Yû, Yâo, Yû Zo
 
 ## Books
+- [Analects](../Books/BA82DEBF-08BE-4577-8603-91614AAD87D4.md)
 - [Beyond Good and Evil](../Books/7325DA2E-E663-49DC-93E0-87E829E8B764.md)
 - [Nature](../Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md)
+- [Philosophical Works](../Books/91513010-B2B7-4CFF-AF18-C5AE534BD8D9.md)
 
 ## Representative excerpts
+
+### Analects: Section 13
+
+_Mid-book rhythm_
+
+> Book XI Hsien Tsin I The Master said, “The men of former times, in the matters of ceremonies and music were rustics, it is said, while the men of these latter times, in ceremonies and music, are accomplished gentlemen. “If I have occasion to use those things, I follow the men of former times.” II The Master said, “Of those who were with me in Ch’ǎn and Ts’âi, there are none to be found to enter my door.” Distinguished for their virtuous principles and practice, there were Yen Yûan, Min Tsze-ch’ien, Zan Po-niû, and Chung-kung; for their ability in speech, Tsâi Wo and Tsze-kung; for their administrative talents, Zǎn Yû and Chî Lû; for their literary acquirements, Tsze-yû and Tsze-hsîâ. III The Master said, “Hûi gives me no assistance. There is nothing that I say in which he does not delight.” IV The Master said, “Filial indeed is Min Tsze-ch’ien!
+
+### Analects: Section 16
+
+_Dialogue and character voice_
+
+> Book XIV Hsien Wǎn I Hsien asked what was shameful. The Master said, “When good government prevails in a state, to be thinking only of salary; and, when bad government prevails, to be thinking, in the same way, only of salary;﻿—this is shameful.” II “When the love of superiority, boasting, resentments, and covetousness are repressed, this may be deemed perfect virtue.” The Master said, “This may be regarded as the achievement of what is difficult. But I do not know that it is to be deemed perfect virtue.” III The Master said, “The scholar who cherishes the love of comfort is not fit to be deemed a scholar.” IV The Master said, “When good government prevails in a state, language may be lofty and bold, and actions the same. When bad government prevails, the actions may be lofty and bold, but the language may be with some reserve.”
 
 ### Beyond Good and Evil: Section 1
 
@@ -40,3 +54,15 @@ _Mid-book rhythm_
 _Opening voice_
 
 > The Project Gutenberg eBook of Nature This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Nature Author: Ralph Waldo Emerson Release date: July 17, 2009 [eBook #29433] Language: English Other information and formats: www.gutenberg.org/ebooks/29433 Credits: Produced by Ruth Hart *** START OF THE PROJECT GUTENBERG EBOOK NATURE *** NATURE BY R. W.
+
+### Philosophical Works: Section 5
+
+_Mid-book rhythm_
+
+> Selections from the Principles of Philosophy Letter of the Author to the French Translator of the Principles of Philosophy Serving for a Preface Sir,⁠—The version of my Principles which you have been at pains to make, is so elegant and finished as to lead me to expect that the work will be more generally read in French than in Latin, and better understood. The only apprehension I entertain is lest the title should deter some who have not been brought up to letters, or with whom philosophy is in bad repute, because the kind they were taught has proved unsatisfactory; and this makes me think that it will be useful to add a preface to it for the purpose of showing what the matter of the work is, what end I had in view in writing it, and what utility may be derived from it.
+
+### Philosophical Works: Section 7
+
+_Dialogue and character voice_
+
+> Endnotes Literally, in a room heated by means of a stove. —⁠Tr. ↩ The “Discourse on Method” was originally published along with the “Dioptrics,” the “Meteorics,” and the “Geometry.” —⁠Tr. ↩ Holland; to which country he withdrew in 1629. —⁠Tr. ↩ Harvey. —⁠Lat. Tr. ↩ Galileo. —⁠Tr. ↩ See second endnote. ↩ The square brackets, here and throughout the volume, are used to mark additions to the original of the revised French translation. ↩ The term “perception” (perceptio) has a much wider signification in the writings of Descartes and the Cartesians than in the literature of the schools of philosophy in our times.

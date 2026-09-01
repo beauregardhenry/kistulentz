@@ -2,23 +2,25 @@
 # Brothers -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 355361
-- Reading grade: 3.6
-- Average sentence: 7.4 words
-- Average paragraph: 11.8 words
-- Dialogue share: 55%
-- Voice: observational third-person
+- Words analyzed: 792614
+- Reading grade: 4.6
+- Average sentence: 11.5 words
+- Average paragraph: 37.1 words
+- Dialogue share: 52%
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: though, don’t, father, that’s, himself, suddenly, cried, three, money, shall, nothing, perhaps, without, thought, heart, moment, began, believe, people, whole, thousand, won’t, myself, everything
-- Character names: Alyosha, Ivan, Fyodor Pavlovitch, Dmitri, Grigory, Miüsov, Katerina Ivanovna, Mitya, Smerdyakov, Lise, Grushenka, Alexey Fyodorovitch, Alexey, Pyotr Alexandrovitch, Rakitin, Fyodor, Pavlovitch, Madame Hohlakov, Ivanovna, Marfa, Sohn, Christ, Dmitri Fyodorovitch, Karamazov, Katerina, Maximov, Ivan Fyodorovitch, Grigory Vassilyevitch, Katya, Adelaïda Ivanovna
+- Tone: balanced, dialogue-forward, rhythmically varied, direct, narrative-forward, rhythmically even
+- Recurring vocabulary: cried, himself, myself, nothing, perhaps, shall, thought, without, began, believe, don’t, everything, father, heart, moment, money, people, suddenly, that’s, though, thousand, three, whole, won’t, ballantrae, durrisdeer, enough, family, hands, heard, house, indeed, least, master, matter, night, place, quite, seemed, words
+- Character names: Adelaïda Ivanovna, Alexey, Alexey Fyodorovitch, Alyosha, Christ, Dmitri, Dmitri Fyodorovitch, Fyodor Pavlovitch, Grigory, Grigory Vassilyevitch, Grushenka, Ivan, Ivan Fyodorovitch, Karamazov, Katerina Ivanovna, Katya, Lise, Madame Hohlakov, Marfa, Maximov, Mitya, Miüsov, Pyotr Alexandrovitch, Rakitin, Smerdyakov, Albany, Alexander, Bally, Burke, Carlyle, Chevalier, Crail, Durie, Dutton, Fyodor, Harris, Hastie, Henry, Henry Durie, Ivanovna, Jacob, James, Jessie, John, John Paul, Kalganov, Katerina, Lizaveta, Mackellar, Miss Alison, Miss Katharine, Mountain, Mr, Mrs, Nikita, Pavlovitch, Pinkerton, Sarah, Secundra Dass, Sohn, Stewart, Thomson, Von Sohn, William, Yefim Petrovitch
 
 ## Books
 - [The Brothers Karamazov](../Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md)
+- [The Brothers Karamazov](../Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md)
+- [The Master of Ballantrae](../Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Chapter IV. In The Dark Where was he running? “Where could she be except at Fyodor Pavlovitch’s? She must have run straight to him from Samsonov’s, that was clear now. The whole intrigue, the whole deceit was evident.” ... It all rushed whirling through his mind. He did not run to Marya Kondratyevna’s. “There was no need to go there ... not the slightest need ... he must raise no alarm ... they would run and tell directly.... Marya Kondratyevna was clearly in the plot, Smerdyakov too, he too, all had been bought over!”
+
+### The Brothers Karamazov: Section 61
+
+_Mid-book rhythm_
+
+> I Kuzma Samsonov But Dmitri, to whom Grushenka, flying away to a new life, had left her last greetings, bidding him remember the hour of her love forever, knew nothing of what had happened to her, and was at that moment in a condition of feverish agitation and activity. For the last two days he had been in such an inconceivable state of mind that he might easily have fallen ill with brain fever, as he said himself afterwards. Alyosha had not been able to find him the morning before, and Ivan had not succeeded in meeting him at the tavern on the same day. The people at his lodgings, by his orders, concealed his movements. He had spent those two days literally rushing in all directions, “struggling with his destiny and trying to save himself,”
+
+### The Brothers Karamazov: Section 97
+
+_Dialogue and character voice_
+
+> IX The Devil. Ivan’s Nightmare I am not a doctor, but yet I feel that the moment has come when I must inevitably give the reader some account of the nature of Ivan’s illness. Anticipating events I can say at least one thing: he was at that moment on the very eve of an attack of brain fever. Though his health had long been affected, it had offered a stubborn resistance to the fever which in the end gained complete mastery over it. Though I know nothing of medicine, I venture to hazard the suggestion that he really had perhaps, by a terrible effort of will, succeeded in delaying the attack for a time, hoping, of course, to check it completely.
+
+### The Master of Ballantrae: Section 11
+
+_Mid-book rhythm_
+
+> VI Summary of Events During the Master’s Second Absence Of the heavy sickness which declared itself next morning I can think with equanimity, as of the last unmingled trouble that befell my master; and even that was perhaps a mercy in disguise; for what pains of the body could equal the miseries of his mind? Mrs. Henry and I had the watching by the bed. My old lord called from time to time to take the news, but would not usually pass the door. Once, I remember, when hope was nigh gone, he stepped to the bedside, looked a while in his son’s face, and turned away with a singular gesture of the head and hand thrown up, that remains upon my mind as something tragic; such grief and such a scorn of sublunary things were there expressed. But the most of the time Mrs. Henry and I had the room to ourselves, taking turns by night, and bearing each other company by day, for it was dreary watching.
+
+### The Master of Ballantrae: Section 9
+
+_Dialogue and character voice_
+
+> IV Persecutions Endured by Mr. Henry You can guess on what part of his adventures the Colonel principally dwelled. Indeed, if we had heard it all, it is to be thought the current of this business had been wholly altered; but the pirate ship was very gently touched upon. Nor did I hear the Colonel to an end even of that which he was willing to disclose; for Mr. Henry, having for some while been plunged in a brown study, rose at last from his seat and (reminding the Colonel there were matters that he must attend to) bade me follow him immediately to the office. Once there, he sought no longer to dissemble his concern, walking to and fro in the room with a contorted face, and passing his hand repeatedly upon his brow. “We have some business,” he began at last; and there broke off, declared we must have wine, and sent for a magnum of the best.

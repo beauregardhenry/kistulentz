@@ -2,23 +2,24 @@
 # Cats -- Juvenile fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 45433
-- Reading grade: 3.3
-- Average sentence: 8.2 words
-- Average paragraph: 10.8 words
-- Dialogue share: 40%
+- Words analyzed: 77468
+- Reading grade: 3.4
+- Average sentence: 9.6 words
+- Average paragraph: 15.1 words
+- Dialogue share: 32%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: horse, people, kitten, buggy, princess, replied, don't, answered, voice, wooden, piglets, country, piglet, friends, earth, glass, place, sorcerer, cried, prince, gargoyles, began, mangaboos, mountain
-- Character names: Dorothy, Jim, Zeb, Ozma, Gutenberg, Billina, Tin Woodman, Jellia, DOROTHY, Mr. Wizard, Voe, Uncle Henry, Eureka, Project Gutenberg, Gillikins, Gutenberg Literary Archive Foundation, Henry, Hugson, OZMA, Tik, Gutenberg Literary, Ianu, JIM, Jellia Jamb, Mombi, Tiger, Valley
+- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
+- Recurring vocabulary: began, answered, bland, buggy, called, country, cousin, cried, don't, duchess, earth, flopsy, friends, garden, gargoyles, glass, himself, horse, house, inside, kitchen, kitten, mangaboos, moppet, mountain, mouse, people, piglet, piglets, place, prince, princess, puddle, quite, rabbit, replied, round, shall, sorcerer, tailor
+- Character names: Dorothy, Jim, Ozma, Alexander, Anna Maria, Benjamin, Benjamin Bunny, Billina, Brown, Eureka, Gillikins, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Henry, Hugson, Hunca Munca, Ianu, Jackson, Jellia, Jellia Jamb, Jemima, Jeremy, Jeremy Fisher, Johnny, Lucie, McGregor, Mombi, Mr, Mr. Wizard, Mrs, Nutkin, Peter, Pickles, Pigling, Piperson, Project Gutenberg, Ribby, Simpkin, Tabitha, Tiger, Tik, Timmy, Timmy Tiptoes, Timmy Willie, Tin Woodman, Tod, Tom, Tom Kitten, Tommy Brock, Uncle Henry, Valley, Voe, Zeb
 
 ## Books
 - [Dorothy and the Wizard in Oz](../Books/4DFFBED4-FB87-40FD-BE7F-0A8B93EE5E72.md)
+- [Short Fiction](../Books/6C01240E-87D9-4C76-A0B7-8AA4B498034B.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > THE WIZARD TOOK A PIGLET FROM OZMA'S HAIR. Jim's big hoofs pounded away at a great rate, and although he did not look very graceful he ran in a way to do credit to his Kentucky breeding. But the Sawhorse was swifter than the wind. Its wooden legs moved so fast that their twinkling could scarcely be seen, and although so much smaller than the cab-horse it covered the ground much faster. Before they had reached the trees the Sawhorse was far ahead, and the wooden animal returned to the starting place and was being lustily cheered by the Ozites before Jim came panting up to the canopy where the Princess and her friends were seated. THE HUNGRY TIGER TEACHES JIM A LESSON. I am sorry to record the fact that Jim was not only ashamed of his defeat but for a moment lost control of his temper.
+
+### Short Fiction: Section 1
+
+_Opening voice_
+
+> Imprint This ebook is the product of many hours of hard work by volunteers for Standard Ebooks, and builds on the hard work of other literature lovers made possible by the public domain. This particular ebook is based on transcription from Project Gutenberg and on digital scans from various sources. The source text and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. They may still be copyrighted in other countries, so users located outside of the United States must check their local laws before using this ebook. The creators of, and contributors to, this ebook dedicate their contributions to the worldwide public domain via the terms in the CC0 1.0 Universal Public Domain Dedication. For full license information, see the Uncopyright at the end of this ebook.
+
+### Short Fiction: Section 12
+
+_Mid-book rhythm_
+
+> The Tale of Tom Kitten Dedicated to all Pickles, —especially to those that get upon my garden wall. Once upon a time there were three little kittens, and their names were Mittens, Tom Kitten, and Moppet. They had dear little fur coats of their own; and they tumbled about the doorstep and played in the dust. But one day their mother⁠—Mrs. Tabitha Twitchit⁠—expected friends to tea; so she fetched the kittens indoors, to wash and dress them, before the fine company arrived. First she scrubbed their faces (this one is Moppet). Then she brushed their fur, (this one is Mittens). Then she combed their tails and whiskers (this is Tom Kitten). Tom was very naughty, and he scratched. Mrs. Tabitha dressed Moppet and Mittens in clean pinafores and tuckers; and then she took all sorts of elegant uncomfortable clothes out of a chest of drawers, in order to dress up her son Thomas.

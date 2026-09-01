@@ -2,24 +2,27 @@
 # Ernest Hemingway
 
 - Profile type: Author
-- Books represented: 3
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 208086
-- Reading grade: 1.4
-- Average sentence: 5.6 words
-- Average paragraph: 8.4 words
-- Dialogue share: 35%
+- Words analyzed: 503996
+- Reading grade: 1.9
+- Average sentence: 7.7 words
+- Average paragraph: 17.9 words
+- Dialogue share: 31%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: anything, can’t, don’t, drink, going, night, project, that’s, you’re, across, better, looking, started, table, three, walked, bright, bulls, count, crowd, darling, didn’t, doctor, front, gutenberg, hospital, hotel, let’s, muleta, nothing, outside, people, place, pretty, priest, sleep, soldier, square, stairs, stood
-- Character names: George, Gutenberg, Abruzzi, Al, Anthony, Aymo, Bacchus, Barkley, Barnes, Barto, Belmonte, Bill, Bill Gorton, Billy, Bonello, Braddocks, Brett, Burguete, Carl, Catherine, Catherine Barkley, Christ, Cohn, Crowell, Edna, Ettore, Ferguson, Frances, Frank, Fuentes, Georgette, Gino, Gordini, Harris, Harvey, Harvey Stone, Hernandez, Hogan, Jack, Jake, Jerry, Joe, Joe Garner, John, Lady Ashley, Manera, Manolo, Manuel, Marcial, Max, Meyers, Michael, Mike, Miss Barkley, Miss Ferguson, Miss Gage, Miss Van Campen, Montoya, Morgan, Mr. Barnes, Mr. Henry, Mr. Turner, Mrs. Braddocks, Mrs. Garner, Nick, Ole Andreson, Olz, Pallanza, Passini, Pedro Romero, Piani, Pinin, Retana, Rinaldi, Robert, Robert Cohn, Romero, San Fermin, San Sebastian, Signor Tenente
+- Tone: direct, rhythmically even, dialogue-forward, narrative-forward, inquisitive
+- Recurring vocabulary: anything, can’t, don’t, going, night, that’s, across, looking, started, three, drink, front, table, thought, walked, you’re, better, didn’t, project, soldier, stood, toward, coming, darling, doctor, hospital, indian, nothing, outside, place, priest, water, we’ll, white, won’t, young, zurito, bright, bulls, count
+- Character names: George, Al, Bill, Fuentes, Hernandez, Hogan, Jack, John, Manuel, Max, Mr, Mrs, Nick, Ole Andreson, Retana, Abruzzi, Aymo, Bacchus, Barto, Bonello, Catherine, Catherine Barkley, Christ, Crowell, Diana, Dick, Elliot, Ettore, Ferguson, Gino, Gordini, Gutenberg, Harold, Jim, Krebs, Liz, Mandy, Manera, Marjorie, Meyers, Miss Barkley, Miss Ferguson, Miss Gage, Miss Van Campen, Passini, Peduzzi, Piani, Rinaldi, Scripps, Scripps O’Neil, Simmons, Smith, Tenente, Valentini, Yogi, Yogi Johnson, Anthony, Barkley, Barnes, Belmonte, Bill Gorton, Billy, Braddocks, Brett, Burguete, Carl, Cohn, Edna, Frances, Frank, Georgette, Harris, Harvey, Harvey Stone, Henry, Jake, Jerry, Joe, Joe Garner, Lady Ashley
 
 ## Books
 - [A farewell to arms](../Books/CF72CA27-3ED2-4D0B-B949-2F8F13569041.md)
+- [A Farewell to Arms](../Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
+- [Short Fiction](../Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md)
+- [Short Fiction](../Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md)
 - [The Sun Also Rises](../Books/5CEAA30B-BF4D-4511-A770-26E28776877A.md)
 
 ## Representative excerpts
@@ -36,6 +39,18 @@ _Mid-book rhythm_
 
 > “ ‘But at my back I always hear Time’s wingèd chariot hurrying near,’ ” I said. “I know that poem,” Catherine said. “It’s by Marvell. But it’s about a girl who wouldn’t live with a man.” My head felt very clear and cold and I wanted to talk facts. “Where will you have the baby?” “I don’t know. The best place I can find.” “How will you arrange it?” “The best way I can. Don’t worry, darling. We may have several babies before the war is over.” “It’s nearly time to go.” “I know. You can make it time if you want.” “No.” “Then don’t worry, darling. You were fine until now and now you’re worrying.” “I won’t. How often will you write?” “Every day. Do they read your letters?” “They can’t read English enough to hurt any.” “I’ll make them very confusing,” Catherine said. “But not too confusing.” “I’ll just make them a little confusing.” “I’m afraid we have to start to go.” “All right, darling.”
 
+### A Farewell to Arms: Section 27
+
+_Mid-book rhythm_
+
+> XXI In September the first cool nights came, then the days were cool and the leaves on the trees in the park began to turn color and we knew the summer was gone. The fighting at the front went very badly and they could not take San Gabriele. The fighting on the Bainsizza plateau was over and by the middle of the month the fighting for San Gabriele was about over too. They could not take it. Ettore was gone back to the front. The horses were gone to Rome and there was no more racing. Crowell had gone to Rome too, to be sent back to America. There were riots twice in the town against the war and bad rioting in Turin. A British major at the club told me the Italians had lost one hundred and fifty thousand men on the Bainsizza plateau and on San Gabriele. He said they had lost forty thousand on the Carso besides. We had a drink and he talked.
+
+### A Farewell to Arms: Section 32
+
+_Dialogue and character voice_
+
+> XXV Now in the fall the trees were all bare and the roads were muddy. I rode to Gorizia from Udine on a camion. We passed other camions on the road and I looked at the country. The mulberry trees were bare and the fields were brown. There were wet dead leaves on the road from the rows of bare trees and men were working on the road, tamping stone in the ruts from piles of crushed stone along the side of the road between the trees. We saw the town with a mist over it that cut off the mountains. We crossed the river and I saw that it was running high. It had been raining in the mountains. We came into the town past the factories and then the houses and villas and I saw that many more houses had been hit. On a narrow street we passed a British Red Cross ambulance. The driver wore a cap and his face was thin and very tanned. I did not know him.
+
 ### Men without women: Section 1
 
 _Opening voice_
@@ -48,14 +63,26 @@ _Mid-book rhythm_
 
 > A PURSUIT RACE William Campbell had been in a pursuit race with a burlesque show ever since Pittsburgh. In a pursuit race, in bicycle racing, riders start at equal intervals to ride after one another. They ride very fast because the race is usually limited to a short distance and if they slow their riding another rider who maintains his pace will make up the space that separated them equally at the start. As soon as a rider is caught and passed he is out of the race and must get down from his bicycle and leave the track. If none of the riders are caught the winner of the race is the one who has gained the most distance. In most pursuit races, if there are only two riders, one of the riders is caught inside of six miles. The burlesque show caught William Campbell at Kansas City. William Campbell had hoped to hold a slight lead over the burlesque show until they reached the Pacific coast.
 
-### The Sun Also Rises: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Sun Also Rises This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Sun Also Rises Author: Ernest Hemingway Release date: January 10, 2022 [eBook #67138] Most recently updated: October 18, 2024 Language: English Original publication: United States: Charles Scribner's Sons, 1926 Other information and formats: www.gutenberg.
-
-### The Sun Also Rises: Section 3
+### Short Fiction: Section 27
 
 _Mid-book rhythm_
 
-> CHAPTER 14 I do not know what time I got to bed. I remember undressing, putting on a bathrobe, and standing out on the balcony. I knew I was quite drunk, and when I came in I put on the light over the head of the bed and started to read. I was reading a book by Turgenieff. Probably I read the same two pages over several times. It was one of the stories in “A Sportsman’s Sketches.” I had read it before, but it seemed quite new. The country became very clear and the feeling of pressure in my head seemed to loosen. I was very drunk and I did not want to shut my eyes because the room would go round and round. If I kept on reading that feeling would pass. I heard Brett and Robert Cohn come up the stairs. Cohn said good night outside the door and went on up to his room. I heard Brett go into the room next door. Mike was already in bed. He had come in with me an hour before.
+> Out of Season On the four lire Peduzzi had earned by spading the hotel garden he got quite drunk. He saw the young gentleman coming down the path and spoke to him mysteriously. The young gentleman said he had not eaten but would be ready to go as soon as lunch was finished. Forty minutes or an hour. At the cantina near the bridge they trusted him for three more grappas because he was so confident and mysterious about his job for the afternoon. It was a windy day with the sun coming out from behind clouds and then going under in sprinkles of rain. A wonderful day for trout fishing. The young gentleman came out of the hotel and asked him about the rods. Should his wife come behind with the rods? “Yes,” said Peduzzi, “let her follow us.” The young gentleman went back into the hotel and spoke to his wife. He and Peduzzi started down the road.
+
+### Short Fiction: Section 37
+
+_Dialogue and character voice_
+
+> The Torrents of Spring A Romantic Novel in Honor of the Passing of a Great Race And perhaps there is one reason why a comic writer should of all others be the least excused for deviating from nature, since it may not be always so easy for a serious poet to meet with the great and the admirable; but life everywhere furnishes an accurate observer with the ridiculous. Henry Fielding Red and Black Laughter The only source of the true Ridiculous (as it appears to me) is affectation. Henry Fielding I Yogi Johnson stood looking out of the window of a big pump-factory in Michigan. Spring would soon be here. Could it be that what this writing fellow Hutchinson had said, “If winter comes can spring be far behind?” would be true again this year? Yogi Johnson wondered. Near Yogi at the next window but one stood Scripps O’Neil, a tall, lean man with a tall, lean face.
+
+### Short Fiction: Section 27
+
+_Mid-book rhythm_
+
+> Out of Season On the four lire Peduzzi had earned by spading the hotel garden he got quite drunk. He saw the young gentleman coming down the path and spoke to him mysteriously. The young gentleman said he had not eaten but would be ready to go as soon as lunch was finished. Forty minutes or an hour. At the cantina near the bridge they trusted him for three more grappas because he was so confident and mysterious about his job for the afternoon. It was a windy day with the sun coming out from behind clouds and then going under in sprinkles of rain. A wonderful day for trout fishing. The young gentleman came out of the hotel and asked him about the rods. Should his wife come behind with the rods? “Yes,” said Peduzzi, “let her follow us.” The young gentleman went back into the hotel and spoke to his wife. He and Peduzzi started down the road.
+
+### Short Fiction: Section 37
+
+_Dialogue and character voice_
+
+> The Torrents of Spring A Romantic Novel in Honor of the Passing of a Great Race And perhaps there is one reason why a comic writer should of all others be the least excused for deviating from nature, since it may not be always so easy for a serious poet to meet with the great and the admirable; but life everywhere furnishes an accurate observer with the ridiculous. Henry Fielding Red and Black Laughter The only source of the true Ridiculous (as it appears to me) is affectation. Henry Fielding I Yogi Johnson stood looking out of the window of a big pump-factory in Michigan. Spring would soon be here. Could it be that what this writing fellow Hutchinson had said, “If winter comes can spring be far behind?” would be true again this year? Yogi Johnson wondered. Near Yogi at the next window but one stood Scripps O’Neil, a tall, lean man with a tall, lean face.

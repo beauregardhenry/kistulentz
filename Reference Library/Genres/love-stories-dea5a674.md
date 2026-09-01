@@ -2,26 +2,53 @@
 # Love stories
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 17
 
 ## Learned profile
 
-- Words analyzed: 148070
-- Reading grade: 4.2
-- Average sentence: 8.2 words
-- Average paragraph: 11.2 words
-- Dialogue share: 41%
+- Words analyzed: 2553374
+- Reading grade: 5.9
+- Average sentence: 17.3 words
+- Average paragraph: 49.8 words
+- Dialogue share: 33%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: cannot, nothing, shall, thought, without, world, alone, brothers, chapter, council, earth, electronic, enough, forest, golden, gutenberg, hands, happy, heart, herself, himself, house, however, indeed, light, mother, myself, night, power, quite, replied, scholars, sister, speak, stood, therefore, things, though, words, works
-- Character names: Brandon, Carpenter, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Fanny, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Jennings, Lady Middleton, Lucy, Mamma, Marianne, Miss Austen, Miss Dashwood, Miss Marianne, Miss Steele, Mr, Mr. Dashwood, Mr. Palmer, Mr. Willoughby, Mrs, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. Palmer, Mrs. Smith, Project Gutenberg, Sir John, Steeles, Willoughby
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, narrative-forward, rhythmically even, energetic, measured
+- Recurring vocabulary: nothing, seemed, thought, without, himself, quite, though, herself, house, shall, young, don’t, enough, night, going, place, round, stood, heart, however, woman, world, better, heard, indeed, moment, mother, people, things, cannot, happy, light, looking, myself, perhaps, replied, sister, words, answered, black
+- Character names: Mr, Mrs, John, Edward, Fanny, Mary, Harry, Jack, James, Mr., Smith, Willoughby, Anne, Annie, Brandon, Charley, Charlotte, Colonel Brandon, Dashwood, Dr, Elinor, Eliza, Helen, Henry, Jacob, Jane, Jennings, Julia, Lady Middleton, Lucy, Marianne, Miss Dashwood, Miss Marianne, Miss Steele, Palmer, Peggy, Richard, Sam, Sir John, Steeles, Tom, Abou Fatma, Adair, Adam, Adèle, Agafea Mihalovna, Agatha, Agnes, Alan Brandir, Albert, Albert Witham, Alexander, Alexey Alexandrovitch, Alice, Alvina, Alvina Houghton, Alwyn, Andrey, Anna, Anna Arkadyevna, Anne Elliot, Annie Melville, Arab, Archer, Arthur, Arthur Witham, Ashby, Aymer, Bathsheba, Bathsheba Everdene, Benwick, Berber, Berry, Bertram, Bertrams, Bessie, Betsy, Betts, Betty, Betty Muxworthy
 
 ## Books
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
 - [Anthem](../Books/8BAEF5C3-053B-4781-ABA9-181EB85B2CE2.md)
+- [Far from the Madding Crowd](../Books/70470CBB-9CB0-4037-ACAB-6047AFA2479E.md)
+- [Ivanhoe](../Books/C2611716-5F13-48E1-A248-8CFB0DF89049.md)
+- [Jane Eyre](../Books/862ED974-72FF-475C-A1B4-A649ABA15EFB.md)
+- [Lady Chatterley’s Lover](../Books/35BF24CF-4D51-41AE-AD44-647324261333.md)
+- [Lorna Doone](../Books/0A45C08C-A329-415C-B8AC-16498DE5DB60.md)
+- [Mansfield Park](../Books/AA2BDFD7-B608-4192-BC7F-67079F09D869.md)
+- [Persuasion](../Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [Short Fiction](../Books/8227C284-ABF0-400A-8193-1DE53BF2DE60.md)
+- [The Blue Lagoon](../Books/ECDD124D-D95A-407F-BFE4-085E9839318A.md)
+- [The Four Feathers](../Books/BFCAEE62-036E-40F1-9313-F34DCC0F6876.md)
+- [The Lost Girl](../Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md)
+- [The Quest of the Silver Fleece](../Books/8D64A15B-2039-4303-9CC6-AC3AA45E32EB.md)
+- [The Return of the Native](../Books/18842CF9-474F-4A11-AA22-371DA9B597B9.md)
 
 ## Representative excerpts
+
+### Anna Karenina: Section 126
+
+_Mid-book rhythm_
+
+> XIX The mistake made by Alexey Alexandrovitch in that, when preparing for seeing his wife, he had overlooked the possibility that her repentance might be sincere, and he might forgive her, and she might not die⁠—this mistake was two months after his return from Moscow brought home to him in all its significance. But the mistake made by him had arisen not simply from his having overlooked that contingency, but also from the fact that until that day of his interview with his dying wife, he had not known his own heart. At his sick wife’s bedside he had for the first time in his life given way to that feeling of sympathetic suffering always roused in him by the sufferings of others, and hitherto looked on by him with shame as a harmful weakness.
+
+### Anna Karenina: Section 101
+
+_Dialogue and character voice_
+
+> XXVII “If I’d only the heart to throw up what’s been set going⁠ ⁠… such a lot of trouble wasted⁠ ⁠… I’d turn my back on the whole business, sell up, go off like Nikolay Ivanovitch⁠ ⁠… to hear La Belle Hélène,” said the landowner, a pleasant smile lighting up his shrewd old face. “But you see you don’t throw it up,” said Nikolay Ivanovitch Sviazhsky; “so there must be something gained.” “The only gain is that I live in my own house, neither bought nor hired. Besides, one keeps hoping the people will learn sense. Though, instead of that, you’d never believe it⁠—the drunkenness, the immorality! They keep chopping and changing their bits of land. Not a sight of a horse or a cow. The peasant’s dying of hunger, but just go and take him on as a laborer, he’ll do his best to do you a mischief, and then bring you up before the justice of the peace.”
 
 ### Anthem: Section 1
 
@@ -35,14 +62,38 @@ _Mid-book rhythm_
 
 > PART SEVEN It is dark here in the forest. The leaves rustle over our head, black against the last gold of the sky. The moss is soft and warm. We shall sleep on this moss for many nights, till the beasts of the forest come to tear our body. We have no bed now, save the moss, and no future, save the beasts. We are old now, yet we were young this morning, when we carried our glass box through the streets of the City to the Home of the Scholars. No men stopped us, for there were none about from the Palace of Corrective Detention, and the others knew nothing. No men stopped us at the gate. We walked through empty passages and into the great hall where the World Council of Scholars sat in solemn meeting. We saw nothing as we entered, save the sky in the great windows, blue and glowing.
 
-### Sense and Sensibility: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Sense and Sensibility This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Sense and Sensibility Author: Jane Austen Commentator: Austin Dobson Illustrator: Hugh Thomson Release date: June 15, 2007 [eBook #21839] Most recently updated: July 27, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Sense and Sensibility: Section 4
+### Far from the Madding Crowd: Section 33
 
 _Mid-book rhythm_
 
-> Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+> XXIX Particulars of a Twilight Walk We now see the element of folly distinctly mingling with the many varying particulars which made up the character of Bathsheba Everdene. It was almost foreign to her intrinsic nature. Introduced as lymph on the dart of Eros, it eventually permeated and coloured her whole constitution. Bathsheba, though she had too much understanding to be entirely governed by her womanliness, had too much womanliness to use her understanding to the best advantage. Perhaps in no minor point does woman astonish her helpmate more than in the strange power she possesses of believing cajoleries that she knows to be false⁠—except, indeed, in that of being utterly sceptical on strictures that she knows to be true. Bathsheba loved Troy in the way that only self-reliant women love when they abandon their self-reliance.
+
+### Far from the Madding Crowd: Section 12
+
+_Dialogue and character voice_
+
+> VIII The Malthouse; The Chat; News Warren’s Malthouse was enclosed by an old wall inwrapped with ivy, and though not much of the exterior was visible at this hour, the character and purposes of the building were clearly enough shown by its outline upon the sky. From the walls an overhanging thatched roof sloped up to a point in the centre, upon which rose a small wooden lantern, fitted with louvre-boards on all the four sides, and from these openings a mist was dimly perceived to be escaping into the night air. There was no window in front; but a square hole in the door was glazed with a single pane, through which red, comfortable rays now stretched out upon the ivied wall in front. Voices were to be heard inside. Oak’s hand skimmed the surface of the door with fingers extended to an Elymas-the-Sorcerer pattern, till he found a leathern strap, which he pulled.
+
+### Ivanhoe: Section 27
+
+_Mid-book rhythm_
+
+> XXI Alas, how many hours and years have past, Since human forms have round this table sat, Or lamp, or taper, on its surface gleamed! Methinks, I hear the sound of time long pass’d Still murmuring o’er us, in the lofty void Of these dark arches, like the ling’ring voices Of those who long within their graves have slept. Orra, a Tragedy While these measures were taking in behalf of Cedric and his companions, the armed men by whom the latter had been seized, hurried their captives along towards the place of security, where they intended to imprison them. But darkness came on fast, and the paths of the wood seemed but imperfectly known to the marauders. They were compelled to make several long halts, and once or twice to return on their road to resume the direction which they wished to pursue.
+
+### Ivanhoe: Section 33
+
+_Dialogue and character voice_
+
+> XXVII Fond wretch! and what canst thou relate, But deeds of sorrow, shame, and sin? Thy deeds are proved⁠—thou know’st thy fate; But come, thy tale⁠—begin⁠—begin. But I have griefs of other kind, Troubles and sorrows more severe; Give me to ease my tortured mind, Lend to my woes a patient ear; And let me, if I may not find A friend to help⁠—find one to hear. Crabbe’s Hall of Justice When Urfried had with clamours and menaces driven Rebecca back to the apartment from which she had sallied, she proceeded to conduct the unwilling Cedric into a small apartment, the door of which she heedfully secured. Then fetching from a cupboard a stoup of wine and two flagons, she placed them on the table, and said in a tone rather asserting a fact than asking a question, “Thou art Saxon, father⁠—Deny it not,”
+
+### Jane Eyre: Section 24
+
+_Mid-book rhythm_
+
+> XIX The library looked tranquil enough as I entered it, and the Sibyl⁠—if Sibyl she were⁠—was seated snugly enough in an easy-chair at the chimney-corner. She had on a red cloak and a black bonnet: or rather, a broad-brimmed gipsy hat, tied down with a striped handkerchief under her chin. An extinguished candle stood on the table; she was bending over the fire, and seemed reading in a little black book, like a prayerbook, by the light of the blaze: she muttered the words to herself, as most old women do, while she read; she did not desist immediately on my entrance: it appeared she wished to finish a paragraph. I stood on the rug and warmed my hands, which were rather cold with sitting at a distance from the drawing-room fire. I felt now as composed as ever I did in my life: there was nothing indeed in the gipsy’s appearance to trouble one’s calm.
+
+### Jane Eyre: Section 32
+
+_Dialogue and character voice_
+
+> XXVII Some time in the afternoon I raised my head, and looking round and seeing the western sun gilding the sign of its decline on the wall, I asked, “What am I to do?” But the answer my mind gave⁠—“Leave Thornfield at once”⁠—was so prompt, so dread, that I stopped my ears. I said I could not bear such words now. “That I am not Edward Rochester’s bride is the least part of my woe,” I alleged: “that I have wakened out of most glorious dreams, and found them all void and vain, is a horror I could bear and master; but that I must leave him decidedly, instantly, entirely, is intolerable. I cannot do it.” But, then, a voice within me averred that I could do it and foretold that I should do it.

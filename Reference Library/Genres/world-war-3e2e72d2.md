@@ -2,23 +2,37 @@
 # World War
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 15
 
 ## Learned profile
 
-- Words analyzed: 92136
-- Reading grade: 1.4
-- Average sentence: 5.5 words
-- Average paragraph: 8.3 words
-- Dialogue share: 38%
-- Voice: intimate first-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, going, night, darling, you’re, won’t, anything, doctor, gutenberg, that’s, outside, priest, drink, project, we’ll, nothing, can’t, thought, across, better, started, front, hospital, place
-- Character names: Catherine, Rinaldi, Piani, Bonello, Tenente, Aymo, Ferguson, Ettore, Miss Barkley, Passini, Manera, Miss Gage, Miss Van Campen, Crowell, Gino, Simmons, Catherine Barkley, Gordini, Meyers, Abruzzi, Christ, Bacchus, Barto, George, Barkley, Miss Ferguson, Pallanza, Valentini, Anthony, Mr. Henry
+- Words analyzed: 1650826
+- Reading grade: 5.7
+- Average sentence: 17.8 words
+- Average paragraph: 56.9 words
+- Dialogue share: 24%
+- Voice: mixed or shifting perspective
+- Tempo: steady
+- Tone: balanced, dialogue-forward, rhythmically even, rhythmically varied, narrative-forward, direct, measured, inquisitive
+- Recurring vocabulary: going, night, nothing, thought, don’t, himself, seemed, three, behind, place, round, house, quite, though, better, moment, things, across, anything, black, course, enough, heard, looking, myself, people, pretty, voice, young, answered, business, can’t, didn’t, english, friend, german, hands, morning, perhaps, remarked
+- Character names: Mr, Mrs, Peter, Carl, Carl Peterson, Denny, Drummond, George, Hannay, Hugh, Hugh Drummond, Jerningham, Peterson, Phyllis, Sir Walter, Ted, Walter, Abruzzi, Algy, Algy Longworth, Ali, Alice, Arab, Aymo, Bacchus, Barto, Blenkiron, Bonello, Catherine, Catherine Barkley, Christ, Crowell, Dick, Dr, Enver, Ettore, Ferguson, Gino, Gordini, Harry, Henry, Herbert, Macgillivray, Manera, Mary, Meyers, Miss Barkley, Miss Ferguson, Miss Gage, Miss Van Campen, Passini, Peter Darrell, Piani, R., Raymond, Rinaldi, Simmons, Tenente, Toby, Valentini, Wilson, Abd el Kerim, Abdulla, Ainslie, Akaba, Al, Albert Hall, Alix, Allen, Allens, Ambrose, Amos, Anastasia Alexandrovna, Andra, Andrew Amos, Anna, Anna Heves, Annie Laurie, Anthony, Anton
 
 ## Books
 - [A farewell to arms](../Books/CF72CA27-3ED2-4D0B-B949-2F8F13569041.md)
+- [A Farewell to Arms](../Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md)
+- [Ashenden](../Books/9AE25B84-43D4-431D-8E1F-E78C6D116855.md)
+- [Bulldog Drummond](../Books/4513F14C-F744-4BA0-89B1-D2F6F931DED5.md)
+- [Greenmantle](../Books/2315EB37-7FDA-4785-9E34-C215E58D4467.md)
+- [Jack Keefe Stories](../Books/FD1C7295-58D9-49B9-AF99-DA46403CED94.md)
+- [Jacob’s Room](../Books/B7388E23-4426-4D38-BAC1-486C823DA7D9.md)
+- [Mr. Standfast](../Books/6FABB4C5-0118-4C59-92DF-47D609A66433.md)
+- [Pimpernel and Rosemary](../Books/A5EC2717-0CF0-4423-8B16-D146EA2170F0.md)
+- [Seven Pillars of Wisdom](../Books/3FA07147-7B14-45EC-A0EC-3CAF8F819A83.md)
+- [Short Fiction](../Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md)
+- [The Black Gang](../Books/3518182F-4869-4902-A704-F01283879F66.md)
+- [The Enormous Room](../Books/10AB5BA0-2796-4A31-90F8-EBAD52EBECBC.md)
+- [The Third Round](../Books/F198F685-F32D-4BDC-B58B-81BB6D8DCAF4.md)
+- [The Thirty-Nine Steps](../Books/8709201F-2E6F-4577-A284-3F75A58EE727.md)
 
 ## Representative excerpts
 
@@ -33,3 +47,51 @@ _Opening voice_
 _Mid-book rhythm_
 
 > “ ‘But at my back I always hear Time’s wingèd chariot hurrying near,’ ” I said. “I know that poem,” Catherine said. “It’s by Marvell. But it’s about a girl who wouldn’t live with a man.” My head felt very clear and cold and I wanted to talk facts. “Where will you have the baby?” “I don’t know. The best place I can find.” “How will you arrange it?” “The best way I can. Don’t worry, darling. We may have several babies before the war is over.” “It’s nearly time to go.” “I know. You can make it time if you want.” “No.” “Then don’t worry, darling. You were fine until now and now you’re worrying.” “I won’t. How often will you write?” “Every day. Do they read your letters?” “They can’t read English enough to hurt any.” “I’ll make them very confusing,” Catherine said. “But not too confusing.” “I’ll just make them a little confusing.” “I’m afraid we have to start to go.” “All right, darling.”
+
+### A Farewell to Arms: Section 27
+
+_Mid-book rhythm_
+
+> XXI In September the first cool nights came, then the days were cool and the leaves on the trees in the park began to turn color and we knew the summer was gone. The fighting at the front went very badly and they could not take San Gabriele. The fighting on the Bainsizza plateau was over and by the middle of the month the fighting for San Gabriele was about over too. They could not take it. Ettore was gone back to the front. The horses were gone to Rome and there was no more racing. Crowell had gone to Rome too, to be sent back to America. There were riots twice in the town against the war and bad rioting in Turin. A British major at the club told me the Italians had lost one hundred and fifty thousand men on the Bainsizza plateau and on San Gabriele. He said they had lost forty thousand on the Carso besides. We had a drink and he talked.
+
+### A Farewell to Arms: Section 32
+
+_Dialogue and character voice_
+
+> XXV Now in the fall the trees were all bare and the roads were muddy. I rode to Gorizia from Udine on a camion. We passed other camions on the road and I looked at the country. The mulberry trees were bare and the fields were brown. There were wet dead leaves on the road from the rows of bare trees and men were working on the road, tamping stone in the ruts from piles of crushed stone along the side of the road between the trees. We saw the town with a mist over it that cut off the mountains. We crossed the river and I saw that it was running high. It had been raining in the mountains. We came into the town past the factories and then the houses and villas and I saw that many more houses had been hit. On a narrow street we passed a British Red Cross ambulance. The driver wore a cap and his face was thin and very tanned. I did not know him.
+
+### Ashenden: Section 12
+
+_Mid-book rhythm_
+
+> VIII Giulia Lazzari The train started at eight. When he had disposed of his bag Ashenden walked along the platform. He found the carriage in which Giulia Lazzari was, but she sat in a corner, looking away from the light, so that he could not see her face. She was in charge of two detectives who had taken her over from English police at Boulogne. One of them worked with Ashenden on the French side of the Lake Geneva, and as Ashenden came up he nodded to him. “I’ve asked the lady if she will dine in the restaurant-car, but she prefers to have dinner in the carriage, so I’ve ordered a basket. Is that quite correct?” “Quite,” said Ashenden. “My companion and I will go into the diner in turn so that she will not remain alone.” “That is very considerate of you. I will come along when we’ve started and have a chat with her.” “She’s not disposed to be very talkative,” said the detective.
+
+### Ashenden: Section 16
+
+_Dialogue and character voice_
+
+> XII His Excellency Ashenden looked forward with misgiving to the dinner to which Sir Herbert Witherspoon had invited him. The black tie suggested a small party, perhaps only Lady Anne, the ambassador’s wife, whom Ashenden did not know, or one or two young secretaries. It did not presage a hilarious evening. It was possible that they might play bridge after dinner, but Ashenden knew that professional diplomats do not play bridge with skill: it may be supposed that they find it difficult to bend their great minds to the triviality of a parlour game. On the other hand he was interested to see a little more of the ambassador in circumstances of less formality. For it was evident that Sir Herbert Witherspoon was not an ordinary person. He was in appearance and manner a perfect specimen of his class and it is always entertaining to come upon good examples of a well-known type.
+
+### Bulldog Drummond: Section 10
+
+_Mid-book rhythm_
+
+> VII In Which He Spends an Hour or Two on a Roof I Drummond paused for a moment at the door of the sitting-room, then with a slight shrug he stepped past Peterson. During the last few days he had grown to look on this particular room as the private den of the principals of the gang. He associated it in his mind with Peterson himself, suave, impassive, ruthless; with the girl Irma, perfectly gowned, lying on the sofa, smoking innumerable cigarettes, and manicuring her already faultless nails; and in a lesser degree, with Henry Lakington’s thin, cruel face, and blue, staring eyes. But tonight a different scene confronted him. The girl was not there: her accustomed place on the sofa was occupied by an unkempt-looking man with a ragged beard. At the end of the table was a vacant chair, on the right of which sat Lakington regarding him with malevolent fury.
+
+### Bulldog Drummond: Section 15
+
+_Dialogue and character voice_
+
+> XII In Which the Last Round Takes Place I It was during the next hour or two that the full value of Mr. Jerome K. Green as an acquisition to the party became apparent. Certain other preparations in honour of Peterson’s arrival were duly carried out, and then arose the question of the safe in which the all-important ledger was kept. “There it is,” said Drummond, pointing to a heavy steel door flush with the wall, on the opposite side of the room to the big one containing Lakington’s ill-gotten treasure. “And it doesn’t seem to me that you’re going to open that one by pressing any buttons in the wall.” “Then, Captain,” drawled the American, “I guess we’ll open it otherwise. It’s sure plumb easy. I’ve been getting gay with some of the household effects, and this bar of soap sort of caught my eye.”
+
+### Greenmantle: Section 15
+
+_Mid-book rhythm_
+
+> XI The Companions of the Rosy Hours We battled to a corner, where a jut of building stood out into the street. It was our only chance to protect our backs, to stand up with the rib of stone between us. It was only the work of seconds. One instant we were groping our solitary way in the darkness, the next we were pinned against a wall with a throaty mob surging round us. It took me a moment or two to realize that we were attacked. Every man has one special funk in the back of his head, and mine was to be the quarry of an angry crowd. I hated the thought of it⁠—the mess, the blind struggle, the sense of unleashed passions different from those of any single blackguard. It was a dark world to me, and I don’t like darkness. But in my nightmares I had never imagined anything just like this.
+
+### Greenmantle: Section 6
+
+_Dialogue and character voice_
+
+> II The Gathering of the Missionaries I wrote out a wire to Sandy, asking him to come up by the two-fifteen train and meet me at my flat. “I have chosen my colleague,” I said. “Billy Arbuthnot’s boy? His father was at Harrow with me. I know the fellow⁠—Harry used to bring him down to fish⁠—tallish, with a lean, high-boned face and a pair of brown eyes like a pretty girl’s. I know his record, too. There’s a good deal about him in this office. He rode through Yemen, which no white man ever did before. The Arabs let him pass, for they thought him stark mad and argued that the hand of Allah was heavy enough on him without their efforts. He’s blood-brother to every kind of Albanian bandit. Also he used to take a hand in Turkish politics, and got a huge reputation.

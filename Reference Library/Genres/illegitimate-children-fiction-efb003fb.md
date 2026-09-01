@@ -2,24 +2,26 @@
 # Illegitimate children -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 186688
-- Reading grade: 3.0
-- Average sentence: 6.9 words
-- Average paragraph: 10.3 words
+- Words analyzed: 367085
+- Reading grade: 4.1
+- Average sentence: 11.2 words
+- Average paragraph: 35.9 words
 - Dialogue share: 26%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
-- Recurring vocabulary: better, gutenberg, house, project, without, answered, anything, began, child, couldn’t, didn’t, dimmesdale, enough, father, going, hands, heard, heart, herself, himself, human, kitchen, letter, looking, minister, money, mother, nature, people, reckon, scarlet, seemed, shall, stood, stopped, that’s, thought, water, within, woman
-- Character names: Hester, Hush, Ann Hutchinson, Anse, Arthur, Bellingham, Ben, Benjamin, Benjy, Caddy, Charlie, Chillingworth, Compson, Dalton Ames, Dilsey, Earl, Eliot, Frony, Gerald, Halifax, Hath, Herbert, Hester Prynne, Isaac Johnson, Jackson, James, Jason, Julio, Little Pearl, Louis, Luster, Madam Hester, Maury, Mistress Hester, Mistress Hibbins, Mistress Prynne, Mother, Mr, Mr Jason, Mr. Surveyor Pue, Mr. Wilson, Mrs Compson, P., Pearl, Prynne, Queenie, Quentin, Roger Chillingworth, Roskus, Sam, Satan, Shreve, Surveyor, Uncle Maury, Versh, Wilson, Winthrop, brown
+- Tone: direct, dialogue-forward, energetic, narrative-forward, rhythmically even, rhythmically varied, measured
+- Recurring vocabulary: better, house, answered, anything, began, child, couldn’t, didn’t, dimmesdale, enough, father, going, gutenberg, hands, heard, heart, herself, himself, human, kitchen, letter, looking, minister, money, mother, nature, people, project, reckon, scarlet, seemed, shall, stood, stopped, that’s, thought, water, within, without, woman
+- Character names: Hush, Hester, Mr, Ann Hutchinson, Anse, Bellingham, Ben, Benjamin, Benjy, Caddy, Charlie, Compson, Dalton Ames, Dilsey, Earl, Eliot, Frony, Gerald, Halifax, Hath, Herbert, Hester Prynne, Isaac Johnson, Jackson, Jason, Julio, Little Pearl, Luster, Madam Hester, Maury, Mistress Hester, Mistress Hibbins, Mistress Prynne, Mother, Pearl, Queenie, Quentin, Roger Chillingworth, Roskus, Sam, Satan, Shreve, Surveyor, Uncle Maury, Versh, Wilson, Winthrop, brown, Arthur, Chillingworth, Elizabeth, James, John Wilson, King James, Louis, Master Brackett, Mr Jason, Mr. Surveyor Pue, Mr. Wilson, Mrs, Mrs Compson, P., Patterson, Prynne, Pue, Salem, Surveyor Pue, T. P.
 
 ## Books
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
 - [The sound and the fury](../Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md)
+- [The Sound and the Fury](../Books/B56CCC8B-ADB5-4CEC-83A0-B2F9D902CFBE.md)
 
 ## Representative excerpts
 
@@ -35,6 +37,18 @@ _Dialogue and character voice_
 
 > XI. THE INTERIOR OF A HEART. fter the incident last described, the intercourse between the clergyman and the physician, though externally the same, was really of another character than it had previously been. The intellect of Roger Chillingworth had now a sufficiently plain path before it. It was not, indeed, precisely that which he had laid out for himself to tread. Calm, gentle, passionless, as he appeared, there was yet, we fear, a quiet depth of malice, hitherto latent, but active now, in this unfortunate old man, which led him to imagine a more intimate revenge than any mortal had ever wreaked upon an enemy. To make himself the one trusted friend, to whom should be confided all the fear, the remorse, the agony, the ineffectual repentance, the backward rush of sinful thoughts, expelled in vain!
 
+### The Scarlet Letter: Section 17
+
+_Mid-book rhythm_
+
+> XII The Minister’s Vigil Walking in the shadow of a dream, as it were, and perhaps actually under the influence of a species of somnambulism, Mr. Dimmesdale reached the spot where, now so long since, Hester Prynne had lived through her first hours of public ignominy. The same platform or scaffold, black and weather-stained with the storm or sunshine of seven long years, and foot-worn, too, with the tread of many culprits who had since ascended it, remained standing beneath the balcony of the meetinghouse. The minister went up the steps. It was an obscure night of early May. An unvaried pall of cloud muffled the whole expanse of sky from zenith to horizon.
+
+### The Scarlet Letter: Section 22
+
+_Dialogue and character voice_
+
+> XVII The Pastor and His Parishioner Slowly as the minister walked, he had almost gone by, before Hester Prynne could gather voice enough to attract his observation. At length, she succeeded. “Arthur Dimmesdale!” she said, faintly at first; then louder, but hoarsely. “Arthur Dimmesdale!” “Who speaks?” answered the minister. Gathering himself quickly up, he stood more erect, like a man taken by surprise in a mood to which he was reluctant to have witnesses. Throwing his eyes anxiously in the direction of the voice, he indistinctly beheld a form under the trees, clad in garments so sombre, and so little relieved from the gray twilight into which the clouded sky and the heavy foliage had darkened the noontide, that he knew not whether it were a woman or a shadow. It may be, that his pathway through life was haunted thus, by a spectre that had stolen out from among his thoughts.
+
 ### The sound and the fury: Section 1
 
 _Opening voice_
@@ -46,3 +60,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > APRIL SIXTH, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that . . . I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Sound and the Fury: Section 5
+
+_Mid-book rhythm_
+
+> April Sixth, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant⁠—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that⁠ ⁠… I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Sound and the Fury: Section 4
+
+_Sentence variation_
+
+> June Second, 1910 When the shadow of the sash appeared on the curtains it was between seven and eight oclock and then I was in time again, hearing the watch. It was Grandfather’s and when Father gave it to me he said, Quentin, I give you the mausoleum of all hope and desire; it’s rather excrutiatingly apt that you will use it to gain the reducto absurdum of all human experience which can fit your individual needs no better than it fitted his or his father’s. I give it to you not that you may remember time, but that you might forget it now and then for a moment and not spend all your breath trying to conquer it. Because no battle is ever won he said. They are not even fought. The field only reveals to man his own folly and despair, and victory is an illusion of philosophers and fools. It was propped against the collar box and I lay listening to it. Hearing it, that is.

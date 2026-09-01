@@ -2,23 +2,24 @@
 # People with mental disabilities -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 98615
-- Reading grade: 1.4
-- Average sentence: 6.2 words
-- Average paragraph: 10.4 words
-- Dialogue share: 33%
+- Words analyzed: 194601
+- Reading grade: 1.7
+- Average sentence: 7.8 words
+- Average paragraph: 20.0 words
+- Dialogue share: 34%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: going, father, didn’t, anything, house, looking, water, better, thought, gutenberg, hands, began, that’s, project, money, stopped, couldn’t, enough, heard, you’ll, stood, reckon, kitchen, without
-- Character names: Dilsey, Jason, Luster, Quentin, Caddy, Mother, P., Versh, Benjy, Hush, Ben, Roskus, Mrs Compson, Shreve, Gerald, Uncle Maury, Benjamin, Frony, Maury, Earl, Anse, Charlie, Mr Jason, Julio, Queenie, Dalton Ames, Herbert, Jackson, Compson, Louis
+- Tone: dialogue-forward, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: anything, began, better, couldn’t, didn’t, enough, father, going, hands, heard, house, kitchen, looking, money, reckon, stood, stopped, that’s, thought, water, you’ll, across, gutenberg, project, trying, without, wouldn’t
+- Character names: Anse, Ben, Benjamin, Benjy, Caddy, Charlie, Compson, Dalton Ames, Dilsey, Earl, Frony, Gerald, Herbert, Hush, Jackson, Jason, Julio, Luster, Maury, Mother, Queenie, Quentin, Roskus, Shreve, Uncle Maury, Versh, Louis, Mr, Mr Jason, Mrs, Mrs Compson, P., Patterson, T. P.
 
 ## Books
 - [The sound and the fury](../Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md)
+- [The Sound and the Fury](../Books/B56CCC8B-ADB5-4CEC-83A0-B2F9D902CFBE.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > APRIL SIXTH, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that . . . I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Sound and the Fury: Section 5
+
+_Mid-book rhythm_
+
+> April Sixth, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant⁠—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that⁠ ⁠… I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Sound and the Fury: Section 4
+
+_Sentence variation_
+
+> June Second, 1910 When the shadow of the sash appeared on the curtains it was between seven and eight oclock and then I was in time again, hearing the watch. It was Grandfather’s and when Father gave it to me he said, Quentin, I give you the mausoleum of all hope and desire; it’s rather excrutiatingly apt that you will use it to gain the reducto absurdum of all human experience which can fit your individual needs no better than it fitted his or his father’s. I give it to you not that you may remember time, but that you might forget it now and then for a moment and not spend all your breath trying to conquer it. Because no battle is ever won he said. They are not even fought. The field only reveals to man his own folly and despair, and victory is an illusion of philosophers and fools. It was propped against the collar box and I lay listening to it. Hearing it, that is.

@@ -2,25 +2,51 @@
 # H. P. Lovecraft
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 15076
-- Reading grade: 5.9
-- Average sentence: 8.4 words
-- Average paragraph: 10.9 words
-- Dialogue share: 2%
-- Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: works, electronic, dreams, terms, uncle, copyright, legrasse, states, dream, license, strange, agreement, stone, earth, united, donations, known, stars, without, young, though, trademark, world, ebook
-- Character names: Johansen, Wilcox, Gutenberg, Emma, Castro, Professor Angell, Angell, Webb, Briden, Project Gutenberg, Cthulhu, Gutenberg Literary Archive Foundation, Collins, Dr. Tobey, Gustaf Johansen, Gutenberg Literary
+- Words analyzed: 270431
+- Reading grade: 9.7
+- Average sentence: 24.5 words
+- Average paragraph: 96.3 words
+- Dialogue share: 7%
+- Voice: mixed or shifting perspective
+- Tempo: deliberate
+- Tone: narrative-forward, measured, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: though, without, world, beyond, certain, place, seemed, stone, strange, things, whose, years, above, agreement, ancient, antarctic, began, black, copyright, course, donations, dream, dreams, earth, ebook, electronic, heard, horror, house, hundred, indeed, known, lake’s, later, legrasse, license, light, mountains, night, nothing
+- Character names: Abdul, Abdul Reis, Amundsen, Angell, Arkham, Arthur Gordon Pym, Arthur Jermyn, Arthur Munroe, Atwood, Beardmore Glacier, Briden, Byrd, Capt, Captain Douglas, Carroll, Carter, Castro, Charles Le, Collins, Cthulhu, Danforth, Douglas, Dr, Dr. Tobey, Dyer, Emma, Erich Zann, Exham Priory, Fowler, Gedney, Giza, Godfrey, Gustaf Johansen, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Jan Martense, Joe Slater, Johansen, John, Johnson, Joly, Klenze, Kuranes, Lake, Larsen, Leng, Lieutenant Klenze, Lovecraft, M. Verhaeren, Manton, McMurdo Sound, Moore, Moulton, Mr, Müller, Nansen, Nicholas Roerich, Pabodie, Pierre, Poe, Poer, Pope, Professor Angell, Project Gutenberg, Roerich, Ross Sea, Scott, Shackleton, Sherman, Sir Wade, Wade, Warren, Webb, Wilcox, Zann
 
 ## Books
+- [At the Mountains of Madness](../Books/CF9C1AF5-31C8-4BA1-BC16-D56A3D0DE475.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
 - [The call of Cthulhu](../Books/AD320115-98F9-4795-BA81-A4D8DED280D2.md)
 
 ## Representative excerpts
+
+### At the Mountains of Madness: Section 9
+
+_Mid-book rhythm_
+
+> VII The full story, so far as deciphered, will eventually appear in an official bulletin of Miskatonic University. Here I shall sketch only the salient highlights in a formless, rambling way. Myth or otherwise, the sculptures told of the coming of those star-headed things to the nascent, lifeless earth out of cosmic space⁠—their coming, and the coming of many other alien entities such as at certain times embark upon spatial pioneering. They seemed able to traverse the interstellar ether on their vast membranous wings⁠—thus oddly confirming some curious hill folklore long ago told me by an antiquarian colleague. They had lived under the sea a good deal, building fantastic cities and fighting terrific battles with nameless adversaries by means of intricate devices employing unknown principles of energy.
+
+### At the Mountains of Madness: Section 4
+
+_Dialogue and character voice_
+
+> II Popular imagination, I judge, responded actively to our wireless bulletins of Lake’s start northwestward into regions never trodden by human foot or penetrated by human imagination, though we did not mention his wild hopes of revolutionizing the entire sciences of biology and geology. His preliminary sledging and boring journey of January 11th to 18th with Pabodie and five others⁠—marred by the loss of two dogs in an upset when crossing one of the great pressure ridges in the ice⁠—had brought up more and more of the Archaean slate; and even I was interested by the singular profusion of evident fossil markings in that unbelievably ancient stratum.
+
+### Short Fiction: Section 24
+
+_Mid-book rhythm_
+
+> The Tomb Sedibus ut saltem placidis in morte quiescam. Virgil In relating the circumstances which have led to my confinement within this refuge for the demented, I am aware that my present position will create a natural doubt of the authenticity of my narrative. It is an unfortunate fact that the bulk of humanity is too limited in its mental vision to weigh with patience and intelligence those isolated phenomena, seen and felt only by a psychologically sensitive few, which lie outside its common experience.
+
+### Short Fiction: Section 40
+
+_Dialogue and character voice_
+
+> The Shadow Over Innsmouth I During the winter of 1927⁠–⁠28 Federal government officials made a strange and secret investigation of certain conditions in the ancient Massachusetts seaport of Innsmouth. The public first learned of it in February, when a vast series of raids and arrests occurred, followed by the deliberate burning and dynamiting⁠—under suitable precautions⁠—of an enormous number of crumbling, worm-eaten, and supposedly empty houses along the abandoned waterfront. Uninquiring souls let this occurrence pass as one of the major clashes in a spasmodic war on liquor. Keener news-followers, however, wondered at the prodigious number of arrests, the abnormally large force of men used in making them, and the secrecy surrounding the disposal of the prisoners.
 
 ### The call of Cthulhu: Section 1
 

@@ -2,104 +2,238 @@
 # Historical Fiction
 
 - Profile type: Genre
-- Books represented: 23
+- Books represented: 157
 
 ## Learned profile
 
-- Words analyzed: 2722369
-- Reading grade: 3.8
-- Average sentence: 7.6 words
-- Average paragraph: 10.1 words
-- Dialogue share: 17%
-- Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward, energetic
-- Recurring vocabulary: without, himself, shall, world, nothing, people, project, cannot, place, thought, works, death, gutenberg, night, states, things, though, years, country, heard, heart, voice, chapter, electronic, english, friend, general, house, however, myself, terms, united, water, white, whose, young, above, agreement, began, copyright
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, John, Nature, Socrates, William, Brown, Emily Dickinson, Mr, Napoleon, Peter, Arthur, Christ, Christian, James, Jesus, Abraham, Adam, Alexander, Alice, Belshazzar, Benjamin, Benjamin Franklin, Bill, Birds, Brutus, Caesar, Dr, Duncan, Emerson, Farewell, Gawain, General Grant, George, Goethe, Hath, Hegel, Henry, Hester, Hudson, Hush, Jack, Jove, Lancelot, Lo, Locke, Mark, Mary, Plato, Poor Richard, Pray, Queen Guinevere, Samson, Shakespeare, Smith, VI, Wilson, Abelard, Absaroka, Adams, Ade, Adelaide, Adrianus, Agrippa, Alfred, Alis, Andrew, Andromeda, Angels, Ann Hutchinson, Anna, Anna Mikháylovna, Anna Pávlovna, Anne, Antone, Antoninus, Antoninus Pius, Antony
+- Words analyzed: 16120360
+- Reading grade: 6.0
+- Average sentence: 16.8 words
+- Average paragraph: 54.7 words
+- Dialogue share: 24%
+- Voice: observational third-person
+- Tempo: steady
+- Tone: narrative-forward, rhythmically varied, balanced, direct, dialogue-forward, rhythmically even, measured, energetic
+- Recurring vocabulary: shall, himself, without, nothing, people, thought, night, though, place, young, house, three, heart, seemed, world, things, woman, moment, voice, don’t, heard, years, father, death, friend, stood, hands, round, cannot, quite, began, going, mother, words, country, cried, white, whose, myself, replied
+- Character names: Mr, Mrs, John, Dr, George, Christ, Hath, James, Charles, Jack, Smith, Caesar, Madame, Napoleon, Adam, Brown, Helen, Mary, Monsieur, Peter, Shakespeare, Alexander, Aristotle, Bill, Gutenberg, Henry, Nature, Paul, Arthur, Jew, Jove, Socrates, Venus, William, David, Jacob, Jesus, Louis, Phoebus, Pray, Tom, Troy, Chauvelin, Diana, Farewell, Gutenberg Literary, Gutenberg Literary Archive Foundation, Jim, Joe, Lo, Project Gutenberg, Abraham, Alice, Blakeney, Duncan, Edward, Joan, Johnson, Jones, Plato, Priam, Robert, Samuel, Zeus, Agamemnon, Bacchus, Brutus, Burke, Christian, Dick, Hegel, Helena, Jacques, Joseph, Lady Blakeney, Madam, Marguerite, Mark, Paine, Pallas
 
 ## Books
+- [“We”](../Books/0BE6B84F-4AB5-4A92-904D-A7881053F0CD.md)
+- [A Farewell to Arms](../Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md)
+- [A Midsummer Night’s Dream](../Books/0CA653B0-CCE3-4B4B-8704-7BFDD7D23D57.md)
+- [A Tale of Two Cities](../Books/E224E072-062D-49C1-8281-FF9027477F36.md)
+- [Agamemnon](../Books/5516FE98-FDA4-4F7F-A1D8-24A1269D6F55.md)
+- [Agamemnon](../Books/786FFEFA-0B5D-4CB8-BEA4-8A07078A8380.md)
 - [Alice's Adventures in Wonderland](../Books/A76E7C30-7CE8-4B66-A0D7-F527434B674B.md)
+- [All’s Well That Ends Well](../Books/02D165CA-C030-4EE1-9BD6-6A90F394FE01.md)
+- [American Indian Stories](../Books/DC4FA6FB-7FE2-4B18-94CB-E1EF24AC1434.md)
+- [An Ideal Husband](../Books/E1B01324-866D-46FE-93D5-C423EB2ECC59.md)
+- [Analects](../Books/BA82DEBF-08BE-4577-8603-91614AAD87D4.md)
+- [Antigone](../Books/4413B0AE-6F3E-498D-8AFC-5620399F018D.md)
+- [Ashenden](../Books/9AE25B84-43D4-431D-8E1F-E78C6D116855.md)
+- [Aspects of the Novel](../Books/9E1D9033-E123-4A26-B19A-A73DA8B1F228.md)
 - [Autobiography of Benjamin Franklin](../Books/36D10C57-716F-4BC6-BAFC-645FF08DF515.md)
+- [Babbitt](../Books/3289091D-28CA-4DCC-BA1B-93C199BC5801.md)
 - [Beyond Good and Evil](../Books/7325DA2E-E663-49DC-93E0-87E829E8B764.md)
+- [Beyond Thirty](../Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md)
+- [Black Beauty](../Books/4057CCD9-601D-4610-866D-1F15C4A8A3D7.md)
+- [Captain Blood](../Books/B15BDB89-D911-404F-80D9-3C623CC15589.md)
+- [Catriona](../Books/497657E2-3F7B-474C-8D6D-E2C0D5F5FB1F.md)
+- [Cleopatra](../Books/36058611-761B-4D3F-BC43-3DF67C3DDF2B.md)
+- [Conan Stories](../Books/C9F91FFC-0937-4510-A37F-D5D5163A86C5.md)
+- [El Dorado](../Books/F405733F-BF33-4FF8-8FC0-856C2D7B7762.md)
+- [Essays](../Books/26D4DDC4-FE52-4D8D-B009-5CF361319D82.md)
 - [Essays by Ralph Waldo Emerson](../Books/205BB4C2-B465-4D91-8C09-FB6FA0201803.md)
+- [Fables](../Books/6DFCE33A-6CBF-4062-82B7-AC0DF3B3492A.md)
+- [Fifty-One Tales](../Books/65E981EA-7BF0-4885-82BF-CBA2AE64C9D5.md)
+- [Five Weeks in a Balloon](../Books/564274E3-64C1-43EC-9823-2BFEF761C4FC.md)
 - [Following the Equator: A Journey Around the World](../Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md)
 - [Four Arthurian Romances](../Books/BFFC3AAD-BDC5-4567-B344-83382F2CEA2A.md)
+- [Gulliver’s Travels](../Books/C3584C46-895E-4EE4-9DC5-5954506F75CE.md)
+- [Hamilton](../Books/8EFD0FAD-8804-46EF-A73C-890427971114.md)
+- [Heretics](../Books/1EDE6E0A-E34C-4511-86B4-D60F585491E9.md)
+- [Indian Fairy Tales](../Books/7CCB8889-7605-46F5-866A-0BE4AB4935EF.md)
+- [Irish Fairy Tales](../Books/652FCA03-A423-471E-AE0A-1907FAB0E4C8.md)
+- [Ivanhoe](../Books/C2611716-5F13-48E1-A248-8CFB0DF89049.md)
+- [Jacob’s Room](../Books/B7388E23-4426-4D38-BAC1-486C823DA7D9.md)
+- [Just So Stories](../Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md)
+- [Kidnapped](../Books/97B01DE7-A22E-4074-A4CE-A1FA18B39AF3.md)
 - [King Arthur and the Knights of the Round Table](../Books/AEDA64CD-C6CF-4A3D-9D46-5D3FB34A7CD4.md)
+- [Lais](../Books/BF0EA437-3E0B-453B-8D93-6DE7AC65225B.md)
+- [Le Morte d’Arthur](../Books/EE981D9A-24CF-4182-9932-BD5D537EB2CC.md)
 - [Leaves of Grass](../Books/98EA5DAF-B1EC-4BD4-8479-015AD60F6A6F.md)
+- [Legends of Vancouver](../Books/08E0AA71-C9CA-4B45-844D-595352D7230A.md)
+- [Les Misérables](../Books/54C22B5C-C854-4041-B905-90ED4A05AB72.md)
+- [Leviathan](../Books/A8BEBEDD-6A78-4D58-9930-60BE6E21BB5C.md)
+- [Lord Tony’s Wife](../Books/A855A2C0-C1BE-4FBC-956D-8D511FFECCC3.md)
+- [Lorna Doone](../Books/0A45C08C-A329-415C-B8AC-16498DE5DB60.md)
+- [Macbeth](../Books/EE078B7D-9121-4D2F-9175-8805BED782F9.md)
 - [Meditations](../Books/8042EE51-3745-41F4-A6F7-12F47276331D.md)
 - [Memoirs of Benjamin Franklin; Written by Himself. \[Vol. 2 of 2\] / With his Most Interesting Essays, Letters, and Miscellaneous Writings; Familiar, Moral, Political, Economical, and Philosophical, Selected with Care from All His Published Productions, and Comprising Whatever Is Most Entertaining and Valuable to the General Reader](../Books/25B3973C-8C33-4DEC-B696-FE50B72043D7.md)
+- [Not Without Laughter](../Books/C84F695A-72A9-4D40-8924-E54201BCA2DA.md)
+- [Oedipus at Colonus](../Books/D33A4258-271F-4862-A46C-FD5989BE1C8D.md)
+- [Oedipus Rex](../Books/D62F4D4A-34E0-4956-AE10-CD2D282DE59C.md)
+- [Old Indian Legends](../Books/62A08849-045C-4B5B-A20D-FF189BA1D1A8.md)
 - [On the Duty of Civil Disobedience](../Books/BCDE62B6-FB87-48CF-A6A3-28FC16221F09.md)
+- [Orlando Furioso](../Books/3A1EE7B4-43E8-45D8-9B20-3DAF2E45C912.md)
 - [Our National Parks](../Books/8700D61F-D818-4A85-84C0-85189596F2B9.md)
+- [Paradise Lost](../Books/48EAD193-5720-4A5C-8692-9EB5695F829E.md)
+- [Passages from the Life of a Philosopher](../Books/19A57E6A-C76F-46ED-B8F9-0C717D5DA7FF.md)
 - [Poems by Emily Dickinson, Series One](../Books/7F67F5CB-CC22-49CD-8D73-976D67304E41.md)
 - [Poems by Emily Dickinson, Three Series, Complete](../Books/98CB80E4-ECCA-4B7A-8EAF-EDBEDB19C3DE.md)
+- [Poems on Various Subjects, Religious and Moral](../Books/DF8E61E8-AA3F-4A43-BA54-B1CDE378ABEB.md)
+- [Poetry](../Books/03FA39A1-39CC-4E96-9BC2-197E4CB20EB4.md)
 - [Prejudices, first series](../Books/C2D5E195-9B03-4837-B986-12AB45B4F7D2.md)
 - [Rip Van Winkle](../Books/D9F4D198-46E8-445F-9B18-A824D5E23F73.md)
+- [Sailing Alone Around the World](../Books/BF702BC7-1E06-4927-9B35-BAF483DB1899.md)
+- [Seven Pillars of Wisdom](../Books/3FA07147-7B14-45EC-A0EC-3CAF8F819A83.md)
+- [Short Fiction](../Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md)
+- [Short Fiction](../Books/2D133761-8ECC-4E70-B721-15D45CAD7811.md)
+- [Short Fiction](../Books/242273B5-963A-4416-9C81-42C1BA677D82.md)
+- [Short Fiction](../Books/EA0F67C9-8FD9-47E9-BBC0-29DFFEBCD9C2.md)
+- [Short Fiction](../Books/60E1B90C-58B2-43AC-A68D-3C931F0634E0.md)
+- [Short Fiction](../Books/BFEBCB8F-FA6C-43BE-B4BD-CD5E03AFEC60.md)
+- [Short Fiction](../Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md)
+- [Short Fiction](../Books/67102796-3492-471F-97E8-2D3FC940FBB8.md)
+- [Short Fiction](../Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md)
+- [Shorts from Scenes from Private Life](../Books/DBD7123B-29E7-4484-954F-B0B239145E79.md)
+- [Sir Gawain and the Green Knight](../Books/BFD59996-CC74-449F-9A36-2A2905940A60.md)
+- [Sir Percy Hits Back](../Books/F5C4E229-4498-495F-AFA6-F8E3C660C810.md)
+- [Stand by for Mars!](../Books/394094CC-BCC3-4249-B047-97E7C9FBD850.md)
+- [The Aeneid](../Books/A53A93AF-2360-43AA-8A06-6BC67771857A.md)
+- [The Age of Reason](../Books/2381E057-FC3B-4A96-BFEE-495332317A28.md)
+- [The American Crisis](../Books/B0F30610-550F-4FC7-A8F5-DB72B9260FCF.md)
 - [The American Language / A Preliminary Inquiry into the Development of English in the United States](../Books/2CA65016-8046-41E2-A393-B0FA9D6EA43E.md)
+- [The Apple Cart](../Books/F756FA2E-3190-4040-AACC-36980C9B6ED3.md)
+- [The Art of War](../Books/73114919-F705-40B4-B931-F0EDF68C952A.md)
+- [The Autobiography of Mark Twain](../Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md)
+- [The Black Arrow](../Books/A555B44C-89E6-4599-BA25-745CB505D8C1.md)
+- [The Book of Wonder](../Books/D5A3CAD6-23A0-4F9C-B1D6-69806D0EAF8B.md)
 - [The Complete Works of William Shakespeare](../Books/77215495-099F-4FA4-A57B-B79019AC6B8D.md)
+- [The Count of Monte Cristo](../Books/81A34060-2136-46C2-8808-AF22C812BEE5.md)
+- [The Diary](../Books/670D9FA0-7816-47E1-B36B-DC12A81D2A8A.md)
+- [The Elusive Pimpernel](../Books/C716D8F5-98A1-4DD2-BF12-2D6CD00C6399.md)
+- [The Eumenides](../Books/F14D6596-EFB2-4E11-A376-D3D551110849.md)
+- [The First Sir Percy](../Books/1FB2BFCF-08F3-4BC4-A12C-1E3DFD7971BD.md)
+- [The Forerunner](../Books/26224D6C-CA92-4CAE-A3CE-7AF10DA480BE.md)
+- [The House of the Seven Gables](../Books/A7C6ACB9-6532-41C9-AF87-D3CAD6629AAB.md)
+- [The Humbugs of the World](../Books/8C37E9CC-F136-4584-9011-7475E6A639D3.md)
+- [The Iliad](../Books/C00A6B3A-BF65-4194-976E-444C07438260.md)
 - [The Innocents Abroad](../Books/D1854AF8-409B-4868-A06A-820257E8A613.md)
+- [The Innocents Abroad](../Books/5C0775CF-C8B8-437F-9AEE-E5525FB08BC8.md)
+- [The Jealousies of a Country Town](../Books/489BC01E-B3F6-4D86-AABB-E008C8492ED2.md)
+- [The Jew of Malta](../Books/95F1DA79-BC9C-47DB-89E4-BB4D63ACB9E1.md)
+- [The King in Yellow](../Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md)
+- [The Last of the Mohicans](../Books/FDAB0174-55A5-4C21-8B6D-D633333427F1.md)
 - [The Last of the Mohicans; A narrative of 1757](../Books/550041B1-2BA8-418F-9C39-6F08CB99B55B.md)
+- [The Laughing Cavalier](../Books/7B30CFC4-3334-4CDC-A1CB-11D0B264F5E6.md)
+- [The League of the Scarlet Pimpernel](../Books/A893B526-7079-4814-B395-C55F6AF21E8E.md)
+- [The Lily of the Valley](../Books/D27F230B-43AE-4587-B5B3-5F4642B65E18.md)
+- [The Luzumiyat](../Books/96A8BFB7-C1E6-4C8E-84EF-E17E2E5AA797.md)
+- [The Madman](../Books/5F7F3D81-1B35-48AF-A174-63F40BB7C35D.md)
+- [The Man of Destiny](../Books/AFB2537E-F5AD-47EE-8C14-81D577862B01.md)
+- [The Master of Ballantrae](../Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md)
+- [The Merchant of Venice](../Books/0D79755C-148F-4618-B188-8291BFD734ED.md)
+- [The Necklace of Princess Fiorimonde](../Books/CAA14087-5E63-4532-B1FA-30D9F8DA2BB2.md)
+- [The Nibelungenlied](../Books/7068A63D-295F-42FA-8488-486411E9E419.md)
+- [The Odyssey](../Books/C945079C-AC32-4190-A09D-23C198C904DF.md)
+- [The Origin of Species](../Books/B4CC08FA-BC80-4752-B206-361D34F1A2BD.md)
+- [The Outlaw of Torn](../Books/7DE08BC8-1895-4FCF-9112-F1000493168C.md)
+- [The Practice and Theory of Bolshevism](../Books/437979BF-7CF3-487B-AFD5-96C4B80FC2AB.md)
+- [The Prisoner of Zenda](../Books/A4A2D9E2-06EE-4BAC-A5C7-DA61B165AEC0.md)
+- [The Problems of Philosophy](../Books/72D2F5F3-C802-464A-875E-AC85BE62F209.md)
+- [The Red Badge of Courage](../Books/740D98B2-02F8-47BD-92B2-CC698A6F595F.md)
 - [The Red Badge of Courage: An Episode of the American Civil War](../Books/88A43F81-52E0-4551-8D47-CCB76841C2E3.md)
+- [The Rights of Man](../Books/DC130EE3-C650-46E0-A5BC-D49F7AF28C19.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
+- [The Scarlet Pimpernel](../Books/FB5923E1-B75A-4DED-954F-0ECB157A0179.md)
+- [The Sea Hawk](../Books/9D1C03FF-B1E0-403D-8F88-82DDDA2284FF.md)
+- [The Social Contract](../Books/BBED71D7-8A90-47BB-B070-F76AC406796A.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
+- [The Souls of Black Folk](../Books/71CEEAB7-577C-4275-B4A1-F41B17F8F1D2.md)
+- [The Special Correspondent](../Books/D5FE565B-C52D-4821-8E2D-E353245F543F.md)
+- [The Splendid Spur](../Books/5D069875-3103-4DA0-AD5B-364499C5A03B.md)
+- [The Story of My Life](../Books/F7119EBE-8D2A-4165-93FA-72B94B5447FA.md)
+- [The Subjection of Women](../Books/B2550963-C612-46FA-BB36-3559AD6C279B.md)
+- [The Three Musketeers](../Books/684063C0-2D66-48E7-BAA5-703223E73126.md)
+- [The Tragical History of Doctor Faustus](../Books/C0317513-5574-430C-9FF7-762137C1B05E.md)
+- [The Triumph of the Scarlet Pimpernel](../Books/D5087C10-95B2-499C-9B5B-066329C9CFC8.md)
+- [The Vicomte de Bragelonne](../Books/3D7CFCF7-606D-47D6-B46C-F1C95C593A6D.md)
+- [The Way of the World](../Books/5A857635-5054-4EDB-8264-AED12A7AD597.md)
+- [The Wealth of Nations](../Books/B695BD3A-DF62-4ABD-BFDA-C1CB52CE5164.md)
+- [The Windfairies](../Books/64C9C593-C10A-457F-AF1D-3356D1376D9B.md)
+- [The Works of Max Beerbohm](../Books/59082727-6447-47DC-9625-67F9DBFC39FA.md)
+- [Twenty Years After](../Books/5CCBC784-E93D-4BF7-9C43-84D990A169FD.md)
+- [Two Treatises of Government](../Books/096DE377-B223-4D80-A337-0364D4CAA082.md)
+- [Up from Slavery](../Books/6A4B72C7-6C5A-478F-8F09-699BD09E185C.md)
 - [War and Peace](../Books/7F6ABC84-93E3-4FF3-B5CA-F4A05CED182D.md)
+- [War and Peace](../Books/FEB46721-EB3E-4498-8BD1-46DB874BBD08.md)
+- [Waverley](../Books/FC92C4DD-84D9-46E6-AC3B-CA932E77036B.md)
+- [What Is Art?](../Books/A124D998-BEC0-4F08-8843-8FD944EA92B9.md)
+- [What’s Wrong with the World](../Books/63227F11-904A-4BD2-846E-6B56E331BD61.md)
+- [Where Angels Fear to Tread](../Books/B2A1F27C-26CF-49B5-8438-C08B1F973CEF.md)
+- [While the Billy Boils](../Books/A6D99FCE-7EFE-47FF-BDAB-5337E6850F7A.md)
+- [Wild Animals I Have Known](../Books/87713F5D-D3D4-4ED4-B8A7-162E62E59C85.md)
 
 ## Representative excerpts
 
-### Alice's Adventures in Wonderland: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Alice's Adventures in Wonderland This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Alice's Adventures in Wonderland Author: Lewis Carroll Release date: June 27, 2008 [eBook #11] Most recently updated: June 26, 2025 Language: English Other information and formats: www.gutenberg.
-
-### Alice's Adventures in Wonderland: Section 8
+### “We”: Section 15
 
 _Mid-book rhythm_
 
-> CHAPTER VII. A Mad Tea-Party There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. “Very uncomfortable for the Dormouse,” thought Alice; “only, as it’s asleep, I suppose it doesn’t mind.” The table was a large one, but the three were all crowded together at one corner of it: “No room! No room!” they cried out when they saw Alice coming. “There’s plenty of room!” said Alice indignantly, and she sat down in a large arm-chair at one end of the table. “Have some wine,” the March Hare said in an encouraging tone. Alice looked all round the table, but there was nothing on it but tea. “I don’t see any wine,” she remarked. “There isn’t any,” said the March Hare.
+> IX San Diego⁠–⁠St. Louis⁠–⁠New York The transatlantic nonstop flight between New York and Paris was first brought into public consideration by Raymond Orteig who, in 1919, issued a challenge to the Aeronautical world by offering a prize of $25,000 to the first successful entrant. Details of the flight were placed in the hands of the National Aeronautic Association and a committee was appointed to form and administer the rules of the undertaking. I first considered the possibility of the New York⁠–⁠Paris flight while flying the mail one night in the fall of 1926. Several facts soon became outstanding. The foremost was that with the modern radial air-cooled motor, high lift airfoils, and lightened construction, it would not only be possible to reach Paris but, under normal conditions, to land with a large reserve of fuel and have a high factor of safety throughout the entire trip as well.
 
-### Autobiography of Benjamin Franklin: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Autobiography of Benjamin Franklin This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Autobiography of Benjamin Franklin Author: Benjamin Franklin Editor: Frank Woodworth Pine Illustrator: E. Boyd Smith Release date: December 28, 2006 [eBook #20203] Most recently updated: October 19, 2022 Language: English Other information and formats: www.gutenberg.
-
-### Autobiography of Benjamin Franklin: Section 3
+### “We”: Section 23
 
 _Dialogue and character voice_
 
-> [74] The almanac at that time was a kind of periodical as well as a guide to natural phenomena and the weather. Franklin took his title from Poor Robin, a famous English almanac, and from Richard Saunders, a well-known almanac publisher. For the maxims of Poor Richard, see pages 331-335. [75] June 23 and July 7, 1730.—Smyth. [76] See "A List of Books written by, or relating to Benjamin Franklin," by Paul Leicester Ford. 1889. p. 15.—Smyth. [77] Dr. James Foster (1697-1753):— "Let modest Foster, if he will excel Ten metropolitans in preaching well." —Pope (Epilogue to the Satires, I, 132). "Those who had not heard Farinelli sing and Foster preach were not qualified to appear in genteel company," Hawkins. "History of Music."—Smyth. [78] "
+> IV Washington It is probable that when Lindbergh reached America he got the greatest welcome any man in history has ever received; certainly the greatest when judged by numbers; and by far the greatest in its freedom from that unkind emotion which in such cases usually springs from one people’s triumph over another. Lindbergh’s victory was all victory; for it was not internecine, but that of our human species over the elements against which for thousands of centuries man’s weakness has been pitted. The striking part of it all was that a composite picture of past homecoming heroes wouldn’t look any more like Charles Lindbergh did that day of his arrival in Washington than a hitching post looks like a green bay tree. Caesar was glum when he came back from Gaul; Napoleon grim; Paul Jones defiant; Peary blunt; Roosevelt abrupt; Dewey deferential; Wilson brooding; Pershing imposing.
 
-### Beyond Good and Evil: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Beyond Good and Evil This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Beyond Good and Evil Author: Friedrich Wilhelm Nietzsche Translator: Helen Zimmern Release date: August 1, 2003 [eBook #4363] Most recently updated: January 9, 2019 Language: English Other information and formats: www.gutenberg.
-
-### Beyond Good and Evil: Section 3
+### A Farewell to Arms: Section 27
 
 _Mid-book rhythm_
 
-> CHAPTER IX. WHAT IS NOBLE? 257. EVERY elevation of the type "man," has hitherto been the work of an aristocratic society and so it will always be—a society believing in a long scale of gradations of rank and differences of worth among human beings, and requiring slavery in some form or other. Without the PATHOS OF DISTANCE, such as grows out of the incarnated difference of classes, out of the constant out-looking and down-looking of the ruling caste on subordinates and instruments, and out of their equally constant practice of obeying and commanding, of keeping down and keeping at a distance—that other more mysterious pathos could never have arisen, the longing for an ever new widening of distance within the soul itself, the formation of ever higher, rarer, further, more extended, more comprehensive states, in short, just the elevation of the type "man," the continued "
+> XXI In September the first cool nights came, then the days were cool and the leaves on the trees in the park began to turn color and we knew the summer was gone. The fighting at the front went very badly and they could not take San Gabriele. The fighting on the Bainsizza plateau was over and by the middle of the month the fighting for San Gabriele was about over too. They could not take it. Ettore was gone back to the front. The horses were gone to Rome and there was no more racing. Crowell had gone to Rome too, to be sent back to America. There were riots twice in the town against the war and bad rioting in Turin. A British major at the club told me the Italians had lost one hundred and fifty thousand men on the Bainsizza plateau and on San Gabriele. He said they had lost forty thousand on the Carso besides. We had a drink and he talked.
 
-### Essays by Ralph Waldo Emerson: Section 1
+### A Farewell to Arms: Section 32
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Essays by Ralph Waldo Emerson This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Essays by Ralph Waldo Emerson Author: Ralph Waldo Emerson Editor: Edna Henry Lee Turpin Release date: September 4, 2005 [eBook #16643] Most recently updated: April 29, 2022 Language: English Other information and formats: www.gutenberg.org/ebooks/16643 Credits: Curtis A.
+> XXV Now in the fall the trees were all bare and the roads were muddy. I rode to Gorizia from Udine on a camion. We passed other camions on the road and I looked at the country. The mulberry trees were bare and the fields were brown. There were wet dead leaves on the road from the rows of bare trees and men were working on the road, tamping stone in the ruts from piles of crushed stone along the side of the road between the trees. We saw the town with a mist over it that cut off the mountains. We crossed the river and I saw that it was running high. It had been raining in the mountains. We came into the town past the factories and then the houses and villas and I saw that many more houses had been hit. On a narrow street we passed a British Red Cross ambulance. The driver wore a cap and his face was thin and very tanned. I did not know him.
 
-### Essays by Ralph Waldo Emerson: Section 4
-
-_Mid-book rhythm_
-
-> [Transcriber's Note: Number runs from 12 to 14. Number 13 omitted] 14. The Shakspeare Society have inquired in all directions, advertised the missing facts, offered money for any information that will lead to proof; and with what result? Beside some important illustration of the history of the English stage, to which I have adverted, they have gleaned a few facts touching the property, and dealings in regard to property, of the poet. It appears that, from year to year, he owned a larger share in the Blackfriars' Theater[618]: its wardrobe and other appurtenances were his: and he bought an estate in his native village, with his earnings, as writer and shareholder; that he lived in the best house in Stratford;[619] was intrusted by his neighbors with their commissions in London, as of borrowing money, and the like; and he was a veritable farmer.
-
-### Following the Equator: A Journey Around the World: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Following the Equator: A Journey Around the World This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Following the Equator: A Journey Around the World Author: Mark Twain Release date: June 24, 2004 [eBook #2895] Most recently updated: May 22, 2025 Language: English Other information and formats: www.gutenberg.
-
-### Following the Equator: A Journey Around the World: Section 6
+### A Midsummer Night’s Dream: Section 6
 
 _Mid-book rhythm_
 
-> I wonder how old the town is. There are patches of building—massive structures, monuments, apparently—that are so battered and worn, and seemingly so tired and so burdened with the weight of age, and so dulled and stupefied with trying to remember things they forgot before history began, that they give one the feeling that they must have been a part of original Creation. This is indeed one of the oldest of the princedoms of India, and has always been celebrated for its barbaric pomps and splendors, and for the wealth of its princes. CHAPTER XLV. It takes your enemy and your friend, working together, to hurt you to the heart; the one to slander you and the other to get the news to you. —Pudd’nhead Wilson’s New Calendar.
+> Act II Scene I A wood near Athens. Enter, from opposite sides, a Fairy, and Puck. Puck How now, spirit! whither wander you? Fairy Over hill, over dale, Thorough bush, thorough brier, Over park, over pale, Thorough flood, thorough fire, I do wander everywhere, Swifter than the moon’s sphere; And I serve the fairy queen, To dew her orbs upon the green. The cowslips tall her pensioners be: In their gold coats spots you see; Those be rubies, fairy favours, In those freckles live their savours: I must go seek some dewdrops here And hang a pearl in every cowslip’s ear. Farewell, thou lob of spirits; I’ll be gone: Our queen and all her elves come here anon.
+
+### A Midsummer Night’s Dream: Section 7
+
+_Dialogue and character voice_
+
+> Act III Scene I The wood. Titania lying asleep. Enter Quince, Snug, Bottom, Flute, Snout, and Starveling. Bottom Are we all met? Quince Pat, pat; and here’s a marvellous convenient place for our rehearsal. This green plot shall be our stage, this hawthorn-brake our tiring-house; and we will do it in action as we will do it before the duke. Bottom Peter Quince⁠— Quince What sayest thou, bully Bottom? Bottom There are things in this comedy of Pyramus and Thisby that will never please. First, Pyramus must draw a sword to kill himself; which the ladies cannot abide. How answer you that? Snout By’r lakin, a parlous fear. Starveling I believe we must leave the killing out, when all is done. Bottom Not a whit: I have a device to make all well.
+
+### A Tale of Two Cities: Section 28
+
+_Mid-book rhythm_
+
+> XVI Still Knitting Madame Defarge and monsieur her husband returned amicably to the bosom of Saint Antoine, while a speck in a blue cap toiled through the darkness, and through the dust, and down the weary miles of avenue by the wayside, slowly tending towards that point of the compass where the château of Monsieur the Marquis, now in his grave, listened to the whispering trees. Such ample leisure had the stone faces, now, for listening to the trees and to the fountain, that the few village scarecrows who, in their quest for herbs to eat and fragments of dead stick to burn, strayed within sight of the great stone courtyard and terrace staircase, had it borne in upon their starved fancy that the expression of the faces was altered.
+
+### A Tale of Two Cities: Section 47
+
+_Dialogue and character voice_
+
+> X The Substance of the Shadow “I, Alexandre Manette, unfortunate physician, native of Beauvais, and afterwards resident in Paris, write this melancholy paper in my doleful cell in the Bastille, during the last month of the year, 1767. I write it at stolen intervals, under every difficulty. I design to secrete it in the wall of the chimney, where I have slowly and laboriously made a place of concealment for it. Some pitying hand may find it there, when I and my sorrows are dust. “These words are formed by the rusty iron point with which I write with difficulty in scrapings of soot and charcoal from the chimney, mixed with blood, in the last month of the tenth year of my captivity. Hope has quite departed from my breast.
+
+### Agamemnon: Section 7
+
+_Dialogue and character voice_
+
+> The Scene represents a space in front of the Palace of Agamemnon in Argos, with an Altar of Zeus in the centre and many other altars at the sides. On a high terrace of the roof stands a Watchman. It is night. Watchman2 This waste of year-long vigil I have prayed God for some respite, watching elbow-stayed, As sleuthhounds watch, above the Atreidae’s hall, Till well I know yon midnight festival Of swarming stars, and them that lonely go, Bearers to man of summer and of snow, Great lords and shining, throned in heavenly fire. And still I await the sign, the beacon pyre That bears Troy’s capture on a voice of flame Shouting o’erseas. So surely to her aim Cleaveth a woman’s heart, man-passionèd!
+
+### Agamemnon: Section 10
+
+_Sentence variation_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.

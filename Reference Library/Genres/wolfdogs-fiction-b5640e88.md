@@ -2,23 +2,24 @@
 # Wolfdogs -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 76102
-- Reading grade: 3.4
-- Average sentence: 7.8 words
-- Average paragraph: 12.3 words
-- Dialogue share: 6%
+- Words analyzed: 149429
+- Reading grade: 4.4
+- Average sentence: 11.4 words
+- Average paragraph: 37.1 words
+- Dialogue share: 7%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: himself, teeth, master, things, mother, fang’s, learned, moment, though, without, world, began, nothing, strange, alone, throat, chapter, night, light, trail, animals, snarl, times, fight
-- Character names: White Fang, Henry, Bill, Matt, Beauty Smith, Scott, Fang, Weedon Scott, Smith, Kiche, Grey Beaver, Cherokee, Judge Scott, Jim Hall, Weedon, Collie, White, Dick, Gutenberg, Beaver, Tim Keenan, Mr. Scott, Beth, Mackenzie, Project Gutenberg, Gutenberg Literary Archive Foundation, Alice, Dawn, Frog, Grey
+- Tempo: steady
+- Tone: narrative-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: alone, animals, began, fang’s, fight, himself, learned, light, master, moment, mother, night, nothing, snarl, strange, teeth, things, though, throat, times, without, world, chapter, stood, three, trail
+- Character names: Alice, Beauty Smith, Beth, Bill, Cherokee, Collie, Dawn, Dick, Frog, Grey Beaver, Henry, Jim Hall, Judge Scott, Kiche, Mackenzie, Matt, Scott, Smith, Tim Keenan, Weedon, Weedon Scott, White Fang, Beaver, Fang, Grey, Gutenberg, Gutenberg Literary Archive Foundation, Judge, Major, Maud, Mr, Mr. Scott, Nature, Project Gutenberg, Round, White
 
 ## Books
 - [White Fang](../Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md)
+- [White Fang](../Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER V THE COVENANT When December was well along, Grey Beaver went on a journey up the Mackenzie. Mit-sah and Kloo-kooch went with him. One sled he drove himself, drawn by dogs he had traded for or borrowed. A second and smaller sled was driven by Mit-sah, and to this was harnessed a team of puppies. It was more of a toy affair than anything else, yet it was the delight of Mit-sah, who felt that he was beginning to do a man’s work in the world. Also, he was learning to drive dogs and to train dogs; while the puppies themselves were being broken in to the harness. Furthermore, the sled was of some service, for it carried nearly two hundred pounds of outfit and food. White Fang had seen the camp-dogs toiling in the harness, so that he did not resent overmuch the first placing of the harness upon himself.
+
+### White Fang: Section 18
+
+_Mid-book rhythm_
+
+> V The Covenant When December was well along, Grey Beaver went on a journey up the Mackenzie. Mit-sah and Kloo-kooch went with him. One sled he drove himself, drawn by dogs he had traded for or borrowed. A second and smaller sled was driven by Mit-sah, and to this was harnessed a team of puppies. It was more of a toy affair than anything else, yet it was the delight of Mit-sah, who felt that he was beginning to do a man’s work in the world. Also, he was learning to drive dogs and to train dogs; while the puppies themselves were being broken in to the harness. Furthermore, the sled was of some service, for it carried nearly two hundred pounds of outfit and food. White Fang had seen the camp-dogs toiling in the harness, so that he did not resent overmuch the first placing of the harness upon himself.
+
+### White Fang: Section 5
+
+_Dialogue and character voice_
+
+> II The She-Wolf Breakfast eaten and the slim camp-outfit lashed to the sled, the men turned their backs on the cheery fire and launched out into the darkness. At once began to rise the cries that were fiercely sad⁠—cries that called through the darkness and cold to one another and answered back. Conversation ceased. Daylight came at nine o’clock. At midday the sky to the south warmed to rose-colour, and marked where the bulge of the earth intervened between the meridian sun and the northern world. But the rose-colour swiftly faded. The grey light of day that remained lasted until three o’clock, when it, too, faded, and the pall of the Arctic night descended upon the lone and silent land. As darkness came on, the hunting-cries to right and left and rear drew closer⁠—so close that more than once they sent surges of fear through the toiling dogs, throwing them into short-lived panics.

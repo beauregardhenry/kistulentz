@@ -2,23 +2,25 @@
 # Mate selection -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 125932
-- Reading grade: 4.6
-- Average sentence: 8.2 words
-- Average paragraph: 11.1 words
-- Dialogue share: 47%
+- Words analyzed: 388919
+- Reading grade: 5.6
+- Average sentence: 14.4 words
+- Average paragraph: 37.4 words
+- Dialogue share: 43%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: herself, sister, though, mother, nothing, without, house, however, shall, heart, thought, himself, chapter, enough, myself, young, replied, indeed, happy, gutenberg, quite, cannot, world, therefore
-- Character names: Elinor, Marianne, Willoughby, Edward, Mrs. Jennings, Lucy, Sir John, Lady Middleton, Mrs. Dashwood, Colonel Brandon, Miss Dashwood, Mrs, Mrs. Palmer, Dashwood, Mr. Willoughby, Mr. Palmer, Mrs. Ferrars, Mrs. John Dashwood, Brandon, Fanny, Jennings, Miss Steele, Mr. Dashwood, Charlotte, Miss Austen, Mr, Mamma, Miss Marianne, Mrs. Smith, Steeles
+- Tone: dialogue-forward, balanced, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: enough, himself, house, mother, nothing, quite, shall, though, thought, without, happy, heart, herself, however, indeed, myself, replied, seemed, sister, therefore, world, young, believe, better, cannot, chapter, don’t, everything, going, gutenberg, light, night, place, reddleman, round, stood, that’s, towards, wildeve, woman
+- Character names: Mr, Mrs, Brandon, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Fanny, Jennings, Lady Middleton, Lucy, Marianne, Miss Dashwood, Miss Marianne, Miss Steele, Sir John, Steeles, Willoughby, Andrey, Anne, Charley, Christian, Christian Cantle, Devonshire, Diggory, Diggory Venn, Edward Ferrars, Egdon, Egdon Heath, Eustacia Vye, Grandfer Cantle, Gray, Harry, Humphrey, Jim, Joe, John, John Dashwood, Mamma, Margaret, Miss Austen, Miss Vye, Mistover Knap, Mr., Mr. Dashwood, Mr. Palmer, Mr. Willoughby, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. Palmer, Mrs. Smith, Olly, Olly Dowden, Palmer, Saint George, Sam, Smith, Susan Nunsuch, Tamsin, Thomasin, Thomasin Yeobright, Timothy, Timothy Fairway, Venn, Vye, Whitwell
 
 ## Books
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [The Return of the Native](../Books/18842CF9-474F-4A11-AA22-371DA9B597B9.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+
+### Sense and Sensibility: Section 28
+
+_Mid-book rhythm_
+
+> XXVI Elinor could not find herself in the carriage with Mrs. Jennings, and beginning a journey to London under her protection, and as her guest, without wondering at her own situation, so short had their acquaintance with that lady been, so wholly unsuited were they in age and disposition, and so many had been her objections against such a measure only a few days before! But these objections had all, with that happy ardour of youth which Marianne and her mother equally shared, been overcome or overlooked; and Elinor, in spite of every occasional doubt of Willoughby’s constancy, could not witness the rapture of delightful expectation which filled the whole soul and beamed in the eyes of Marianne, without feeling how blank was her own prospect, how cheerless her own state of mind in the comparison, and how gladly she would engage in the solicitude of Marianne’s situation to have the same a…
+
+### Sense and Sensibility: Section 46
+
+_Dialogue and character voice_
+
+> XLIV Elinor, starting back with a look of horror at the sight of him, obeyed the first impulse of her heart in turning instantly to quit the room, and her hand was already on the lock, when its action was suspended by his hastily advancing, and saying, in a voice rather of command than supplication⁠— “Miss Dashwood, for half an hour⁠—for ten minutes⁠—I entreat you to stay.” “No, sir,” she replied with firmness, “I shall not stay. Your business cannot be with me. The servants, I suppose, forgot to tell you that Mr. Palmer was not in the house.” “Had they told me,” he cried with vehemence, “that Mr. Palmer and all his relations were at the devil, it would not have turned me from the door. My business is with you, and only you.” “With me!”⁠—in the utmost amazement⁠—“well, sir⁠—be quick⁠—and if you can⁠—less violent.” “Sit down, and I will be both.” She hesitated; she knew not what to do.
+
+### The Return of the Native: Section 32
+
+_Mid-book rhythm_
+
+> V Sharp Words Are Spoken and a Crisis Ensues When Yeobright was not with Eustacia he was sitting slavishly over his books; when he was not reading he was meeting her. These meetings were carried on with the greatest secrecy. One afternoon his mother came home from a morning visit to Thomasin. He could see from a disturbance in the lines of her face that something had happened. “I have been told an incomprehensible thing,” she said mournfully. “The captain has let out at the Woman that you and Eustacia Vye are engaged to be married.” “We are,” said Yeobright. “But it may not be yet for a very long time.” “I should hardly think it would be yet for a very long time! You will take her to Paris, I suppose?” She spoke with weary hopelessness. “I am not going back to Paris.” “What will you do with a wife, then?” “Keep a school in Budmouth, as I have told you.” “That’s incredible!
+
+### The Return of the Native: Section 9
+
+_Dialogue and character voice_
+
+> III The Custom of the Country Had a looker-on been posted in the immediate vicinity of the barrow, he would have learned that these persons were boys and men of the neighbouring hamlets. Each, as he ascended the barrow, had been heavily laden with furze faggots, carried upon the shoulder by means of a long stake sharpened at each end for impaling them easily⁠—two in front and two behind. They came from a part of the heath a quarter of a mile to the rear, where furze almost exclusively prevailed as a product. Every individual was so involved in furze by his method of carrying the faggots that he appeared like a bush on legs till he had thrown them down. The party had marched in trail, like a travelling flock of sheep; that is to say, the strongest first, the weak and young behind.

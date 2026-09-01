@@ -2,23 +2,24 @@
 # Nature
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 18438
-- Reading grade: 5.1
-- Average sentence: 8.1 words
-- Average paragraph: 11.7 words
-- Dialogue share: 3%
+- Words analyzed: 82956
+- Reading grade: 8.0
+- Average sentence: 16.9 words
+- Average paragraph: 164.0 words
+- Dialogue share: 4%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: nature, world, beauty, things, spirit, works, thought, truth, without, electronic, natural, power, shall, human, objects, terms, copyright, light, forms, language, matter, reason, states, agreement
-- Character names: Gutenberg, Jesus, Project Gutenberg, Gutenberg Literary Archive Foundation, Adam, Caesar, Gutenberg Literary, Michael Angelo, Plotinus, Shakspeare, Swedenborg
+- Tempo: deliberate
+- Tone: narrative-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: human, matter, reason, shall, things, thought, truth, without, world, agreement, answer, anything, beauty, believe, cannot, christianity, church, copyright, electronic, enough, everything, exactly, forms, himself, language, light, merely, modern, natural, nature, objects, people, power, quite, sense, spirit, states, terms, works
+- Character names: Adam, Bernard Shaw, Besant, Blatchford, Bradlaugh, Caesar, Christ, Christian, Cinderella, Dryden, Francis, G. Wells, George, Grimm, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Haeckel, Herbert Spencer, Huxley, Jesus, John Davidson, Jones, Marcus Aurelius, Matthew Arnold, McCabe, Michael Angelo, Mr, Mrs, Nature, Nietzsche, Paganism, Plato, Plotinus, Project Gutenberg, Shakespeare, Shakspeare, Shaw, Swedenborg, Tommy
 
 ## Books
 - [Nature](../Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md)
+- [Orthodoxy](../Books/1307C541-02BD-4DFD-811B-797AA466580E.md)
 
 ## Representative excerpts
 
@@ -27,3 +28,15 @@
 _Opening voice_
 
 > The Project Gutenberg eBook of Nature This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Nature Author: Ralph Waldo Emerson Release date: July 17, 2009 [eBook #29433] Language: English Other information and formats: www.gutenberg.org/ebooks/29433 Credits: Produced by Ruth Hart *** START OF THE PROJECT GUTENBERG EBOOK NATURE *** NATURE BY R. W.
+
+### Orthodoxy: Section 9
+
+_Mid-book rhythm_
+
+> IV The Ethics of Elfland When the business man rebukes the idealism of his office-boy, it is commonly in some such speech as this: “Ah, yes, when one is young, one has these ideals in the abstract and these castles in the air; but in middle age they all break up like clouds, and one comes down to a belief in practical politics, to using the machinery one has and getting on with the world as it is.” Thus, at least, venerable and philanthropic old men now in their honoured graves used to talk to me when I was a boy. But since then I have grown up and have discovered that these philanthropic old men were telling lies. What has really happened is exactly the opposite of what they said would happen. They said that I should lose my ideals and begin to believe in the methods of practical politicians.
+
+### Orthodoxy: Section 12
+
+_Dialogue and character voice_
+
+> VII The Eternal Revolution The following propositions have been urged: First, that some faith in our life is required even to improve it; second, that some dissatisfaction with things as they are is necessary even in order to be satisfied; third, that to have this necessary content and necessary discontent it is not sufficient to have the obvious equilibrium of the Stoic. For mere resignation has neither the gigantic levity of pleasure nor the superb intolerance of pain. There is a vital objection to the advice merely to grin and bear it. The objection is that if you merely bear it, you do not grin. Greek heroes do not grin; but gargoyles do⁠—because they are Christian. And when a Christian is pleased, he is (in the most exact sense) frightfully pleased; his pleasure is frightful.

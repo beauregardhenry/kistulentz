@@ -2,25 +2,39 @@
 # Mississippi -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 98615
-- Reading grade: 1.4
-- Average sentence: 6.2 words
-- Average paragraph: 10.4 words
-- Dialogue share: 33%
+- Words analyzed: 252390
+- Reading grade: 1.9
+- Average sentence: 8.7 words
+- Average paragraph: 23.5 words
+- Dialogue share: 31%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: going, father, didn’t, anything, house, looking, water, better, thought, gutenberg, hands, began, that’s, project, money, stopped, couldn’t, enough, heard, you’ll, stood, reckon, kitchen, without
-- Character names: Dilsey, Jason, Luster, Quentin, Caddy, Mother, P., Versh, Benjy, Hush, Ben, Roskus, Mrs Compson, Shreve, Gerald, Uncle Maury, Benjamin, Frony, Maury, Earl, Anse, Charlie, Mr Jason, Julio, Queenie, Dalton Ames, Herbert, Jackson, Compson, Louis
+- Tone: direct, dialogue-forward, rhythmically varied, narrative-forward, rhythmically even
+- Recurring vocabulary: better, couldn’t, didn’t, going, house, looking, reckon, water, across, anything, began, enough, father, hands, heard, kitchen, money, stood, stopped, that’s, thought, without, wouldn’t, you’ll, ain’t, can’t, comes, don’t, folks, gutenberg, horse, looks, nothing, project, though, toward, trying, wagon, watching, won’t
+- Character names: Anse, Jackson, Ben, Benjamin, Benjy, Caddy, Charlie, Compson, Dalton Ames, Dilsey, Earl, Frony, Gerald, Herbert, Hush, Jason, Julio, Luster, Maury, Mother, Mr, Mrs, Queenie, Quentin, Roskus, Shreve, Uncle Maury, Versh, Addie, Addie Bundren, Anse Bundren, Armstid, Bundren, Cash, Cora, Darl, Dewey Dell, Gillespie, Jefferson, Jewel, Jody, Kate, Lafe, Louis, Mack, Mottson, Mr Jason, Mrs Compson, P., Pa, Patterson, Quick, Rachel, Sho, T. P., Tull, Uncle Billy, Vardaman, Vernon, Whitfield
 
 ## Books
+- [As I Lay Dying](../Books/1D1C7061-A494-4FFF-BACE-FEE48EAC9A6A.md)
 - [The sound and the fury](../Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md)
+- [The Sound and the Fury](../Books/B56CCC8B-ADB5-4CEC-83A0-B2F9D902CFBE.md)
 
 ## Representative excerpts
+
+### As I Lay Dying: Section 33
+
+_Mid-book rhythm_
+
+> Samson It was just before sundown. We were sitting on the porch when the wagon came up the road with the five of them in it and the other one on the horse behind. One of them raised his hand, but they was going on past the store without stopping. “Who’s that?” MacCallum says: I can’t think of his name: Rafe’s twin; that one it was. “It’s Bundren, from down beyond New Hope,” Quick says. “There’s one of them Snopes horses Jewel’s riding.” “I didn’t know there was ere a one of them horses left,” MacCallum says. “I thought you folks down there finally contrived to give them all away.” “Try and get that one,” Quick says. The wagon went on. “I bet old man Lon never gave it to him,” I says. “No,” Quick says. “He bought it from pappy.” The wagon went on. “They must not a heard about the bridge,” he says. “What’re they doing up here, anyway?” MacCallum says.
+
+### As I Lay Dying: Section 59
+
+_Dialogue and character voice_
+
+> Macgowan It happened I am back of the prescription case, pouring up some chocolate sauce, when Jody comes back and says, “Say, Skeet, there’s a woman up front that wants to see the doctor and when I said What doctor you want to see, she said she want to see the doctor that works here and when I said There ain’t any doctor works here, she just stood there, looking back this way.” “What kind of a woman is it?” I says. “Tell her to go upstairs to Alford’s office.” “Country woman,” he says. “Send her to the courthouse,” I says. “Tell her all the doctors have gone to Memphis to a Barbers’ Convention.” “All right,” he says, going away. “She looks pretty good for a country girl,” he says. “Wait,” I says. He waited and I went and peeped through the crack. But I couldn’t tell nothing except she had a good leg against the light. “Is she young, you say?” I says.
 
 ### The sound and the fury: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > APRIL SIXTH, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that . . . I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Sound and the Fury: Section 5
+
+_Mid-book rhythm_
+
+> April Sixth, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant⁠—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that⁠ ⁠… I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Sound and the Fury: Section 4
+
+_Sentence variation_
+
+> June Second, 1910 When the shadow of the sash appeared on the curtains it was between seven and eight oclock and then I was in time again, hearing the watch. It was Grandfather’s and when Father gave it to me he said, Quentin, I give you the mausoleum of all hope and desire; it’s rather excrutiatingly apt that you will use it to gain the reducto absurdum of all human experience which can fit your individual needs no better than it fitted his or his father’s. I give it to you not that you may remember time, but that you might forget it now and then for a moment and not spend all your breath trying to conquer it. Because no battle is ever won he said. They are not even fought. The field only reveals to man his own folly and despair, and victory is an illusion of philosophers and fools. It was propped against the collar box and I lay listening to it. Hearing it, that is.

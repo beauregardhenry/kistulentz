@@ -2,23 +2,24 @@
 # Siblings -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 98615
-- Reading grade: 1.4
-- Average sentence: 6.2 words
-- Average paragraph: 10.4 words
-- Dialogue share: 33%
+- Words analyzed: 151847
+- Reading grade: 2.2
+- Average sentence: 9.1 words
+- Average paragraph: 19.4 words
+- Dialogue share: 30%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: going, father, didn’t, anything, house, looking, water, better, thought, gutenberg, hands, began, that’s, project, money, stopped, couldn’t, enough, heard, you’ll, stood, reckon, kitchen, without
-- Character names: Dilsey, Jason, Luster, Quentin, Caddy, Mother, P., Versh, Benjy, Hush, Ben, Roskus, Mrs Compson, Shreve, Gerald, Uncle Maury, Benjamin, Frony, Maury, Earl, Anse, Charlie, Mr Jason, Julio, Queenie, Dalton Ames, Herbert, Jackson, Compson, Louis
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: anything, began, didn’t, going, heard, money, thought, better, business, couldn’t, course, dinner, don’t, enough, father, gutenberg, hands, house, indian, kitchen, looking, others, paper, people, project, quite, rather, reckon, robber, shall, stood, stopped, that’s, things, though, treasure, uncle, wanted, water, without
+- Character names: Mother, Albert, Alice, Annie, Anse, Balliol, Bastable, Ben, Benjamin, Benjy, Bush, Caddy, Charlie, Claude Duval, Compson, Dalton Ames, Denny, Dick, Dicky, Dilsey, Dora, Earl, Ed, Eliza, Ellis, Father, Foulkes, Frony, Gerald, Herbert, Hush, Jackson, Jane, Jason, Julio, Kipling, Leslie, Louis, Luster, Mallow, Maury, Mr, Mr Jason, Mrs, Mrs Compson, Noël, O., Oswald, Oswald Bastable, P., Pincher, Queenie, Quentin, Rosenbaum, Roskus, Sam Redfern, Shreve, Uncle Maury, Versh
 
 ## Books
 - [The sound and the fury](../Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md)
+- [The Story of the Treasure Seekers](../Books/53F44F6B-3F84-4255-A93D-40A8C317F8DE.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > APRIL SIXTH, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that . . . I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
+
+### The Story of the Treasure Seekers: Section 12
+
+_Mid-book rhythm_
+
+> VIII Being Editors It was Albert’s uncle who thought of our trying a newspaper. He said he thought we should not find the bandit business a paying industry, as a permanency, and that journalism might be. We had sold Noël’s poetry and that piece of information about Lord Tottenham to the good editor, so we thought it would not be a bad idea to have a newspaper of our own. We saw plainly that editors must be very rich and powerful, because of the grand office and the man in the glass case, like a museum, and the soft carpets and big writing-table. Besides our having seen a whole handful of money that the editor pulled out quite carelessly from his trousers pocket when he gave me my five bob. Dora wanted to be editor and so did Oswald, but he gave way to her because she is a girl, and afterwards he knew that it is true what it says in the copybooks about Virtue being its own Reward.
+
+### The Story of the Treasure Seekers: Section 17
+
+_Dialogue and character voice_
+
+> XIII The Robber and the Burglar A day or two after Noël came back from Hastings there was snow; it was jolly. And we cleared it off the path. A man to do it is sixpence at least, and you should always save when you can. A penny saved is a penny earned. And then we thought it would be nice to clear it off the top of the portico, where it lies so thick, and the edges as if they had been cut with a knife. And just as we had got out of the landing-window on to the portico, the Water Rates came up the path with his book that he tears the thing out of that says how much you have got to pay, and the little ink-bottle hung on to his buttonhole in case you should pay him. Father says the Water Rates is a sensible man, and knows it is always well to be prepared for whatever happens, however unlikely.

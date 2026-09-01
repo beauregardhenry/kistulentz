@@ -2,25 +2,38 @@
 # Strikes and lockouts -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 172205
-- Reading grade: 2.8
-- Average sentence: 7.0 words
-- Average paragraph: 11.5 words
-- Dialogue share: 50%
+- Words analyzed: 350664
+- Reading grade: 4.3
+- Average sentence: 11.5 words
+- Average paragraph: 33.5 words
+- Dialogue share: 32%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don't, ain't, that's, you're, horses, three, hundred, can't, woman, things, dollars, house, herself, valley, hands, money, guess, didn't, though, billy's, night, we're, years, young
-- Character names: Saxon, Billy, Bert, Mary, Sarah, Tom, Bill, Mercedes, Mercedes Higgins, Charley Long, Billy Roberts, Tim, Billy Murphy, Blanchard, Maggie Donahue, Barry, Bill Roberts, Chester Johnson, Mrs. Olsen, Henderson, Otto Frank, Charley, Mrs. Higgins, Roberts, Cady, Willie, Bud Strothers, Chester, Frank, Gee
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: house, night, three, young, ain't, began, behind, beneath, billy's, bread, can't, didn't, dollars, don't, don’t, earth, going, guess, hands, herself, himself, horses, hundred, large, longer, maheude, money, montsou, nothing, others, people, remained, seemed, that's, themselves, things, though, valley, voice, we're
+- Character names: Barry, Bataille, Bert, Bill, Bill Roberts, Billy, Billy Murphy, Billy Roberts, Blanchard, Bonnemort, Bud Strothers, Bébert, Cady, Catherine, Charley, Charley Long, Chaval, Chester, Chester Johnson, Cécile, Dansaert, Deneulin, Estelle, Frank, Gee, Henderson, Henri, Jeanlin, Levaque, Lydie, M. Grégoire, M. Hennebeau, Madame Grégoire, Madame Hennebeau, Maggie Donahue, Maheu, Maigrat, Marchiennes, Mary, Mercedes, Mercedes Higgins, Mouque, Mouquet, Mrs. Higgins, Mrs. Olsen, Négrel, Otto Frank, Paul, Pierron, Richomme, Roberts, Sarah, Saxon, Souvarine, Tim, Tom, Willie, Zacharie, Zola, Étienne
 
 ## Books
+- [Germinal](../Books/919A4D92-DCB6-413E-9B55-76DB5FD6FC59.md)
 - [The Valley of the Moon](../Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md)
 
 ## Representative excerpts
+
+### Germinal: Section 27
+
+_Mid-book rhythm_
+
+> III A fortnight had passed, and on the Monday of the third week the lists sent up to the managers showed a fresh decrease in the number of the miners who had gone down. It was expected that on that morning work would be resumed, but the obstinacy of the directors in not yielding exasperated the miners. The Voreux, Crévecœur, Mirou, and Madeleine were not the only pits resting; at the Victoire and at Feutry-Cantel only about a quarter of the men had gone down; even Saint-Thomas was affected. The strike was gradually becoming general. At the Voreux a heavy silence hung over the pit-mouth. It was a dead workshop, these great empty abandoned Yards where work was sleeping. In the grey December sky, along the high footbridges three or four empty trams bore witness to the mute sadness of things.
+
+### Germinal: Section 26
+
+_Dialogue and character voice_
+
+> II The previous day, at a meeting held at Rasseneur’s, Étienne and some comrades had chosen the delegates who were to proceed on the following day to the manager’s house. When, in the evening, Maheude learnt that her man was one of them, she was in despair, and asked him if he wanted them to be thrown on the street. Maheu himself had agreed with reluctance. Both of them, when the moment of action came, in spite of the injustice of their wretchedness fell back on the resignation of their race, trembling before the morrow, preferring still to bend their backs to the yoke. In the management of affairs he usually gave way to his wife, whose advice was sound. This time, however, he grew angry at last, all the more so since he secretly shared her fears. “Just leave me alone, will you?” he said, going to bed and turning his back. “A fine thing to leave the mates now! I’m doing my duty.”
 
 ### The Valley of the Moon: Section 1
 

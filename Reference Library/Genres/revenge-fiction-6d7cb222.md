@@ -2,25 +2,65 @@
 # Revenge -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 88073
-- Reading grade: 4.7
-- Average sentence: 7.8 words
-- Average paragraph: 10.1 words
-- Dialogue share: 18%
-- Voice: observational third-person
+- Words analyzed: 733844
+- Reading grade: 6.0
+- Average sentence: 16.8 words
+- Average paragraph: 42.6 words
+- Dialogue share: 46%
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: child, minister, letter, heart, mother, scarlet, himself, dimmesdale, seemed, gutenberg, project, woman, world, herself, years, human, nature, people, within, shall, without, answered, house, better
-- Character names: Hester, Hester Prynne, Pearl, Roger Chillingworth, Prynne, Bellingham, Mr. Wilson, Mistress Hibbins, Satan, Mr, Mistress Prynne, Chillingworth, Hush, Mr. Surveyor Pue, brown, Eliot, Hath, Little Pearl, Madam Hester, Mistress Hester, Sam, Surveyor, Wilson, Winthrop, Ann Hutchinson, Arthur, HESTER, Halifax, Isaac Johnson, James
+- Tone: rhythmically varied, narrative-forward, balanced, dialogue-forward, energetic, measured, direct, rhythmically even
+- Recurring vocabulary: himself, shall, without, answered, heard, house, indeed, seemed, better, child, cried, dimmesdale, heart, herself, human, letter, minister, mother, myself, nature, nothing, people, scarlet, three, within, woman, world, years, albert, ballantrae, began, bosom, caderousse, count, danglars, durrisdeer, elephant, elephants, enough, family
+- Character names: Mr, Hester, Ann Hutchinson, Bellingham, Eliot, Halifax, Hath, Henry, Hester Prynne, Hush, Isaac Johnson, James, Little Pearl, Madam Hester, Mistress Hester, Mistress Hibbins, Mistress Prynne, Pearl, Roger Chillingworth, Sam, Satan, Surveyor, Wilson, Winthrop, brown, Abbé Faria, Albany, Alexander, Arthur, Bally, Burke, Caesar, Caesar Borgia, Carlyle, Catalan, Chevalier, Chillingworth, Crail, Dantès, Durie, Dutton, Edmond, Edmond Dantès, Elizabeth, Faria, Fernand, Gérard, Harris, Hastie, Henry Curtis, Henry Durie, Jacob, Jacopo, Jacques, Jeffries, Jessie, John, John Every, John Paul, John Wilson, Jove, King James, La Jeune Amélie, Leclère, Louis XVIII, M. Morrel, M. de Blacas, M. de Villefort, Mackellar, Macumazahn, Marseilles, Master Brackett, Mercédès, Miss Alison, Miss Katharine, Monsieur, Monte Cristo, Morrel, Mountain, Mr. Surveyor Pue
 
 ## Books
+- [Maiwa’s Revenge](../Books/F0DE9445-E508-4483-9477-FFDCD6501B28.md)
+- [The Count of Monte Cristo](../Books/81A34060-2136-46C2-8808-AF22C812BEE5.md)
+- [The Master of Ballantrae](../Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
 
 ## Representative excerpts
+
+### Maiwa’s Revenge: Section 8
+
+_Mid-book rhythm_
+
+> IV The Last Round “On the morrow I woke up full of painful recollections, and not without a certain feeling of gratitude to the Powers above that I was there to wake up. Yesterday had been a tempestuous day; indeed, what between buffalo, rhinoceros, and elephant, it had been very tempestuous. Having realized this fact, I next bethought me of those magnificent tusks, and instantly, early as it was, broke the tenth commandment. I coveted my neighbour’s tusks, if an elephant could be said to be my neighbour de jure, as certainly, so recently as the previous night, he had been de facto⁠—a much closer neighbour than I cared for, indeed. Now when you covet your neighbour’s goods, the best thing, if not the most moral thing, to do is to enter his house as a strong man armed, and take them.
+
+### Maiwa’s Revenge: Section 10
+
+_Sentence variation_
+
+> VI The Plan of Campaign “Notwithstanding all that we had gone through, perhaps indeed on account of it, for I was thoroughly worn out, I slept that night as soundly as poor Gobo, round whose crushed body the hyenas would now be prowling. Rising refreshed at dawn we went on our way towards Nala’s kraal, which we reached at nightfall. It is built on open ground after the Zulu fashion, in a ring fence and with beehive huts. The cattle kraal is behind and a little to the left. Indeed, both from their habits and their talk it was easy to see that these Butiana belong to that section of the Bantu people which, since T’Chaka’s time, has been known as the Zulu race. We did not see the chief Nala that night. His daughter Maiwa went on to his private huts as soon as we arrived, and very shortly afterwards one of his head men came to us bringing a sheep and some mealies and milk with him.
+
+### The Count of Monte Cristo: Section 58
+
+_Mid-book rhythm_
+
+> LVI Andrea Cavalcanti The Count of Monte Cristo entered the adjoining room, which Baptistin had designated as the drawing-room, and found there a young man, of graceful demeanor and elegant appearance, who had arrived in a cab about half an hour previously. Baptistin had not found any difficulty in recognizing the person who presented himself at the door for admittance. He was certainly the tall young man with light hair, red beard, black eyes, and brilliant complexion, whom his master had so particularly described to him. When the count entered the room the young man was carelessly stretched on a sofa, tapping his boot with the gold-headed cane which he held in his hand. On perceiving the count he rose quickly. “The Count of Monte Cristo, I believe?” said he. “Yes, sir, and I think I have the honor of addressing Count Andrea Cavalcanti?” “Count Andrea Cavalcanti,”
+
+### The Count of Monte Cristo: Section 35
+
+_Dialogue and character voice_
+
+> XXXIII Roman Bandits The next morning Franz woke first, and instantly rang the bell. The sound had not yet died away when Signor Pastrini himself entered. “Well, excellency,” said the landlord triumphantly, and without waiting for Franz to question him, “I feared yesterday, when I would not promise you anything, that you were too late⁠—there is not a single carriage to be had⁠—that is, for the three last days of the carnival.” “Yes,” returned Franz, “for the very three days it is most needed.” “What is the matter?” said Albert, entering; “no carriage to be had?” “Just so,” returned Franz, “you have guessed it.” “Well, your Eternal City is a nice sort of place.” “That is to say, excellency,”
+
+### The Master of Ballantrae: Section 11
+
+_Mid-book rhythm_
+
+> VI Summary of Events During the Master’s Second Absence Of the heavy sickness which declared itself next morning I can think with equanimity, as of the last unmingled trouble that befell my master; and even that was perhaps a mercy in disguise; for what pains of the body could equal the miseries of his mind? Mrs. Henry and I had the watching by the bed. My old lord called from time to time to take the news, but would not usually pass the door. Once, I remember, when hope was nigh gone, he stepped to the bedside, looked a while in his son’s face, and turned away with a singular gesture of the head and hand thrown up, that remains upon my mind as something tragic; such grief and such a scorn of sublunary things were there expressed. But the most of the time Mrs. Henry and I had the room to ourselves, taking turns by night, and bearing each other company by day, for it was dreary watching.
+
+### The Master of Ballantrae: Section 9
+
+_Dialogue and character voice_
+
+> IV Persecutions Endured by Mr. Henry You can guess on what part of his adventures the Colonel principally dwelled. Indeed, if we had heard it all, it is to be thought the current of this business had been wholly altered; but the pirate ship was very gently touched upon. Nor did I hear the Colonel to an end even of that which he was willing to disclose; for Mr. Henry, having for some while been plunged in a brown study, rose at last from his seat and (reminding the Colonel there were matters that he must attend to) bade me follow him immediately to the office. Once there, he sought no longer to dissemble his concern, walking to and fro in the room with a contorted face, and passing his hand repeatedly upon his brow. “We have some business,” he began at last; and there broke off, declared we must have wine, and sent for a magnum of the best.
 
 ### The Scarlet Letter: Section 1
 
@@ -33,3 +73,15 @@ _Opening voice_
 _Dialogue and character voice_
 
 > XI. THE INTERIOR OF A HEART. fter the incident last described, the intercourse between the clergyman and the physician, though externally the same, was really of another character than it had previously been. The intellect of Roger Chillingworth had now a sufficiently plain path before it. It was not, indeed, precisely that which he had laid out for himself to tread. Calm, gentle, passionless, as he appeared, there was yet, we fear, a quiet depth of malice, hitherto latent, but active now, in this unfortunate old man, which led him to imagine a more intimate revenge than any mortal had ever wreaked upon an enemy. To make himself the one trusted friend, to whom should be confided all the fear, the remorse, the agony, the ineffectual repentance, the backward rush of sinful thoughts, expelled in vain!
+
+### The Scarlet Letter: Section 17
+
+_Mid-book rhythm_
+
+> XII The Minister’s Vigil Walking in the shadow of a dream, as it were, and perhaps actually under the influence of a species of somnambulism, Mr. Dimmesdale reached the spot where, now so long since, Hester Prynne had lived through her first hours of public ignominy. The same platform or scaffold, black and weather-stained with the storm or sunshine of seven long years, and foot-worn, too, with the tread of many culprits who had since ascended it, remained standing beneath the balcony of the meetinghouse. The minister went up the steps. It was an obscure night of early May. An unvaried pall of cloud muffled the whole expanse of sky from zenith to horizon.
+
+### The Scarlet Letter: Section 22
+
+_Dialogue and character voice_
+
+> XVII The Pastor and His Parishioner Slowly as the minister walked, he had almost gone by, before Hester Prynne could gather voice enough to attract his observation. At length, she succeeded. “Arthur Dimmesdale!” she said, faintly at first; then louder, but hoarsely. “Arthur Dimmesdale!” “Who speaks?” answered the minister. Gathering himself quickly up, he stood more erect, like a man taken by surprise in a mood to which he was reluctant to have witnesses. Throwing his eyes anxiously in the direction of the voice, he indistinctly beheld a form under the trees, clad in garments so sombre, and so little relieved from the gray twilight into which the clouded sky and the heavy foliage had darkened the noontide, that he knew not whether it were a woman or a shadow. It may be, that his pathway through life was haunted thus, by a spectre that had stolen out from among his thoughts.

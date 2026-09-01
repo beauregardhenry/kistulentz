@@ -2,23 +2,28 @@
 # Satire
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 122262
-- Reading grade: 3.3
-- Average sentence: 8.3 words
-- Average paragraph: 11.6 words
-- Dialogue share: 28%
+- Words analyzed: 1086904
+- Reading grade: 5.3
+- Average sentence: 16.2 words
+- Average paragraph: 45.5 words
+- Dialogue share: 39%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: people, couldn’t, without, didn’t, nothing, enough, three, project, going, gutenberg, myself, years, chapter, hundred, knights, shall, knight, things, world, place, course, don’t, thought, himself
-- Character names: Sandy, Merlin, Arthur, Launcelot, Kay, Clarence, Marco, Sir Marhaus, Gareth, Gawaine, Jones, Sir Gawaine, Alisande, Sir Launcelot, Dowley, Morgan le Fay, Ozana, Scott, Garry, Gaul, Joseph, Madame, Marcos, Sir Sagramor, Boss, Inde, LAUNCELOT, Latin, Lionel, Lo
+- Tempo: steady
+- Tone: rhythmically varied, dialogue-forward, balanced, direct, narrative-forward, energetic, measured, rhythmically even
+- Recurring vocabulary: people, thought, three, don’t, nothing, course, going, himself, house, things, without, can’t, didn’t, years, young, couldn’t, enough, hundred, myself, place, rather, round, seemed, shall, that’s, though, world, you’re, ain’t, anything, barbecue, began, better, black, business, chapter, country, court, desired, dinner
+- Character names: Mr, Mrs, George, John, Launcelot, Adrian, Agatha, Agnes, Alexander, Alisande, Anne, Aristotle, Arthur, Babbitt, Baker, Balnibarbi, Bates, Bertie van Tahn, Bill, Blefuscu, Bodiham, Bolgolam, Boss, Brutus, Caesar, Carey, Caroline, Cassandra, Christ, Clarence, Clovis, Clyde, Connie, Conradin, Crefton, Crome, Davis, Denis, Dobrinton, Dowley, Dr, Drew, Ed, Eddie Swanson, Edo, Egbert, Eleanor, Elliott, Erasmus, Eunice, Ferdinando, Filomena, Flestrin, Fogarty, Frink, Gareth, Garry, Gassendi, Gaul, Gawaine, George F. Babbitt, Georgiana, Georgie, Gerald, Glumdalclitch, Gobley, Gombauld, Graff, Grildrig, Gulliver, Gunch, Hank, Hanson, Hawley, Henry, Henry Wimbush, Hercules, Hollander, Howard Littlefield, Ike
 
 ## Books
 - [A Connecticut Yankee in King Arthur's Court](../Books/A5DD5A9F-9C99-4931-BA33-F1088AD975F1.md)
+- [Babbitt](../Books/3289091D-28CA-4DCC-BA1B-93C199BC5801.md)
+- [Crome Yellow](../Books/85F34883-36B5-48B5-B256-D9F006F788D7.md)
+- [Gulliver’s Travels](../Books/C3584C46-895E-4EE4-9DC5-5954506F75CE.md)
+- [Short Fiction](../Books/A5847CBD-6206-4483-9BD7-CCAF81C665E2.md)
+- [Short Fiction](../Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md)
 
 ## Representative excerpts
 
@@ -33,3 +38,51 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XXI. THE PILGRIMS When I did get to bed at last I was unspeakably tired; the stretching out, and the relaxing of the long-tense muscles, how luxurious, how delicious! but that was as far as I could get—sleep was out of the question for the present. The ripping and tearing and squealing of the nobility up and down the halls and corridors was pandemonium come again, and kept me broad awake. Being awake, my thoughts were busy, of course; and mainly they busied themselves with Sandy’s curious delusion. Here she was, as sane a person as the kingdom could produce; and yet, from my point of view she was acting like a crazy woman. My land, the power of training! of influence! of education! It can bring a body up to believe anything. I had to put myself in Sandy’s place to realize that she was not a lunatic.
+
+### Babbitt: Section 20
+
+_Mid-book rhythm_
+
+> Chapter XVIII I Though he saw them twice daily, though he knew and amply discussed every detail of their expenditures, yet for weeks together Babbitt was no more conscious of his children than of the buttons on his coat-sleeves. The admiration of Kenneth Escott made him aware of Verona. She had become secretary to Mr. Gruensberg of the Gruensberg Leather Company; she did her work with the thoroughness of a mind which reveres details and never quite understands them; but she was one of the people who give an agitating impression of being on the point of doing something desperate⁠—of leaving a job or a husband⁠—without ever doing it. Babbitt was so hopeful about Escott’s hesitant ardors that he became the playful parent. When he returned from the Elks he peered coyly into the living-room and gurgled, “Has our Kenny been here tonight?”
+
+### Babbitt: Section 8
+
+_Dialogue and character voice_
+
+> Chapter VI I He forgot Paul Riesling in an afternoon of not unagreeable details. After a return to his office, which seemed to have staggered on without him, he drove a “prospect” out to view a four-flat tenement in the Linton district. He was inspired by the customer’s admiration of the new cigar-lighter. Thrice its novelty made him use it, and thrice he hurled half-smoked cigarettes from the car, protesting, “I got to quit smoking so blame much!” Their ample discussion of every detail of the cigar-lighter led them to speak of electric flatirons and bed-warmers. Babbitt apologized for being so shabbily old-fashioned as still to use a hot-water bottle, and he announced that he would have the sleeping-porch wired at once. He had enormous and poetic admiration, though very little understanding, of all mechanical devices. They were his symbols of truth and beauty.
+
+### Crome Yellow: Section 18
+
+_Mid-book rhythm_
+
+> XVI The ladies had left the room and the port was circulating. Mr. Scogan filled his glass, passed on the decanter, and, leaning back in his chair, looked about him for a moment in silence. The conversation rippled idly round him, but he disregarded it; he was smiling at some private joke. Gombauld noticed his smile. “What’s amusing you?” he asked. “I was just looking at you all, sitting round this table,” said Mr. Scogan. “Are we as comic as all that?” “Not at all,” Mr. Scogan answered politely. “I was merely amused by my own speculations.” “And what were they?” “The idlest, the most academic of speculations. I was looking at you one by one and trying to imagine which of the first six Caesars you would each resemble, if you were given the opportunity of behaving like a Caesar. The Caesars are one of my touchstones,” Mr. Scogan explained.
+
+### Crome Yellow: Section 15
+
+_Dialogue and character voice_
+
+> XIII Henry Wimbush brought down with him to dinner a budget of printed sheets loosely bound together in a cardboard portfolio. “Today,” he said, exhibiting it with a certain solemnity, “today I have finished the printing of my History of Crome. I helped to set up the type of the last page this evening.” “The famous History?” cried Anne. The writing and the printing of this Magnum Opus had been going on as long as she could remember. All her childhood long Uncle Henry’s History had been a vague and fabulous thing, often heard of and never seen. “It has taken me nearly thirty years,” said Mr. Wimbush. “Twenty-five years of writing and nearly four of printing.
+
+### Gulliver’s Travels: Section 26
+
+_Mid-book rhythm_
+
+> II The humours and dispositions of the Laputians described. An account of their learning. Of the king and his court. The author’s reception there. The inhabitants subject to fear and disquietudes. An account of the women. At my alighting, I was surrounded with a crowd of people, but those who stood nearest seemed to be of better quality. They beheld me with all the marks and circumstances of wonder; neither indeed was I much in their debt, having never till then seen a race of mortals so singular in their shapes, habits, and countenances. Their heads were all reclined, either to the right, or the left; one of their eyes turned inward, and the other directly up to the zenith.
+
+### Gulliver’s Travels: Section 34
+
+_Dialogue and character voice_
+
+> X The Luggnaggians commended. A particular description of the Struldbrugs, with many conversations between the author and some eminent persons upon that subject. The Luggnaggians are a polite and generous people; and although they are not without some share of that pride which is peculiar to all Eastern countries, yet they show themselves courteous to strangers, especially such who are countenanced by the court. I had many acquaintance, and among persons of the best fashion; and being always attended by my interpreter, the conversation we had was not disagreeable. One day, in much good company, I was asked by a person of quality, “whether I had seen any of their struldbrugs, or immortals?” I said, “I had not;” and desired he would explain to me “what he meant by such an appellation, applied to a mortal creature.”
+
+### Short Fiction: Section 40
+
+_Mid-book rhythm_
+
+> Zone of Quiet “Well,” said the Doctor briskly, “how do you feel?” “Oh, I guess I’m all right,” replied the man in bed. “I’m still kind of drowsy, that’s all.” “You were under the anesthetic an hour and a half. It’s no wonder you aren’t wide awake yet. But you’ll be better after a good night’s rest, and I’ve left something with Miss Lyons that’ll make you sleep. I’m going along now. Miss Lyons will take good care of you.” “I’m off at seven o’clock,” said Miss Lyons. “I’m going to a show with my G.F. But Miss Halsey’s all right. She’s the night floor nurse. Anything you want, she’ll get it for you. What can I give him to eat, Doctor?” “Nothing at all; not till after I’ve been here tomorrow. He’ll be better off without anything. Just see that he’s kept quiet. Don’t let him talk, and don’t talk to him; that is, if you can help it.” “Help it!” said Miss Lyons.
+
+### Short Fiction: Section 28
+
+_Dialogue and character voice_
+
+> The Big Town How I and the Mrs. Go to New York to See Life and Get Katie a Husband Preface This book deals with the adventures of a man and his wife and his sister-in-law who move to New York from a small middle western city. Because the writer and she who jokingly married him moved to New York from the middle west, and because the writer has almost as many sister-in-laws as Solomon, several Nordic blondes have inquired whether the hero and heroines of the book are not actually us. Fortunately most of the inquirers made the inquiry of me, the possessor of a notoriously sweet disposition. Two of them, however, asked the madam herself and were both shot down. In the first place, the ladies of the book are supposed to have inherited enough money to make them and the gent more or less independent. Nothing like that in our family.

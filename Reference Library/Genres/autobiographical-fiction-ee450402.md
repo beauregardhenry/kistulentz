@@ -2,25 +2,39 @@
 # Autobiographical fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 189904
-- Reading grade: 3.2
-- Average sentence: 8.5 words
-- Average paragraph: 11.7 words
+- Words analyzed: 386469
+- Reading grade: 4.6
+- Average sentence: 12.1 words
+- Average paragraph: 36.1 words
 - Dialogue share: 36%
-- Voice: observational third-person
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, young, girls, shall, herself, things, thought, heart, can’t, didn’t, quite, though, going, looking, won’t, happy, better, seemed, rather, cried, began, anything, people, nothing
-- Character names: Jo, Laurie, Beth, Amy, Hannah, Mrs. March, Mr. Laurence, Meg, Mr. Brooke, Mother, Marmee, Sallie, Brooke, Fred, John, Miss Kate, Ned, Teddy, Mr. Davis, Frank, Hagar, Kate, Esther, Laurence, Annie, Mr, Mrs. Moffat, Pip, Hugo, Madame
+- Tone: balanced, dialogue-forward, rhythmically varied, direct, narrative-forward, rhythmically even
+- Recurring vocabulary: anything, can’t, didn’t, don’t, girls, going, heart, herself, people, things, thought, won’t, young, anne’s, avonlea, began, behind, better, black, certain, child, cried, directeur, enormous, everyone, french, friend, hands, happy, himself, isn’t, looking, machine, myself, night, nothing, paris, perfectly, perhaps, planton
+- Character names: Mr, John, Allan, Amy, Anne, Anne Shirley, Annie, Apollyon, B., Barber, Barry, Beth, Bill The Hollander, Blewett, Bragard, Brooke, Carmody, Celina, Charlie Sloane, Cook, Cordelia, Count Bragard, Cummings, Diana, Esther, Frank, Fred, Fritz, Garibaldi, Gilbert, Gilbert Blythe, Green Gables, Hagar, Hammond, Hannah, Harree, Hollander, Hollanders, Hugo, Jane, Jane Andrews, Jean, Jo, Josie Pye, Judas, Kate, La Ferté, La Ferté Macé, Laurence, Laurie, Lena, Lynde, Madame, Marilla, Marmee, Matthew, Matthew Cuthbert, Meg, Miss Barry, Miss Kate, Miss Stacy, Monsieur, Monsieur Auguste, Monsieur Pet, Mother, Mr. Brooke, Mr. Davis, Mr. Laurence, Mrs, Mrs. March, Mrs. Moffat, Ned, Noyon, Pete, Phillips, Pip, Pompom, Rachel, Rachel Lynde, Renée
 
 ## Books
+- [Anne of Green Gables](../Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md)
 - [Little Women](../Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md)
+- [The Enormous Room](../Books/10AB5BA0-2796-4A31-90F8-EBAD52EBECBC.md)
 
 ## Representative excerpts
+
+### Anne of Green Gables: Section 22
+
+_Mid-book rhythm_
+
+> XX A Good Imagination Gone Wrong Spring had come once more to Green Gables⁠—the beautiful, capricious, reluctant Canadian spring, lingering along through April and May in a succession of sweet, fresh, chilly days, with pink sunsets and miracles of resurrection and growth. The maples in Lovers’ Lane were red budded and little curly ferns pushed up around the Dryad’s Bubble. Away up in the barrens, behind Mr. Silas Sloane’s place, the Mayflowers blossomed out, pink and white stars of sweetness under their brown leaves. All the school girls and boys had one golden afternoon gathering them, coming home in the clear, echoing twilight with arms and baskets full of flowery spoil. “I’m so sorry for people who live in lands where there are no Mayflowers,” said Anne. “Diana says perhaps they have something better, but there couldn’t be anything better than Mayflowers, could there, Marilla?
+
+### Anne of Green Gables: Section 4
+
+_Dialogue and character voice_
+
+> II Matthew Cuthbert Is Surprised Matthew Cuthbert and the sorrel mare jogged comfortably over the eight miles to Bright River. It was a pretty road, running along between snug farmsteads, with now and again a bit of balsamy fir wood to drive through or a hollow where wild plums hung out their filmy bloom. The air was sweet with the breath of many apple orchards and the meadows sloped away in the distance to horizon mists of pearl and purple; while “The little birds sang as if it were The one day of summer in all the year.” Matthew enjoyed the drive after his own fashion, except during the moments when he met women and had to nod to them⁠—for in Prince Edward Island you are supposed to nod to all and sundry you meet on the road whether you know them or not. Matthew dreaded all women except Marilla and Mrs.
 
 ### Little Women: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > PART 2 In order that we may start afresh and go to Meg’s wedding... CHAPTER TWENTY-FOUR GOSSIP In order that we may start afresh and go to Meg’s wedding with free minds, it will be well to begin with a little gossip about the Marches. And here let me premise that if any of the elders think there is too much ‘lovering’ in the story, as I fear they may (I’m not afraid the young folks will make that objection), I can only say with Mrs. March, “What can you expect when I have four gay girls in the house, and a dashing young neighbor over the way?” The three years that have passed have brought but few changes to the quiet family. The war is over, and Mr.
+
+### The Enormous Room: Section 10
+
+_Mid-book rhythm_
+
+> VI Apollyon The inhabitants of The Enormous Room whose portraits I have attempted in the preceding chapter, were, with one or two exceptions, inhabiting at the time of my arrival. Now the thing which above all things made death worth living and life worth dying at La Ferté Macé was the kinetic aspect of that institution; the arrivals, singly or in groups, of nouveaux of sundry nationalities whereby our otherwise more or less simple existence was happily complicated, our putrescent placidity shaken by a fortunate violence. Before, however, undertaking this aspect I shall attempt to represent for my own benefit as well as the reader’s certain more obvious elements of that stasis which greeted the candidates for disintegration upon their admittance to our select, not to say distinguished, circle.
+
+### The Enormous Room: Section 8
+
+_Dialogue and character voice_
+
+> IV Le Nouveau “Vous ne voulez pas de café?” The threatening question recited in a hoarse voice woke me like a shot. Sprawled half on and half off my paillasse, I looked suddenly up into a juvenile pimply face with a red tassel bobbing in its eyes. A boy in a Belgian uniform was stooping over me. In one hand a huge pail a third full of liquid slime. I said fiercely: “Au contraire, je veux bien.” And collapsed on the mattress. “Pas de quart, vous?” the face fired at me. “Comprends pas,” I replied, wondering what on earth the words meant. “English?” “American.” At this moment a tin cup appeared mysteriously out of the gloom and was rapidly filled from the pail, after which operation the tassel remarked: “Your friend here” and disappeared. I decided I had gone completely crazy. The cup had been deposited near me.

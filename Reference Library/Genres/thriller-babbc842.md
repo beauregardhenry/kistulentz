@@ -2,73 +2,129 @@
 # Thriller
 
 - Profile type: Genre
-- Books represented: 4
+- Books represented: 48
 
 ## Learned profile
 
-- Words analyzed: 246086
-- Reading grade: 3.4
-- Average sentence: 6.9 words
-- Average paragraph: 10.2 words
-- Dialogue share: 26%
-- Voice: mixed or shifting perspective
+- Words analyzed: 3946617
+- Reading grade: 5.2
+- Average sentence: 15.0 words
+- Average paragraph: 38.2 words
+- Dialogue share: 31%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward
-- Recurring vocabulary: project, house, nothing, seemed, thought, without, can’t, course, didn’t, don’t, going, heard, herself, himself, myself, stood, things, three, woman, words, across, anything, baltimore, better, bishop, blood, bright, called, children, death, didn't, don't, drink, enough, eva’s, friends, given, gutenberg, hands, letter
-- Character names: Gutenberg, Frederick Douglass, John, Mr, Nick, Addis Wickersham, Agnes, Al, Alan, Andrew, Anthony Bloodgood, Barney, Billy, Briga, Carl, Charles, Charles Glidden, Colonel Lloyd, Covey, Demby, Dinah, Donna Candida, Emilio, Eva, Eva Litchfield, Florence, Florence Quincy, Frank, Frederick, Fuentes, George, Gertrude, Gertrude Cuyler, Harviss, Haskett, Henry, Hernandez, Hogan, Hugh, Hughes, Ingoldsby, Jack, Jane, Jerry, Joe, Joe Garner, Julia, Lethbury, Manolo, Manuel, Mapes, Mary, Master Hugh, Master Thomas, Mattie, Max, Michael, Miss Augusta, Miss Lois, Molly, Molly Underhill, Morgan, Mr. Brympton, Mr. Budd, Mr. Covey, Mr. Freeland, Mr. Gardner, Mr. Gore, Mr. Hamilton, Mr. Hopkins, Mr. Johnson, Mr. Ranford, Mr. Ruggles, Mr. Tillinghast, Mr. Turner, Mrs, Mrs. Avery, Mrs. Blinder, Mrs. Brympton, Mrs. Clinch
+- Tone: rhythmically varied, dialogue-forward, balanced, narrative-forward, direct, rhythmically even, measured, energetic
+- Recurring vocabulary: thought, himself, nothing, though, don’t, night, three, without, going, house, stood, hands, moment, shall, place, toward, heard, people, seemed, voice, didn’t, light, woman, replied, round, you’re, began, within, behind, better, myself, that’s, anything, death, enough, heart, hundred, others, things, world
+- Character names: Mr, Mrs, John, George, Jack, Jane, Joe, Mary, Bill, Billy, Carson, Henry, Joan, Miller, Numa, Tarzan, Venus, Waziri, Bara, Dr, Francis, Frank, Gertrude, Gutenberg, James, Jove, Michael, Norris, Philip, Smith, Socrates, Stuart, Tarmangani, Tony, Alan, Allah, Arab, Bavon, Benson, Beresteyn, Bob, Bwana, Caesar, Charles, Chet, Chet Morton, Cicero, Della Torre, Digby, Diogenes, Duncan, Edward, Fenton Hardy, Frank Hardy, Frederick Douglass, Fuentes, Gilda, Gilda Beresteyn, Gonsalez, Hardy, Hector, Ivan, Jan, Jane Clayton, Jew, Jim, Jimmy, Joe Hardy, Julia, Jungle, Lady Greystoke, Lee, Leon, MacKenzie, Manfred, Mangani, Maria, Martin, Miguel, Molly
 
 ## Books
+- [A Woman of No Importance](../Books/934EED71-EFE9-4449-91C6-808DAAAC905A.md)
+- [Around the World in Eighty Days](../Books/D78BDAF1-BC42-445C-9ADA-DFB464242C82.md)
+- [Bellarion the Fortunate](../Books/C9CBA5F4-66FE-4E91-8DCD-7B074E230A0C.md)
+- [Beyond Thirty](../Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md)
+- [Blind Corner](../Books/5D28CCD7-8B5A-446A-91B4-30A4633BCB6F.md)
+- [Blue Hand](../Books/B91C524F-2BCF-4F70-903D-36EBEA262372.md)
+- [Can Such Things Be?](../Books/17C1079C-2E49-4BDD-83D9-D485E4FD248F.md)
+- [Catriona](../Books/497657E2-3F7B-474C-8D6D-E2C0D5F5FB1F.md)
+- [Cogewea, the Half-Blood](../Books/E6AD992C-BB58-4807-9722-E5E9D41A3405.md)
+- [Commentaries on the Gallic War](../Books/555D9213-CE97-4864-919A-E71A4F1451B7.md)
 - [East of Eden](../Books/A1BFD5AA-C21A-451C-B0F2-C43A708C21FC.md)
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
+- [Maiwa’s Revenge](../Books/F0DE9445-E508-4483-9477-FFDCD6501B28.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
 - [Narrative of the Life of Frederick Douglass, an American Slave](../Books/02C39B47-8A9F-4267-8DFD-A5940B0CADE3.md)
+- [New Hampshire](../Books/12A69B9C-979B-49BE-997C-532A2B67C6A1.md)
+- [Nicomachean Ethics](../Books/DD151E0F-1FCD-44DA-9C20-D4E694AA0463.md)
+- [Orlando Furioso](../Books/3A1EE7B4-43E8-45D8-9B20-3DAF2E45C912.md)
+- [Pirates of Venus](../Books/4E627EE7-4C1A-431A-8F54-5FB07CDE8D37.md)
+- [Savrola](../Books/6279F876-441F-4758-875C-86CD2E15D799.md)
+- [Short Fiction](../Books/9C941238-2266-4BA5-B2CD-1F9F6C7822FF.md)
+- [Short Fiction](../Books/F68BDE11-8B41-42E6-8087-ACBA16E6BF01.md)
+- [Short Fiction](../Books/6DD666FE-AB60-4B11-A54A-3A881683CD6D.md)
+- [Short Fiction](../Books/8C31D700-9155-433B-BEB8-D5B944E02C37.md)
+- [Short Fiction](../Books/5AC0F7D8-80B7-4A1E-A370-27E2F60BD992.md)
+- [Short Fiction](../Books/0CEAD891-DE35-445C-830D-27C242F36CDF.md)
+- [Tarzan and the Ant Men](../Books/6E11321C-777D-4087-A215-6D97D4282BDD.md)
+- [Tarzan and the Jewels of Opar](../Books/E2479C9F-3135-4004-BF6C-FE08D5CD113B.md)
+- [Tarzan the Terrible](../Books/D41CF8ED-AD00-4286-9157-03A1D55173E7.md)
+- [Tarzan, Lord of the Jungle](../Books/8DFAA58F-DFCB-4841-B6A3-BD5B287CBC78.md)
+- [The Avenger](../Books/804C3344-FC00-44DD-9CB3-B0018119EA00.md)
 - [The Descent of Man and Other Stories](../Books/7433F945-B8D6-49E6-A9A5-4951EDA3A9AC.md)
+- [The First Sir Percy](../Books/1FB2BFCF-08F3-4BC4-A12C-1E3DFD7971BD.md)
+- [The Four Just Men](../Books/714DD324-FFA2-4A34-BF60-9F49595459D9.md)
+- [The Fur Country](../Books/133D7A41-86E3-4A37-A565-7D5A6D9C6CA5.md)
+- [The Iliad](../Books/C00A6B3A-BF65-4194-976E-444C07438260.md)
+- [The Lady of the Barge](../Books/62B3F40E-F391-4E03-B606-D38F2E68F412.md)
+- [The Laughing Cavalier](../Books/7B30CFC4-3334-4CDC-A1CB-11D0B264F5E6.md)
+- [The Lone Wolf](../Books/44B3C3B7-E2D0-424A-8A7E-4871892F642F.md)
+- [The Mucker](../Books/51ECEA12-65F8-40E8-AEC4-BC065F39CEA8.md)
+- [The Mystery of Cabin Island](../Books/8DAE9CDD-404A-479A-9A79-72EA69DFAE60.md)
+- [The Outlaw of Torn](../Books/7DE08BC8-1895-4FCF-9112-F1000493168C.md)
+- [The Red House Mystery](../Books/BACBEA39-B830-40F1-B9E0-90A7365B446F.md)
+- [The Shore Road Mystery](../Books/157EF2C1-4961-4D7D-A564-76DCA940C56E.md)
+- [The Social Contract](../Books/BBED71D7-8A90-47BB-B070-F76AC406796A.md)
+- [The Splendid Spur](../Books/5D069875-3103-4DA0-AD5B-364499C5A03B.md)
+- [The Three Just Men](../Books/A6973305-DD7D-4CC1-8052-8A6385B67D39.md)
+- [Winnie-the-Pooh](../Books/66247FE6-E2BF-4D37-ABF8-7EF40F024C6B.md)
 
 ## Representative excerpts
 
-### East of Eden: Section 1
+### A Woman of No Importance: Section 6
 
-_Opening voice_
+_Mid-book rhythm_
 
-> The Project Gutenberg eBook of East of Eden This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: East of Eden Author: Isa Glenn Release date: April 3, 2025 [eBook #75781] Language: English Original publication: Garden City, New York: Doubleday, Doran & Co., 1932 Other information and formats: www.gutenberg.org/ebooks/75781 Credits: Carla Foust, Tim Lindell, David E. Brown, and the Online Distributed Proofreading Team at https://www.pgdp.
+> Act I Scene: Lawn in front of the terrace at Hunstanton. Sir John and Lady Caroline Pontefract, Miss Worsley, on chairs under large yew tree. Lady Caroline I believe this is the first English country house you have stayed at, Miss Worsley? Hester Yes, Lady Caroline. Lady Caroline You have no country houses, I am told, in America? Hester We have not many. Lady Caroline Have you any country? What we should call country? Hester Smiling. We have the largest country in the world, Lady Caroline. They used to tell us at school that some of our states are as big as France and England put together. Lady Caroline Ah! you must find it very draughty, I should fancy. To Sir John. John, you should have your muffler. What is the use of my always knitting mufflers for you if you won’t wear them? Sir John I am quite warm, Caroline, I assure you. Lady Caroline I think not, John.
 
-### East of Eden: Section 16
+### A Woman of No Importance: Section 11
 
 _Dialogue and character voice_
 
-> II The sun shone, sparrows twittered love, and false spring tricked me into a rebirth of my first delight in New York. If I sat long enough on the bench in Washington Square I would catch the early crocuses springing up. But it was December, and nothing pleasant could last. There was dirty weather lying dead ahead. Because the day was so fine, I had walked downtown. I was going to call on Eva, who lived four blocks away; but it was early, and she might still be at work. And to sit in the sun and gaze at the pleasant pinkish bricks in the row of old Georgian houses on the northern side of the Square was delightful. I was pleased when Mrs. Van Suydam’s maroon brougham came in sight around the corner from Macdougal Street; its colour toned in with the pinkish bricks and with the pale blue sky.
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
 
-### Men without women: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Men without women This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Men without women Author: Ernest Hemingway Release date: January 1, 2023 [eBook #69683] Most recently updated: October 19, 2024 Language: English Original publication: United States: Charles Scribner's Sons, 1926 Other information and formats: www.gutenberg.
-
-### Men without women: Section 3
-
-_Mid-book rhythm_
-
-> A PURSUIT RACE William Campbell had been in a pursuit race with a burlesque show ever since Pittsburgh. In a pursuit race, in bicycle racing, riders start at equal intervals to ride after one another. They ride very fast because the race is usually limited to a short distance and if they slow their riding another rider who maintains his pace will make up the space that separated them equally at the start. As soon as a rider is caught and passed he is out of the race and must get down from his bicycle and leave the track. If none of the riders are caught the winner of the race is the one who has gained the most distance. In most pursuit races, if there are only two riders, one of the riders is caught inside of six miles. The burlesque show caught William Campbell at Kansas City. William Campbell had hoped to hold a slight lead over the burlesque show until they reached the Pacific coast.
-
-### Narrative of the Life of Frederick Douglass, an American Slave: Section 1
+### Around the World in Eighty Days: Section 1
 
 _Opening voice_
 
-> The Project Gutenberg eBook of Narrative of the Life of Frederick Douglass, an American Slave This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Narrative of the Life of Frederick Douglass, an American Slave Author: Frederick Douglass Release date: January 12, 2006 [eBook #23] Most recently updated: July 18, 2026 Language: English Other information and formats: www.gutenberg.
+> Around the World in Eighty Days By Jules Verne. Translated by George Makepeace Towle.
 
-### Narrative of the Life of Frederick Douglass, an American Slave: Section 9
-
-_Mid-book rhythm_
-
-> CHAPTER V As to my own treatment while I lived on Colonel Lloyd’s plantation, it was very similar to that of the other slave children. I was not old enough to work in the field, and there being little else than field work to do, I had a great deal of leisure time. The most I had to do was to drive up the cows at evening, keep the fowls out of the garden, keep the front yard clean, and run of errands for my old master’s daughter, Mrs. Lucretia Auld. The most of my leisure time I spent in helping Master Daniel Lloyd in finding his birds, after he had shot them. My connection with Master Daniel was of some advantage to me. He became quite attached to me, and was a sort of protector of me. He would not allow the older boys to impose upon me, and would divide his cakes with me. I was seldom whipped by my old master, and suffered little from any thing else than hunger and cold.
-
-### The Descent of Man and Other Stories: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Descent of Man and Other Stories This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Descent of Man and Other Stories Author: Edith Wharton Release date: October 1, 2003 [eBook #4519] Most recently updated: December 28, 2020 Language: English Other information and formats: www.gutenberg.org/ebooks/4519 Credits: Produced by Charles Aldarondo. HTML version by Al Haines.
-
-### The Descent of Man and Other Stories: Section 3
+### Around the World in Eighty Days: Section 21
 
 _Mid-book rhythm_
 
-> THE LETTER I For many years he had lived withdrawn from the world in which he had once played so active and even turbulent a part. The study of Tuscan art was his only pursuit, and it was to help him in the classification of his notes and documents that I was first called to his villa. Colonel Alingdon had then the look of a very old man, though his age can hardly have exceeded seventy. He was small and bent, with a finely wrinkled face which still wore the tan of youthful exposure. But for this dusky redness it would have been hard to reconstruct from the shrunken recluse, with his low fastidious voice and carefully tended hands, an image of that young knight of adventure whose sword had been at the service of every uprising which stirred the uneasy soil of Italy in the first half of the nineteenth century.
+> XIX In which Passepartout takes a too great interest in his master, and what comes of it. Hong Kong is an island which came into the possession of the English by the Treaty of Nankin, after the war of 1842; and the colonising genius of the English has created upon it an important city and an excellent port. The island is situated at the mouth of the Canton River, and is separated by about sixty miles from the Portuguese town of Macao, on the opposite coast. Hong Kong has beaten Macao in the struggle for the Chinese trade, and now the greater part of the transportation of Chinese goods finds its depot at the former place. Docks, hospitals, wharves, a Gothic cathedral, a government house, macadamised streets, give to Hong Kong the appearance of a town in Kent or Surrey transferred by some strange magic to the antipodes.
+
+### Bellarion the Fortunate: Section 28
+
+_Mid-book rhythm_
+
+> X The Knight Bellarion That Requiem Mass at Saint Ambrose’s for the repose of the soul of Bellarion was never sung. And this because, whilst the bells were solemnly tolling in summons to the faithful, Messer Bellarion, himself, very much in the flesh, and accompanied by Werner von Stoffel, who had been sent to recover his body, marched into the city of Milan by the Ticinese Gate at the head of some seventy Swiss arbalesters, the survivors of his hundred. There was some delay in admitting them. When that dusty company came in sight, swinging rhythmically along, in steel caps and metal-studded leather tunics, crossbows shouldered, the officer of the gate assumed them to be one of the marauding bands which were continually harassing the city by their incursions.
+
+### Bellarion the Fortunate: Section 49
+
+_Dialogue and character voice_
+
+> XII Carmagnola’s Duty My Lord of Carmagnola had shut himself up in a small room on the ground floor of the castle of Quinto to indite a letter to the High and Most Potent Duke Filippo Maria of Milan. A heavy labour this of quill on parchment for one who had little scholarship. It was a labour that fell to him so rarely that he had never perceived until now the need to equip himself with a secretary. The Princess and her brother newly returned from Mass on that Sunday morning, four days after Bellarion’s escape, were together in the armoury discussing their situation, and differing a good deal in their views, for the mental eyes of the young Marquis were not dazzled by the effulgence of Carmagnola’s male beauty, or deceived by his histrionic attitudes. Into their presence, almost unheralded, were ushered two men.
+
+### Beyond Thirty: Section 7
+
+_Mid-book rhythm_
+
+> V As we entered deeper into what had once been the city, the evidences of man’s past occupancy became more frequent. For a mile from the arch there was only a riot of weeds and undergrowth and trees covering small mounds and little hillocks that, I was sure, were formed of the ruins of stately buildings of the dead past. But presently we came upon a district where shattered walls still raised their crumbling tops in sad silence above the grass-grown sepulchers of their fallen fellows. Softened and mellowed by ancient ivy stood these sentinels of sorrow, their scarred faces still revealing the rents and gashes of shrapnel and of bomb. Contrary to our expectations, we found little indication that lions in any great numbers laired in this part of ancient London.
+
+### Beyond Thirty: Section 6
+
+_Dialogue and character voice_
+
+> IV It was during the morning of July 6, 2137, that we entered the mouth of the Thames⁠—to the best of my knowledge the first Western keel to cut those historic waters for two hundred and twenty-one years! But where were the tugs and the lighters and the barges, the lightships and the buoys, and all those countless attributes which went to make up the myriad life of the ancient Thames? Gone! All gone! Only silence and desolation reigned where once the commerce of the world had centered. I could not help but compare this once great waterway with the waters about our New York, or Rio, or San Diego, or Valparaiso. They had become what they are today during the two centuries of the profound peace which we of the navy have been prone to deplore. And what, during this same period, had shorn the waters of the Thames of their pristine grandeur?
+
+### Blind Corner: Section 8
+
+_Mid-book rhythm_
+
+> IV The Attack on the Well During the night the water rose twenty feet. It went against the grain to post two sentries, when with twelve, or even ten arms we might have had the well empty by four o’clock. But to be surprised at such gruelling labour would have meant for us the end of everything; for, shaken and stripped and breathless, we could have put up no fight, and, except for the parapet of the well, there was no cover to hand. Still, it seemed very likely that four of us, working hard, would be able to draw so much water before the sun went down that, with the help of the stage, we should find the mouth of the shaft. And, once we knew on which side of the well that lay, though the springs should deny us passage, at least we should have a second string to our bow.
+
+### Blind Corner: Section 7
+
+_Sentence variation_
+
+> III The Battle with the Springs When, ten minutes later, Mansel sat down on a bench and told us that we were forestalled, Hanbury and I stared at each other in dismay. Before we could speak, Mansel proceeded to take the whole of the blame. “I chose the wrong evil,” he said. “We had six hours’ start of Ellis, and I threw it away. I thought I was fighting a battle when I was running a race. And that was a bad mistake. And now we’ve all three got to think. Ellis has got the wheel, with the Law behind him: we’ve got the chart. The very least he expects is a compromise.” “Never,” said I. “I agree,” said Mansel, “for every reason. And that’s why we’ve got to think how to get the wheel.” He rose then, and, promising to return in half an hour, sauntered away with Tester at his heels.

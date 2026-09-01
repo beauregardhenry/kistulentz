@@ -2,25 +2,38 @@
 # Mentally ill women -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 9217
-- Reading grade: 3.9
-- Average sentence: 8.5 words
-- Average paragraph: 10.8 words
-- Dialogue share: 5%
-- Voice: intimate first-person
+- Words analyzed: 196120
+- Reading grade: 5.4
+- Average sentence: 16.5 words
+- Average paragraph: 42.5 words
+- Dialogue share: 42%
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: works, don’t, electronic, paper, pattern, terms, copyright, states, agreement, license, wallpaper, donations, united, things, trademark, course, ebook, night, yellow, enough, paragraph, access, behind, better
-- Character names: John, Jennie, Gutenberg, Project Gutenberg, Gutenberg Literary Archive Foundation, Gutenberg Literary, Henry, Julia
+- Tone: balanced, dialogue-forward, direct, energetic, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: better, don’t, enough, night, access, agreement, behind, cannot, copyright, course, donations, ebook, electronic, heard, heart, house, indeed, leave, license, morning, myself, nothing, paper, paragraph, pattern, perhaps, quite, rather, round, seemed, shall, states, stood, terms, things, though, thought, trademark, united, voice
+- Character names: John, Adèle, Bessie, Burns, Eliza, Eshton, Fairfax, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Helen, Helen Burns, Henry, Ingram, Jane, Jane Eyre, Jennie, John Reed, Julia, Leah, Mary, Millcote, Miss Abbot, Miss Eyre, Miss Ingram, Miss Jane, Miss Miller, Miss Temple, Missis, Mr, Mrs, Project Gutenberg, Reed, Rochester, Sam, Sophie, Thornfield
 
 ## Books
+- [Jane Eyre](../Books/862ED974-72FF-475C-A1B4-A649ABA15EFB.md)
 - [The Yellow Wallpaper](../Books/3EFCB100-C8FC-4098-BAAB-2D6E3BB0B8BE.md)
 
 ## Representative excerpts
+
+### Jane Eyre: Section 24
+
+_Mid-book rhythm_
+
+> XIX The library looked tranquil enough as I entered it, and the Sibyl⁠—if Sibyl she were⁠—was seated snugly enough in an easy-chair at the chimney-corner. She had on a red cloak and a black bonnet: or rather, a broad-brimmed gipsy hat, tied down with a striped handkerchief under her chin. An extinguished candle stood on the table; she was bending over the fire, and seemed reading in a little black book, like a prayerbook, by the light of the blaze: she muttered the words to herself, as most old women do, while she read; she did not desist immediately on my entrance: it appeared she wished to finish a paragraph. I stood on the rug and warmed my hands, which were rather cold with sitting at a distance from the drawing-room fire. I felt now as composed as ever I did in my life: there was nothing indeed in the gipsy’s appearance to trouble one’s calm.
+
+### Jane Eyre: Section 32
+
+_Dialogue and character voice_
+
+> XXVII Some time in the afternoon I raised my head, and looking round and seeing the western sun gilding the sign of its decline on the wall, I asked, “What am I to do?” But the answer my mind gave⁠—“Leave Thornfield at once”⁠—was so prompt, so dread, that I stopped my ears. I said I could not bear such words now. “That I am not Edward Rochester’s bride is the least part of my woe,” I alleged: “that I have wakened out of most glorious dreams, and found them all void and vain, is a horror I could bear and master; but that I must leave him decidedly, instantly, entirely, is intolerable. I cannot do it.” But, then, a voice within me averred that I could do it and foretold that I should do it.
 
 ### The Yellow Wallpaper: Section 1
 

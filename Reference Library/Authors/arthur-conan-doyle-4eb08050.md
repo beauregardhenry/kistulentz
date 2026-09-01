@@ -2,25 +2,44 @@
 # Arthur Conan Doyle
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 8
 
 ## Learned profile
 
-- Words analyzed: 108301
-- Reading grade: 3.1
-- Average sentence: 7.8 words
-- Average paragraph: 11.7 words
-- Dialogue share: 74%
+- Words analyzed: 685582
+- Reading grade: 4.6
+- Average sentence: 13.3 words
+- Average paragraph: 40.6 words
+- Dialogue share: 65%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: shall, matter, house, night, heard, however, nothing, quite, morning, gutenberg, project, street, round, small, without, young, myself, thought, light, business, father, hands, himself, window
-- Character names: Holmes, Sherlock Holmes, Watson, Mr. Holmes, Lestrade, Simon, Clair, McCarthy, Mr, Irene Adler, Mr. Wilson, Frank, Miss Stoner, Bradstreet, Doctor, Horner, Mr. Sherlock Holmes, Peterson, Mr. Windibank, Mr. Hosmer Angel, Mr. Merryweather, Turner, Briony Lodge, Dr. Grimesby Roylott, Dr. Roylott, James, Openshaw, Hatherley, John, Jones
+- Tone: dialogue-forward, balanced, rhythmically varied, direct, rhythmically even, narrative-forward
+- Recurring vocabulary: round, heard, however, nothing, shall, thought, himself, house, matter, morning, night, cried, don’t, three, young, friend, light, moment, myself, place, quite, street, window, certainly, clear, hands, seemed, without, woman, above, behind, business, course, father, london, papers, small, strange, whole, world
+- Character names: Mr, Dr, Holmes, Sherlock Holmes, Watson, Lestrade, Mrs, James, George, Hudson, Bradstreet, Briony Lodge, Clair, Doctor, Frank, Hatherley, Horner, Irene Adler, John, Jones, McCarthy, Miss Stoner, Mycroft, Peterson, Simon, Turner, Alec, Alec Cunningham, Altamont, Amberley, Amundsen, Arabella Knowles, Baal, Barclay, Baron Gruner, Bates, Baynes, Bennett, Beppo, Beyond, Bill, Bill Scanlan, Billy, Blessington, Blundell, Bob Scanlan, Breckinridge, Brunton, Cadogan West, Captain Howie, Carruthers, Caulfield Gardens, Challenger, Colonel Moran, Colonel Ross, Culverton Smith, Cunningham, Cyrus Headley, Darwin, Dodd, Dolores, Dr. Grimesby Roylott, Dr. Roylott, Duncan Ross, E. D. Malone, Esher, Fahrenheit, Ferguson, G. E. C., Garcia, Gennaro, Gibson, Gilchrist, Gladys, Gloria Scott, Godfrey, Gomez, Gregson, Hall Pycroft, Hayes
 
 ## Books
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Lost World](../Books/92BDCAFC-8825-45F7-9568-F8EDCE206321.md)
+- [The Maracot Deep](../Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
 
 ## Representative excerpts
+
+### His Last Bow: Section 7
+
+_Mid-book rhythm_
+
+> The Adventure of the Bruce-Partington Plans In the third week of November, in the year 1895, a dense yellow fog settled down upon London. From the Monday to the Thursday I doubt whether it was ever possible from our windows in Baker Street to see the loom of the opposite houses. The first day Holmes had spent in cross-indexing his huge book of references. The second and third had been patiently occupied upon a subject which he had recently made his hobby⁠—the music of the Middle Ages. But when, for the fourth time, after pushing back our chairs from breakfast we saw the greasy, heavy brown swirl still drifting past us and condensing in oily drops upon the windowpanes, my comrade’s impatient and active nature could endure this drab existence no longer.
+
+### His Last Bow: Section 5
+
+_Dialogue and character voice_
+
+> The Adventure of Wisteria Lodge The Singular Experience of Mr. John Scott Eccles I find it recorded in my notebook that it was a bleak and windy day towards the end of March in the year 1892. Holmes had received a telegram while we sat at our lunch, and he had scribbled a reply. He made no remark, but the matter remained in his thoughts, for he stood in front of the fire afterwards with a thoughtful face, smoking his pipe, and casting an occasional glance at the message. Suddenly he turned upon me with a mischievous twinkle in his eyes. “I suppose, Watson, we must look upon you as a man of letters,” said he. “How do you define the word ‘grotesque’?” “Strange⁠—remarkable,” I suggested. He shook his head at my definition. “There is surely something more than that,” said he; “some underlying suggestion of the tragic and the terrible.
 
 ### The Adventures of Sherlock Holmes: Section 1
 
@@ -33,3 +52,39 @@ _Opening voice_
 _Mid-book rhythm_
 
 > VII. THE ADVENTURE OF THE BLUE CARBUNCLE I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+
+### The Adventures of Sherlock Holmes: Section 9
+
+_Mid-book rhythm_
+
+> The Adventure of the Blue Carbuncle I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+
+### The Adventures of Sherlock Holmes: Section 14
+
+_Dialogue and character voice_
+
+> The Adventure of the Copper Beeches “To the man who loves art for its own sake,” remarked Sherlock Holmes, tossing aside the advertisement sheet of the Daily Telegraph, “it is frequently in its least important and lowliest manifestations that the keenest pleasure is to be derived. It is pleasant to me to observe, Watson, that you have so far grasped this truth that in these little records of our cases which you have been good enough to draw up, and, I am bound to say, occasionally to embellish, you have given prominence not so much to the many causes célèbres and sensational trials in which I have figured but rather to those incidents which may have been trivial in themselves, but which have given room for those faculties of deduction and of logical synthesis which I have made my special province.” “And yet,”
+
+### The Casebook of Sherlock Holmes: Section 10
+
+_Mid-book rhythm_
+
+> The Adventure of the Three Garridebs It may have been a comedy, or it may have been a tragedy. It cost one man his reason, it cost me a bloodletting, and it cost yet another man the penalties of the law. Yet there was certainly an element of comedy. Well, you shall judge for yourselves. I remember the date very well, for it was in the same month that Holmes refused a knighthood for services which may perhaps some day be described. I only refer to the matter in passing, for in my position of partner and confidant I am obliged to be particularly careful to avoid any indiscretion. I repeat, however, that this enables me to fix the date, which was the latter end of June, 1902, shortly after the conclusion of the South African War.
+
+### The Casebook of Sherlock Holmes: Section 11
+
+_Dialogue and character voice_
+
+> The Problem of Thor Bridge Somewhere in the vaults of the bank of Cox and Co., at Charing Cross, there is a travel-worn and battered tin dispatch-box with my name, John H. Watson, M. D., Late Indian Army, painted upon the lid. It is crammed with papers, nearly all of which are records of cases to illustrate the curious problems which Mr. Sherlock Holmes had at various times to examine. Some, and not the least interesting, were complete failures, and as such will hardly bear narrating, since no final explanation is forthcoming. A problem without a solution may interest the student, but can hardly fail to annoy the casual reader. Among these unfinished tales is that of Mr. James Phillimore, who, stepping back into his own house to get his umbrella, was never more seen in this world.
+
+### The Lost World: Section 12
+
+_Mid-book rhythm_
+
+> VII Tomorrow We Disappear Into the Unknown I will not bore those whom this narrative may reach by an account of our luxurious voyage upon the Booth liner, nor will I tell of our week’s stay at Pará (save that I should wish to acknowledge the great kindness of the Pereira da Pinta Company in helping us to get together our equipment). I will also allude very briefly to our river journey, up a wide, slow-moving, clay-tinted stream, in a steamer which was little smaller than that which had carried us across the Atlantic. Eventually we found ourselves through the narrows of Obidos and reached the town of Manaus. Here we were rescued from the limited attractions of the local inn by Mr. Shortman, the representative of the British and Brazilian Trading Company.
+
+### The Lost World: Section 21
+
+_Dialogue and character voice_
+
+> XVI A Procession! A Procession! I should wish to place upon record here our gratitude to all our friends upon the Amazon for the very great kindness and hospitality which was shown to us upon our return journey. Very particularly would I thank Senhor Penalosa and other officials of the Brazilian Government for the special arrangements by which we were helped upon our way, and Senhor Pereira of Pará, to whose forethought we owe the complete outfit for a decent appearance in the civilized world which we found ready for us at that town. It seemed a poor return for all the courtesy which we encountered that we should deceive our hosts and benefactors, but under the circumstances we had really no alternative, and I hereby tell them that they will only waste their time and their money if they attempt to follow upon our traces.

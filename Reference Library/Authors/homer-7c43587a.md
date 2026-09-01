@@ -2,26 +2,52 @@
 # Homer
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 265392
-- Reading grade: 3.5
-- Average sentence: 10.3 words
-- Average paragraph: 13.6 words
-- Dialogue share: 64%
-- Voice: mixed or shifting perspective
+- Words analyzed: 541822
+- Reading grade: 2.5
+- Average sentence: 8.5 words
+- Average paragraph: 10.7 words
+- Dialogue share: 59%
+- Voice: observational third-person
 - Tempo: brisk
 - Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: answered, brought, country, drink, father, going, gutenberg, hands, heard, heaven, himself, house, however, ithaca, people, place, return, round, shall, suitors, therefore, though, water, without
-- Character names: Aegisthus, Agamemnon, Alcinous, Arete, Atreus, Butler, Calypso, Circe, Dawn, Diana, Hades, Helen, Jove, Laertes, Menelaus, Minerva, Nausicaa, Neptune, Nestor, Penelope, Piraeus, Pisistratus, Priam, Scylla, Teiresias, Telemachus, Thereon, Troy, Ulysses, Venus
+- Recurring vocabulary: father, hands, shall, though, brought, heard, place, return, suitors, answered, chief, country, death, drink, earth, forth, going, gutenberg, heaven, himself, house, however, ithaca, mighty, people, round, spake, therefore, water, within, without, words, battle, brave, fleet, friends, goddess, greeks, halls, heart
+- Character names: Agamemnon, Helen, Jove, Menelaus, Neptune, Nestor, Priam, Troy, Venus, Aegisthus, Alcinoüs, Atreus, Diana, Hades, Laertes, Minerva, Penelope, Scylla, Telemachus, Achilles, Arete, Butler, Calypso, Circe, Dawn, Hath, Juno, Mars, Nausicaa, Pallas, Phoebus, Piraeus, Pisistratus, Teiresias, Thereon, Ulysses, Aeneas, Alexander, Dolon, Glaucus, Hector, Jupiter, Lycaon, Meriones, Nausithoüs, Patroclus, Peisistratus, Peleus, Pluto, Polyphemus, Rose, Samos, Sarpedon, Thetis, Tiresias, Tydeus
 
 ## Books
+- [The Iliad](../Books/C00A6B3A-BF65-4194-976E-444C07438260.md)
+- [The Odyssey](../Books/C945079C-AC32-4190-A09D-23C198C904DF.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/BA3B84A4-169F-4B40-804A-6CDA495B790B.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/B2311001-F34E-4668-84D8-AAB8245CFA57.md)
 
 ## Representative excerpts
+
+### The Iliad: Section 16
+
+_Mid-book rhythm_
+
+> Book XII The Battle at the Grecian Wall Division of the Trojan army, by advice of Polydamas, into five bodies, to storm the Greek entrenchments⁠—A breach in the wall made by Sarpedon⁠—One of the gates beaten open by Hector with a stone⁠—His entrance at the head of his troops. Thus in the camp Menoetius’ valiant son Tended Eurypylus, and dressed his wounds; While yet in mingled throngs the warriors fought⁠— Trojans and Greeks. Nor longer was the trench A barrier for the Greeks, nor the broad wall Which they had built above it to defend Their fleet; for all around it they had drawn The trench, yet not with chosen hecatombs Paid to the gods, that so it might protect The galleys and the heaps of spoil they held. Without the favor of the gods it rose, And therefore was not long to stand entire.
+
+### The Iliad: Section 13
+
+_Dialogue and character voice_
+
+> Book IX The Embassy to Achilles Agamemnon’s Proposal to raise the siege opposed by Diomed and Nestor⁠—A council⁠—Ulysses, Ajax, and Phoenix sent to Achilles to request a reconciliation⁠—Their reception, their persuasions, and their ill success. The Trojans thus kept watch; while through the night The power of Flight, companion of cold Fear, Wrought on the Greeks, and all their bravest men Were bowed beneath a sorrow hard to bear. As when two winds upturn the fishy deep⁠— The north wind and the west, that suddenly Blow from the Thracian coast; the black waves rise At once, and fling the sea-weed to the shore⁠— Thus were the Achaians troubled in their hearts. Atrides, deeply grieving, walked the camp, And bade the clear-voiced heralds call by name To council all the chiefs, but not aloud. The king himself among the foremost gave The summons.
+
+### The Odyssey: Section 16
+
+_Mid-book rhythm_
+
+> Book XII The Sirens, Scylla, and Charybdis Return of Ulysses to the island of Circè⁠—Her counsels respecting his homeward voyage⁠—The sirens⁠—Escape from Scylla and Charybdis⁠—His arrival at Trinacria⁠—Slaughter of the oxen of the Sun by his companions⁠—A tempest, in consequence, by which his companions all perish, and he only escapes by swimming to the island of Calypso. “Now when our barque had left Océanus And entered the great deep, we reached the isle Aeaea, where the Morning, child of Dawn, Abides, and holds her dances, and the Sun Goes up from earth. We landed there and drew Our galley up the beach; we disembarked And laid us down to sleep beside the sea, And waited for the holy Morn to rise. “Then when the rosy-fingered Morn appeared, The child of Dawn, I sent my comrades forth To bring from Circè’s halls Elpenor’s corse.
+
+### The Odyssey: Section 8
+
+_Dialogue and character voice_
+
+> Book IV Conference of Telemachus and Menelaus Arrival of Telemachus and his companion at Sparta⁠—A wedding; the marriage of the daughter of Menelaus⁠—Helen in Sparta⁠—Entertainment of the guests⁠—Helen’s account of her return to her husband⁠—The Trojan horse⁠—Narrative of the visit of Menelaus to Egypt, in order to consult the sea-god, Proteus⁠—Menelaus informed by him that Ulysses is detained by Calypso in her island⁠—Plot of the suitors to lie in wait for Telemachus on his voyage and destroy him⁠—Penelope visited and consoled by Pallas in a dream. They came to Lacedaemon’s valley, seamed With dells, and to the palace of its king, The glorious Menelaus, whom they found Within, and at a wedding banquet, made Both for his blameless daughter and his son, And many guests. Her he must send away, Bride of the son of that invincible chief, Achilles.
 
 ### The Odyssey / Rendered into English prose for the use of those who cannot read the original: Section 1
 

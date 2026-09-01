@@ -2,23 +2,24 @@
 # Rural poor -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 38129
-- Reading grade: 3.4
-- Average sentence: 8.6 words
-- Average paragraph: 11.7 words
+- Words analyzed: 74654
+- Reading grade: 4.4
+- Average sentence: 13.5 words
+- Average paragraph: 28.2 words
 - Dialogue share: 19%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: night, seemed, house, stood, thought, kitchen, heard, without, himself, don’t, going, voice, zeena’s, though, moment, ain’t, guess, light, table, toward, works, ethan’s, place, alone
-- Character names: Mattie, Zeena, Ethan, Matt, Frome, Jotham, Ethan Frome, Mrs. Hale, Jotham Powell, Denis Eady, Gutenberg, Harmon, Mattie Silver, Starkfield, Eady, Zenobia, Andrew Hale, Denis, Shadd, Harmon Gow, Hale, Ned, Ned Hale, Project Gutenberg, Ruth, Dan’l Byrne, Dr. Buck, ETHAN FROME, Gutenberg Literary Archive Foundation, Michael Eady
+- Tone: narrative-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: ain’t, alone, don’t, ethan’s, going, guess, heard, himself, house, kitchen, light, moment, night, place, seemed, stood, table, though, thought, toward, voice, without, zeena’s, silence, works
+- Character names: Ethan Frome, Andrew Hale, Dan’l Byrne, Denis, Denis Eady, Eady, Ethan, Frome, Hale, Harmon, Harmon Gow, Jotham, Jotham Powell, Matt, Mattie, Mattie Silver, Michael Eady, Ned, Ned Hale, Ruth, Shadd, Starkfield, Zeena, Zenobia, Buck, Dr, Dr. Buck, Edith Wharton, Gutenberg, Gutenberg Literary Archive Foundation, Mr, Mrs, Mrs. Hale, Project Gutenberg, Varnum
 
 ## Books
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
+
+### Ethan Frome: Section 9
+
+_Mid-book rhythm_
+
+> IV As soon as his wife had driven off Ethan took his coat and cap from the peg. Mattie was washing up the dishes, humming one of the dance tunes of the night before. He said “So long, Matt,” and she answered gaily “So long, Ethan”; and that was all. It was warm and bright in the kitchen. The sun slanted through the south window on the girl’s moving figure, on the cat dozing in a chair, and on the geraniums brought in from the doorway, where Ethan had planted them in the summer to “make a garden” for Mattie. He would have liked to linger on, watching her tidy up and then settle down to her sewing; but he wanted still more to get the hauling done and be back at the farm before night. All the way down to the village he continued to think of his return to Mattie. The kitchen was a poor place, not “spruce”
+
+### Ethan Frome: Section 12
+
+_Dialogue and character voice_
+
+> VII Ethan went out into the passage to hang up his wet garments. He listened for Zeena’s step and, not hearing it, called her name up the stairs. She did not answer, and after a moment’s hesitation he went up and opened her door. The room was almost dark, but in the obscurity he saw her sitting by the window, bolt upright, and knew by the rigidity of the outline projected against the pane that she had not taken off her travelling dress. “Well, Zeena,” he ventured from the threshold. She did not move, and he continued: “Supper’s about ready. Ain’t you coming?” She replied: “I don’t feel as if I could touch a morsel.” It was the consecrated formula, and he expected it to be followed, as usual, by her rising and going down to supper. But she remained seated, and he could think of nothing more felicitous than: “I presume you’re tired after the long ride.”

@@ -2,47 +2,88 @@
 # Political fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 7
 
 ## Learned profile
 
-- Words analyzed: 341075
-- Reading grade: 3.4
-- Average sentence: 8.6 words
-- Average paragraph: 11.9 words
-- Dialogue share: 30%
+- Words analyzed: 1154107
+- Reading grade: 4.9
+- Average sentence: 12.2 words
+- Average paragraph: 35.2 words
+- Dialogue share: 36%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
-- Recurring vocabulary: hands, himself, place, stood, things, thought, anything, began, better, can’t, cassy, child, children, dollars, don’t, enough, family, floor, going, gutenberg, heard, heart, house, hundred, legree, master, mas’r, money, morning, mother, night, nothing, people, seemed, shall, three, without, woman, women, won’t
-- Character names: Andy, Aniele, Antanas, Antanas Rudkus, Bridewell, Brown, Chloe, Clare, Connor, Cousin Marija, Dede Antanas, Durham, Eliza, Elzbieta, Eva, George, Grandmother Majauszkiene, Haley, Harry, Henderson, Jack Duane, Jadvyga, Jim, John, Jokubas, Jonas, Jones, Jurgis, Kristoforas, Madame Haupt, Mammy, Marie, Marija, Marija Berczynskas, Marks, Mikolas, Miss Henderson, Miss Ophelia, Missis, Mr. Shelby, Mr. Wilson, Mrs. Bird, Mrs. Shelby, Ophelia, Phineas, Rachel, Ruth, Sam, Scully, Shelby, Simeon, St, Stanislovas, Tamoszius, Tamoszius Kuszleika, Teta, Teta Elzbieta, Tom, Uncle Tom, Wal
+- Tone: balanced, dialogue-forward, rhythmically varied, direct, narrative-forward, rhythmically even, energetic
+- Recurring vocabulary: himself, thought, began, don’t, nothing, people, going, shall, three, without, anything, course, house, night, perhaps, seemed, things, though, world, years, better, enough, everything, hands, heart, others, place, point, stood, suddenly, that’s, understand, voice, whole, woman, young, behind, believe, beneath, bread
+- Character names: Mr, Jim, Liza, Paul, Sam, Ach, Alan, Alexey Nilitch, Alger Wilde, Ana, Andy, Aniele, Antanas, Antanas Rudkus, Anton Antonitch, Anton Antonitch Syetotchkin, Antonio, Antonio Molara, Apollon, Baren Darl, Bataille, Bettine, Betty, Bonnemort, Bridewell, Brown, Bébert, Calvin, Catherine, Chaval, Chloe, Clare, Colonel Brienz, Colonel Sorrento, Connor, Cousin Marija, Cécile, D., Dameri Tass, Dansaert, Darya Pavlovna, Dasha, Dede Antanas, Delilah, Deneulin, De Mello, Durham, Eliza, Elzbieta, Estelle, Eva, Ferfitchkin, George, Godoy, Grandmother Majauszkiene, Gray, Haley, Harry, Heine, Henderson, Henri, Ivan Ossipovitch, Jack Duane, Jadvyga, Jak, Jake, Jeanlin, Joe Chessman, John, Jokubas, Jonas, Jones, Joseph, Jurgis, Karl, Karl Kreutze, Karmazinov, Kirillov, Kolya, Kreutze
 
 ## Books
+- [Demons](../Books/75AAB312-A2DA-401C-8D4D-21E36D1B8522.md)
+- [Germinal](../Books/919A4D92-DCB6-413E-9B55-76DB5FD6FC59.md)
+- [Notes from Underground](../Books/F2F70316-110C-4FEC-918E-E293E7F281F4.md)
+- [Savrola](../Books/6279F876-441F-4758-875C-86CD2E15D799.md)
+- [Short Fiction](../Books/7C73B6CE-19AF-4D76-98C6-CE302CCEE6B9.md)
 - [The Jungle](../Books/2D55F5EC-8562-421D-8CC2-35A5FA87ADCA.md)
 - [Uncle Tom's Cabin](../Books/6CAED790-DF2B-452A-9C4C-92B00356F2FA.md)
 
 ## Representative excerpts
 
-### The Jungle: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Jungle This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Jungle Author: Upton Sinclair Release date: March 11, 2006 [eBook #140] Most recently updated: January 10, 2026 Language: English Other information and formats: www.gutenberg.
-
-### The Jungle: Section 17
+### Demons: Section 17
 
 _Mid-book rhythm_
 
-> CHAPTER XVI When Jurgis got up again he went quietly enough. He was exhausted and half-dazed, and besides he saw the blue uniforms of the policemen. He drove in a patrol wagon with half a dozen of them watching him; keeping as far away as possible, however, on account of the fertilizer. Then he stood before the sergeant’s desk and gave his name and address, and saw a charge of assault and battery entered against him. On his way to his cell a burly policeman cursed him because he started down the wrong corridor, and then added a kick when he was not quick enough; nevertheless, Jurgis did not even lift his eyes—he had lived two years and a half in Packingtown, and he knew what the police were. It was as much as a man’s very life was worth to anger them, here in their inmost lair; like as not a dozen would pile on to him at once, and pound his face into a pulp.
+> VI Pyotr Stepanovitch Is Busy I The date of the fête was definitely fixed, and Von Lembke became more and more depressed. He was full of strange and sinister forebodings, and this made Yulia Mihailovna seriously uneasy. Indeed, things were not altogether satisfactory. Our mild governor had left the affairs of the province a little out of gear; at the moment we were threatened with cholera; serious outbreaks of cattle plague had appeared in several places; fires were prevalent that summer in towns and villages; whilst among the peasantry foolish rumours of incendiarism grew stronger and stronger. Cases of robbery were twice as numerous as usual. But all this, of course, would have been perfectly ordinary had there been no other and more weighty reasons to disturb the equanimity of Andrey Antonovitch, who had till then been in good spirits.
 
-### Uncle Tom's Cabin: Section 1
+### Demons: Section 12
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Uncle Tom's Cabin This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Uncle Tom's Cabin Author: Harriet Beecher Stowe Release date: January 13, 2006 [eBook #203] Most recently updated: January 13, 2026 Language: English Other information and formats: www.gutenberg.
+> I Night I Eight days had passed. Now that it is all over and I am writing a record of it, we know all about it; but at the time we knew nothing, and it was natural that many things should seem strange to us: Stepan Trofimovitch and I, anyway, shut ourselves up for the first part of the time, and looked on with dismay from a distance. I did, indeed, go about here and there, and, as before, brought him various items of news, without which he could not exist. I need hardly say that there were rumours of the most varied kind going about the town in regard to the blow that Stavrogin had received, Lizaveta Nikolaevna’s fainting fit, and all that happened on that Sunday. But what we wondered was, through whom the story had got about so quickly and so accurately. Not one of the persons present had any need to give away the secret of what had happened, or interest to serve by doing so.
 
-### Uncle Tom's Cabin: Section 24
+### Germinal: Section 27
 
 _Mid-book rhythm_
 
-> CHAPTER XXIII Henrique About this time, St. Clare’s brother Alfred, with his eldest son, a boy of twelve, spent a day or two with the family at the lake. No sight could be more singular and beautiful than that of these twin brothers. Nature, instead of instituting resemblances between them, had made them opposites on every point; yet a mysterious tie seemed to unite them in a closer friendship than ordinary. They used to saunter, arm in arm, up and down the alleys and walks of the garden. Augustine, with his blue eyes and golden hair, his ethereally flexible form and vivacious features; and Alfred, dark-eyed, with haughty Roman profile, firmly-knit limbs, and decided bearing.
+> III A fortnight had passed, and on the Monday of the third week the lists sent up to the managers showed a fresh decrease in the number of the miners who had gone down. It was expected that on that morning work would be resumed, but the obstinacy of the directors in not yielding exasperated the miners. The Voreux, Crévecœur, Mirou, and Madeleine were not the only pits resting; at the Victoire and at Feutry-Cantel only about a quarter of the men had gone down; even Saint-Thomas was affected. The strike was gradually becoming general. At the Voreux a heavy silence hung over the pit-mouth. It was a dead workshop, these great empty abandoned Yards where work was sleeping. In the grey December sky, along the high footbridges three or four empty trams bore witness to the mute sadness of things.
+
+### Germinal: Section 26
+
+_Dialogue and character voice_
+
+> II The previous day, at a meeting held at Rasseneur’s, Étienne and some comrades had chosen the delegates who were to proceed on the following day to the manager’s house. When, in the evening, Maheude learnt that her man was one of them, she was in despair, and asked him if he wanted them to be thrown on the street. Maheu himself had agreed with reluctance. Both of them, when the moment of action came, in spite of the injustice of their wretchedness fell back on the resignation of their race, trembling before the morrow, preferring still to bend their backs to the yoke. In the management of affairs he usually gave way to his wife, whose advice was sound. This time, however, he grew angry at last, all the more so since he secretly shared her fears. “Just leave me alone, will you?” he said, going to bed and turning his back. “A fine thing to leave the mates now! I’m doing my duty.”
+
+### Notes from Underground: Section 22
+
+_Dialogue and character voice_
+
+> VI … Somewhere behind a screen a clock began wheezing, as though oppressed by something, as though someone were strangling it. After an unnaturally prolonged wheezing there followed a shrill, nasty, and as it were unexpectedly rapid, chime⁠—as though someone were suddenly jumping forward. It struck two. I woke up, though I had indeed not been asleep but lying half-conscious. It was almost completely dark in the narrow, cramped, low-pitched room, cumbered up with an enormous wardrobe and piles of cardboard boxes and all sorts of frippery and litter. The candle end that had been burning on the table was going out and gave a faint flicker from time to time. In a few minutes there would be complete darkness. I was not long in coming to myself; everything came back to my mind at once, without an effort, as though it had been in ambush to pounce upon me again.
+
+### Notes from Underground: Section 6
+
+_Sentence variation_
+
+> III With people who know how to revenge themselves and to stand up for themselves in general, how is it done? Why, when they are possessed, let us suppose, by the feeling of revenge, then for the time there is nothing else but that feeling left in their whole being. Such a gentleman simply dashes straight for his object like an infuriated bull with its horns down, and nothing but a wall will stop him. (By the way: facing the wall, such gentlemen⁠—that is, the “direct” persons and men of action⁠—are genuinely nonplussed. For them a wall is not an evasion, as for us people who think and consequently do nothing; it is not an excuse for turning aside, an excuse for which we are always very glad, though we scarcely believe in it ourselves, as a rule. No, they are nonplussed in all sincerity.
+
+### Savrola: Section 15
+
+_Mid-book rhythm_
+
+> X The Wand of the Magician The City-Hall was a gigantic meetinghouse in which for many years all the public discussions of the Lauranian people had taken place. Its stone façade was showy and pretentious, but the building itself consisted merely of the great hall and of a few smaller rooms and offices. The hall was capable of holding nearly seven thousand people; with its whitewashed roof sustained by iron girders, and well lit with gas, it served its purpose well without any affectation of display. Lucile was caught in the stream of those who were entering and carried inside. She had expected to find a seat, but, in view of a great crowd, all the chairs had been removed from the body of the hall, and only standing room remained. In this solid mass of humanity she found herself an atom. To move was difficult; to go back almost impossible. It was a striking scene.
+
+### Savrola: Section 13
+
+_Dialogue and character voice_
+
+> VIII “In the Starlight” The night was very still. The soft breeze was not strong enough to stir even the slender palms which rose on all sides, and whose outlines, above the surrounding foliage, framed the starlit sky. The palace stood on high ground, and the garden sloped on the western side towards the sea. At the end of the terrace was a stone seat. “Let us sit here,” said Lucile. They sat down. The dreamy music of a waltz floated down as a distant accompaniment to their thoughts. The windows of the palace blazed with light and suggested glitter, glare, and heat; in the garden all was quiet and cool. “Why do you sneer at honour?” asked Lucile, thinking of the interrupted conversation. “Because it has no true foundation, no ultra-human sanction. Its codes are constantly changing with times and places.
+
+### Short Fiction: Section 18
+
+_Mid-book rhythm_
+
+> Revolution Paul Koslov nodded briefly once or twice as he made his way through the forest of desks. Behind him he caught snatches of tittering voices in whisper. “… That’s him⁠ ⁠… The Chief’s hatchetman⁠ ⁠… Know what they call him in Central America, a pistola, that means⁠ ⁠… About Iraq⁠ ⁠… And that time in Egypt⁠ ⁠… Did you notice his eyes⁠ ⁠… How would you like to date him⁠ ⁠… That’s him. I was at a cocktail party once when he was there. Shivery⁠ ⁠… cold-blooded⁠—” Paul Koslov grinned inwardly. He hadn’t asked for the reputation but it isn’t everyone who is a legend before thirty-five. What was it Newsweek had called him? “The T. E. Lawrence of the Cold War.” The trouble was it wasn’t something you could turn off. It had its shortcomings when you found time for some personal life. He reached the Chief’s office, rapped with a knuckle and pushed his way through.
+
+### Short Fiction: Section 25
+
+_Dialogue and character voice_
+
+> Ultima Thule At least he’d got far enough to wind up with a personal interview. It’s one thing doing up an application and seeing it go onto an endless tape and be fed into the maw of a machine and then to receive, in a matter of moments, a neatly printed rejection. It’s another thing to receive an appointment to be interviewed by a placement officer in the Commissariat of Interplanetary Affairs, Department of Personnel. Ronny Bronston was under no illusions. Nine out of ten men of his age annually made the same application. Almost all were annually rejected. Statistically speaking practically nobody ever got an interplanetary position. But he’d made step one along the path of a lifetime ambition. He stood at easy attention immediately inside the door. At the desk at the far side of the room the placement officer was going through a sheaf of papers.

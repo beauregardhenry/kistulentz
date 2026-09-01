@@ -2,23 +2,25 @@
 # Married people -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 38129
-- Reading grade: 3.4
-- Average sentence: 8.6 words
-- Average paragraph: 11.7 words
-- Dialogue share: 19%
+- Words analyzed: 188543
+- Reading grade: 4.6
+- Average sentence: 13.2 words
+- Average paragraph: 37.2 words
+- Dialogue share: 22%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: night, seemed, house, stood, thought, kitchen, heard, without, himself, don’t, going, voice, zeena’s, though, moment, ain’t, guess, light, table, toward, works, ethan’s, place, alone
-- Character names: Mattie, Zeena, Ethan, Matt, Frome, Jotham, Ethan Frome, Mrs. Hale, Jotham Powell, Denis Eady, Gutenberg, Harmon, Mattie Silver, Starkfield, Eady, Zenobia, Andrew Hale, Denis, Shadd, Harmon Gow, Hale, Ned, Ned Hale, Project Gutenberg, Ruth, Dan’l Byrne, Dr. Buck, ETHAN FROME, Gutenberg Literary Archive Foundation, Michael Eady
+- Tone: narrative-forward, direct, rhythmically varied, balanced, rhythmically even
+- Recurring vocabulary: ain’t, don’t, going, himself, house, stood, table, alone, ethan’s, guess, heard, kitchen, light, moment, night, place, seemed, though, thought, toward, voice, without, zeena’s, began, can’t, cried, dentist, dollars, exclaimed, hands, herself, looking, mcteague’s, money, nothing, silence, street, suddenly, that’s, three
+- Character names: Ethan Frome, Andrew Hale, Dan’l Byrne, Denis, Denis Eady, Eady, Ethan, Frome, Hale, Harmon, Harmon Gow, Jotham, Jotham Powell, Matt, Mattie, Mattie Silver, Michael Eady, Mr, Mrs, Ned, Ned Hale, Ruth, Shadd, Starkfield, Zeena, Zenobia, Ach, Alexander, Allen, Buck, Doctor, Doctor McTeague, Dr, Dr. Buck, Edith Wharton, Frenna, Grannis, Gutenberg, Gutenberg Literary Archive Foundation, Heise, Jew, Joe, Joe Frenna, Marcus, Marcus Schouler, Maria, Maria Macapa, Mark, McTeague, Miss Baker, Miss Trina, Mister Grannis, Mrs. Hale, Noah, Old Grannis, Owgooste, Project Gutenberg, Ryer, Schouler, Selina, Trina, Trina Sieppe, Varnum
 
 ## Books
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
+- [McTeague](../Books/8A3FC784-334D-4B9C-A35B-D3C06B502E94.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
+
+### Ethan Frome: Section 9
+
+_Mid-book rhythm_
+
+> IV As soon as his wife had driven off Ethan took his coat and cap from the peg. Mattie was washing up the dishes, humming one of the dance tunes of the night before. He said “So long, Matt,” and she answered gaily “So long, Ethan”; and that was all. It was warm and bright in the kitchen. The sun slanted through the south window on the girl’s moving figure, on the cat dozing in a chair, and on the geraniums brought in from the doorway, where Ethan had planted them in the summer to “make a garden” for Mattie. He would have liked to linger on, watching her tidy up and then settle down to her sewing; but he wanted still more to get the hauling done and be back at the farm before night. All the way down to the village he continued to think of his return to Mattie. The kitchen was a poor place, not “spruce”
+
+### Ethan Frome: Section 12
+
+_Dialogue and character voice_
+
+> VII Ethan went out into the passage to hang up his wet garments. He listened for Zeena’s step and, not hearing it, called her name up the stairs. She did not answer, and after a moment’s hesitation he went up and opened her door. The room was almost dark, but in the obscurity he saw her sitting by the window, bolt upright, and knew by the rigidity of the outline projected against the pane that she had not taken off her travelling dress. “Well, Zeena,” he ventured from the threshold. She did not move, and he continued: “Supper’s about ready. Ain’t you coming?” She replied: “I don’t feel as if I could touch a morsel.” It was the consecrated formula, and he expected it to be followed, as usual, by her rising and going down to supper. But she remained seated, and he could think of nothing more felicitous than: “I presume you’re tired after the long ride.”
+
+### McTeague: Section 15
+
+_Mid-book rhythm_
+
+> XI On that particular morning the McTeagues had risen a half hour earlier than usual and taken a hurried breakfast in the kitchen on the deal table with its oilcloth cover. Trina was housecleaning that week and had a presentiment of a hard day’s work ahead of her, while McTeague remembered a seven o’clock appointment with a little German shoemaker. At about eight o’clock, when the dentist had been in his office for over an hour, Trina descended upon the bedroom, a towel about her head and the roller-sweeper in her hand. She covered the bureau and sewing machine with sheets, and unhooked the chenille portieres between the bedroom and the sitting-room. As she was tying the Nottingham lace curtains at the window into great knots, she saw old Miss Baker on the opposite sidewalk in the street below, and raising the sash called down to her. “Oh, it’s you, Mrs. McTeague,”
+
+### McTeague: Section 25
+
+_Dialogue and character voice_
+
+> XXI “Well,” said one of the deputies, as he backed the horse into the shafts of the buggy in which the pursuers had driven over from the Hill, “we’ve about as good as got him. It isn’t hard to follow a man who carries a bird cage with him wherever he goes.” McTeague crossed the mountains on foot the Friday and Saturday of that week, going over through Emigrant Gap, following the line of the Overland railroad. He reached Reno Monday night. By degrees a vague plan of action outlined itself in the dentist’s mind. “Mexico,” he muttered to himself. “Mexico, that’s the place. They’ll watch the coast and they’ll watch the Eastern trains, but they won’t think of Mexico.” The sense of pursuit which had harassed him during the last week of his stay at the Big Dipper mine had worn off, and he believed himself to be very cunning. “I’m pretty far ahead now, I guess,” he said.

@@ -2,34 +2,100 @@
 # William Shakespeare
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 19
 
 ## Learned profile
 
-- Words analyzed: 443579
-- Reading grade: 1.4
-- Average sentence: 5.5 words
-- Average paragraph: 6.4 words
-- Dialogue share: 1%
+- Words analyzed: 896110
+- Reading grade: 1.5
+- Average sentence: 5.9 words
+- Average paragraph: 6.8 words
+- Dialogue share: 3%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: shall, scene, queen, speak, henry, exeunt, heart, prince, hamlet, death, father, warwick, falstaff, france, cannot, blood, noble, world, leave, whose, gloucester, honour, second, though
-- Character names: Caesar, Antony, Cleopatra, Pompey, Charmian, Eros, Bertram, Hath, Madam, Helen, Mark Antony, Farewell, Agrippa, Charles, Fulvia, Diana, Enter Antony, Adam, Jove, Mardian, Marry, Menas, Maecenas, Dolabella, Rosalind, Enter Caesar, Lo, William Shakespeare, Brutus, Canidius
+- Tone: direct, rhythmically even, narrative-forward, energetic, inquisitive, dialogue-forward
+- Recurring vocabulary: shall, exeunt, heart, speak, comes, night, scene, cannot, sweet, father, nothing, though, world, death, house, leave, master, second, whose, daughter, heaven, therefore, blood, brother, gentleman, husband, nature, within, young, aside, better, clown, ebook, friend, indeed, letter, light, matter, myself, noble
+- Character names: Hath, Farewell, Madam, Marry, Jove, Hark, Adam, Antonio, Cupid, I’ld, Brutus, Diana, Speak, Thou, Antony, Balthasar, Caesar, Helen, John, Lo, Mark Antony, Mistress, Peter, Pompey, Agrippa, Antonius, Bertram, Bianca, Caius, Canidius, Charles, Charmian, Cleopatra, Dolabella, Enter Antony, Enter Caesar, Enter Duke, Eros, Fulvia, Gratiano, Helena, Jack, Julius Caesar, Juno, Mardian, Menas, Moor, Neptune, Ne’er, Pardon, Priam, Pyrrhus, Rosalind, Sebastian, Stephano, Taurus, Thou dost, Venus, Villain, William, William Shakespeare, Abram, Adon, Adonis, Adrian, Adriana, Aegeon, Aemilia, Alack, Albany, Alcides, Alexander, Aliena, Alonso, Amiens, Andrew, Angelo, Angus, Anne, Anne Page
 
 ## Books
+- [A Midsummer Night’s Dream](../Books/0CA653B0-CCE3-4B4B-8704-7BFDD7D23D57.md)
+- [All’s Well That Ends Well](../Books/02D165CA-C030-4EE1-9BD6-6A90F394FE01.md)
+- [Antony and Cleopatra](../Books/F8692394-63AD-417C-BAB2-65EBF2DC7E43.md)
+- [As You Like It](../Books/9C2D7C70-806D-410C-95DB-86422B7E3C9D.md)
+- [Hamlet](../Books/28DEB3C7-5F29-4D5D-AC1B-80DA3D2941D5.md)
+- [Julius Caesar](../Books/D9F27150-9A97-4764-B8BB-165523312512.md)
+- [King Lear](../Books/C022B1D4-8225-472D-96C5-4BD8242F7CEF.md)
+- [Macbeth](../Books/EE078B7D-9121-4D2F-9175-8805BED782F9.md)
+- [Much Ado About Nothing](../Books/D9AB4888-263D-4E8B-BA32-A8AFBF83448C.md)
+- [Othello](../Books/46083AB2-3D35-4ED1-A763-90AE4C5EE8A1.md)
+- [Poetry](../Books/03FA39A1-39CC-4E96-9BC2-197E4CB20EB4.md)
+- [Romeo and Juliet](../Books/BC0FF1D5-C41C-4CAE-94B6-F48A0B96C28A.md)
+- [The Comedy of Errors](../Books/DB84D839-9AB6-41FC-90FC-4F2EDBF64F92.md)
 - [The Complete Works of William Shakespeare](../Books/77215495-099F-4FA4-A57B-B79019AC6B8D.md)
+- [The Merchant of Venice](../Books/0D79755C-148F-4618-B188-8291BFD734ED.md)
+- [The Merry Wives of Windsor](../Books/D16AB367-2DD4-4F81-89F6-97AFDE4F13D2.md)
+- [The Taming of the Shrew](../Books/93427583-6CCA-411A-B642-16949719BFC2.md)
+- [The Tempest](../Books/E52C73DB-F26E-43F8-9E71-BEF56FC73994.md)
+- [Twelfth Night](../Books/903A6475-51CC-4379-AF04-8E3D9D9103F1.md)
 
 ## Representative excerpts
 
-### The Complete Works of William Shakespeare: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Complete Works of William Shakespeare This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Complete Works of William Shakespeare Author: William Shakespeare Release date: January 1, 1994 [eBook #100] Most recently updated: August 24, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Complete Works of William Shakespeare: Section 58
+### A Midsummer Night’s Dream: Section 6
 
 _Mid-book rhythm_
 
-> ACT III SCENE I. Westminster. The palace. Enter the King in his nightgown, with a Page. KING. Go call the Earls of Surrey and of Warwick; But, ere they come, bid them o’er-read these letters And well consider of them. Make good speed. [Exit Page.] How many thousands of my poorest subjects Are at this hour asleep! O sleep, O gentle sleep, Nature’s soft nurse, how have I frighted thee, That thou no more wilt weigh my eyelids down And steep my senses in forgetfulness? Why rather, sleep, liest thou in smoky cribs, Upon uneasy pallets stretching thee, And hushed with buzzing night-flies to thy slumber, Than in the perfumed chambers of the great, Under the canopies of costly state, And lull’d with sound of sweetest melody? O thou dull god, why liest thou with the vile In loathsome beds, and leavest the kingly couch A watch-case or a common ’larum-bell?
+> Act II Scene I A wood near Athens. Enter, from opposite sides, a Fairy, and Puck. Puck How now, spirit! whither wander you? Fairy Over hill, over dale, Thorough bush, thorough brier, Over park, over pale, Thorough flood, thorough fire, I do wander everywhere, Swifter than the moon’s sphere; And I serve the fairy queen, To dew her orbs upon the green. The cowslips tall her pensioners be: In their gold coats spots you see; Those be rubies, fairy favours, In those freckles live their savours: I must go seek some dewdrops here And hang a pearl in every cowslip’s ear. Farewell, thou lob of spirits; I’ll be gone: Our queen and all her elves come here anon.
+
+### A Midsummer Night’s Dream: Section 7
+
+_Dialogue and character voice_
+
+> Act III Scene I The wood. Titania lying asleep. Enter Quince, Snug, Bottom, Flute, Snout, and Starveling. Bottom Are we all met? Quince Pat, pat; and here’s a marvellous convenient place for our rehearsal. This green plot shall be our stage, this hawthorn-brake our tiring-house; and we will do it in action as we will do it before the duke. Bottom Peter Quince⁠— Quince What sayest thou, bully Bottom? Bottom There are things in this comedy of Pyramus and Thisby that will never please. First, Pyramus must draw a sword to kill himself; which the ladies cannot abide. How answer you that? Snout By’r lakin, a parlous fear. Starveling I believe we must leave the killing out, when all is done. Bottom Not a whit: I have a device to make all well.
+
+### All’s Well That Ends Well: Section 7
+
+_Mid-book rhythm_
+
+> Act III Scene I Florence. The Duke’s palace. Flourish. Enter the Duke of Florence attended; the two Frenchmen, with a troop of soldiers. Duke So that from point to point now have you heard The fundamental reasons of this war, Whose great decision hath much blood let forth And more thirsts after. First Lord Holy seems the quarrel Upon your grace’s part; black and fearful On the opposer. Duke Therefore we marvel much our cousin France Would in so just a business shut his bosom Against our borrowing prayers. Second Lord Good my lord, The reasons of our state I cannot yield, But like a common and an outward man, That the great figure of a council frames By self-unable motion: therefore dare not Say what I think of it, since I have found Myself in my incertain grounds to fail As often as I guess’d. Duke Be it his pleasure.
+
+### All’s Well That Ends Well: Section 8
+
+_Dialogue and character voice_
+
+> Act IV Scene I Without the Florentine camp. Enter Second French Lord, with five or six other Soldiers in ambush. Second Lord He can come no other way but by this hedge-corner. When you sally upon him, speak what terrible language you will: though you understand it not yourselves, no matter; for we must not seem to understand him, unless some one among us whom we must produce for an interpreter. First Soldier Good captain, let me be the interpreter. Second Lord Art not acquainted with him? knows he not thy voice? First Soldier No, sir, I warrant you. Second Lord But what linsey-woolsey hast thou to speak to us again? First Soldier E’en such as you speak to me. Second Lord He must think us some band of strangers i’ the adversary’s entertainment.
+
+### Antony and Cleopatra: Section 6
+
+_Mid-book rhythm_
+
+> Act II Scene I Messina. Pompey’s house. Enter Pompey, Menecrates, and Menas, in warlike manner. Pompey If the great gods be just, they shall assist The deeds of justest men. Menecrates Know, worthy Pompey, That what they do delay, they not deny. Pompey Whiles we are suitors to their throne, decays The thing we sue for. Menecrates We, ignorant of ourselves, Beg often our own harms, which the wise powers Deny us for our good; so find we profit By losing of our prayers. Pompey I shall do well: The people love me, and the sea is mine; My powers are crescent, and my auguring hope Says it will come to the full. Mark Antony In Egypt sits at dinner, and will make No wars without doors: Caesar gets money where He loses hearts: Lepidus flatters both, Of both is flatter’d; but he neither loves, Nor either cares for him. Menas Caesar and Lepidus Are in the field: a mighty strength they carry.
+
+### Antony and Cleopatra: Section 5
+
+_Dialogue and character voice_
+
+> Act I Scene I Alexandria. A room in Cleopatra’s palace. Enter Demetrius and Philo. Philo Nay, but this dotage of our general’s O’erflows the measure: those his goodly eyes, That o’er the files and musters of the war Have glow’d like plated Mars, now bend, now turn, The office and devotion of their view Upon a tawny front: his captain’s heart, Which in the scuffles of great fights hath burst The buckles on his breast, reneges all temper, And is become the bellows and the fan To cool a gipsy’s lust. Flourish. Enter Antony, Cleopatra, her Ladies, the Train, with Eunuchs fanning her. Look, where they come: Take but good note, and you shall see in him. The triple pillar of the world transform’d Into a strumpet’s fool: behold and see. Cleopatra If it be love indeed, tell me how much. Antony There’s beggary in the love that can be reckon’d. Cleopatra I’ll set a bourn how far to be beloved.
+
+### As You Like It: Section 7
+
+_Mid-book rhythm_
+
+> Act III Scene I A room in the palace. Enter Duke Frederick, Lords, and Oliver. Duke Frederick Not see him since? Sir, sir, that cannot be: But were I not the better part made mercy, I should not seek an absent argument Of my revenge, thou present. But look to it: Find out thy brother, wheresoe’er he is; Seek him with candle; bring him dead or living Within this twelvemonth, or turn thou no more To seek a living in our territory. Thy lands and all things that thou dost call thine Worth seizure do we seize into our hands, Till thou canst quit thee by thy brothers mouth Of what we think against thee. Oliver O that your highness knew my heart in this! I never loved my brother in my life. Duke Frederick More villain thou. Well, push him out of doors; And let my officers of such a nature Make an extent upon his house and lands: Do this expediently and turn him going. Exeunt.
+
+### As You Like It: Section 9
+
+_Dialogue and character voice_
+
+> Act V Scene I The forest. Enter Touchstone and Audrey. Touchstone We shall find a time, Audrey; patience, gentle Audrey. Audrey Faith, the priest was good enough, for all the old gentleman’s saying. Touchstone A most wicked Sir Oliver, Audrey, a most vile Martext. But, Audrey, there is a youth here in the forest lays claim to you. Audrey Ay, I know who ’tis; he hath no interest in me in the world: here comes the man you mean. Touchstone It is meat and drink to me to see a clown: by my troth, we that have good wits have much to answer for; we shall be flouting; we cannot hold. Enter William. William Good even, Audrey. Audrey God ye good even, William. William And good even to you, sir. Touchstone Good even, gentle friend. Cover thy head, cover thy head; nay, prithee, be covered. How old are you, friend? William Five and twenty, sir. Touchstone A ripe age. Is thy name William?
+
+### Hamlet: Section 7
+
+_Mid-book rhythm_
+
+> Act III Scene I A room in the castle. Enter King, Queen, Polonius, Ophelia, Rosencrantz, and Guildenstern. King And can you, by no drift of circumstance, Get from him why he puts on this confusion, Grating so harshly all his days of quiet With turbulent and dangerous lunacy? Rosencrantz He does confess he feels himself distracted; But from what cause he will by no means speak. Guildenstern Nor do we find him forward to be sounded, But, with a crafty madness, keeps aloof, When we would bring him on to some confession Of his true state. Queen Did he receive you well? Rosencrantz Most like a gentleman. Guildenstern But with much forcing of his disposition. Rosencrantz Niggard of question; but, of our demands, Most free in his reply. Queen Did you assay him To any pastime?
+
+### Hamlet: Section 6
+
+_Dialogue and character voice_
+
+> Act II Scene I A room in Polonius’ house. Enter Polonius and Reynaldo. Polonius Give him this money and these notes, Reynaldo. Reynaldo I will, my lord. Polonius You shall do marvellous wisely, good Reynaldo, Before you visit him, to make inquire Of his behavior. Reynaldo My lord, I did intend it. Polonius Marry, well said; very well said. Look you, sir, Inquire me first what Danskers are in Paris; And how, and who, what means, and where they keep, What company, at what expense; and finding By this encompassment and drift of question That they do know my son, come you more nearer Than your particular demands will touch it: Take you, as ’twere, some distant knowledge of him; As thus, “I know his father and his friends, And in part him:” do you mark this, Reynaldo? Reynaldo Ay, very well, my lord. Polonius “And in part him; but”

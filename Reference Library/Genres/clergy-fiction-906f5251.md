@@ -2,25 +2,54 @@
 # Clergy -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 88073
-- Reading grade: 4.7
-- Average sentence: 7.8 words
-- Average paragraph: 10.1 words
-- Dialogue share: 18%
+- Words analyzed: 460854
+- Reading grade: 6.5
+- Average sentence: 16.6 words
+- Average paragraph: 55.2 words
+- Dialogue share: 39%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: child, minister, letter, heart, mother, scarlet, himself, dimmesdale, seemed, gutenberg, project, woman, world, herself, years, human, nature, people, within, shall, without, answered, house, better
-- Character names: Hester, Hester Prynne, Pearl, Roger Chillingworth, Prynne, Bellingham, Mr. Wilson, Mistress Hibbins, Satan, Mr, Mistress Prynne, Chillingworth, Hush, Mr. Surveyor Pue, brown, Eliot, Hath, Little Pearl, Madam Hester, Mistress Hester, Sam, Surveyor, Wilson, Winthrop, Ann Hutchinson, Arthur, HESTER, Halifax, Isaac Johnson, James
+- Tempo: steady
+- Tone: rhythmically varied, balanced, dialogue-forward, energetic, narrative-forward, direct, measured, rhythmically even
+- Recurring vocabulary: himself, seemed, house, black, don’t, people, priest, quite, rather, round, things, voice, answered, friend, garden, stood, though, thought, world, anything, better, child, cried, dimmesdale, figure, heard, heart, herself, human, letter, looking, minister, moment, mother, nature, place, replied, scarlet, shall, suppose
+- Character names: Brown, Mr, Dr, Father Brown, Arthur, Flambeau, Hester, Mrs, Wilson, Ann Hutchinson, Bellingham, Eliot, Halifax, Hath, Hester Prynne, Hush, Isaac Johnson, James, John, Little Pearl, Madam Hester, Merton, Mistress Hester, Mistress Hibbins, Mistress Prynne, Pearl, Roger Chillingworth, Sam, Satan, Surveyor, Winthrop, Abbott, Alboin, Alvarez, Angus, Antonelli, Arnold Aylmer, Atkinson, Audley, Aylmer, Bagshaw, Bankes, Bohun, Boulnois, Boyle, Boyne, Brayne, Bruno, Butler, Byrne, Calhoun Kidd, Chillingworth, Clare, Crake, Craven, Cray, Dalmon, Devine, Dubosc, Elias, Elizabeth, Evan Smith, Ezza, Fanshaw, Fenner, Fiennes, Floyd, Gilder, Gwynne, Hardcastle, Harris, Hirsch, Horne, Ivan, James Mair, Jameson, Jarvis, John Bankes, John Wilson, Kalon
 
 ## Books
+- [The Incredulity of Father Brown](../Books/81518D11-E6DD-4B4B-9073-A205D12805BC.md)
+- [The Innocence of Father Brown](../Books/A08E9FD9-5919-468C-9E7C-04C3FD49A188.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
+- [The Secret of Father Brown](../Books/ADC595DB-C4F6-49EB-B32B-C8F6460D0520.md)
+- [The Wisdom of Father Brown](../Books/5B4349AB-C34E-40A0-96F1-2AF5E770C130.md)
 
 ## Representative excerpts
+
+### The Incredulity of Father Brown: Section 8
+
+_Mid-book rhythm_
+
+> The Oracle of the Dog “Yes,” said Father Brown, “I always like a dog, so long as he isn’t spelt backwards.” Those who are quick in talking are not always quick in listening. Sometimes even their brilliancy produces a sort of stupidity. Father Brown’s friend and companion was a young man with a stream of ideas and stories, an enthusiastic young man named Fiennes, with eager blue eyes and blond hair that seemed to be brushed back, not merely with a hairbrush but with the wind of the world as he rushed through it. But he stopped in the torrent of his talk in a momentary bewilderment before he saw the priest’s very simple meaning. “You mean that people make too much of them?” he said. “Well, I don’t know. They’re marvellous creatures. Sometimes I think they know a lot more than we do.”
+
+### The Incredulity of Father Brown: Section 15
+
+_Sentence variation_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
+
+### The Innocence of Father Brown: Section 10
+
+_Mid-book rhythm_
+
+> The Honour of Israel Gow A stormy evening of olive and silver was closing in, as Father Brown, wrapped in a grey Scotch plaid, came to the end of a grey Scotch valley and beheld the strange castle of Glengyle. It stopped one end of the glen or hollow like a blind alley; and it looked like the end of the world. Rising in steep roofs and spires of seagreen slate in the manner of the old French-Scotch châteaux, it reminded an Englishman of the sinister steeple-hats of witches in fairy tales; and the pine woods that rocked round the green turrets looked, by comparison, as black as numberless flocks of ravens. This note of a dreamy, almost a sleepy devilry, was no mere fancy from the landscape. For there did rest on the place one of those clouds of pride and madness and mysterious sorrow which lie more heavily on the noble houses of Scotland than on any other of the children of men.
+
+### The Innocence of Father Brown: Section 15
+
+_Dialogue and character voice_
+
+> The Sign of the Broken Sword The thousand arms of the forest were grey, and its million fingers silver. In a sky of dark green-blue-like slate the stars were bleak and brilliant like splintered ice. All that thickly wooded and sparsely tenanted countryside was stiff with a bitter and brittle frost. The black hollows between the trunks of the trees looked like bottomless, black caverns of that Scandinavian hell, a hell of incalculable cold. Even the square stone tower of the church looked northern to the point of heathenry, as if it were some barbaric tower among the sea rocks of Iceland. It was a queer night for anyone to explore a churchyard. But, on the other hand, perhaps it was worth exploring. It rose abruptly out of the ashen wastes of forest in a sort of hump or shoulder of green turf that looked grey in the starlight.
 
 ### The Scarlet Letter: Section 1
 
@@ -33,3 +62,27 @@ _Opening voice_
 _Dialogue and character voice_
 
 > XI. THE INTERIOR OF A HEART. fter the incident last described, the intercourse between the clergyman and the physician, though externally the same, was really of another character than it had previously been. The intellect of Roger Chillingworth had now a sufficiently plain path before it. It was not, indeed, precisely that which he had laid out for himself to tread. Calm, gentle, passionless, as he appeared, there was yet, we fear, a quiet depth of malice, hitherto latent, but active now, in this unfortunate old man, which led him to imagine a more intimate revenge than any mortal had ever wreaked upon an enemy. To make himself the one trusted friend, to whom should be confided all the fear, the remorse, the agony, the ineffectual repentance, the backward rush of sinful thoughts, expelled in vain!
+
+### The Scarlet Letter: Section 17
+
+_Mid-book rhythm_
+
+> XII The Minister’s Vigil Walking in the shadow of a dream, as it were, and perhaps actually under the influence of a species of somnambulism, Mr. Dimmesdale reached the spot where, now so long since, Hester Prynne had lived through her first hours of public ignominy. The same platform or scaffold, black and weather-stained with the storm or sunshine of seven long years, and foot-worn, too, with the tread of many culprits who had since ascended it, remained standing beneath the balcony of the meetinghouse. The minister went up the steps. It was an obscure night of early May. An unvaried pall of cloud muffled the whole expanse of sky from zenith to horizon.
+
+### The Scarlet Letter: Section 22
+
+_Dialogue and character voice_
+
+> XVII The Pastor and His Parishioner Slowly as the minister walked, he had almost gone by, before Hester Prynne could gather voice enough to attract his observation. At length, she succeeded. “Arthur Dimmesdale!” she said, faintly at first; then louder, but hoarsely. “Arthur Dimmesdale!” “Who speaks?” answered the minister. Gathering himself quickly up, he stood more erect, like a man taken by surprise in a mood to which he was reluctant to have witnesses. Throwing his eyes anxiously in the direction of the voice, he indistinctly beheld a form under the trees, clad in garments so sombre, and so little relieved from the gray twilight into which the clouded sky and the heavy foliage had darkened the noontide, that he knew not whether it were a woman or a shadow. It may be, that his pathway through life was haunted thus, by a spectre that had stolen out from among his thoughts.
+
+### The Secret of Father Brown: Section 9
+
+_Mid-book rhythm_
+
+> The Actor and the Alibi Mr. Mundon Mandeville, the theatrical manager, walked briskly through the passages behind the scenes, or rather below the scenes. His attire was smart and festive, perhaps a little too festive; the flower in his buttonhole was festive; the very varnish on his boots was festive; but his face was not at all festive. He was a big, bull-necked, black-browed man; and at the moment his brow was blacker than usual. He had in any case, of course, the hundred botherations that besiege a man in such a position; and they ranged from large to small and from new to old. It annoyed him to pass through the passages where the old pantomime scenery was stacked; because he had successfully begun his career at that theatre with very popular pantomimes, and had since been induced to gamble in more serious and classical drama over which he had dropped a good deal of money.
+
+### The Secret of Father Brown: Section 13
+
+_Dialogue and character voice_
+
+> The Chief Mourner of Marne A blaze of lightning blanched the grey woods tracing all the wrinkled foliage down to the last curled leaf, as if every detail were drawn in silverpoint or graven in silver. The same strange trick of lightning by which it seems to record millions of minute things in an instant of time, picked out everything, from the elegant litter of the picnic spread under the spreading tree to the pale lengths of winding road, at the end of which a white car was waiting. In the distance a melancholy mansion with four towers like a castle, which in the grey evening had been but a dim and distant huddle of walls like a crumbling cloud, seemed to spring into the foreground, and stood up with all its embattled roofs and blank and staring windows. And in this, at least, the light had something in it of revelation.

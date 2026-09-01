@@ -2,25 +2,52 @@
 # Jane Austen
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 125932
-- Reading grade: 4.6
-- Average sentence: 8.2 words
-- Average paragraph: 11.1 words
-- Dialogue share: 47%
+- Words analyzed: 490301
+- Reading grade: 6.8
+- Average sentence: 16.9 words
+- Average paragraph: 59.4 words
+- Dialogue share: 42%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: herself, sister, though, mother, nothing, without, house, however, shall, heart, thought, himself, chapter, enough, myself, young, replied, indeed, happy, gutenberg, quite, cannot, world, therefore
-- Character names: Elinor, Marianne, Willoughby, Edward, Mrs. Jennings, Lucy, Sir John, Lady Middleton, Mrs. Dashwood, Colonel Brandon, Miss Dashwood, Mrs, Mrs. Palmer, Dashwood, Mr. Willoughby, Mr. Palmer, Mrs. Ferrars, Mrs. John Dashwood, Brandon, Fanny, Jennings, Miss Steele, Mr. Dashwood, Charlotte, Miss Austen, Mr, Mamma, Miss Marianne, Mrs. Smith, Steeles
+- Tempo: steady
+- Tone: dialogue-forward, balanced, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: enough, happy, herself, himself, house, nothing, quite, sister, though, thought, without, young, heart, however, indeed, shall, better, cannot, everything, family, feelings, mother, myself, replied, seemed, therefore, world, anything, believe, chapter, crawford’s, fanny’s, father, friend, going, gutenberg, heard, moment, place, present
+- Character names: Mr, Mrs, Fanny, Anne, Brandon, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Jennings, Lady Middleton, Lucy, Marianne, Mary, Miss Dashwood, Miss Marianne, Miss Steele, Mr., Sir John, Smith, Steeles, Willoughby, Agatha, Anne Elliot, Benwick, Bertram, Bertrams, Captain Wentworth, Charles, Charles Hayter, Charles Musgrove, Clay, Colonel Wallis, Crawford, Devonshire, Dr, Edmund, Edward Ferrars, Elizabeth, Elliot, Frederick, Grant, Gray, Harry, Harville, Henrietta, Henry, Henry Crawford, John Dashwood, Julia, Kellynch Hall, Lady Bertram, Lady Dalrymple, Lady Russell, Louisa Musgrove, Mamma, Mansfield, Margaret, Maria, Miss Austen, Miss Bertram, Miss Bertrams, Miss Crawford, Miss Elliot, Miss Lee, Mr. Dashwood, Mr. Palmer, Mr. Willoughby, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. Palmer, Mrs. Smith, Musgrove, Norris, Palmer, Rushworth, Russell
 
 ## Books
+- [Mansfield Park](../Books/AA2BDFD7-B608-4192-BC7F-67079F09D869.md)
+- [Persuasion](../Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
 
 ## Representative excerpts
+
+### Mansfield Park: Section 27
+
+_Mid-book rhythm_
+
+> XXV The intercourse of the two families was at this period more nearly restored to what it had been in the autumn, than any member of the old intimacy had thought ever likely to be again. The return of Henry Crawford, and the arrival of William Price, had much to do with it, but much was still owing to Sir Thomas’s more than toleration of the neighbourly attempts at the Parsonage. His mind, now disengaged from the cares which had pressed on him at first, was at leisure to find the Grants and their young inmates really worth visiting; and though infinitely above scheming or contriving for any the most advantageous matrimonial establishment that could be among the apparent possibilities of anyone most dear to him, and disdaining even as a littleness the being quick-sighted on such points, he could not avoid perceiving, in a grand and careless way, that Mr.
+
+### Mansfield Park: Section 37
+
+_Dialogue and character voice_
+
+> XXXV Edmund had determined that it belonged entirely to Fanny to choose whether her situation with regard to Crawford should be mentioned between them or not; and that if she did not lead the way, it should never be touched on by him; but after a day or two of mutual reserve, he was induced by his father to change his mind, and try what his influence might do for his friend. A day, and a very early day, was actually fixed for the Crawfords’ departure; and Sir Thomas thought it might be as well to make one more effort for the young man before he left Mansfield, that all his professions and vows of unshaken attachment might have as much hope to sustain them as possible. Sir Thomas was most cordially anxious for the perfection of Mr. Crawford’s character in that point. He wished him to be a model of constancy; and fancied the best means of effecting it would be by not trying him too long.
+
+### Persuasion: Section 15
+
+_Mid-book rhythm_
+
+> XIII The remainder of Anne’s time at Uppercross, comprehending only two days, was spent entirely at the Mansion House; and she had the satisfaction of knowing herself extremely useful there, both as an immediate companion, and as assisting in all those arrangements for the future, which, in Mr. and Mrs. Musgrove’s distressed state of spirits, would have been difficulties. They had an early account from Lyme the next morning. Louisa was much the same. No symptoms worse than before had appeared. Charles came a few hours afterwards, to bring a later and more particular account. He was tolerably cheerful. A speedy cure must not be hoped, but everything was going on as well as the nature of the case admitted. In speaking of the Harvilles, he seemed unable to satisfy his own sense of their kindness, especially of Mrs. Harville’s exertions as a nurse. “She really left nothing for Mary to do.
+
+### Persuasion: Section 23
+
+_Dialogue and character voice_
+
+> XXI Anne recollected with pleasure the next morning her promise of going to Mrs. Smith, meaning that it should engage her from home at the time when Mr. Elliot would be most likely to call; for to avoid Mr. Elliot was almost a first object. She felt a great deal of goodwill towards him. In spite of the mischief of his attentions, she owed him gratitude and regard, perhaps compassion. She could not help thinking much of the extraordinary circumstances attending their acquaintance, of the right which he seemed to have to interest her, by everything in situation, by his own sentiments, by his early prepossession. It was altogether very extraordinary; flattering, but painful. There was much to regret.
 
 ### Sense and Sensibility: Section 1
 
@@ -33,3 +60,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+
+### Sense and Sensibility: Section 28
+
+_Mid-book rhythm_
+
+> XXVI Elinor could not find herself in the carriage with Mrs. Jennings, and beginning a journey to London under her protection, and as her guest, without wondering at her own situation, so short had their acquaintance with that lady been, so wholly unsuited were they in age and disposition, and so many had been her objections against such a measure only a few days before! But these objections had all, with that happy ardour of youth which Marianne and her mother equally shared, been overcome or overlooked; and Elinor, in spite of every occasional doubt of Willoughby’s constancy, could not witness the rapture of delightful expectation which filled the whole soul and beamed in the eyes of Marianne, without feeling how blank was her own prospect, how cheerless her own state of mind in the comparison, and how gladly she would engage in the solicitude of Marianne’s situation to have the same a…
+
+### Sense and Sensibility: Section 46
+
+_Dialogue and character voice_
+
+> XLIV Elinor, starting back with a look of horror at the sight of him, obeyed the first impulse of her heart in turning instantly to quit the room, and her hand was already on the lock, when its action was suspended by his hastily advancing, and saying, in a voice rather of command than supplication⁠— “Miss Dashwood, for half an hour⁠—for ten minutes⁠—I entreat you to stay.” “No, sir,” she replied with firmness, “I shall not stay. Your business cannot be with me. The servants, I suppose, forgot to tell you that Mr. Palmer was not in the house.” “Had they told me,” he cried with vehemence, “that Mr. Palmer and all his relations were at the devil, it would not have turned me from the door. My business is with you, and only you.” “With me!”⁠—in the utmost amazement⁠—“well, sir⁠—be quick⁠—and if you can⁠—less violent.” “Sit down, and I will be both.” She hesitated; she knew not what to do.

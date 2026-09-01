@@ -2,24 +2,27 @@
 # Time travel -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 144400
-- Reading grade: 3.2
-- Average sentence: 8.2 words
-- Average paragraph: 11.7 words
-- Dialogue share: 25%
+- Words analyzed: 414362
+- Reading grade: 3.7
+- Average sentence: 9.9 words
+- Average paragraph: 24.3 words
+- Dialogue share: 31%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: nothing, shall, things, thought, without, world, years, alone, brothers, cannot, chapter, couldn’t, council, course, didn’t, don’t, earth, electronic, enough, forest, going, golden, gutenberg, hands, himself, hundred, knight, knights, light, myself, night, people, place, power, project, scholars, speak, stood, three, words
-- Character names: Launcelot, Alisande, Arthur, Boss, Carpenter, Clarence, Dowley, Gareth, Garry, Gaul, Gawaine, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Inde, Jones, Joseph, Kay, Latin, Lionel, Lo, Madame, Marco, Marcos, Merlin, Morgan le Fay, Ozana, Project Gutenberg, Sandy, Scott, Sir Gawaine, Sir Launcelot, Sir Marhaus, Sir Sagramor
+- Tone: rhythmically even, direct, narrative-forward, dialogue-forward, balanced, inquisitive
+- Recurring vocabulary: hands, nothing, thought, without, don’t, himself, stood, world, across, behind, can’t, couldn’t, didn’t, earth, enough, going, light, people, place, shall, things, three, toward, years, you’re, ahead, alone, anything, apache, apaches, brothers, cannot, chapter, conger, council, course, coyotes, deklay, electronic, forest
+- Character names: Launcelot, Scott, Terra, Alisande, Aljar, Arthur, Ashe, Bill, Boss, Buck, B’prith, Camdon, Carpenter, Chalmers, Clarence, Cochise, Cole, Cynthia, Dave, David, Defiant, Dolores, Dorle, Dowley, Dr, Earl, Ed, Elwood, Eskelta, Florian Waldour, Fox, Franco, Franks, Gareth, Garry, Gaul, Gawaine, Genghis Khan, Gross, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harris, Harry, Hendricks, Hulagur, Inde, Jil-Lee, Jim, Jimmy, Joan, Joe, Jones, Joseph, Kaplan, Kay, Kaydessa, Kenny, Klaus, Kramer, Langford, Larsen, Latin, Lawton, Leone, Lionel, Lo, Lora, Loyce, Lupe, Madame, Manulito, Marco, Marcos, Mary Anne, Melvin, Menlik, Merlin, Mike, Molly
 
 ## Books
 - [A Connecticut Yankee in King Arthur's Court](../Books/A5DD5A9F-9C99-4931-BA33-F1088AD975F1.md)
 - [Anthem](../Books/8BAEF5C3-053B-4781-ABA9-181EB85B2CE2.md)
+- [Short Fiction](../Books/87CADE27-8A89-42DB-9235-A97C42C936A6.md)
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
+- [The Defiant Agents](../Books/C1C301DB-D863-48E0-9F48-5B87C2EDB480.md)
 
 ## Representative excerpts
 
@@ -46,3 +49,39 @@ _Opening voice_
 _Mid-book rhythm_
 
 > PART SEVEN It is dark here in the forest. The leaves rustle over our head, black against the last gold of the sky. The moss is soft and warm. We shall sleep on this moss for many nights, till the beasts of the forest come to tear our body. We have no bed now, save the moss, and no future, save the beasts. We are old now, yet we were young this morning, when we carried our glass box through the streets of the City to the Home of the Scholars. No men stopped us, for there were none about from the Palace of Corrective Detention, and the others knew nothing. No men stopped us at the gate. We walked through empty passages and into the great hall where the World Council of Scholars sat in solemn meeting. We saw nothing as we entered, save the sky in the great windows, blue and glowing.
+
+### Short Fiction: Section 13
+
+_Mid-book rhythm_
+
+> The Timeless Ones “There will be a great many changes, Ned,” Cynthia Jackson said. She stared out the viewport at the little green world which the contact rocket Star Mist was swiftly approaching on warp-drive. Her husband copilot nodded, remembering Clifton and Helen Sweeney, and the Sweeney youngsters. Remembering with a smile Tommy Sweeney’s kite-flying antics, his freckles and mischievous eyes⁠—a towheaded kid of ten with an Irish sense of humor, sturdily planted in a field of alien corn five thousand light years from Earth. Sowing and reaping and bringing in the sheaves, in the blue light of a great double sun, his dreams as vibrant with promise as the interstellar warp-drive which, a century ago, had brought the first prospect ship from Earth to the stars. He’d be a man grown now, as sturdy as his dad. You could almost take that for granted.
+
+### Short Fiction: Section 9
+
+_Dialogue and character voice_
+
+> Time Trap Charley Grimes was a big man who had been everywhere in the Solar System and collected trophies which were as strange and shining as the stories he liked to tell. His face was as gaunt as the jungle mask and, when he lit a pipe and smoked it, you watched to see where the smoke would drift. It wasn’t hard to picture it drifting over the mountains of the moon or across the flat red plains of Mars. We were sitting around a campfire in the Rockies just as our ancestors must have sat five hundred years in the past. We were swapping yarns to get Charley started, and watching the sun sink to rest on clouds shaped like wild mustangs when the talk drifted to the dark side of the moon. You know what it’s like on the dark side.
+
+### Short Fiction: Section 9
+
+_Mid-book rhythm_
+
+> Mr. Spaceship Kramer leaned back. “You can see the situation. How can we deal with a factor like this? The perfect variable.” “Perfect? Prediction should still be possible. A living thing still acts from necessity, the same as inanimate material. But the cause-effect chain is more subtle; there are more factors to be considered. The difference is quantitative, I think. The reaction of the living organism parallels natural causation, but with greater complexity.” Gross and Kramer looked up at the board plates, suspended on the wall, still dripping, the images hardening into place. Kramer traced a line with his pencil. “See that? It’s a pseudopodium. They’re alive, and so far, a weapon we can’t beat. No mechanical system can compete with that, simple or intricate. We’ll have to scrap the Johnson Control and find something else.” “Meanwhile the war continues as it is. Stalemate. Checkmate.
+
+### Short Fiction: Section 13
+
+_Dialogue and character voice_
+
+> The Variable Man I Security Commissioner Reinhart rapidly climbed the front steps and entered the Council building. Council guards stepped quickly aside and he entered the familiar place of great whirring machines. His thin face rapt, eyes alight with emotion, Reinhart gazed intently up at the central S.R.B. computer, studying its reading. “Straight gain for the last quarter,” observed Kaplan, the lab organizer. He grinned proudly, as if personally responsible. “Not bad, Commissioner.” “We’re catching up to them,” Reinhart retorted. “But too damn slowly. We must finally go over⁠—and soon.” Kaplan was in a talkative mood. “We design new offensive weapons, they counter with improved defenses. And nothing is actually made! Continual improvement, but neither we nor Centaurus can stop designing long enough to stabilize for production.” “It will end,”
+
+### The Defiant Agents: Section 13
+
+_Mid-book rhythm_
+
+> IX Travis settled his back against the spire of rock and raised his right hand into the path of the sun, cradling in his palm a disk of glistening metal. Flash⁠ ⁠… flash⁠ ⁠… he made the signal pattern just as his ancestors a hundred years earlier and far across space had used trade mirrors to relay war alerts among the Chiricahua and White Mountain ranges. If Tsoay had returned safely, and if Buck had kept the agreed lookout on that peak a mile or so ahead, then the clan would know that he was coming and with what escort. He waited now, rubbing the small metal mirror absently on the loose sleeve of his shirt, waiting for a reply. Mirrors were best, not smoke fires which would broadcast too far the presence of men in the hills. Tsoay must have returned⁠ ⁠… “What is it that you do?”
+
+### The Defiant Agents: Section 8
+
+_Dialogue and character voice_
+
+> IV Fire, mankind’s oldest ally, weapon, tool, leaped high before the naked stone of the mountain side. Men sat cross-legged about it, fifteen of them. And behind, guarded by the flames and that somber circle, were the women. There was a uniformity in this gathering. The members were plainly all of the same racial stock, of medium height, stocky yet fined down to the peak of stamina and endurance, their skin brown, their shoulder-length hair black. And they were all young⁠—none over thirty, some still in their late teens. Alike, too, was a certain drawn look in their faces, a tenseness of the eyes and mouth as they listened to Travis. “So we must be on Topaz. Do any of you remember boarding the ship?” “No. Only that we awoke within it.” Across the fire one chin lifted; the eyes which caught Travis’ held a deep, smoldering anger.

@@ -2,23 +2,25 @@
 # Ship captains -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 219608
-- Reading grade: 4.3
-- Average sentence: 8.5 words
-- Average paragraph: 11.8 words
-- Dialogue share: 22%
-- Voice: observational third-person
+- Words analyzed: 410526
+- Reading grade: 5.1
+- Average sentence: 12.3 words
+- Average paragraph: 34.6 words
+- Dialogue share: 25%
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: whale, though, captain, chapter, seemed, white, whales, round, three, sperm, himself, water, without, world, cried, thought, night, boats, whole, things, whaling, hands, small, pequod
-- Character names: Queequeg, Peleg, Jonah, Stubb, Starbuck, Ahab, Moby Dick, Ishmael, Yojo, Mrs. Hussey, Horn, Elijah, Tashtego, Bildad, Leviathan, Pip, Mr. Starbuck, Woe, Hark, Linnæus, Peter Coffin, Tarshish, Adam, Albino, Belshazzar, Cabaco, Dost, Emir, John Hunter, Lazarus
+- Tone: balanced, narrative-forward, rhythmically varied, dialogue-forward, direct, energetic, rhythmically even
+- Recurring vocabulary: seemed, though, thought, without, boats, hands, heard, himself, night, nothing, quite, things, three, water, answered, better, cabin, captain, chapter, cried, don’t, enough, family, father, feelings, friend, galley, ghost, going, happy, herself, house, however, hunters, larsen’s, moment, myself, pequod, place, present
+- Character names: Mr, Adam, Ahab, Albino, Anne, Anne Elliot, Belshazzar, Benwick, Bering Sea, Bildad, Cabaco, Captain Wentworth, Charles, Charles Hayter, Charles Musgrove, Charley Furuseth, Clay, Colonel Wallis, Cooky, Death Larsen, Dost, Elijah, Elizabeth, Elliot, Emir, Frederick, Frisco, Hark, Harrison, Harville, Henderson, Henrietta, Horn, Horner, Hump, Humphrey Van Weyden, Ishmael, Jock Horner, Johansen, John Hunter, Johnson, Jonah, Kelly, Kellynch Hall, Kerfoot, Lady Dalrymple, Lady Russell, Larsen, Latimer, Lazarus, Leviathan, Linnæus, Louis, Louisa Musgrove, Lucifer, Martinez, Mary, Maud, Maud Brewster, Miss Brewster, Miss Elliot, Moby Dick, Mr., Mr. Starbuck, Mrs, Mrs. Hussey, Musgrove, Nilson, Parsons, Peleg, Peter Coffin, Pip, Queequeg, Russell, Sir Walter, Smith, Starbuck, Stubb, Tarshish, Tashtego
 
 ## Books
 - [Moby Dick; Or, The Whale](../Books/8EED98A3-73C5-4C4D-B943-2EBCE6CDA5D5.md)
+- [Persuasion](../Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md)
+- [The Sea-Wolf](../Books/7A163332-7787-4A84-B3DA-49A5361AF86E.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER 62. The Dart. A word concerning an incident in the last chapter. According to the invariable usage of the fishery, the whale-boat pushes off from the ship, with the headsman or whale-killer as temporary steersman, and the harpooneer or whale-fastener pulling the foremost oar, the one known as the harpooneer-oar. Now it needs a strong, nervous arm to strike the first iron into the fish; for often, in what is called a long dart, the heavy implement has to be flung to the distance of twenty or thirty feet.
+
+### Persuasion: Section 15
+
+_Mid-book rhythm_
+
+> XIII The remainder of Anne’s time at Uppercross, comprehending only two days, was spent entirely at the Mansion House; and she had the satisfaction of knowing herself extremely useful there, both as an immediate companion, and as assisting in all those arrangements for the future, which, in Mr. and Mrs. Musgrove’s distressed state of spirits, would have been difficulties. They had an early account from Lyme the next morning. Louisa was much the same. No symptoms worse than before had appeared. Charles came a few hours afterwards, to bring a later and more particular account. He was tolerably cheerful. A speedy cure must not be hoped, but everything was going on as well as the nature of the case admitted. In speaking of the Harvilles, he seemed unable to satisfy his own sense of their kindness, especially of Mrs. Harville’s exertions as a nurse. “She really left nothing for Mary to do.
+
+### Persuasion: Section 23
+
+_Dialogue and character voice_
+
+> XXI Anne recollected with pleasure the next morning her promise of going to Mrs. Smith, meaning that it should engage her from home at the time when Mr. Elliot would be most likely to call; for to avoid Mr. Elliot was almost a first object. She felt a great deal of goodwill towards him. In spite of the mischief of his attentions, she owed him gratitude and regard, perhaps compassion. She could not help thinking much of the extraordinary circumstances attending their acquaintance, of the right which he seemed to have to interest her, by everything in situation, by his own sentiments, by his early prepossession. It was altogether very extraordinary; flattering, but painful. There was much to regret.
+
+### The Sea-Wolf: Section 22
+
+_Mid-book rhythm_
+
+> XX The remainder of the day passed uneventfully. The young slip of a gale, having wetted our gills, proceeded to moderate. The fourth engineer and the three oilers, after a warm interview with Wolf Larsen, were furnished with outfits from the slop chests, assigned places under the hunters in the various boats and watches on the vessel, and bundled forward into the forecastle. They went protestingly, but their voices were not loud. They were awed by what they had already seen of Wolf Larsen’s character, while the tale of woe they speedily heard in the forecastle took the last bit of rebellion out of them. Miss Brewster⁠—we had learned her name from the engineer⁠—slept on and on. At supper I requested the hunters to lower their voices, so she was not disturbed; and it was not till next morning that she made her appearance.
+
+### The Sea-Wolf: Section 8
+
+_Dialogue and character voice_
+
+> VI By the following morning the storm had blown itself quite out and the Ghost was rolling slightly on a calm sea without a breath of wind. Occasional light airs were felt, however, and Wolf Larsen patrolled the poop constantly, his eyes ever searching the sea to the northeastward, from which direction the great trade wind must blow. The men were all on deck and busy preparing their various boats for the season’s hunting. There are seven boats aboard, the captain’s dingey, and the six which the hunters will use. Three, a hunter, a boat puller, and a boat steerer, compose a boat’s crew. On board the schooner the boat pullers and steerers are the crew. The hunters, too, are supposed to be in command of the watches, subject, always, to the orders of Wolf Larsen. All this, and more, I have learned. The Ghost is considered the fastest schooner in both the San Francisco and Victoria fleets.

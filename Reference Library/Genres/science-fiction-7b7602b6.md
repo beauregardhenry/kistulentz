@@ -2,25 +2,60 @@
 # Science fiction
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 38
 
 ## Learned profile
 
-- Words analyzed: 31988
-- Reading grade: 3.3
-- Average sentence: 7.5 words
-- Average paragraph: 11.3 words
-- Dialogue share: 10%
-- Voice: intimate first-person
+- Words analyzed: 3526842
+- Reading grade: 4.9
+- Average sentence: 12.8 words
+- Average paragraph: 39.5 words
+- Dialogue share: 34%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: electronic, without, works, access, agree, agreement, copyright, donations, ebook, including, information, license, paragraph, refund, states, terms, trademark, united, alone, associated, brothers, cannot, copies, council, distributing, don't, earth, ebooks, forest, forth, golden, hands, happy, light, night, nothing, number, orderly, painter, people
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, Carpenter, Dr. Hitz, Duncan, Hitz, Jr., Julia, Leora Duncan, Miss Duncan, Mr. Wehling, Wehling
+- Tone: direct, rhythmically even, dialogue-forward, narrative-forward, rhythmically varied, balanced, energetic, inquisitive
+- Recurring vocabulary: thought, don’t, going, nothing, himself, world, people, three, didn’t, that’s, you’re, stood, things, voice, earth, light, though, seemed, water, without, course, enough, moment, toward, years, began, can’t, hundred, place, space, hands, night, anything, behind, across, black, shall, wasn’t, captain, cried
+- Character names: Mr, Dr, Mrs, Venus, Mary, Jimmy, Smith, Taylor, Terra, Tom, Bruno, Duncan, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Joe, Joseph, Martha, Mike, Project Gutenberg, Sam, Scott, Slim, Agent Breckenridge, Amberley, Ana, Ann, Arne Saknussemm, Arthur, Astronomer, Axel, Axel Island, Baal, Bellowes, Benson, Billy, Blumenbach, Bradley, Brandon, Breckenridge, Burnett, Carson, Chang, Chion, Click, Cuvier, Dale, Dan, Davidson, De, De Terry, Dixon, Douglas, Einstein, Elias Lynn, Eugene Taylor, Fahr, Gene, Gräuben, Gunther, Halloway, Hank, Hans, Harrison, Hathaway, Herr Liedenbrock, Holy Smokes, Hornswoggle, Hudson, Humphry Davy, Iorr, Ivan, Jake, James, Jane, Jeffreys, Jimmy Robbons, John, Jr., Jökull
 
 ## Books
 - [2 B R 0 2 B](../Books/17C4004A-FB11-4F38-8F34-4D53FA7BDF2E.md)
+- [After London](../Books/BD5A4C69-C84E-4433-809A-9F3E4A35294B.md)
 - [Anthem](../Books/8BAEF5C3-053B-4781-ABA9-181EB85B2CE2.md)
+- [Beyond Thirty](../Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md)
+- [Gladiator](../Books/1D521F7C-57D8-4EE0-ACB9-1F79D45DA3D9.md)
+- [Journey to the Center of the Earth](../Books/06A26BC1-47F2-4533-B65E-FFF2F12ECBC8.md)
+- [Journey to the Center of the Earth](../Books/25226025-591E-480D-9168-06B8E051706B.md)
+- [Pirates of Venus](../Books/4E627EE7-4C1A-431A-8F54-5FB07CDE8D37.md)
+- [Short Fiction](../Books/5F0262A2-5555-4440-90B1-A948DE124D20.md)
+- [Short Fiction](../Books/9C941238-2266-4BA5-B2CD-1F9F6C7822FF.md)
+- [Short Fiction](../Books/F68BDE11-8B41-42E6-8087-ACBA16E6BF01.md)
+- [Short Fiction](../Books/6CA6B449-9148-45CD-9A9A-F643E105DF2A.md)
+- [Short Fiction](../Books/B4104ACD-8751-46A3-8CE7-72777AC95FAB.md)
+- [Short Fiction](../Books/60E1B90C-58B2-43AC-A68D-3C931F0634E0.md)
+- [Short Fiction](../Books/7203B04C-2236-4B1B-991D-79C515DD4A33.md)
+- [Short Fiction](../Books/FCCF6D0F-A2ED-4329-93A0-211EBE0CE794.md)
+- [Short Fiction](../Books/6DD666FE-AB60-4B11-A54A-3A881683CD6D.md)
+- [Short Fiction](../Books/635FCFD4-B245-45A0-8140-6F94A21EE9DA.md)
+- [Short Fiction](../Books/9833F5E4-CED0-4289-BEEF-A12B0508787F.md)
+- [Short Fiction](../Books/8C31D700-9155-433B-BEB8-D5B944E02C37.md)
+- [Short Fiction](../Books/7C73B6CE-19AF-4D76-98C6-CE302CCEE6B9.md)
+- [Short Fiction](../Books/1DABB0DA-2B91-4BFC-B0E1-A7F8E43DCB2A.md)
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
+- [Short Fiction](../Books/11B6CA7B-461E-4E56-82F8-5B605156D578.md)
+- [Short Fiction](../Books/031B1822-5DAC-4919-A354-4BA4598607D4.md)
+- [Short Fiction](../Books/DC049A92-E654-4952-8AC5-CC496B75C82B.md)
+- [Short Fiction](../Books/D12F12D2-D07A-42DA-AEA3-C11B211C3C6A.md)
+- [Short Fiction](../Books/6B6F9841-9DE1-4277-A8B4-12F87FD1E910.md)
+- [Short Fiction](../Books/0CEAD891-DE35-445C-830D-27C242F36CDF.md)
+- [Short Science Fiction](../Books/92084061-D341-4079-B02B-B4AC66491131.md)
+- [Short Science Fiction](../Books/5913FEFF-D0A3-4955-A1BA-94BACF6EA0CD.md)
+- [Short Science Fiction](../Books/DBD8CA59-64A4-46FA-866C-73C274FACA2F.md)
+- [Stand by for Mars!](../Books/394094CC-BCC3-4249-B047-97E7C9FBD850.md)
+- [The Defiant Agents](../Books/C1C301DB-D863-48E0-9F48-5B87C2EDB480.md)
 - [The Eyes Have It](../Books/F2FCCE60-E492-439D-A76A-423067D50671.md)
+- [The Land That Time Forgot](../Books/659DAA74-5C49-4D6A-9A6C-D6F4991BEE1D.md)
+- [The Maracot Deep](../Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md)
+- [When the World Shook](../Books/DE2D3AE7-7CC7-452A-9201-897F6D8767C9.md)
 
 ## Representative excerpts
 
@@ -36,6 +71,18 @@ _Sentence variation_
 
 > *** END OF THE PROJECT GUTENBERG EBOOK 2 B R 0 2 B *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
 
+### After London: Section 20
+
+_Mid-book rhythm_
+
+> XI Aurora Felix fell on the seat beside her, burying his face in the folds of her dress; he sobbed, not with tears, but choking passion. She held him to her heart as if he had been a child, stroking his hair and kissing it, whispering to him, assuring him that her love was his, that she was unchanged. She told him that it was not her fault. A little while before the feast the Baron had suddenly broken out into a fit of temper, such as she had never seen him indulge in previously; the cause was pressure put upon him by his creditors. Unpleasant truths had escaped him; amongst the rest, his dislike, his positive disapproval of the tacit engagement they had entered into. He declared that if the least outward sign of it appeared before the guests that were expected, he would order Felix to leave the place, and cancel the hearth-friendship, no matter what the consequence.
+
+### After London: Section 13
+
+_Dialogue and character voice_
+
+> IV The Canoe Felix had scarcely worked half an hour before Oliver returned and threw himself on the ground at full length. He had wearied of fishing, the delicate adjustment of the tackle and the care necessary to keep the hook and line from catching in the branches had quickly proved too much for his patience. He lay on the grass, his feet towards the stream which ran and bubbled beneath, and watched Felix chipping out the block intended to fit into the secret opening or locker. “Is it nearly finished, then?” he said presently. “What a time you have been at it!” “Nearly three months.” “Why did you make it so big? It is too big.” “Is it really? Perhaps I want to put some things in it.” “Oh, I see; cargo. But where are you going to launch it?” “Below the stones there.” “Well, you won’t be able to go far; there’s an old fir across the river down yonder, and a hollow willow has fallen in.
+
 ### Anthem: Section 1
 
 _Opening voice_
@@ -48,14 +95,26 @@ _Mid-book rhythm_
 
 > PART SEVEN It is dark here in the forest. The leaves rustle over our head, black against the last gold of the sky. The moss is soft and warm. We shall sleep on this moss for many nights, till the beasts of the forest come to tear our body. We have no bed now, save the moss, and no future, save the beasts. We are old now, yet we were young this morning, when we carried our glass box through the streets of the City to the Home of the Scholars. No men stopped us, for there were none about from the Palace of Corrective Detention, and the others knew nothing. No men stopped us at the gate. We walked through empty passages and into the great hall where the World Council of Scholars sat in solemn meeting. We saw nothing as we entered, save the sky in the great windows, blue and glowing.
 
-### The Eyes Have It: Section 1
+### Beyond Thirty: Section 7
 
-_Opening voice_
+_Mid-book rhythm_
 
-> The Project Gutenberg eBook of The Eyes Have It This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Eyes Have It Author: Philip K. Dick Release date: March 6, 2010 [eBook #31516] Most recently updated: January 6, 2021 Language: English Other information and formats: www.gutenberg.org/ebooks/31516 Credits: Produced by Greg Weeks, Barbara Tozier and the Online Distributed Proofreading Team at https://www.pgdp.
+> V As we entered deeper into what had once been the city, the evidences of man’s past occupancy became more frequent. For a mile from the arch there was only a riot of weeds and undergrowth and trees covering small mounds and little hillocks that, I was sure, were formed of the ruins of stately buildings of the dead past. But presently we came upon a district where shattered walls still raised their crumbling tops in sad silence above the grass-grown sepulchers of their fallen fellows. Softened and mellowed by ancient ivy stood these sentinels of sorrow, their scarred faces still revealing the rents and gashes of shrapnel and of bomb. Contrary to our expectations, we found little indication that lions in any great numbers laired in this part of ancient London.
 
-### The Eyes Have It: Section 2
+### Beyond Thirty: Section 6
 
 _Dialogue and character voice_
 
-> *** END OF THE PROJECT GUTENBERG EBOOK THE EYES HAVE IT *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
+> IV It was during the morning of July 6, 2137, that we entered the mouth of the Thames⁠—to the best of my knowledge the first Western keel to cut those historic waters for two hundred and twenty-one years! But where were the tugs and the lighters and the barges, the lightships and the buoys, and all those countless attributes which went to make up the myriad life of the ancient Thames? Gone! All gone! Only silence and desolation reigned where once the commerce of the world had centered. I could not help but compare this once great waterway with the waters about our New York, or Rio, or San Diego, or Valparaiso. They had become what they are today during the two centuries of the profound peace which we of the navy have been prone to deplore. And what, during this same period, had shorn the waters of the Thames of their pristine grandeur?
+
+### Gladiator: Section 15
+
+_Mid-book rhythm_
+
+> XI In a day the last veil of mist that had shrouded his feelings and thoughts, making them numb and sterile, vanished; in a day Hugo found himself⁠—or believed that he had; in a day his life changed and flung itself on the course which, in a measure, destined its fixation. He never forgot that day. It began in the early morning when the anchor of the freighter thundered into the harbour water. The crew was not given shore leave until noon. Then the mysterious silence of the captain and the change in the ship’s course was explained. Through the third officer he sent a message to the seamen. War had been declared. The seaways were unsafe. The Katrina would remain indefinitely at Marseilles. The men could go ashore. They would report on the following day. The first announcement of the word sent Hugo’s blood racing. War! What war? With whom? Why? Was America in it, or interested in it?
+
+### Gladiator: Section 12
+
+_Dialogue and character voice_
+
+> VIII Greatness seemed to elude Hugo, success such as he had earned was inadequate, and his friendships as well as his popularity were tinged with a sort of question that he never understood. By the end of winter he was well established in Webster as a great athlete. Psi Delta sang his praises and was envied his deeds. Lefty and Chuck treated him as a brother. And, Hugo perceived, none of that treatment and none of that society was quite real. He wondered if his personality was so meagre that it was not equal to his strength. He wondered if his strength was really the asset he had dreamed it would be, and if, perhaps, other people were not different from him in every way, so that any close human contact was impossible to him. It was a rather tragic question to absorb a man so filled with life and ambition as he. Yet every month had raised it more insistently.

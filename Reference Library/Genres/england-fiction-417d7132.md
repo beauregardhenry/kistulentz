@@ -2,47 +2,99 @@
 # England -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 18
 
 ## Learned profile
 
-- Words analyzed: 171844
-- Reading grade: 4.2
-- Average sentence: 8.2 words
-- Average paragraph: 11.2 words
+- Words analyzed: 1774854
+- Reading grade: 5.6
+- Average sentence: 15.5 words
+- Average paragraph: 46.8 words
 - Dialogue share: 40%
-- Voice: mixed or shifting perspective
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: house, indeed, myself, nothing, quite, without, anything, cannot, chapter, child, course, didn’t, don’t, enough, gutenberg, happy, heart, herself, himself, however, least, moment, mother, night, person, place, question, replied, round, sense, shall, sister, small, straight, therefore, things, though, thought, window, works
-- Character names: Mrs, Bly, Brandon, Charlotte, Colonel Brandon, Dashwood, Douglas, Edward, Elinor, Fanny, Flora, Griffin, Grose, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Jennings, Jessel, Lady Middleton, Lucy, Luke, Mamma, Marianne, Miles, Miss Austen, Miss Dashwood, Miss Jessel, Miss Marianne, Miss Steele, Mr, Mr. Dashwood, Mr. Palmer, Mr. Willoughby, Mrs. Dashwood, Mrs. Ferrars, Mrs. Griffin, Mrs. Grose, Mrs. Jennings, Mrs. John Dashwood, Mrs. Palmer, Mrs. Smith, Peter Quint, Project Gutenberg, Quint, Sir John, Steeles, Willoughby
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, rhythmically even, narrative-forward, energetic, inquisitive
+- Recurring vocabulary: thought, himself, house, quite, don’t, nothing, seemed, though, round, without, moment, rather, shall, things, voice, enough, stood, young, heart, indeed, myself, night, perhaps, place, world, anything, black, cried, didn’t, going, heard, people, replied, better, cannot, course, friend, herself, looking, priest
+- Character names: Mr, Mrs, Dr, Mary, brown, Arthur, Father Brown, George, John, Edward, Fanny, Flambeau, James, Philip, Smith, Wilson, Alvarez, Anne, Beverley, Brandon, Charlotte, Clarence, Colonel Brandon, Dashwood, Elinor, Eliza, Helen, Henry, Jane, Jennings, Jove, Julia, Lady Middleton, Lucy, Marianne, Merton, Miss Dashwood, Miss Marianne, Miss Steele, Norris, Paul, Quinton, Sir John, Steeles, Tom, Wilfred, William, Willoughby, Abbott, Ablett, Addenbrooke, Adolf, Adèle, Agatha, Albany, Alboin, Amos, Amy, Angela, Angus, Angus Baird, Annabella, Annabella Wilmot, Annette, Antonelli, Antony, Arnold Aylmer, Atkinson, Audley, Audrey, Augustine, Aurora, Aylmer, Bagshaw, Baird, Bankes, Baron Ingulph, Baron Thyma, Baroness, Bennett Addenbrooke
 
 ## Books
+- [After London](../Books/BD5A4C69-C84E-4433-809A-9F3E4A35294B.md)
+- [Beyond Thirty](../Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md)
+- [Crome Yellow](../Books/85F34883-36B5-48B5-B256-D9F006F788D7.md)
+- [Jane Eyre](../Books/862ED974-72FF-475C-A1B4-A649ABA15EFB.md)
+- [Lady Chatterley’s Lover](../Books/35BF24CF-4D51-41AE-AD44-647324261333.md)
+- [Mansfield Park](../Books/AA2BDFD7-B608-4192-BC7F-67079F09D869.md)
+- [Mr. Mulliner Stories](../Books/BC6A63D9-09A6-49C3-9BDA-BC9804F51615.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [Short Fiction](../Books/4D646767-98CA-4F88-8B14-80BF98E549E9.md)
+- [The Amateur Cracksman](../Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md)
+- [The Incredulity of Father Brown](../Books/81518D11-E6DD-4B4B-9073-A205D12805BC.md)
+- [The Innocence of Father Brown](../Books/A08E9FD9-5919-468C-9E7C-04C3FD49A188.md)
+- [The Red House Mystery](../Books/BACBEA39-B830-40F1-B9E0-90A7365B446F.md)
+- [The Secret of Father Brown](../Books/ADC595DB-C4F6-49EB-B32B-C8F6460D0520.md)
+- [The Tenant of Wildfell Hall](../Books/A39B3C0D-7D3E-4854-A382-97C351FAA110.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
+- [The Wisdom of Father Brown](../Books/5B4349AB-C34E-40A0-96F1-2AF5E770C130.md)
 
 ## Representative excerpts
 
-### Sense and Sensibility: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Sense and Sensibility This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Sense and Sensibility Author: Jane Austen Commentator: Austin Dobson Illustrator: Hugh Thomson Release date: June 15, 2007 [eBook #21839] Most recently updated: July 27, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Sense and Sensibility: Section 4
+### After London: Section 20
 
 _Mid-book rhythm_
 
-> Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+> XI Aurora Felix fell on the seat beside her, burying his face in the folds of her dress; he sobbed, not with tears, but choking passion. She held him to her heart as if he had been a child, stroking his hair and kissing it, whispering to him, assuring him that her love was his, that she was unchanged. She told him that it was not her fault. A little while before the feast the Baron had suddenly broken out into a fit of temper, such as she had never seen him indulge in previously; the cause was pressure put upon him by his creditors. Unpleasant truths had escaped him; amongst the rest, his dislike, his positive disapproval of the tacit engagement they had entered into. He declared that if the least outward sign of it appeared before the guests that were expected, he would order Felix to leave the place, and cancel the hearth-friendship, no matter what the consequence.
 
-### The Turn of the Screw: Section 1
+### After London: Section 13
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Turn of the Screw This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Turn of the Screw Author: Henry James Release date: February 1, 1995 [eBook #209] Most recently updated: July 25, 2026 Language: English Other information and formats: www.gutenberg.
+> IV The Canoe Felix had scarcely worked half an hour before Oliver returned and threw himself on the ground at full length. He had wearied of fishing, the delicate adjustment of the tackle and the care necessary to keep the hook and line from catching in the branches had quickly proved too much for his patience. He lay on the grass, his feet towards the stream which ran and bubbled beneath, and watched Felix chipping out the block intended to fit into the secret opening or locker. “Is it nearly finished, then?” he said presently. “What a time you have been at it!” “Nearly three months.” “Why did you make it so big? It is too big.” “Is it really? Perhaps I want to put some things in it.” “Oh, I see; cargo. But where are you going to launch it?” “Below the stones there.” “Well, you won’t be able to go far; there’s an old fir across the river down yonder, and a hollow willow has fallen in.
 
-### The Turn of the Screw: Section 14
+### Beyond Thirty: Section 7
 
 _Mid-book rhythm_
 
-> XII The particular impression I had received proved in the morning light, I repeat, not quite successfully presentable to Mrs. Grose, though I reinforced it with the mention of still another remark that he had made before we separated. “It all lies in half a dozen words,” I said to her, “words that really settle the matter. ‘Think, you know, what I might do!’ He threw that off to show me how good he is. He knows down to the ground what he ‘might’ do. That’s what he gave them a taste of at school.” “Lord, you do change!” cried my friend. “I don’t change—I simply make it out. The four, depend upon it, perpetually meet. If on either of these last nights you had been with either child, you would clearly have understood. The more I’ve watched and waited the more I’ve felt that if there were nothing else to make it sure it would be made so by the systematic silence of each.
+> V As we entered deeper into what had once been the city, the evidences of man’s past occupancy became more frequent. For a mile from the arch there was only a riot of weeds and undergrowth and trees covering small mounds and little hillocks that, I was sure, were formed of the ruins of stately buildings of the dead past. But presently we came upon a district where shattered walls still raised their crumbling tops in sad silence above the grass-grown sepulchers of their fallen fellows. Softened and mellowed by ancient ivy stood these sentinels of sorrow, their scarred faces still revealing the rents and gashes of shrapnel and of bomb. Contrary to our expectations, we found little indication that lions in any great numbers laired in this part of ancient London.
+
+### Beyond Thirty: Section 6
+
+_Dialogue and character voice_
+
+> IV It was during the morning of July 6, 2137, that we entered the mouth of the Thames⁠—to the best of my knowledge the first Western keel to cut those historic waters for two hundred and twenty-one years! But where were the tugs and the lighters and the barges, the lightships and the buoys, and all those countless attributes which went to make up the myriad life of the ancient Thames? Gone! All gone! Only silence and desolation reigned where once the commerce of the world had centered. I could not help but compare this once great waterway with the waters about our New York, or Rio, or San Diego, or Valparaiso. They had become what they are today during the two centuries of the profound peace which we of the navy have been prone to deplore. And what, during this same period, had shorn the waters of the Thames of their pristine grandeur?
+
+### Crome Yellow: Section 18
+
+_Mid-book rhythm_
+
+> XVI The ladies had left the room and the port was circulating. Mr. Scogan filled his glass, passed on the decanter, and, leaning back in his chair, looked about him for a moment in silence. The conversation rippled idly round him, but he disregarded it; he was smiling at some private joke. Gombauld noticed his smile. “What’s amusing you?” he asked. “I was just looking at you all, sitting round this table,” said Mr. Scogan. “Are we as comic as all that?” “Not at all,” Mr. Scogan answered politely. “I was merely amused by my own speculations.” “And what were they?” “The idlest, the most academic of speculations. I was looking at you one by one and trying to imagine which of the first six Caesars you would each resemble, if you were given the opportunity of behaving like a Caesar. The Caesars are one of my touchstones,” Mr. Scogan explained.
+
+### Crome Yellow: Section 15
+
+_Dialogue and character voice_
+
+> XIII Henry Wimbush brought down with him to dinner a budget of printed sheets loosely bound together in a cardboard portfolio. “Today,” he said, exhibiting it with a certain solemnity, “today I have finished the printing of my History of Crome. I helped to set up the type of the last page this evening.” “The famous History?” cried Anne. The writing and the printing of this Magnum Opus had been going on as long as she could remember. All her childhood long Uncle Henry’s History had been a vague and fabulous thing, often heard of and never seen. “It has taken me nearly thirty years,” said Mr. Wimbush. “Twenty-five years of writing and nearly four of printing.
+
+### Jane Eyre: Section 24
+
+_Mid-book rhythm_
+
+> XIX The library looked tranquil enough as I entered it, and the Sibyl⁠—if Sibyl she were⁠—was seated snugly enough in an easy-chair at the chimney-corner. She had on a red cloak and a black bonnet: or rather, a broad-brimmed gipsy hat, tied down with a striped handkerchief under her chin. An extinguished candle stood on the table; she was bending over the fire, and seemed reading in a little black book, like a prayerbook, by the light of the blaze: she muttered the words to herself, as most old women do, while she read; she did not desist immediately on my entrance: it appeared she wished to finish a paragraph. I stood on the rug and warmed my hands, which were rather cold with sitting at a distance from the drawing-room fire. I felt now as composed as ever I did in my life: there was nothing indeed in the gipsy’s appearance to trouble one’s calm.
+
+### Jane Eyre: Section 32
+
+_Dialogue and character voice_
+
+> XXVII Some time in the afternoon I raised my head, and looking round and seeing the western sun gilding the sign of its decline on the wall, I asked, “What am I to do?” But the answer my mind gave⁠—“Leave Thornfield at once”⁠—was so prompt, so dread, that I stopped my ears. I said I could not bear such words now. “That I am not Edward Rochester’s bride is the least part of my woe,” I alleged: “that I have wakened out of most glorious dreams, and found them all void and vain, is a horror I could bear and master; but that I must leave him decidedly, instantly, entirely, is intolerable. I cannot do it.” But, then, a voice within me averred that I could do it and foretold that I should do it.
+
+### Lady Chatterley’s Lover: Section 12
+
+_Mid-book rhythm_
+
+> X Connie was a good deal alone now, fewer people came to Wragby. Clifford no longer wanted them. He had turned against even the cronies. He was queer. He preferred the radio, which he had installed at some expense, with a good deal of success at last. He could sometimes get Madrid or Frankfurt, even there in the uneasy Midlands. And he would sit alone for hours listening to the loudspeaker bellowing forth. It amazed and stunned Connie. But there he would sit, with a blank entranced expression on his face, like a person losing his mind, and listen, or seem to listen, to the unspeakable thing. Was he really listening? Or was it a sort of soporific he took, whilst something else worked on underneath in him? Connie did not know. She fled up to her room, or out of doors to the wood. A kind of terror filled her sometimes, a terror of the incipient insanity of the whole civilised species.
+
+### Lady Chatterley’s Lover: Section 16
+
+_Dialogue and character voice_
+
+> XIV When she got near the park gate, she heard the click of the latch. He was there, then, in the darkness of the wood, and had seen her! “You are good and early,” he said out of the dark. “Was everything all right?” “Perfectly easy.” He shut the gate quietly after her, and made a spot of light on the dark ground, showing the pallid flowers still standing there open in the night. They went on apart, in silence. “Are you sure you didn’t hurt yourself this morning with that chair?” she asked. “No, no!” “When you had that pneumonia, what did it do to you?” “Oh, nothing! it left my heart not so strong and the lungs not so elastic. But it always does that.” “And you ought not to make violent physical efforts?” “Not often.” She plodded on in an angry silence. “Did you hate Clifford?” she said at last. “Hate him, no! I’ve met too many like him to upset myself hating him.

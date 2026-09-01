@@ -2,25 +2,52 @@
 # Voyages and travels
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 200472
-- Reading grade: 4.5
-- Average sentence: 8.5 words
-- Average paragraph: 11.8 words
-- Dialogue share: 9%
+- Words analyzed: 521833
+- Reading grade: 6.3
+- Average sentence: 16.3 words
+- Average paragraph: 53.0 words
+- Dialogue share: 12%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: hundred, people, years, three, place, thousand, nothing, world, night, without, beautiful, things, ancient, church, enough, stone, chapter, water, whose, stood, shall, miles, grand, above
-- Character names: Dan, Peter, Saviour, Ferguson, Abelard, Mark, Blucher, Jack, Titian, Fulbert, George, Tahoe, Heloise, John, Napoleon, Luigi, Marseilles, Leonardo, Pisa, Civita Vecchia, Florence, St, Garibaldi, Joseph, Luke, Moor, Raphael, Rome, Rubens, Tintoretto
+- Tempo: steady
+- Tone: narrative-forward, rhythmically varied, direct, measured, dialogue-forward, rhythmically even
+- Recurring vocabulary: three, above, night, people, place, water, without, ancient, beautiful, church, enough, grand, hundred, miles, nothing, shall, stone, stood, things, thousand, whose, world, years, ain’t, anchor, beach, board, can’t, captain, chapter, couldn’t, course, didn’t, doctor, dollars, don’t, during, gettin, hands, island
+- Character names: George, John, Mr, Abelard, Blucher, Civita Vecchia, Dan, Ferguson, Florence, Fulbert, Garibaldi, Heloise, Jack, Joe, Leonardo, Luigi, Mark, Marseilles, Napoleon, Peter, Pisa, Saviour, St, Tahoe, Titian, Wilson, Ada, Alerte, Amaso Delano, Antonio, Archibald, Arthur Cotton, Aurea, Bess, Bessie, Bill, Billfinger, Bishop, Carmen, Christ, Christian Cruise, Cloete-Smith, Collins, Denis, Doctor, Don, Dr, Fernando Noronha, Flamingo, Frank Mildmay, Frau, Fred, Garrett, Genevieve, Halley, Harry, Hart Hill, Hatch, Jacko, Jake, Jim, John Wright, Joseph, Joss, Lima, Louis, Luke, Marion, Messenger, Michelangelo, Moor, Mr., Mrs, Noah, Oliver, Pollock, Potter, Powell, Pursell, Quinn
 
 ## Books
+- [Gullible’s Travels](../Books/46484840-1AF1-4166-9700-4A11A57B3DED.md)
+- [The Cruise of the Alerte](../Books/2A1E3CE2-3932-4FF7-9CB8-71349FDFAA79.md)
 - [The Innocents Abroad](../Books/D1854AF8-409B-4868-A06A-820257E8A613.md)
+- [The Innocents Abroad](../Books/5C0775CF-C8B8-437F-9AEE-E5525FB08BC8.md)
 
 ## Representative excerpts
+
+### Gullible’s Travels: Section 7
+
+_Mid-book rhythm_
+
+> Gullible’s Travels I I promised the Wife that if anybody ast me what kind of a time did I have at Palm Beach I’d say I had a swell time. And if they ast me who did we meet I’d tell ’em everybody that was worth meetin’. And if they ast me didn’t the trip cost a lot I’d say Yes; but it was worth the money. I promised her I wouldn’t spill none o’ the real details. But if you can’t break a promise you made to your own wife what kind of a promise can you break? Answer me that, Edgar. I’m not one o’ these kind o’ people that’d keep a joke to themself just because the joke was on them. But they’s plenty of our friends that I wouldn’t have ’em hear about it for the world. I wouldn’t tell you, only I know you’re not the village gossip and won’t crack it to anybody. Not even to your own Missus, see? I don’t trust no women.
+
+### Gullible’s Travels: Section 9
+
+_Dialogue and character voice_
+
+> Three Without, Doubled I They ain’t no immediate chance o’ you gettin’ ast out to our house to dinner⁠—not w’ile round steak and General Motors is sellin’ at the same price and common dog biscuit’s ten cents a loaf. But you might have nothin’ decent to do some evenin’ and happen to drop in on the Missus and I for a call; so I feel like I ought to give you a little warnin’ in case that comes off. You know they’s lots o’ words that’s called fightin’ words. Some o’ them starts a brawl, no matter who they’re spoke to. You can’t call nobody a liar without expectin’ to lose a couple o’ milk teeth⁠—that is, if the party addressed has got somethin’ besides lemon juice in his veins and ain’t had the misfortune to fall asleep on the Panhandle tracks and be separated from his most prominent legs and arms.
+
+### The Cruise of the Alerte: Section 14
+
+_Mid-book rhythm_
+
+> XII We Explore the Ravine As we stood on the Col, the steep wall of the Sugarloaf rising to the left of us, the view over Southwest Bay was exceedingly fine. The bay is of semicircular form, with a distance of about a mile and a half from point to point. Broad sands, with green downs behind them, border the central portion; but it is bounded by steep bare mountains on either side: on the east side by Noah’s Ark, the Sugarloaf and the peaks beyond; and on the west side by the rugged promontories and islands which divide it from South Bay. In contrast to the savage cliffs that shut them in, the sands and downs in the middle of the bay present a very pleasing and fertile appearance, especially when seen from the sea, conveying the idea that this is a far more agreeable spot to live on than proves to be the case after a closer examination.
+
+### The Cruise of the Alerte: Section 3
+
+_Dialogue and character voice_
+
+> I The History of the Treasure In the course of a long cruise in the South Atlantic and up the South American rivers, in the years 1880 and 1881, with my little yacht the Falcon, I found myself, more by accident than intention, in the neighbourhood of the small desert island of Trinidad. We were bound from Montevideo to Bahia, and, after running before a heavy pampero off the River Plate, we fell in with strong head winds, and had to thrash our way to windward for upwards of a thousand miles of choppy seas and boisterous weather, while the rain poured down upon us almost without cessation, as it not unfrequently does during the season of the northerly Brazilian monsoon. We steered a course away from the land to the eastward, hoping to meet with more favourable winds when we had obtained an offing of some four or five hundred miles.
 
 ### The Innocents Abroad: Section 1
 
@@ -33,3 +60,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > We left the Parthenon to keep its watch over old Athens, as it had kept it for twenty-three hundred years, and went and stood outside the walls of the citadel. In the distance was the ancient, but still almost perfect Temple of Theseus, and close by, looking to the west, was the Bema, from whence Demosthenes thundered his philippics and fired the wavering patriotism of his countrymen. To the right was Mars Hill, where the Areopagus sat in ancient times and where St. Paul defined his position, and below was the market-place where he “disputed daily” with the gossip-loving Athenians. We climbed the stone steps St. Paul ascended, and stood in the square-cut place he stood in, and tried to recollect the Bible account of the matter—but for certain reasons, I could not recall the words.
+
+### The Innocents Abroad: Section 36
+
+_Mid-book rhythm_
+
+> XXXI The buried city of Pompeii⁠—How dwellings appear that have been unoccupied for eighteen hundred years⁠—The judgment seat⁠—Desolation⁠—The footprints of the departed⁠—“No women admitted”⁠—Theatres, bakeshops, schools⁠—Skeletons preserved by the ashes and cinders⁠—The brave martyr to duty⁠—Rip van Winkle⁠—The perishable nature of fame. The Buried City of Pompeii They pronounce it Pom‑pay‑e. I always had an idea that you went down into Pompeii with torches, by the way of damp, dark stairways, just as you do in silver mines, and traversed gloomy tunnels with lava overhead and something on either hand like dilapidated prisons gouged out of the solid earth, that faintly resembled houses. But you do nothing the kind.
+
+### The Innocents Abroad: Section 31
+
+_Dialogue and character voice_
+
+> XXVI The modern Roman on his travels⁠—The grandeur of St. Peter’s⁠—Holy relics⁠—Grand view from the dome⁠—The holy Inquisition⁠—Interesting old monkish frauds⁠—The ruined Coliseum⁠—The Coliseum in the days of its prime⁠—Ancient playbill of a Coliseum performance⁠—A Roman newspaper criticism 1,700 years old. What is it that confers the noblest delight? What is that which swells a man’s breast with pride above that which any other experience can bring to him? Discovery! To know that you are walking where none others have walked; that you are beholding what human eye has not seen before; that you are breathing a virgin atmosphere. To give birth to an idea⁠—to discover a great thought⁠—an intellectual nugget, right under the dust of a field that many a brain-plow had gone over before. To find a new planet, to invent a new hinge, to find the way to make the lightnings carry your messages.

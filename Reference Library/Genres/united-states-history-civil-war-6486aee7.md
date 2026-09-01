@@ -2,25 +2,51 @@
 # United States -- History -- Civil War
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 49532
-- Reading grade: 3.7
-- Average sentence: 7.1 words
-- Average paragraph: 11.4 words
-- Dialogue share: 15%
+- Words analyzed: 173333
+- Reading grade: 5.8
+- Average sentence: 13.9 words
+- Average paragraph: 46.4 words
+- Dialogue share: 14%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: youth, seemed, himself, regiment, began, soldier, thought, friend, battle, smoke, don’t, fight, ground, toward, chapter, forward, voice, moment, ain’t, lieutenant, suddenly, youth’s, behind, going
-- Character names: Henry, Yeh, Jim, Wilson, Gutenberg, Tom Jamison, Jack, Jim Conklin, Project Gutenberg, Gutenberg Literary Archive Foundation, Bill, Bill Smithers, Carrott, Gawd, Gee, Gutenberg Literary, Jimmie Rogers, John, Nature, Simpson, Taylor, Tompkins
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, balanced, rhythmically varied
+- Recurring vocabulary: forward, ground, himself, moment, seemed, thought, toward, ain’t, battle, began, behind, don’t, fight, friend, going, lieutenant, regiment, smoke, soldier, suddenly, voice, youth, youth’s, across, chapter, death, enemy, forest, general, hands, heard, house, light, night, nothing, officer, place, rifle, sound, stood
+- Character names: Bill, Bill Smithers, Carrott, Gawd, Gee, Henry, Jack, Jim, Jim Conklin, Jimmie Rogers, John, Nature, Simpson, Tom Jamison, Wilson, Yeh, Brading, Brayton, Brentshaw, Brune, Cameron, Captain Graffenreid, Captain Ransome, Carter Druse, Colston, Coulter, Doman, Dr, Farquhar, Gilson, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hardshaw, Harper, Helberson, Irene, Jerome Searing, Madwell, Mammon Hill, Mancher, Mr, Mrs, Murlock, Pauline, Porfer, Project Gutenberg, Ransome, Scarry, Taylor, Thurston, Tompkins
 
 ## Books
+- [In the Midst of Life](../Books/8A4E71F0-81BD-4F82-9B5C-02442AB01C3A.md)
+- [The Red Badge of Courage](../Books/740D98B2-02F8-47BD-92B2-CC698A6F595F.md)
 - [The Red Badge of Courage: An Episode of the American Civil War](../Books/88A43F81-52E0-4551-8D47-CCB76841C2E3.md)
 
 ## Representative excerpts
+
+### In the Midst of Life: Section 18
+
+_Mid-book rhythm_
+
+> One Officer, One Man Captain Graffenreid stood at the head of his company. The regiment was not engaged. It formed a part of the front line-of-battle, which stretched away to the right with a visible length of nearly two miles through the open ground. The left flank was veiled by woods; to the right also the line was lost to sight, but it extended many miles. A hundred yards in rear was a second line; behind this, the reserve brigades and divisions in column. Batteries of artillery occupied the spaces between and crowned the low hills. Groups of horsemen⁠—generals with their staffs and escorts, and field officers of regiments behind the colors⁠—broke the regularity of the lines and columns. Numbers of these figures of interest had field-glasses at their eyes and sat motionless, stolidly scanning the country in front; others came and went at a slow canter, bearing orders.
+
+### In the Midst of Life: Section 29
+
+_Dialogue and character voice_
+
+> The Suitable Surroundings The Night One midsummer night a farmer’s boy living about ten miles from the city of Cincinnati was following a bridle path through a dense and dark forest. He had lost himself while searching for some missing cows, and near midnight was a long way from home, in a part of the country with which he was unfamiliar. But he was a stouthearted lad, and knowing his general direction from his home, he plunged into the forest without hesitation, guided by the stars. Coming into the bridle path, and observing that it ran in the right direction, he followed it. The night was clear, but in the woods it was exceedingly dark. It was more by the sense of touch than by that of sight that the lad kept the path. He could not, indeed, very easily go astray; the undergrowth on both sides was so thick as to be almost impenetrable.
+
+### The Red Badge of Courage: Section 15
+
+_Mid-book rhythm_
+
+> XIII The youth went slowly toward the fire indicated by his departed friend. As he reeled, he bethought him of the welcome his comrades would give him. He had a conviction that he would soon feel in his sore heart the barbed missiles of ridicule. He had no strength to invent a tale; he would be a soft target. He made vague plans to go off into the deeper darkness and hide, but they were all destroyed by the voices of exhaustion and pain from his body. His ailments, clamoring, forced him to seek the place of food and rest, at whatever cost. He swung unsteadily toward the fire. He could see the forms of men throwing black shadows in the red light, and as he went nearer it became known to him in some way that the ground was strewn with sleeping men. Of a sudden he confronted a black and monstrous figure. A rifle barrel caught some glinting beams. “Halt! halt!”
+
+### The Red Badge of Courage: Section 3
+
+_Dialogue and character voice_
+
+> I The cold passed reluctantly from the earth, and the retiring fogs revealed an army stretched out on the hills, resting. As the landscape changed from brown to green, the army awakened, and began to tremble with eagerness at the noise of rumors. It cast its eyes upon the roads, which were growing from long troughs of liquid mud to proper thoroughfares. A river, amber-tinted in the shadow of its banks, purled at the army’s feet; and at night, when the stream had become of a sorrowful blackness, one could see across it the red, eyelike gleam of hostile campfires set in the low brows of distant hills. Once a certain tall soldier developed virtues and went resolutely to wash a shirt. He came flying back from a brook waving his garment bannerlike.
 
 ### The Red Badge of Courage: An Episode of the American Civil War: Section 1
 

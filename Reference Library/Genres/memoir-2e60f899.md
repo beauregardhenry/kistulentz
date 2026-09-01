@@ -2,68 +2,402 @@
 # Memoir
 
 - Profile type: Genre
-- Books represented: 44
+- Books represented: 366
 
 ## Learned profile
 
-- Words analyzed: 3959305
-- Reading grade: 3.8
-- Average sentence: 7.8 words
-- Average paragraph: 11.0 words
-- Dialogue share: 30%
-- Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward, energetic, rhythmically varied
-- Recurring vocabulary: without, thought, himself, nothing, works, house, night, people, project, things, shall, states, though, world, don’t, electronic, gutenberg, heard, place, terms, agreement, copyright, going, myself, seemed, years, young, hands, license, light, moment, united, donations, however, three, trademark, voice, woman, cannot, country
-- Character names: Gutenberg, Project Gutenberg, Gutenberg Literary Archive Foundation, Gutenberg Literary, Mr, John, William, Bill, Henry, Nature, Socrates, Christ, Emily Dickinson, George, James, Jesus, Napoleon, Tom, Adam, Adams, Brown, Christian, Dawn, Dr, Frank, Frederick Douglass, Goethe, Helen, Jove, Julia, Mary, Michael, Mrs, Peter, Pray, Robert, Sandy, Thomas, VI, Aegisthus, Agamemnon, Alcinous, Alice, Andrew, Arete, Atreus, Beethoven, Belshazzar, Ben, Benjamin, Benjamin Franklin, Bennett, Billy, Birds, Butler, Calypso, Chaucer, Circe, Collins, Covey, Diana, Dinah, Dmitri, Douglas, Duncan, Edna, Elizabeth, Emerson, Englishman, Ethan Frome, Frederick, Hades, Hegel, Holmes, Hugh, Jew, Joe, Jones, Katerina Ivanovna, Laertes
+- Words analyzed: 34491341
+- Reading grade: 5.7
+- Average sentence: 16.0 words
+- Average paragraph: 48.8 words
+- Dialogue share: 29%
+- Voice: observational third-person
+- Tempo: steady
+- Tone: rhythmically varied, narrative-forward, dialogue-forward, balanced, direct, rhythmically even, measured, energetic
+- Recurring vocabulary: thought, himself, nothing, without, don’t, night, house, though, shall, people, going, seemed, three, young, place, things, moment, heard, woman, began, stood, voice, quite, round, world, hands, that’s, myself, light, course, heart, father, years, water, white, cried, didn’t, mother, toward, enough
+- Character names: Mr, Mrs, Dr, John, George, Jack, Mary, Bill, James, Gutenberg, Christ, Henry, Smith, Adam, Tom, Joe, William, Jane, Madame, Peter, Jones, Project Gutenberg, brown, Gutenberg Literary Archive Foundation, Arthur, Dick, Hath, Jesus, Jim, Paul, Shakespeare, Charles, Frank, Gutenberg Literary, Jove, Michael, Harry, Jew, Louis, Caesar, Thomas, Alice, Helen, Jimmy, Nature, Philip, Pray, Robert, Sandy, Socrates, Venus, Wilson, Billy, Bob, Tommy, Troy, Aristotle, David, Edward, Elizabeth, Farewell, Hugh, Johnson, Joseph, Lo, Madam, Monsieur, Napoleon, Plato, Anne, Christian, Diana, Ivan, Jerry, Latin, Martin, Numa, Rachel, Tarzan, Woe
 
 ## Books
+- [“We”](../Books/0BE6B84F-4AB5-4A92-904D-A7881053F0CD.md)
 - [2 B R 0 2 B](../Books/17C4004A-FB11-4F38-8F34-4D53FA7BDF2E.md)
+- [A Farewell to Arms](../Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md)
+- [A High Wind in Jamaica](../Books/8A68D93A-32DA-4268-AC97-1CEBAE4FBDD3.md)
+- [A Midsummer Night’s Dream](../Books/0CA653B0-CCE3-4B4B-8704-7BFDD7D23D57.md)
+- [A Thief in the Night](../Books/40E8B12C-4C43-4CDD-A5F2-4887A84D1F13.md)
+- [A Treatise of Human Nature](../Books/6414B1C0-8AB5-4F83-9D59-B1975850D2C4.md)
+- [A Woman of No Importance](../Books/934EED71-EFE9-4449-91C6-808DAAAC905A.md)
+- [After London](../Books/BD5A4C69-C84E-4433-809A-9F3E4A35294B.md)
+- [Agamemnon](../Books/5516FE98-FDA4-4F7F-A1D8-24A1269D6F55.md)
+- [Agamemnon](../Books/786FFEFA-0B5D-4CB8-BEA4-8A07078A8380.md)
 - [Alice's Adventures in Wonderland](../Books/A76E7C30-7CE8-4B66-A0D7-F527434B674B.md)
+- [All’s Well That Ends Well](../Books/02D165CA-C030-4EE1-9BD6-6A90F394FE01.md)
+- [Allan Quatermain](../Books/52F31C59-EFF6-43F7-9446-877CB0E96C03.md)
+- [Allan Quatermain Stories](../Books/516C697F-7657-492A-B266-1035C2073CCF.md)
+- [American Indian Stories](../Books/DC4FA6FB-7FE2-4B18-94CB-E1EF24AC1434.md)
+- [An Antarctic Mystery](../Books/B07C646D-EC55-4927-A8E3-C7FDC454592B.md)
+- [An Ideal Husband](../Books/E1B01324-866D-46FE-93D5-C423EB2ECC59.md)
+- [Analects](../Books/BA82DEBF-08BE-4577-8603-91614AAD87D4.md)
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
+- [Anne of Green Gables](../Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md)
 - [Anthem](../Books/8BAEF5C3-053B-4781-ABA9-181EB85B2CE2.md)
+- [Antigone](../Books/4413B0AE-6F3E-498D-8AFC-5620399F018D.md)
+- [As I Lay Dying](../Books/1D1C7061-A494-4FFF-BACE-FEE48EAC9A6A.md)
+- [As You Like It](../Books/9C2D7C70-806D-410C-95DB-86422B7E3C9D.md)
+- [Ashenden](../Books/9AE25B84-43D4-431D-8E1F-E78C6D116855.md)
+- [Aspects of the Novel](../Books/9E1D9033-E123-4A26-B19A-A73DA8B1F228.md)
 - [Autobiography of Benjamin Franklin](../Books/36D10C57-716F-4BC6-BAFC-645FF08DF515.md)
+- [Babbitt](../Books/3289091D-28CA-4DCC-BA1B-93C199BC5801.md)
 - [Bartleby, the Scrivener: A Story of Wall-Street](../Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md)
+- [Behind That Curtain](../Books/312921AA-113B-40E5-93BE-05F65245C556.md)
+- [Bel Ami](../Books/591376BF-D9FE-4411-8ED3-9C4D34C89970.md)
+- [Bellarion the Fortunate](../Books/C9CBA5F4-66FE-4E91-8DCD-7B074E230A0C.md)
+- [Beowulf](../Books/5040E95D-0E1D-474D-B658-93F7255A288C.md)
 - [Beyond Good and Evil](../Books/7325DA2E-E663-49DC-93E0-87E829E8B764.md)
+- [Beyond Thirty](../Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md)
+- [Black Beauty](../Books/4057CCD9-601D-4610-866D-1F15C4A8A3D7.md)
+- [Blind Corner](../Books/5D28CCD7-8B5A-446A-91B4-30A4633BCB6F.md)
+- [Blue Hand](../Books/B91C524F-2BCF-4F70-903D-36EBEA262372.md)
+- [Call Mr. Fortune](../Books/1F68F31A-AA32-4414-B116-4B3C93BDD75E.md)
+- [Can Such Things Be?](../Books/17C1079C-2E49-4BDD-83D9-D485E4FD248F.md)
+- [Catriona](../Books/497657E2-3F7B-474C-8D6D-E2C0D5F5FB1F.md)
+- [Children’s Stories](../Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md)
+- [Cleopatra](../Books/36058611-761B-4D3F-BC43-3DF67C3DDF2B.md)
+- [Cogewea, the Half-Blood](../Books/E6AD992C-BB58-4807-9722-E5E9D41A3405.md)
+- [Commentaries on the Gallic War](../Books/555D9213-CE97-4864-919A-E71A4F1451B7.md)
+- [Continental Op Stories](../Books/92EDF66B-F0B7-4584-B229-4A5F525977B8.md)
 - [Crime and Punishment](../Books/CB9F10BE-C785-454C-8EB5-4ED84B162D31.md)
+- [Crome Yellow](../Books/85F34883-36B5-48B5-B256-D9F006F788D7.md)
+- [Darby O’Gill and the Good People](../Books/1BB84BED-6408-482C-918B-39064E37F1A2.md)
+- [Democracy and Social Ethics](../Books/427AB8EE-6344-464B-8C72-28F01F147F59.md)
+- [Demons](../Books/75AAB312-A2DA-401C-8D4D-21E36D1B8522.md)
+- [Doctor Syn](../Books/56771839-E8CE-4E46-9EAB-8DD2A8086B80.md)
+- [Dubliners](../Books/B97DA2E7-F7DA-48AC-9BCE-7617370C6BA7.md)
 - [East of Eden](../Books/A1BFD5AA-C21A-451C-B0F2-C43A708C21FC.md)
+- [Essays](../Books/26D4DDC4-FE52-4D8D-B009-5CF361319D82.md)
 - [Essays by Ralph Waldo Emerson](../Books/205BB4C2-B465-4D91-8C09-FB6FA0201803.md)
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
+- [Fables](../Books/6DFCE33A-6CBF-4062-82B7-AC0DF3B3492A.md)
+- [Far from the Madding Crowd](../Books/70470CBB-9CB0-4037-ACAB-6047AFA2479E.md)
+- [Fifty-One Tales](../Books/65E981EA-7BF0-4885-82BF-CBA2AE64C9D5.md)
+- [Fred Gross Stories](../Books/C45A20AE-2B01-4E69-9898-77E89D961478.md)
+- [Germinal](../Books/919A4D92-DCB6-413E-9B55-76DB5FD6FC59.md)
+- [Ghost Stories](../Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md)
+- [Giant’s Bread](../Books/8C41294A-84FE-4FD9-A677-E7FE1369BE86.md)
+- [Gladiator](../Books/1D521F7C-57D8-4EE0-ACB9-1F79D45DA3D9.md)
+- [Golf Stories](../Books/1DB751CA-1BE6-4D0F-BBB2-E5198C1980CB.md)
+- [Greenmantle](../Books/2315EB37-7FDA-4785-9E34-C215E58D4467.md)
+- [Hamilton](../Books/8EFD0FAD-8804-46EF-A73C-890427971114.md)
+- [Heretics](../Books/1EDE6E0A-E34C-4511-86B4-D60F585491E9.md)
+- [Hindu Tales from the Sanskrit](../Books/FF102E21-2202-4BB3-A88E-D2FF047FDBF0.md)
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
+- [Hunting for Hidden Gold](../Books/070A3190-5FFD-4A8A-A1D7-215054BD90E3.md)
+- [Huntingtower](../Books/534B5714-6330-416F-89DC-A2EBED4C2C3F.md)
+- [I Will Repay](../Books/EE1420DD-42C1-45EF-A6C3-3DD1708274F8.md)
+- [In the Midst of Life](../Books/8A4E71F0-81BD-4F82-9B5C-02442AB01C3A.md)
 - [Index of the Project Gutenberg Works of Henry David Thoreau](../Books/20DFDF06-FD09-4E00-AED6-882B4FC889A6.md)
+- [Indian Fairy Tales](../Books/7CCB8889-7605-46F5-866A-0BE4AB4935EF.md)
+- [Irish Fairy Tales](../Books/652FCA03-A423-471E-AE0A-1907FAB0E4C8.md)
+- [Jacob’s Room](../Books/B7388E23-4426-4D38-BAC1-486C823DA7D9.md)
+- [Jesus the Son of Man](../Books/65B41869-3660-4028-AA6C-D30BE23F7694.md)
+- [Jibby Jones](../Books/216055F7-E991-473A-A788-F9CE95334AA0.md)
+- [Journals](../Books/D80EDB16-78C8-4445-A84E-8464F738662D.md)
+- [Journey to the Center of the Earth](../Books/06A26BC1-47F2-4533-B65E-FFF2F12ECBC8.md)
+- [Journey to the Center of the Earth](../Books/25226025-591E-480D-9168-06B8E051706B.md)
+- [Jungle Tales of Tarzan](../Books/1C26F9AB-4F29-4B08-A815-8C05B13C561C.md)
+- [Just So Stories](../Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md)
+- [Kidnapped](../Books/97B01DE7-A22E-4074-A4CE-A1FA18B39AF3.md)
 - [King Midas: a Romance](../Books/0E11AF7D-2AE2-437A-97A7-F1B8ED125F77.md)
+- [Lais](../Books/BF0EA437-3E0B-453B-8D93-6DE7AC65225B.md)
 - [Leaves of Grass](../Books/98EA5DAF-B1EC-4BD4-8479-015AD60F6A6F.md)
+- [Legends of Vancouver](../Books/08E0AA71-C9CA-4B45-844D-595352D7230A.md)
+- [Les Misérables](../Books/54C22B5C-C854-4041-B905-90ED4A05AB72.md)
+- [Leviathan](../Books/A8BEBEDD-6A78-4D58-9930-60BE6E21BB5C.md)
 - [Life on the Mississippi](../Books/37B7B288-947A-4452-B397-94B8707D337F.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/7C4FA643-F964-439C-BD3F-21FC9AACEB4B.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/AE827DF5-44D7-48A5-8888-926CFC6C8CDA.md)
+- [Lorna Doone](../Books/0A45C08C-A329-415C-B8AC-16498DE5DB60.md)
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
+- [Macbeth](../Books/EE078B7D-9121-4D2F-9175-8805BED782F9.md)
+- [Maiwa’s Revenge](../Books/F0DE9445-E508-4483-9477-FFDCD6501B28.md)
+- [Manalive](../Books/B9C3B0E0-ECE8-4AFB-BD16-B5C8FAE3CC6E.md)
 - [Meditations](../Books/8042EE51-3745-41F4-A6F7-12F47276331D.md)
 - [Memoirs of Benjamin Franklin; Written by Himself. \[Vol. 2 of 2\] / With his Most Interesting Essays, Letters, and Miscellaneous Writings; Familiar, Moral, Political, Economical, and Philosophical, Selected with Care from All His Published Productions, and Comprising Whatever Is Most Entertaining and Valuable to the General Reader](../Books/25B3973C-8C33-4DEC-B696-FE50B72043D7.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
+- [Mr. Mulliner Stories](../Books/BC6A63D9-09A6-49C3-9BDA-BC9804F51615.md)
+- [Much Ado About Nothing](../Books/D9AB4888-263D-4E8B-BA32-A8AFBF83448C.md)
 - [My Bondage and My Freedom](../Books/6E44812A-E1CA-4FEA-90B9-CC2F23978084.md)
+- [My First Summer in the Sierra](../Books/85EAC71C-97AE-4464-8025-074E99BADD64.md)
+- [Narrative of the Life of Frederick Douglass](../Books/F0759194-183E-493D-825F-6D8DD5323EB3.md)
 - [Narrative of the Life of Frederick Douglass, an American Slave](../Books/02C39B47-8A9F-4267-8DFD-A5940B0CADE3.md)
 - [Nature](../Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md)
+- [New Hampshire](../Books/12A69B9C-979B-49BE-997C-532A2B67C6A1.md)
+- [Nicomachean Ethics](../Books/DD151E0F-1FCD-44DA-9C20-D4E694AA0463.md)
+- [Nonsense Books](../Books/3C115034-37FA-4374-9E7E-E2BAC88914E9.md)
+- [Not Without Laughter](../Books/C84F695A-72A9-4D40-8924-E54201BCA2DA.md)
+- [Notes from Underground](../Books/F2F70316-110C-4FEC-918E-E293E7F281F4.md)
+- [Oedipus at Colonus](../Books/D33A4258-271F-4862-A46C-FD5989BE1C8D.md)
+- [Oedipus Rex](../Books/D62F4D4A-34E0-4956-AE10-CD2D282DE59C.md)
+- [Old Indian Legends](../Books/62A08849-045C-4B5B-A20D-FF189BA1D1A8.md)
+- [Oliver Twist](../Books/2F1D0CB3-82FD-4509-BDAA-0E67FC9CA799.md)
+- [On a Chinese Screen](../Books/7AF4E65C-A95D-4306-B332-1411C72A9FE4.md)
+- [On a Pincushion](../Books/24FF9241-00C1-4936-9186-A839610E3FA6.md)
+- [Orthodoxy](../Books/1307C541-02BD-4DFD-811B-797AA466580E.md)
 - [Our National Parks](../Books/8700D61F-D818-4A85-84C0-85189596F2B9.md)
+- [Paradise Lost](../Books/48EAD193-5720-4A5C-8692-9EB5695F829E.md)
+- [Passages from the Life of a Philosopher](../Books/19A57E6A-C76F-46ED-B8F9-0C717D5DA7FF.md)
+- [Payment Deferred](../Books/E7B36F81-335D-44A0-BF15-3E56685595F7.md)
+- [Perishable Goods](../Books/1E3E3E45-91ED-4697-94FA-577CA9BB6163.md)
+- [Philoctetes](../Books/5A3445E0-A649-40F3-BF0B-F857390E456B.md)
+- [Philosophical Works](../Books/91513010-B2B7-4CFF-AF18-C5AE534BD8D9.md)
+- [Pimpernel and Rosemary](../Books/A5EC2717-0CF0-4423-8B16-D146EA2170F0.md)
 - [Poems by Emily Dickinson, Series One](../Books/7F67F5CB-CC22-49CD-8D73-976D67304E41.md)
 - [Poems by Emily Dickinson, Three Series, Complete](../Books/98CB80E4-ECCA-4B7A-8EAF-EDBEDB19C3DE.md)
+- [Poems on Various Subjects, Religious and Moral](../Books/DF8E61E8-AA3F-4A43-BA54-B1CDE378ABEB.md)
+- [Poetry](../Books/E1885C28-A2DB-457F-B5E6-C46D5EE63B3F.md)
+- [Poetry](../Books/03FA39A1-39CC-4E96-9BC2-197E4CB20EB4.md)
+- [Point Counter Point](../Books/C180BB96-F04C-4EB6-8B3B-A9CBFA65F5D4.md)
 - [Prejudices, first series](../Books/C2D5E195-9B03-4837-B986-12AB45B4F7D2.md)
+- [Pygmalion](../Books/31979540-7989-4E44-B2BF-6EDD57152DB9.md)
+- [Riders of the Purple Sage](../Books/484815A8-A6EC-4625-BA9A-C6DED1563712.md)
 - [Rip Van Winkle](../Books/D9F4D198-46E8-445F-9B18-A824D5E23F73.md)
+- [Room 13](../Books/4B79C267-89C1-45C7-B018-BDC6A1E2E427.md)
+- [Running a Thousand Miles for Freedom](../Books/F6F36C83-0D26-4531-92FA-25A4003D1E41.md)
+- [Russian Folktales](../Books/C4E5B1DE-A652-497A-84E4-7E4ACE2DCC3B.md)
+- [Sailing Alone Around the World](../Books/BF702BC7-1E06-4927-9B35-BAF483DB1899.md)
+- [Savrola](../Books/6279F876-441F-4758-875C-86CD2E15D799.md)
+- [School Stories](../Books/C39CC81F-4348-45FF-88AA-5C1FF008B85B.md)
+- [Seven Pillars of Wisdom](../Books/3FA07147-7B14-45EC-A0EC-3CAF8F819A83.md)
+- [Short Fiction](../Books/6192826A-C799-446A-BF8F-B781ADD383CD.md)
+- [Short Fiction](../Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md)
+- [Short Fiction](../Books/2D133761-8ECC-4E70-B721-15D45CAD7811.md)
+- [Short Fiction](../Books/28F446D6-13DA-407E-871B-FFF512A4EA44.md)
+- [Short Fiction](../Books/F734DB8F-18A1-44C3-8C82-F53CD4EB4B71.md)
+- [Short Fiction](../Books/242273B5-963A-4416-9C81-42C1BA677D82.md)
+- [Short Fiction](../Books/EA0F67C9-8FD9-47E9-BBC0-29DFFEBCD9C2.md)
+- [Short Fiction](../Books/9C941238-2266-4BA5-B2CD-1F9F6C7822FF.md)
+- [Short Fiction](../Books/F68BDE11-8B41-42E6-8087-ACBA16E6BF01.md)
+- [Short Fiction](../Books/1481AE97-4571-4128-9931-E03D5B25B229.md)
+- [Short Fiction](../Books/0C18904C-C6AC-4201-A909-5BC924977DDA.md)
+- [Short Fiction](../Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md)
+- [Short Fiction](../Books/0D1773E5-F6C8-423B-9422-79DB12462E5D.md)
+- [Short Fiction](../Books/6CA6B449-9148-45CD-9A9A-F643E105DF2A.md)
+- [Short Fiction](../Books/B838C3B4-422E-4207-B8EE-0CF7E28BEA8A.md)
+- [Short Fiction](../Books/B4104ACD-8751-46A3-8CE7-72777AC95FAB.md)
+- [Short Fiction](../Books/60E1B90C-58B2-43AC-A68D-3C931F0634E0.md)
+- [Short Fiction](../Books/BFEBCB8F-FA6C-43BE-B4BD-CD5E03AFEC60.md)
+- [Short Fiction](../Books/5FFD0BE2-62DB-4A7C-9A29-EF38FF3C825C.md)
+- [Short Fiction](../Books/371F14D9-4B15-4462-A311-570176E2BE12.md)
+- [Short Fiction](../Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md)
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
+- [Short Fiction](../Books/87CADE27-8A89-42DB-9235-A97C42C936A6.md)
+- [Short Fiction](../Books/FCCF6D0F-A2ED-4329-93A0-211EBE0CE794.md)
+- [Short Fiction](../Books/7D302623-52DF-4015-909D-3ECCB8400C0C.md)
+- [Short Fiction](../Books/67102796-3492-471F-97E8-2D3FC940FBB8.md)
+- [Short Fiction](../Books/579B7B74-3280-4558-85F2-9E9F25489474.md)
+- [Short Fiction](../Books/635FCFD4-B245-45A0-8140-6F94A21EE9DA.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
+- [Short Fiction](../Books/9833F5E4-CED0-4289-BEEF-A12B0508787F.md)
+- [Short Fiction](../Books/8C31D700-9155-433B-BEB8-D5B944E02C37.md)
+- [Short Fiction](../Books/132F152E-693D-442C-BABD-C9CDD7EBA5D6.md)
+- [Short Fiction](../Books/85B909D7-0442-4A79-841D-D027CFA2E788.md)
+- [Short Fiction](../Books/2C37E58B-6135-439E-842F-91F93E641864.md)
+- [Short Fiction](../Books/40FB11AD-07A9-45B8-A6FA-109EE49C74DE.md)
+- [Short Fiction](../Books/DDE9DED2-203E-4C70-98C1-F935E6492A20.md)
+- [Short Fiction](../Books/4693CBD1-2407-4D4D-AA4A-0373B61DC211.md)
+- [Short Fiction](../Books/C57F6B77-842B-4D9D-AE7F-DC54D6FBD5D3.md)
+- [Short Fiction](../Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md)
+- [Short Fiction](../Books/B7CF001F-8FAC-477E-A13F-BA7439FFC107.md)
+- [Short Fiction](../Books/C58E1328-510D-4666-8180-CE1EE65B537B.md)
+- [Short Fiction](../Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md)
+- [Short Fiction](../Books/4D646767-98CA-4F88-8B14-80BF98E549E9.md)
+- [Short Fiction](../Books/A5847CBD-6206-4483-9BD7-CCAF81C665E2.md)
+- [Short Fiction](../Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md)
+- [Short Fiction](../Books/F292C5DB-3C52-4272-9D25-206C7B85A300.md)
+- [Short Fiction](../Books/6B6F9841-9DE1-4277-A8B4-12F87FD1E910.md)
+- [Short Fiction](../Books/5AC0F7D8-80B7-4A1E-A370-27E2F60BD992.md)
+- [Short Fiction](../Books/B56E9362-1833-4321-A00E-4743AED30529.md)
+- [Short Fiction](../Books/1B9A32A2-78E6-4A1A-B0AD-18D4797F34E0.md)
+- [Short Fiction](../Books/CFD1BE27-28FA-45BD-BC4D-A5D17E95958F.md)
+- [Short Fiction](../Books/0CEAD891-DE35-445C-830D-27C242F36CDF.md)
+- [Short Fiction](../Books/F53A3CD5-28E4-41C6-826D-3299F7FF213C.md)
+- [Short Science Fiction](../Books/92084061-D341-4079-B02B-B4AC66491131.md)
+- [Short Science Fiction](../Books/5913FEFF-D0A3-4955-A1BA-94BACF6EA0CD.md)
+- [Shorts from Scenes from Private Life](../Books/DBD7123B-29E7-4484-954F-B0B239145E79.md)
+- [Sir Percy Hits Back](../Books/F5C4E229-4498-495F-AFA6-F8E3C660C810.md)
+- [Stand by for Mars!](../Books/394094CC-BCC3-4249-B047-97E7C9FBD850.md)
+- [Steppenwolf](../Books/8F5ACE5B-1161-4C72-BE2F-73A5025F5D12.md)
+- [Suspiria de Profundis](../Books/C0859A9B-8D0F-46CC-A8ED-7546B0BFD68B.md)
+- [Tarzan and the Ant Men](../Books/6E11321C-777D-4087-A215-6D97D4282BDD.md)
+- [Tarzan and the Golden Lion](../Books/ABA09281-833F-43A3-9C6A-157DA40057D7.md)
+- [Tarzan of the Apes](../Books/B0FBAFFA-8B8A-420D-BA86-A504DDD1CC01.md)
+- [Tarzan the Untamed](../Books/F42B9E07-F17F-42CA-84C7-54B95678781E.md)
+- [Tarzan, Lord of the Jungle](../Books/8DFAA58F-DFCB-4841-B6A3-BD5B287CBC78.md)
+- [Terror Keep](../Books/CC9314C3-481E-463D-9E2D-E7C818612242.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Age of Reason](../Books/2381E057-FC3B-4A96-BFEE-495332317A28.md)
 - [The American Language / A Preliminary Inquiry into the Development of English in the United States](../Books/2CA65016-8046-41E2-A393-B0FA9D6EA43E.md)
+- [The Apple Cart](../Books/F756FA2E-3190-4040-AACC-36980C9B6ED3.md)
+- [The Art of War](../Books/73114919-F705-40B4-B931-F0EDF68C952A.md)
+- [The Autobiography of Mark Twain](../Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md)
+- [The Avenger](../Books/804C3344-FC00-44DD-9CB3-B0018119EA00.md)
 - [The Awakening, and Selected Short Stories](../Books/CE51DB43-7A5A-4002-B3E5-5203C823D585.md)
+- [The Beasts of Tarzan](../Books/1CB1EE31-DE65-4E65-BA9D-A4DF115BD71E.md)
+- [The Black Mask](../Books/72058380-BE2E-4FA8-AD38-4834BD773078.md)
+- [The Blue Lagoon](../Books/ECDD124D-D95A-407F-BFE4-085E9839318A.md)
 - [The Brothers Karamazov](../Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md)
+- [The Brothers Karamazov](../Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md)
 - [The call of Cthulhu](../Books/AD320115-98F9-4795-BA81-A4D8DED280D2.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Chinese Parrot](../Books/1BA301D8-A4A0-467F-8C05-C618BCE17AFA.md)
+- [The Clue of the New Pin](../Books/3FCE8075-8056-4D83-9608-5805CA049888.md)
+- [The Clue of the Twisted Candle](../Books/7D293F4A-090A-4BF6-99D9-6202456EBC6B.md)
+- [The Comedy of Errors](../Books/DB84D839-9AB6-41FC-90FC-4F2EDBF64F92.md)
 - [The Complete Poetical Works of Henry Wadsworth Longfellow](../Books/D1309924-77AB-42C5-8038-271D77B092F3.md)
+- [The Confessions of Arsène Lupin](../Books/EAC5960B-D125-4D16-85F6-1CF8B879BBD8.md)
+- [The Conjure Woman](../Books/17947445-CB15-4413-B18E-133521AB1859.md)
+- [The Council of Justice](../Books/7EE65772-7F1E-43A1-9099-581BD796FFC3.md)
+- [The Courts of the Morning](../Books/7F4283D9-4CA8-4387-9E35-5226A5FE1ABE.md)
+- [The Cruise of the Alerte](../Books/2A1E3CE2-3932-4FF7-9CB8-71349FDFAA79.md)
 - [The Descent of Man and Other Stories](../Books/7433F945-B8D6-49E6-A9A5-4951EDA3A9AC.md)
+- [The Door with Seven Locks](../Books/5923B3E1-C4B1-4F2C-9A27-0A96F165593A.md)
+- [The Eumenides](../Books/F14D6596-EFB2-4E11-A376-D3D551110849.md)
 - [The Eyes Have It](../Books/F2FCCE60-E492-439D-A76A-423067D50671.md)
+- [The Fall of Robespierre](../Books/606A8C95-B501-4D36-853B-E6D726047DF4.md)
+- [The First Sir Percy](../Books/1FB2BFCF-08F3-4BC4-A12C-1E3DFD7971BD.md)
+- [The Forerunner](../Books/26224D6C-CA92-4CAE-A3CE-7AF10DA480BE.md)
+- [The Fur Country](../Books/133D7A41-86E3-4A37-A565-7D5A6D9C6CA5.md)
+- [The Giant Raft](../Books/4546D9E0-A37B-461F-B1F3-E3BB75011631.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
+- [The Great Gatsby](../Books/9DF1EFE6-3977-4A5A-B775-B2BE5B7345CB.md)
+- [The Hairy Ape](../Books/FE40BA9F-6774-4EAA-8C33-A3C6BB50786D.md)
+- [The House of the Dead](../Books/83BC8611-76C2-452B-A9C4-A1EC7987403C.md)
+- [The House of the Seven Gables](../Books/A7C6ACB9-6532-41C9-AF87-D3CAD6629AAB.md)
+- [The House Without a Key](../Books/76F874D4-B934-46E5-A9B2-7DC330722F8B.md)
 - [The Humbugs of the World / An Account of Humbugs, Delusions, Impositions, Quackeries, Deceits and Deceivers Generally, in All Ages](../Books/E74A1309-5B35-430A-B32A-2D9F96FAEA62.md)
+- [The Jealousies of a Country Town](../Books/489BC01E-B3F6-4D86-AABB-E008C8492ED2.md)
+- [The Jew of Malta](../Books/95F1DA79-BC9C-47DB-89E4-BB4D63ACB9E1.md)
+- [The Just Men of Cordova](../Books/2C45F7BD-82CB-40A9-8BCB-40A61759BFE3.md)
+- [The King in Yellow](../Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md)
+- [The Lady of the Barge](../Books/62B3F40E-F391-4E03-B606-D38F2E68F412.md)
+- [The Land of Little Rain](../Books/45B435F1-CEF9-4812-9758-AC6DA46648A1.md)
+- [The Land That Time Forgot](../Books/659DAA74-5C49-4D6A-9A6C-D6F4991BEE1D.md)
+- [The Laughing Cavalier](../Books/7B30CFC4-3334-4CDC-A1CB-11D0B264F5E6.md)
+- [The Law of the Four Just Men](../Books/5DFA9000-0F80-4034-93F3-F807901893CE.md)
 - [The Legend of Sleepy Hollow](../Books/0A44FD76-CF22-487B-BA44-7AC00B3F53D5.md)
+- [The Libation Bearers](../Books/78C56DB5-9AE7-46E6-9669-580DB02387AC.md)
+- [The Lily of the Valley](../Books/D27F230B-43AE-4587-B5B3-5F4642B65E18.md)
+- [The Lost Girl](../Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md)
+- [The Lost World](../Books/92BDCAFC-8825-45F7-9568-F8EDCE206321.md)
+- [The Luzumiyat](../Books/96A8BFB7-C1E6-4C8E-84EF-E17E2E5AA797.md)
+- [The Madman](../Books/5F7F3D81-1B35-48AF-A174-63F40BB7C35D.md)
+- [The Man Who Knew](../Books/EEF9FBB4-FEDE-4FF4-BCB9-39E8D9F6A41E.md)
+- [The Man Within](../Books/7FB9976E-A041-4F70-9B0D-6343719B1999.md)
+- [The Maracot Deep](../Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md)
+- [The Melody of Death](../Books/7ECB5922-A12F-4D5A-B807-D7A052A0D325.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Merchant of Venice](../Books/0D79755C-148F-4618-B188-8291BFD734ED.md)
+- [The Merry Wives of Windsor](../Books/D16AB367-2DD4-4F81-89F6-97AFDE4F13D2.md)
+- [The Mind of Mr. J. G. Reeder](../Books/7155C166-21B4-4030-A6CA-A61F44F0E053.md)
+- [The Mother](../Books/D1078FFE-C87F-418B-B16F-B353CCC26CF7.md)
+- [The Mucker](../Books/51ECEA12-65F8-40E8-AEC4-BC065F39CEA8.md)
+- [The Murder at the Vicarage](../Books/8659DE35-C91C-475C-BC2F-6ABA8C329B4D.md)
+- [The Mystery of Cabin Island](../Books/8DAE9CDD-404A-479A-9A79-72EA69DFAE60.md)
+- [The Narrative of Arthur Gordon Pym of Nantucket](../Books/99706ED7-E9F6-409D-8318-473DBA8BFDF5.md)
+- [The Necklace of Princess Fiorimonde](../Books/CAA14087-5E63-4532-B1FA-30D9F8DA2BB2.md)
+- [The New Freedom](../Books/B4EC6F60-9803-47BB-A8FD-2D4B7275871E.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/BA3B84A4-169F-4B40-804A-6CDA495B790B.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/B2311001-F34E-4668-84D8-AAB8245CFA57.md)
+- [The Old Man in the Corner](../Books/EBFC1BDB-4AFB-43DE-9496-84E24C296C5A.md)
+- [The Origin of Species](../Books/B4CC08FA-BC80-4752-B206-361D34F1A2BD.md)
+- [The Outlaw of Torn](../Books/7DE08BC8-1895-4FCF-9112-F1000493168C.md)
+- [The Power of Darkness](../Books/BD49101C-CAE7-4BAD-AFDF-F19566E05C76.md)
+- [The Practice and Theory of Bolshevism](../Books/437979BF-7CF3-487B-AFD5-96C4B80FC2AB.md)
+- [The Prisoner of Zenda](../Books/A4A2D9E2-06EE-4BAC-A5C7-DA61B165AEC0.md)
+- [The Problems of Philosophy](../Books/72D2F5F3-C802-464A-875E-AC85BE62F209.md)
+- [The Prophet](../Books/E1528CD9-5F01-4850-B19E-D86DE0CB0021.md)
+- [The Prophet](../Books/9BD88F10-D755-40E2-812C-A85C20BDF962.md)
+- [The Purple Land](../Books/BDD04CF0-47FA-4893-BD09-B0225C266AE7.md)
+- [The Red House Mystery](../Books/BACBEA39-B830-40F1-B9E0-90A7365B446F.md)
+- [The Return of Tarzan](../Books/14797A02-94E3-4112-8FCF-DEE015C98343.md)
+- [The Roots of the Mountains](../Books/96D5CC00-DC6A-47E2-B90A-99A98CF2FDCA.md)
+- [The Sea-Wolf](../Books/7A163332-7787-4A84-B3DA-49A5361AF86E.md)
+- [The Seagull](../Books/D1D9E1D1-25B7-419C-82B4-ED645FBC57C8.md)
+- [The Secret of the Old Mill](../Books/E1091E68-51CC-44FF-A4AF-76AA10298D73.md)
+- [The Seven Dials Mystery](../Books/703DFD5E-EE15-46E0-9E73-E13B4B99B820.md)
+- [The Social Contract](../Books/BBED71D7-8A90-47BB-B070-F76AC406796A.md)
+- [The Son of Tarzan](../Books/CD5E2513-C09D-4495-8591-1416FE05E260.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
+- [The Souls of Black Folk](../Books/71CEEAB7-577C-4275-B4A1-F41B17F8F1D2.md)
+- [The Sound and the Fury](../Books/B56CCC8B-ADB5-4CEC-83A0-B2F9D902CFBE.md)
+- [The Square Emerald](../Books/DF9CDCD8-400C-4AF1-B3A0-1CAA512124BB.md)
+- [The Story of Doctor Dolittle](../Books/87A45FF5-E591-49F4-953D-F3D5C1335418.md)
+- [The Story of My Life](../Books/F7119EBE-8D2A-4165-93FA-72B94B5447FA.md)
+- [The Story of the Treasure Seekers](../Books/53F44F6B-3F84-4255-A93D-40A8C317F8DE.md)
+- [The Subjection of Women](../Books/B2550963-C612-46FA-BB36-3559AD6C279B.md)
 - [The Sun Also Rises](../Books/5CEAA30B-BF4D-4511-A770-26E28776877A.md)
+- [The Sundering Flood](../Books/3364D67D-66B1-48BC-A0D6-ADB73A228F9D.md)
+- [The Survivors of the Chancellor](../Books/0961F477-ACBC-4682-9147-B2E00C4E861E.md)
+- [The Sword of Damocles](../Books/28461A01-8141-4C30-991A-5A00B38B78E3.md)
+- [The Taming of the Shrew](../Books/93427583-6CCA-411A-B642-16949719BFC2.md)
+- [The Tenant of Wildfell Hall](../Books/A39B3C0D-7D3E-4854-A382-97C351FAA110.md)
+- [The Third Round](../Books/F198F685-F32D-4BDC-B58B-81BB6D8DCAF4.md)
+- [The Thirty-Nine Steps](../Books/8709201F-2E6F-4577-A284-3F75A58EE727.md)
+- [The Three Hostages](../Books/2F8BABAA-1F42-4393-B2A5-04108B600866.md)
+- [The Three Musketeers](../Books/684063C0-2D66-48E7-BAA5-703223E73126.md)
+- [The Tower Treasure](../Books/45019793-2533-4C26-8283-5F47AD71B2AF.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
+- [The Turn of the Screw](../Books/8529E49B-5D3E-40C1-9886-96906FB455F2.md)
 - [The Valley of the Moon](../Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md)
+- [The Varieties of Religious Experience](../Books/B1222CDB-E1A8-4B7F-85F6-5C90280DFFF5.md)
+- [The Vicomte de Bragelonne](../Books/3D7CFCF7-606D-47D6-B46C-F1C95C593A6D.md)
+- [The Voyages of Doctor Dolittle](../Books/B4E5027A-E96F-4FBA-8DD5-EE77A51BEF14.md)
+- [The Water of the Wondrous Isles](../Books/0291AC39-E5E2-44CB-BD62-D36A1BF3AC89.md)
+- [The Way of the World](../Books/5A857635-5054-4EDB-8264-AED12A7AD597.md)
+- [The Wealth of Nations](../Books/B695BD3A-DF62-4ABD-BFDA-C1CB52CE5164.md)
+- [The Windfairies](../Books/64C9C593-C10A-457F-AF1D-3356D1376D9B.md)
+- [The Works of Max Beerbohm](../Books/59082727-6447-47DC-9625-67F9DBFC39FA.md)
 - [The Yellow Wallpaper](../Books/3EFCB100-C8FC-4098-BAAB-2D6E3BB0B8BE.md)
+- [Tractatus Logico-Philosophicus](../Books/7F51E844-4F9D-4A8E-AC0D-6F3C061A4E82.md)
+- [Treasure Island](../Books/7A7FD9AA-0B3F-43AD-A305-8AE6C42B798A.md)
+- [Twenty Years After](../Books/5CCBC784-E93D-4BF7-9C43-84D990A169FD.md)
+- [Two Treatises of Government](../Books/096DE377-B223-4D80-A337-0364D4CAA082.md)
+- [Typee](../Books/1251A293-D2FF-4EAF-9EC2-E08942374DBF.md)
+- [Ukridge Stories](../Books/DA332843-8616-447F-BDD5-C86B00130D2A.md)
+- [Uncle Vanya](../Books/B4A5C456-7F71-45AF-B9CA-B605F08EB6B4.md)
+- [Up from Slavery](../Books/6A4B72C7-6C5A-478F-8F09-699BD09E185C.md)
+- [Vikram and the Vampire](../Books/4930CFF2-D344-4FC1-967E-E01C0003CB6E.md)
 - [War and Peace](../Books/7F6ABC84-93E3-4FF3-B5CA-F4A05CED182D.md)
+- [War and Peace](../Books/FEB46721-EB3E-4498-8BD1-46DB874BBD08.md)
+- [Waverley](../Books/FC92C4DD-84D9-46E6-AC3B-CA932E77036B.md)
+- [What Is Art?](../Books/A124D998-BEC0-4F08-8843-8FD944EA92B9.md)
+- [What’s Wrong with the World](../Books/63227F11-904A-4BD2-846E-6B56E331BD61.md)
+- [When God Laughs](../Books/F1B8023A-5748-4ED4-AB0B-633E40802E58.md)
+- [When the World Shook](../Books/DE2D3AE7-7CC7-452A-9201-897F6D8767C9.md)
+- [Where Angels Fear to Tread](../Books/B2A1F27C-26CF-49B5-8438-C08B1F973CEF.md)
+- [While the Billy Boils](../Books/A6D99FCE-7EFE-47FF-BDAB-5337E6850F7A.md)
 - [White Fang](../Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md)
+- [White Fang](../Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md)
+- [Wild Animals I Have Known](../Books/87713F5D-D3D4-4ED4-B8A7-162E62E59C85.md)
+- [Winesburg, Ohio](../Books/0D51BA81-438C-4A1D-AD84-F433CCEC687A.md)
+- [Winnie-the-Pooh](../Books/66247FE6-E2BF-4D37-ABF8-7EF40F024C6B.md)
+- [You Never Can Tell](../Books/8338DABC-67FE-483B-9465-302D3125C570.md)
+- [Zuni Folktales](../Books/69AE0444-0097-4630-990D-242F4A9C3FB1.md)
 
 ## Representative excerpts
+
+### “We”: Section 15
+
+_Mid-book rhythm_
+
+> IX San Diego⁠–⁠St. Louis⁠–⁠New York The transatlantic nonstop flight between New York and Paris was first brought into public consideration by Raymond Orteig who, in 1919, issued a challenge to the Aeronautical world by offering a prize of $25,000 to the first successful entrant. Details of the flight were placed in the hands of the National Aeronautic Association and a committee was appointed to form and administer the rules of the undertaking. I first considered the possibility of the New York⁠–⁠Paris flight while flying the mail one night in the fall of 1926. Several facts soon became outstanding. The foremost was that with the modern radial air-cooled motor, high lift airfoils, and lightened construction, it would not only be possible to reach Paris but, under normal conditions, to land with a large reserve of fuel and have a high factor of safety throughout the entire trip as well.
+
+### “We”: Section 23
+
+_Dialogue and character voice_
+
+> IV Washington It is probable that when Lindbergh reached America he got the greatest welcome any man in history has ever received; certainly the greatest when judged by numbers; and by far the greatest in its freedom from that unkind emotion which in such cases usually springs from one people’s triumph over another. Lindbergh’s victory was all victory; for it was not internecine, but that of our human species over the elements against which for thousands of centuries man’s weakness has been pitted. The striking part of it all was that a composite picture of past homecoming heroes wouldn’t look any more like Charles Lindbergh did that day of his arrival in Washington than a hitching post looks like a green bay tree. Caesar was glum when he came back from Gaul; Napoleon grim; Paul Jones defiant; Peary blunt; Roosevelt abrupt; Dewey deferential; Wilson brooding; Pershing imposing.
 
 ### 2 B R 0 2 B: Section 1
 
@@ -77,50 +411,38 @@ _Sentence variation_
 
 > *** END OF THE PROJECT GUTENBERG EBOOK 2 B R 0 2 B *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
 
-### Alice's Adventures in Wonderland: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Alice's Adventures in Wonderland This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Alice's Adventures in Wonderland Author: Lewis Carroll Release date: June 27, 2008 [eBook #11] Most recently updated: June 26, 2025 Language: English Other information and formats: www.gutenberg.
-
-### Alice's Adventures in Wonderland: Section 8
+### A Farewell to Arms: Section 27
 
 _Mid-book rhythm_
 
-> CHAPTER VII. A Mad Tea-Party There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. “Very uncomfortable for the Dormouse,” thought Alice; “only, as it’s asleep, I suppose it doesn’t mind.” The table was a large one, but the three were all crowded together at one corner of it: “No room! No room!” they cried out when they saw Alice coming. “There’s plenty of room!” said Alice indignantly, and she sat down in a large arm-chair at one end of the table. “Have some wine,” the March Hare said in an encouraging tone. Alice looked all round the table, but there was nothing on it but tea. “I don’t see any wine,” she remarked. “There isn’t any,” said the March Hare.
+> XXI In September the first cool nights came, then the days were cool and the leaves on the trees in the park began to turn color and we knew the summer was gone. The fighting at the front went very badly and they could not take San Gabriele. The fighting on the Bainsizza plateau was over and by the middle of the month the fighting for San Gabriele was about over too. They could not take it. Ettore was gone back to the front. The horses were gone to Rome and there was no more racing. Crowell had gone to Rome too, to be sent back to America. There were riots twice in the town against the war and bad rioting in Turin. A British major at the club told me the Italians had lost one hundred and fifty thousand men on the Bainsizza plateau and on San Gabriele. He said they had lost forty thousand on the Carso besides. We had a drink and he talked.
 
-### Anthem: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Anthem This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Anthem Author: Ayn Rand Release date: March 1, 1998 [eBook #1250] Most recently updated: October 29, 2024 Language: English Other information and formats: www.gutenberg.
-
-### Anthem: Section 8
-
-_Mid-book rhythm_
-
-> PART SEVEN It is dark here in the forest. The leaves rustle over our head, black against the last gold of the sky. The moss is soft and warm. We shall sleep on this moss for many nights, till the beasts of the forest come to tear our body. We have no bed now, save the moss, and no future, save the beasts. We are old now, yet we were young this morning, when we carried our glass box through the streets of the City to the Home of the Scholars. No men stopped us, for there were none about from the Palace of Corrective Detention, and the others knew nothing. No men stopped us at the gate. We walked through empty passages and into the great hall where the World Council of Scholars sat in solemn meeting. We saw nothing as we entered, save the sky in the great windows, blue and glowing.
-
-### Autobiography of Benjamin Franklin: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Autobiography of Benjamin Franklin This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Autobiography of Benjamin Franklin Author: Benjamin Franklin Editor: Frank Woodworth Pine Illustrator: E. Boyd Smith Release date: December 28, 2006 [eBook #20203] Most recently updated: October 19, 2022 Language: English Other information and formats: www.gutenberg.
-
-### Autobiography of Benjamin Franklin: Section 3
+### A Farewell to Arms: Section 32
 
 _Dialogue and character voice_
 
-> [74] The almanac at that time was a kind of periodical as well as a guide to natural phenomena and the weather. Franklin took his title from Poor Robin, a famous English almanac, and from Richard Saunders, a well-known almanac publisher. For the maxims of Poor Richard, see pages 331-335. [75] June 23 and July 7, 1730.—Smyth. [76] See "A List of Books written by, or relating to Benjamin Franklin," by Paul Leicester Ford. 1889. p. 15.—Smyth. [77] Dr. James Foster (1697-1753):— "Let modest Foster, if he will excel Ten metropolitans in preaching well." —Pope (Epilogue to the Satires, I, 132). "Those who had not heard Farinelli sing and Foster preach were not qualified to appear in genteel company," Hawkins. "History of Music."—Smyth. [78] "
+> XXV Now in the fall the trees were all bare and the roads were muddy. I rode to Gorizia from Udine on a camion. We passed other camions on the road and I looked at the country. The mulberry trees were bare and the fields were brown. There were wet dead leaves on the road from the rows of bare trees and men were working on the road, tamping stone in the ruts from piles of crushed stone along the side of the road between the trees. We saw the town with a mist over it that cut off the mountains. We crossed the river and I saw that it was running high. It had been raining in the mountains. We came into the town past the factories and then the houses and villas and I saw that many more houses had been hit. On a narrow street we passed a British Red Cross ambulance. The driver wore a cap and his face was thin and very tanned. I did not know him.
 
-### Bartleby, the Scrivener: A Story of Wall-Street: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Bartleby, the Scrivener: A Story of Wall-Street This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Bartleby, the Scrivener: A Story of Wall-Street Author: Herman Melville Release date: February 1, 2004 [eBook #11231] Most recently updated: October 28, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/11231 Credits: Steve J. Nelson and Clara T.
-
-### Bartleby, the Scrivener: A Story of Wall-Street: Section 2
+### A High Wind in Jamaica: Section 8
 
 _Mid-book rhythm_
 
-> I am a rather elderly man. The nature of my avocations for the last thirty years has brought me into more than ordinary contact with what would seem an interesting and somewhat singular set of men, of whom as yet nothing that I know of has ever been written:—I mean the law-copyists or scriveners. I have known very many of them, professionally and privately, and if I pleased, could relate divers histories, at which good-natured gentlemen might smile, and sentimental souls might weep. But I waive the biographies of all other scriveners for a few passages in the life of Bartleby, who was a scrivener of the strangest I ever saw or heard of. While of other law-copyists I might write the complete life, of Bartleby nothing of that sort can be done. I believe that no materials exist for a full and satisfactory biography of this man. It is an irreparable loss to literature.
+> VI I The weeks passed in aimless wandering. For the children, the lapse of time acquired once more the texture of a dream: things ceased happening: every inch of the schooner was now as familiar to them as the Clorinda had been, or Ferndale: they settled down quietly to grow, as they had done at Ferndale, and as they would have done, had there been time, on the Clorinda. And then an event did occur, to Emily, of considerable importance. She suddenly realised who she was. There is little reason that one can see why it should not have happened to her five years earlier, or even five later; and none, why it should have come that particular afternoon.
+
+### A High Wind in Jamaica: Section 12
+
+_Dialogue and character voice_
+
+> X I Emily grew quite a lot during the passage to England on the steamer: suddenly shot up, as children will at that age. But she did it without any gawkiness: instead, an actual increase of grace. Her legs and arms, though longer, did not lose any of the nicety of their shape; and her grave face lost none of its attractiveness by being a fraction nearer your own. The only drawback was that she used to get pains in the calves of her legs, now, and sometimes in her back: but those of course did not show. (They were all provided with clothes by a general collection, so it did not matter that she grew out of her old ones.) She was a nice child: and being a little less shy than formerly, was soon the most popular of all of them. Somehow, no one seemed to care very much for Margaret: old ladies used to shake their heads over her a good deal.
+
+### A Midsummer Night’s Dream: Section 6
+
+_Mid-book rhythm_
+
+> Act II Scene I A wood near Athens. Enter, from opposite sides, a Fairy, and Puck. Puck How now, spirit! whither wander you? Fairy Over hill, over dale, Thorough bush, thorough brier, Over park, over pale, Thorough flood, thorough fire, I do wander everywhere, Swifter than the moon’s sphere; And I serve the fairy queen, To dew her orbs upon the green. The cowslips tall her pensioners be: In their gold coats spots you see; Those be rubies, fairy favours, In those freckles live their savours: I must go seek some dewdrops here And hang a pearl in every cowslip’s ear. Farewell, thou lob of spirits; I’ll be gone: Our queen and all her elves come here anon.
+
+### A Midsummer Night’s Dream: Section 7
+
+_Dialogue and character voice_
+
+> Act III Scene I The wood. Titania lying asleep. Enter Quince, Snug, Bottom, Flute, Snout, and Starveling. Bottom Are we all met? Quince Pat, pat; and here’s a marvellous convenient place for our rehearsal. This green plot shall be our stage, this hawthorn-brake our tiring-house; and we will do it in action as we will do it before the duke. Bottom Peter Quince⁠— Quince What sayest thou, bully Bottom? Bottom There are things in this comedy of Pyramus and Thisby that will never please. First, Pyramus must draw a sword to kill himself; which the ladies cannot abide. How answer you that? Snout By’r lakin, a parlous fear. Starveling I believe we must leave the killing out, when all is done. Bottom Not a whit: I have a device to make all well.

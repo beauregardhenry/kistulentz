@@ -2,23 +2,24 @@
 # West (U.S.) -- Description and travel
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 173434
-- Reading grade: 4.3
-- Average sentence: 8.4 words
-- Average paragraph: 11.5 words
+- Words analyzed: 339072
+- Reading grade: 6.0
+- Average sentence: 14.7 words
+- Average paragraph: 46.9 words
 - Dialogue share: 15%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: hundred, three, chapter, people, without, night, miles, nothing, dollars, thousand, house, horse, place, silver, himself, twenty, water, years, enough, world, don’t, thought, gutenberg, things
-- Character names: Slade, Mr. Ballou, Carson, Humboldt, Ollendorff, Whiteman, Johnson, Ballou, Eckert, Hank, Mr. Young, Allen, Jack, Johnny, Roop, Smith, Horace, Joseph, Jules, George, Horace Greeley, John, Shiz, Bemis, Brigham Young, Hyde, Mr, Ben Holliday, Hank Monk, Louis
+- Tempo: steady
+- Tone: narrative-forward, direct, measured, rhythmically even, rhythmically varied
+- Recurring vocabulary: dollars, don’t, enough, himself, horse, house, hundred, miles, night, nothing, people, place, silver, things, thought, thousand, three, twenty, water, without, world, years, chapter, gutenberg, hands, matter
+- Character names: Allen, Ballou, Bemis, Brigham Young, Carson, Eckert, George, Hank Monk, Humboldt, Jack, John, Johnny, Johnson, Joseph, Jules, Louis, Mr, Ollendorff, Roop, Shiz, Slade, Smith, Whiteman, Ben Holliday, Boggs, Capt, Coriantumr, Dimsdale, Hank, Horace, Horace Greeley, Hyde, Joseph Smith, Mr. Ballou, Mr. Young, Mrs, Young
 
 ## Books
 - [Roughing It](../Books/0FBD4219-E6C9-4560-8575-BA69C5314EE2.md)
+- [Roughing It](../Books/0CE9012E-AACF-466B-B2D5-6CF3445B6ECB.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XXXIX. About seven o’clock one blistering hot morning—for it was now dead summer time—Higbie and I took the boat and started on a voyage of discovery to the two islands. We had often longed to do this, but had been deterred by the fear of storms; for they were frequent, and severe enough to capsize an ordinary row-boat like ours without great difficulty—and once capsized, death would ensue in spite of the bravest swimming, for that venomous water would eat a man’s eyes out like fire, and burn him out inside, too, if he shipped a sea. It was called twelve miles, straight out to the islands—a long pull and a warm one—but the morning was so quiet and sunny, and the lake so smooth and glassy and dead, that we could not resist the temptation.
+
+### Roughing It: Section 45
+
+_Mid-book rhythm_
+
+> XLI Captain Nye was very ill indeed, with spasmodic rheumatism. But the old gentleman was himself⁠—which is to say, he was kindhearted and agreeable when comfortable, but a singularly violent wildcat when things did not go well. He would be smiling along pleasantly enough, when a sudden spasm of his disease would take him and he would go out of his smile into a perfect fury. He would groan and wail and howl with the anguish, and fill up the odd chinks with the most elaborate profanity that strong convictions and a fine fancy could contrive. With fair opportunity he could swear very well and handle his adjectives with considerable judgment; but when the spasm was on him it was painful to listen to him, he was so awkward.
+
+### Roughing It: Section 74
+
+_Dialogue and character voice_
+
+> LXX We stopped some time at one of the plantations, to rest ourselves and refresh the horses. We had a chatty conversation with several gentlemen present; but there was one person, a middle-aged man, with an absent look in his face, who simply glanced up, gave us good day and lapsed again into the meditations which our coming had interrupted. The planters whispered us not to mind him⁠—crazy. They said he was in the Islands for his health; was a preacher; his home, Michigan. They said that if he woke up presently and fell to talking about a correspondence which he had some time held with Mr. Greeley about a trifle of some kind, we must humor him and listen with interest; and we must humor his fancy that this correspondence was the talk of the world. It was easy to see that he was a gentle creature and that his madness had nothing vicious in it.

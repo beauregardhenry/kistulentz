@@ -2,25 +2,38 @@
 # Impostors and imposture
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 110350
-- Reading grade: 5.0
-- Average sentence: 8.1 words
-- Average paragraph: 10.8 words
+- Words analyzed: 220574
+- Reading grade: 6.9
+- Average sentence: 15.0 words
+- Average paragraph: 43.3 words
 - Dialogue share: 13%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: humbug, chapter, money, years, medium, business, gutenberg, people, hundred, himself, however, table, project, without, spirit, three, enough, hands, place, public, spirits, whole, called, country
-- Character names: Adams, Brandreth, Tom, Mr, Mr. Barnum, Bennett, Genin, Jewett, John, Mangin, Warren, Grizzly Adams, Mr. B., Addison, Hans, Jew, Monsieur Mangin, Mr. Paine, Roback, Allen, Blunt, Dr, Newton, Old Adams, Boult, Colorado Jewett, Herschel, Joseph, Mr. Tilton, Paine
+- Tempo: steady
+- Tone: narrative-forward, direct, measured, rhythmically even, rhythmically varied
+- Recurring vocabulary: business, called, enough, hands, himself, however, humbug, hundred, medium, money, people, place, public, spirit, spirits, table, three, whole, without, years, chapter, country, course, dollars, gutenberg, known, project, sometimes
+- Character names: Adams, Addison, Bennett, Blunt, Boult, Brandreth, Colorado Jewett, Dr, Genin, Grizzly Adams, Jew, Jewett, John, Mangin, Monsieur Mangin, Mr, Newton, Old Adams, Paine, Roback, Tom, Warren, Agrippa, Allen, B., Barnum, Greeley, Hans, Herschel, Joseph, Kirby, Locke, Mansfield, Mr. B., Mr. Barnum, Mr. Paine, Mr. Tilton, Mrs
 
 ## Books
+- [The Humbugs of the World](../Books/8C37E9CC-F136-4584-9011-7475E6A639D3.md)
 - [The Humbugs of the World / An Account of Humbugs, Delusions, Impositions, Quackeries, Deceits and Deceivers Generally, in All Ages](../Books/E74A1309-5B35-430A-B32A-2D9F96FAEA62.md)
 
 ## Representative excerpts
+
+### The Humbugs of the World: Section 35
+
+_Mid-book rhythm_
+
+> XXV The Tulipomania. Alboni, the singer, had an exquisitely sweet voice, but was a very big fat woman. Somebody accordingly remarked that she was an elephant that had swallowed a nightingale. About as incongruous is the idea of a nation of damp, foggy, fat, full-figured, broad-sterned, gin-drinking, tobacco-smoking Dutchmen in Holland, going crazy over a flower. But they did so, for three or four years together. Their craze is known in history as the Tulipomania, because it was a mania about tulips. Just a word about the Dutchmen first.
+
+### The Humbugs of the World: Section 47
+
+_Dialogue and character voice_
+
+> XXXIV Haunted houses⁠—​A night spent alone with a ghost⁠—​Kirby, the actor⁠—​Colt’s pistols versus hobgoblins⁠—​The mystery explained. A great many persons believe more or less in haunted houses. In almost every community there is some building that has had a mysterious history. This is true in all countries, and among all races and nations. Indeed it is to this very fact that the ingenious author of the “Twenty-seventh-street Ghost” may attribute his success in creating such an excitement. In fact, I will say, “under the rose,” he predicted his hopes of success entirely upon this weakness in human nature. Even in “this day and age of the world” there are hundreds of deserted buildings which are looked upon with awe, or terror, or superstitious interest.
 
 ### The Humbugs of the World / An Account of Humbugs, Delusions, Impositions, Quackeries, Deceits and Deceivers Generally, in All Ages: Section 1
 

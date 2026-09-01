@@ -2,24 +2,25 @@
 # Male friendship -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 191643
-- Reading grade: 2.3
-- Average sentence: 8.3 words
-- Average paragraph: 12.0 words
+- Words analyzed: 299331
+- Reading grade: 3.2
+- Average sentence: 10.4 words
+- Average paragraph: 25.2 words
 - Dialogue share: 33%
-- Voice: mixed or shifting perspective
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: ain’t, don’t, enough, going, house, night, place, reckon, that’s, three, anything, began, better, can’t, chapter, couldn’t, didn’t, gutenberg, heart, himself, moment, nigger, nothing, people, presently, pretty, project, river, school, seemed, things, thought, tom’s, wanted, warn’t, without, won’t, wouldn’t
-- Character names: Ben Rogers, Huck, Huck Finn, Jim, Mary, Peter, Tom, Tom Sawyer, Amy, Aunt Polly, Becky, Becky Thatcher, Ben, Bill, Bob, Boggs, Buck, De, Dey, George, Gutenberg, Harney, Harvey, Huckleberry, Huckleberry Finn, Hucky, Injun Joe, Jack, Jackson, Jeff Thatcher, Joe, Joe Harper, Judge, Judge Thatcher, Juliet, Le, Mary Jane, Miss Mary Jane, Miss Sophia, Miss Watson, Mrs. Harper, Mrs. Thatcher, Muff Potter, Pap, Polly, Potter, Robin Hood, Sid, Susan, Uncle Harvey, Widow Douglas, William
+- Tone: dialogue-forward, direct, rhythmically even, balanced, energetic, rhythmically varied
+- Recurring vocabulary: night, three, ain’t, don’t, enough, going, himself, house, moment, nothing, place, reckon, seemed, that’s, thought, without, across, answered, anything, began, better, can’t, chapter, couldn’t, didn’t, ethne, feversham’s, gutenberg, heard, heart, however, nigger, people, perhaps, presently, pretty, project, quite, river, school
+- Character names: Ben Rogers, Huck, Huck Finn, Jack, Jim, Mary, Peter, Tom, Tom Sawyer, Abou Fatma, Adair, Amy, Arab, Aunt Polly, Becky, Becky Thatcher, Ben, Berber, Bill, Bob, Boggs, Buck, Calder, Captain Willoughby, Castleton, Colonel Durrance, Dawson, De, Dey, Durrance, Emir, Feversham, George, Gordon, Gutenberg, Harney, Harry, Harry Feversham, Harvey, Huckleberry, Huckleberry Finn, Hucky, Injun Joe, Jackson, James, Jeff Thatcher, Joe, Joe Harper, Judge, Judge Thatcher, Juliet, Le, Lennon House, Lieutenant Sutch, Major Castleton, Mary Jane, Mather, Miss Eustace, Miss Mary Jane, Miss Sophia, Miss Watson, Mr, Mrs, Mrs. Harper, Mrs. Thatcher, Muff Potter, Obak, Pap, Polly, Potter, Robin Hood, Sid, Susan, Sutch, Tewfikieh, Uncle Harvey, Widow Douglas, William, Willoughby, Wilmington
 
 ## Books
 - [Adventures of Huckleberry Finn](../Books/ED046AD7-93DC-4645-B7B2-1DBCBD68E9B2.md)
 - [The Adventures of Tom Sawyer, Complete](../Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md)
+- [The Four Feathers](../Books/BFCAEE62-036E-40F1-9313-F34DCC0F6876.md)
 
 ## Representative excerpts
 
@@ -46,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XVII But there was no hilarity in the little town that same tranquil Saturday afternoon. The Harpers, and Aunt Polly’s family, were being put into mourning, with great grief and many tears. An unusual quiet possessed the village, although it was ordinarily quiet enough, in all conscience. The villagers conducted their concerns with an absent air, and talked little; but they sighed often. The Saturday holiday seemed a burden to the children. They had no heart in their sports, and gradually gave them up. In the afternoon Becky Thatcher found herself moping about the deserted schoolhouse yard, and feeling very melancholy. But she found nothing there to comfort her. She soliloquized: “Oh, if I only had a brass andiron-knob again! But I haven’t got anything now to remember him by.” And she choked back a little sob. Presently she stopped, and said to herself: “It was right here.
+
+### The Four Feathers: Section 22
+
+_Mid-book rhythm_
+
+> XVII The “Melusine Overture” Mrs. Adair, on her side, asked for no explanations. She was naturally, behind her pale and placid countenance, a woman of a tortuous and intriguing mind. She preferred to look through a keyhole even when she could walk straight in at the door; and knowledge which could be gained by a little maneuvering was always more desirable and precious in her eyes than any information which a simple question would elicit. She avoided, indeed, the direct question on a perverted sort of principle, and she thought a day very well spent if at the close of it she had outwitted a companion into telling her spontaneously some trivial and unimportant piece of news which a straightforward request would have at once secured for her at breakfast-time.
+
+### The Four Feathers: Section 30
+
+_Dialogue and character voice_
+
+> XXV Lieutenant Sutch Comes Off the Half-Pay List At the time when Calder, disappointed at his failure to obtain news of Feversham from the one man who possessed it, stepped into a carriage of the train at Assouan, Lieutenant Sutch was driving along a high white road of Hampshire across a common of heather and gorse; and he too was troubled on Harry Feversham’s account. Like many a man who lives much alone, Lieutenant Sutch had fallen into the habit of speaking his thoughts aloud. And as he drove slowly and reluctantly forward, more than once he said to himself: “I foresaw there would be trouble. From the beginning I foresaw there would be trouble.” The ridge of hill along which he drove dipped suddenly to a hollow. Sutch saw the road run steeply down in front of him between forests of pines to a little railway station.

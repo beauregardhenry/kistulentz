@@ -2,25 +2,39 @@
 # D. H. Lawrence
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 56983
-- Reading grade: 4.0
-- Average sentence: 6.8 words
-- Average paragraph: 10.5 words
-- Dialogue share: 55%
+- Words analyzed: 312655
+- Reading grade: 3.7
+- Average sentence: 9.6 words
+- Average paragraph: 28.3 words
+- Dialogue share: 34%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: american, white, america, death, project, consciousness, world, himself, human, blood, things, ideal, europe, people, nature, nothing, can't, without, ghost, works, perfect, spirit, living, water
-- Character names: Whitman, Benjamin, Melville, Dana, Poe, Cooper, Natty, John, Sam, Walt, Deerslayer, Nathaniel, Fenimore, Hawthorne, Moby Dick, Gutenberg, Queequeg, Ishmael, Jesus, Septimus, Cora, Farmer, Hector, Zenobia, Hurry Harry, Mrs. Cooper, Thomas Hardy, Adam, Fenimore Cooper, Judith
+- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
+- Recurring vocabulary: himself, nothing, people, don’t, going, herself, looking, quite, rather, round, seemed, stood, things, white, woman, world, young, america, american, black, blood, can't, can’t, chair, child, consciousness, cried, death, didn’t, europe, ghost, house, human, ideal, living, money, morning, nature, pancrazio, perfect
+- Character names: Mr, Mrs, Adam, Albert, Albert Witham, Alexander, Alvina, Alvina Houghton, Arthur, Arthur Witham, Benjamin, Berry, Betts, Bolton, Calladine, Charlie, Chatterley, Ciccio, Clifford, Connie, Constance, Cooper, Cora, Dana, Deerslayer, Edward, Farmer, Fenimore, Fenimore Cooper, Flossie, Geoffrey, Gutenberg, Hammond, Hawthorne, Hector, Hilda, Houghton, Hurry Harry, Ishmael, Ivy Bolton, James, James Houghton, Jesus, John, Judith, Julia, Kee-Tawara, Kishwégin, Lady Bennerley, Lady Chatterley, Lloyd George, Lottie, Lottie Witham, Louis, Lumley, Madame, Malcolm, Max, Mellors, Melville, Michaelis, Mick, Miss Frost, Miss Houghton, Miss Pinnegar, Miss Poppy, Moby Dick, Mrs. Cooper, Nathaniel, Natty, Poe, Queequeg, Rollings, Sam, Septimus, Shipley, Sir Clifford, Sir Geoffrey, Ted, Thomas Hardy
 
 ## Books
+- [Lady Chatterley’s Lover](../Books/35BF24CF-4D51-41AE-AD44-647324261333.md)
 - [Studies in Classic American Literature](../Books/A1B1D0A6-4E8D-46E6-BA24-B5357DD40247.md)
+- [The Lost Girl](../Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md)
 
 ## Representative excerpts
+
+### Lady Chatterley’s Lover: Section 12
+
+_Mid-book rhythm_
+
+> X Connie was a good deal alone now, fewer people came to Wragby. Clifford no longer wanted them. He had turned against even the cronies. He was queer. He preferred the radio, which he had installed at some expense, with a good deal of success at last. He could sometimes get Madrid or Frankfurt, even there in the uneasy Midlands. And he would sit alone for hours listening to the loudspeaker bellowing forth. It amazed and stunned Connie. But there he would sit, with a blank entranced expression on his face, like a person losing his mind, and listen, or seem to listen, to the unspeakable thing. Was he really listening? Or was it a sort of soporific he took, whilst something else worked on underneath in him? Connie did not know. She fled up to her room, or out of doors to the wood. A kind of terror filled her sometimes, a terror of the incipient insanity of the whole civilised species.
+
+### Lady Chatterley’s Lover: Section 16
+
+_Dialogue and character voice_
+
+> XIV When she got near the park gate, she heard the click of the latch. He was there, then, in the darkness of the wood, and had seen her! “You are good and early,” he said out of the dark. “Was everything all right?” “Perfectly easy.” He shut the gate quietly after her, and made a spot of light on the dark ground, showing the pallid flowers still standing there open in the night. They went on apart, in silence. “Are you sure you didn’t hurt yourself this morning with that chair?” she asked. “No, no!” “When you had that pneumonia, what did it do to you?” “Oh, nothing! it left my heart not so strong and the lungs not so elastic. But it always does that.” “And you ought not to make violent physical efforts?” “Not often.” She plodded on in an angry silence. “Did you hate Clifford?” she said at last. “Hate him, no! I’ve met too many like him to upset myself hating him.
 
 ### Studies in Classic American Literature: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > The same if you make a breach with your own Holy Ghost. You go soul-rotten. Like the Pearls. These dear Pearls, they do anything they like, and remain pure. Oh, purity! But they can't stop themselves from going rotten inside. Rotten Pearls, fair outside. Their souls smell, because their souls are putrefying inside them. The sin against the Holy Ghost. And gradually, from within outwards, they rot. Some form of dementia. A thing disintegrating. A decomposing psyche. Dementia. Quos vult perdere Deus, dementat prius. Watch these Pearls, these Pearls of modern women. Particularly American women. Battening on love. And fluttering in the first bat-like throes of dementia. You can have your cake and eat it. But my God, it will go rotten inside you. Hawthorne's other books are nothing compared to The Scarlet Letter.
+
+### The Lost Girl: Section 11
+
+_Mid-book rhythm_
+
+> IX Alvina Becomes Allaye Alvina wept when the Natchas had gone. She loved them so much, she wanted to be with them. Even Ciccio she regarded as only one of the Natchas. She looked forward to his coming as to a visit from the troupe. How dull the theatre was without them! She was tired of the Endeavour. She wished it did not exist. The rehearsal on the Monday morning bored her terribly. Her father was nervous and irritable. The previous week had tried him sorely. He had worked himself into a state of nervous apprehension such as nothing would have justified, unless perhaps, if the wooden walls of the Endeavour had burnt to the ground, with James inside victimized like another Samson. He had developed a nervous horror of all artistes. He did not feel safe for one single moment whilst he depended on a single one of them. “We shall have to convert into all pictures,”
+
+### The Lost Girl: Section 12
+
+_Dialogue and character voice_
+
+> X The Fall of Manchester House Alvina rose chastened and wistful. As she was doing her hair, she heard the plaintive nasal sound of Ciccio’s mandolin. She looked down the mixed vista of backyards and little gardens, and was able to catch sight of a portion of Ciccio, who was sitting on a box in the blue-brick yard of his house, bareheaded and in his shirtsleeves, twitching away at the wailing mandolin. It was not a warm morning, but there was a streak of sunshine. Alvina had noticed that Ciccio did not seem to feel the cold, unless it were a wind or a driving rain. He was playing the wildly-yearning Neapolitan songs, of which Alvina knew nothing. But, although she only saw a section of him, the glimpse of his head was enough to rouse in her that overwhelming fascination, which came and went in spells. His remoteness, his southernness, something velvety and dark.

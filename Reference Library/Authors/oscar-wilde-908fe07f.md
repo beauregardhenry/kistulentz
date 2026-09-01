@@ -2,34 +2,87 @@
 # Oscar Wilde
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 82767
-- Reading grade: 3.1
-- Average sentence: 7.0 words
-- Average paragraph: 12.0 words
-- Dialogue share: 47%
+- Words analyzed: 267657
+- Reading grade: 4.3
+- Average sentence: 12.0 words
+- Average paragraph: 31.2 words
+- Dialogue share: 34%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, things, seemed, quite, himself, people, night, cried, nothing, world, project, answered, going, thought, shall, round, picture, young, anything, looking, everything, moment, women, across
-- Character names: Dorian, Harry, Henry, Dorian Gray, Basil, Lord Henry, Mr. Gray, Sibyl Vane, Basil Hallward, Alan, Sibyl, Lady Narborough, Jim, Juliet, Gutenberg, James, James Vane, Henry Wotton, Mr. Erskine, Adrian Singleton, Campbell, Francis, Geoffrey, Gray, Jew, Lady Agatha, Alan Campbell, George, Kelso, Mr. Hubbard
+- Tone: dialogue-forward, balanced, direct, rhythmically even, rhythmically varied, inquisitive, narrative-forward, energetic
+- Recurring vocabulary: quite, don’t, nothing, shall, young, answered, cried, himself, looking, night, world, anything, course, going, house, letter, moment, people, seemed, things, thought, women, canterville, duchess, everything, father, ghost, hands, however, married, public, sonnets, suppose, theory, virginia, whole, woman, across, beautiful, believe
+- Character names: Mr, Mrs, Alan, Arthur, James, Arthur Savile, Cecil, Cyril, Cyril Graham, Duke, Erskine, Francis, George, Henry, Herr Winckelkopf, Hughie, Lady Alroy, Lady Clem, Lady Clementina, Lady Jedburgh, Laura, Lord Arthur, Merton, Otis, Pembroke, Podgers, Pray, Shakespeare, Sir John, Sybil, Sybil Merton, Thomas, Trevor, Umney, Willie Hughes, Adrian Singleton, Alan Campbell, Allonby, Arbuthnot, Baron Arnheim, Basil, Basil Hallward, Bengal Light, Campbell, Cardew, Caroline, Catherine Wheel, Cheveley, Christ, Claridge, Daubeny, Dear Gertrude, Death, Don Pedro, Dorian, Dorian Gray, Drink, Enter Hester, Ernest, Farquhar, Flee, Geoffrey, George Harford, Gerald, Gerald Arbuthnot, Gertrude, Gertrude Chiltern, Gray, Gutenberg, Hans, Harold, Harry, Henry Weston, Henry Wotton, Hester, Illingworth, James Vane, Jane, Jew, Jim
 
 ## Books
+- [A Woman of No Importance](../Books/934EED71-EFE9-4449-91C6-808DAAAC905A.md)
+- [An Ideal Husband](../Books/E1B01324-866D-46FE-93D5-C423EB2ECC59.md)
+- [Children’s Stories](../Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/7C4FA643-F964-439C-BD3F-21FC9AACEB4B.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/AE827DF5-44D7-48A5-8888-926CFC6C8CDA.md)
 - [The Picture of Dorian Gray](../Books/186EE454-E11F-4E42-A7E9-C582FB94CA22.md)
 
 ## Representative excerpts
 
-### The Picture of Dorian Gray: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Picture of Dorian Gray This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Picture of Dorian Gray Author: Oscar Wilde Release date: October 1, 1994 [eBook #174] Most recently updated: September 17, 2025 Language: English Other information and formats: www.gutenberg.org/ebooks/174 Credits: Judith Boss. HTML version by Al Haines.
-
-### The Picture of Dorian Gray: Section 12
+### A Woman of No Importance: Section 6
 
 _Mid-book rhythm_
 
-> CHAPTER X. When his servant entered, he looked at him steadfastly and wondered if he had thought of peering behind the screen. The man was quite impassive and waited for his orders. Dorian lit a cigarette and walked over to the glass and glanced into it. He could see the reflection of Victor’s face perfectly. It was like a placid mask of servility. There was nothing to be afraid of, there. Yet he thought it best to be on his guard. Speaking very slowly, he told him to tell the house-keeper that he wanted to see her, and then to go to the frame-maker and ask him to send two of his men round at once. It seemed to him that as the man left the room his eyes wandered in the direction of the screen. Or was that merely his own fancy? After a few moments, in her black silk dress, with old-fashioned thread mittens on her wrinkled hands, Mrs. Leaf bustled into the library.
+> Act I Scene: Lawn in front of the terrace at Hunstanton. Sir John and Lady Caroline Pontefract, Miss Worsley, on chairs under large yew tree. Lady Caroline I believe this is the first English country house you have stayed at, Miss Worsley? Hester Yes, Lady Caroline. Lady Caroline You have no country houses, I am told, in America? Hester We have not many. Lady Caroline Have you any country? What we should call country? Hester Smiling. We have the largest country in the world, Lady Caroline. They used to tell us at school that some of our states are as big as France and England put together. Lady Caroline Ah! you must find it very draughty, I should fancy. To Sir John. John, you should have your muffler. What is the use of my always knitting mufflers for you if you won’t wear them? Sir John I am quite warm, Caroline, I assure you. Lady Caroline I think not, John.
+
+### A Woman of No Importance: Section 11
+
+_Dialogue and character voice_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
+
+### An Ideal Husband: Section 6
+
+_Mid-book rhythm_
+
+> Act II Morning room at Sir Robert Chiltern’s house. Lord Goring, dressed in the height of fashion, is lounging in an armchair. Sir Robert Chiltern is standing in front of the fireplace. He is evidently in a state of great mental excitement and distress. As the scene progresses he paces nervously up and down the room. Lord Goring My dear Robert, it’s a very awkward business, very awkward indeed. You should have told your wife the whole thing. Secrets from other people’s wives are a necessary luxury in modern life. So, at least, I am always told at the club by people who are bald enough to know better. But no man should have a secret from his own wife. She invariably finds it out. Women have a wonderful instinct about things. They can discover everything except the obvious. Sir Robert Chiltern Arthur, I couldn’t tell my wife. When could I have told her? Not last night.
+
+### An Ideal Husband: Section 7
+
+_Dialogue and character voice_
+
+> Act III The Library in Lord Goring’s house. An Adam room. On the right is the door leading into the hall. On the left, the door of the smoking room. A pair of folding doors at the back open into the drawing room. The fire is lit. Phipps, the butler, is arranging some newspapers on the writing-table. The distinction of Phipps is his impassivity. He has been termed by enthusiasts the Ideal Butler. The Sphinx is not so incommunicable. He is a mask with a manner. Of his intellectual or emotional life, history knows nothing. He represents the dominance of form. Enter Lord Goring in evening dress with a buttonhole. He is wearing a silk hat and Inverness cape. White-gloved, he carries a Louis Seize cane. His are all the delicate fopperies of Fashion. One sees that he stands in immediate relation to modern life, makes it indeed, and so masters it.
+
+### Children’s Stories: Section 7
+
+_Mid-book rhythm_
+
+> The Remarkable Rocket The King’s son was going to be married, so there were general rejoicings. He had waited a whole year for his bride, and at last she had arrived. She was a Russian Princess, and had driven all the way from Finland in a sledge drawn by six reindeer. The sledge was shaped like a great golden swan, and between the swan’s wings lay the little Princess herself. Her long ermine-cloak reached right down to her feet, on her head was a tiny cap of silver tissue, and she was as pale as the Snow Palace in which she had always lived. So pale was she that as she drove through the streets all the people wondered. “She is like a white rose!” they cried, and they threw down flowers on her from the balconies. At the gate of the Castle the Prince was waiting to receive her. He had dreamy violet eyes, and his hair was like fine gold.
+
+### Children’s Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Fisherman and His Soul To H.S.H. Alice, Princess of Monaco Every evening the young Fisherman went out upon the sea, and threw his nets into the water. When the wind blew from the land he caught nothing, or but little at best, for it was a bitter and black-winged wind, and rough waves rose up to meet it. But when the wind blew to the shore, the fish came in from the deep, and swam into the meshes of his nets, and he took them to the marketplace and sold them. Every evening he went out upon the sea, and one evening the net was so heavy that hardly could he draw it into the boat. And he laughed, and said to himself, “Surely I have caught all the fish that swim, or snared some dull monster that will be a marvel to men, or some thing of horror that the great Queen will desire,”
+
+### Lord Arthur Savile’s Crime and Other Stories: Section 6
+
+_Mid-book rhythm_
+
+> The Model Millionaire A Note of Admiration Unless one is wealthy there is no use in being a charming fellow. Romance is the privilege of the rich, not the profession of the unemployed. The poor should be practical and prosaic. It is better to have a permanent income than to be fascinating. These are the great truths of modern life which Hughie Erskine never realised. Poor Hughie! Intellectually, we must admit, he was not of much importance. He never said a brilliant or even an ill-natured thing in his life. But then he was wonderfully good-looking, with his crisp brown hair, his clear-cut profile, and his grey eyes. He was as popular with men as he was with women and he had every accomplishment except that of making money. His father had bequeathed him his cavalry sword and a History of the Peninsular War in fifteen volumes.
+
+### Lord Arthur Savile’s Crime and Other Stories: Section 7
+
+_Dialogue and character voice_
+
+> The Portrait of Mr. W. H. I I had been dining with Erskine in his pretty little house in Birdcage Walk, and we were sitting in the library over our coffee and cigarettes, when the question of literary forgeries happened to turn up in conversation. I cannot at present remember how it was that we struck upon this somewhat curious topic, as it was at that time, but I know that we had a long discussion about Macpherson, Ireland, and Chatterton, and that with regard to the last I insisted that his so-called forgeries were merely the result of an artistic desire for perfect representation; that we had no right to quarrel with an artist for the conditions under which he chooses to present his work; and that all Art being to a certain degree a mode of acting, an attempt to realise one’s own personality on some imaginative plane out of reach of the trammelling accidents and limitations of real li…
+
+### Lord Arthur Savile’s Crime and Other Stories: Section 6
+
+_Mid-book rhythm_
+
+> The Model Millionaire A Note of Admiration Unless one is wealthy there is no use in being a charming fellow. Romance is the privilege of the rich, not the profession of the unemployed. The poor should be practical and prosaic. It is better to have a permanent income than to be fascinating. These are the great truths of modern life which Hughie Erskine never realised. Poor Hughie! Intellectually, we must admit, he was not of much importance. He never said a brilliant or even an ill-natured thing in his life. But then he was wonderfully good-looking, with his crisp brown hair, his clear-cut profile, and his grey eyes. He was as popular with men as he was with women and he had every accomplishment except that of making money. His father had bequeathed him his cavalry sword and a History of the Peninsular War in fifteen volumes.
+
+### Lord Arthur Savile’s Crime and Other Stories: Section 7
+
+_Dialogue and character voice_
+
+> The Portrait of Mr. W. H. I I had been dining with Erskine in his pretty little house in Birdcage Walk, and we were sitting in the library over our coffee and cigarettes, when the question of literary forgeries happened to turn up in conversation. I cannot at present remember how it was that we struck upon this somewhat curious topic, as it was at that time, but I know that we had a long discussion about Macpherson, Ireland, and Chatterton, and that with regard to the last I insisted that his so-called forgeries were merely the result of an artistic desire for perfect representation; that we had no right to quarrel with an artist for the conditions under which he chooses to present his work; and that all Art being to a certain degree a mode of acting, an attempt to realise one’s own personality on some imaginative plane out of reach of the trammelling accidents and limitations of real li…

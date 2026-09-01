@@ -2,23 +2,24 @@
 # Henry James
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 45912
-- Reading grade: 3.4
-- Average sentence: 7.9 words
-- Average paragraph: 11.7 words
+- Words analyzed: 88875
+- Reading grade: 4.2
+- Average sentence: 11.7 words
+- Average paragraph: 30.3 words
 - Dialogue share: 21%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: myself, nothing, without, moment, don’t, things, quite, place, course, straight, house, child, indeed, round, didn’t, least, night, window, small, question, sense, person, works, anything
-- Character names: Mrs. Grose, Miles, Bly, Gutenberg, Jessel, Miss Jessel, Douglas, Grose, Luke, Mrs, Peter Quint, Project Gutenberg, Gutenberg Literary Archive Foundation, Flora, Griffin, Gutenberg Literary, Mrs. Griffin, Quint
+- Tone: narrative-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: anything, child, course, didn’t, don’t, house, indeed, least, moment, myself, night, nothing, place, question, quite, round, sense, small, straight, things, window, without, instant, minute, person, works
+- Character names: Bly, Douglas, Flora, Griffin, Grose, Jessel, Luke, Miles, Miss Jessel, Mrs, Peter Quint, Quint, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Mrs. Griffin, Mrs. Grose, Peter, Project Gutenberg
 
 ## Books
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
+- [The Turn of the Screw](../Books/8529E49B-5D3E-40C1-9886-96906FB455F2.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > XII The particular impression I had received proved in the morning light, I repeat, not quite successfully presentable to Mrs. Grose, though I reinforced it with the mention of still another remark that he had made before we separated. “It all lies in half a dozen words,” I said to her, “words that really settle the matter. ‘Think, you know, what I might do!’ He threw that off to show me how good he is. He knows down to the ground what he ‘might’ do. That’s what he gave them a taste of at school.” “Lord, you do change!” cried my friend. “I don’t change—I simply make it out. The four, depend upon it, perpetually meet. If on either of these last nights you had been with either child, you would clearly have understood. The more I’ve watched and waited the more I’ve felt that if there were nothing else to make it sure it would be made so by the systematic silence of each.
+
+### The Turn of the Screw: Section 15
+
+_Mid-book rhythm_
+
+> XII The particular impression I had received proved in the morning light, I repeat, not quite successfully presentable to Mrs. Grose, though I reinforced it with the mention of still another remark that he had made before we separated. “It all lies in half a dozen words,” I said to her, “words that really settle the matter. ‘Think, you know, what I might do!’ He threw that off to show me how good he is. He knows down to the ground what he ‘might’ do. That’s what he gave them a taste of at school.” “Lord, you do change!” cried my friend. “I don’t change⁠—I simply make it out. The four, depend upon it, perpetually meet. If on either of these last nights you had been with either child, you would clearly have understood. The more I’ve watched and waited the more I’ve felt that if there were nothing else to make it sure it would be made so by the systematic silence of each.
+
+### The Turn of the Screw: Section 24
+
+_Dialogue and character voice_
+
+> XXI Before a new day, in my room, had fully broken, my eyes opened to Mrs. Grose, who had come to my bedside with worse news. Flora was so markedly feverish that an illness was perhaps at hand; she had passed a night of extreme unrest, a night agitated above all by fears that had for their subject not in the least her former, but wholly her present, governess. It was not against the possible reentrance of Miss Jessel on the scene that she protested⁠—it was conspicuously and passionately against mine. I was promptly on my feet of course, and with an immense deal to ask; the more that my friend had discernibly now girded her loins to meet me once more. This I felt as soon as I had put to her the question of her sense of the child’s sincerity as against my own. “She persists in denying to you that she saw, or has ever seen, anything?” My visitor’s trouble, truly, was great.

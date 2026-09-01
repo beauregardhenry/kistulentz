@@ -2,26 +2,102 @@
 # Detective and mystery stories
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 42
 
 ## Learned profile
 
-- Words analyzed: 316253
-- Reading grade: 3.5
-- Average sentence: 7.4 words
-- Average paragraph: 11.6 words
-- Dialogue share: 61%
+- Words analyzed: 3102149
+- Reading grade: 4.6
+- Average sentence: 12.9 words
+- Average paragraph: 34.5 words
+- Dialogue share: 53%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: himself, nothing, quite, shall, thought, without, began, business, course, cried, don’t, father, going, gutenberg, hands, heard, house, however, light, looking, matter, moment, money, morning, mother, myself, night, perhaps, porfiry, project, round, seemed, small, stood, street, suddenly, that’s, though, understand, window
-- Character names: Mr, Alyona Ivanovna, Avdotya Romanovna, Bradstreet, Briony Lodge, Clair, Dmitri, Doctor, Dostoevsky, Dounia, Dr. Grimesby Roylott, Dr. Roylott, Dushkin, Frank, Hatherley, Holmes, Horner, Ilya Petrovitch, Irene Adler, James, John, Jones, Katerina Ivanovna, Koch, Lestrade, Lizaveta, Luise Ivanovna, Luzhin, Marfa Petrovna, Marmeladov, McCarthy, Miss Stoner, Mr. Holmes, Mr. Hosmer Angel, Mr. Luzhin, Mr. Merryweather, Mr. Sherlock Holmes, Mr. Svidrigaïlov, Mr. Wilson, Mr. Windibank, Nastasya, Nikodim Fomitch, Nikolay, Openshaw, Pestryakov, Petersburg, Peterson, Pulcheria Alexandrovna, Pyotr Petrovitch, Raskolnikov, Razumihin, Rodya, Sherlock Holmes, Simon, Sonia, Turner, Watson, Zametov, Zossimov
+- Tone: dialogue-forward, rhythmically varied, direct, balanced, rhythmically even, inquisitive, energetic
+- Recurring vocabulary: don’t, house, himself, thought, nothing, going, night, round, though, heard, morning, quite, shall, voice, moment, young, without, three, rather, seemed, friend, hands, people, police, street, place, woman, course, cried, stood, anything, light, nodded, things, money, that’s, didn’t, doctor, you’re, london
+- Character names: Mr, Mrs, Dr, George, John, Holmes, Watson, Brown, Frank, James, Peter, Sherlock Holmes, Gonsalez, Lestrade, Manfred, Peterson, Poiccart, Arthur, Father Brown, Hugh, Jack, Leon, Martin, Parker, Smith, Turner, Bill, Billy, Carl, Carl Peterson, Denny, Drummond, Flambeau, George Manfred, Green, Gregory, Hudson, Hugh Drummond, Jerningham, Jones, Leon Gonsalez, Lew, Mary, Philip, Phyllis, Reeder, Simon, Ted, Toby, Tommy, Albert, Algy, Algy Longworth, Amy, Atkinson, Beppo, Bertram, Betts, Bradstreet, Briony Lodge, Burton, Carlton, Clair, Cole, Craig, Debenham, Doctor, Esher, Fenner, Floyd, G. Reeder, Garcia, Gennaro, Gray, Gurden, Hardcastle, Hatherley, Horner, Irene Adler, Jameson
 
 ## Books
+- [Bulldog Drummond](../Books/4513F14C-F744-4BA0-89B1-D2F6F931DED5.md)
+- [Call Mr. Fortune](../Books/1F68F31A-AA32-4414-B116-4B3C93BDD75E.md)
+- [Craig Kennedy Stories](../Books/2DDC7ADE-E788-4880-9354-3FBC5B7E6F50.md)
 - [Crime and Punishment](../Books/CB9F10BE-C785-454C-8EB5-4ED84B162D31.md)
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
+- [Lord Peter Views the Body](../Books/92A8249B-224C-4E2C-8D90-41B86501A3DE.md)
+- [Partners in Crime](../Books/77BED452-3EC1-4A65-8DFE-C531A20BD810.md)
+- [Poirot Investigates](../Books/DA0B3FE2-54DD-4A9C-B15A-5967F67B4809.md)
+- [Room 13](../Books/4B79C267-89C1-45C7-B018-BDC6A1E2E427.md)
+- [Short Fiction](../Books/0D1773E5-F6C8-423B-9422-79DB12462E5D.md)
+- [Short Fiction](../Books/031B1822-5DAC-4919-A354-4BA4598607D4.md)
+- [Terror Keep](../Books/CC9314C3-481E-463D-9E2D-E7C818612242.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Amateur Cracksman](../Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md)
+- [The Avenger](../Books/804C3344-FC00-44DD-9CB3-B0018119EA00.md)
+- [The Black Gang](../Books/3518182F-4869-4902-A704-F01283879F66.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Clue of the New Pin](../Books/3FCE8075-8056-4D83-9608-5805CA049888.md)
+- [The Clue of the Twisted Candle](../Books/7D293F4A-090A-4BF6-99D9-6202456EBC6B.md)
+- [The Council of Justice](../Books/7EE65772-7F1E-43A1-9099-581BD796FFC3.md)
+- [The Door with Seven Locks](../Books/5923B3E1-C4B1-4F2C-9A27-0A96F165593A.md)
+- [The Four Just Men](../Books/714DD324-FFA2-4A34-BF60-9F49595459D9.md)
+- [The Incredulity of Father Brown](../Books/81518D11-E6DD-4B4B-9073-A205D12805BC.md)
+- [The Innocence of Father Brown](../Books/A08E9FD9-5919-468C-9E7C-04C3FD49A188.md)
+- [The Just Men of Cordova](../Books/2C45F7BD-82CB-40A9-8BCB-40A61759BFE3.md)
+- [The Law of the Four Just Men](../Books/5DFA9000-0F80-4034-93F3-F807901893CE.md)
+- [The Man in the Brown Suit](../Books/21775D97-805B-4CD7-8314-1CD228742B63.md)
+- [The Man Who Knew](../Books/EEF9FBB4-FEDE-4FF4-BCB9-39E8D9F6A41E.md)
+- [The Melody of Death](../Books/7ECB5922-A12F-4D5A-B807-D7A052A0D325.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Mind of Mr. J. G. Reeder](../Books/7155C166-21B4-4030-A6CA-A61F44F0E053.md)
+- [The Old Man in the Corner](../Books/EBFC1BDB-4AFB-43DE-9496-84E24C296C5A.md)
+- [The Red House Mystery](../Books/BACBEA39-B830-40F1-B9E0-90A7365B446F.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
+- [The Secret House](../Books/2DDDEC42-DF7E-4E9D-A4B5-BBBA99952EEA.md)
+- [The Secret of Father Brown](../Books/ADC595DB-C4F6-49EB-B32B-C8F6460D0520.md)
+- [The Square Emerald](../Books/DF9CDCD8-400C-4AF1-B3A0-1CAA512124BB.md)
+- [The Sword of Damocles](../Books/28461A01-8141-4C30-991A-5A00B38B78E3.md)
+- [The Third Round](../Books/F198F685-F32D-4BDC-B58B-81BB6D8DCAF4.md)
+- [The Three Just Men](../Books/A6973305-DD7D-4CC1-8052-8A6385B67D39.md)
+- [The Wisdom of Father Brown](../Books/5B4349AB-C34E-40A0-96F1-2AF5E770C130.md)
 
 ## Representative excerpts
+
+### Bulldog Drummond: Section 10
+
+_Mid-book rhythm_
+
+> VII In Which He Spends an Hour or Two on a Roof I Drummond paused for a moment at the door of the sitting-room, then with a slight shrug he stepped past Peterson. During the last few days he had grown to look on this particular room as the private den of the principals of the gang. He associated it in his mind with Peterson himself, suave, impassive, ruthless; with the girl Irma, perfectly gowned, lying on the sofa, smoking innumerable cigarettes, and manicuring her already faultless nails; and in a lesser degree, with Henry Lakington’s thin, cruel face, and blue, staring eyes. But tonight a different scene confronted him. The girl was not there: her accustomed place on the sofa was occupied by an unkempt-looking man with a ragged beard. At the end of the table was a vacant chair, on the right of which sat Lakington regarding him with malevolent fury.
+
+### Bulldog Drummond: Section 15
+
+_Dialogue and character voice_
+
+> XII In Which the Last Round Takes Place I It was during the next hour or two that the full value of Mr. Jerome K. Green as an acquisition to the party became apparent. Certain other preparations in honour of Peterson’s arrival were duly carried out, and then arose the question of the safe in which the all-important ledger was kept. “There it is,” said Drummond, pointing to a heavy steel door flush with the wall, on the opposite side of the room to the big one containing Lakington’s ill-gotten treasure. “And it doesn’t seem to me that you’re going to open that one by pressing any buttons in the wall.” “Then, Captain,” drawled the American, “I guess we’ll open it otherwise. It’s sure plumb easy. I’ve been getting gay with some of the household effects, and this bar of soap sort of caught my eye.”
+
+### Call Mr. Fortune: Section 6
+
+_Mid-book rhythm_
+
+> Case IV The Efficient Assassin There was a silence that might be felt. The judge put on the black cap. The prisoner gave a queer cackle of laughter. And Mr. Reginald Fortune, the surgeon whose evidence had convicted him, yawned and stole out of court. The Sunday School murder, one of the most popular crimes of our generation, had bored Mr. Fortune excessively, and now that the Sunday School Superintendent was safely on his way to the hangman Mr. Fortune desired to forget all about it at once. He stood on the steps of the Shire Hall, lighting a cigar. A large young man, who had been struggling to get in, detached himself from the guardian policeman and ran at him. “Fortune! My God!” he said emotionally. “I thought I’d never get at you. I say, come somewhere where we can talk.” Mr. Fortune looked down through his smoke with sleepy eyes. “One moment. One moment,” he murmured. “Oh, ah.
+
+### Call Mr. Fortune: Section 8
+
+_Dialogue and character voice_
+
+> Case VI The Business Minister Phase I The Scandal “ ‘Oh, to be in England now that April’s here,’ ” said Reggie Fortune as, trying to hide himself in his coat, he slipped and slid down the gangway to his native land. The Boulogne boat behind him, lost in driving snow, could be inferred from escaping steam and the glimmer of a rosette of lights. “The Flying Dutchman’s new packet,” Reggie muttered, and hummed the helmsman’s song from the opera, till a squall coming round the corner stung what of his face he could not bury like small shot. He continued to suffer. The heat in the Pullman was tinned. He did not like the toast. The train ran slow, and whenever he wiped the steamy window he saw white-blanketed country and fresh swirls of snow. So he came into Victoria some seven hours late, and it had no taxi. He said what he could.
+
+### Craig Kennedy Stories: Section 9
+
+_Mid-book rhythm_
+
+> The Diamond Maker “I’ve called, Professor Kennedy, to see if we can retain you in a case which I am sure will tax even your resources. Heaven knows it has taxed ours.” The visitor was a large, well-built man. He placed his hat on the table and, without taking off his gloves, sat down in an easy chair which he completely filled. “Andrews is my name⁠—third vice-president of the Great Eastern Life Insurance Company. I am the nominal head of the company’s private detective force, and though I have some pretty clever fellows on my staff we’ve got a case that, so far, none of us has been able to unravel. I’d like to consult you about it.” Kennedy expressed his entire willingness to be consulted, and after the usual formalities were over, Mr. Andrews proceeded.
+
+### Craig Kennedy Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Azure Ring Files of newspapers and innumerable clippings from the press bureaus littered Kennedy’s desk in rank profusion. Kennedy himself was so deeply absorbed that I had merely said good evening as I came in and had started to open my mail. With an impatient sweep of his hand, however, he brushed the whole mass of newspapers into the wastebasket. “It seems to me, Walter,” he exclaimed in disgust, “that this mystery is considered insoluble for the very reason which should make it easy to solve⁠—the extraordinary character of its features.” Inasmuch as he had opened the subject, I laid down the letter I was reading. “I’ll wager I can tell you just why you made that remark, Craig,” I ventured. “You’re reading up on that Wainwright-Templeton affair.” “You are on the road to becoming a detective yourself, Walter,” he answered with a touch of sarcasm.
 
 ### Crime and Punishment: Section 1
 
@@ -35,14 +111,14 @@ _Mid-book rhythm_
 
 > CHAPTER VI “I don’t believe it, I can’t believe it!” repeated Razumihin, trying in perplexity to refute Raskolnikov’s arguments. They were by now approaching Bakaleyev’s lodgings, where Pulcheria Alexandrovna and Dounia had been expecting them a long while. Razumihin kept stopping on the way in the heat of discussion, confused and excited by the very fact that they were for the first time speaking openly about it. “Don’t believe it, then!” answered Raskolnikov, with a cold, careless smile. “You were noticing nothing as usual, but I was weighing every word.” “You are suspicious. That is why you weighed their words... h’m... certainly, I agree, Porfiry’s tone was rather strange, and still more that wretch Zametov!... You are right, there was something about him—but why? Why?” “He has changed his mind since last night.” “Quite the contrary!
 
-### The Adventures of Sherlock Holmes: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Adventures of Sherlock Holmes This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Adventures of Sherlock Holmes Author: Arthur Conan Doyle Release date: March 1, 1999 [eBook #1661] Most recently updated: October 10, 2023 Language: English Other information and formats: www.gutenberg.
-
-### The Adventures of Sherlock Holmes: Section 8
+### His Last Bow: Section 7
 
 _Mid-book rhythm_
 
-> VII. THE ADVENTURE OF THE BLUE CARBUNCLE I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+> The Adventure of the Bruce-Partington Plans In the third week of November, in the year 1895, a dense yellow fog settled down upon London. From the Monday to the Thursday I doubt whether it was ever possible from our windows in Baker Street to see the loom of the opposite houses. The first day Holmes had spent in cross-indexing his huge book of references. The second and third had been patiently occupied upon a subject which he had recently made his hobby⁠—the music of the Middle Ages. But when, for the fourth time, after pushing back our chairs from breakfast we saw the greasy, heavy brown swirl still drifting past us and condensing in oily drops upon the windowpanes, my comrade’s impatient and active nature could endure this drab existence no longer.
+
+### His Last Bow: Section 5
+
+_Dialogue and character voice_
+
+> The Adventure of Wisteria Lodge The Singular Experience of Mr. John Scott Eccles I find it recorded in my notebook that it was a bleak and windy day towards the end of March in the year 1892. Holmes had received a telegram while we sat at our lunch, and he had scribbled a reply. He made no remark, but the matter remained in his thoughts, for he stood in front of the fire afterwards with a thoughtful face, smoking his pipe, and casting an occasional glance at the message. Suddenly he turned upon me with a mischievous twinkle in his eyes. “I suppose, Watson, we must look upon you as a man of letters,” said he. “How do you define the word ‘grotesque’?” “Strange⁠—remarkable,” I suggested. He shook his head at my definition. “There is surely something more than that,” said he; “some underlying suggestion of the tragic and the terrible.

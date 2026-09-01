@@ -2,26 +2,65 @@
 # Edgar Allan Poe
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 103552
-- Reading grade: 5.4
-- Average sentence: 8.3 words
-- Average paragraph: 11.5 words
-- Dialogue share: 55%
+- Words analyzed: 819402
+- Reading grade: 8.3
+- Average sentence: 19.4 words
+- Average paragraph: 77.4 words
+- Dialogue share: 33%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: length, within, without, above, access, agreement, balloon, chamber, composition, copyright, corpse, donations, earth, ebook, effect, electronic, gutenberg, himself, however, indeed, license, lover, manner, means, myself, nature, nevermore, night, nothing, paragraph, philosophy, point, project, refrain, shall, states, terms, thought, three, trademark
-- Character names: Poe, massa, Andrée, Antiochus Epiphanes, Beauvais, Caleb Williams, Dupin, Edgar, Eustache, Griswold, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hans Pfaall, Jupiter, Kidd, Le Soleil, Legrand, Lenore, M. Beauvais, M. Dumas, Madame, Madame Deluc, Madame L’Espanaye, Mademoiselle L’Espanaye, Marie, Marie Rogêt, Massa Will, Monsieur Le Blanc, Mr. Allan, Mr. Poe, Pallas, Perrett, Project Gutenberg, Raven, Rotterdam, Roule, Shakespeare
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, narrative-forward, rhythmically even, measured
+- Recurring vocabulary: length, without, himself, however, indeed, manner, means, myself, nothing, three, whole, within, nature, night, point, seemed, shall, thought, words, course, death, general, matter, water, whose, above, access, agreement, balloon, board, cabin, chamber, composition, copyright, corpse, donations, during, earth, ebook, effect
+- Character names: Poe, Antiochus Epiphanes, Edgar, Hans Pfaall, Mr, Rotterdam, Shakespeare, Alexander, Allan, Aristotle, Ben-Levi, Berenice, Bon, Bon-Bon, Buzi-Ben-Levi, Chambertin, De L’Omelette, Dr, Duc, Frederick, Hermann, Hugh Tarpaulin, Jung, Marchesa, Monsieur Bon-Bon, Morella, Mrs, Pierre Bon-Bon, Plato, Rowena, massa, Acunha, Allen, Andrée, Ariel, Arthur Gordon Pym, Augustus, Barnard, Beauvais, Caleb Williams, Captain Morrell, Captain Patten, Christmas Harbour, Dirk Peters, Dupin, Edward, Eustache, Galápago, Greely, Griswold, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hartman Rogers, Henderson, Jane, Jane Guy, Jim Bonner, Jones, Jupiter, Kerguelen, Kidd, Lama-Lama, Le Soleil, Legrand, Lenore, M. Beauvais, M. Dumas, Madame, Madame Deluc, Madame L’Espanaye, Mademoiselle L’Espanaye, Marie, Marie Rogêt, Massa Will, Monsieur Le Blanc, Mr. Allan, Mr. Poe, Pallas, Parker
 
 ## Books
+- [Short Fiction](../Books/28BEFD12-BA87-4341-928F-6C212F09EFC1.md)
+- [Short Fiction](../Books/D8BDAAFA-DE1A-4F5F-9C04-F220A3D54AD0.md)
+- [The Narrative of Arthur Gordon Pym of Nantucket](../Books/99706ED7-E9F6-409D-8318-473DBA8BFDF5.md)
 - [The Raven, and The Philosophy of Composition](../Books/ED32F5AA-11C5-4446-82CB-411488A85C5C.md)
 - [The Works of Edgar Allan Poe — Volume 1](../Books/3FE1260F-E736-4671-80C2-7DF5638935F2.md)
 
 ## Representative excerpts
+
+### Short Fiction: Section 38
+
+_Mid-book rhythm_
+
+> Never Bet the Devil Your Head A Tale with a Moral “Con tal que las costumbres de un autor,” says Don Thomas de las Torres, in the preface to his Amatory Poems “sean puras y castas, importo muy poco que no sean igualmente severas sus obras”⁠—meaning, in plain English, that, provided the morals of an author are pure personally, it signifies nothing what are the morals of his books. We presume that Don Thomas is now in Purgatory for the assertion. It would be a clever thing, too, in the way of poetical justice, to keep him there until his Amatory Poems get out of print, or are laid definitely upon the shelf through lack of readers. Every fiction should have a moral; and, what is more to the purpose, the critics have discovered that every fiction has.
+
+### Short Fiction: Section 17
+
+_Dialogue and character voice_
+
+> The Unparalleled Adventure of One Hans Pfaall With a heart of furious fancies, Whereof I am commander, With a burning spear and a horse of air, To the wilderness I wander. Tom O’Bedlam’s Song By late accounts from Rotterdam, that city seems to be in a high state of philosophical excitement. Indeed, phenomena have there occurred of a nature so completely unexpected⁠—so entirely novel⁠—so utterly at variance with preconceived opinions⁠—as to leave no doubt on my mind that long ere this all Europe is in an uproar, all physics in a ferment, all reason and astronomy together by the ears. It appears that on the ⸻ day of ⸻ (I am not positive about the date), a vast crowd of people, for purposes not specifically mentioned, were assembled in the great square of the Exchange in the well-conditioned city of Rotterdam.
+
+### Short Fiction: Section 38
+
+_Mid-book rhythm_
+
+> Never Bet the Devil Your Head A Tale with a Moral “Con tal que las costumbres de un autor,” says Don Thomas de las Torres, in the preface to his Amatory Poems “sean puras y castas, importo muy poco que no sean igualmente severas sus obras”⁠—meaning, in plain English, that, provided the morals of an author are pure personally, it signifies nothing what are the morals of his books. We presume that Don Thomas is now in Purgatory for the assertion. It would be a clever thing, too, in the way of poetical justice, to keep him there until his Amatory Poems get out of print, or are laid definitely upon the shelf through lack of readers. Every fiction should have a moral; and, what is more to the purpose, the critics have discovered that every fiction has.
+
+### Short Fiction: Section 17
+
+_Dialogue and character voice_
+
+> The Unparalleled Adventure of One Hans Pfaall With a heart of furious fancies, Whereof I am commander, With a burning spear and a horse of air, To the wilderness I wander. Tom O’Bedlam’s Song By late accounts from Rotterdam, that city seems to be in a high state of philosophical excitement. Indeed, phenomena have there occurred of a nature so completely unexpected⁠—so entirely novel⁠—so utterly at variance with preconceived opinions⁠—as to leave no doubt on my mind that long ere this all Europe is in an uproar, all physics in a ferment, all reason and astronomy together by the ears. It appears that on the ⸻ day of ⸻ (I am not positive about the date), a vast crowd of people, for purposes not specifically mentioned, were assembled in the great square of the Exchange in the well-conditioned city of Rotterdam.
+
+### The Narrative of Arthur Gordon Pym of Nantucket: Section 17
+
+_Mid-book rhythm_
+
+> XIII July 24. This morning saw us wonderfully recruited in spirits and strength. Notwithstanding the perilous situation in which we were still placed, ignorant of our position, although certainly at a great distance from land, without more food than would last us for a fortnight even with great care, almost entirely without water, and floating about at the mercy of every wind and wave on the merest wreck in the world, still the infinitely more terrible distresses and dangers from which we had so lately and so providentially been delivered caused us to regard what we now endured as but little more than an ordinary evil⁠—so strictly comparative is either good or ill.
+
+### The Narrative of Arthur Gordon Pym of Nantucket: Section 24
+
+_Dialogue and character voice_
+
+> XX The chief was as good as his word, and we were soon plentifully supplied with fresh provisions. We found the tortoises as fine as we had ever seen, and the ducks surpassed our best species of wild fowl, being exceedingly tender, juicy, and well-flavoured. Besides these, the savages brought us, upon our making them comprehend our wishes, a vast quantity of brown celery and scurvy grass, with a canoe-load of fresh fish and some dried. The celery was a treat indeed, and the scurvy grass proved of incalculable benefit in restoring those of our men who had shown symptoms of disease. In a very short time we had not a single person on the sick-list. We had also plenty of other kinds of fresh provisions, among which may be mentioned a species of shellfish resembling the mussel in shape, but with the taste of an oyster.
 
 ### The Raven, and The Philosophy of Composition: Section 1
 

@@ -2,25 +2,42 @@
 # Social classes -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 125932
-- Reading grade: 4.6
-- Average sentence: 8.2 words
-- Average paragraph: 11.1 words
-- Dialogue share: 47%
+- Words analyzed: 808969
+- Reading grade: 6.9
+- Average sentence: 17.8 words
+- Average paragraph: 66.2 words
+- Dialogue share: 33%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: herself, sister, though, mother, nothing, without, house, however, shall, heart, thought, himself, chapter, enough, myself, young, replied, indeed, happy, gutenberg, quite, cannot, world, therefore
-- Character names: Elinor, Marianne, Willoughby, Edward, Mrs. Jennings, Lucy, Sir John, Lady Middleton, Mrs. Dashwood, Colonel Brandon, Miss Dashwood, Mrs, Mrs. Palmer, Dashwood, Mr. Willoughby, Mr. Palmer, Mrs. Ferrars, Mrs. John Dashwood, Brandon, Fanny, Jennings, Miss Steele, Mr. Dashwood, Charlotte, Miss Austen, Mr, Mamma, Miss Marianne, Mrs. Smith, Steeles
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, measured, narrative-forward, rhythmically even
+- Recurring vocabulary: thought, young, herself, himself, seemed, shall, though, heart, mother, myself, moment, night, nothing, replied, without, world, alone, became, child, death, enough, father, going, hands, happy, heard, house, however, indeed, passed, quite, return, sister, therefore, voice, whose, woman, words, years, anything
+- Character names: Fanny, Charles, Mr, Mrs, Adalinda, Anina, Brandon, Charlotte, Cincolo, Colonel Brandon, Corradino, Cyril, Dashwood, Despina, Dmitri, Domenico, Edward, Elinor, Ellen, Fabian, Ferdinand, Gaspar, Gegia, Harry, Henry, Jennings, Juliet, Katusthius, Lady Middleton, Lewis, Lorenzo, Louis, Lucy, Madame de Marville, Manfred, Manon, Maria, Marianne, Miss Dashwood, Miss Marianne, Miss Steele, Rachel, Ricciardo, Rosina, Sir John, Smith, Steeles, Torella, Vernon, Willoughby, Zella, Alwyn, Anne, Bles, Bles Alwyn, Caldwell, Clotilde, Cresswell, Daddy Walter, Devonshire, Dr, Du Roy, Duroy, Edward Ferrars, Elspeth, Forestier, George, George Duroy, Gray, Grey, Harry Cresswell, Helen, I’se, Jacques Rival, Jew, John, John Dashwood, John Taylor, Jove, Laroche-Mathieu
 
 ## Books
+- [Bel Ami](../Books/591376BF-D9FE-4411-8ED3-9C4D34C89970.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [Short Fiction](../Books/53316201-814F-4714-9D77-7EEAA566723E.md)
+- [Short Fiction](../Books/9DF0999E-892A-42F6-AC67-98F33B187CAB.md)
+- [The Quest of the Silver Fleece](../Books/8D64A15B-2039-4303-9CC6-AC3AA45E32EB.md)
 
 ## Representative excerpts
+
+### Bel Ami: Section 12
+
+_Mid-book rhythm_
+
+> X The Du Roys had been back in Paris a couple of days, and the journalist had taken up his old work pending the moment when he should definitely assume Forestier’s duties, and give himself wholly up to politics. He was going home that evening to his predecessor’s abode to dinner, with a light heart and a keen desire to embrace his wife, whose physical attractions and imperceptible domination exercised a powerful impulse over him. Passing by a florist’s at the bottom of the Rue Notre Dame de Lorette, he was struck by the notion of buying a bouquet for Madeleine, and chose a large bunch of half-open roses, a very bundle of perfumed buds. At each story of his new staircase he eyed himself complacently in the mirrors, the sight of which continually recalled to him his first visit to the house.
+
+### Bel Ami: Section 7
+
+_Dialogue and character voice_
+
+> V Two months had gone by, September was at hand, and the rapid fortune which Duroy had hoped for seemed to him slow in coming. He was, above all, uneasy at the mediocrity of his position, and did not see by what path he could scale the heights on the summit of which one finds respect, power, and money. He felt shut up in the mediocre calling of a reporter, so walled in as to be unable to get out of it. He was appreciated, but estimated in accordance with his position. Even Forestier, to whom he rendered a thousand services, no longer invited him to dinner, and treated him in every way as an inferior, though still accosting him as a friend.
 
 ### Sense and Sensibility: Section 1
 
@@ -33,3 +50,39 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+
+### Sense and Sensibility: Section 28
+
+_Mid-book rhythm_
+
+> XXVI Elinor could not find herself in the carriage with Mrs. Jennings, and beginning a journey to London under her protection, and as her guest, without wondering at her own situation, so short had their acquaintance with that lady been, so wholly unsuited were they in age and disposition, and so many had been her objections against such a measure only a few days before! But these objections had all, with that happy ardour of youth which Marianne and her mother equally shared, been overcome or overlooked; and Elinor, in spite of every occasional doubt of Willoughby’s constancy, could not witness the rapture of delightful expectation which filled the whole soul and beamed in the eyes of Marianne, without feeling how blank was her own prospect, how cheerless her own state of mind in the comparison, and how gladly she would engage in the solicitude of Marianne’s situation to have the same a…
+
+### Sense and Sensibility: Section 46
+
+_Dialogue and character voice_
+
+> XLIV Elinor, starting back with a look of horror at the sight of him, obeyed the first impulse of her heart in turning instantly to quit the room, and her hand was already on the lock, when its action was suspended by his hastily advancing, and saying, in a voice rather of command than supplication⁠— “Miss Dashwood, for half an hour⁠—for ten minutes⁠—I entreat you to stay.” “No, sir,” she replied with firmness, “I shall not stay. Your business cannot be with me. The servants, I suppose, forgot to tell you that Mr. Palmer was not in the house.” “Had they told me,” he cried with vehemence, “that Mr. Palmer and all his relations were at the devil, it would not have turned me from the door. My business is with you, and only you.” “With me!”⁠—in the utmost amazement⁠—“well, sir⁠—be quick⁠—and if you can⁠—less violent.” “Sit down, and I will be both.” She hesitated; she knew not what to do.
+
+### Short Fiction: Section 13
+
+_Mid-book rhythm_
+
+> The Invisible Girl This slender narrative has no pretensions to the regularity of a story, or the development of situations and feelings; it is but a slight sketch, delivered nearly as it was narrated to me by one of the humblest of the actors concerned: nor will I spin out a circumstance interesting principally from its singularity and truth, but narrate, as concisely as I can, how I was surprised on visiting what seemed a ruined tower, crowning a bleak promontory overhanging the sea, that flows between Wales and Ireland, to find that though the exterior preserved all the savage rudeness that betokened many a war with the elements, the interior was fitted up somewhat in the guise of a summerhouse, for it was too small to deserve any other name.
+
+### Short Fiction: Section 21
+
+_Dialogue and character voice_
+
+> Mathilda9 I Florence. Nov. 9th 1819 It is only four o’clock; but it is winter and the sun has already set: there are no clouds in the clear, frosty sky to reflect its slant beams, but the air itself is tinged with a slight roseate colour which is again reflected on the snow that covers the ground. I live in a lone cottage on a solitary, wide heath: no voice of life reaches me. I see the desolate plain covered with white, save a few black patches that the noonday sun has made at the top of those sharp pointed hillocks from which the snow, sliding as it fell, lay thinner than on the plain ground: a few birds are pecking at the hard ice that covers the pools⁠—for the frost has been of long continuance10 I am in a strange state of mind.11 I am alone⁠—quite alone⁠—in the world⁠—the blight of misfortune has passed over me and withered me; I know that I am about to die and I feel happy⁠—joyous.
+
+### Short Fiction: Section 13
+
+_Mid-book rhythm_
+
+> The Invisible Girl This slender narrative has no pretensions to the regularity of a story, or the development of situations and feelings; it is but a slight sketch, delivered nearly as it was narrated to me by one of the humblest of the actors concerned: nor will I spin out a circumstance interesting principally from its singularity and truth, but narrate, as concisely as I can, how I was surprised on visiting what seemed a ruined tower, crowning a bleak promontory overhanging the sea, that flows between Wales and Ireland, to find that though the exterior preserved all the savage rudeness that betokened many a war with the elements, the interior was fitted up somewhat in the guise of a summerhouse, for it was too small to deserve any other name.
+
+### Short Fiction: Section 21
+
+_Dialogue and character voice_
+
+> Mathilda9 I Florence. Nov. 9th 1819 It is only four o’clock; but it is winter and the sun has already set: there are no clouds in the clear, frosty sky to reflect its slant beams, but the air itself is tinged with a slight roseate colour which is again reflected on the snow that covers the ground. I live in a lone cottage on a solitary, wide heath: no voice of life reaches me. I see the desolate plain covered with white, save a few black patches that the noonday sun has made at the top of those sharp pointed hillocks from which the snow, sliding as it fell, lay thinner than on the plain ground: a few birds are pecking at the hard ice that covers the pools⁠—for the frost has been of long continuance10 I am in a strange state of mind.11 I am alone⁠—quite alone⁠—in the world⁠—the blight of misfortune has passed over me and withered me; I know that I am about to die and I feel happy⁠—joyous.

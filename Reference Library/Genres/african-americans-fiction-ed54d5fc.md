@@ -2,25 +2,51 @@
 # African Americans -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 186675
-- Reading grade: 3.2
-- Average sentence: 8.1 words
-- Average paragraph: 11.2 words
-- Dialogue share: 45%
+- Words analyzed: 353408
+- Reading grade: 4.0
+- Average sentence: 11.7 words
+- Average paragraph: 24.6 words
+- Dialogue share: 46%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: don’t, mas’r, child, woman, shall, legree, hands, mother, heart, can’t, going, young, cassy, seemed, things, master, thought, heard, stood, anything, place, himself, won’t, better
-- Character names: Tom, George, Haley, Eliza, Sam, Clare, Chloe, Andy, Marie, Eva, St, Mr. Shelby, John, Miss Ophelia, Mrs. Shelby, Simeon, Rachel, Phineas, Wal, Shelby, Mrs. Bird, Mr. Wilson, Ophelia, Mammy, Jim, Marks, Missis, Harry, Uncle Tom, Ruth
+- Tone: dialogue-forward, direct, rhythmically even, energetic, measured, rhythmically varied
+- Recurring vocabulary: don’t, going, hands, night, seemed, stood, things, thought, woman, young, ag’in, anything, atter, better, black, can’t, cassy, child, colonel, cotton, couldn, course, co’se, cunjuh, dugal, folks, goopher, gwine, heard, heart, herself, himself, hisse’f, house, jeems, knowed, legree, lowed, master, mas’r
+- Character names: John, Chloe, Harry, Rachel, Alwyn, Andy, Annie, Becky, Ben, Bles, Bles Alwyn, Caldwell, Clare, Cresswell, Dan, Dave, De, Dey, Dilsey, Dr, Eliza, Elspeth, Eva, George, Grey, Haley, Hannibal, Harry Cresswell, Helen, Henry, I’se, Jeff, Jim, John Taylor, Julius, Kunnel Pen’leton, Mabel, Mammy, Marie, Marks, Mars Donal, Mars Johnson, Mars Marrabo, Mars Tom, Mary, Mary Taylor, Miss Ophelia, Miss Smith, Miss Taylor, Miss Wynn, Missis, Mr, Mr. Shelby, Mr. Wilson, Mrs, Mrs. Bird, Mrs. Shelby, Ophelia, Peggy, Pete, Phineas, Robert, Robeson County, Ruth, Sam, Sandy, Sarah Smith, Shelby, Simeon, Smith, Solomon, St, Stillings, Taylor, Tenie, Tobe, Todd, Tom, Uncle Julius, Uncle Tom
 
 ## Books
+- [The Conjure Woman](../Books/17947445-CB15-4413-B18E-133521AB1859.md)
+- [The Quest of the Silver Fleece](../Books/8D64A15B-2039-4303-9CC6-AC3AA45E32EB.md)
 - [Uncle Tom's Cabin](../Books/6CAED790-DF2B-452A-9C4C-92B00356F2FA.md)
 
 ## Representative excerpts
+
+### The Conjure Woman: Section 9
+
+_Mid-book rhythm_
+
+> Hot-Foot Hannibal “I hate you and despise you! I wish never to see you or speak to you again!” “Very well; I will take care that henceforth you have no opportunity to do either.” These words⁠—the first in the passionately vibrant tones of my sister-in-law, and the latter in the deeper and more restrained accents of an angry man⁠—startled me from my nap. I had been dozing in my hammock on the front piazza, behind the honeysuckle vine. I had been faintly aware of a buzz of conversation in the parlor, but had not at all awakened to its import until these sentences fell, or, I might rather say, were hurled upon my ear. I presume the young people had either not seen me lying there⁠—the Venetian blinds opening from the parlor windows upon the piazza were partly closed on account of the heat⁠—or else in their excitement they had forgotten my proximity. I felt somewhat concerned.
+
+### The Conjure Woman: Section 5
+
+_Dialogue and character voice_
+
+> Mars Jeems’s Nightmare We found old Julius very useful when we moved to our new residence. He had a thorough knowledge of the neighborhood, was familiar with the roads and the watercourses, knew the qualities of the various soils and what they would produce, and where the best hunting and fishing were to be had. He was a marvelous hand in the management of horses and dogs, with whose mental processes he manifested a greater familiarity than mere use would seem to account for, though it was doubtless due to the simplicity of a life that had kept him close to nature. Toward my tract of land and the things that were on it⁠—the creeks, the swamps, the hills, the meadows, the stones, the trees⁠—he maintained a peculiar personal attitude, that might be called predial rather than proprietary. He had been accustomed, until long after middle life, to look upon himself as the property of another.
+
+### The Quest of the Silver Fleece: Section 23
+
+_Mid-book rhythm_
+
+> XVIII The Cotton Corner All over the land the cotton had foamed in great white flakes under the winter sun. The Silver Fleece lay like a mighty mantle across the earth. Black men and mules had staggered beneath its burden, while deep songs welled in the hearts of men; for the Fleece was goodly and gleaming and soft, and men dreamed of the gold it would buy. All the roads in the country had been lined with wagons—a million wagons speeding to and fro with straining mules and laughing black men, bearing bubbling masses of piled white Fleece. The gins were still roaring and spitting flames and smoke﻿—fifty thousand of them in town and vale. Then hoarse iron throats were filled with fifteen billion pounds of white-fleeced, black-specked cotton, for the whirling saws to tear out the seed and fling five thousand million pounds of the silken fibre to the press.
+
+### The Quest of the Silver Fleece: Section 15
+
+_Dialogue and character voice_
+
+> X Mr. Taylor Calls “Thinking the matter over,” said Harry Cresswell to his father, “I’m inclined to advise drawing this Taylor out a little further.” The Colonel puffed his cigar and one eye twinkled, the lid of the other being at the moment suggestively lowered. “Was she pretty?” he asked; but his son ignored the remark, and the father continued: “I had a telegram from Taylor this morning, after you left. He’ll be passing through Montgomery the first of next month, and proposes calling.” “I’ll wire him to come,” said Harry, promptly. At this juncture the door opened and a young lady entered. Helen Cresswell was twenty, small and pretty, with a slightly languid air. Outside herself there was little in which she took very great interest, and her interest in herself was not absorbing. Yet she had a curiously sweet way.
 
 ### Uncle Tom's Cabin: Section 1
 

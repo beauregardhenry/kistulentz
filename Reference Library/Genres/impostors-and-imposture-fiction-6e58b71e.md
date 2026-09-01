@@ -2,25 +2,38 @@
 # Impostors and imposture -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 57118
-- Reading grade: 3.2
-- Average sentence: 7.6 words
-- Average paragraph: 10.0 words
-- Dialogue share: 37%
-- Voice: observational third-person
+- Words analyzed: 111460
+- Reading grade: 3.4
+- Average sentence: 10.3 words
+- Average paragraph: 20.0 words
+- Dialogue share: 32%
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: house, himself, project, don’t, twins, ain’t, knife, wilson’s, thought, nigger, three, night, years, people, began, finger, white, young, without, gwine, person, calendar, chapter, going
-- Character names: Tom, Wilson, Roxy, Luigi, Judge, Judge Driscoll, Pudd’nhead Wilson, Roxana, Chambers, Angelo, Blake, Tom Driscoll, Rowena, Louis, Howard, Dawson, Driscoll, Pudd’nhead, Dey, Gutenberg, Marse Tom, Dave, Mrs. Pratt, Pratt, Twain, Buckstone, Dah, Mr. Driscoll, Patsy Cooper, Pembroke Howard
+- Tone: balanced, dialogue-forward, direct, energetic, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: don’t, himself, night, thought, three, young, ain’t, began, behind, brother, calendar, castle, chapter, cried, enough, finger, going, gwine, heard, house, king’s, knife, moment, myself, nigger, nothing, people, perhaps, person, princess, project, round, ruritania, shall, stood, strelsau, though, twins, white, wilson’s
+- Character names: Angelo, Antoinette, Bersonin, Bertram, Black Michael, Blake, Buckstone, Chambers, Colonel Sapt, Dah, Dave, Dawson, De Gautet, Dey, Driscoll, Duke Michael, Flavia, Fritz, Fritz von Tarlenheim, George, George Featherly, Gutenberg, Helga, Howard, Hush, Jacob, Johann, Josef, Judge, Judge Driscoll, Krafstein, Louis, Luigi, Marse Tom, Michael, Mr, Mr. Driscoll, Mrs. Pratt, Old Sapt, Patsy Cooper, Pembroke Howard, Pratt, Pudd’nhead, Pudd’nhead Wilson, Robert, Rose, Rowena, Roxana, Roxy, Rudolf, Rudolf Rassendyll, Rupert, Rupert Hentzau, Sapt, Tarlenheim, Tom, Tom Driscoll, Twain, Wilson, Zenda
 
 ## Books
+- [The Prisoner of Zenda](../Books/A4A2D9E2-06EE-4BAC-A5C7-DA61B165AEC0.md)
 - [The Tragedy of Pudd'nhead Wilson](../Books/91EDE7E9-8E45-46E3-8CB8-A79B05F3290C.md)
 
 ## Representative excerpts
+
+### The Prisoner of Zenda: Section 14
+
+_Mid-book rhythm_
+
+> XII I Receive a Visitor and Bait a Hook About five miles from Zenda⁠—on the opposite side from that on which the castle is situated, there lies a large tract of wood. It is rising ground, and in the centre of the demesne, on the top of the hill, stands a fine modern château, the property of a distant kinsman of Fritz’s, the Count Stanislas von Tarlenheim. Count Stanislas himself was a student and a recluse. He seldom visited the house, and had, on Fritz’s request, very readily and courteously offered me its hospitality for myself and my party.
+
+### The Prisoner of Zenda: Section 11
+
+_Dialogue and character voice_
+
+> IX A New Use for a Tea-Table If I were to detail the ordinary events of my daily life at this time, they might prove instructive to people who are not familiar with the inside of palaces; if I revealed some of the secrets I learnt, they might prove of interest to the statesmen of Europe. I intend to do neither of these things. I should be between the Scylla of dullness and the Charybdis of indiscretion, and I feel that I had far better confine myself strictly to the underground drama which was being played beneath the surface of Ruritanian politics. I need only say that the secret of my imposture defied detection. I made mistakes. I had bad minutes: it needed all the tact and graciousness whereof I was master to smooth over some apparent lapses of memory and unmindfulness of old acquaintances of which I was guilty.
 
 ### The Tragedy of Pudd'nhead Wilson: Section 1
 

@@ -2,26 +2,56 @@
 # Young women -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 8
 
 ## Learned profile
 
-- Words analyzed: 315836
-- Reading grade: 3.8
-- Average sentence: 8.4 words
-- Average paragraph: 11.4 words
+- Words analyzed: 1107242
+- Reading grade: 5.4
+- Average sentence: 14.3 words
+- Average paragraph: 44.7 words
 - Dialogue share: 40%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: happy, heart, herself, nothing, quite, shall, though, thought, young, anything, began, better, cannot, can’t, chapter, cried, didn’t, don’t, enough, girls, going, gutenberg, himself, house, however, indeed, looking, mother, myself, people, rather, replied, seemed, sister, therefore, things, without, won’t, world
-- Character names: Mr, Amy, Annie, Beth, Brandon, Brooke, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Esther, Fanny, Frank, Fred, Hagar, Hannah, Hugo, Jennings, Jo, John, Kate, Lady Middleton, Laurence, Laurie, Lucy, Madame, Mamma, Marianne, Marmee, Meg, Miss Austen, Miss Dashwood, Miss Kate, Miss Marianne, Miss Steele, Mother, Mr. Brooke, Mr. Dashwood, Mr. Davis, Mr. Laurence, Mr. Palmer, Mr. Willoughby, Mrs, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. March, Mrs. Moffat, Mrs. Palmer, Mrs. Smith, Ned, Pip, Sallie, Sir John, Steeles, Teddy, Willoughby
+- Tone: dialogue-forward, balanced, rhythmically varied, direct, rhythmically even, energetic, narrative-forward
+- Recurring vocabulary: herself, nothing, quite, thought, heart, house, shall, though, young, enough, happy, himself, seemed, without, better, don’t, going, indeed, sister, anything, cannot, can’t, however, myself, people, rather, cried, didn’t, everything, family, feelings, girls, heard, looking, morning, mother, night, replied, round, stood
+- Character names: Mr, Mrs, Anne, Fanny, Mary, Brandon, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Jane, Jennings, John, Lady Middleton, Lucy, Madame, Marianne, Miss Dashwood, Miss Marianne, Miss Steele, Mr., Sir John, Smith, Steeles, Thomas, Willoughby, Adèle, Agatha, Albert, Albert Witham, Alexander, Allan, Alvina, Alvina Houghton, Amy, Anne Elliot, Anne Shirley, Annie, Arthur, Arthur Witham, Barry, Benwick, Bertram, Bertrams, Bessie, Beth, Blewett, Brooke, Burns, Calladine, Captain Wentworth, Carmody, Charles, Charles Hayter, Charles Musgrove, Charlie Sloane, Ciccio, Clay, Colonel Wallis, Cordelia, Crawford, Devonshire, Diana, Dr, Edmund, Edward Ferrars, Eliza, Elizabeth, Elliot, Eshton, Esther, Fairfax, Frank, Fred, Frederick, Geoffrey, Gilbert, Gilbert Blythe, Grant
 
 ## Books
+- [Anne of Green Gables](../Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md)
+- [Jane Eyre](../Books/862ED974-72FF-475C-A1B4-A649ABA15EFB.md)
 - [Little Women](../Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md)
+- [Mansfield Park](../Books/AA2BDFD7-B608-4192-BC7F-67079F09D869.md)
+- [Persuasion](../Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [The Lost Girl](../Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md)
 
 ## Representative excerpts
+
+### Anne of Green Gables: Section 22
+
+_Mid-book rhythm_
+
+> XX A Good Imagination Gone Wrong Spring had come once more to Green Gables⁠—the beautiful, capricious, reluctant Canadian spring, lingering along through April and May in a succession of sweet, fresh, chilly days, with pink sunsets and miracles of resurrection and growth. The maples in Lovers’ Lane were red budded and little curly ferns pushed up around the Dryad’s Bubble. Away up in the barrens, behind Mr. Silas Sloane’s place, the Mayflowers blossomed out, pink and white stars of sweetness under their brown leaves. All the school girls and boys had one golden afternoon gathering them, coming home in the clear, echoing twilight with arms and baskets full of flowery spoil. “I’m so sorry for people who live in lands where there are no Mayflowers,” said Anne. “Diana says perhaps they have something better, but there couldn’t be anything better than Mayflowers, could there, Marilla?
+
+### Anne of Green Gables: Section 4
+
+_Dialogue and character voice_
+
+> II Matthew Cuthbert Is Surprised Matthew Cuthbert and the sorrel mare jogged comfortably over the eight miles to Bright River. It was a pretty road, running along between snug farmsteads, with now and again a bit of balsamy fir wood to drive through or a hollow where wild plums hung out their filmy bloom. The air was sweet with the breath of many apple orchards and the meadows sloped away in the distance to horizon mists of pearl and purple; while “The little birds sang as if it were The one day of summer in all the year.” Matthew enjoyed the drive after his own fashion, except during the moments when he met women and had to nod to them⁠—for in Prince Edward Island you are supposed to nod to all and sundry you meet on the road whether you know them or not. Matthew dreaded all women except Marilla and Mrs.
+
+### Jane Eyre: Section 24
+
+_Mid-book rhythm_
+
+> XIX The library looked tranquil enough as I entered it, and the Sibyl⁠—if Sibyl she were⁠—was seated snugly enough in an easy-chair at the chimney-corner. She had on a red cloak and a black bonnet: or rather, a broad-brimmed gipsy hat, tied down with a striped handkerchief under her chin. An extinguished candle stood on the table; she was bending over the fire, and seemed reading in a little black book, like a prayerbook, by the light of the blaze: she muttered the words to herself, as most old women do, while she read; she did not desist immediately on my entrance: it appeared she wished to finish a paragraph. I stood on the rug and warmed my hands, which were rather cold with sitting at a distance from the drawing-room fire. I felt now as composed as ever I did in my life: there was nothing indeed in the gipsy’s appearance to trouble one’s calm.
+
+### Jane Eyre: Section 32
+
+_Dialogue and character voice_
+
+> XXVII Some time in the afternoon I raised my head, and looking round and seeing the western sun gilding the sign of its decline on the wall, I asked, “What am I to do?” But the answer my mind gave⁠—“Leave Thornfield at once”⁠—was so prompt, so dread, that I stopped my ears. I said I could not bear such words now. “That I am not Edward Rochester’s bride is the least part of my woe,” I alleged: “that I have wakened out of most glorious dreams, and found them all void and vain, is a horror I could bear and master; but that I must leave him decidedly, instantly, entirely, is intolerable. I cannot do it.” But, then, a voice within me averred that I could do it and foretold that I should do it.
 
 ### Little Women: Section 1
 
@@ -35,14 +65,26 @@ _Mid-book rhythm_
 
 > PART 2 In order that we may start afresh and go to Meg’s wedding... CHAPTER TWENTY-FOUR GOSSIP In order that we may start afresh and go to Meg’s wedding with free minds, it will be well to begin with a little gossip about the Marches. And here let me premise that if any of the elders think there is too much ‘lovering’ in the story, as I fear they may (I’m not afraid the young folks will make that objection), I can only say with Mrs. March, “What can you expect when I have four gay girls in the house, and a dashing young neighbor over the way?” The three years that have passed have brought but few changes to the quiet family. The war is over, and Mr.
 
-### Sense and Sensibility: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Sense and Sensibility This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Sense and Sensibility Author: Jane Austen Commentator: Austin Dobson Illustrator: Hugh Thomson Release date: June 15, 2007 [eBook #21839] Most recently updated: July 27, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Sense and Sensibility: Section 4
+### Mansfield Park: Section 27
 
 _Mid-book rhythm_
 
-> Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+> XXV The intercourse of the two families was at this period more nearly restored to what it had been in the autumn, than any member of the old intimacy had thought ever likely to be again. The return of Henry Crawford, and the arrival of William Price, had much to do with it, but much was still owing to Sir Thomas’s more than toleration of the neighbourly attempts at the Parsonage. His mind, now disengaged from the cares which had pressed on him at first, was at leisure to find the Grants and their young inmates really worth visiting; and though infinitely above scheming or contriving for any the most advantageous matrimonial establishment that could be among the apparent possibilities of anyone most dear to him, and disdaining even as a littleness the being quick-sighted on such points, he could not avoid perceiving, in a grand and careless way, that Mr.
+
+### Mansfield Park: Section 37
+
+_Dialogue and character voice_
+
+> XXXV Edmund had determined that it belonged entirely to Fanny to choose whether her situation with regard to Crawford should be mentioned between them or not; and that if she did not lead the way, it should never be touched on by him; but after a day or two of mutual reserve, he was induced by his father to change his mind, and try what his influence might do for his friend. A day, and a very early day, was actually fixed for the Crawfords’ departure; and Sir Thomas thought it might be as well to make one more effort for the young man before he left Mansfield, that all his professions and vows of unshaken attachment might have as much hope to sustain them as possible. Sir Thomas was most cordially anxious for the perfection of Mr. Crawford’s character in that point. He wished him to be a model of constancy; and fancied the best means of effecting it would be by not trying him too long.
+
+### Persuasion: Section 15
+
+_Mid-book rhythm_
+
+> XIII The remainder of Anne’s time at Uppercross, comprehending only two days, was spent entirely at the Mansion House; and she had the satisfaction of knowing herself extremely useful there, both as an immediate companion, and as assisting in all those arrangements for the future, which, in Mr. and Mrs. Musgrove’s distressed state of spirits, would have been difficulties. They had an early account from Lyme the next morning. Louisa was much the same. No symptoms worse than before had appeared. Charles came a few hours afterwards, to bring a later and more particular account. He was tolerably cheerful. A speedy cure must not be hoped, but everything was going on as well as the nature of the case admitted. In speaking of the Harvilles, he seemed unable to satisfy his own sense of their kindness, especially of Mrs. Harville’s exertions as a nurse. “She really left nothing for Mary to do.
+
+### Persuasion: Section 23
+
+_Dialogue and character voice_
+
+> XXI Anne recollected with pleasure the next morning her promise of going to Mrs. Smith, meaning that it should engage her from home at the time when Mr. Elliot would be most likely to call; for to avoid Mr. Elliot was almost a first object. She felt a great deal of goodwill towards him. In spite of the mischief of his attentions, she owed him gratitude and regard, perhaps compassion. She could not help thinking much of the extraordinary circumstances attending their acquaintance, of the right which he seemed to have to interest her, by everything in situation, by his own sentiments, by his early prepossession. It was altogether very extraordinary; flattering, but painful. There was much to regret.

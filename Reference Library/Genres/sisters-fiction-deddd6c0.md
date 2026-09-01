@@ -2,24 +2,25 @@
 # Sisters -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 315836
-- Reading grade: 3.8
-- Average sentence: 8.4 words
-- Average paragraph: 11.4 words
-- Dialogue share: 40%
+- Words analyzed: 435505
+- Reading grade: 4.8
+- Average sentence: 11.6 words
+- Average paragraph: 25.5 words
+- Dialogue share: 41%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: happy, heart, herself, nothing, quite, shall, though, thought, young, anything, began, better, cannot, can’t, chapter, cried, didn’t, don’t, enough, girls, going, gutenberg, himself, house, however, indeed, looking, mother, myself, people, rather, replied, seemed, sister, therefore, things, without, won’t, world
-- Character names: Mr, Amy, Annie, Beth, Brandon, Brooke, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Esther, Fanny, Frank, Fred, Hagar, Hannah, Hugo, Jennings, Jo, John, Kate, Lady Middleton, Laurence, Laurie, Lucy, Madame, Mamma, Marianne, Marmee, Meg, Miss Austen, Miss Dashwood, Miss Kate, Miss Marianne, Miss Steele, Mother, Mr. Brooke, Mr. Dashwood, Mr. Davis, Mr. Laurence, Mr. Palmer, Mr. Willoughby, Mrs, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. March, Mrs. Moffat, Mrs. Palmer, Mrs. Smith, Ned, Pip, Sallie, Sir John, Steeles, Teddy, Willoughby
+- Tone: dialogue-forward, direct, rhythmically even, balanced, rhythmically varied
+- Recurring vocabulary: happy, heart, herself, nothing, quite, shall, though, thought, young, enough, himself, house, however, indeed, mother, myself, replied, seemed, sister, therefore, without, world, anything, began, believe, better, cannot, can’t, chapter, cried, didn’t, don’t, everything, girls, going, gutenberg, looking, people, rather, things
+- Character names: Mr, Brandon, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Fanny, Jennings, Lady Middleton, Lucy, Marianne, Miss Dashwood, Miss Marianne, Miss Steele, Mrs, Sir John, Steeles, Willoughby, Amy, Anne, Annie, Beth, Brooke, Devonshire, Edward Ferrars, Esther, Frank, Fred, Gray, Hagar, Hannah, Harry, Hugo, Jo, John, John Dashwood, Kate, Laurence, Laurie, Madame, Mamma, Margaret, Marmee, Meg, Miss Austen, Miss Kate, Mother, Mr., Mr. Brooke, Mr. Dashwood, Mr. Davis, Mr. Laurence, Mr. Palmer, Mr. Willoughby, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. March, Mrs. Moffat, Mrs. Palmer, Mrs. Smith, Ned, Palmer, Pip, Sallie, Smith, Teddy, Whitwell
 
 ## Books
 - [Little Women](../Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
 
 ## Representative excerpts
 
@@ -46,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+
+### Sense and Sensibility: Section 28
+
+_Mid-book rhythm_
+
+> XXVI Elinor could not find herself in the carriage with Mrs. Jennings, and beginning a journey to London under her protection, and as her guest, without wondering at her own situation, so short had their acquaintance with that lady been, so wholly unsuited were they in age and disposition, and so many had been her objections against such a measure only a few days before! But these objections had all, with that happy ardour of youth which Marianne and her mother equally shared, been overcome or overlooked; and Elinor, in spite of every occasional doubt of Willoughby’s constancy, could not witness the rapture of delightful expectation which filled the whole soul and beamed in the eyes of Marianne, without feeling how blank was her own prospect, how cheerless her own state of mind in the comparison, and how gladly she would engage in the solicitude of Marianne’s situation to have the same a…
+
+### Sense and Sensibility: Section 46
+
+_Dialogue and character voice_
+
+> XLIV Elinor, starting back with a look of horror at the sight of him, obeyed the first impulse of her heart in turning instantly to quit the room, and her hand was already on the lock, when its action was suspended by his hastily advancing, and saying, in a voice rather of command than supplication⁠— “Miss Dashwood, for half an hour⁠—for ten minutes⁠—I entreat you to stay.” “No, sir,” she replied with firmness, “I shall not stay. Your business cannot be with me. The servants, I suppose, forgot to tell you that Mr. Palmer was not in the house.” “Had they told me,” he cried with vehemence, “that Mr. Palmer and all his relations were at the devil, it would not have turned me from the door. My business is with you, and only you.” “With me!”⁠—in the utmost amazement⁠—“well, sir⁠—be quick⁠—and if you can⁠—less violent.” “Sit down, and I will be both.” She hesitated; she knew not what to do.

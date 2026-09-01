@@ -2,25 +2,58 @@
 # Fantasy fiction
 
 - Profile type: Genre
-- Books represented: 4
+- Books represented: 37
 
 ## Learned profile
 
-- Words analyzed: 257868
-- Reading grade: 4.1
-- Average sentence: 8.3 words
-- Average paragraph: 11.5 words
-- Dialogue share: 40%
+- Words analyzed: 4196673
+- Reading grade: 7.0
+- Average sentence: 20.2 words
+- Average paragraph: 60.8 words
+- Dialogue share: 25%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward, energetic
-- Recurring vocabulary: without, himself, nothing, thought, don’t, gutenberg, however, myself, place, project, shall, things, three, works, access, agreement, balloon, began, chapter, copyright, corpse, couldn’t, country, course, didn’t, donations, dormouse, duchess, earth, ebook, electronic, enough, forth, going, heard, herself, hundred, indeed, knight, knights
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Launcelot, Madame, Project Gutenberg, massa, Alice, Alisande, Andrée, Antiochus Epiphanes, Arthur, Beauvais, Bill, Boss, Clarence, Dame Van, Dame Van Winkle, Dinah, Dowley, Dupin, Edgar, Eustache, Gareth, Garry, Gaul, Gawaine, Griswold, Gryphon, Hans Pfaall, Hatter, Hendrick Hudson, Hudson, Inde, Jones, Joseph, Jupiter, Kay, Kidd, Latin, Le Soleil, Legrand, Lewis Carroll, Lionel, Lo, Lory, M. Beauvais, M. Dumas, Mabel, Madame Deluc, Madame L’Espanaye, Mademoiselle L’Espanaye, Marco, Marcos, Marie, Marie Rogêt, Mary Ann, Massa Will, Merlin, Monsieur Le Blanc, Morgan le Fay, Mr. Allan, Mr. Poe, Nicholas Vedder, Ozana, Pat, Peter, Peter Stuyvesant, Poe, Pray, Rip, Rip Van Winkle, Rotterdam, Roule, Sandy, Scott, Shakespeare, Sir Gawaine, Sir Launcelot, Sir Marhaus
+- Tempo: steady
+- Tone: rhythmically varied, narrative-forward, balanced, measured, dialogue-forward, direct, rhythmically even, energetic
+- Recurring vocabulary: though, himself, thought, night, seemed, toward, without, stood, black, heard, shall, nothing, behind, above, moment, place, three, within, however, house, people, things, white, woman, myself, replied, world, years, began, indeed, village, whole, cried, hands, jungle, light, round, close, country, death
+- Character names: Mr, Numa, Tarzan, Bara, Jane, John, Tarmangani, Waziri, Mangani, Dr, Jack, Lady Greystoke, Sabor, Arab, Arthur, Bolgani, Bwana, Jane Clayton, John Clayton, Kala, Kerchak, Mrs, Poe, Shakespeare, Alexander, Alice, Antiochus Epiphanes, Aristotle, D’Arnot, Edgar, Edward, Gomangani, Hans Pfaall, Harry, James, Madame, Manu, Mary, Paulvitch, Rotterdam, Scott, bush, Abdul, Adam, Akut, Allah, Allan, Allan Quatermain, Archer, Bates, Ben-Levi, Berenice, Bon, Bon-Bon, Buzi-Ben-Levi, Carl, Chambertin, Clayton, Curtis, Dame Van Winkle, Dango, De L’Omelette, Duc, Ellen, Esteban, Esteban Miranda, Frederick, George, Gerard, Goro, Greystoke, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Henry, Henry Curtis, Hermann, Histah, Horta, Hugh Tarpaulin
 
 ## Books
 - [A Connecticut Yankee in King Arthur's Court](../Books/A5DD5A9F-9C99-4931-BA33-F1088AD975F1.md)
 - [Alice's Adventures in Wonderland](../Books/A76E7C30-7CE8-4B66-A0D7-F527434B674B.md)
+- [Allan Quatermain](../Books/52F31C59-EFF6-43F7-9446-877CB0E96C03.md)
+- [Allan Quatermain Stories](../Books/516C697F-7657-492A-B266-1035C2073CCF.md)
+- [At the Mountains of Madness](../Books/CF9C1AF5-31C8-4BA1-BC16-D56A3D0DE475.md)
+- [Beyond Thirty](../Books/CAD26296-E2AC-4FAF-A14A-E106E933C6A0.md)
+- [Conan Stories](../Books/C9F91FFC-0937-4510-A37F-D5D5163A86C5.md)
+- [Fifty-One Tales](../Books/65E981EA-7BF0-4885-82BF-CBA2AE64C9D5.md)
+- [Gulliver’s Travels](../Books/C3584C46-895E-4EE4-9DC5-5954506F75CE.md)
+- [Jungle Tales of Tarzan](../Books/1C26F9AB-4F29-4B08-A815-8C05B13C561C.md)
 - [Rip Van Winkle](../Books/D9F4D198-46E8-445F-9B18-A824D5E23F73.md)
+- [Short Fiction](../Books/28BEFD12-BA87-4341-928F-6C212F09EFC1.md)
+- [Short Fiction](../Books/B838C3B4-422E-4207-B8EE-0CF7E28BEA8A.md)
+- [Short Fiction](../Books/D8BDAAFA-DE1A-4F5F-9C04-F220A3D54AD0.md)
+- [Short Fiction](../Books/8227C284-ABF0-400A-8193-1DE53BF2DE60.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
+- [Short Fiction](../Books/233E9C32-6ADC-4AF8-AAB2-CAB10464FBA4.md)
+- [Short Fiction](../Books/40FB11AD-07A9-45B8-A6FA-109EE49C74DE.md)
+- [Short Fiction](../Books/1DABB0DA-2B91-4BFC-B0E1-A7F8E43DCB2A.md)
+- [Short Fiction](../Books/D80AFB83-8CB5-4997-840A-A184365F8481.md)
+- [Tarzan and the Ant Men](../Books/6E11321C-777D-4087-A215-6D97D4282BDD.md)
+- [Tarzan and the Golden Lion](../Books/ABA09281-833F-43A3-9C6A-157DA40057D7.md)
+- [Tarzan and the Jewels of Opar](../Books/E2479C9F-3135-4004-BF6C-FE08D5CD113B.md)
+- [Tarzan of the Apes](../Books/B0FBAFFA-8B8A-420D-BA86-A504DDD1CC01.md)
+- [Tarzan the Terrible](../Books/D41CF8ED-AD00-4286-9157-03A1D55173E7.md)
+- [Tarzan the Untamed](../Books/F42B9E07-F17F-42CA-84C7-54B95678781E.md)
+- [Tarzan, Lord of the Jungle](../Books/8DFAA58F-DFCB-4841-B6A3-BD5B287CBC78.md)
+- [The Beasts of Tarzan](../Books/1CB1EE31-DE65-4E65-BA9D-A4DF115BD71E.md)
+- [The Book of Wonder](../Books/D5A3CAD6-23A0-4F9C-B1D6-69806D0EAF8B.md)
+- [The Child of the Cavern](../Books/EBF33503-26F3-4C1B-9312-575529D14B19.md)
+- [The Lost World](../Books/92BDCAFC-8825-45F7-9568-F8EDCE206321.md)
+- [The Return of Tarzan](../Books/14797A02-94E3-4112-8FCF-DEE015C98343.md)
+- [The Roots of the Mountains](../Books/96D5CC00-DC6A-47E2-B90A-99A98CF2FDCA.md)
+- [The Sketchbook of Geoffrey Crayon, Gent.](../Books/C9A443B8-889F-4600-A0BE-5B0589907E6A.md)
+- [The Son of Tarzan](../Books/CD5E2513-C09D-4495-8591-1416FE05E260.md)
+- [The Water of the Wondrous Isles](../Books/0291AC39-E5E2-44CB-BD62-D36A1BF3AC89.md)
 - [The Works of Edgar Allan Poe — Volume 1](../Books/3FE1260F-E736-4671-80C2-7DF5638935F2.md)
 
 ## Representative excerpts
@@ -49,26 +82,38 @@ _Mid-book rhythm_
 
 > CHAPTER VII. A Mad Tea-Party There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. “Very uncomfortable for the Dormouse,” thought Alice; “only, as it’s asleep, I suppose it doesn’t mind.” The table was a large one, but the three were all crowded together at one corner of it: “No room! No room!” they cried out when they saw Alice coming. “There’s plenty of room!” said Alice indignantly, and she sat down in a large arm-chair at one end of the table. “Have some wine,” the March Hare said in an encouraging tone. Alice looked all round the table, but there was nothing on it but tea. “I don’t see any wine,” she remarked. “There isn’t any,” said the March Hare.
 
-### Rip Van Winkle: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Rip Van Winkle This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Rip Van Winkle Author: Washington Irving Illustrator: Arthur Rackham Release date: December 20, 2019 [eBook #60976] Most recently updated: October 17, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/60976 Credits: Produced by Sue Clark and the Online Distributed Proofreading Team at http://www.pgdp.
-
-### Rip Van Winkle: Section 6
-
-_Dialogue and character voice_
-
-> ILLUSTRATIONS IN COLOUR To face page “He used to console himself by frequenting a kind of perpetual club of the sages, philosophers and other idle personages, which held its sessions before a small inn” Frontispiece “Certain biscuit-bakers have gone so far as to imprint his likeness on their New-Year Cakes” x “These mountains are regarded by all good wives, far and near, as perfect barometers” x “Some of the houses of the original settlers” 2 “A curtain-lecture is worth all the sermons in the world for teaching the virtues of patience and long-suffering” 2 “Taught them to fly kites” 2 “His cow would go astray or get among the cabbages” 4 “His children were as ragged and wild as if they belonged to nobody” 4 “Equipped in a pair of his father’s cast-off galligaskins, which he had as much ado to hold up as a fine lady does her train in bad weather”
-
-### The Works of Edgar Allan Poe — Volume 1: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Works of Edgar Allan Poe — Volume 1 This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Works of Edgar Allan Poe — Volume 1 Author: Edgar Allan Poe Contributor: James Russell Lowell Nathaniel Parker Willis Release date: April 1, 2000 [eBook #2147] Most recently updated: September 13, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Works of Edgar Allan Poe — Volume 1: Section 7
+### Allan Quatermain: Section 18
 
 _Mid-book rhythm_
 
-> FOUR BEASTS IN ONE—THE HOMO-CAMELEOPARD Chacun a ses vertus. —Crébillon’s Xerxes. Antiochus Epiphanes is very generally looked upon as the Gog of the prophet Ezekiel. This honor is, however, more properly attributable to Cambyses, the son of Cyrus. And, indeed, the character of the Syrian monarch does by no means stand in need of any adventitious embellishment. His accession to the throne, or rather his usurpation of the sovereignty, a hundred and seventy-one years before the coming of Christ; his attempt to plunder the temple of Diana at Ephesus; his implacable hostility to the Jews; his pollution of the Holy of Holies; and his miserable death at Taba, after a tumultuous reign of eleven years, are circumstances of a prominent kind, and therefore more generally noticed by the historians of his time than the impious, dastardly, cruel, silly, and whimsical achievements which make up the su…
+> XII The Sister Queens The big rowing boat glided on up the cutting that ran almost to the foot of the vast stairway, and then halted at a flight of steps leading to the landing-place. Here the old gentleman disembarked, and invited us to do so likewise, which, having no alternative, and being nearly starved, we did without hesitation⁠—taking our rifles with us, however. As each of us landed, our guide again laid his fingers on his lips and bowed deeply, at the same time ordering back the crowds who had assembled to gaze on us. The last to leave the canoe was the girl we had picked out of the water, for whom her companion was waiting.
+
+### Allan Quatermain: Section 24
+
+_Dialogue and character voice_
+
+> XVIII War! Red War Telling Umslopogaas to wait, I tumbled into my clothes and went off with him to Sir Henry’s room, where the Zulu repeated his story word for word. It was a sight to watch Curtis’s face as he heard it. “Great Heavens!” he said; “here have I been sleeping away while Nyleptha was nearly murdered⁠—and all through me, too. What a fiend that Sorais must be! It would have served her well if Umslopogaas had cut her down in the act.” “Ay,” said the Zulu. “Fear not; I should have slain her ere she struck; I was but waiting the moment.” I said nothing; but I could not help thinking that many a thousand doomed lives would have been saved if he had meted out to Sorais the fate she meant for her sister. And, as the issue proved, I was right. After he had told his tale Umslopogaas went off unconcernedly to get his morning meal, and Sir Henry and I fell to talking.
+
+### Allan Quatermain Stories: Section 5
+
+_Mid-book rhythm_
+
+> A Tale of Three Lions I The Interest on Ten Shillings Most of you will have heard of Allan Quatermain, who was one of the party that discovered King Solomon’s mines some little time ago, and who afterwards came to live in England near his friend Sir Henry Curtis. He went back to the wilderness again, as these old hunters almost invariably do, on one pretext or another.2 They cannot endure civilization for very long, its noise and racket and the omnipresence of broad-clothed humanity proving more trying to their nerves than the dangers of the desert. I think that they feel lonely here, for it is a fact that is too little understood, though it has often been stated, that there is no loneliness like the loneliness of crowds, especially to those who are unaccustomed to them. “What is there in the world,”
+
+### At the Mountains of Madness: Section 9
+
+_Mid-book rhythm_
+
+> VII The full story, so far as deciphered, will eventually appear in an official bulletin of Miskatonic University. Here I shall sketch only the salient highlights in a formless, rambling way. Myth or otherwise, the sculptures told of the coming of those star-headed things to the nascent, lifeless earth out of cosmic space⁠—their coming, and the coming of many other alien entities such as at certain times embark upon spatial pioneering. They seemed able to traverse the interstellar ether on their vast membranous wings⁠—thus oddly confirming some curious hill folklore long ago told me by an antiquarian colleague. They had lived under the sea a good deal, building fantastic cities and fighting terrific battles with nameless adversaries by means of intricate devices employing unknown principles of energy.
+
+### At the Mountains of Madness: Section 4
+
+_Dialogue and character voice_
+
+> II Popular imagination, I judge, responded actively to our wireless bulletins of Lake’s start northwestward into regions never trodden by human foot or penetrated by human imagination, though we did not mention his wild hopes of revolutionizing the entire sciences of biology and geology. His preliminary sledging and boring journey of January 11th to 18th with Pabodie and five others⁠—marred by the loss of two dogs in an upset when crossing one of the great pressure ridges in the ice⁠—had brought up more and more of the Archaean slate; and even I was interested by the singular profusion of evident fossil markings in that unbelievably ancient stratum.
+
+### Beyond Thirty: Section 7
+
+_Mid-book rhythm_
+
+> V As we entered deeper into what had once been the city, the evidences of man’s past occupancy became more frequent. For a mile from the arch there was only a riot of weeds and undergrowth and trees covering small mounds and little hillocks that, I was sure, were formed of the ruins of stately buildings of the dead past. But presently we came upon a district where shattered walls still raised their crumbling tops in sad silence above the grass-grown sepulchers of their fallen fellows. Softened and mellowed by ancient ivy stood these sentinels of sorrow, their scarred faces still revealing the rents and gashes of shrapnel and of bomb. Contrary to our expectations, we found little indication that lions in any great numbers laired in this part of ancient London.

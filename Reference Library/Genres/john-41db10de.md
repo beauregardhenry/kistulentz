@@ -2,25 +2,65 @@
 # John
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 94940
-- Reading grade: 5.5
-- Average sentence: 9.7 words
-- Average paragraph: 12.4 words
-- Dialogue share: 1%
+- Words analyzed: 508008
+- Reading grade: 6.9
+- Average sentence: 18.8 words
+- Average paragraph: 63.2 words
+- Dialogue share: 6%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: trees, mountain, ground, range, above, glacier, mountains, species, glaciers, water, small, forest, flowers, storm, gutenberg, branches, beautiful, project, river, however, nearly, without, winter, woods
-- Character names: Owen, Nature, Douglas, Ritter, Hemlock Spruce, Juniper, Valley, Clark, Joaquin, Lyell, Stanislaus, TENAYA, Elias, Kern, Mount Ritter, SIERRA NEVADA, Tom, Carson, Clark Crow, Conness, Dana, David Douglas, Deer, Donner, Donner Lake, Douglas Spruce, Douglas Squirrel, Fresno, GENERAL GRANT, Gibbs
+- Tempo: deliberate
+- Tone: narrative-forward, rhythmically varied, direct, measured, rhythmically even, balanced, energetic, inquisitive
+- Recurring vocabulary: ground, shall, though, trees, water, without, above, heart, himself, house, leaves, mountain, mountains, night, river, small, species, thought, woods, world, aside, basket, beautiful, beauty, began, branches, called, cannot, children, comes, country, death, editor, exeunt, fairies, faith, flock, flowers, follow, forest
+- Character names: Mr, Christ, Dana, Deer, Douglas, Gibbs, Jack, Nature, Tenaya, Valley, Abies magnifica, Alvord, Anne, Anne Page, Antone, Apollyon, Bardolph, Bernard, Billy, Brook, Brown, Bruin, Bunyan, Butler, Caesar, Caius, Carlo, Carlyle, Carson, Char, Chaucer, Cheever, Chr, Christian, Christiana, Clark, Clark Crow, Conness, Cromwell, Cupid, David Douglas, Delaney, Doctor Caius, Don, Don Quixote, Donner, Donner Lake, Douglas Spruce, Douglas Squirrel, Dr, Elias, Emerson, Enter Bardolph, Enter Sir Hugh Evans, Etzler, Evan, Evangelist, Faithful, Farewell, Fresno, GENERAL GRANT, Goethe, Hark, Hazel Green, Hemlock Spruce, Henry, Herbert, Him, Hoffman, Hoffman Range, Hon, Hugh, Hugh Evans, Humor, James, Jesus, Jesus Christ, Joaquin, Joe, John
 
 ## Books
+- [Essays](../Books/226D7A38-C83A-4DFD-BB2F-525FA59FC9CA.md)
+- [My First Summer in the Sierra](../Books/85EAC71C-97AE-4464-8025-074E99BADD64.md)
+- [The Merry Wives of Windsor](../Books/D16AB367-2DD4-4F81-89F6-97AFDE4F13D2.md)
 - [The Mountains of California](../Books/DA8C1F86-6C5F-4677-B462-E6B5E8A82B67.md)
+- [The Pilgrim’s Progress](../Books/7260C8A4-0C37-4908-B053-4C85751DF80F.md)
 
 ## Representative excerpts
+
+### Essays: Section 18
+
+_Mid-book rhythm_
+
+> Sir Walter Raleigh Apparently written over a period of several years in the 1840’s, but only edited and published posthumously, in 1905. Perhaps no one in English history better represents the heroic character than Sir Walter Raleigh, for Sidney has got to be almost as shadowy as Arthur himself. Raleigh’s somewhat antique and Roman virtues appear in his numerous military and naval adventures, in his knightly conduct toward the Queen, in his poems and his employments in the Tower, and not least in his death, but more than all in his constant soldier-like bearing and promise. He was the Bayard of peaceful as well as warlike enterprise, and few lives which are the subject of recent and trustworthy history are so agreeable to the imagination. Not withstanding his temporary unpopularity, he especially possessed the prevalent and popular qualities which command the admiration of men.
+
+### Essays: Section 12
+
+_Dialogue and character voice_
+
+> Paradise (to Be) Regained5 First published in Democratic Review, Vol. 13, November, 1843. We learn that Mr. Etzler is a native of Germany, and originally published his book in Pennsylvania, ten or twelve years ago; and now a second English edition, from the original American one, is demanded by his readers across the water, owing, we suppose, to the recent spread of Fourier’s doctrines. It is one of the signs of the times. We confess that we have risen from reading this book with enlarged ideas, and grander conceptions of our duties in this world. It did expand us a little. It is worth attending to, if only that it entertains large questions. Consider what Mr. Etzler proposes: “Fellow Men!
+
+### My First Summer in the Sierra: Section 9
+
+_Mid-book rhythm_
+
+> V The Yosemite July 15. Followed the Mono Trail up the eastern rim of the basin nearly to its summit, then turned off southward to a small shallow valley that extends to the edge of the Yosemite, which we reached about noon, and encamped. After luncheon I made haste to high ground, and from the top of the ridge on the west side of Indian Canyon gained the noblest view of the summit peaks I have ever yet enjoyed. Nearly all the upper basin of the Merced was displayed, with its sublime domes and canyons, dark upsweeping forests, and glorious array of white peaks deep in the sky, every feature glowing, radiating beauty that pours into our flesh and bones like heat rays from fire. Sunshine over all; no breath of wind to stir the brooding calm. Never before had I seen so glorious a landscape, so boundless an affluence of sublime mountain beauty.
+
+### My First Summer in the Sierra: Section 5
+
+_Dialogue and character voice_
+
+> I Through the Foothills with a Flock of Sheep In the great Central Valley of California there are only two seasons⁠—spring and summer. The spring begins with the first rainstorm, which usually falls in November. In a few months the wonderful flowery vegetation is in full bloom, and by the end of May it is dead and dry and crisp, as if every plant had been roasted in an oven. Then the lolling, panting flocks and herds are driven to the high, cool, green pastures of the Sierra. I was longing for the mountains about this time, but money was scarce and I couldn’t see how a bread supply was to be kept up. While I was anxiously brooding on the bread problem, so troublesome to wanderers, and trying to believe that I might learn to live like the wild animals, gleaning nourishment here and there from seeds, berries, etc., sauntering and climbing in joyful independence of money or baggage, Mr.
+
+### The Merry Wives of Windsor: Section 6
+
+_Mid-book rhythm_
+
+> Act II Scene I Before Page’s house. Enter Mistress Page, with a letter. Mistress Page What! have I ’scaped love-letters in the holiday-time of my beauty, and am I now a subject for them? Let me see. She reads. “Ask me no reason why I love you; for though Love use Reason for his precisian, he admits him not for his counsellor. You are not young, no more am I; go to, then, there’s sympathy: you are merry, so am I; ha! ha! then there’s more sympathy; you love sack, and so do I; would you desire better sympathy? Let it suffice thee, Mistress Page, at the least, if the love of soldier can suffice, that I love thee. I will not say, pity me: ’tis not a soldier-like phrase; but I say, Love me. By me, Thine own true knight, By day or night, Or any kind of light, With all his might For thee to fight, John Falstaff.” What a Herod of Jewry is this! O wicked, wicked world!
+
+### The Merry Wives of Windsor: Section 11
+
+_Sentence variation_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
 
 ### The Mountains of California: Section 1
 
@@ -33,3 +73,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER IX THE DOUGLAS SQUIRREL (Sciurus Douglasii) The Douglas Squirrel is by far the most interesting and influential of the California sciuridae, surpassing every other species in force of character, numbers, and extent of range, and in the amount of influence he brings to bear upon the health and distribution of the vast forests he inhabits. Go where you will throughout the noble woods of the Sierra Nevada, among the giant pines and spruces of the lower zones, up through the towering Silver Firs to the storm-bent thickets of the summit peaks, you everywhere find this little squirrel the master-existence. Though only a few inches long, so intense is his fiery vigor and restlessness, he stirs every grove with wild life, and makes himself more important than even the huge bears that shuffle through the tangled underbrush beneath him.
+
+### The Pilgrim’s Progress: Section 6
+
+_Mid-book rhythm_
+
+> The First Part As I walked through the wilderness of this world, I lighted on a certain place, where was a den;1 and I laid me down in that place to sleep: and as I slept, I dreamed a dream. I dreamed, and, behold, “I saw a man clothed with rags, standing in a certain place, with his face from his own house, a book in his hand, and a great burden upon his back.”2 I looked, and saw him open the book,3 and read therein; and as he read, he wept and trembled; and not being able longer to contain, he brake out with a lamentable cry, saying, “What shall I do?”4 In this plight, therefore, he went home, and refrained himself as long as he could, that his wife and children should not perceive his distress; but he could not be silent long, because that his trouble increased. Wherefore at length he brake his mind to his wife and children; and thus he began to talk to them: “O my dear wife,”
+
+### The Pilgrim’s Progress: Section 9
+
+_Dialogue and character voice_
+
+> Endnotes The jail. Mr. Bunyan wrote this precious book in Bedford jail, where he was imprisoned 12 years for preaching the Gospel. His bonds were those of the Gospel; and, like Peter, he could sleep soundly in prison. Blessed be God for even the toleration and religious privileges we now enjoy in consequence of it. Our author, thus prevented from preaching, turned his thoughts to writing; and, during his confinement, composed The Pilgrim’s Progress, and many other useful works. Thus the Lord causes “the wrath of man to praise Him.” The servants of Christ, when restrained by wicked laws from publishing the word of life from the pulpit, have become more abundantly useful by their writings —⁠G. Burder ↩ Isaiah 64:6; Luke 14:33; Psalms 38:4; Habakkuk 2:2; Acts 16:31. ↩ You will observe what honour, from his Pilgrim’s first setting out, Bunyan puts upon the Word of God.

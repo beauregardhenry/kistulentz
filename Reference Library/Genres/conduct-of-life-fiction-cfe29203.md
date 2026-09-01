@@ -2,25 +2,38 @@
 # Conduct of life -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 82767
-- Reading grade: 3.1
-- Average sentence: 7.0 words
-- Average paragraph: 12.0 words
-- Dialogue share: 47%
-- Voice: mixed or shifting perspective
+- Words analyzed: 191903
+- Reading grade: 4.4
+- Average sentence: 11.9 words
+- Average paragraph: 29.6 words
+- Dialogue share: 38%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, things, seemed, quite, himself, people, night, cried, nothing, world, project, answered, going, thought, shall, round, picture, young, anything, looking, everything, moment, women, across
-- Character names: Dorian, Harry, Henry, Dorian Gray, Basil, Lord Henry, Mr. Gray, Sibyl Vane, Basil Hallward, Alan, Sibyl, Lady Narborough, Jim, Juliet, Gutenberg, James, James Vane, Henry Wotton, Mr. Erskine, Adrian Singleton, Campbell, Francis, Geoffrey, Gray, Jew, Lady Agatha, Alan Campbell, George, Kelso, Mr. Hubbard
+- Tone: dialogue-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: anything, going, himself, nothing, seemed, shall, thought, young, across, answered, began, cried, don’t, evening, everything, francs, hands, longer, looking, moment, murmured, night, people, picture, place, pretty, project, quite, replied, round, saying, suddenly, things, though, three, towards, without, woman, women, world
+- Character names: George, Jew, Adrian Singleton, Alan, Alan Campbell, Basil, Basil Hallward, Campbell, Charles, Clotilde, Daddy Walter, Dorian, Dorian Gray, Du Roy, Duroy, Forestier, Francis, Geoffrey, George Duroy, Gray, Gutenberg, Harry, Henry, Henry Wotton, Jacques Rival, James, James Vane, Jim, Jove, Juliet, Kelso, Lady Agatha, Lady Narborough, Laroche-Mathieu, Laurine, Lord Henry, Madame, Madame Aubert, Madame Forestier, Madame Laroche-Mathieu, Madame Walter, Madame de Marelle, Madeleine, Monsieur Duroy, Monsieur Forestier, Monsieur Laroche-Mathieu, Monsieur Walter, Monsieur de Marelle, Mr. Erskine, Mr. Gray, Mr. Hubbard, Norbert de Varenne, Potin, Rachel, Rouen, Sibyl, Sibyl Vane, Walter
 
 ## Books
+- [Bel Ami](../Books/591376BF-D9FE-4411-8ED3-9C4D34C89970.md)
 - [The Picture of Dorian Gray](../Books/186EE454-E11F-4E42-A7E9-C582FB94CA22.md)
 
 ## Representative excerpts
+
+### Bel Ami: Section 12
+
+_Mid-book rhythm_
+
+> X The Du Roys had been back in Paris a couple of days, and the journalist had taken up his old work pending the moment when he should definitely assume Forestier’s duties, and give himself wholly up to politics. He was going home that evening to his predecessor’s abode to dinner, with a light heart and a keen desire to embrace his wife, whose physical attractions and imperceptible domination exercised a powerful impulse over him. Passing by a florist’s at the bottom of the Rue Notre Dame de Lorette, he was struck by the notion of buying a bouquet for Madeleine, and chose a large bunch of half-open roses, a very bundle of perfumed buds. At each story of his new staircase he eyed himself complacently in the mirrors, the sight of which continually recalled to him his first visit to the house.
+
+### Bel Ami: Section 7
+
+_Dialogue and character voice_
+
+> V Two months had gone by, September was at hand, and the rapid fortune which Duroy had hoped for seemed to him slow in coming. He was, above all, uneasy at the mediocrity of his position, and did not see by what path he could scale the heights on the summit of which one finds respect, power, and money. He felt shut up in the mediocre calling of a reporter, so walled in as to be unable to get out of it. He was appreciated, but estimated in accordance with his position. Even Forestier, to whom he rendered a thousand services, no longer invited him to dinner, and treated him in every way as an inferior, though still accosting him as a friend.
 
 ### The Picture of Dorian Gray: Section 1
 

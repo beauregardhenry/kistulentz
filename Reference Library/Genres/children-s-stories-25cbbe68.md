@@ -2,23 +2,28 @@
 # Children's stories
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 29818
-- Reading grade: 2.9
-- Average sentence: 8.4 words
-- Average paragraph: 11.3 words
-- Dialogue share: 35%
+- Words analyzed: 414667
+- Reading grade: 5.2
+- Average sentence: 18.3 words
+- Average paragraph: 49.9 words
+- Dialogue share: 30%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: herself, thought, queen, don’t, began, quite, rabbit, voice, mouse, round, dormouse, duchess, march, nothing, that’s, without, large, things, works, looking, heard, white, moment, replied
-- Character names: Alice, Bill, Dinah, Gutenberg, Hatter, William, Lory, Gryphon, Mabel, Mary Ann, Project Gutenberg, Gutenberg Literary Archive Foundation, Gutenberg Literary, Lewis Carroll, Pat, Pray, Turtle
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, measured, direct, energetic, narrative-forward, rhythmically even
+- Recurring vocabulary: quite, began, don’t, heard, himself, nothing, thought, woman, child, cried, heart, round, shall, things, water, beautiful, dance, herself, indeed, looking, moment, night, prince, princess, queen, snake, stood, voice, white, without, answered, beloved, black, castle, children, cottage, country, daddy, daoud, dormouse
+- Character names: Adam, Alice, Mr, Pray, Adrian, Agnes, Aldebert, Alderete, Aldovrand, Algar, Annie, Annie Melville, Arasmon, Archer, Balkis, Baviaan, Bengal Light, Bill, Binkie, Captain Calker, Cat, Catherine Wheel, Charley, Christ, Chrysea, Coleridge, Death, Dempster, Dinah, Djinn, Don Pedro, Doris, Drink, Edward, Effie, Enemy, Fernanda, Fiorimonde, Fisher, Flee, Florestan, Fortescue, Gervaise, Gillespie, Giraffe, Gryphon, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hans, Hatter, Hector, Hedgehog, Hildebrandt, Hulda, Jacob, Janey, Jimmy, Joan, Kangaroo, Kate, Kesta, King Aldebert, Kolokolo Bird, Kun, Lady Georgiana, Lambert, Leopard, Lewis Carroll, Little Hans, Lory, Lucilla, Mabel, Macintosh, Mary Ann, Michael, Miller, Mr., Mrs, Nanina
 
 ## Books
 - [Alice's Adventures in Wonderland](../Books/A76E7C30-7CE8-4B66-A0D7-F527434B674B.md)
+- [Children’s Stories](../Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md)
+- [Just So Stories](../Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md)
+- [Short Fiction](../Books/8227C284-ABF0-400A-8193-1DE53BF2DE60.md)
+- [The Necklace of Princess Fiorimonde](../Books/CAA14087-5E63-4532-B1FA-30D9F8DA2BB2.md)
+- [The Windfairies](../Books/64C9C593-C10A-457F-AF1D-3356D1376D9B.md)
 
 ## Representative excerpts
 
@@ -33,3 +38,51 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER VII. A Mad Tea-Party There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. “Very uncomfortable for the Dormouse,” thought Alice; “only, as it’s asleep, I suppose it doesn’t mind.” The table was a large one, but the three were all crowded together at one corner of it: “No room! No room!” they cried out when they saw Alice coming. “There’s plenty of room!” said Alice indignantly, and she sat down in a large arm-chair at one end of the table. “Have some wine,” the March Hare said in an encouraging tone. Alice looked all round the table, but there was nothing on it but tea. “I don’t see any wine,” she remarked. “There isn’t any,” said the March Hare.
+
+### Children’s Stories: Section 7
+
+_Mid-book rhythm_
+
+> The Remarkable Rocket The King’s son was going to be married, so there were general rejoicings. He had waited a whole year for his bride, and at last she had arrived. She was a Russian Princess, and had driven all the way from Finland in a sledge drawn by six reindeer. The sledge was shaped like a great golden swan, and between the swan’s wings lay the little Princess herself. Her long ermine-cloak reached right down to her feet, on her head was a tiny cap of silver tissue, and she was as pale as the Snow Palace in which she had always lived. So pale was she that as she drove through the streets all the people wondered. “She is like a white rose!” they cried, and they threw down flowers on her from the balconies. At the gate of the Castle the Prince was waiting to receive her. He had dreamy violet eyes, and his hair was like fine gold.
+
+### Children’s Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Fisherman and His Soul To H.S.H. Alice, Princess of Monaco Every evening the young Fisherman went out upon the sea, and threw his nets into the water. When the wind blew from the land he caught nothing, or but little at best, for it was a bitter and black-winged wind, and rough waves rose up to meet it. But when the wind blew to the shore, the fish came in from the deep, and swam into the meshes of his nets, and he took them to the marketplace and sold them. Every evening he went out upon the sea, and one evening the net was so heavy that hardly could he draw it into the boat. And he laughed, and said to himself, “Surely I have caught all the fish that swim, or snared some dull monster that will be a marvel to men, or some thing of horror that the great Queen will desire,”
+
+### Just So Stories: Section 9
+
+_Mid-book rhythm_
+
+> The Beginning of the Armadillos This, O Best Beloved, is another story of the High and Far-Off Times. In the very middle of those times was a Stickly-Prickly Hedgehog, and he lived on the banks of the turbid Amazon, eating shelly snails and things. And he had a friend, a Slow-Solid Tortoise, who lived on the banks of the turbid Amazon, eating green lettuces and things. And so that was all right, Best Beloved. Do you see? But also, and at the same time, in those High and Far-Off Times, there was a Painted Jaguar, and he lived on the banks of the turbid Amazon too; and he ate everything that he could catch. When he could not catch deer or monkeys he would eat frogs and beetles; and when he could not catch frogs and beetles he went to his Mother Jaguar, and she told him how to eat hedgehogs and tortoises.
+
+### Just So Stories: Section 11
+
+_Dialogue and character voice_
+
+> How the Alphabet Was Made The week after Taffimai Metallumai (we will still call her Taffy, Best Beloved) made that little mistake about her Daddy’s spear and the Stranger-man and the picture-letter and all, she went carp-fishing again with her Daddy. Her Mummy wanted her to stay at home and help hang up hides to dry on the big drying-poles outside their Neolithic Cave, but Taffy slipped away down to her Daddy quite early, and they fished. Presently she began to giggle, and her Daddy said, “Don’t be silly, child.” “But wasn’t it inciting!” said Taffy. “Don’t you remember how the Head Chief puffed out his cheeks, and how funny the nice Stranger-man looked with the mud in his hair?” “Well do I,” said Tegumai. “I had to pay two deerskins⁠—soft ones with fringes⁠—to the Stranger-man for the things we did to him.” “We didn’t do anything,” said Taffy.
+
+### Short Fiction: Section 12
+
+_Mid-book rhythm_
+
+> The Cruel Painter Among the young men assembled at the University of Prague, in the year 159‒, was one called Karl von Wolkenlicht. A somewhat careless student, he yet held a fair position in the estimation of both professors and men, because he could hardly look at a proposition without understanding it. Where such proposition, however, had to do with anything relating to the deeper insights of the nature, he was quite content that, for him, it should remain a proposition; which, however, he laid up in one of his mental cabinets, and was ready to reproduce at a moment’s notice. This mental agility was more than matched by the corresponding corporeal excellence, and both aided in producing results in which his remarkable strength was equally apparent. In all games depending upon the combination of muscle and skill, he had scarce rivalry enough to keep him in practice.
+
+### Short Fiction: Section 21
+
+_Dialogue and character voice_
+
+> Uncle Cornelius His Story It was a dull evening in November. A drizzling mist had been falling all day about the old farm. Harry Heywood and his two sisters sat in the house-place, expecting a visit from their uncle, Cornelius Heywood. This uncle lived alone, occupying the first floor above a chemist’s shop in the town, and had just enough of money over to buy books that nobody seemed ever to have heard of but himself; for he was a student in all those regions of speculation in which anything to be called knowledge is impossible. “What a dreary night!” said Kate. “I wish uncle would come and tell us a story.” “A cheerful wish,” said Harry. “Uncle Cornie is a lively companion⁠—isn’t he? He cant even blunder through a Joe Miller without tacking a moral to it, and then trying to persuade you that the joke of it depends on the moral.” “Here he comes!”
+
+### The Necklace of Princess Fiorimonde: Section 7
+
+_Mid-book rhythm_
+
+> The Heart of Princess Joan Long ago, in the days of fairies, there lived a King and Queen, who were rich and happy. But the Queen was a proud, haughty woman, and disliked everyone more powerful than herself. And most of all, she hated the fairy folk, and could not bear them to come to the castle where she and the King dwelt. Time passed, and the Queen had a little baby⁠—a daughter whom they called Joan⁠—and the bells were rung, and there were great rejoicings all over the country, and the King and Queen were happy as the day is long. One day as the Queen sat by the cradle of the little Princess, watching it, she said, “My pretty babe, when you are grown to be a woman you will be rich and beautiful, and you shall marry some young Prince, who will love you dearly, and then in your turn be Queen, and have a fine palace, and jewels, and lands to your heart’s content.”
+
+### The Windfairies: Section 8
+
+_Mid-book rhythm_
+
+> Nanina’s Sheep Once there lived a young girl called Nanina, who kept sheep for an old farmer. One day he said to her, “Nanina, I’m going away to buy pigs at a market far off, and I shall be away one whole month, so be sure and take good care of the flock, and remember, there are six sheep and eight lambs, and I must find them safe when I return. And mind, Nanina, that whatever you do, you don’t go near the old palace on the other side of the hill, for it is filled with wicked fairies who might do you an ill turn.” Nanina promised, and her master started. The first day all went well, and she drove the flock in safely at night; but the next day she found it dull sitting on the hillside watching the lambs at play, and wondered why her master had told her always to keep on that side, and away from the old palace on the other. “If it is filled with fairies,”

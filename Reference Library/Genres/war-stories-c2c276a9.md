@@ -2,26 +2,43 @@
 # War stories
 
 - Profile type: Genre
-- Books represented: 4
+- Books represented: 21
 
 ## Learned profile
 
-- Words analyzed: 728204
-- Reading grade: 3.7
-- Average sentence: 7.8 words
-- Average paragraph: 10.9 words
-- Dialogue share: 27%
+- Words analyzed: 2800032
+- Reading grade: 4.9
+- Average sentence: 13.0 words
+- Average paragraph: 37.6 words
+- Dialogue share: 29%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: don’t, himself, thought, voice, began, chapter, going, heard, moment, nothing, place, seemed, though, toward, without, young, across, ain’t, anything, battle, behind, better, can’t, chief, count, countess, darling, doctor, drink, emperor, fight, forward, french, friend, front, general, ground, gutenberg, hospital, however
-- Character names: Henry, Abraham, Abruzzi, Alice, Andrew, Anna, Anna Mikháylovna, Anna Pávlovna, Anthony, Aymo, Bacchus, Bagratión, Barkley, Barto, Bezúkhov, Bill, Bill Smithers, Bilíbin, Bolkónski, Bonello, Borís, Buonaparte, Carabine, Carrott, Catherine, Catherine Barkley, Christ, Cora, Cora Munro, Crowell, David, Denísov, Dmítrievna, Duncan, Dólokhov, Edward, Ettore, Ferguson, Fort Edward, Gawd, Gee, George, Gino, Gordini, Gray, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hawkeye, Heyward, Hippolyte, Hudson, Hugh, Jack, Jim, Jim Conklin, Jimmie Rogers, John, Kutúzov, Le Renard, Lise, Longue Carabine, Louis, Mack, Mademoiselle Bourienne, Magua, Major Effingham, Major Heyward, Mamma, Manera, Maquas, Mary, Meyers, Mingo, Miss Barkley, Miss Ferguson, Miss Gage, Miss Van Campen, Monsieur de Montcalm, Montcalm
+- Tone: dialogue-forward, rhythmically even, direct, balanced, rhythmically varied, narrative-forward, energetic, inquisitive
+- Recurring vocabulary: himself, don’t, thought, nothing, going, night, voice, heard, place, seemed, moment, though, without, began, behind, stood, three, hands, toward, across, house, people, young, can’t, looking, years, you’re, better, black, didn’t, ground, light, that’s, things, world, anything, business, cried, death, forward
+- Character names: Mr, Mrs, Mary, Dr, Henry, Jack, John, Alice, David, Dick, Edward, George, Harry, Hudson, Hugh, Wilson, Abraham, Abruzzi, Anna Mikháylovna, Anna Pávlovna, Arab, Aymo, Bacchus, Bagratión, Barto, Bellowes, Bezúkhov, Bill, Bill Smithers, Bilíbin, Blenkiron, Bolkónski, Bonello, Borís, Brandon, Bruno, Burnett, Carrott, Catherine, Catherine Barkley, Chion, Christ, Click, Cora, Cora Munro, Crowell, Denísov, Dmítrievna, Douglas, Duncan, Dólokhov, Ettore, Ferguson, Fort Edward, Gawd, Gee, Gino, Gordini, Gunther, Halloway, Hannay, Hathaway, Hawkeye, Heyward, Iorr, Jim, Jim Conklin, Jimmie Rogers, Kroll, Kutúzov, Lazarus, Le Renard, Leonard Sale, Lethla, Logan, Longue Carabine, Louis, Lyte, Mack, Mademoiselle Bourienne
 
 ## Books
 - [A farewell to arms](../Books/CF72CA27-3ED2-4D0B-B949-2F8F13569041.md)
+- [A Farewell to Arms](../Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md)
+- [A Tale of Two Cities](../Books/E224E072-062D-49C1-8281-FF9027477F36.md)
+- [Greenmantle](../Books/2315EB37-7FDA-4785-9E34-C215E58D4467.md)
+- [In the Midst of Life](../Books/8A4E71F0-81BD-4F82-9B5C-02442AB01C3A.md)
+- [Mr. Standfast](../Books/6FABB4C5-0118-4C59-92DF-47D609A66433.md)
+- [Short Fiction](../Books/5F0262A2-5555-4440-90B1-A948DE124D20.md)
+- [Short Fiction](../Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md)
+- [Short Fiction](../Books/1DABB0DA-2B91-4BFC-B0E1-A7F8E43DCB2A.md)
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
+- [Short Fiction](../Books/DC049A92-E654-4952-8AC5-CC496B75C82B.md)
+- [Short Science Fiction](../Books/DBD8CA59-64A4-46FA-866C-73C274FACA2F.md)
+- [The Black Arrow](../Books/A555B44C-89E6-4599-BA25-745CB505D8C1.md)
+- [The Enormous Room](../Books/10AB5BA0-2796-4A31-90F8-EBAD52EBECBC.md)
+- [The Four Feathers](../Books/BFCAEE62-036E-40F1-9313-F34DCC0F6876.md)
+- [The Last of the Mohicans](../Books/FDAB0174-55A5-4C21-8B6D-D633333427F1.md)
 - [The Last of the Mohicans; A narrative of 1757](../Books/550041B1-2BA8-418F-9C39-6F08CB99B55B.md)
+- [The Red Badge of Courage](../Books/740D98B2-02F8-47BD-92B2-CC698A6F595F.md)
 - [The Red Badge of Courage: An Episode of the American Civil War](../Books/88A43F81-52E0-4551-8D47-CCB76841C2E3.md)
 - [War and Peace](../Books/7F6ABC84-93E3-4FF3-B5CA-F4A05CED182D.md)
+- [War and Peace](../Books/FEB46721-EB3E-4498-8BD1-46DB874BBD08.md)
 
 ## Representative excerpts
 
@@ -37,38 +54,50 @@ _Mid-book rhythm_
 
 > “ ‘But at my back I always hear Time’s wingèd chariot hurrying near,’ ” I said. “I know that poem,” Catherine said. “It’s by Marvell. But it’s about a girl who wouldn’t live with a man.” My head felt very clear and cold and I wanted to talk facts. “Where will you have the baby?” “I don’t know. The best place I can find.” “How will you arrange it?” “The best way I can. Don’t worry, darling. We may have several babies before the war is over.” “It’s nearly time to go.” “I know. You can make it time if you want.” “No.” “Then don’t worry, darling. You were fine until now and now you’re worrying.” “I won’t. How often will you write?” “Every day. Do they read your letters?” “They can’t read English enough to hurt any.” “I’ll make them very confusing,” Catherine said. “But not too confusing.” “I’ll just make them a little confusing.” “I’m afraid we have to start to go.” “All right, darling.”
 
-### The Last of the Mohicans; A narrative of 1757: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Last of the Mohicans; A narrative of 1757 This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Last of the Mohicans; A narrative of 1757 Author: James Fenimore Cooper Release date: February 5, 2006 [eBook #940] Most recently updated: August 26, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Last of the Mohicans; A narrative of 1757: Section 19
+### A Farewell to Arms: Section 27
 
 _Mid-book rhythm_
 
-> CHAPTER XVII. “Weave we the woof. The thread is spun. The web is wove. The work is done.”—Gray The hostile armies, which lay in the wilds of the Horican, passed the night of the ninth of August, 1757, much in the manner they would, had they encountered on the fairest field of Europe. While the conquered were still, sullen, and dejected, the victors triumphed. But there are limits alike to grief and joy; and long before the watches of the morning came the stillness of those boundless woods was only broken by a gay call from some exulting young Frenchman of the advanced pickets, or a menacing challenge from the fort, which sternly forbade the approach of any hostile footsteps before the stipulated moment.
+> XXI In September the first cool nights came, then the days were cool and the leaves on the trees in the park began to turn color and we knew the summer was gone. The fighting at the front went very badly and they could not take San Gabriele. The fighting on the Bainsizza plateau was over and by the middle of the month the fighting for San Gabriele was about over too. They could not take it. Ettore was gone back to the front. The horses were gone to Rome and there was no more racing. Crowell had gone to Rome too, to be sent back to America. There were riots twice in the town against the war and bad rioting in Turin. A British major at the club told me the Italians had lost one hundred and fifty thousand men on the Bainsizza plateau and on San Gabriele. He said they had lost forty thousand on the Carso besides. We had a drink and he talked.
 
-### The Red Badge of Courage: An Episode of the American Civil War: Section 1
+### A Farewell to Arms: Section 32
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Red Badge of Courage: An Episode of the American Civil War This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Red Badge of Courage: An Episode of the American Civil War Author: Stephen Crane Release date: July 1, 1993 [eBook #73] Most recently updated: September 12, 2025 Language: English Other information and formats: www.gutenberg.
+> XXV Now in the fall the trees were all bare and the roads were muddy. I rode to Gorizia from Udine on a camion. We passed other camions on the road and I looked at the country. The mulberry trees were bare and the fields were brown. There were wet dead leaves on the road from the rows of bare trees and men were working on the road, tamping stone in the ruts from piles of crushed stone along the side of the road between the trees. We saw the town with a mist over it that cut off the mountains. We crossed the river and I saw that it was running high. It had been raining in the mountains. We came into the town past the factories and then the houses and villas and I saw that many more houses had been hit. On a narrow street we passed a British Red Cross ambulance. The driver wore a cap and his face was thin and very tanned. I did not know him.
 
-### The Red Badge of Courage: An Episode of the American Civil War: Section 14
-
-_Mid-book rhythm_
-
-> Chapter XIII. The youth went slowly toward the fire indicated by his departed friend. As he reeled, he bethought him of the welcome his comrades would give him. He had a conviction that he would soon feel in his sore heart the barbed missiles of ridicule. He had no strength to invent a tale; he would be a soft target. He made vague plans to go off into the deeper darkness and hide, but they were all destroyed by the voices of exhaustion and pain from his body. His ailments, clamoring, forced him to seek the place of food and rest, at whatever cost. He swung unsteadily toward the fire. He could see the forms of men throwing black shadows in the red light, and as he went nearer it became known to him in some way that the ground was strewn with sleeping men. Of a sudden he confronted a black and monstrous figure. A rifle barrel caught some glinting beams. “Halt! halt!”
-
-### War and Peace: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of War and Peace This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: War and Peace Author: graf Leo Tolstoy Translator: Aylmer Maude Louise Maude Release date: April 1, 2001 [eBook #2600] Most recently updated: June 14, 2022 Language: English Other information and formats: www.gutenberg.
-
-### War and Peace: Section 136
+### A Tale of Two Cities: Section 28
 
 _Mid-book rhythm_
 
-> CHAPTER III The weather was already growing wintry and morning frosts congealed an earth saturated by autumn rains. The verdure had thickened and its bright green stood out sharply against the brownish strips of winter rye trodden down by the cattle, and against the pale-yellow stubble of the spring buckwheat. The wooded ravines and the copses, which at the end of August had still been green islands amid black fields and stubble, had become golden and bright-red islands amid the green winter rye. The hares had already half changed their summer coats, the fox cubs were beginning to scatter, and the young wolves were bigger than dogs. It was the best time of the year for the chase.
+> XVI Still Knitting Madame Defarge and monsieur her husband returned amicably to the bosom of Saint Antoine, while a speck in a blue cap toiled through the darkness, and through the dust, and down the weary miles of avenue by the wayside, slowly tending towards that point of the compass where the château of Monsieur the Marquis, now in his grave, listened to the whispering trees. Such ample leisure had the stone faces, now, for listening to the trees and to the fountain, that the few village scarecrows who, in their quest for herbs to eat and fragments of dead stick to burn, strayed within sight of the great stone courtyard and terrace staircase, had it borne in upon their starved fancy that the expression of the faces was altered.
+
+### A Tale of Two Cities: Section 47
+
+_Dialogue and character voice_
+
+> X The Substance of the Shadow “I, Alexandre Manette, unfortunate physician, native of Beauvais, and afterwards resident in Paris, write this melancholy paper in my doleful cell in the Bastille, during the last month of the year, 1767. I write it at stolen intervals, under every difficulty. I design to secrete it in the wall of the chimney, where I have slowly and laboriously made a place of concealment for it. Some pitying hand may find it there, when I and my sorrows are dust. “These words are formed by the rusty iron point with which I write with difficulty in scrapings of soot and charcoal from the chimney, mixed with blood, in the last month of the tenth year of my captivity. Hope has quite departed from my breast.
+
+### Greenmantle: Section 15
+
+_Mid-book rhythm_
+
+> XI The Companions of the Rosy Hours We battled to a corner, where a jut of building stood out into the street. It was our only chance to protect our backs, to stand up with the rib of stone between us. It was only the work of seconds. One instant we were groping our solitary way in the darkness, the next we were pinned against a wall with a throaty mob surging round us. It took me a moment or two to realize that we were attacked. Every man has one special funk in the back of his head, and mine was to be the quarry of an angry crowd. I hated the thought of it⁠—the mess, the blind struggle, the sense of unleashed passions different from those of any single blackguard. It was a dark world to me, and I don’t like darkness. But in my nightmares I had never imagined anything just like this.
+
+### Greenmantle: Section 6
+
+_Dialogue and character voice_
+
+> II The Gathering of the Missionaries I wrote out a wire to Sandy, asking him to come up by the two-fifteen train and meet me at my flat. “I have chosen my colleague,” I said. “Billy Arbuthnot’s boy? His father was at Harrow with me. I know the fellow⁠—Harry used to bring him down to fish⁠—tallish, with a lean, high-boned face and a pair of brown eyes like a pretty girl’s. I know his record, too. There’s a good deal about him in this office. He rode through Yemen, which no white man ever did before. The Arabs let him pass, for they thought him stark mad and argued that the hand of Allah was heavy enough on him without their efforts. He’s blood-brother to every kind of Albanian bandit. Also he used to take a hand in Turkish politics, and got a huge reputation.
+
+### In the Midst of Life: Section 18
+
+_Mid-book rhythm_
+
+> One Officer, One Man Captain Graffenreid stood at the head of his company. The regiment was not engaged. It formed a part of the front line-of-battle, which stretched away to the right with a visible length of nearly two miles through the open ground. The left flank was veiled by woods; to the right also the line was lost to sight, but it extended many miles. A hundred yards in rear was a second line; behind this, the reserve brigades and divisions in column. Batteries of artillery occupied the spaces between and crowned the low hills. Groups of horsemen⁠—generals with their staffs and escorts, and field officers of regiments behind the colors⁠—broke the regularity of the lines and columns. Numbers of these figures of interest had field-glasses at their eyes and sat motionless, stolidly scanning the country in front; others came and went at a slow canter, bearing orders.
+
+### In the Midst of Life: Section 29
+
+_Dialogue and character voice_
+
+> The Suitable Surroundings The Night One midsummer night a farmer’s boy living about ten miles from the city of Cincinnati was following a bridle path through a dense and dark forest. He had lost himself while searching for some missing cows, and near midnight was a long way from home, in a part of the country with which he was unfamiliar. But he was a stouthearted lad, and knowing his general direction from his home, he plunged into the forest without hesitation, guided by the stars. Coming into the bridle path, and observing that it ran in the right direction, he followed it. The night was clear, but in the woods it was exceedingly dark. It was more by the sense of touch than by that of sight that the lad kept the path. He could not, indeed, very easily go astray; the undergrowth on both sides was so thick as to be almost impenetrable.

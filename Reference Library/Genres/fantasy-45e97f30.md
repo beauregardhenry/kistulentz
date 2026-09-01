@@ -2,73 +2,124 @@
 # Fantasy
 
 - Profile type: Genre
-- Books represented: 4
+- Books represented: 43
 
 ## Learned profile
 
-- Words analyzed: 417556
-- Reading grade: 2.7
-- Average sentence: 7.1 words
-- Average paragraph: 8.6 words
-- Dialogue share: 32%
-- Voice: mixed or shifting perspective
+- Words analyzed: 3080744
+- Reading grade: 4.3
+- Average sentence: 13.8 words
+- Average paragraph: 35.0 words
+- Dialogue share: 30%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
-- Recurring vocabulary: death, heard, shall, agreement, cannot, copyright, donations, electronic, forth, heaven, himself, license, night, round, states, terms, trademark, united, within, without, works, above, access, angelo, answered, beaumains, bridge, brook, brother, castle, church, country, court, cried, damsel, earth, ebook, except, flower, gutenberg
-- Character names: Emily Dickinson, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, Alcala, André, Ang, Arthur, Balin, Basil, Belshazzar, Benedict, Bors, Brom, Brom Bones, Brouwer, Christ, Cotton Mather, Don Carlos, Ector, Evangeline, Fran, Gabriel, Gaheris, Galahad, Gareth, Gawain, Guinevere, Gunpowder, Hans Van Ripper, Hark, Hyp, Iagoo, Ichabod, Jim Tinsley, Kabibonokka, Kahgahgee, Katrina, Kwasind, Lancelot, Lara, Loud, Major André, Malory, Mark, Merlin, Mudjekeewis, Nokomis, Oweenee, Padre Cura, Pedro, Percival, Pray, Preciosa, Queen Guinevere, Sang, Sangreal, Shawondasee, Shingebis, Sir Balin, Sir Bors, Sir Galahad, Sir Gareth, Sir Gawain, Sir Lancelot, Sir Lavaine, Sir Lionel, Sir Percival, Sir Tristram, Tappan Zee, Tarry Town, Tassel, Thiébault, Tor, Tristram, Uther, VI, VIII, Van Ripper
+- Tone: rhythmically varied, dialogue-forward, narrative-forward, direct, balanced, rhythmically even, energetic, measured
+- Recurring vocabulary: himself, shall, thought, though, night, nothing, don’t, heard, house, people, things, began, place, without, quite, father, heart, voice, woman, world, death, earth, round, stood, water, cried, seemed, three, going, years, ebook, mother, young, beautiful, course, didn’t, hands, that’s, whose, answered
+- Character names: Mr, Mrs, Christ, Hark, John, Adam, Mary, Caesar, George, Merlin, Michael, Pray, Raja, Saviour, Adrian, Andrews, Antony, Arthur, Brutus, Buddha, Charles, Colonel Leyland, David, Dick, Dr, Ed, Eliza, Elizabeth, Ellen, Eléna, Emily, Emily Dickinson, Ethel, Eustace, Evelyn, Feo, Forman, Francis, Gawain, Gennaro, Giuseppe, God, Goethe, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harcourt, Harold, Hath, Ho Lu, James, Jane, Joe, Joseph, Kuno, Lady Peaslake, Lilian, Lo, Loud, Lucas, Mamma, Mark, Micky, Mildred, Miss Beaumont, Miss Haddon, Miss Raby, Mother, Paul, Project Gutenberg, Roland, Sandbach, Sebastian, Shakespeare, Sir Edwin, Sir Gawain, Socrates, St, Sultan, Troy
 
 ## Books
+- [Beowulf](../Books/5040E95D-0E1D-474D-B658-93F7255A288C.md)
+- [Cleopatra](../Books/36058611-761B-4D3F-BC43-3DF67C3DDF2B.md)
+- [Conan Stories](../Books/C9F91FFC-0937-4510-A37F-D5D5163A86C5.md)
+- [Crome Yellow](../Books/85F34883-36B5-48B5-B256-D9F006F788D7.md)
+- [Darby O’Gill and the Good People](../Books/1BB84BED-6408-482C-918B-39064E37F1A2.md)
+- [Giant’s Bread](../Books/8C41294A-84FE-4FD9-A677-E7FE1369BE86.md)
+- [Hindu Tales from the Sanskrit](../Books/FF102E21-2202-4BB3-A88E-D2FF047FDBF0.md)
+- [Household Tales](../Books/BC7C2FBC-FCF2-4093-8ED0-C8FE3CC6ECF3.md)
+- [Indian Fairy Tales](../Books/7CCB8889-7605-46F5-866A-0BE4AB4935EF.md)
+- [Jesus the Son of Man](../Books/65B41869-3660-4028-AA6C-D30BE23F7694.md)
+- [Jibby Jones](../Books/216055F7-E991-473A-A788-F9CE95334AA0.md)
+- [Just So Stories](../Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md)
 - [King Arthur and the Knights of the Round Table](../Books/AEDA64CD-C6CF-4A3D-9D46-5D3FB34A7CD4.md)
+- [New Hampshire](../Books/12A69B9C-979B-49BE-997C-532A2B67C6A1.md)
+- [On a Pincushion](../Books/24FF9241-00C1-4936-9186-A839610E3FA6.md)
+- [Orlando Furioso](../Books/3A1EE7B4-43E8-45D8-9B20-3DAF2E45C912.md)
 - [Poems by Emily Dickinson, Series One](../Books/7F67F5CB-CC22-49CD-8D73-976D67304E41.md)
+- [Russian Folktales](../Books/C4E5B1DE-A652-497A-84E4-7E4ACE2DCC3B.md)
+- [Short Fiction](../Books/6192826A-C799-446A-BF8F-B781ADD383CD.md)
+- [Short Fiction](../Books/242273B5-963A-4416-9C81-42C1BA677D82.md)
+- [Short Fiction](../Books/B838C3B4-422E-4207-B8EE-0CF7E28BEA8A.md)
+- [Short Fiction](../Books/5FFD0BE2-62DB-4A7C-9A29-EF38FF3C825C.md)
+- [Short Fiction](../Books/7D302623-52DF-4015-909D-3ECCB8400C0C.md)
+- [Short Fiction](../Books/132F152E-693D-442C-BABD-C9CDD7EBA5D6.md)
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
+- [Short Fiction](../Books/6B6F9841-9DE1-4277-A8B4-12F87FD1E910.md)
+- [Short Fiction](../Books/5AC0F7D8-80B7-4A1E-A370-27E2F60BD992.md)
+- [Sir Gawain and the Green Knight](../Books/BFD59996-CC74-449F-9A36-2A2905940A60.md)
+- [Steppenwolf](../Books/8F5ACE5B-1161-4C72-BE2F-73A5025F5D12.md)
+- [The Art of War](../Books/73114919-F705-40B4-B931-F0EDF68C952A.md)
+- [The Book of Wonder](../Books/D5A3CAD6-23A0-4F9C-B1D6-69806D0EAF8B.md)
 - [The Complete Poetical Works of Henry Wadsworth Longfellow](../Books/D1309924-77AB-42C5-8038-271D77B092F3.md)
+- [The Fall of Robespierre](../Books/606A8C95-B501-4D36-853B-E6D726047DF4.md)
+- [The Forerunner](../Books/26224D6C-CA92-4CAE-A3CE-7AF10DA480BE.md)
+- [The House at Pooh Corner](../Books/530F530A-AE9D-430F-96E1-3A6D1E305465.md)
 - [The Legend of Sleepy Hollow](../Books/0A44FD76-CF22-487B-BA44-7AC00B3F53D5.md)
+- [The Libation Bearers](../Books/78C56DB5-9AE7-46E6-9669-580DB02387AC.md)
+- [The Luzumiyat](../Books/96A8BFB7-C1E6-4C8E-84EF-E17E2E5AA797.md)
+- [The Necklace of Princess Fiorimonde](../Books/CAA14087-5E63-4532-B1FA-30D9F8DA2BB2.md)
+- [The Story of Doctor Dolittle](../Books/87A45FF5-E591-49F4-953D-F3D5C1335418.md)
+- [The Story of the Treasure Seekers](../Books/53F44F6B-3F84-4255-A93D-40A8C317F8DE.md)
+- [The Tempest](../Books/E52C73DB-F26E-43F8-9E71-BEF56FC73994.md)
+- [What Is Art?](../Books/A124D998-BEC0-4F08-8843-8FD944EA92B9.md)
 
 ## Representative excerpts
 
-### King Arthur and the Knights of the Round Table: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of King Arthur and the Knights of the Round Table This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: King Arthur and the Knights of the Round Table Author: Sir Thomas Malory Editor: Rupert Sargent Holland Release date: June 18, 2011 [eBook #36462] Most recently updated: January 7, 2021 Language: English Other information and formats: www.gutenberg.
-
-### King Arthur and the Knights of the Round Table: Section 3
+### Beowulf: Section 26
 
 _Mid-book rhythm_
 
-> "By my goodwill," said Sir Percival, "I will never after these tidings have to do with Sir Galahad but in the way of kindness; and I would fain learn where I may find him." "Fair nephew," said she, "ye must ride to the Castle of Goth, where he hath a cousin; by him ye may be lodged, and he will teach you the way to go; but if he can tell you no tidings, ride straight to the Castle of Carbonek, where the wounded king is lying, for there shall ye surely hear true tidings of him." So Sir Percival departed from his aunt, and rode till evensong time, when he was ware of a monastery closed round with walls and deep ditches, where he knocked at the gate, and anon was let in. And there he had good cheer that night, and on the morrow heard mass.
+> XXI Hrothgar’s Account of the Monsters Hrothgar rejoined, helm of the Scyldings: “Ask not of joyance! Grief is renewed to The folk of the Danemen. Dead is Aeschere, Yrmenlaf’s brother, older than he, My true-hearted counsellor, trusty adviser, Shoulder-companion, when fighting in battle Our heads we protected, when troopers were clashing, And heroes were dashing; such an earl should be ever, An erst-worthy26 atheling, as Aeschere proved him. The flickering death-spirit became in Heorot His hand-to-hand murderer; I can not tell whither The cruel one turned in the carcass exulting, By cramming discovered. The quarrel she wreaked then, That last night igone Grendel thou killedst In gruesomest manner, with grim-holding clutches, Since too long he had lessened my liege-troop and wasted My folk-men so foully.
 
-### Poems by Emily Dickinson, Series One: Section 1
+### Beowulf: Section 46
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Poems by Emily Dickinson, Series One This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Poems by Emily Dickinson, Series One Author: Emily Dickinson Editor: Thomas Wentworth Higginson Mabel Loomis Todd Release date: June 1, 2001 [eBook #2678] Most recently updated: March 17, 2020 Language: English Other information and formats: www.gutenberg.
+> XLI The Messenger’s Retrospect “The blood-stainèd trace of Swedes and Geatmen, The death-rush of warmen, widely was noticed, How the folks with each other feud did awaken. The worthy one went then with well-beloved comrades, Old and dejected to go to the fastness, Ongentheo earl upward then turned him; Of Higelac’s battle he’d heard on inquiry, The exultant one’s prowess, despaired of resistance, With earls of the ocean to be able to struggle, ’Gainst sea-going sailors to save the hoard-treasure, His wife and his children; he fled after thenceward Old ’neath the earth-wall. Then was offered pursuance To the braves of the Swedemen, the banner to Higelac. They fared then forth o’er the field-of-protection, When the Hrethling heroes hedgeward had thronged them.
 
-### Poems by Emily Dickinson, Series One: Section 2
-
-_Sentence variation_
-
-> *** END OF THE PROJECT GUTENBERG EBOOK POEMS BY EMILY DICKINSON, SERIES ONE *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
-
-### The Complete Poetical Works of Henry Wadsworth Longfellow: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Complete Poetical Works of Henry Wadsworth Longfellow This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Complete Poetical Works of Henry Wadsworth Longfellow Author: Henry Wadsworth Longfellow Release date: June 1, 1998 [eBook #1365] Most recently updated: October 29, 2024 Language: English Other information and formats: www.gutenberg.
-
-### The Complete Poetical Works of Henry Wadsworth Longfellow: Section 17
+### Cleopatra: Section 23
 
 _Mid-book rhythm_
 
-> BIRDS OF PASSAGE FLIGHT THE THIRD FATA MORGANA O sweet illusions of Song, That tempt me everywhere, In the lonely fields, and the throng Of the crowded thoroughfare! I approach, and ye vanish away, I grasp you, and ye are gone; But ever by nigh an day, The melody soundeth on. As the weary traveller sees In desert or prairie vast, Blue lakes, overhung with trees, That a pleasant shadow cast; Fair towns with turrets high, And shining roofs of gold, That vanish as he draws nigh, Like mists together rolled,— So I wander and wander along, And forever before me gleams The shining city of song, In the beautiful land of dreams. But when I would enter the gate Of that golden atmosphere, It is gone, and I wander and wait For the vision to reappear. THE HAUNTED CHAMBER Each heart has its haunted chamber, Where the silent moonlight falls!
+> VIII Of the Awaking of Harmachis; Of the Sight of Death; Of the Coming of Cleopatra; and of Her Comfortable Words Once more I woke; it was to find myself in my own chamber. I started up. Surely, I, too, had dreamed a dream? It could be nothing but a dream? It could not be that I woke to know myself a traitor! That the opportunity had gone forever! That I had betrayed the cause, and that last night those brave men, headed by my uncle, had waited in vain at the outer gate! That Egypt from Abu to Athu was even now waiting⁠—waiting in vain! Nay, whatever else might be, this could not be! Oh, it was an awful dream which I had dreamed! a second such would slay a man. It were better to die than face such another vision sent from hell. But, though the thing was naught but a hateful fantasy of a mind o’er-strained, where was I now? Where was I now?
 
-### The Legend of Sleepy Hollow: Section 1
+### Cleopatra: Section 40
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Legend of Sleepy Hollow This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Legend of Sleepy Hollow Author: Washington Irving Release date: June 27, 2008 [eBook #41] Most recently updated: February 10, 2026 Language: English Other information and formats: www.gutenberg.org/ebooks/41 Credits: Ilana M. (Kingsley) Newby and Greg Newby *** START OF THE PROJECT GUTENBERG EBOOK THE LEGEND OF SLEEPY HOLLOW *** The Legend of Sleepy Hollow by Washington Irving
+> VIII Of the Last Supper of Cleopatra; Of the Song of Charmion; Of the Drinking of the Draught of Death; Of the Revealing of Harmachis; Of the Summoning of the Spirits by Harmachis; and of the Death of Cleopatra On the morrow Cleopatra, having sought leave of Caesar, visited the tomb of Antony, crying that the Gods of Egypt had deserted her. And when she had kissed the coffin and covered it with lotus-flowers she came back, bathed, anointed herself, put on her most splendid robes, and, together with Iras, Charmion, and myself, she supped. Now as she supped her spirit flared up wildly, even as the sky lights up at sunset; and once more she laughed and sparkled as in bygone years, telling us tales of feasts which she and Antony had eaten of. Never, indeed, did I see her look more beauteous than on that last fatal night of vengeance.
 
-### The Legend of Sleepy Hollow: Section 2
+### Conan Stories: Section 8
 
 _Mid-book rhythm_
 
-> FOUND AMONG THE PAPERS OF THE LATE DIEDRICH KNICKERBOCKER. A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators the Tappan Zee, and where they always prudently shortened sail and implored the protection of St. Nicholas when they crossed, there lies a small market town or rural port, which by some is called Greensburgh, but which is more generally and properly known by the name of Tarry Town. This name was given, we are told, in former days, by the good housewives of the adjacent country, from the inveterate propensity of their husbands to linger about the village tavern on market days.
+> Jewels of Gwahlur I Paths of Intrigue The cliffs rose sheer from the jungle, towering ramparts of stone that glinted jade-blue and dull crimson in the rising sun, and curved away and away to east and west above the waving emerald ocean of fronds and leaves. It looked insurmountable, that giant palisade with its sheer curtains of solid rock in which bits of quartz winked dazzlingly in the sunlight. But the man who was working his tedious way upward was already halfway to the top. He came of a race of hill-men, accustomed to scaling forbidding crags, and he was a man of unusual strength and agility. His only garment was a pair of short red silk breeks, and his sandals were slung to his back, out of his way, as were his sword and dagger. The man was powerfully built, supple as a panther. His skin was bronzed by the sun, his square-cut black mane confined by a silver band about his temples.
+
+### Conan Stories: Section 11
+
+_Dialogue and character voice_
+
+> Red Nails I The Skull on the Crag The woman on the horse reined in her weary steed. It stood with its legs wide-braced, its head drooping, as if it found even the weight of the gold-tasseled, red-leather bridle too heavy. The woman drew a booted foot out of the silver stirrup and swung down from the gilt-worked saddle. She made the reins fast to the fork of a sapling, and turned about, hands on her hips, to survey her surroundings. They were not inviting. Giant trees hemmed in the small pool where her horse had just drunk. Clumps of undergrowth limited the vision that quested under the somber twilight of the lofty arches formed by intertwining branches. The woman shivered with a twitch of her magnificent shoulders, and then cursed. She was tall, full-bosomed and large-limbed, with compact shoulders.
+
+### Crome Yellow: Section 18
+
+_Mid-book rhythm_
+
+> XVI The ladies had left the room and the port was circulating. Mr. Scogan filled his glass, passed on the decanter, and, leaning back in his chair, looked about him for a moment in silence. The conversation rippled idly round him, but he disregarded it; he was smiling at some private joke. Gombauld noticed his smile. “What’s amusing you?” he asked. “I was just looking at you all, sitting round this table,” said Mr. Scogan. “Are we as comic as all that?” “Not at all,” Mr. Scogan answered politely. “I was merely amused by my own speculations.” “And what were they?” “The idlest, the most academic of speculations. I was looking at you one by one and trying to imagine which of the first six Caesars you would each resemble, if you were given the opportunity of behaving like a Caesar. The Caesars are one of my touchstones,” Mr. Scogan explained.
+
+### Crome Yellow: Section 15
+
+_Dialogue and character voice_
+
+> XIII Henry Wimbush brought down with him to dinner a budget of printed sheets loosely bound together in a cardboard portfolio. “Today,” he said, exhibiting it with a certain solemnity, “today I have finished the printing of my History of Crome. I helped to set up the type of the last page this evening.” “The famous History?” cried Anne. The writing and the printing of this Magnum Opus had been going on as long as she could remember. All her childhood long Uncle Henry’s History had been a vague and fabulous thing, often heard of and never seen. “It has taken me nearly thirty years,” said Mr. Wimbush. “Twenty-five years of writing and nearly four of printing.
+
+### Darby O’Gill and the Good People: Section 7
+
+_Mid-book rhythm_
+
+> Darby O’Gill and the Leprechaun The news that Darby O’Gill had spint six months with the Good People spread fast and far and wide. At fair or hurlin’ or market he would be backed be a crowd agin some convaynient wall, and there for hours men, women, and childher, with jaws dhroppin’, and eyes bulgin’d stand ferninst him listening to half-frightened questions or to bould mystarious answers. Alway, though, one bit of wise adwise inded his discoorge: “Nayther make nor moil nor meddle with the fairies,” Darby’d say. “If you’re going along the lonely boreen at night, and you hear, from some fairy fort, a sound of fiddles, or of piping, or of sweet woices singing, or of little feet pattering in the dance, don’t turn your head, but say your prayers an’ hould on your way.
+
+### Darby O’Gill and the Good People: Section 11
+
+_Dialogue and character voice_
+
+> The Banshee’s Comb I The Diplomacy of Bridget I ’Twas the mendin’ of clothes that All Sowls’ afthernoon in Elizabeth Ann Egan’s kitchen that naturally brought up the subject of husbands an’ the best ways to manage them. An’ if there’s one thing more than another that makes me take me hat off to the women, ’tis the owdacious way the most downthrodden of their sex will brag about her blaggard husband. Not that ayther one or the other of the foive busy-tongued and busy-fingered neighbour women who bint above their sewing or knitting that afthernoon were downthrodden; be no manner of manes; far, far from it. They were so filled with matrimonial contintedness that they fairly thrampled down one another to be first in praising the wondherful men of their choice. Every woman proudly claimed to own an’ conthrol the handsomest, loikeliest man that ever throd in brogues.

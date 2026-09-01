@@ -2,26 +2,39 @@
 # John Muir
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 188634
-- Reading grade: 5.3
-- Average sentence: 9.4 words
-- Average paragraph: 12.0 words
+- Words analyzed: 247157
+- Reading grade: 6.2
+- Average sentence: 12.9 words
+- Average paragraph: 36.0 words
 - Dialogue share: 2%
-- Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: above, beautiful, branches, flowers, forest, ground, gutenberg, mountain, mountains, project, small, trees, woods, forests, glacier, glaciers, height, however, hundred, miles, nearly, range, river, sequoia, sierra, species, storm, streams, though, thousand, three, water, winter, without, yosemite
-- Character names: Clark, Douglas, General Grant, Kern, Nature, Tenaya, Valley, Absaroka, Andromeda, Antone, Birds, Bob White, Brownie, Carlo, Carson, Clark Crow, Clarke, Conness, Dana, David Brown, David Douglas, Deer, Donner, Donner Lake, Douglas Spruce, Douglas Squirrel, Duncan, Elias, Emerson, Engelmann, Fresno, Gibbs, Hemlock Spruce, Joaquin, Joe, John Muir, Juniper, Lake Tenaya, Lewis, Lyell, Merced, Mount Hoffman, Mount Ritter, Mr. Emerson, Nuttall, Owen, Ritter, SIERRA NEVADA, Sandy, Stanislaus, Tom, brown, bush
+- Voice: mixed or shifting perspective
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, measured, rhythmically varied
+- Recurring vocabulary: above, ground, mountain, mountains, small, trees, beautiful, branches, flowers, forest, gutenberg, project, species, though, thousand, water, woods, yosemite, beauty, flock, forests, glacier, glaciers, glorious, height, however, hundred, leaves, making, meadows, miles, nearly, night, pines, range, river, rocks, seems, sequoia, sheep
+- Character names: Douglas, Nature, Tenaya, Antone, Brown, Carlo, Clark, Dana, Deer, General Grant, Gibbs, Joe, John Muir, Kern, Lake Tenaya, Mount Hoffman, Sandy, Valley, Abies magnifica, Absaroka, Alvord, Andromeda, Bernard, Billy, Birds, Bob White, Brownie, Bruin, Butler, Carson, Clark Crow, Clarke, Conness, David Brown, David Douglas, Delaney, Don, Don Quixote, Donner, Donner Lake, Douglas Spruce, Douglas Squirrel, Duncan, Elias, Emerson, Engelmann, Fresno, Hazel Green, Hemlock Spruce, Hoffman, Hoffman Range, Jack, Joaquin, Juniper, Lewis, Lyell, Merced, Mount Ritter, Mr, Mr. Emerson, Nuttall, Owen, Professor Butler, Ritter, SIERRA NEVADA, Sabine, Stanislaus, Tom, bush
 
 ## Books
+- [My First Summer in the Sierra](../Books/85EAC71C-97AE-4464-8025-074E99BADD64.md)
 - [Our National Parks](../Books/8700D61F-D818-4A85-84C0-85189596F2B9.md)
 - [The Mountains of California](../Books/DA8C1F86-6C5F-4677-B462-E6B5E8A82B67.md)
 
 ## Representative excerpts
+
+### My First Summer in the Sierra: Section 9
+
+_Mid-book rhythm_
+
+> V The Yosemite July 15. Followed the Mono Trail up the eastern rim of the basin nearly to its summit, then turned off southward to a small shallow valley that extends to the edge of the Yosemite, which we reached about noon, and encamped. After luncheon I made haste to high ground, and from the top of the ridge on the west side of Indian Canyon gained the noblest view of the summit peaks I have ever yet enjoyed. Nearly all the upper basin of the Merced was displayed, with its sublime domes and canyons, dark upsweeping forests, and glorious array of white peaks deep in the sky, every feature glowing, radiating beauty that pours into our flesh and bones like heat rays from fire. Sunshine over all; no breath of wind to stir the brooding calm. Never before had I seen so glorious a landscape, so boundless an affluence of sublime mountain beauty.
+
+### My First Summer in the Sierra: Section 5
+
+_Dialogue and character voice_
+
+> I Through the Foothills with a Flock of Sheep In the great Central Valley of California there are only two seasons⁠—spring and summer. The spring begins with the first rainstorm, which usually falls in November. In a few months the wonderful flowery vegetation is in full bloom, and by the end of May it is dead and dry and crisp, as if every plant had been roasted in an oven. Then the lolling, panting flocks and herds are driven to the high, cool, green pastures of the Sierra. I was longing for the mountains about this time, but money was scarce and I couldn’t see how a bread supply was to be kept up. While I was anxiously brooding on the bread problem, so troublesome to wanderers, and trying to believe that I might learn to live like the wild animals, gleaning nourishment here and there from seeds, berries, etc., sauntering and climbing in joyful independence of money or baggage, Mr.
 
 ### Our National Parks: Section 1
 

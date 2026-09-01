@@ -2,25 +2,41 @@
 # Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 108358
-- Reading grade: 3.0
-- Average sentence: 8.9 words
-- Average paragraph: 12.2 words
-- Dialogue share: 48%
+- Words analyzed: 1244693
+- Reading grade: 4.8
+- Average sentence: 13.0 words
+- Average paragraph: 35.2 words
+- Dialogue share: 36%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: thought, herself, heart, things, happy, world, music, voice, nothing, quite, heard, seemed, beautiful, anything, woman, cannot, answered, don't, gutenberg, moment, stopped, hands, gazed, perhaps
-- Character names: Helen, Mr. Harrison, Mr. Howard, Arthur, Mrs. Roberts, Mr. Davis, Aunt Polly, David, Mr, Miss Davis, Polly, Harrison, Davis, Elizabeth, Howard, Mr. Roberts, William, Lieutenant Maynard, Miss Helen, Roberts, Johann, Mrs. Woodward, Beethoven, Wagner, David Howard, Mrs. Dale, Nature, Auntie, Austin Davis, David bent
+- Tone: rhythmically varied, dialogue-forward, direct, balanced, narrative-forward, rhythmically even
+- Recurring vocabulary: himself, seemed, thought, don’t, hands, heard, house, moment, night, nothing, things, three, without, woman, young, answered, began, going, herself, perhaps, place, stood, voice, years, added, antarctic, anything, basil, beautiful, board, boatswain, breed, business, cannot, can’t, captain, companions, continued, course, cried
+- Character names: Mr, Mrs, Jane, William, Adams, Ahearn, Allen, Alphabet Jones, Arthur, Arthur Gordon Pym, Arthur Pym, Atkins, Aubrey DeVere, Augustus Barnard, Aunt Polly, Auntie, Austin Davis, Babe, Beethoven, Bernice, Besalul, Bessie, Betty, Bob, Brown, Bucholz, Captain Clancy, Carhart, Carlyle, Charlie, Chris, Christmas Harbour, Claire, Clark, Crip, David, David Howard, David bent, Davis, Dirk Peters, Don Jayme, Don Ruis, Doña Fausta, Dr, Dugald Maule, Eden, Edgar Poe, Elizabeth, Endicott, Evylyn, Fairbanks, Fanny, Fergus, George, Gilly, Gladys, Gonfallon, Grasty, Gratian, Gray Wolf, Hardy, Harold, Harrison, Harry, Hearne, Helen, Henry, Holt, Horace, Howard, Hunt, Jack, James, James West, Jeorling, Jessamine, Johann, John, Jones, Joseph
 
 ## Books
+- [An Antarctic Mystery](../Books/B07C646D-EC55-4927-A8E3-C7FDC454592B.md)
 - [King Midas: a Romance](../Books/0E11AF7D-2AE2-437A-97A7-F1B8ED125F77.md)
+- [Short Fiction](../Books/371F14D9-4B15-4462-A311-570176E2BE12.md)
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
+- [Short Fiction](../Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md)
 
 ## Representative excerpts
+
+### An Antarctic Mystery: Section 16
+
+_Mid-book rhythm_
+
+> XIV A Voice in a Dream Entirely free from ice? No. It would have been premature to affirm this as a fact. A few icebergs were visible in the distance, while some drifts and packs were still going east. Nevertheless, the breakup had been very thorough on that side, and the sea was in reality open, since a ship could sail freely. “God has come to our aid,” said Captain Len Guy. “May He be pleased to guide us to the end.” “In a week,” I remarked, “our schooner might come in sight of Tsalal Island.” “Provided that the east wind lasts, Mr. Jeorling. Don’t forget that in sailing along the icebergs to their eastern extremity, the Halbrane went out of her course, and she must be brought back towards the west.” “The breeze is for us, captain.” “And we shall profit by it, for my intention is to make for Bennet Islet.
+
+### An Antarctic Mystery: Section 22
+
+_Dialogue and character voice_
+
+> XX “Unmerciful Disaster” In the morning, after breakfast, it was decided that the men should begin to dig a sloping bed which would allow the Halbrane to slide to the foot of the iceberg. Would that Heaven might grant success to the operation, for who could contemplate without terror having to brave the severity of the austral winter, and to pass six months under such conditions as ours on a vast iceberg, dragged none could tell whither? Once the winter had set in, none of us could have escaped from that most terrible of fates⁠—dying of cold. At this moment, Dirk Peters, who was observing the horizon from south to east at about one hundred paces off, cried out in a rough voice: “Lying to!” Lying to? What could the half-breed mean by that, except that the floating mass had suddenly ceased to drift?
 
 ### King Midas: a Romance: Section 1
 
@@ -33,3 +49,39 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XIII “Some one whom I can court With no great change of manner, Still holding reason's fort, Tho waving fancy's banner.” Several weeks had passed since Helen had received the letter from Arthur, the girl having in the meantime settled quietly down at Oakdale She had seen few of her friends excepting Mr. Howard, who had come out often from the city. She was expecting a visit from him one bright afternoon, and was standing by one of the pillars of the vine-covered porch, gazing up at the blue sky above her and waiting to hear the whistle of the train. When she saw her friend from the distance she waved her hand to him and went to meet him, laughing, “I am going to take you out to see my stream and my bobolink to-day. You have not seen our country yet, you know.” The girl seemed to Mr.
+
+### Short Fiction: Section 19
+
+_Mid-book rhythm_
+
+> Daughters of the Rich The People in It Gerard Welden, M.F.H., An American sportsman Maud Barhyte, a New York girl of the fashionable set Sally Malakoff, afterward Mrs. Welden The Duc de Malakoff, Sally’s first husband Mrs. Kandy, Sally’s mother, a rich widow General Barhyte, Maud’s father, a rich widower The Comte de Dol, a French sportsman The Marquis Aquaviva, an Italian sportsman Prince Kara, a Russian sportsman Lord Ferrers, an English sportsman Mull Cantire, undersecretary, British Embassy, Paris Mme. Oppensheim, a mondaine Mme. de Cérisy, another mondaine The Princesse de Solférino, a third mondaine Louis Le Hillel, a swordsman Baron Louradour, another swordsman Dr.
+
+### Short Fiction: Section 12
+
+_Dialogue and character voice_
+
+> Madam Sapphira A Fifth Avenue Story I “I told my father that you expected to make a hundred thousand this year. He said he didn’t believe in miracles.” It was Mrs. Carol Nevius who, from the head of the dinner-table, addressed her husband. “Did he though! That’s odd, seeing that it has taken a succession of them to keep him out of Sing Sing.” Mrs. Nevius laughed. She was a pretty little woman, very well dressed, with a noticeably good manner. And as she laughed it was evident that her father was not one who inspired respect. “But if you do,” she insisted, “if you make a lot, you will let me entertain, won’t you?” Nevius shook his head. No, not though it were millions. In the now remote bachelor days he had his fill of society, and while it is colloquial to maintain that those who do not care for society are those for whom society does not care, in his case the argument was invalid.
+
+### Short Fiction: Section 22
+
+_Mid-book rhythm_
+
+> Winter Dreams I Some of the caddies were poor as sin and lived in one-room houses with a neurasthenic cow in the front yard, but Dexter Green’s father owned the second best grocery-store in Black Bear⁠—the best one was “The Hub,” patronized by the wealthy people from Sherry Island⁠—and Dexter caddied only for pocket-money. In the fall when the days became crisp and gray, and the long Minnesota winter shut down like the white lid of a box, Dexter’s skis moved over the snow that hid the fairways of the golf course. At these times the country gave him a feeling of profound melancholy⁠—it offended him that the links should lie in enforced fallowness, haunted by ragged sparrows for the long season. It was dreary, too, that on the tees where the gay colors fluttered in summer there were now only the desolate sandboxes knee-deep in crusted ice.
+
+### Short Fiction: Section 15
+
+_Dialogue and character voice_
+
+> May Day There had been a war fought and won and the great city of the conquering people was crossed with triumphal arches and vivid with thrown flowers of white, red, and rose. All through the long spring days the returning soldiers marched up the chief highway behind the strump of drums and the joyous, resonant wind of the brasses, while merchants and clerks left their bickerings and figurings and, crowding to the windows, turned their white-bunched faces gravely upon the passing battalions.
+
+### Short Fiction: Section 134
+
+_Mid-book rhythm_
+
+> A Strange Case A Post reporter met a young Houston physician the other afternoon, with whom he is well acquainted, and suggested that they go into a neighboring café and partake of a cooling lemonade. The physician agreed, and they were soon seated at a little table in a quiet corner, under an electric fan. After the physician had paid for the lemonade, the reporter turned the conversation upon his practice, and asked if he did not meet with some strange cases in his experience. “Yes, indeed,” said the doctor, “many that professional etiquette will not allow me to mention, and others that involve no especial secrecy, but are quite as curious in their way. I had one case only a few weeks ago that I considered very unusual, and without giving names, I think I can relate it to you.” “By all means do so,” said the reporter, “and while you are telling it, let us have another lemonade.”
+
+### Short Fiction: Section 184
+
+_Dialogue and character voice_
+
+> Cupid à la Carte “The dispositions of woman,” said Jeff Peters, after various opinions on the subject had been advanced, “run, regular, to diversions. What a woman wants is what you’re out of. She wants more of a thing when it’s scarce. She likes to have souvenirs of things that never happened. She likes to be reminded of things she never heard of. A one-sided view of objects is disjointing to the female composition. “ ’Tis a misfortune of mine, begotten by nature and travel,” continued Jeff, looking thoughtfully between his elevated feet at the grocery stove, “to look deeper into some subjects than most people do. I’ve breathed gasoline smoke talking to street crowds in nearly every town in the United States. I’ve held ’em spellbound with music, oratory, sleight of hand, and prevarications, while I’ve sold ’em jewelry, medicine, soap, hair tonic, and junk of other nominations.

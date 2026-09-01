@@ -2,23 +2,24 @@
 # Essays
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 94586
-- Reading grade: 4.6
-- Average sentence: 7.4 words
-- Average paragraph: 10.6 words
-- Dialogue share: 35%
+- Words analyzed: 128220
+- Reading grade: 5.2
+- Average sentence: 9.7 words
+- Average paragraph: 34.7 words
+- Dialogue share: 28%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: world, shall, english, thought, himself, cannot, without, things, gutenberg, power, society, century, project, heart, nothing, truth, friend, works, history, though, beauty, greek, emerson's, people
-- Character names: Emerson, Shakspeare, Shakespeare, Chaucer, Carlyle, Jesus, Napoleon, Fletcher, John, Pope, Socrates, Hamlet, Hector, Martius, Plutarch, Wordsworth, Character, Cicero, Fox, Genius, Goethe, Jove, Locke, Nature, Phidias, Plato, Sophocles, Adam, Adams, Alfred
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: himself, shall, things, though, thought, beauty, cannot, caricature, century, dandies, emerson's, english, fashion, father, friend, greek, gutenberg, heart, history, house, indeed, nothing, often, people, period, personal, power, prince, project, public, quite, rather, remarks, reprinted, society, toilet, truth, whose, without, works
+- Character names: Fox, John, Shakespeare, Adam, Adams, Alfred, Aubrey Beardsley, Beau Brummell, Beerbohm, Brummell, Carlyle, Caroline, Character, Chaucer, Cicero, Coates, D’Orsay, Emerson, Fitzherbert, Fletcher, Genius, George, Gladstone, Goethe, Gordon, Grego, Hamlet, Hector, Hon, James, James Tylney Long, Jesus, Jove, Langtry, Le V., Locke, Martius, Max Beerbohm, Miss Cissie Loftus, Monsieur D’Aurevilly, Mr, Mrs, Napoleon, Nature, Pater, Phidias, Plato, Plutarch, Pope, Pryse Gordon, Romeo, Royalty, Shakspeare, Socrates, Sophocles, Thackeray, Wordsworth
 
 ## Books
 - [Essays by Ralph Waldo Emerson](../Books/205BB4C2-B465-4D91-8C09-FB6FA0201803.md)
+- [The Works of Max Beerbohm](../Books/59082727-6447-47DC-9625-67F9DBFC39FA.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > [Transcriber's Note: Number runs from 12 to 14. Number 13 omitted] 14. The Shakspeare Society have inquired in all directions, advertised the missing facts, offered money for any information that will lead to proof; and with what result? Beside some important illustration of the history of the English stage, to which I have adverted, they have gleaned a few facts touching the property, and dealings in regard to property, of the poet. It appears that, from year to year, he owned a larger share in the Blackfriars' Theater[618]: its wardrobe and other appurtenances were his: and he bought an estate in his native village, with his earnings, as writer and shareholder; that he lived in the best house in Stratford;[619] was intrusted by his neighbors with their commissions in London, as of borrowing money, and the like; and he was a veritable farmer.
+
+### The Works of Max Beerbohm: Section 8
+
+_Mid-book rhythm_
+
+> King George the Fourth They say that when King George was dying, a special form of prayer for his recovery, composed by one of the Archbishops, was read aloud to him and that His Majesty, after saying Amen “thrice, with great fervour,” begged that his thanks might be conveyed to its author. To the student of royalty in modern times there is something rather suggestive in this incident. I like to think of the drug-scented room at Windsor and of the King, livid and immobile among his pillows, waiting, in superstitious awe, for the near moment when he must stand, a spirit, in the presence of a perpetual King.
+
+### The Works of Max Beerbohm: Section 10
+
+_Dialogue and character voice_
+
+> Poor Romeo! Even now Bath glories in his legend, not idly, for he was the most fantastic animal that ever stepped upon her pavement. Were ever a statue given him (and indeed he is worthy of a grotesque in marble), it would be put in Pulteney Street or the Circus. I know that the palm trees of Antigua overshadowed his cradle, that there must be even now in Boulogne many who set eyes on him in the time of his less fatuous declension, that he died in London. But Mr. Coates (for of that Romeo I write) must be claimed by none of these places. Bath saw the laughable disaster of his début, and so, in a manner, his whole life seems to belong to her, and the story of it to be a part of her annals. The Antiguan was already on the brink of middle-age when he first trod the English shore.

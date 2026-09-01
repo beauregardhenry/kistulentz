@@ -2,25 +2,38 @@
 # Virginia -- History -- Civil War
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 49532
-- Reading grade: 3.7
-- Average sentence: 7.1 words
-- Average paragraph: 11.4 words
+- Words analyzed: 96383
+- Reading grade: 4.3
+- Average sentence: 9.8 words
+- Average paragraph: 27.8 words
 - Dialogue share: 15%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: youth, seemed, himself, regiment, began, soldier, thought, friend, battle, smoke, don’t, fight, ground, toward, chapter, forward, voice, moment, ain’t, lieutenant, suddenly, youth’s, behind, going
-- Character names: Henry, Yeh, Jim, Wilson, Gutenberg, Tom Jamison, Jack, Jim Conklin, Project Gutenberg, Gutenberg Literary Archive Foundation, Bill, Bill Smithers, Carrott, Gawd, Gee, Gutenberg Literary, Jimmie Rogers, John, Nature, Simpson, Taylor, Tompkins
+- Tone: direct, narrative-forward, rhythmically even
+- Recurring vocabulary: ain’t, battle, began, behind, don’t, fight, forward, friend, going, ground, himself, lieutenant, moment, regiment, seemed, smoke, soldier, suddenly, thought, toward, voice, youth, youth’s, chapter, woods
+- Character names: Bill, Bill Smithers, Carrott, Gawd, Gee, Henry, Jack, Jim, Jim Conklin, Jimmie Rogers, John, Nature, Simpson, Tom Jamison, Wilson, Yeh, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, Taylor, Tompkins
 
 ## Books
+- [The Red Badge of Courage](../Books/740D98B2-02F8-47BD-92B2-CC698A6F595F.md)
 - [The Red Badge of Courage: An Episode of the American Civil War](../Books/88A43F81-52E0-4551-8D47-CCB76841C2E3.md)
 
 ## Representative excerpts
+
+### The Red Badge of Courage: Section 15
+
+_Mid-book rhythm_
+
+> XIII The youth went slowly toward the fire indicated by his departed friend. As he reeled, he bethought him of the welcome his comrades would give him. He had a conviction that he would soon feel in his sore heart the barbed missiles of ridicule. He had no strength to invent a tale; he would be a soft target. He made vague plans to go off into the deeper darkness and hide, but they were all destroyed by the voices of exhaustion and pain from his body. His ailments, clamoring, forced him to seek the place of food and rest, at whatever cost. He swung unsteadily toward the fire. He could see the forms of men throwing black shadows in the red light, and as he went nearer it became known to him in some way that the ground was strewn with sleeping men. Of a sudden he confronted a black and monstrous figure. A rifle barrel caught some glinting beams. “Halt! halt!”
+
+### The Red Badge of Courage: Section 3
+
+_Dialogue and character voice_
+
+> I The cold passed reluctantly from the earth, and the retiring fogs revealed an army stretched out on the hills, resting. As the landscape changed from brown to green, the army awakened, and began to tremble with eagerness at the noise of rumors. It cast its eyes upon the roads, which were growing from long troughs of liquid mud to proper thoroughfares. A river, amber-tinted in the shadow of its banks, purled at the army’s feet; and at night, when the stream had become of a sorrowful blackness, one could see across it the red, eyelike gleam of hostile campfires set in the low brows of distant hills. Once a certain tall soldier developed virtues and went resolutely to wash a shirt. He came flying back from a brook waving his garment bannerlike.
 
 ### The Red Badge of Courage: An Episode of the American Civil War: Section 1
 

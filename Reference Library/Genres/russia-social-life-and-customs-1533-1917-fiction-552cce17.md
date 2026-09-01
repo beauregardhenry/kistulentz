@@ -2,25 +2,39 @@
 # Russia -- Social life and customs -- 1533-1917 -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 355361
-- Reading grade: 3.6
-- Average sentence: 7.4 words
-- Average paragraph: 11.8 words
-- Dialogue share: 55%
+- Words analyzed: 958612
+- Reading grade: 4.8
+- Average sentence: 11.6 words
+- Average paragraph: 37.4 words
+- Dialogue share: 53%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: though, don’t, father, that’s, himself, suddenly, cried, three, money, shall, nothing, perhaps, without, thought, heart, moment, began, believe, people, whole, thousand, won’t, myself, everything
-- Character names: Alyosha, Ivan, Fyodor Pavlovitch, Dmitri, Grigory, Miüsov, Katerina Ivanovna, Mitya, Smerdyakov, Lise, Grushenka, Alexey Fyodorovitch, Alexey, Pyotr Alexandrovitch, Rakitin, Fyodor, Pavlovitch, Madame Hohlakov, Ivanovna, Marfa, Sohn, Christ, Dmitri Fyodorovitch, Karamazov, Katerina, Maximov, Ivan Fyodorovitch, Grigory Vassilyevitch, Katya, Adelaïda Ivanovna
+- Tone: dialogue-forward, balanced, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: began, believe, cried, don’t, everything, himself, nothing, people, perhaps, shall, suddenly, that’s, though, thought, three, whole, without, father, heart, moment, money, myself, thousand, won’t, anything, course, going, house, understand, woman, years
+- Character names: Lise, Adelaïda Ivanovna, Alexey, Alexey Fyodorovitch, Alyosha, Christ, Dmitri, Dmitri Fyodorovitch, Fyodor Pavlovitch, Grigory, Grigory Vassilyevitch, Grushenka, Ivan, Ivan Fyodorovitch, Karamazov, Katerina Ivanovna, Katya, Madame Hohlakov, Marfa, Maximov, Mitya, Miüsov, Pyotr Alexandrovitch, Rakitin, Smerdyakov, Ach, Alexey Nilitch, Darya Pavlovna, Dasha, Fyodor, Ivan Ossipovitch, Ivanovna, Kalganov, Karmazinov, Katerina, Kirillov, Liputin, Liza, Lizaveta, Lizaveta Nikolaevna, Madam, Marya Timofyevna, Mavriky Nikolaevitch, Mlle, Mr, Nastasya, Nicolas, Nikita, Nikolay, Nikolay Vsyevolodovitch, Pavlovitch, Petrusha, Praskovya, Praskovya Ivanovna, Pyotr Stepanovitch, Shatov, Shatushka, Sohn, Stavrogin, Stepan Trofimovitch, Varvara Petrovna, Von Sohn, Yefim Petrovitch, Yulia Mihailovna
 
 ## Books
+- [Demons](../Books/75AAB312-A2DA-401C-8D4D-21E36D1B8522.md)
 - [The Brothers Karamazov](../Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md)
+- [The Brothers Karamazov](../Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md)
 
 ## Representative excerpts
+
+### Demons: Section 17
+
+_Mid-book rhythm_
+
+> VI Pyotr Stepanovitch Is Busy I The date of the fête was definitely fixed, and Von Lembke became more and more depressed. He was full of strange and sinister forebodings, and this made Yulia Mihailovna seriously uneasy. Indeed, things were not altogether satisfactory. Our mild governor had left the affairs of the province a little out of gear; at the moment we were threatened with cholera; serious outbreaks of cattle plague had appeared in several places; fires were prevalent that summer in towns and villages; whilst among the peasantry foolish rumours of incendiarism grew stronger and stronger. Cases of robbery were twice as numerous as usual. But all this, of course, would have been perfectly ordinary had there been no other and more weighty reasons to disturb the equanimity of Andrey Antonovitch, who had till then been in good spirits.
+
+### Demons: Section 12
+
+_Dialogue and character voice_
+
+> I Night I Eight days had passed. Now that it is all over and I am writing a record of it, we know all about it; but at the time we knew nothing, and it was natural that many things should seem strange to us: Stepan Trofimovitch and I, anyway, shut ourselves up for the first part of the time, and looked on with dismay from a distance. I did, indeed, go about here and there, and, as before, brought him various items of news, without which he could not exist. I need hardly say that there were rumours of the most varied kind going about the town in regard to the blow that Stavrogin had received, Lizaveta Nikolaevna’s fainting fit, and all that happened on that Sunday. But what we wondered was, through whom the story had got about so quickly and so accurately. Not one of the persons present had any need to give away the secret of what had happened, or interest to serve by doing so.
 
 ### The Brothers Karamazov: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Chapter IV. In The Dark Where was he running? “Where could she be except at Fyodor Pavlovitch’s? She must have run straight to him from Samsonov’s, that was clear now. The whole intrigue, the whole deceit was evident.” ... It all rushed whirling through his mind. He did not run to Marya Kondratyevna’s. “There was no need to go there ... not the slightest need ... he must raise no alarm ... they would run and tell directly.... Marya Kondratyevna was clearly in the plot, Smerdyakov too, he too, all had been bought over!”
+
+### The Brothers Karamazov: Section 61
+
+_Mid-book rhythm_
+
+> I Kuzma Samsonov But Dmitri, to whom Grushenka, flying away to a new life, had left her last greetings, bidding him remember the hour of her love forever, knew nothing of what had happened to her, and was at that moment in a condition of feverish agitation and activity. For the last two days he had been in such an inconceivable state of mind that he might easily have fallen ill with brain fever, as he said himself afterwards. Alyosha had not been able to find him the morning before, and Ivan had not succeeded in meeting him at the tavern on the same day. The people at his lodgings, by his orders, concealed his movements. He had spent those two days literally rushing in all directions, “struggling with his destiny and trying to save himself,”
+
+### The Brothers Karamazov: Section 97
+
+_Dialogue and character voice_
+
+> IX The Devil. Ivan’s Nightmare I am not a doctor, but yet I feel that the moment has come when I must inevitably give the reader some account of the nature of Ivan’s illness. Anticipating events I can say at least one thing: he was at that moment on the very eve of an attack of brain fever. Though his health had long been affected, it had offered a stubborn resistance to the fever which in the end gained complete mastery over it. Though I know nothing of medicine, I venture to hazard the suggestion that he really had perhaps, by a terrible effort of will, succeeded in delaying the attack for a time, hoping, of course, to check it completely.

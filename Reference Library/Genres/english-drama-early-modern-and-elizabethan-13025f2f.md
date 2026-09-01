@@ -2,25 +2,38 @@
 # English drama -- Early modern and Elizabethan
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 443579
-- Reading grade: 1.4
-- Average sentence: 5.5 words
-- Average paragraph: 6.4 words
-- Dialogue share: 1%
+- Words analyzed: 493205
+- Reading grade: 1.3
+- Average sentence: 5.8 words
+- Average paragraph: 6.5 words
+- Dialogue share: 4%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: shall, scene, queen, speak, henry, exeunt, heart, prince, hamlet, death, father, warwick, falstaff, france, cannot, blood, noble, world, leave, whose, gloucester, honour, second, though
-- Character names: Caesar, Antony, Cleopatra, Pompey, Charmian, Eros, Bertram, Hath, Madam, Helen, Mark Antony, Farewell, Agrippa, Charles, Fulvia, Diana, Enter Antony, Adam, Jove, Mardian, Marry, Menas, Maecenas, Dolabella, Rosalind, Enter Caesar, Lo, William Shakespeare, Brutus, Canidius
+- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
+- Recurring vocabulary: blood, death, heart, shall, though, whose, world, beauty, cannot, desire, exeunt, false, falstaff, father, france, gloucester, hamlet, henry, honour, leave, light, love’s, myself, night, noble, prince, queen, quoth, scene, second, shame, sorrow, speak, sweet, tears, thine, thought, tongue, warwick, words
+- Character names: Brutus, Hath, Jove, Lo, William Shakespeare, Adam, Adon, Adonis, Agrippa, Antony, Bertram, Caesar, Canidius, Charles, Charmian, Cleopatra, Collatinus, Cupid, Diana, Dolabella, Enter Antony, Enter Caesar, Eros, Fair, Farewell, Fulvia, Helen, Ilion, Jealousy, Lucrece, Lucretia, Madam, Maecenas, Mardian, Mark Antony, Marry, Menas, Nature, Ne’er, Pompey, Priam, Pyrrhus, Rosalind, Sextus Tarquinius, Shakespeare, Simois, Sith, Tarquin, Thou, Troy, Venus, Woe, young Adonis
 
 ## Books
+- [Poetry](../Books/03FA39A1-39CC-4E96-9BC2-197E4CB20EB4.md)
 - [The Complete Works of William Shakespeare](../Books/77215495-099F-4FA4-A57B-B79019AC6B8D.md)
 
 ## Representative excerpts
+
+### Poetry: Section 4
+
+_Mid-book rhythm_
+
+> Sonnets To the only begetter of these ensuing sonnets Mr. W. H. all happiness and that eternity promised by our ever-living poet wisheth the well-wishing adventure in setting forth T. T. I From fairest creatures we desire increase, That thereby beauty’s rose might never die, But as the riper should by time decease, His tender heir might bear his memory: But thou, contracted to thine own bright eyes, Feed’st thy light’s flame with self-substantial fuel, Making a famine where abundance lies, Thyself thy foe, to thy sweet self too cruel. Thou that art now the world’s fresh ornament And only herald to the gaudy spring, Within thine own bud buriest thy content And, tender churl, makest waste in niggarding. Pity the world, or else this glutton be, To eat the world’s due, by the grave and thee.
+
+### Poetry: Section 3
+
+_Dialogue and character voice_
+
+> Venus and Adonis “Vilia miretur vulgus; mihi flavus Apollo Pocula Castalia plena ministret aqua.” To the Right Honourable Henry Wriothesley, Earl of Southampton, and Baron of Titchfield. Right Honourable, I know not how I shall offend in dedicating my unpolished lines to your lordship, nor how the world will censure me for choosing so strong a prop to support so weak a burthen: only, if your honour seem but pleased, I account myself highly praised, and vow to take advantage of all idle hours, till I have honoured you with some graver labour. But if the first heir of my invention prove deformed, I shall be sorry it had so noble a godfather, and never after ear so barren a land, for fear it yield me still so bad a harvest. I leave it to your honourable survey, and your honour to your heart’s content; which I wish may always answer your own wish and the world’s hopeful expectation.
 
 ### The Complete Works of William Shakespeare: Section 1
 

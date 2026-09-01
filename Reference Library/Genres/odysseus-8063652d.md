@@ -2,26 +2,39 @@
 # Odysseus
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 265392
-- Reading grade: 3.5
-- Average sentence: 10.3 words
-- Average paragraph: 13.6 words
-- Dialogue share: 64%
+- Words analyzed: 385381
+- Reading grade: 2.9
+- Average sentence: 9.2 words
+- Average paragraph: 11.9 words
+- Dialogue share: 65%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
 - Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: answered, brought, country, drink, father, going, gutenberg, hands, heard, heaven, himself, house, however, ithaca, people, place, return, round, shall, suitors, therefore, though, water, without
-- Character names: Aegisthus, Agamemnon, Alcinous, Arete, Atreus, Butler, Calypso, Circe, Dawn, Diana, Hades, Helen, Jove, Laertes, Menelaus, Minerva, Nausicaa, Neptune, Nestor, Penelope, Piraeus, Pisistratus, Priam, Scylla, Teiresias, Telemachus, Thereon, Troy, Ulysses, Venus
+- Recurring vocabulary: brought, father, hands, heard, place, return, shall, suitors, though, answered, country, drink, going, gutenberg, heaven, himself, house, however, ithaca, people, round, therefore, water, without, chief, death, earth, forth, friends, goddess, halls, heart, mighty, palace, spake, stranger, ulysses, within, words
+- Character names: Aegisthus, Agamemnon, Alcinoüs, Diana, Hades, Helen, Jove, Laertes, Menelaus, Neptune, Nestor, Penelope, Priam, Scylla, Telemachus, Troy, Venus, Arete, Atreus, Butler, Calypso, Circe, Dawn, Minerva, Nausicaa, Piraeus, Pisistratus, Teiresias, Thereon, Ulysses, Achilles, Hath, Juno, Mars, Nausithoüs, Pallas, Peisistratus, Phoebus, Pluto, Polyphemus, Rose, Samos, Tiresias
 
 ## Books
+- [The Odyssey](../Books/C945079C-AC32-4190-A09D-23C198C904DF.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/BA3B84A4-169F-4B40-804A-6CDA495B790B.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/B2311001-F34E-4668-84D8-AAB8245CFA57.md)
 
 ## Representative excerpts
+
+### The Odyssey: Section 16
+
+_Mid-book rhythm_
+
+> Book XII The Sirens, Scylla, and Charybdis Return of Ulysses to the island of Circè⁠—Her counsels respecting his homeward voyage⁠—The sirens⁠—Escape from Scylla and Charybdis⁠—His arrival at Trinacria⁠—Slaughter of the oxen of the Sun by his companions⁠—A tempest, in consequence, by which his companions all perish, and he only escapes by swimming to the island of Calypso. “Now when our barque had left Océanus And entered the great deep, we reached the isle Aeaea, where the Morning, child of Dawn, Abides, and holds her dances, and the Sun Goes up from earth. We landed there and drew Our galley up the beach; we disembarked And laid us down to sleep beside the sea, And waited for the holy Morn to rise. “Then when the rosy-fingered Morn appeared, The child of Dawn, I sent my comrades forth To bring from Circè’s halls Elpenor’s corse.
+
+### The Odyssey: Section 8
+
+_Dialogue and character voice_
+
+> Book IV Conference of Telemachus and Menelaus Arrival of Telemachus and his companion at Sparta⁠—A wedding; the marriage of the daughter of Menelaus⁠—Helen in Sparta⁠—Entertainment of the guests⁠—Helen’s account of her return to her husband⁠—The Trojan horse⁠—Narrative of the visit of Menelaus to Egypt, in order to consult the sea-god, Proteus⁠—Menelaus informed by him that Ulysses is detained by Calypso in her island⁠—Plot of the suitors to lie in wait for Telemachus on his voyage and destroy him⁠—Penelope visited and consoled by Pallas in a dream. They came to Lacedaemon’s valley, seamed With dells, and to the palace of its king, The glorious Menelaus, whom they found Within, and at a wedding banquet, made Both for his blameless daughter and his son, And many guests. Her he must send away, Bride of the son of that invincible chief, Achilles.
 
 ### The Odyssey / Rendered into English prose for the use of those who cannot read the original: Section 1
 

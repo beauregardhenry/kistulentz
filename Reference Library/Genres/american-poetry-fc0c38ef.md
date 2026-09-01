@@ -2,24 +2,26 @@
 # American poetry
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 355540
-- Reading grade: 2.4
+- Words analyzed: 388895
+- Reading grade: 2.3
 - Average sentence: 6.2 words
-- Average paragraph: 7.3 words
-- Dialogue share: 32%
+- Average paragraph: 7.2 words
+- Dialogue share: 30%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, energetic, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: cannot, death, heaven, night, shall, within, electronic, except, flower, heart, light, sweet, whose, without, works, world, above, access, agreement, angelo, copyright, donations, earth, ebook, fingers, friend, heard, hiawatha, house, license, michael, morning, myself, paragraph, passed, poems, prince, purple, round, states
-- Character names: Emily Dickinson, Belshazzar, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Pray, Project Gutenberg, Alcala, Ang, Angels, Basil, Benedict, Birds, Christ, Don Carlos, Evangeline, Fran, Gabriel, Hark, Hyp, Iagoo, Jason, Jehovah, Jesus, Jim Tinsley, Kabibonokka, Kahgahgee, Kwasind, Lara, Lift, Loud, Mudjekeewis, Nature, Nokomis, Oweenee, Padre Cura, Pain, Pedro, Pigmy, Pizarro, Preciosa, Sang, Shawondasee, Shingebis, Time, VI, VIII, Victorian, brown
+- Tone: direct, energetic, rhythmically even, narrative-forward, dialogue-forward
+- Recurring vocabulary: night, shall, death, light, above, cannot, ebook, heart, heaven, round, within, world, earth, electronic, except, flower, sweet, things, water, white, whose, without, works, access, agreement, angelo, black, bosom, branches, bright, cease, celestial, children, copyright, divine, donations, ev’ry, fingers, flowers, friend
+- Character names: Emily Dickinson, Belshazzar, Christ, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Jehovah, Pray, Project Gutenberg, Afric, Alcala, Amory, Ang, Angels, Artsybashev, Aurora, Basil, Benedict, Birds, Cadmus, David, Don Carlos, Dr, Eliab, Evangeline, Fran, Gabriel, Goliath, Hark, Hyp, Iagoo, Jacob, Jason, Jesse, Jesus, Jim Tinsley, Kabibonokka, Kahgahgee, Kwasind, Lancelot, Lara, Latona, Leonard, Lift, Lo, Loud, Madam, Maecenas, Manto, Mr, Mudjekeewis, Nai, Nature, Neptune, Niobe, Nokomis, Oweenee, Padre Cura, Pain, Pedro, Phillis, Phillis Wheatley, Phoebe, Phoebus, Pigmy, Pizarro, Preciosa, Prone, Sang, Saviour, Sewell, Shawondasee, Shingebis, Sonny, Susanna, Time, VI, VIII, Victorian, Whitefield
 
 ## Books
 - [Poems by Emily Dickinson, Series One](../Books/7F67F5CB-CC22-49CD-8D73-976D67304E41.md)
 - [Poems by Emily Dickinson, Three Series, Complete](../Books/98CB80E4-ECCA-4B7A-8EAF-EDBEDB19C3DE.md)
+- [Poems on Various Subjects, Religious and Moral](../Books/DF8E61E8-AA3F-4A43-BA54-B1CDE378ABEB.md)
+- [Poetry](../Books/E1885C28-A2DB-457F-B5E6-C46D5EE63B3F.md)
 - [The Complete Poetical Works of Henry Wadsworth Longfellow](../Books/D1309924-77AB-42C5-8038-271D77B092F3.md)
 
 ## Representative excerpts
@@ -47,6 +49,30 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Of immortality His strategy Was physiognomy. XXVIII. I know a place where summer strives With such a practised frost, She each year leads her daisies back, Recording briefly, "Lost." But when the south wind stirs the pools And struggles in the lanes, Her heart misgives her for her vow, And she pours soft refrains Into the lap of adamant, And spices, and the dew, That stiffens quietly to quartz, Upon her amber shoe. XXIX. The one that could repeat the summer day Were greater than itself, though he Minutest of mankind might be. And who could reproduce the sun, At period of going down — The lingering and the stain, I mean — When Orient has been outgrown, And Occident becomes unknown, His name remain. XXX. THE WIND'S VISIT. The wind tapped like a tired man, And like a host, "Come in,"
+
+### Poems on Various Subjects, Religious and Moral: Section 7
+
+_Dialogue and character voice_
+
+> To Maecenas Maecenas, you, beneath the myrtle shade, Read o’er what poets sung, and shepherds play’d. What felt those poets but you feel the same? Does not your soul possess the sacred flame? Their noble strains your equal genius shares In softer language, and diviner airs. While Homer paints, lo! circumfus’d in air, Celestial Gods in mortal forms appear; Swift as they move hear each recess rebound, Heav’n quakes, earth trembles, and the shores resound. Great Sire of verse, before my mortal eyes, The lightnings blaze across the vaulted skies, And, as the thunder shakes the heav’nly plains, A deep felt horror thrills through all my veins. When gentler strains demand thy graceful song, The length’ning line moves languishing along.
+
+### Poems on Various Subjects, Religious and Moral: Section 5
+
+_Sentence variation_
+
+> Letter to the Publisher The following is a copy of a letter sent by the author’s master to the publisher. Phillis was brought from Africa to America, in the year 1761, between seven and eight years of age. Without any assistance from school education, and by only what she was taught in the family, she, in sixteen months time from her arrival, attained the English language, to which she was an utter stranger before, to such a degree, as to read any, the most difficult parts of the Sacred Writings, to the great astonishment of all who heard her. As to her writing, her own curiosity led her to it; and this she learnt in so short a time, that in the year 1765, she wrote a letter to the Rev. Mr. Occom, the Indian Minister, while in England. She has a great inclination to learn the Latin tongue, and has made some progress in it.
+
+### Poetry: Section 3
+
+_Mid-book rhythm_
+
+> Peace on Earth The Archer is wake! The Swan is flying! Gold against blue An Arrow is lying. There is hunting in heaven⁠— Sleep safe till to-morrow. The Bears are abroad! The Eagle is screaming! Gold against blue Their eyes are gleaming! Sleep! Sleep safe till to-morrow. The Sisters lie With their arms intertwining; Gold against blue Their hair is shining! The Serpent writhes! Orion is listening! Gold against blue His sword is glistening! Sleep! There is hunting in heaven⁠— Sleep safe till to-morrow. Postlude Now that I have cooled to you Let there be gold of tarnished masonry, Temples soothed by the sun to ruin That sleep utterly. Give me hand for the dances, Ripples at Philae, in and out, And lips, my Lesbian, Wall flowers that once were flame. Your hair is my Carthage And my arms the bow, And our words arrows To shoot the stars Who from that misty sea Swarm to destroy us.
+
+### Poetry: Section 5
+
+_Sentence variation_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
 
 ### The Complete Poetical Works of Henry Wadsworth Longfellow: Section 1
 

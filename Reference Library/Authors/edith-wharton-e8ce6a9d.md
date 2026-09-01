@@ -2,23 +2,24 @@
 # Edith Wharton
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 111490
-- Reading grade: 3.7
-- Average sentence: 7.8 words
-- Average paragraph: 11.2 words
-- Dialogue share: 25%
+- Words analyzed: 148015
+- Reading grade: 4.2
+- Average sentence: 10.5 words
+- Average paragraph: 19.6 words
+- Dialogue share: 23%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: heard, himself, house, moment, seemed, stood, though, thought, without, ain’t, alone, bishop, course, didn't, don't, don’t, ethan’s, given, going, guess, herself, kitchen, letter, light, night, nothing, place, professor, project, sense, smile, table, toward, voice, woman, words, works, young, zeena’s
-- Character names: Ethan Frome, Gutenberg, Agnes, Alan, Andrew Hale, Briga, Dan’l Byrne, Denis, Denis Eady, Donna Candida, Dr. Buck, Eady, Emilio, Ethan, Frome, Gutenberg Literary Archive Foundation, Hale, Harmon, Harmon Gow, Harviss, Haskett, Jane, Jotham, Jotham Powell, Julia, Lethbury, Matt, Mattie, Mattie Silver, Michael Eady, Mr, Mr. Brympton, Mr. Budd, Mr. Ranford, Mrs, Mrs. Blinder, Mrs. Brympton, Mrs. Clinch, Mrs. Fetherel, Mrs. Hale, Mrs. Lethbury, Mrs. Linyard, Mrs. Quentin, Mrs. Vervain, Mrs. Waythorn, Ned, Ned Hale, Polixena, Project Gutenberg, Ruth, Shadd, Starkfield, Tony, Varick, Waythorn, Westall, Zeena, Zenobia
+- Tone: narrative-forward, direct, rhythmically even, balanced, rhythmically varied
+- Recurring vocabulary: heard, himself, house, moment, seemed, stood, though, thought, without, ain’t, alone, don’t, ethan’s, going, guess, kitchen, light, night, place, table, toward, voice, zeena’s, bishop, course, didn't, don't, given, herself, letter, nothing, professor, project, sense, silence, smile, woman, words, works, young
+- Character names: Ethan Frome, Andrew Hale, Dan’l Byrne, Denis, Denis Eady, Eady, Ethan, Frome, Gutenberg, Hale, Harmon, Harmon Gow, Jotham, Jotham Powell, Matt, Mattie, Mattie Silver, Michael Eady, Mr, Mrs, Ned, Ned Hale, Ruth, Shadd, Starkfield, Zeena, Zenobia, Agnes, Alan, Briga, Buck, Donna Candida, Dr, Dr. Buck, Edith Wharton, Emilio, Gutenberg Literary Archive Foundation, Harviss, Haskett, Jane, Julia, Lethbury, Mr. Brympton, Mr. Budd, Mr. Ranford, Mrs. Blinder, Mrs. Brympton, Mrs. Clinch, Mrs. Fetherel, Mrs. Hale, Mrs. Lethbury, Mrs. Linyard, Mrs. Quentin, Mrs. Vervain, Mrs. Waythorn, Polixena, Project Gutenberg, Tony, Varick, Varnum, Waythorn, Westall
 
 ## Books
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
 - [The Descent of Man and Other Stories](../Books/7433F945-B8D6-49E6-A9A5-4951EDA3A9AC.md)
 
 ## Representative excerpts
@@ -34,6 +35,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
+
+### Ethan Frome: Section 9
+
+_Mid-book rhythm_
+
+> IV As soon as his wife had driven off Ethan took his coat and cap from the peg. Mattie was washing up the dishes, humming one of the dance tunes of the night before. He said “So long, Matt,” and she answered gaily “So long, Ethan”; and that was all. It was warm and bright in the kitchen. The sun slanted through the south window on the girl’s moving figure, on the cat dozing in a chair, and on the geraniums brought in from the doorway, where Ethan had planted them in the summer to “make a garden” for Mattie. He would have liked to linger on, watching her tidy up and then settle down to her sewing; but he wanted still more to get the hauling done and be back at the farm before night. All the way down to the village he continued to think of his return to Mattie. The kitchen was a poor place, not “spruce”
+
+### Ethan Frome: Section 12
+
+_Dialogue and character voice_
+
+> VII Ethan went out into the passage to hang up his wet garments. He listened for Zeena’s step and, not hearing it, called her name up the stairs. She did not answer, and after a moment’s hesitation he went up and opened her door. The room was almost dark, but in the obscurity he saw her sitting by the window, bolt upright, and knew by the rigidity of the outline projected against the pane that she had not taken off her travelling dress. “Well, Zeena,” he ventured from the threshold. She did not move, and he continued: “Supper’s about ready. Ain’t you coming?” She replied: “I don’t feel as if I could touch a morsel.” It was the consecrated formula, and he expected it to be followed, as usual, by her rising and going down to supper. But she remained seated, and he could think of nothing more felicitous than: “I presume you’re tired after the long ride.”
 
 ### The Descent of Man and Other Stories: Section 1
 

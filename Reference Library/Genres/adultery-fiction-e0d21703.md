@@ -2,26 +2,54 @@
 # Adultery -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 133843
-- Reading grade: 4.5
-- Average sentence: 7.6 words
-- Average paragraph: 10.5 words
-- Dialogue share: 18%
+- Words analyzed: 831548
+- Reading grade: 5.5
+- Average sentence: 14.4 words
+- Average paragraph: 42.4 words
+- Dialogue share: 29%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even, energetic
-- Recurring vocabulary: herself, himself, house, mother, project, seemed, without, woman, alone, answered, better, black, child, children, dimmesdale, don’t, going, gutenberg, heart, human, husband, letter, minister, nature, night, nothing, people, scarlet, shall, sometimes, stood, things, thought, walked, water, white, within, world, years, young
-- Character names: Hester, Ann Hutchinson, Armand, Arthur, Bellingham, Chillingworth, Chéri, Désirée, Edmond, Edna, Eliot, Folle, Gaston, Gutenberg, Halifax, Hath, Hester Prynne, Hush, Isaac Johnson, James, La Folle, La Petite, Little Pearl, Léonce, Madam Hester, Madame, Madame Antoine, Madame Lebrun, Madame Ratignolle, Madame Valmondé, Mademoiselle Reisz, Mam’selle Pauline, Mistress Hester, Mistress Hibbins, Mistress Prynne, Monsieur, Monsieur Farival, Monsieur Ratignolle, Mr, Mr. Pontellier, Mr. Surveyor Pue, Mr. Wilson, Mrs, Mrs. Baroda, Mrs. Pontellier, Mrs. Sommers, Pauline, Pearl, Prynne, Robert, Roger Chillingworth, Sam, Satan, Surveyor, Tonie, Victor, Wilson, Winthrop, brown
+- Tempo: steady
+- Tone: dialogue-forward, direct, energetic, narrative-forward, rhythmically even, rhythmically varied, balanced, measured
+- Recurring vocabulary: himself, seemed, herself, woman, don’t, going, mother, nothing, people, thought, without, better, child, house, shall, stood, world, answered, dimmesdale, heart, human, husband, letter, looking, minister, nature, night, project, quite, round, scarlet, that’s, things, though, within, years, young, alone, began, black
+- Character names: Mr, Hester, Mrs, Sam, Ann Hutchinson, Bellingham, Eliot, Halifax, Hath, Hester Prynne, Hush, Isaac Johnson, Little Pearl, Madam Hester, Mistress Hester, Mistress Hibbins, Mistress Prynne, Pearl, Roger Chillingworth, Satan, Surveyor, Wilson, Winthrop, brown, Agafea Mihalovna, Alexey Alexandrovitch, Andrey, Anna, Anna Arkadyevna, Armand, Arthur, Berry, Betsy, Betts, Bolton, Charley, Charlie, Chatterley, Chillingworth, Christian, Christian Cantle, Chéri, Clifford, Connie, Constance, Darya Alexandrovna, Diggory, Diggory Venn, Désirée, Edmond, Edna, Edward, Egdon, Egdon Heath, Elizabeth, Eustacia Vye, Flossie, Folle, Gaston, Grandfer Cantle, Grisha, Gutenberg, Hammond, Hilda, Humphrey, Ivy Bolton, James, Jim, Joe, John, John Wilson, Julia, King James, Konstantin, Konstantin Dmitrievitch, Konstantin Levin, Korsunsky, Kritsky, La Folle, La Petite
 
 ## Books
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
+- [Lady Chatterley’s Lover](../Books/35BF24CF-4D51-41AE-AD44-647324261333.md)
 - [The Awakening, and Selected Short Stories](../Books/CE51DB43-7A5A-4002-B3E5-5203C823D585.md)
+- [The Return of the Native](../Books/18842CF9-474F-4A11-AA22-371DA9B597B9.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
 
 ## Representative excerpts
+
+### Anna Karenina: Section 126
+
+_Mid-book rhythm_
+
+> XIX The mistake made by Alexey Alexandrovitch in that, when preparing for seeing his wife, he had overlooked the possibility that her repentance might be sincere, and he might forgive her, and she might not die⁠—this mistake was two months after his return from Moscow brought home to him in all its significance. But the mistake made by him had arisen not simply from his having overlooked that contingency, but also from the fact that until that day of his interview with his dying wife, he had not known his own heart. At his sick wife’s bedside he had for the first time in his life given way to that feeling of sympathetic suffering always roused in him by the sufferings of others, and hitherto looked on by him with shame as a harmful weakness.
+
+### Anna Karenina: Section 101
+
+_Dialogue and character voice_
+
+> XXVII “If I’d only the heart to throw up what’s been set going⁠ ⁠… such a lot of trouble wasted⁠ ⁠… I’d turn my back on the whole business, sell up, go off like Nikolay Ivanovitch⁠ ⁠… to hear La Belle Hélène,” said the landowner, a pleasant smile lighting up his shrewd old face. “But you see you don’t throw it up,” said Nikolay Ivanovitch Sviazhsky; “so there must be something gained.” “The only gain is that I live in my own house, neither bought nor hired. Besides, one keeps hoping the people will learn sense. Though, instead of that, you’d never believe it⁠—the drunkenness, the immorality! They keep chopping and changing their bits of land. Not a sight of a horse or a cow. The peasant’s dying of hunger, but just go and take him on as a laborer, he’ll do his best to do you a mischief, and then bring you up before the justice of the peace.”
+
+### Lady Chatterley’s Lover: Section 12
+
+_Mid-book rhythm_
+
+> X Connie was a good deal alone now, fewer people came to Wragby. Clifford no longer wanted them. He had turned against even the cronies. He was queer. He preferred the radio, which he had installed at some expense, with a good deal of success at last. He could sometimes get Madrid or Frankfurt, even there in the uneasy Midlands. And he would sit alone for hours listening to the loudspeaker bellowing forth. It amazed and stunned Connie. But there he would sit, with a blank entranced expression on his face, like a person losing his mind, and listen, or seem to listen, to the unspeakable thing. Was he really listening? Or was it a sort of soporific he took, whilst something else worked on underneath in him? Connie did not know. She fled up to her room, or out of doors to the wood. A kind of terror filled her sometimes, a terror of the incipient insanity of the whole civilised species.
+
+### Lady Chatterley’s Lover: Section 16
+
+_Dialogue and character voice_
+
+> XIV When she got near the park gate, she heard the click of the latch. He was there, then, in the darkness of the wood, and had seen her! “You are good and early,” he said out of the dark. “Was everything all right?” “Perfectly easy.” He shut the gate quietly after her, and made a spot of light on the dark ground, showing the pallid flowers still standing there open in the night. They went on apart, in silence. “Are you sure you didn’t hurt yourself this morning with that chair?” she asked. “No, no!” “When you had that pneumonia, what did it do to you?” “Oh, nothing! it left my heart not so strong and the lungs not so elastic. But it always does that.” “And you ought not to make violent physical efforts?” “Not often.” She plodded on in an angry silence. “Did you hate Clifford?” she said at last. “Hate him, no! I’ve met too many like him to upset myself hating him.
 
 ### The Awakening, and Selected Short Stories: Section 1
 
@@ -34,6 +62,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > A RESPECTABLE WOMAN Mrs. Baroda was a little provoked to learn that her husband expected his friend, Gouvernail, up to spend a week or two on the plantation. They had entertained a good deal during the winter; much of the time had also been passed in New Orleans in various forms of mild dissipation. She was looking forward to a period of unbroken rest, now, and undisturbed tête-à-tête with her husband, when he informed her that Gouvernail was coming up to stay a week or two. This was a man she had heard much of but never seen. He had been her husband’s college friend; was now a journalist, and in no sense a society man or “a man about town,” which were, perhaps, some of the reasons she had never met him. But she had unconsciously formed an image of him in her mind. She pictured him tall, slim, cynical; with eye-glasses, and his hands in his pockets; and she did not like him.
+
+### The Return of the Native: Section 32
+
+_Mid-book rhythm_
+
+> V Sharp Words Are Spoken and a Crisis Ensues When Yeobright was not with Eustacia he was sitting slavishly over his books; when he was not reading he was meeting her. These meetings were carried on with the greatest secrecy. One afternoon his mother came home from a morning visit to Thomasin. He could see from a disturbance in the lines of her face that something had happened. “I have been told an incomprehensible thing,” she said mournfully. “The captain has let out at the Woman that you and Eustacia Vye are engaged to be married.” “We are,” said Yeobright. “But it may not be yet for a very long time.” “I should hardly think it would be yet for a very long time! You will take her to Paris, I suppose?” She spoke with weary hopelessness. “I am not going back to Paris.” “What will you do with a wife, then?” “Keep a school in Budmouth, as I have told you.” “That’s incredible!
+
+### The Return of the Native: Section 9
+
+_Dialogue and character voice_
+
+> III The Custom of the Country Had a looker-on been posted in the immediate vicinity of the barrow, he would have learned that these persons were boys and men of the neighbouring hamlets. Each, as he ascended the barrow, had been heavily laden with furze faggots, carried upon the shoulder by means of a long stake sharpened at each end for impaling them easily⁠—two in front and two behind. They came from a part of the heath a quarter of a mile to the rear, where furze almost exclusively prevailed as a product. Every individual was so involved in furze by his method of carrying the faggots that he appeared like a bush on legs till he had thrown them down. The party had marched in trail, like a travelling flock of sheep; that is to say, the strongest first, the weak and young behind.
 
 ### The Scarlet Letter: Section 1
 

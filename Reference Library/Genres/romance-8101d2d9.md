@@ -2,101 +2,216 @@
 # Romance
 
 - Profile type: Genre
-- Books represented: 20
+- Books represented: 135
 
 ## Learned profile
 
-- Words analyzed: 1855801
-- Reading grade: 3.1
-- Average sentence: 7.2 words
-- Average paragraph: 9.5 words
-- Dialogue share: 20%
-- Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward, energetic, rhythmically varied
-- Recurring vocabulary: without, nothing, things, project, thought, world, himself, works, heard, night, seemed, shall, death, don’t, house, voice, woman, going, gutenberg, light, moment, people, states, though, white, anything, cannot, course, didn’t, heart, herself, myself, nature, power, stood, terms, words, young, agreement, alone
-- Character names: Gutenberg, Project Gutenberg, Gutenberg Literary Archive Foundation, Adam, Gutenberg Literary, Jesus, Socrates, Christian, John, Mrs, Nature, Poe, Adams, Arthur, Beethoven, Caesar, Christ, Ethan Frome, Farewell, George, Goethe, Hector, Hegel, Helen, Jove, Lo, Locke, Loud, Mattie, Mr, Napoleon, Nick, Plato, Robert, Shakspeare, VI, VIII, Whitman, Zenobia, Addis Wickersham, Ade, Adrianus, Agnes, Agrippa, Al, Alan, Alcala, Alexander, Alfred, Andrew Hale, Ang, Anthony Bloodgood, Antoninus, Antoninus Pius, Antony, Apollonius, Aristophanes, Armand, Astor, Augustine, Augustus, Aunt Polly, Auntie, Aurelius, Austin Davis, Balin, Bartleby, Basil, Benedict, Benjamin, Bennett, Bertram, Billy, Biloxi, Bly, Bors, Brahma, Briga, Brooklyn, Brutus
+- Words analyzed: 14426349
+- Reading grade: 5.4
+- Average sentence: 15.9 words
+- Average paragraph: 47.7 words
+- Dialogue share: 27%
+- Voice: observational third-person
+- Tempo: steady
+- Tone: narrative-forward, rhythmically varied, direct, rhythmically even, balanced, dialogue-forward, energetic, measured
+- Recurring vocabulary: nothing, himself, shall, thought, house, without, don’t, young, though, night, things, people, heart, seemed, woman, going, world, quite, heard, moment, voice, began, father, stood, three, mother, place, herself, myself, hands, round, white, years, that’s, course, cried, cannot, light, perhaps, can’t
+- Character names: Mr, Mrs, John, Adam, George, Christ, Jack, Arthur, Gutenberg, Hath, Dr, James, Peter, Farewell, Madam, Shakespeare, Helen, Madame, Pray, Caesar, Jesus, Lo, Louis, Marry, Mary, Project Gutenberg, Tom, David, Gutenberg Literary Archive Foundation, Jane, Jove, Mark, Socrates, Thou, Alexander, Alice, Anna, Charles, Christian, Cupid, Diana, Elizabeth, Gutenberg Literary, Hector, Henry, Maria, Michael, Monsieur, Napoleon, Nature, Paul, Philip, Rachel, Robert, Thomas, Antonio, Bertram, Betty, Caroline, Denis, Fergus, Frank, Frederick, Hark, Harold, Jew, Joe, Kate, Liza, Mattie, Merlin, Nicholas, Pope, Speak, Susan, Tommy, Troy, Venus, William, Woe
 
 ## Books
+- [A Midsummer Night’s Dream](../Books/0CA653B0-CCE3-4B4B-8704-7BFDD7D23D57.md)
+- [A Treatise of Human Nature](../Books/6414B1C0-8AB5-4F83-9D59-B1975850D2C4.md)
+- [A Woman of No Importance](../Books/934EED71-EFE9-4449-91C6-808DAAAC905A.md)
+- [All’s Well That Ends Well](../Books/02D165CA-C030-4EE1-9BD6-6A90F394FE01.md)
+- [An Ideal Husband](../Books/E1B01324-866D-46FE-93D5-C423EB2ECC59.md)
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
+- [Anne of Green Gables](../Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md)
+- [As I Lay Dying](../Books/1D1C7061-A494-4FFF-BACE-FEE48EAC9A6A.md)
+- [As You Like It](../Books/9C2D7C70-806D-410C-95DB-86422B7E3C9D.md)
 - [Bartleby, the Scrivener: A Story of Wall-Street](../Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md)
+- [Bellarion the Fortunate](../Books/C9CBA5F4-66FE-4E91-8DCD-7B074E230A0C.md)
 - [Beyond Good and Evil](../Books/7325DA2E-E663-49DC-93E0-87E829E8B764.md)
+- [Children’s Stories](../Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md)
+- [Cogewea, the Half-Blood](../Books/E6AD992C-BB58-4807-9722-E5E9D41A3405.md)
+- [Crome Yellow](../Books/85F34883-36B5-48B5-B256-D9F006F788D7.md)
+- [Demons](../Books/75AAB312-A2DA-401C-8D4D-21E36D1B8522.md)
+- [Dubliners](../Books/B97DA2E7-F7DA-48AC-9BCE-7617370C6BA7.md)
 - [East of Eden](../Books/A1BFD5AA-C21A-451C-B0F2-C43A708C21FC.md)
 - [Essays by Ralph Waldo Emerson](../Books/205BB4C2-B465-4D91-8C09-FB6FA0201803.md)
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
+- [Giant’s Bread](../Books/8C41294A-84FE-4FD9-A677-E7FE1369BE86.md)
+- [Golf Stories](../Books/1DB751CA-1BE6-4D0F-BBB2-E5198C1980CB.md)
+- [Heretics](../Books/1EDE6E0A-E34C-4511-86B4-D60F585491E9.md)
+- [Hindu Tales from the Sanskrit](../Books/FF102E21-2202-4BB3-A88E-D2FF047FDBF0.md)
+- [Household Tales](../Books/BC7C2FBC-FCF2-4093-8ED0-C8FE3CC6ECF3.md)
+- [I Will Repay](../Books/EE1420DD-42C1-45EF-A6C3-3DD1708274F8.md)
+- [Jesus the Son of Man](../Books/65B41869-3660-4028-AA6C-D30BE23F7694.md)
 - [King Arthur and the Knights of the Round Table](../Books/AEDA64CD-C6CF-4A3D-9D46-5D3FB34A7CD4.md)
 - [King Midas: a Romance](../Books/0E11AF7D-2AE2-437A-97A7-F1B8ED125F77.md)
+- [Lais](../Books/BF0EA437-3E0B-453B-8D93-6DE7AC65225B.md)
+- [Le Morte d’Arthur](../Books/EE981D9A-24CF-4182-9932-BD5D537EB2CC.md)
 - [Leaves of Grass](../Books/98EA5DAF-B1EC-4BD4-8479-015AD60F6A6F.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/7C4FA643-F964-439C-BD3F-21FC9AACEB4B.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/AE827DF5-44D7-48A5-8888-926CFC6C8CDA.md)
+- [Lorna Doone](../Books/0A45C08C-A329-415C-B8AC-16498DE5DB60.md)
+- [McTeague](../Books/8A3FC784-334D-4B9C-A35B-D3C06B502E94.md)
 - [Meditations](../Books/8042EE51-3745-41F4-A6F7-12F47276331D.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
+- [Much Ado About Nothing](../Books/D9AB4888-263D-4E8B-BA32-A8AFBF83448C.md)
 - [Nature](../Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md)
+- [Nicomachean Ethics](../Books/DD151E0F-1FCD-44DA-9C20-D4E694AA0463.md)
+- [Not Without Laughter](../Books/C84F695A-72A9-4D40-8924-E54201BCA2DA.md)
+- [Notes from Underground](../Books/F2F70316-110C-4FEC-918E-E293E7F281F4.md)
+- [On a Chinese Screen](../Books/7AF4E65C-A95D-4306-B332-1411C72A9FE4.md)
+- [On a Pincushion](../Books/24FF9241-00C1-4936-9186-A839610E3FA6.md)
+- [Othello](../Books/46083AB2-3D35-4ED1-A763-90AE4C5EE8A1.md)
+- [Philosophical Works](../Books/91513010-B2B7-4CFF-AF18-C5AE534BD8D9.md)
+- [Pimpernel and Rosemary](../Books/A5EC2717-0CF0-4423-8B16-D146EA2170F0.md)
+- [Poetry](../Books/1B240C4F-C43B-4968-A5C5-BABC8300DE69.md)
+- [Poetry](../Books/76424F94-F7A4-4A88-8E29-74C06C17F623.md)
+- [Poetry](../Books/E1885C28-A2DB-457F-B5E6-C46D5EE63B3F.md)
+- [Poetry](../Books/03FA39A1-39CC-4E96-9BC2-197E4CB20EB4.md)
+- [Point Counter Point](../Books/C180BB96-F04C-4EB6-8B3B-A9CBFA65F5D4.md)
 - [Prejudices, first series](../Books/C2D5E195-9B03-4837-B986-12AB45B4F7D2.md)
+- [Pygmalion](../Books/31979540-7989-4E44-B2BF-6EDD57152DB9.md)
+- [Riders of the Purple Sage](../Books/484815A8-A6EC-4625-BA9A-C6DED1563712.md)
+- [Romeo and Juliet](../Books/BC0FF1D5-C41C-4CAE-94B6-F48A0B96C28A.md)
+- [Russian Folktales](../Books/C4E5B1DE-A652-497A-84E4-7E4ACE2DCC3B.md)
+- [Short Fiction](../Books/6192826A-C799-446A-BF8F-B781ADD383CD.md)
+- [Short Fiction](../Books/28F446D6-13DA-407E-871B-FFF512A4EA44.md)
+- [Short Fiction](../Books/F734DB8F-18A1-44C3-8C82-F53CD4EB4B71.md)
+- [Short Fiction](../Books/EA0F67C9-8FD9-47E9-BBC0-29DFFEBCD9C2.md)
+- [Short Fiction](../Books/1481AE97-4571-4128-9931-E03D5B25B229.md)
+- [Short Fiction](../Books/0C18904C-C6AC-4201-A909-5BC924977DDA.md)
+- [Short Fiction](../Books/0D1773E5-F6C8-423B-9422-79DB12462E5D.md)
+- [Short Fiction](../Books/BFEBCB8F-FA6C-43BE-B4BD-CD5E03AFEC60.md)
+- [Short Fiction](../Books/5FFD0BE2-62DB-4A7C-9A29-EF38FF3C825C.md)
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
+- [Short Fiction](../Books/85B909D7-0442-4A79-841D-D027CFA2E788.md)
+- [Short Fiction](../Books/2C37E58B-6135-439E-842F-91F93E641864.md)
+- [Short Fiction](../Books/DDE9DED2-203E-4C70-98C1-F935E6492A20.md)
+- [Short Fiction](../Books/4693CBD1-2407-4D4D-AA4A-0373B61DC211.md)
+- [Short Fiction](../Books/B7CF001F-8FAC-477E-A13F-BA7439FFC107.md)
+- [Short Fiction](../Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md)
+- [Short Fiction](../Books/4D646767-98CA-4F88-8B14-80BF98E549E9.md)
+- [Short Fiction](../Books/F292C5DB-3C52-4272-9D25-206C7B85A300.md)
+- [Short Fiction](../Books/B56E9362-1833-4321-A00E-4743AED30529.md)
+- [Short Fiction](../Books/2D843B80-972F-458F-B8EA-685E290EF346.md)
+- [Shorts from Scenes from Private Life](../Books/DBD7123B-29E7-4484-954F-B0B239145E79.md)
+- [Sir Gawain and the Green Knight](../Books/BFD59996-CC74-449F-9A36-2A2905940A60.md)
 - [Studies in Classic American Literature](../Books/A1B1D0A6-4E8D-46E6-BA24-B5357DD40247.md)
+- [Suspiria de Profundis](../Books/C0859A9B-8D0F-46CC-A8ED-7546B0BFD68B.md)
 - [The Awakening, and Selected Short Stories](../Books/CE51DB43-7A5A-4002-B3E5-5203C823D585.md)
 - [The Complete Poetical Works of Henry Wadsworth Longfellow](../Books/D1309924-77AB-42C5-8038-271D77B092F3.md)
 - [The Complete Works of William Shakespeare](../Books/77215495-099F-4FA4-A57B-B79019AC6B8D.md)
 - [The Descent of Man and Other Stories](../Books/7433F945-B8D6-49E6-A9A5-4951EDA3A9AC.md)
+- [The First Sir Percy](../Books/1FB2BFCF-08F3-4BC4-A12C-1E3DFD7971BD.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
+- [The House of the Seven Gables](../Books/A7C6ACB9-6532-41C9-AF87-D3CAD6629AAB.md)
+- [The Jealousies of a Country Town](../Books/489BC01E-B3F6-4D86-AABB-E008C8492ED2.md)
+- [The King in Yellow](../Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md)
+- [The Land of Little Rain](../Books/45B435F1-CEF9-4812-9758-AC6DA46648A1.md)
+- [The Libation Bearers](../Books/78C56DB5-9AE7-46E6-9669-580DB02387AC.md)
+- [The Lily of the Valley](../Books/D27F230B-43AE-4587-B5B3-5F4642B65E18.md)
+- [The Lost Girl](../Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md)
+- [The Madman](../Books/5F7F3D81-1B35-48AF-A174-63F40BB7C35D.md)
+- [The Man of Destiny](../Books/AFB2537E-F5AD-47EE-8C14-81D577862B01.md)
+- [The Merchant of Venice](../Books/0D79755C-148F-4618-B188-8291BFD734ED.md)
+- [The Mother](../Books/D1078FFE-C87F-418B-B16F-B353CCC26CF7.md)
+- [The New Freedom](../Books/B4EC6F60-9803-47BB-A8FD-2D4B7275871E.md)
+- [The Power of Darkness](../Books/BD49101C-CAE7-4BAD-AFDF-F19566E05C76.md)
+- [The Prisoner of Zenda](../Books/A4A2D9E2-06EE-4BAC-A5C7-DA61B165AEC0.md)
+- [The Prophet](../Books/E1528CD9-5F01-4850-B19E-D86DE0CB0021.md)
+- [The Prophet](../Books/9BD88F10-D755-40E2-812C-A85C20BDF962.md)
+- [The Purple Land](../Books/BDD04CF0-47FA-4893-BD09-B0225C266AE7.md)
 - [The Raven, and The Philosophy of Composition](../Books/ED32F5AA-11C5-4446-82CB-411488A85C5C.md)
+- [The Roots of the Mountains](../Books/96D5CC00-DC6A-47E2-B90A-99A98CF2FDCA.md)
+- [The Seagull](../Books/D1D9E1D1-25B7-419C-82B4-ED645FBC57C8.md)
+- [The Secret House](../Books/2DDDEC42-DF7E-4E9D-A4B5-BBBA99952EEA.md)
+- [The Son of Tarzan](../Books/CD5E2513-C09D-4495-8591-1416FE05E260.md)
+- [The Story of My Life](../Books/F7119EBE-8D2A-4165-93FA-72B94B5447FA.md)
+- [The Sundering Flood](../Books/3364D67D-66B1-48BC-A0D6-ADB73A228F9D.md)
+- [The Sword of Damocles](../Books/28461A01-8141-4C30-991A-5A00B38B78E3.md)
+- [The Taming of the Shrew](../Books/93427583-6CCA-411A-B642-16949719BFC2.md)
+- [The Tenant of Wildfell Hall](../Books/A39B3C0D-7D3E-4854-A382-97C351FAA110.md)
+- [The Tragical History of Doctor Faustus](../Books/C0317513-5574-430C-9FF7-762137C1B05E.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
+- [The Turn of the Screw](../Books/8529E49B-5D3E-40C1-9886-96906FB455F2.md)
+- [The Vicomte de Bragelonne](../Books/3D7CFCF7-606D-47D6-B46C-F1C95C593A6D.md)
+- [The Water of the Wondrous Isles](../Books/0291AC39-E5E2-44CB-BD62-D36A1BF3AC89.md)
+- [The Way of the World](../Books/5A857635-5054-4EDB-8264-AED12A7AD597.md)
+- [The Windfairies](../Books/64C9C593-C10A-457F-AF1D-3356D1376D9B.md)
+- [The Works of Max Beerbohm](../Books/59082727-6447-47DC-9625-67F9DBFC39FA.md)
+- [Twelfth Night](../Books/903A6475-51CC-4379-AF04-8E3D9D9103F1.md)
+- [Typee](../Books/1251A293-D2FF-4EAF-9EC2-E08942374DBF.md)
+- [Ukridge Stories](../Books/DA332843-8616-447F-BDD5-C86B00130D2A.md)
+- [Uncle Vanya](../Books/B4A5C456-7F71-45AF-B9CA-B605F08EB6B4.md)
+- [Vikram and the Vampire](../Books/4930CFF2-D344-4FC1-967E-E01C0003CB6E.md)
+- [Waverley](../Books/FC92C4DD-84D9-46E6-AC3B-CA932E77036B.md)
+- [When the World Shook](../Books/DE2D3AE7-7CC7-452A-9201-897F6D8767C9.md)
+- [Where Angels Fear to Tread](../Books/B2A1F27C-26CF-49B5-8438-C08B1F973CEF.md)
+- [Winesburg, Ohio](../Books/0D51BA81-438C-4A1D-AD84-F433CCEC687A.md)
+- [You Never Can Tell](../Books/8338DABC-67FE-483B-9465-302D3125C570.md)
+- [Zuni Folktales](../Books/69AE0444-0097-4630-990D-242F4A9C3FB1.md)
 
 ## Representative excerpts
 
-### Bartleby, the Scrivener: A Story of Wall-Street: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Bartleby, the Scrivener: A Story of Wall-Street This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Bartleby, the Scrivener: A Story of Wall-Street Author: Herman Melville Release date: February 1, 2004 [eBook #11231] Most recently updated: October 28, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/11231 Credits: Steve J. Nelson and Clara T.
-
-### Bartleby, the Scrivener: A Story of Wall-Street: Section 2
+### A Midsummer Night’s Dream: Section 6
 
 _Mid-book rhythm_
 
-> I am a rather elderly man. The nature of my avocations for the last thirty years has brought me into more than ordinary contact with what would seem an interesting and somewhat singular set of men, of whom as yet nothing that I know of has ever been written:—I mean the law-copyists or scriveners. I have known very many of them, professionally and privately, and if I pleased, could relate divers histories, at which good-natured gentlemen might smile, and sentimental souls might weep. But I waive the biographies of all other scriveners for a few passages in the life of Bartleby, who was a scrivener of the strangest I ever saw or heard of. While of other law-copyists I might write the complete life, of Bartleby nothing of that sort can be done. I believe that no materials exist for a full and satisfactory biography of this man. It is an irreparable loss to literature.
+> Act II Scene I A wood near Athens. Enter, from opposite sides, a Fairy, and Puck. Puck How now, spirit! whither wander you? Fairy Over hill, over dale, Thorough bush, thorough brier, Over park, over pale, Thorough flood, thorough fire, I do wander everywhere, Swifter than the moon’s sphere; And I serve the fairy queen, To dew her orbs upon the green. The cowslips tall her pensioners be: In their gold coats spots you see; Those be rubies, fairy favours, In those freckles live their savours: I must go seek some dewdrops here And hang a pearl in every cowslip’s ear. Farewell, thou lob of spirits; I’ll be gone: Our queen and all her elves come here anon.
 
-### Beyond Good and Evil: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Beyond Good and Evil This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Beyond Good and Evil Author: Friedrich Wilhelm Nietzsche Translator: Helen Zimmern Release date: August 1, 2003 [eBook #4363] Most recently updated: January 9, 2019 Language: English Other information and formats: www.gutenberg.
-
-### Beyond Good and Evil: Section 3
-
-_Mid-book rhythm_
-
-> CHAPTER IX. WHAT IS NOBLE? 257. EVERY elevation of the type "man," has hitherto been the work of an aristocratic society and so it will always be—a society believing in a long scale of gradations of rank and differences of worth among human beings, and requiring slavery in some form or other. Without the PATHOS OF DISTANCE, such as grows out of the incarnated difference of classes, out of the constant out-looking and down-looking of the ruling caste on subordinates and instruments, and out of their equally constant practice of obeying and commanding, of keeping down and keeping at a distance—that other more mysterious pathos could never have arisen, the longing for an ever new widening of distance within the soul itself, the formation of ever higher, rarer, further, more extended, more comprehensive states, in short, just the elevation of the type "man," the continued "
-
-### East of Eden: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of East of Eden This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: East of Eden Author: Isa Glenn Release date: April 3, 2025 [eBook #75781] Language: English Original publication: Garden City, New York: Doubleday, Doran & Co., 1932 Other information and formats: www.gutenberg.org/ebooks/75781 Credits: Carla Foust, Tim Lindell, David E. Brown, and the Online Distributed Proofreading Team at https://www.pgdp.
-
-### East of Eden: Section 16
+### A Midsummer Night’s Dream: Section 7
 
 _Dialogue and character voice_
 
-> II The sun shone, sparrows twittered love, and false spring tricked me into a rebirth of my first delight in New York. If I sat long enough on the bench in Washington Square I would catch the early crocuses springing up. But it was December, and nothing pleasant could last. There was dirty weather lying dead ahead. Because the day was so fine, I had walked downtown. I was going to call on Eva, who lived four blocks away; but it was early, and she might still be at work. And to sit in the sun and gaze at the pleasant pinkish bricks in the row of old Georgian houses on the northern side of the Square was delightful. I was pleased when Mrs. Van Suydam’s maroon brougham came in sight around the corner from Macdougal Street; its colour toned in with the pinkish bricks and with the pale blue sky.
+> Act III Scene I The wood. Titania lying asleep. Enter Quince, Snug, Bottom, Flute, Snout, and Starveling. Bottom Are we all met? Quince Pat, pat; and here’s a marvellous convenient place for our rehearsal. This green plot shall be our stage, this hawthorn-brake our tiring-house; and we will do it in action as we will do it before the duke. Bottom Peter Quince⁠— Quince What sayest thou, bully Bottom? Bottom There are things in this comedy of Pyramus and Thisby that will never please. First, Pyramus must draw a sword to kill himself; which the ladies cannot abide. How answer you that? Snout By’r lakin, a parlous fear. Starveling I believe we must leave the killing out, when all is done. Bottom Not a whit: I have a device to make all well.
 
-### Essays by Ralph Waldo Emerson: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Essays by Ralph Waldo Emerson This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Essays by Ralph Waldo Emerson Author: Ralph Waldo Emerson Editor: Edna Henry Lee Turpin Release date: September 4, 2005 [eBook #16643] Most recently updated: April 29, 2022 Language: English Other information and formats: www.gutenberg.org/ebooks/16643 Credits: Curtis A.
-
-### Essays by Ralph Waldo Emerson: Section 4
+### A Treatise of Human Nature: Section 57
 
 _Mid-book rhythm_
 
-> [Transcriber's Note: Number runs from 12 to 14. Number 13 omitted] 14. The Shakspeare Society have inquired in all directions, advertised the missing facts, offered money for any information that will lead to proof; and with what result? Beside some important illustration of the history of the English stage, to which I have adverted, they have gleaned a few facts touching the property, and dealings in regard to property, of the poet. It appears that, from year to year, he owned a larger share in the Blackfriars' Theater[618]: its wardrobe and other appurtenances were his: and he bought an estate in his native village, with his earnings, as writer and shareholder; that he lived in the best house in Stratford;[619] was intrusted by his neighbors with their commissions in London, as of borrowing money, and the like; and he was a veritable farmer.
+> Section VIII Of Beauty and Deformity Whether we consider the body as a part of ourselves, or assent to those philosophers, who regard it as something external, it must still be allowed to be near enough connected with us to form one of these double relations, which I have asserted to be necessary to the causes of pride and humility. Wherever, therefore, we can find the other relation of impressions to join to this of ideas, we may expect with assurance either of these passions, according as the impression is pleasant or uneasy. But beauty of all kinds gives us a peculiar delight and satisfaction; as deformity produces pain, upon whatever subject it may be placed, and whether surveyed in an animate or inanimate object.
 
-### Ethan Frome: Section 1
+### A Treatise of Human Nature: Section 111
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Ethan Frome This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Ethan Frome Author: Edith Wharton Release date: October 1, 2003 [eBook #4517] Most recently updated: March 15, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/4517 Credits: Produced by Charles Aldarondo and David Widger *** START OF THE PROJECT GUTENBERG EBOOK ETHAN FROME *** ETHAN FROME By Edith Wharton CONTENTS ETHAN FROME I II III IV V VI VII VIII IX
+> Endnotes Mr. Locke, my Lord Shaftesbury, Dr. Mandeville, Mr. Hutchinson, Dr. Butler, etc. ↩︎ I here make use of these terms, impression and idea, in a sense different from what is usual, and I hope this liberty will be allowed me. Perhaps I rather restore the word, idea, to its original sense, from which Mr. Locke had perverted it, in making it stand for all our perceptions. By the terms of impression I would not be understood to express the manner, in which our lively perceptions are produced in the soul, but merely the perceptions themselves; for which there is no particular name either in the English or any other language, that I know of. ↩︎ Part III, sect. 5. ↩︎ Dr. Berkeley. [Introd.: to Principles of Human Knowledge, secs. 18 etc. Cf. also Introd. to this volume paragraphs 183 and ff. —﻿Ed.
 
-### Ethan Frome: Section 7
+### A Woman of No Importance: Section 6
 
 _Mid-book rhythm_
 
-> V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
+> Act I Scene: Lawn in front of the terrace at Hunstanton. Sir John and Lady Caroline Pontefract, Miss Worsley, on chairs under large yew tree. Lady Caroline I believe this is the first English country house you have stayed at, Miss Worsley? Hester Yes, Lady Caroline. Lady Caroline You have no country houses, I am told, in America? Hester We have not many. Lady Caroline Have you any country? What we should call country? Hester Smiling. We have the largest country in the world, Lady Caroline. They used to tell us at school that some of our states are as big as France and England put together. Lady Caroline Ah! you must find it very draughty, I should fancy. To Sir John. John, you should have your muffler. What is the use of my always knitting mufflers for you if you won’t wear them? Sir John I am quite warm, Caroline, I assure you. Lady Caroline I think not, John.
+
+### A Woman of No Importance: Section 11
+
+_Dialogue and character voice_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
+
+### All’s Well That Ends Well: Section 7
+
+_Mid-book rhythm_
+
+> Act III Scene I Florence. The Duke’s palace. Flourish. Enter the Duke of Florence attended; the two Frenchmen, with a troop of soldiers. Duke So that from point to point now have you heard The fundamental reasons of this war, Whose great decision hath much blood let forth And more thirsts after. First Lord Holy seems the quarrel Upon your grace’s part; black and fearful On the opposer. Duke Therefore we marvel much our cousin France Would in so just a business shut his bosom Against our borrowing prayers. Second Lord Good my lord, The reasons of our state I cannot yield, But like a common and an outward man, That the great figure of a council frames By self-unable motion: therefore dare not Say what I think of it, since I have found Myself in my incertain grounds to fail As often as I guess’d. Duke Be it his pleasure.
+
+### All’s Well That Ends Well: Section 8
+
+_Dialogue and character voice_
+
+> Act IV Scene I Without the Florentine camp. Enter Second French Lord, with five or six other Soldiers in ambush. Second Lord He can come no other way but by this hedge-corner. When you sally upon him, speak what terrible language you will: though you understand it not yourselves, no matter; for we must not seem to understand him, unless some one among us whom we must produce for an interpreter. First Soldier Good captain, let me be the interpreter. Second Lord Art not acquainted with him? knows he not thy voice? First Soldier No, sir, I warrant you. Second Lord But what linsey-woolsey hast thou to speak to us again? First Soldier E’en such as you speak to me. Second Lord He must think us some band of strangers i’ the adversary’s entertainment.
+
+### An Ideal Husband: Section 6
+
+_Mid-book rhythm_
+
+> Act II Morning room at Sir Robert Chiltern’s house. Lord Goring, dressed in the height of fashion, is lounging in an armchair. Sir Robert Chiltern is standing in front of the fireplace. He is evidently in a state of great mental excitement and distress. As the scene progresses he paces nervously up and down the room. Lord Goring My dear Robert, it’s a very awkward business, very awkward indeed. You should have told your wife the whole thing. Secrets from other people’s wives are a necessary luxury in modern life. So, at least, I am always told at the club by people who are bald enough to know better. But no man should have a secret from his own wife. She invariably finds it out. Women have a wonderful instinct about things. They can discover everything except the obvious. Sir Robert Chiltern Arthur, I couldn’t tell my wife. When could I have told her? Not last night.
+
+### An Ideal Husband: Section 7
+
+_Dialogue and character voice_
+
+> Act III The Library in Lord Goring’s house. An Adam room. On the right is the door leading into the hall. On the left, the door of the smoking room. A pair of folding doors at the back open into the drawing room. The fire is lit. Phipps, the butler, is arranging some newspapers on the writing-table. The distinction of Phipps is his impassivity. He has been termed by enthusiasts the Ideal Butler. The Sphinx is not so incommunicable. He is a mask with a manner. Of his intellectual or emotional life, history knows nothing. He represents the dominance of form. Enter Lord Goring in evening dress with a buttonhole. He is wearing a silk hat and Inverness cape. White-gloved, he carries a Louis Seize cane. His are all the delicate fopperies of Fashion. One sees that he stands in immediate relation to modern life, makes it indeed, and so masters it.

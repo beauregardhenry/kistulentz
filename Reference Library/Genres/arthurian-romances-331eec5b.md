@@ -2,24 +2,26 @@
 # Arthurian romances
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 237036
-- Reading grade: 3.0
-- Average sentence: 8.7 words
-- Average paragraph: 12.6 words
-- Dialogue share: 42%
+- Words analyzed: 613044
+- Reading grade: 5.1
+- Average sentence: 17.6 words
+- Average paragraph: 60.0 words
+- Dialogue share: 18%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: court, damsel, heard, himself, horse, knight, knights, shall, answered, beaumains, brother, cannot, castle, cried, death, desire, forth, grief, gutenberg, heart, honour, leave, night, nothing, others, place, project, rather, replies, return, round, slain, smote, speak, spear, sword, table, together, truth, without
-- Character names: Arthur, Gawain, Lancelot, Queen Guinevere, Alexander, Alis, Balin, Bertrand, Bilis, Bors, Brangien, Caesar, Charlemagne, Chrétien, Cligés, Cornwall, Ector, Erec, Foerster, Gaheris, Galahad, Gareth, Geraint, Guinevere, Iseut, John, Kay, Lac, Malory, Mark, Merlin, Nature, Ovid, Perceval, Percival, Philomena, Samson, Sangreal, Sir Balin, Sir Bors, Sir Galahad, Sir Gareth, Sir Gawain, Sir Lancelot, Sir Lavaine, Sir Lionel, Sir Percival, Sir Tristram, Solomon, Thiébault, Tor, Tristan, Tristram, Uther, W.W, Yvain
+- Tempo: steady
+- Tone: direct, rhythmically even, dialogue-forward, narrative-forward, measured, rhythmically varied
+- Recurring vocabulary: court, knight, shall, heard, himself, horse, knights, brother, castle, damsel, heart, leave, noble, place, round, slain, smote, spear, sword, table, together, answered, athel, battle, beaumains, bright, cannot, chapel, courtesy, cried, damosel, death, departed, desire, dinadan, earth, forth, green, grief, ground
+- Character names: Arthur, Gawain, Merlin, Balin, Bors, Cornwall, Ector, Gaheris, John, Kay, Lancelot, Queen Guinevere, Sir Gawain, Sir Lionel, Tor, Uther, Adj., Aeneas, Albans, Alexander, Alis, Balan, Baldwin, Beaumains, Bertrand, Bilis, Brangien, Brutus, Caesar, Charlemagne, Christ, Chrétien, Clarendon Press, Cligés, Conchobar, Damas, Dee, Diu Krone, Erec, Foerster, Galahad, Gareth, Gather, Gawaine, Geoffrey, Geraint, God, Gorlois, Griflet, Guinevere, Iseut, Julian, King Bors, Lac, Launcelot, Layamon, Lenten, Lionel, Lot, Lucas, Lucius, Malory, Mark, Mary, Morgan, Morgan la Fay, Morgan le Fay, Nature, Noah, Ovid, Perceval, Percival, Philomena, Reynard, Samson, Sangreal, Sir Balin, Sir Bors, Sir Ector, Sir Galahad
 
 ## Books
 - [Four Arthurian Romances](../Books/BFFC3AAD-BDC5-4567-B344-83382F2CEA2A.md)
 - [King Arthur and the Knights of the Round Table](../Books/AEDA64CD-C6CF-4A3D-9D46-5D3FB34A7CD4.md)
+- [Le Morte d’Arthur](../Books/EE981D9A-24CF-4182-9932-BD5D537EB2CC.md)
+- [Sir Gawain and the Green Knight](../Books/BFD59996-CC74-449F-9A36-2A2905940A60.md)
 
 ## Representative excerpts
 
@@ -46,3 +48,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > "By my goodwill," said Sir Percival, "I will never after these tidings have to do with Sir Galahad but in the way of kindness; and I would fain learn where I may find him." "Fair nephew," said she, "ye must ride to the Castle of Goth, where he hath a cousin; by him ye may be lodged, and he will teach you the way to go; but if he can tell you no tidings, ride straight to the Castle of Carbonek, where the wounded king is lying, for there shall ye surely hear true tidings of him." So Sir Percival departed from his aunt, and rode till evensong time, when he was ware of a monastery closed round with walls and deep ditches, where he knocked at the gate, and anon was let in. And there he had good cheer that night, and on the morrow heard mass.
+
+### Le Morte d’Arthur: Section 268
+
+_Mid-book rhythm_
+
+> XIV How King Mark and Sir Dinadan heard Sir Palomides making great sorrow and mourning for La Beale Isoud. Now turn we unto Sir Dinadan, that found these seven knights passing heavy. And when he wist how that they sped, as heavy was he. My lord Uwaine, said Dinadan, I dare lay my head it is Sir Lamorak de Galis. I promise you all I shall find him an he may be found in this country. And so Sir Dinadan rode after this knight; and so did King Mark, that sought him through the forest. So as King Mark rode after Sir Palomides he heard the noise of a man that made great dole. Then King Mark rode as nigh that noise as he might and as he durst. Then was he ware of a knight that was descended off his horse, and had put off his helm, and there he made a piteous complaint and a dolorous, of love. Now leave we that, and talk we of Sir Dinadan, that rode to seek Sir Palomides.
+
+### Le Morte d’Arthur: Section 3
+
+_Dialogue and character voice_
+
+> Bibliographical Note The Morte d’Arthur was finished, as the epilogue tells us, in the ninth year of Edward IV, i.e. between March 4, 1469 and the same date in 1470. It is thus, fitly enough, the last important English book written before the introduction of printing into this country, and since no manuscript of it has come down to us it is also the first English classic for our knowledge of which we are entirely dependent on a printed text. Caxton’s story of how the book was brought to him and he was induced to print it may be read farther on in his own preface. From this we learn also that he was not only the printer of the book, but to some extent its editor also, dividing Malory’s work into twenty-one books, splitting up the books into chapters, by no means skilfully, and supplying the “Rubrish” or chapter-headings.
+
+### Sir Gawain and the Green Knight: Section 7
+
+_Mid-book rhythm_
+
+> Fit II XXII O happen’d this handsel to Arthur at Yule, When for vaunting vows of adventure he yearned; Though brave wórds had been wanting when they went to their meat, Now are they bestead with stern work in plenty. To begin this game was Gawain full glad, But if the end be heavy, have ye no wonder: For though men’s minds are merry, when mead they have ta’en, A year swiftly yerns47 and yields ne’er the same⁠— End and beginning agree not together. So this Yule over-pass’d and the year after, And each season full soon ensued upon other. After Christmas came the crabbèd Lenten That tries us with fish, and fare more meagre.
+
+### Sir Gawain and the Green Knight: Section 9
+
+_Dialogue and character voice_
+
+> Fit IV LXXX Now the New-Year nighs, and the night passes, Dáy treads on dark, as deems the Almighty; But weathers full wild in the world awaken, Clouds strike keenly the cold to the earth, With enough of the North the nakèd to teen. The snow shower’d snell158 and snapèd159 the wild, The whistling wind from the welkin smote And drove each dale full of drifts very deep. Oft listen’d the leal man that lay in his bed; Though he lock’d his lids, but little he slept, And by each cock that crew he knew well his hour. Full early was he up, ere ány day dawn’d, For there was light from a lamp that leam’d in his chamber; He call’d to his chamberlain (and the call he answer’d), And bade bring his byrnie and saddle his bay; Then his man is afoot and fetches his weeds, And graithes me Sir Gawain in a great fashion.

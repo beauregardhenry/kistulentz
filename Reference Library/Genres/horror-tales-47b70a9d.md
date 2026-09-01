@@ -2,47 +2,98 @@
 # Horror tales
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 17
 
 ## Learned profile
 
-- Words analyzed: 109287
-- Reading grade: 5.4
-- Average sentence: 8.3 words
-- Average paragraph: 11.6 words
-- Dialogue share: 52%
+- Words analyzed: 2680587
+- Reading grade: 6.9
+- Average sentence: 18.6 words
+- Average paragraph: 61.9 words
+- Dialogue share: 31%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: earth, without, agreement, balloon, copyright, corpse, donations, dream, dreams, ebook, electronic, gutenberg, himself, however, indeed, known, legrasse, length, license, manner, means, myself, nature, night, nothing, point, project, shall, stars, states, stone, strange, terms, though, thought, three, trademark, uncle, united, water
-- Character names: massa, Andrée, Angell, Antiochus Epiphanes, Beauvais, Briden, Castro, Collins, Cthulhu, Dr. Tobey, Dupin, Edgar, Emma, Eustache, Griswold, Gustaf Johansen, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hans Pfaall, Johansen, Jupiter, Kidd, Le Soleil, Legrand, M. Beauvais, M. Dumas, Madame, Madame Deluc, Madame L’Espanaye, Mademoiselle L’Espanaye, Marie, Marie Rogêt, Massa Will, Monsieur Le Blanc, Mr. Allan, Mr. Poe, Poe, Professor Angell, Project Gutenberg, Rotterdam, Roule, Shakespeare, Webb, Wilcox
+- Tempo: steady
+- Tone: rhythmically varied, dialogue-forward, balanced, narrative-forward, direct, measured, rhythmically even, energetic
+- Recurring vocabulary: seemed, thought, himself, nothing, night, without, though, heard, house, light, place, don’t, moment, stood, three, myself, quite, shall, voice, world, began, behind, course, hands, indeed, suddenly, toward, across, death, however, strange, things, whole, whose, words, years, black, earth, general, going
+- Character names: Mr, Dr, Mrs, John, Poe, Antiochus Epiphanes, Edgar, Hans Pfaall, Jim, Mary, Rotterdam, Shakespeare, Abdul, Alexander, Allan, Anderson, Aristotle, Ben-Levi, Berenice, Bon, Bon-Bon, Buzi-Ben-Levi, Chambertin, Collins, De L’Omelette, Duc, Edward, Ellen, Frederick, George, Harry, Hermann, Hugh Tarpaulin, Jack, Joe, Jung, Larsen, Louis, Marchesa, Monsieur, Monsieur Bon-Bon, Morella, Pierre Bon-Bon, Plato, Richard, Robert, Rowena, Steve, massa, Abdul Reis, Abney, Alec, Alice, Ambrose, Amundsen, Andrée, Andy, Angell, Ann Clark, Anstruther, Arkham, Armand Moncharmin, Arthur, Arthur Gordon Pym, Arthur Jermyn, Arthur Munroe, Arthur Vezin, Ashley Street, Asmodelius, Assheton, Atwood, Aubrey, Aunt Marian, Beardmore Glacier, Beauvais, Bill, Bircham, Black, Bladen, Blanche
 
 ## Books
+- [At the Mountains of Madness](../Books/CF9C1AF5-31C8-4BA1-BC16-D56A3D0DE475.md)
+- [Ghost Stories](../Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md)
+- [In the Midst of Life](../Books/8A4E71F0-81BD-4F82-9B5C-02442AB01C3A.md)
+- [John Silence Stories](../Books/6A31FCE5-2847-4CA1-866C-DC461BE3CCD3.md)
+- [Short Fiction](../Books/28BEFD12-BA87-4341-928F-6C212F09EFC1.md)
+- [Short Fiction](../Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md)
+- [Short Fiction](../Books/D8BDAAFA-DE1A-4F5F-9C04-F220A3D54AD0.md)
+- [Short Fiction](../Books/87CADE27-8A89-42DB-9235-A97C42C936A6.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
+- [Short Fiction](../Books/233E9C32-6ADC-4AF8-AAB2-CAB10464FBA4.md)
+- [Short Fiction](../Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md)
+- [Short Fiction](../Books/1DABB0DA-2B91-4BFC-B0E1-A7F8E43DCB2A.md)
+- [Short Fiction](../Books/D80AFB83-8CB5-4997-840A-A184365F8481.md)
 - [The call of Cthulhu](../Books/AD320115-98F9-4795-BA81-A4D8DED280D2.md)
+- [The King in Yellow](../Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md)
+- [The Phantom of the Opera](../Books/135F9C57-D3A4-48A9-9069-2805D4F88146.md)
 - [The Works of Edgar Allan Poe — Volume 1](../Books/3FE1260F-E736-4671-80C2-7DF5638935F2.md)
 
 ## Representative excerpts
 
-### The call of Cthulhu: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The call of Cthulhu This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The call of Cthulhu Author: H. P. Lovecraft Release date: June 10, 2022 [eBook #68283] Most recently updated: October 18, 2024 Language: English Original publication: United States: Popular Fiction Publishing Company, 1928 Other information and formats: www.gutenberg.org/ebooks/68283 Credits: Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.
-
-### The call of Cthulhu: Section 2
-
-_Sentence variation_
-
-> *** END OF THE PROJECT GUTENBERG EBOOK THE CALL OF CTHULHU *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
-
-### The Works of Edgar Allan Poe — Volume 1: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Works of Edgar Allan Poe — Volume 1 This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Works of Edgar Allan Poe — Volume 1 Author: Edgar Allan Poe Contributor: James Russell Lowell Nathaniel Parker Willis Release date: April 1, 2000 [eBook #2147] Most recently updated: September 13, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Works of Edgar Allan Poe — Volume 1: Section 7
+### At the Mountains of Madness: Section 9
 
 _Mid-book rhythm_
 
-> FOUR BEASTS IN ONE—THE HOMO-CAMELEOPARD Chacun a ses vertus. —Crébillon’s Xerxes. Antiochus Epiphanes is very generally looked upon as the Gog of the prophet Ezekiel. This honor is, however, more properly attributable to Cambyses, the son of Cyrus. And, indeed, the character of the Syrian monarch does by no means stand in need of any adventitious embellishment. His accession to the throne, or rather his usurpation of the sovereignty, a hundred and seventy-one years before the coming of Christ; his attempt to plunder the temple of Diana at Ephesus; his implacable hostility to the Jews; his pollution of the Holy of Holies; and his miserable death at Taba, after a tumultuous reign of eleven years, are circumstances of a prominent kind, and therefore more generally noticed by the historians of his time than the impious, dastardly, cruel, silly, and whimsical achievements which make up the su…
+> VII The full story, so far as deciphered, will eventually appear in an official bulletin of Miskatonic University. Here I shall sketch only the salient highlights in a formless, rambling way. Myth or otherwise, the sculptures told of the coming of those star-headed things to the nascent, lifeless earth out of cosmic space⁠—their coming, and the coming of many other alien entities such as at certain times embark upon spatial pioneering. They seemed able to traverse the interstellar ether on their vast membranous wings⁠—thus oddly confirming some curious hill folklore long ago told me by an antiquarian colleague. They had lived under the sea a good deal, building fantastic cities and fighting terrific battles with nameless adversaries by means of intricate devices employing unknown principles of energy.
+
+### At the Mountains of Madness: Section 4
+
+_Dialogue and character voice_
+
+> II Popular imagination, I judge, responded actively to our wireless bulletins of Lake’s start northwestward into regions never trodden by human foot or penetrated by human imagination, though we did not mention his wild hopes of revolutionizing the entire sciences of biology and geology. His preliminary sledging and boring journey of January 11th to 18th with Pabodie and five others⁠—marred by the loss of two dogs in an upset when crossing one of the great pressure ridges in the ice⁠—had brought up more and more of the Archaean slate; and even I was interested by the singular profusion of evident fossil markings in that unbelievably ancient stratum.
+
+### Ghost Stories: Section 17
+
+_Mid-book rhythm_
+
+> The Other Bed I had gone out to Switzerland just before Christmas, expecting, from experience, a month of divinely renovating weather, of skating all day in brilliant sun, and basking in the hot frost of that windless atmosphere. Occasionally, as I knew, there might be a snowfall, which would last perhaps for forty-eight hours at the outside, and would be succeeded by another ten days of cloudless perfection, cold even to zero at night, but irradiated all day long by the unflecked splendour of the sun. Instead the climatic conditions were horrible. Day after day a gale screamed through this upland valley that should have been so windless and serene, bringing with it a tornado of sleet that changed to snow by night.
+
+### Ghost Stories: Section 18
+
+_Dialogue and character voice_
+
+> The Thing in the Hall The following pages are the account given me by Dr. Assheton of the Thing in the Hall. I took notes, as copious as my quickness of hand allowed me, from his dictation, and subsequently read to him this narrative in its transcribed and connected form. This was on the day before his death, which indeed probably occurred within an hour after I had left him, and, as readers of inquests and such atrocious literature may remember, I had to give evidence before the coroner’s jury. Only a week before Dr. Assheton had to give similar evidence, but as a medical expert, with regard to the death of his friend, Louis Fielder, which occurred in a manner identical with his own. As a specialist, he said he believed that his friend had committed suicide while of unsound mind, and the verdict was brought in accordingly. But in the inquest held over Dr.
+
+### In the Midst of Life: Section 18
+
+_Mid-book rhythm_
+
+> One Officer, One Man Captain Graffenreid stood at the head of his company. The regiment was not engaged. It formed a part of the front line-of-battle, which stretched away to the right with a visible length of nearly two miles through the open ground. The left flank was veiled by woods; to the right also the line was lost to sight, but it extended many miles. A hundred yards in rear was a second line; behind this, the reserve brigades and divisions in column. Batteries of artillery occupied the spaces between and crowned the low hills. Groups of horsemen⁠—generals with their staffs and escorts, and field officers of regiments behind the colors⁠—broke the regularity of the lines and columns. Numbers of these figures of interest had field-glasses at their eyes and sat motionless, stolidly scanning the country in front; others came and went at a slow canter, bearing orders.
+
+### In the Midst of Life: Section 29
+
+_Dialogue and character voice_
+
+> The Suitable Surroundings The Night One midsummer night a farmer’s boy living about ten miles from the city of Cincinnati was following a bridle path through a dense and dark forest. He had lost himself while searching for some missing cows, and near midnight was a long way from home, in a part of the country with which he was unfamiliar. But he was a stouthearted lad, and knowing his general direction from his home, he plunged into the forest without hesitation, guided by the stars. Coming into the bridle path, and observing that it ran in the right direction, he followed it. The night was clear, but in the woods it was exceedingly dark. It was more by the sense of touch than by that of sight that the lad kept the path. He could not, indeed, very easily go astray; the undergrowth on both sides was so thick as to be almost impenetrable.
+
+### John Silence Stories: Section 7
+
+_Mid-book rhythm_
+
+> Case III The Nemesis of Fire I By some means which I never could fathom, John Silence always contrived to keep the compartment to himself, and as the train had a clear run of two hours before the first stop, there was ample time to go over the preliminary facts of the case. He had telephoned to me that very morning, and even through the disguise of the miles of wire the thrill of incalculable adventure had sounded in his voice. “As if it were an ordinary country visit,” he called, in reply to my question; “and don’t forget to bring your gun.” “With blank cartridges, I suppose?” for I knew his rigid principles with regard to the taking of life, and guessed that the guns were merely for some obvious purpose of disguise. Then he thanked me for coming, mentioned the train, snapped down the receiver, and left me, vibrating with the excitement of anticipation, to do my packing.
+
+### John Silence Stories: Section 5
+
+_Dialogue and character voice_
+
+> Case I A Psychical Invasion I “And what is it makes you think I could be of use in this particular case?” asked Dr. John Silence, looking across somewhat sceptically at the Swedish lady in the chair facing him. “Your sympathetic heart and your knowledge of occultism⁠—” “Oh, please⁠—that dreadful word!” he interrupted, holding up a finger with a gesture of impatience. “Well, then,” she laughed, “your wonderful clairvoyant gift and your trained psychic knowledge of the processes by which a personality may be disintegrated and destroyed⁠—these strange studies you’ve been experimenting with all these years⁠—” “If it’s only a case of multiple personality I must really cry off,” interrupted the doctor again hastily, a bored expression in his eyes. “It’s not that; now, please, be serious, for I want your help,” she said; “and if I choose my words poorly you must be patient with my ignorance.
+
+### Short Fiction: Section 38
+
+_Mid-book rhythm_
+
+> Never Bet the Devil Your Head A Tale with a Moral “Con tal que las costumbres de un autor,” says Don Thomas de las Torres, in the preface to his Amatory Poems “sean puras y castas, importo muy poco que no sean igualmente severas sus obras”⁠—meaning, in plain English, that, provided the morals of an author are pure personally, it signifies nothing what are the morals of his books. We presume that Don Thomas is now in Purgatory for the assertion. It would be a clever thing, too, in the way of poetical justice, to keep him there until his Amatory Poems get out of print, or are laid definitely upon the shelf through lack of readers. Every fiction should have a moral; and, what is more to the purpose, the critics have discovered that every fiction has.
+
+### Short Fiction: Section 17
+
+_Dialogue and character voice_
+
+> The Unparalleled Adventure of One Hans Pfaall With a heart of furious fancies, Whereof I am commander, With a burning spear and a horse of air, To the wilderness I wander. Tom O’Bedlam’s Song By late accounts from Rotterdam, that city seems to be in a high state of philosophical excitement. Indeed, phenomena have there occurred of a nature so completely unexpected⁠—so entirely novel⁠—so utterly at variance with preconceived opinions⁠—as to leave no doubt on my mind that long ere this all Europe is in an uproar, all physics in a ferment, all reason and astronomy together by the ears. It appears that on the ⸻ day of ⸻ (I am not positive about the date), a vast crowd of people, for purposes not specifically mentioned, were assembled in the great square of the Exchange in the well-conditioned city of Rotterdam.

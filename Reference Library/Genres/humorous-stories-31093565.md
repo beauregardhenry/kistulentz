@@ -2,25 +2,39 @@
 # Humorous stories
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 17
 
 ## Learned profile
 
-- Words analyzed: 195847
-- Reading grade: 2.4
-- Average sentence: 8.2 words
-- Average paragraph: 11.9 words
-- Dialogue share: 32%
+- Words analyzed: 1786380
+- Reading grade: 4.7
+- Average sentence: 15.1 words
+- Average paragraph: 37.8 words
+- Dialogue share: 35%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
-- Recurring vocabulary: ain’t, don’t, enough, going, house, night, place, reckon, that’s, three, without, access, agree, agreement, anything, associated, began, better, can’t, chapter, copies, copyright, couldn’t, didn’t, distributing, donations, ebook, ebooks, electronic, forth, gutenberg, heart, himself, including, information, license, moment, nigger, nothing, paragraph
-- Character names: Ben Rogers, Gutenberg, Huck, Huck Finn, Jim, Mary, Peter, Tom, Tom Sawyer, Amy, Aunt Polly, Becky, Becky Thatcher, Ben, Bill, Bob, Boggs, Buck, De, Dey, George, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harney, Harvey, Huckleberry, Huckleberry Finn, Hucky, Injun Joe, Jack, Jackson, Jeff Thatcher, Joe, Joe Harper, Judge, Judge Thatcher, Julia, Juliet, Le, Mary Jane, Miss Mary Jane, Miss Sophia, Miss Watson, Mrs. Harper, Mrs. Thatcher, Muff Potter, Pap, Polly, Potter, Project Gutenberg, Robin Hood, Sid, Susan, Uncle Harvey, Widow Douglas, William
+- Tone: dialogue-forward, direct, rhythmically varied, rhythmically even, narrative-forward, balanced, measured, energetic
+- Recurring vocabulary: don’t, nothing, thought, going, himself, house, round, seemed, without, moment, night, things, three, can’t, course, rather, that’s, people, place, shall, young, anything, began, better, didn’t, enough, pretty, quite, voice, cried, morning, you’re, ain’t, matter, money, though, wasn’t, won’t, world, wouldn’t
+- Character names: Mr, Mrs, George, Mary, James, Peter, Arthur, Jim, Joe, Scott, Smith, Thomas, Tom, Agatha, Archibald, Ben Rogers, Bill, Bob, Caroline, Clarence, Collins, Corcoran, Corky, Dick, Dr., Ed, Evans, Frederick, Gutenberg, Huck, Huck Finn, Jack, Jove, Julia, Louis, Martin, Mr., Potter, Rollo, Susan, Tom Sawyer, Tony, William, Wilson, Abbott, Ada, Adamson, Adolf, Adrian, Agnes, Al, Alexander, Alf Todd, Allen, Allens, Allison, Amy, Angela, Anne, Annette, Arthur Inglewood, Arthur Jukes, Augustine, Aunt Agatha, Aunt Polly, Babe, Babington, Baedeker, Barbara, Bari, Battling Billson, Becky, Becky Thatcher, Ben, Bertha, Bertie, Bertie van Tahn, Bess, Bessie, Betty
 
 ## Books
 - [Adventures of Huckleberry Finn](../Books/ED046AD7-93DC-4645-B7B2-1DBCBD68E9B2.md)
+- [Crome Yellow](../Books/85F34883-36B5-48B5-B256-D9F006F788D7.md)
+- [Fred Gross Stories](../Books/C45A20AE-2B01-4E69-9898-77E89D961478.md)
+- [Golf Stories](../Books/1DB751CA-1BE6-4D0F-BBB2-E5198C1980CB.md)
+- [Gullible’s Travels](../Books/46484840-1AF1-4166-9700-4A11A57B3DED.md)
+- [Jack Keefe Stories](../Books/FD1C7295-58D9-49B9-AF99-DA46403CED94.md)
+- [Jeeves Stories](../Books/592B8ACE-4B06-4E70-9479-2E49CAD7BBEE.md)
+- [Manalive](../Books/B9C3B0E0-ECE8-4AFB-BD16-B5C8FAE3CC6E.md)
+- [Mr. Mulliner Stories](../Books/BC6A63D9-09A6-49C3-9BDA-BC9804F51615.md)
+- [School Stories](../Books/C39CC81F-4348-45FF-88AA-5C1FF008B85B.md)
+- [Short Fiction](../Books/4D646767-98CA-4F88-8B14-80BF98E549E9.md)
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
+- [Short Fiction](../Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md)
 - [The Adventures of Tom Sawyer, Complete](../Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md)
 - [The Eyes Have It](../Books/F2FCCE60-E492-439D-A76A-423067D50671.md)
+- [Ukridge Stories](../Books/DA332843-8616-447F-BDD5-C86B00130D2A.md)
+- [Where Angels Fear to Tread](../Books/B2A1F27C-26CF-49B5-8438-C08B1F973CEF.md)
 
 ## Representative excerpts
 
@@ -36,26 +50,50 @@ _Mid-book rhythm_
 
 > CHAPTER XX. They asked us considerable many questions; wanted to know what we covered up the raft that way for, and laid by in the daytime instead of running—was Jim a runaway nigger? Says I: “Goodness sakes, would a runaway nigger run south?” No, they allowed he wouldn’t. I had to account for things some way, so I says: “My folks was living in Pike County, in Missouri, where I was born, and they all died off but me and pa and my brother Ike. Pa, he ’lowed he’d break up and go down and live with Uncle Ben, who’s got a little one-horse place on the river, forty-four mile below Orleans. Pa was pretty poor, and had some debts; so when he’d squared up there warn’t nothing left but sixteen dollars and our nigger, Jim. That warn’t enough to take us fourteen hundred mile, deck passage nor no other way.
 
-### The Adventures of Tom Sawyer, Complete: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Adventures of Tom Sawyer, Complete This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Adventures of Tom Sawyer, Complete Author: Mark Twain Release date: July 1, 2004 [eBook #74] Most recently updated: May 10, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Adventures of Tom Sawyer, Complete: Section 21
+### Crome Yellow: Section 18
 
 _Mid-book rhythm_
 
-> CHAPTER XVII But there was no hilarity in the little town that same tranquil Saturday afternoon. The Harpers, and Aunt Polly’s family, were being put into mourning, with great grief and many tears. An unusual quiet possessed the village, although it was ordinarily quiet enough, in all conscience. The villagers conducted their concerns with an absent air, and talked little; but they sighed often. The Saturday holiday seemed a burden to the children. They had no heart in their sports, and gradually gave them up. In the afternoon Becky Thatcher found herself moping about the deserted schoolhouse yard, and feeling very melancholy. But she found nothing there to comfort her. She soliloquized: “Oh, if I only had a brass andiron-knob again! But I haven’t got anything now to remember him by.” And she choked back a little sob. Presently she stopped, and said to herself: “It was right here.
+> XVI The ladies had left the room and the port was circulating. Mr. Scogan filled his glass, passed on the decanter, and, leaning back in his chair, looked about him for a moment in silence. The conversation rippled idly round him, but he disregarded it; he was smiling at some private joke. Gombauld noticed his smile. “What’s amusing you?” he asked. “I was just looking at you all, sitting round this table,” said Mr. Scogan. “Are we as comic as all that?” “Not at all,” Mr. Scogan answered politely. “I was merely amused by my own speculations.” “And what were they?” “The idlest, the most academic of speculations. I was looking at you one by one and trying to imagine which of the first six Caesars you would each resemble, if you were given the opportunity of behaving like a Caesar. The Caesars are one of my touchstones,” Mr. Scogan explained.
 
-### The Eyes Have It: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Eyes Have It This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Eyes Have It Author: Philip K. Dick Release date: March 6, 2010 [eBook #31516] Most recently updated: January 6, 2021 Language: English Other information and formats: www.gutenberg.org/ebooks/31516 Credits: Produced by Greg Weeks, Barbara Tozier and the Online Distributed Proofreading Team at https://www.pgdp.
-
-### The Eyes Have It: Section 2
+### Crome Yellow: Section 15
 
 _Dialogue and character voice_
 
-> *** END OF THE PROJECT GUTENBERG EBOOK THE EYES HAVE IT *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
+> XIII Henry Wimbush brought down with him to dinner a budget of printed sheets loosely bound together in a cardboard portfolio. “Today,” he said, exhibiting it with a certain solemnity, “today I have finished the printing of my History of Crome. I helped to set up the type of the last page this evening.” “The famous History?” cried Anne. The writing and the printing of this Magnum Opus had been going on as long as she could remember. All her childhood long Uncle Henry’s History had been a vague and fabulous thing, often heard of and never seen. “It has taken me nearly thirty years,” said Mr. Wimbush. “Twenty-five years of writing and nearly four of printing.
+
+### Fred Gross Stories: Section 6
+
+_Mid-book rhythm_
+
+> Uncivil War Allison, Ill., Feb. 3. Brother Charley. Well Charley this is a funny World where a man has neighbors on 1 side of you that you couldent fine no better peopl no wheres and on the other side peopl that they aint nothing to mean and small for them to do and allways trying to make you missable. A man name Martin and his wife is the peopl that we got liveing the next door on the left and I and Martins been going down town on the same train to gather and thats the way how we got aquanted so the other night I and him happen to get on the same train comeing home and set in the same seat and I ast him why dident him and his Mrs. come over some night and play cards and he says he dident need nothing to put him to sleep and I guess he ment I would probily fill him up with beer but beffore we got home he promused to bring the Mrs. and come over and last night was the night they come.
+
+### Fred Gross Stories: Section 11
+
+_Dialogue and character voice_
+
+> Uncopyright May you do good and not evil. May you find forgiveness for yourself and forgive others. May you share freely, never taking more than you give. Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission. Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook.
+
+### Golf Stories: Section 13
+
+_Mid-book rhythm_
+
+> The Coming of Gowf Prologue After we had sent in our card and waited for a few hours in the marbled anteroom, a bell rang and the majordomo, parting the priceless curtains, ushered us in to where the editor sat writing at his desk. We advanced on all fours, knocking our head reverently on the Aubusson carpet. “Well?” he said at length, laying down his jewelled pen. “We just looked in,” we said, humbly, “to ask if it would be all right if we sent you an historical story.” “The public does not want historical stories,” he said, frowning coldly. “Ah, but the public hasn’t seen one of ours!” we replied. The editor placed a cigarette in a holder presented to him by a reigning monarch, and lit it with a match from a golden box, the gift of the millionaire president of the Amalgamated League of Working Plumbers. “What this magazine requires,”
+
+### Golf Stories: Section 20
+
+_Dialogue and character voice_
+
+> Rodney Fails to Qualify There was a sound of revelry by night, for the first Saturday in June had arrived and the Golf Club was holding its monthly dance. Fairy lanterns festooned the branches of the chestnut trees on the terrace above the ninth green, and from the big dining-room, cleared now of its tables and chairs, came a muffled slithering of feet and the plaintive sound of saxophones moaning softly like a man who has just missed a short putt. In a basket-chair in the shadows the Oldest Member puffed a cigar and listened, well content. His was the peace of the man who has reached the age when he is no longer expected to dance. A door opened, and a young man came out of the clubhouse. He stood on the steps with folded arms, gazing to left and right. The Oldest Member, watching him from the darkness, noted that he wore an air of gloom.
+
+### Gullible’s Travels: Section 7
+
+_Mid-book rhythm_
+
+> Gullible’s Travels I I promised the Wife that if anybody ast me what kind of a time did I have at Palm Beach I’d say I had a swell time. And if they ast me who did we meet I’d tell ’em everybody that was worth meetin’. And if they ast me didn’t the trip cost a lot I’d say Yes; but it was worth the money. I promised her I wouldn’t spill none o’ the real details. But if you can’t break a promise you made to your own wife what kind of a promise can you break? Answer me that, Edgar. I’m not one o’ these kind o’ people that’d keep a joke to themself just because the joke was on them. But they’s plenty of our friends that I wouldn’t have ’em hear about it for the world. I wouldn’t tell you, only I know you’re not the village gossip and won’t crack it to anybody. Not even to your own Missus, see? I don’t trust no women.
+
+### Gullible’s Travels: Section 9
+
+_Dialogue and character voice_
+
+> Three Without, Doubled I They ain’t no immediate chance o’ you gettin’ ast out to our house to dinner⁠—not w’ile round steak and General Motors is sellin’ at the same price and common dog biscuit’s ten cents a loaf. But you might have nothin’ decent to do some evenin’ and happen to drop in on the Missus and I for a call; so I feel like I ought to give you a little warnin’ in case that comes off. You know they’s lots o’ words that’s called fightin’ words. Some o’ them starts a brawl, no matter who they’re spoke to. You can’t call nobody a liar without expectin’ to lose a couple o’ milk teeth⁠—that is, if the party addressed has got somethin’ besides lemon juice in his veins and ain’t had the misfortune to fall asleep on the Panhandle tracks and be separated from his most prominent legs and arms.

@@ -2,27 +2,44 @@
 # Authors
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 8
 
 ## Learned profile
 
-- Words analyzed: 443722
-- Reading grade: 4.2
-- Average sentence: 8.7 words
-- Average paragraph: 12.1 words
-- Dialogue share: 7%
+- Words analyzed: 1118841
+- Reading grade: 6.1
+- Average sentence: 16.1 words
+- Average paragraph: 52.5 words
+- Dialogue share: 9%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: gutenberg, house, night, water, without, years, chapter, himself, hundred, miles, people, place, things, thought, thousand, three, world, cannot, captain, course, dollars, don't, don’t, earth, enough, going, heard, horse, mississippi, morning, myself, nature, nothing, orleans, perhaps, pilot, pilots, project, river, shore
-- Character names: George, John, Louis, Mr, Adam, Adler, Allbright, Allen, Arab, Ballou, Bemis, Ben, Ben Holliday, Bixby, Bob, Brigham Young, Brister, Brown, Carson, Confucius, Crenshaw, De Soto, Dick Allbright, Ealer, Eckert, Evelyn, Fuel, Genius, George Ealer, Grecian, Hank, Hank Monk, Haven, Helena, Henry, Hill, Hollander, Hollowell, Horace, Horace Greeley, Howard, Humboldt, Hyde, Jack, James, John Field, Johnny, Johnson, Jones, Joseph, Jules, Kruger, Latin, Lincoln, Marquette, Mr. Ballou, Mr. Bixby, Mr. Brown, Mr. Coleman, Mr. Young, Mumford, Myrmidons, Napoleon, Ollendorff, Paul Jones, Plato, Rogers, Roop, Shakespeare, Shiz, Slade, Smith, Solomon, Stephen, Thebes, Thompson, Tom, Uncle Mumford, Virgil, Walden
+- Tempo: steady
+- Tone: narrative-forward, rhythmically varied, balanced, direct, rhythmically even, measured
+- Recurring vocabulary: without, himself, years, house, night, things, thought, three, world, people, place, water, going, hundred, miles, nothing, though, gutenberg, perhaps, river, thousand, twenty, chapter, country, dollars, don’t, enough, heard, horse, matter, myself, nature, shall, silver, sometimes, state, young, anything, began, black
+- Character names: Mr, George, Mrs, John, Joseph, Louis, Allen, Ballou, Bemis, Brigham Young, Carson, Christ, Dr, Eckert, Hank Monk, Henry, Humboldt, Jack, James, Johnny, Johnson, Jones, Jules, Latin, Ollendorff, Rogers, Roop, Shakespeare, Shiz, Slade, Smith, Virgil, Whiteman, Adam, Adler, Allbright, Apollyon, Arab, Barnes, Ben, Ben Holliday, Bertrand Russell, Birch, Bixby, Bob, Bob Webb, Boggs, Brister, Brown, Bunyan, Caesar, Capt, Carlyle, Chang Chien, Char, Chaucer, Cheever, Chr, Christian, Christiana, Chuang-Tzu, Clemens, Colonel Grant, Confucius, Coriantumr, Crenshaw, Cromwell, Davis, De Soto, Dennis, Dere, Dick Allbright, Dimsdale, Dolby, Ealer, Elizabeth, Emerson, Etzler, Evan, Evangelist
 
 ## Books
+- [Essays](../Books/226D7A38-C83A-4DFD-BB2F-525FA59FC9CA.md)
 - [Life on the Mississippi](../Books/37B7B288-947A-4452-B397-94B8707D337F.md)
+- [On a Chinese Screen](../Books/7AF4E65C-A95D-4306-B332-1411C72A9FE4.md)
 - [Roughing It](../Books/0FBD4219-E6C9-4560-8575-BA69C5314EE2.md)
+- [Roughing It](../Books/0CE9012E-AACF-466B-B2D5-6CF3445B6ECB.md)
+- [The Autobiography of Mark Twain](../Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md)
+- [The Pilgrim’s Progress](../Books/7260C8A4-0C37-4908-B053-4C85751DF80F.md)
 - [Walden, and On The Duty Of Civil Disobedience](../Books/5CD7BE2D-462E-4024-9D04-9ACF194BB95D.md)
 
 ## Representative excerpts
+
+### Essays: Section 18
+
+_Mid-book rhythm_
+
+> Sir Walter Raleigh Apparently written over a period of several years in the 1840’s, but only edited and published posthumously, in 1905. Perhaps no one in English history better represents the heroic character than Sir Walter Raleigh, for Sidney has got to be almost as shadowy as Arthur himself. Raleigh’s somewhat antique and Roman virtues appear in his numerous military and naval adventures, in his knightly conduct toward the Queen, in his poems and his employments in the Tower, and not least in his death, but more than all in his constant soldier-like bearing and promise. He was the Bayard of peaceful as well as warlike enterprise, and few lives which are the subject of recent and trustworthy history are so agreeable to the imagination. Not withstanding his temporary unpopularity, he especially possessed the prevalent and popular qualities which command the admiration of men.
+
+### Essays: Section 12
+
+_Dialogue and character voice_
+
+> Paradise (to Be) Regained5 First published in Democratic Review, Vol. 13, November, 1843. We learn that Mr. Etzler is a native of Germany, and originally published his book in Pennsylvania, ten or twelve years ago; and now a second English edition, from the original American one, is demanded by his readers across the water, owing, we suppose, to the recent spread of Fourier’s doctrines. It is one of the signs of the times. We confess that we have risen from reading this book with enlarged ideas, and grander conceptions of our duties in this world. It did expand us a little. It is worth attending to, if only that it entertains large questions. Consider what Mr. Etzler proposes: “Fellow Men!
 
 ### Life on the Mississippi: Section 1
 
@@ -36,6 +53,18 @@ _Mid-book rhythm_
 
 > Yes, it was an astonishing thing to see the Mississippi rolling between unpeopled shores and straight over the spot where I used to see a good big self-complacent town twenty years ago. Town that was county-seat of a great and important county; town with a big United States marine hospital; town of innumerable fights—an inquest every day; town where I had used to know the prettiest girl, and the most accomplished in the whole Mississippi Valley; town where we were handed the first printed news of the 'Pennsylvania's' mournful disaster a quarter of a century ago; a town no more—swallowed up, vanished, gone to feed the fishes; nothing left but a fragment of a shanty and a crumbling brick chimney!
 
+### On a Chinese Screen: Section 33
+
+_Mid-book rhythm_
+
+> XXIX Arabesque There in the mist, enormous, majestic, silent, and terrible, stood the Great Wall of China. Solitarily, with the indifference of nature herself, it crept up the mountain side and slipped down to the depth of the valley. Menacingly, the grim watch towers, stark and foursquare, at due intervals stood at their posts. Ruthlessly, for it was built at the cost of a million lives and each one of those great grey stones has been stained with the bloody tears of the captive and the outcast, it forged its dark way through a sea of rugged mountains. Fearlessly, it went on its endless journey, league upon league to the furthermost regions of Asia, in utter solitude, mysterious like the great empire it guarded. There in the mist, enormous, majestic, silent, and terrible, stood the Great Wall of China.
+
+### On a Chinese Screen: Section 42
+
+_Dialogue and character voice_
+
+> XXXVIII The Philosopher It was surprising to find so vast a city in a spot that seemed to me so remote. From its battlemented gate towards sunset you could see the snowy mountains of Tibet. It was so populous that you could walk at ease only on the walls and it took a rapid walker three hours to complete their circuit. There was no railway within a thousand miles and the river on which it stood was so shallow that only junks of light burden could safely navigate it. Five days in a sampan were needed to reach the Upper Yangtze. For an uneasy moment you asked yourself whether trains and steamships were as necessary to the conduct of life as we who use them every day consider; for here, a million persons throve, married, begat their kind, and died; here a million persons were busily occupied with commerce, art, and thought.
+
 ### Roughing It: Section 1
 
 _Opening voice_
@@ -48,14 +77,14 @@ _Mid-book rhythm_
 
 > CHAPTER XXXIX. About seven o’clock one blistering hot morning—for it was now dead summer time—Higbie and I took the boat and started on a voyage of discovery to the two islands. We had often longed to do this, but had been deterred by the fear of storms; for they were frequent, and severe enough to capsize an ordinary row-boat like ours without great difficulty—and once capsized, death would ensue in spite of the bravest swimming, for that venomous water would eat a man’s eyes out like fire, and burn him out inside, too, if he shipped a sea. It was called twelve miles, straight out to the islands—a long pull and a warm one—but the morning was so quiet and sunny, and the lake so smooth and glassy and dead, that we could not resist the temptation.
 
-### Walden, and On The Duty Of Civil Disobedience: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Walden, and On The Duty Of Civil Disobedience This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Walden, and On The Duty Of Civil Disobedience Author: Henry David Thoreau Release date: January 1, 1995 [eBook #205] Most recently updated: February 20, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Walden, and On The Duty Of Civil Disobedience: Section 12
+### Roughing It: Section 45
 
 _Mid-book rhythm_
 
-> The Ponds Sometimes, having had a surfeit of human society and gossip, and worn out all my village friends, I rambled still farther westward than I habitually dwell, into yet more unfrequented parts of the town, “to fresh woods and pastures new,” or, while the sun was setting, made my supper of huckleberries and blueberries on Fair Haven Hill, and laid up a store for several days. The fruits do not yield their true flavor to the purchaser of them, nor to him who raises them for the market. There is but one way to obtain it, yet few take that way. If you would know the flavor of huckleberries, ask the cow-boy or the partridge. It is a vulgar error to suppose that you have tasted huckleberries who never plucked them. A huckleberry never reaches Boston; they have not been known there since they grew on her three hills.
+> XLI Captain Nye was very ill indeed, with spasmodic rheumatism. But the old gentleman was himself⁠—which is to say, he was kindhearted and agreeable when comfortable, but a singularly violent wildcat when things did not go well. He would be smiling along pleasantly enough, when a sudden spasm of his disease would take him and he would go out of his smile into a perfect fury. He would groan and wail and howl with the anguish, and fill up the odd chinks with the most elaborate profanity that strong convictions and a fine fancy could contrive. With fair opportunity he could swear very well and handle his adjectives with considerable judgment; but when the spasm was on him it was painful to listen to him, he was so awkward.
+
+### Roughing It: Section 74
+
+_Dialogue and character voice_
+
+> LXX We stopped some time at one of the plantations, to rest ourselves and refresh the horses. We had a chatty conversation with several gentlemen present; but there was one person, a middle-aged man, with an absent look in his face, who simply glanced up, gave us good day and lapsed again into the meditations which our coming had interrupted. The planters whispered us not to mind him⁠—crazy. They said he was in the Islands for his health; was a preacher; his home, Michigan. They said that if he woke up presently and fell to talking about a correspondence which he had some time held with Mr. Greeley about a trifle of some kind, we must humor him and listen with interest; and we must humor his fancy that this correspondence was the talk of the world. It was easy to see that he was a gentle creature and that his madness had nothing vicious in it.

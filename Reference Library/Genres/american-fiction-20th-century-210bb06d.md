@@ -2,25 +2,42 @@
 # American fiction -- 20th century
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 44358
-- Reading grade: 1.5
-- Average sentence: 5.3 words
-- Average paragraph: 7.2 words
-- Dialogue share: 28%
+- Words analyzed: 772852
+- Reading grade: 5.9
+- Average sentence: 16.2 words
+- Average paragraph: 54.5 words
+- Dialogue share: 22%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, soldier, project, going, table, night, that’s, can’t, didn’t, stood, sleep, looking, across, anything, toward, muleta, things, better, pretty, three, walked, you’re, bright, drink
-- Character names: Jack, Manuel, John, Hogan, Walcott, George, Retana, Al, Nick, Max, Hernandez, William Campbell, Jerry, Billy, Fuentes, Mr. Turner, Pinin, Zurito, Joe, Carl, Gutenberg, Ole Andreson, Mrs. Garner, Signor Tenente, Manolo, Olz, Steinfelt, Joe Garner, Morgan, Frank
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, rhythmically varied, balanced, dialogue-forward, measured
+- Recurring vocabulary: night, began, don’t, himself, things, thought, three, toward, didn’t, going, hands, house, moment, nothing, stood, that’s, though, years, across, ain’t, better, can’t, cried, place, seemed, table, voice, without, you’re, ancient, anything, basil, behind, beyond, black, bright, caught, certain, close, direction
+- Character names: Billy, Mr, Al, George, John, Mrs, O’Brien, Warren, Abdul, Abdul Reis, Ah Cho, Ahearn, Akoon, Anthony Harding, Antonsen, Arizona Jack, Arthur Jermyn, Arthur Munroe, Babe, Barbara, Barbara Harding, Bashford, Bering Sea, Bernice, Betty, Billy Byrne, Billy Mallory, Bondell, Bony Sawyer, Bridge, Byrne, Capt, Captain Cullen, Captain Scott, Carhart, Carl, Carlyle, Carquinez, Carter, Cassidy, Charles Le, Cho, Churchill, Clark, Cruchot, Curly, Curly Jim, Dan Cullen, Dave, Dave Walsh, Dawson, Doctor Bicknell, Dorety, Dr, Erich Zann, Evylyn, Exham Priory, Ferguson, Flannagan, Frank, Fuentes, Gee, George Dorety, Gilly, Giza, Godfrey, Gorman, Gutenberg, Harding, Harold, Harry, Henderson Creek, Hernandez, Hogan, Horace, Ivan, Jack, Jan Martense, Jerry, Jim
 
 ## Books
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
+- [The Mucker](../Books/51ECEA12-65F8-40E8-AEC4-BC065F39CEA8.md)
+- [When God Laughs](../Books/F1B8023A-5748-4ED4-AB0B-633E40802E58.md)
 
 ## Representative excerpts
+
+### Lost Face: Section 6
+
+_Mid-book rhythm_
+
+> That Spot I don’t think much of Stephen Mackaye any more, though I used to swear by him. I know that in those days I loved him more than my own brother. If ever I meet Stephen Mackaye again, I shall not be responsible for my actions. It passes beyond me that a man with whom I shared food and blanket, and with whom I mushed over the Chilcoot Trail, should turn out the way he did. I always sized Steve up as a square man, a kindly comrade, without an iota of anything vindictive or malicious in his nature. I shall never trust my judgment in men again. Why, I nursed that man through typhoid fever; we starved together on the headwaters of the Stewart; and he saved my life on the Little Salmon. And now, after the years we were together, all I can say of Stephen Mackaye is that he is the meanest man I ever knew.
+
+### Lost Face: Section 7
+
+_Dialogue and character voice_
+
+> Flush of Gold Lon McFane was a bit grumpy, what of losing his tobacco pouch, or else he might have told me, before we got to it, something about the cabin at Surprise Lake. All day, turn and turn about, we had spelled each other at going to the fore and breaking trail for the dogs. It was heavy snowshoe work, and did not tend to make a man voluble, yet Lon McFane might have found breath enough at noon, when we stopped to boil coffee, with which to tell me. But he didn’t. Surprise Lake?⁠—it was Surprise Cabin to me. I had never heard of it before. I confess I was a bit tired. I had been looking for Lon to stop and make camp any time for an hour; but I had too much pride to suggest making camp or to ask him his intentions; and yet he was my man, lured at a handsome wage to mush my dogs for me and to obey my commands. I guess I was a bit grumpy myself.
 
 ### Men without women: Section 1
 
@@ -33,3 +50,39 @@ _Opening voice_
 _Mid-book rhythm_
 
 > A PURSUIT RACE William Campbell had been in a pursuit race with a burlesque show ever since Pittsburgh. In a pursuit race, in bicycle racing, riders start at equal intervals to ride after one another. They ride very fast because the race is usually limited to a short distance and if they slow their riding another rider who maintains his pace will make up the space that separated them equally at the start. As soon as a rider is caught and passed he is out of the race and must get down from his bicycle and leave the track. If none of the riders are caught the winner of the race is the one who has gained the most distance. In most pursuit races, if there are only two riders, one of the riders is caught inside of six miles. The burlesque show caught William Campbell at Kansas City. William Campbell had hoped to hold a slight lead over the burlesque show until they reached the Pacific coast.
+
+### Short Fiction: Section 22
+
+_Mid-book rhythm_
+
+> Winter Dreams I Some of the caddies were poor as sin and lived in one-room houses with a neurasthenic cow in the front yard, but Dexter Green’s father owned the second best grocery-store in Black Bear⁠—the best one was “The Hub,” patronized by the wealthy people from Sherry Island⁠—and Dexter caddied only for pocket-money. In the fall when the days became crisp and gray, and the long Minnesota winter shut down like the white lid of a box, Dexter’s skis moved over the snow that hid the fairways of the golf course. At these times the country gave him a feeling of profound melancholy⁠—it offended him that the links should lie in enforced fallowness, haunted by ragged sparrows for the long season. It was dreary, too, that on the tees where the gay colors fluttered in summer there were now only the desolate sandboxes knee-deep in crusted ice.
+
+### Short Fiction: Section 15
+
+_Dialogue and character voice_
+
+> May Day There had been a war fought and won and the great city of the conquering people was crossed with triumphal arches and vivid with thrown flowers of white, red, and rose. All through the long spring days the returning soldiers marched up the chief highway behind the strump of drums and the joyous, resonant wind of the brasses, while merchants and clerks left their bickerings and figurings and, crowding to the windows, turned their white-bunched faces gravely upon the passing battalions.
+
+### Short Fiction: Section 24
+
+_Mid-book rhythm_
+
+> The Tomb Sedibus ut saltem placidis in morte quiescam. Virgil In relating the circumstances which have led to my confinement within this refuge for the demented, I am aware that my present position will create a natural doubt of the authenticity of my narrative. It is an unfortunate fact that the bulk of humanity is too limited in its mental vision to weigh with patience and intelligence those isolated phenomena, seen and felt only by a psychologically sensitive few, which lie outside its common experience.
+
+### Short Fiction: Section 40
+
+_Dialogue and character voice_
+
+> The Shadow Over Innsmouth I During the winter of 1927⁠–⁠28 Federal government officials made a strange and secret investigation of certain conditions in the ancient Massachusetts seaport of Innsmouth. The public first learned of it in February, when a vast series of raids and arrests occurred, followed by the deliberate burning and dynamiting⁠—under suitable precautions⁠—of an enormous number of crumbling, worm-eaten, and supposedly empty houses along the abandoned waterfront. Uninquiring souls let this occurrence pass as one of the major clashes in a spasmodic war on liquor. Keener news-followers, however, wondered at the prodigious number of arrests, the abnormally large force of men used in making them, and the secrecy surrounding the disposal of the prisoners.
+
+### The Mucker: Section 21
+
+_Mid-book rhythm_
+
+> XVIII The Gulf Between For three months Billy met has-beens, and third- and fourth-rate fighters from New York and its environs. He thrashed them all⁠—usually by the knockout route and finally local sports commenced talking about him a bit, and he was matched up with second-raters from other cities. These men he cleaned up as handily as he had the others, so that it was apparent to fight fandom that the big, quiet “unknown” was a comer; and pretty soon Professor Cassidy received an offer from another trainer-manager to match Billy against a real “hope” who stood in the forefront of hopedom. This other manager stated that he thought the mill would prove excellent practice for his man who was having difficulty in finding opponents. Professor Cassidy thought so too, and grinned for two hours straight after reading the challenge. The details of the fight were quickly arranged.
+
+### The Mucker: Section 29
+
+_Dialogue and character voice_
+
+> VII In Pesita’s Camp Pesita was a short, stocky man with a large, dark mustache. He attired himself after his own ideas of what should constitute the uniform of a general⁠—ideas more or less influenced and modified by the chance and caprice of fortune. At the moment that Billy, Bridge, and Miguel were dragged into his presence his torso was enwrapped in a once resplendent coat covered with yards of gold braid. Upon his shoulders were brass epaulets such as are connected only in one’s mind with the ancient chorus ladies of the light operas of fifteen or twenty years ago. Upon his legs were some rusty and ragged overalls. His feet were bare. He scowled ferociously at the prisoners while his lieutenant narrated the thrilling facts of their capture⁠—thrilling by embellishment. “You are Americanos?” he asked of Bridge and Billy. Both agreed that they were. Then Pesita turned toward Miguel.

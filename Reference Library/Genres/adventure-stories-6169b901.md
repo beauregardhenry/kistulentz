@@ -2,28 +2,85 @@
 # Adventure stories
 
 - Profile type: Genre
-- Books represented: 6
+- Books represented: 63
 
 ## Learned profile
 
-- Words analyzed: 674488
-- Reading grade: 3.8
-- Average sentence: 8.5 words
-- Average paragraph: 12.0 words
-- Dialogue share: 24%
+- Words analyzed: 6392749
+- Reading grade: 5.5
+- Average sentence: 15.8 words
+- Average paragraph: 40.4 words
+- Dialogue share: 32%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward, energetic
-- Recurring vocabulary: himself, night, without, place, things, though, three, chapter, moment, nothing, seemed, water, ain’t, began, don’t, enough, going, house, reckon, teeth, that’s, thought, trail, white, world, alone, animals, anything, behind, better, boats, buck’s, can’t, captain, chief, couldn’t, cried, didn’t, electronic, fang’s
-- Character names: Gutenberg, Alice, Ben Rogers, Bill, Buck, Henry, Huck, Huck Finn, Jim, Joe, Judge, Mary, Peter, Project Gutenberg, Tom, Tom Sawyer, William, Abraham, Adam, Ahab, Albino, Amy, Aunt Polly, Beauty Smith, Beaver, Becky, Becky Thatcher, Belshazzar, Ben, Beth, Bildad, Billee, Bob, Boggs, Cabaco, Carabine, Charles, Cherokee, Collie, Cora, Cora Munro, Curly, Dave, David, Dawn, Dawson, De, Dey, Dick, Dost, Dub, Duncan, Edward, Elijah, Emir, Fang, Fort Edward, François, Frog, Gad, George, Gray, Grey, Grey Beaver, Gutenberg Literary Archive Foundation, Hal, Hans, Hark, Harney, Harvey, Hawkeye, Heyward, Horn, Huckleberry, Huckleberry Finn, Hucky, Hudson, Hugh, Injun Joe, Ishmael
+- Tempo: steady
+- Tone: rhythmically varied, balanced, dialogue-forward, narrative-forward, energetic, direct, rhythmically even, measured
+- Recurring vocabulary: himself, moment, night, thought, nothing, without, though, three, seemed, shall, place, stood, replied, young, hands, cried, heard, don’t, house, water, white, round, quite, toward, voice, woman, behind, light, people, things, black, friend, going, hundred, began, world, above, close, indeed, within
+- Character names: Mr, Mrs, Numa, Tarzan, Dr, George, Henry, Jack, Monsieur, Bara, Blakeney, Chauvelin, Jane, Tarmangani, Waziri, Alice, Madame, Mangani, Arab, Dawson, Dick, Hans, Harry, James, Jim, Joe, Lady Blakeney, Lady Greystoke, Percy, Percy Blakeney, Peter, Sabor, William, Allah, Bill, Bolgani, Buck, Bwana, Charles, Jane Clayton, John, John Clayton, Judge, Kala, Kerchak, Mackenzie, Marguerite, Mary, Sir Percy, Allan Quatermain, Armand, Axel, Curly, Curtis, Dave, D’Arnot, Edward, Esteban, Ffoulkes, François, Gomangani, Gutenberg, Henry Curtis, Horn, Jew, Jungle, Lazarus, Louis, Louise, Macumazahn, Manu, Manuel, Marguerite Blakeney, Marie, Mercedes, Michael, Paulvitch, Robespierre, Schneider, Scott
 
 ## Books
 - [Adventures of Huckleberry Finn](../Books/ED046AD7-93DC-4645-B7B2-1DBCBD68E9B2.md)
+- [Allan Quatermain](../Books/52F31C59-EFF6-43F7-9446-877CB0E96C03.md)
+- [Allan Quatermain Stories](../Books/516C697F-7657-492A-B266-1035C2073CCF.md)
+- [Arsène Lupin Versus Herlock Sholmes](../Books/F4B880EF-BFEC-4AAF-AC53-FDFD94785070.md)
+- [Blind Corner](../Books/5D28CCD7-8B5A-446A-91B4-30A4633BCB6F.md)
+- [Captain Blood](../Books/B15BDB89-D911-404F-80D9-3C623CC15589.md)
+- [El Dorado](../Books/F405733F-BF33-4FF8-8FC0-856C2D7B7762.md)
+- [Five Weeks in a Balloon](../Books/564274E3-64C1-43EC-9823-2BFEF761C4FC.md)
+- [Huntingtower](../Books/534B5714-6330-416F-89DC-A2EBED4C2C3F.md)
+- [Jibby Jones](../Books/216055F7-E991-473A-A788-F9CE95334AA0.md)
+- [Journey to the Center of the Earth](../Books/06A26BC1-47F2-4533-B65E-FFF2F12ECBC8.md)
+- [Journey to the Center of the Earth](../Books/25226025-591E-480D-9168-06B8E051706B.md)
+- [Jungle Tales of Tarzan](../Books/1C26F9AB-4F29-4B08-A815-8C05B13C561C.md)
+- [Kim](../Books/37A6FA59-425B-4CC5-A738-5AC4C7FB00D5.md)
+- [King Solomon’s Mines](../Books/478B6639-E701-4D09-9D99-ABF16B05409F.md)
+- [Lord Tony’s Wife](../Books/A855A2C0-C1BE-4FBC-956D-8D511FFECCC3.md)
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
 - [Moby Dick; Or, The Whale](../Books/8EED98A3-73C5-4C4D-B943-2EBCE6CDA5D5.md)
+- [Perishable Goods](../Books/1E3E3E45-91ED-4697-94FA-577CA9BB6163.md)
+- [Pimpernel and Rosemary](../Books/A5EC2717-0CF0-4423-8B16-D146EA2170F0.md)
+- [Short Fiction](../Books/5F0262A2-5555-4440-90B1-A948DE124D20.md)
+- [Short Fiction](../Books/1DABB0DA-2B91-4BFC-B0E1-A7F8E43DCB2A.md)
+- [Short Fiction](../Books/DC049A92-E654-4952-8AC5-CC496B75C82B.md)
+- [Sir Percy Hits Back](../Books/F5C4E229-4498-495F-AFA6-F8E3C660C810.md)
+- [Tarzan and the Ant Men](../Books/6E11321C-777D-4087-A215-6D97D4282BDD.md)
+- [Tarzan and the Golden Lion](../Books/ABA09281-833F-43A3-9C6A-157DA40057D7.md)
+- [Tarzan and the Jewels of Opar](../Books/E2479C9F-3135-4004-BF6C-FE08D5CD113B.md)
+- [Tarzan of the Apes](../Books/B0FBAFFA-8B8A-420D-BA86-A504DDD1CC01.md)
+- [Tarzan the Terrible](../Books/D41CF8ED-AD00-4286-9157-03A1D55173E7.md)
+- [Tarzan the Untamed](../Books/F42B9E07-F17F-42CA-84C7-54B95678781E.md)
+- [Tarzan, Lord of the Jungle](../Books/8DFAA58F-DFCB-4841-B6A3-BD5B287CBC78.md)
 - [The Adventures of Tom Sawyer, Complete](../Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md)
+- [The Beasts of Tarzan](../Books/1CB1EE31-DE65-4E65-BA9D-A4DF115BD71E.md)
+- [The Blue Lagoon](../Books/ECDD124D-D95A-407F-BFE4-085E9839318A.md)
 - [The call of the wild](../Books/30BF27F3-CC02-46CC-8CE2-9046D310B2F5.md)
+- [The Call of the Wild](../Books/ED95A4B8-1FE4-4E9D-AB82-3C77D8A45CFD.md)
+- [The Child of the Cavern](../Books/EBF33503-26F3-4C1B-9312-575529D14B19.md)
+- [The Count of Monte Cristo](../Books/81A34060-2136-46C2-8808-AF22C812BEE5.md)
+- [The Elusive Pimpernel](../Books/C716D8F5-98A1-4DD2-BF12-2D6CD00C6399.md)
+- [The Extraordinary Adventures of Arsène Lupin, Gentleman-Burglar](../Books/0D6622BA-4843-463A-B3C9-07316BB79DE7.md)
+- [The First Sir Percy](../Books/1FB2BFCF-08F3-4BC4-A12C-1E3DFD7971BD.md)
+- [The Four Feathers](../Books/BFCAEE62-036E-40F1-9313-F34DCC0F6876.md)
+- [The Jungle Book](../Books/C653A429-FF59-4DAA-B45D-A300A1EECBAF.md)
+- [The Last of the Mohicans](../Books/FDAB0174-55A5-4C21-8B6D-D633333427F1.md)
 - [The Last of the Mohicans; A narrative of 1757](../Books/550041B1-2BA8-418F-9C39-6F08CB99B55B.md)
+- [The Laughing Cavalier](../Books/7B30CFC4-3334-4CDC-A1CB-11D0B264F5E6.md)
+- [The League of the Scarlet Pimpernel](../Books/A893B526-7079-4814-B395-C55F6AF21E8E.md)
+- [The Maracot Deep](../Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md)
+- [The Mucker](../Books/51ECEA12-65F8-40E8-AEC4-BC065F39CEA8.md)
+- [The Prisoner of Zenda](../Books/A4A2D9E2-06EE-4BAC-A5C7-DA61B165AEC0.md)
+- [The Purple Land](../Books/BDD04CF0-47FA-4893-BD09-B0225C266AE7.md)
+- [The Return of Tarzan](../Books/14797A02-94E3-4112-8FCF-DEE015C98343.md)
+- [The Scarlet Pimpernel](../Books/FB5923E1-B75A-4DED-954F-0ECB157A0179.md)
+- [The Sea Hawk](../Books/9D1C03FF-B1E0-403D-8F88-82DDDA2284FF.md)
+- [The Son of Tarzan](../Books/CD5E2513-C09D-4495-8591-1416FE05E260.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
+- [The Triumph of the Scarlet Pimpernel](../Books/D5087C10-95B2-499C-9B5B-066329C9CFC8.md)
+- [The Vicomte de Bragelonne](../Books/3D7CFCF7-606D-47D6-B46C-F1C95C593A6D.md)
+- [Twenty Years After](../Books/5CCBC784-E93D-4BF7-9C43-84D990A169FD.md)
+- [Typee](../Books/1251A293-D2FF-4EAF-9EC2-E08942374DBF.md)
+- [When the World Shook](../Books/DE2D3AE7-7CC7-452A-9201-897F6D8767C9.md)
 - [White Fang](../Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md)
+- [White Fang](../Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md)
 
 ## Representative excerpts
 
@@ -39,50 +96,50 @@ _Mid-book rhythm_
 
 > CHAPTER XX. They asked us considerable many questions; wanted to know what we covered up the raft that way for, and laid by in the daytime instead of running—was Jim a runaway nigger? Says I: “Goodness sakes, would a runaway nigger run south?” No, they allowed he wouldn’t. I had to account for things some way, so I says: “My folks was living in Pike County, in Missouri, where I was born, and they all died off but me and pa and my brother Ike. Pa, he ’lowed he’d break up and go down and live with Uncle Ben, who’s got a little one-horse place on the river, forty-four mile below Orleans. Pa was pretty poor, and had some debts; so when he’d squared up there warn’t nothing left but sixteen dollars and our nigger, Jim. That warn’t enough to take us fourteen hundred mile, deck passage nor no other way.
 
-### Moby Dick; Or, The Whale: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Moby Dick; Or, The Whale This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Moby Dick; Or, The Whale Author: Herman Melville Release date: July 1, 2001 [eBook #2701] Most recently updated: February 10, 2026 Language: English Other information and formats: www.gutenberg.org/ebooks/2701 Credits: Daniel Lazarus, Jonesey, and David Widger *** START OF THE PROJECT GUTENBERG EBOOK MOBY DICK; OR, THE WHALE *** MOBY-DICK; or, THE WHALE.
-
-### Moby Dick; Or, The Whale: Section 6
+### Allan Quatermain: Section 18
 
 _Mid-book rhythm_
 
-> CHAPTER 62. The Dart. A word concerning an incident in the last chapter. According to the invariable usage of the fishery, the whale-boat pushes off from the ship, with the headsman or whale-killer as temporary steersman, and the harpooneer or whale-fastener pulling the foremost oar, the one known as the harpooneer-oar. Now it needs a strong, nervous arm to strike the first iron into the fish; for often, in what is called a long dart, the heavy implement has to be flung to the distance of twenty or thirty feet.
+> XII The Sister Queens The big rowing boat glided on up the cutting that ran almost to the foot of the vast stairway, and then halted at a flight of steps leading to the landing-place. Here the old gentleman disembarked, and invited us to do so likewise, which, having no alternative, and being nearly starved, we did without hesitation⁠—taking our rifles with us, however. As each of us landed, our guide again laid his fingers on his lips and bowed deeply, at the same time ordering back the crowds who had assembled to gaze on us. The last to leave the canoe was the girl we had picked out of the water, for whom her companion was waiting.
 
-### The Adventures of Tom Sawyer, Complete: Section 1
+### Allan Quatermain: Section 24
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Adventures of Tom Sawyer, Complete This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Adventures of Tom Sawyer, Complete Author: Mark Twain Release date: July 1, 2004 [eBook #74] Most recently updated: May 10, 2025 Language: English Other information and formats: www.gutenberg.
+> XVIII War! Red War Telling Umslopogaas to wait, I tumbled into my clothes and went off with him to Sir Henry’s room, where the Zulu repeated his story word for word. It was a sight to watch Curtis’s face as he heard it. “Great Heavens!” he said; “here have I been sleeping away while Nyleptha was nearly murdered⁠—and all through me, too. What a fiend that Sorais must be! It would have served her well if Umslopogaas had cut her down in the act.” “Ay,” said the Zulu. “Fear not; I should have slain her ere she struck; I was but waiting the moment.” I said nothing; but I could not help thinking that many a thousand doomed lives would have been saved if he had meted out to Sorais the fate she meant for her sister. And, as the issue proved, I was right. After he had told his tale Umslopogaas went off unconcernedly to get his morning meal, and Sir Henry and I fell to talking.
 
-### The Adventures of Tom Sawyer, Complete: Section 21
-
-_Mid-book rhythm_
-
-> CHAPTER XVII But there was no hilarity in the little town that same tranquil Saturday afternoon. The Harpers, and Aunt Polly’s family, were being put into mourning, with great grief and many tears. An unusual quiet possessed the village, although it was ordinarily quiet enough, in all conscience. The villagers conducted their concerns with an absent air, and talked little; but they sighed often. The Saturday holiday seemed a burden to the children. They had no heart in their sports, and gradually gave them up. In the afternoon Becky Thatcher found herself moping about the deserted schoolhouse yard, and feeling very melancholy. But she found nothing there to comfort her. She soliloquized: “Oh, if I only had a brass andiron-knob again! But I haven’t got anything now to remember him by.” And she choked back a little sob. Presently she stopped, and said to herself: “It was right here.
-
-### The call of the wild: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The call of the wild This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The call of the wild Author: Jack London Release date: July 2, 2008 [eBook #215] Most recently updated: August 4, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/215 Credits: Ryan, Kirstin, Linda and Rick Trapp and David Widger *** START OF THE PROJECT GUTENBERG EBOOK THE CALL OF THE WILD *** The Call of the Wild by Jack London Contents Chapter I.
-
-### The call of the wild: Section 5
+### Allan Quatermain Stories: Section 5
 
 _Mid-book rhythm_
 
-> Chapter IV. Who Has Won to Mastership “Eh? Wot I say? I spik true w’en I say dat Buck two devils.” This was François’s speech next morning when he discovered Spitz missing and Buck covered with wounds. He drew him to the fire and by its light pointed them out. “Dat Spitz fight lak hell,” said Perrault, as he surveyed the gaping rips and cuts. “An’ dat Buck fight lak two hells,” was François’s answer. “An’ now we make good time. No more Spitz, no more trouble, sure.” While Perrault packed the camp outfit and loaded the sled, the dog-driver proceeded to harness the dogs. Buck trotted up to the place Spitz would have occupied as leader; but François, not noticing him, brought Sol-leks to the coveted position. In his judgment, Sol-leks was the best lead-dog left. Buck sprang upon Sol-leks in a fury, driving him back and standing in his place. “Eh? eh?”
+> A Tale of Three Lions I The Interest on Ten Shillings Most of you will have heard of Allan Quatermain, who was one of the party that discovered King Solomon’s mines some little time ago, and who afterwards came to live in England near his friend Sir Henry Curtis. He went back to the wilderness again, as these old hunters almost invariably do, on one pretext or another.2 They cannot endure civilization for very long, its noise and racket and the omnipresence of broad-clothed humanity proving more trying to their nerves than the dangers of the desert. I think that they feel lonely here, for it is a fact that is too little understood, though it has often been stated, that there is no loneliness like the loneliness of crowds, especially to those who are unaccustomed to them. “What is there in the world,”
 
-### The Last of the Mohicans; A narrative of 1757: Section 1
+### Arsène Lupin Versus Herlock Sholmes: Section 1
 
 _Opening voice_
 
-> The Project Gutenberg eBook of The Last of the Mohicans; A narrative of 1757 This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Last of the Mohicans; A narrative of 1757 Author: James Fenimore Cooper Release date: February 5, 2006 [eBook #940] Most recently updated: August 26, 2025 Language: English Other information and formats: www.gutenberg.
+> Arsène Lupin Versus Herlock Sholmes By Maurice Leblanc. Translated by George Morehead.
 
-### The Last of the Mohicans; A narrative of 1757: Section 19
+### Arsène Lupin Versus Herlock Sholmes: Section 7
 
 _Mid-book rhythm_
 
-> CHAPTER XVII. “Weave we the woof. The thread is spun. The web is wove. The work is done.”—Gray The hostile armies, which lay in the wilds of the Horican, passed the night of the ninth of August, 1757, much in the manner they would, had they encountered on the fairest field of Europe. While the conquered were still, sullen, and dejected, the victors triumphed. But there are limits alike to grief and joy; and long before the watches of the morning came the stillness of those boundless woods was only broken by a gay call from some exulting young Frenchman of the advanced pickets, or a menacing challenge from the fort, which sternly forbade the approach of any hostile footsteps before the stipulated moment.
+> V An Abduction Herlock Sholmes said nothing. To protest? To accuse the two men? That would be useless. In the absence of evidence which he did not possess and had no time to seek, no one would believe him. Moreover, he was stifled with rage, but would not display his feelings before the triumphant Ganimard. So he bowed respectfully to the brothers Leroux, guardians of society, and retired. In the vestibule he turned toward a low door which looked like the entrance to a cellar, and picked up a small red stone; it was a garnet. When he reached the street he turned and read on the front of the house this inscription: “Lucien Destange, architect, 1877.” The adjoining house, No. 42, bore the same inscription. “Always the double passage⁠—numbers 40 and 42 have a secret means of communication. Why didn’t I think of that? I should have remained with the two policemen.”
+
+### Blind Corner: Section 8
+
+_Mid-book rhythm_
+
+> IV The Attack on the Well During the night the water rose twenty feet. It went against the grain to post two sentries, when with twelve, or even ten arms we might have had the well empty by four o’clock. But to be surprised at such gruelling labour would have meant for us the end of everything; for, shaken and stripped and breathless, we could have put up no fight, and, except for the parapet of the well, there was no cover to hand. Still, it seemed very likely that four of us, working hard, would be able to draw so much water before the sun went down that, with the help of the stage, we should find the mouth of the shaft. And, once we knew on which side of the well that lay, though the springs should deny us passage, at least we should have a second string to our bow.
+
+### Blind Corner: Section 7
+
+_Sentence variation_
+
+> III The Battle with the Springs When, ten minutes later, Mansel sat down on a bench and told us that we were forestalled, Hanbury and I stared at each other in dismay. Before we could speak, Mansel proceeded to take the whole of the blame. “I chose the wrong evil,” he said. “We had six hours’ start of Ellis, and I threw it away. I thought I was fighting a battle when I was running a race. And that was a bad mistake. And now we’ve all three got to think. Ellis has got the wheel, with the Law behind him: we’ve got the chart. The very least he expects is a compromise.” “Never,” said I. “I agree,” said Mansel, “for every reason. And that’s why we’ve got to think how to get the wheel.” He rose then, and, promising to return in half an hour, sauntered away with Tester at his heels.
+
+### Captain Blood: Section 18
+
+_Mid-book rhythm_
+
+> XVI The Trap That affair of Mademoiselle d’Ogeron bore as its natural fruit an improvement in the already cordial relations between Captain Blood and the Governor of Tortuga. At the fine stone house, with its green-jalousied windows, which M. d’Ogeron had built himself in a spacious and luxuriant garden to the east of Cayona, the Captain became a very welcome guest. M. d’Ogeron was in the Captain’s debt for more than the twenty thousand pieces of eight which he had provided for mademoiselle’s ransom; and shrewd, hard bargain-driver though he might be, the Frenchman could be generous and understood the sentiment of gratitude. This he now proved in every possible way, and under his powerful protection the credit of Captain Blood among the buccaneers very rapidly reached its zenith.

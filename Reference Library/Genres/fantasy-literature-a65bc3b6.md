@@ -2,23 +2,26 @@
 # Fantasy literature
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 88244
-- Reading grade: 3.0
-- Average sentence: 8.4 words
-- Average paragraph: 11.2 words
-- Dialogue share: 38%
-- Voice: observational third-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: answered, country, people, replied, voice, beautiful, began, brains, buggy, cannot, chapter, cried, don't, earth, emerald, forest, friends, gargoyles, glass, green, heart, horse, kansas, kitten, mangaboos, monkeys, mountain, piglet, piglets, place, prince, princess, quite, shall, sorcerer, stood, thought, trees, walked, wicked
-- Character names: Dorothy, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Henry, Jim, Ozma, Project Gutenberg, Tin Woodman, Uncle Henry, Aunt Em, Billina, Boq, Em, Eureka, Gates, Gayelette, Gillikins, Glinda, Hugson, Ianu, Jellia, Jellia Jamb, Lion, Mombi, Mr. Joker, Mr. Wizard, Munchkins, Oz, Scarecrow, Tiger, Tik, Toto, Valley, Voe, Witch, Woodman, Zeb
+- Words analyzed: 284976
+- Reading grade: 4.7
+- Average sentence: 17.3 words
+- Average paragraph: 43.6 words
+- Dialogue share: 39%
+- Voice: mixed or shifting perspective
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, rhythmically even, energetic, measured
+- Recurring vocabulary: people, began, house, quite, shall, water, animals, answered, country, cried, didn’t, don’t, going, heart, monkeys, night, replied, seemed, stood, things, though, thought, three, voice, africa, animal, battle, beautiful, brains, buggy, bumpo, cannot, carline, chapter, coming, course, deemed, doctor’s, don't, earth
+- Character names: Dorothy, Chee-Chee, Doctor, Doctor Dolittle, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Henry, Jim, Jip, John, John Dolittle, Jolliginki, Ozma, Project Gutenberg, Tin Woodman, Uncle Henry, Adam, Alwyn, Anna, Aunt Em, Barbary, Barbary Dragon, Baron, Ben Ali, Ben Butcher, Bill, Billina, Blancas, Bluebeard Bill, Boardcleaver, Bob, Boq, Bridget, David, Don Enrique, Elfhild, Em, Eureka, Gates, Gayelette, Gillikins, Glinda, Godrick, Gub-Gub, Hardcastle, Hugson, Ianu, Jabizri, James, Jellia, Jellia Jamb, Jenkyns, Joe, Jong, Juan Hagapoco, Lion, Lo, Long Arrow, Longshaw, Luke, Mark, Master Nicholas, Matthew, Matthew Mugg, Medard, Mendoza, Miranda, Mombi, Mr, Mr. Joker, Mr. Wizard, Mrs, Munchkins, Nicholas, Osberne, Osberne Wulfgrimsson, Oz, Pepito, Pepito de Malaga
 
 ## Books
 - [Dorothy and the Wizard in Oz](../Books/4DFFBED4-FB87-40FD-BE7F-0A8B93EE5E72.md)
+- [The Story of Doctor Dolittle](../Books/87A45FF5-E591-49F4-953D-F3D5C1335418.md)
+- [The Sundering Flood](../Books/3364D67D-66B1-48BC-A0D6-ADB73A228F9D.md)
+- [The Voyages of Doctor Dolittle](../Books/B4E5027A-E96F-4FBA-8DD5-EE77A51BEF14.md)
 - [The Wonderful Wizard of Oz](../Books/5C0551C0-C4F6-4CA8-B7B8-4D34AB8F3531.md)
 
 ## Representative excerpts
@@ -34,6 +37,42 @@ _Opening voice_
 _Mid-book rhythm_
 
 > THE WIZARD TOOK A PIGLET FROM OZMA'S HAIR. Jim's big hoofs pounded away at a great rate, and although he did not look very graceful he ran in a way to do credit to his Kentucky breeding. But the Sawhorse was swifter than the wind. Its wooden legs moved so fast that their twinkling could scarcely be seen, and although so much smaller than the cab-horse it covered the ground much faster. Before they had reached the trees the Sawhorse was far ahead, and the wooden animal returned to the starting place and was being lustily cheered by the Ozites before Jim came panting up to the canopy where the Princess and her friends were seated. THE HUNGRY TIGER TEACHES JIM A LESSON. I am sorry to record the fact that Jim was not only ashamed of his defeat but for a moment lost control of his temper.
+
+### The Story of Doctor Dolittle: Section 14
+
+_Mid-book rhythm_
+
+> X The Rarest Animal of All Pushmi-pullyus are now extinct. That means, there aren’t any more. But long ago, when Doctor Dolittle was alive, there were some of them still left in the deepest jungles of Africa; and even then they were very, very scarce. They had no tail, but a head at each end, and sharp horns on each head. They were very shy and terribly hard to catch. The black men get most of their animals by sneaking up behind them while they are not looking. But you could not do this with the pushmi-pullyu⁠—because, no matter which way you came towards him, he was always facing you. And besides, only one half of him slept at a time. The other head was always awake⁠—and watching. This was why they were never caught and never seen in Zoos.
+
+### The Story of Doctor Dolittle: Section 22
+
+_Dialogue and character voice_
+
+> XVIII Smells “Your uncle must now be found,” said the Doctor⁠—“that is the next thing⁠—now that we know he wasn’t thrown into the sea.” Then Dab-Dab came up to him again and whispered, “Ask the eagles to look for the man. No living creature can see better than an eagle. When they are miles high in the air they can count the ants crawling on the ground. Ask the eagles.” So the Doctor sent one of the swallows off to get some eagles. And in about an hour the little bird came back with six different kinds of eagles: a Black Eagle, a Bald Eagle, a Fish Eagle, a Golden Eagle, an Eagle-Vulture, and a White-tailed Sea Eagle. Twice as high as the boy they were, each one of them. And they stood on the rail of the ship, like round-shouldered soldiers all in a row, stern and still and stiff; while their great, gleaming, black eyes shot darting glances here and there and everywhere.
+
+### The Sundering Flood: Section 37
+
+_Mid-book rhythm_
+
+> XXXIV Osberne Sorrows for the Loss of Elfhild Now some while before men were boun to depart to their own homes, the sound of fresh battle was borne to them on the southwest; so, saving those who must needs go tend the hurt on their way home, they might not tear themselves away from that field of deed; and in special Osberne, who had been busy enough in kenning the dead and wounded of his folk while need was, came back to the verge of the Flood, where so oft he had stood in love and joy, and stood there a long while, scarce moving, with a shaft in his fingers and his bended bow in his fist, his brows knit, his eyes staring out over the western field. It was two hours after noon when the Westdalers turned to stir up the battle again.
+
+### The Sundering Flood: Section 33
+
+_Dialogue and character voice_
+
+> XXX Osberne Goes to the Trysting-Place But on the morrow ere the day was old, the guests departed in all contentment each to his own folk, and Osberne and the Wethermel men led them out with blessings. When they were all gone and the unwonted stir was over, it seemed to Osberne as if he were awaking from a dream, and his heart was in a turmoil of hope and fear, so that he knew not what to do till he was once more at the Bight of the Cloven Knoll. He tarried for nought save to take up the gifts of Eastcheaping, and he had no weapon with him save his bow and arrows wherewith to flit the said gifts across the water, but he was gaily clad in a coat of green, flowered with gold, which he had bought him at Eastcheaping; and a fair and lovely youth he looked, as he strode along at his swiftest toward the trysting-place, his face flushed, his brows a little knit with mingled trouble and joy, his…
+
+### The Voyages of Doctor Dolittle: Section 37
+
+_Mid-book rhythm_
+
+> II Goodbye! Two days after that we had all in readiness for our departure. On this voyage Jip begged so hard to be taken that the Doctor finally gave in and said he could come. Polynesia and Chee-Chee were the only other animals to go with us. Dab-Dab was left in charge of the house and the animal family we were to leave behind. Of course, as is always the way, at the last moment we kept remembering things we had forgotten; and when we finally closed the house up and went down the steps to the road, we were all burdened with armfuls of odd packages. Halfway to the river, the Doctor suddenly remembered that he had left the stockpot boiling on the kitchen-fire. However, we saw a blackbird flying by who nested in our garden, and the Doctor asked her to go back for us and tell Dab-Dab about it. Down at the river-wall we found a great crowd waiting to see us off.
+
+### The Voyages of Doctor Dolittle: Section 47
+
+_Dialogue and character voice_
+
+> II The Fidgit’s Story Well, now that he was started once more upon his old hobby of the shellfish languages, there was no stopping the Doctor. He worked right through the night. A little after midnight I fell asleep in a chair; about two in the morning Bumpo fell asleep at the wheel; and for five hours the Curlew was allowed to drift where she liked. But still John Dolittle worked on, trying his hardest to understand the fidgit’s language, struggling to make the fidgit understand him. When I woke up it was broad daylight again. The Doctor was still standing at the listening-tank, looking as tired as an owl and dreadfully wet. But on his face there was a proud and happy smile. “Stubbins,” he said as soon as he saw me stir, “I’ve done it. I’ve got the key to the fidgit’s language. It’s a frightfully difficult language⁠—quite different from anything I ever heard.
 
 ### The Wonderful Wizard of Oz: Section 1
 

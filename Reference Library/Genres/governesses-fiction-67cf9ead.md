@@ -2,25 +2,38 @@
 # Governesses -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 45912
-- Reading grade: 3.4
-- Average sentence: 7.9 words
-- Average paragraph: 11.7 words
-- Dialogue share: 21%
+- Words analyzed: 232815
+- Reading grade: 5.1
+- Average sentence: 15.1 words
+- Average paragraph: 37.7 words
+- Dialogue share: 39%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: myself, nothing, without, moment, don’t, things, quite, place, course, straight, house, child, indeed, round, didn’t, least, night, window, small, question, sense, person, works, anything
-- Character names: Mrs. Grose, Miles, Bly, Gutenberg, Jessel, Miss Jessel, Douglas, Grose, Luke, Mrs, Peter Quint, Project Gutenberg, Gutenberg Literary Archive Foundation, Flora, Griffin, Gutenberg Literary, Mrs. Griffin, Quint
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: don’t, house, indeed, myself, night, nothing, quite, round, without, anything, better, cannot, child, course, didn’t, enough, heard, heart, least, leave, moment, morning, perhaps, person, place, question, rather, seemed, sense, shall, small, stood, straight, things, though, thought, voice, window, works
+- Character names: Mrs, Adèle, Bessie, Bly, Burns, Douglas, Eliza, Eshton, Fairfax, Flora, Griffin, Grose, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Helen, Helen Burns, Ingram, Jane, Jane Eyre, Jessel, John, John Reed, Leah, Luke, Mary, Miles, Millcote, Miss Abbot, Miss Eyre, Miss Ingram, Miss Jane, Miss Jessel, Miss Miller, Miss Temple, Missis, Mr, Mrs. Griffin, Mrs. Grose, Peter Quint, Project Gutenberg, Quint, Reed, Rochester, Sam, Sophie, Thornfield
 
 ## Books
+- [Jane Eyre](../Books/862ED974-72FF-475C-A1B4-A649ABA15EFB.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
 
 ## Representative excerpts
+
+### Jane Eyre: Section 24
+
+_Mid-book rhythm_
+
+> XIX The library looked tranquil enough as I entered it, and the Sibyl⁠—if Sibyl she were⁠—was seated snugly enough in an easy-chair at the chimney-corner. She had on a red cloak and a black bonnet: or rather, a broad-brimmed gipsy hat, tied down with a striped handkerchief under her chin. An extinguished candle stood on the table; she was bending over the fire, and seemed reading in a little black book, like a prayerbook, by the light of the blaze: she muttered the words to herself, as most old women do, while she read; she did not desist immediately on my entrance: it appeared she wished to finish a paragraph. I stood on the rug and warmed my hands, which were rather cold with sitting at a distance from the drawing-room fire. I felt now as composed as ever I did in my life: there was nothing indeed in the gipsy’s appearance to trouble one’s calm.
+
+### Jane Eyre: Section 32
+
+_Dialogue and character voice_
+
+> XXVII Some time in the afternoon I raised my head, and looking round and seeing the western sun gilding the sign of its decline on the wall, I asked, “What am I to do?” But the answer my mind gave⁠—“Leave Thornfield at once”⁠—was so prompt, so dread, that I stopped my ears. I said I could not bear such words now. “That I am not Edward Rochester’s bride is the least part of my woe,” I alleged: “that I have wakened out of most glorious dreams, and found them all void and vain, is a horror I could bear and master; but that I must leave him decidedly, instantly, entirely, is intolerable. I cannot do it.” But, then, a voice within me averred that I could do it and foretold that I should do it.
 
 ### The Turn of the Screw: Section 1
 

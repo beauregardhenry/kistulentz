@@ -2,29 +2,91 @@
 # American
 
 - Profile type: Genre
-- Books represented: 5
+- Books represented: 31
 
 ## Learned profile
 
-- Words analyzed: 174316
-- Reading grade: 4.4
-- Average sentence: 7.5 words
-- Average paragraph: 10.4 words
-- Dialogue share: 41%
+- Words analyzed: 4007878
+- Reading grade: 5.7
+- Average sentence: 15.8 words
+- Average paragraph: 50.2 words
+- Dialogue share: 30%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward
-- Recurring vocabulary: without, agreement, copyright, electronic, shall, states, terms, works, donations, ebook, length, license, nature, night, paragraph, project, things, thought, three, trademark, united, within, above, access, across, anything, balloon, beauty, better, bright, bullet, cannot, can’t, chamber, composition, cooper's, corpse, didn’t, don’t, drink
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, FENIMORE COOPER, Poe, massa, Adam, Al, Andrée, Antiochus Epiphanes, Beauvais, Billy, Brander Matthews, Caesar, Caleb Williams, Carl, Cooper, Deerslayer, Deerslayer tale, Dupin, Edgar, Eustache, Frank, Fuentes, George, Griswold, Hans Pfaall, Hernandez, Hogan, Hurry Harry, Jack, Jasper, Jerry, Jesus, Joe, Joe Garner, John, Jupiter, Kidd, Le Soleil, Legrand, Lenore, Lounsbury, M. Beauvais, M. Dumas, Madame, Madame Deluc, Madame L’Espanaye, Mademoiselle L’Espanaye, Manolo, Manuel, Marie, Marie Rogêt, Mark Twain, Massa Will, Max, Michael Angelo, Monsieur Le Blanc, Morgan, Mr. Allan, Mr. Poe, Mr. Turner, Mrs. Garner, Nick, Ole Andreson, Olz, Pallas, Pathfinder, Perrett, Pinin, Plotinus, Raven, Retana, Rotterdam, Roule, Shakespeare, Shakspeare, Signor Tenente, Steinfelt
+- Tempo: steady
+- Tone: narrative-forward, rhythmically varied, balanced, rhythmically even, dialogue-forward, direct, measured, inquisitive
+- Recurring vocabulary: thought, night, without, himself, three, don’t, seemed, house, nothing, stood, heard, place, shall, white, hands, people, toward, across, going, young, didn’t, that’s, things, black, can’t, myself, though, began, light, moment, table, water, within, woman, world, years, you’re, death, general, however
+- Character names: Mr, Mrs, John, Dr, Bill, Jack, George, Joe, Gutenberg, Jim, Mary, Poe, Shakespeare, Al, Alexander, Antiochus Epiphanes, Billy, Edgar, Fuentes, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hans Pfaall, Harold, Harry, Hernandez, Hogan, Johnson, Louis, Madame, Manuel, Marjorie, Marshall, Max, Nick, Ole Andreson, Parker, Project Gutenberg, Retana, Rotterdam, Alcibiade, Alcée, Allan, Almitra, Aristotle, Azenor, Bartner, Ben-Levi, Berenice, Bertrand, Bessie, Bob, Bon, Bon-Bon, Buzi-Ben-Levi, Chambertin, Clarisse, Dawson, De L’Omelette, Diana, Dick, Doctor John-Luis, Duc, Duplan, Ellen, Elliot, Elliott, Euphrasie, Evariste, FENIMORE COOPER, Fletcher, Frank, Frederick, Genevieve, Gordon, Grégoire, Hank, Hector, Hermann, Hugh Tarpaulin, Ivan
 
 ## Books
+- [Can Such Things Be?](../Books/17C1079C-2E49-4BDD-83D9-D485E4FD248F.md)
+- [Conan Stories](../Books/C9F91FFC-0937-4510-A37F-D5D5163A86C5.md)
+- [Craig Kennedy Stories](../Books/2DDC7ADE-E788-4880-9354-3FBC5B7E6F50.md)
 - [Fenimore Cooper's Literary Offences](../Books/0C1C9E54-BED7-444F-B49A-05B71E5694BE.md)
+- [Gullible’s Travels](../Books/46484840-1AF1-4166-9700-4A11A57B3DED.md)
+- [Hamilton](../Books/8EFD0FAD-8804-46EF-A73C-890427971114.md)
+- [In the Midst of Life](../Books/8A4E71F0-81BD-4F82-9B5C-02442AB01C3A.md)
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
 - [Nature](../Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md)
+- [Running a Thousand Miles for Freedom](../Books/F6F36C83-0D26-4531-92FA-25A4003D1E41.md)
+- [Short Fiction](../Books/28BEFD12-BA87-4341-928F-6C212F09EFC1.md)
+- [Short Fiction](../Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md)
+- [Short Fiction](../Books/28F446D6-13DA-407E-871B-FFF512A4EA44.md)
+- [Short Fiction](../Books/D8BDAAFA-DE1A-4F5F-9C04-F220A3D54AD0.md)
+- [Short Fiction](../Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md)
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
+- [Short Fiction](../Books/FCCF6D0F-A2ED-4329-93A0-211EBE0CE794.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
+- [Short Fiction](../Books/DDE9DED2-203E-4C70-98C1-F935E6492A20.md)
+- [Short Fiction](../Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md)
+- [Short Fiction](../Books/A5847CBD-6206-4483-9BD7-CCAF81C665E2.md)
+- [Short Fiction](../Books/D80AFB83-8CB5-4997-840A-A184365F8481.md)
+- [The King in Yellow](../Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md)
+- [The Prophet](../Books/E1528CD9-5F01-4850-B19E-D86DE0CB0021.md)
+- [The Prophet](../Books/9BD88F10-D755-40E2-812C-A85C20BDF962.md)
 - [The Raven, and The Philosophy of Composition](../Books/ED32F5AA-11C5-4446-82CB-411488A85C5C.md)
+- [The Sketchbook of Geoffrey Crayon, Gent.](../Books/C9A443B8-889F-4600-A0BE-5B0589907E6A.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
 - [The Works of Edgar Allan Poe — Volume 1](../Books/3FE1260F-E736-4671-80C2-7DF5638935F2.md)
+- [Twelve Years a Slave](../Books/2A2155B4-C49B-4371-A7BA-303006532E54.md)
 
 ## Representative excerpts
+
+### Can Such Things Be?: Section 30
+
+_Mid-book rhythm_
+
+> A Wireless Message In the summer of 1896 Mr. William Holt, a wealthy manufacturer of Chicago, was living temporarily in a little town of central New York, the name of which the writer’s memory has not retained. Mr. Holt had had “trouble with his wife,” from whom he had parted a year before. Whether the trouble was anything more serious than “incompatibility of temper,” he is probably the only living person that knows: he is not addicted to the vice of confidences. Yet he has related the incident herein set down to at least one person without exacting a pledge of secrecy. He is now living in Europe. One evening he had left the house of a brother whom he was visiting, for a stroll in the country.
+
+### Can Such Things Be?: Section 23
+
+_Dialogue and character voice_
+
+> The Damned Thing I One Does Not Always Eat What Is on the Table By the light of a tallow candle which had been placed on one end of a rough table a man was reading something written in a book. It was an old account book, greatly worn; and the writing was not, apparently, very legible, for the man sometimes held the page close to the flame of the candle to get a stronger light on it. The shadow of the book would then throw into obscurity a half of the room, darkening a number of faces and figures; for besides the reader, eight other men were present. Seven of them sat against the rough log walls, silent, motionless, and the room being small, not very far from the table. By extending an arm any one of them could have touched the eighth man, who lay on the table, face upward, partly covered by a sheet, his arms at his sides. He was dead.
+
+### Conan Stories: Section 8
+
+_Mid-book rhythm_
+
+> Jewels of Gwahlur I Paths of Intrigue The cliffs rose sheer from the jungle, towering ramparts of stone that glinted jade-blue and dull crimson in the rising sun, and curved away and away to east and west above the waving emerald ocean of fronds and leaves. It looked insurmountable, that giant palisade with its sheer curtains of solid rock in which bits of quartz winked dazzlingly in the sunlight. But the man who was working his tedious way upward was already halfway to the top. He came of a race of hill-men, accustomed to scaling forbidding crags, and he was a man of unusual strength and agility. His only garment was a pair of short red silk breeks, and his sandals were slung to his back, out of his way, as were his sword and dagger. The man was powerfully built, supple as a panther. His skin was bronzed by the sun, his square-cut black mane confined by a silver band about his temples.
+
+### Conan Stories: Section 11
+
+_Dialogue and character voice_
+
+> Red Nails I The Skull on the Crag The woman on the horse reined in her weary steed. It stood with its legs wide-braced, its head drooping, as if it found even the weight of the gold-tasseled, red-leather bridle too heavy. The woman drew a booted foot out of the silver stirrup and swung down from the gilt-worked saddle. She made the reins fast to the fork of a sapling, and turned about, hands on her hips, to survey her surroundings. They were not inviting. Giant trees hemmed in the small pool where her horse had just drunk. Clumps of undergrowth limited the vision that quested under the somber twilight of the lofty arches formed by intertwining branches. The woman shivered with a twitch of her magnificent shoulders, and then cursed. She was tall, full-bosomed and large-limbed, with compact shoulders.
+
+### Craig Kennedy Stories: Section 9
+
+_Mid-book rhythm_
+
+> The Diamond Maker “I’ve called, Professor Kennedy, to see if we can retain you in a case which I am sure will tax even your resources. Heaven knows it has taxed ours.” The visitor was a large, well-built man. He placed his hat on the table and, without taking off his gloves, sat down in an easy chair which he completely filled. “Andrews is my name⁠—third vice-president of the Great Eastern Life Insurance Company. I am the nominal head of the company’s private detective force, and though I have some pretty clever fellows on my staff we’ve got a case that, so far, none of us has been able to unravel. I’d like to consult you about it.” Kennedy expressed his entire willingness to be consulted, and after the usual formalities were over, Mr. Andrews proceeded.
+
+### Craig Kennedy Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Azure Ring Files of newspapers and innumerable clippings from the press bureaus littered Kennedy’s desk in rank profusion. Kennedy himself was so deeply absorbed that I had merely said good evening as I came in and had started to open my mail. With an impatient sweep of his hand, however, he brushed the whole mass of newspapers into the wastebasket. “It seems to me, Walter,” he exclaimed in disgust, “that this mystery is considered insoluble for the very reason which should make it easy to solve⁠—the extraordinary character of its features.” Inasmuch as he had opened the subject, I laid down the letter I was reading. “I’ll wager I can tell you just why you made that remark, Craig,” I ventured. “You’re reading up on that Wainwright-Templeton affair.” “You are on the road to becoming a detective yourself, Walter,” he answered with a touch of sarcasm.
 
 ### Fenimore Cooper's Literary Offences: Section 1
 
@@ -32,44 +94,20 @@ _Opening voice_
 
 > The Project Gutenberg eBook of Fenimore Cooper's Literary Offences This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Fenimore Cooper's Literary Offences Author: Mark Twain Release date: September 16, 2004 [eBook #3172] Most recently updated: January 27, 2021 Language: English Other information and formats: www.gutenberg.
 
-### Men without women: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Men without women This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Men without women Author: Ernest Hemingway Release date: January 1, 2023 [eBook #69683] Most recently updated: October 19, 2024 Language: English Original publication: United States: Charles Scribner's Sons, 1926 Other information and formats: www.gutenberg.
-
-### Men without women: Section 3
+### Gullible’s Travels: Section 7
 
 _Mid-book rhythm_
 
-> A PURSUIT RACE William Campbell had been in a pursuit race with a burlesque show ever since Pittsburgh. In a pursuit race, in bicycle racing, riders start at equal intervals to ride after one another. They ride very fast because the race is usually limited to a short distance and if they slow their riding another rider who maintains his pace will make up the space that separated them equally at the start. As soon as a rider is caught and passed he is out of the race and must get down from his bicycle and leave the track. If none of the riders are caught the winner of the race is the one who has gained the most distance. In most pursuit races, if there are only two riders, one of the riders is caught inside of six miles. The burlesque show caught William Campbell at Kansas City. William Campbell had hoped to hold a slight lead over the burlesque show until they reached the Pacific coast.
+> Gullible’s Travels I I promised the Wife that if anybody ast me what kind of a time did I have at Palm Beach I’d say I had a swell time. And if they ast me who did we meet I’d tell ’em everybody that was worth meetin’. And if they ast me didn’t the trip cost a lot I’d say Yes; but it was worth the money. I promised her I wouldn’t spill none o’ the real details. But if you can’t break a promise you made to your own wife what kind of a promise can you break? Answer me that, Edgar. I’m not one o’ these kind o’ people that’d keep a joke to themself just because the joke was on them. But they’s plenty of our friends that I wouldn’t have ’em hear about it for the world. I wouldn’t tell you, only I know you’re not the village gossip and won’t crack it to anybody. Not even to your own Missus, see? I don’t trust no women.
 
-### Nature: Section 1
+### Gullible’s Travels: Section 9
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Nature This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Nature Author: Ralph Waldo Emerson Release date: July 17, 2009 [eBook #29433] Language: English Other information and formats: www.gutenberg.org/ebooks/29433 Credits: Produced by Ruth Hart *** START OF THE PROJECT GUTENBERG EBOOK NATURE *** NATURE BY R. W.
+> Three Without, Doubled I They ain’t no immediate chance o’ you gettin’ ast out to our house to dinner⁠—not w’ile round steak and General Motors is sellin’ at the same price and common dog biscuit’s ten cents a loaf. But you might have nothin’ decent to do some evenin’ and happen to drop in on the Missus and I for a call; so I feel like I ought to give you a little warnin’ in case that comes off. You know they’s lots o’ words that’s called fightin’ words. Some o’ them starts a brawl, no matter who they’re spoke to. You can’t call nobody a liar without expectin’ to lose a couple o’ milk teeth⁠—that is, if the party addressed has got somethin’ besides lemon juice in his veins and ain’t had the misfortune to fall asleep on the Panhandle tracks and be separated from his most prominent legs and arms.
 
-### The Raven, and The Philosophy of Composition: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Raven, and The Philosophy of Composition This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Raven, and The Philosophy of Composition Author: Edgar Allan Poe Illustrator: Will Jenkins Galen J. Perrett Release date: October 14, 2017 [eBook #55749] Most recently updated: October 23, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/55749 Credits: Produced by Richard Tonsing and the Online Distributed Proofreading Team at http://www.
-
-### The Raven, and The Philosophy of Composition: Section 4
+### Hamilton: Section 7
 
 _Mid-book rhythm_
 
-> The Philosophy of Composition Charles Dickens, in a note now lying before me, alluding to an examination I once made of the mechanism of “Barnaby Rudge,” says—“By the way, are you aware that Godwin wrote his ‘Caleb Williams’ backwards? He first involved his hero in a web of difficulties, forming the second volume, and then, for the first, cast about him for some mode of accounting for what had been done.” I cannot think this the precise mode of procedure on the part of Godwin—and indeed what he himself acknowledges, is not altogether in accordance with Mr. Dickens’ idea—but the author of “Caleb Williams” was too good an artist not to perceive the advantage derivable from at least a somewhat similar process. Nothing is more clear than that every plot, worth the name, must be elaborated to its dénouement before anything be attempted with the pen.
-
-### The Works of Edgar Allan Poe — Volume 1: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Works of Edgar Allan Poe — Volume 1 This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Works of Edgar Allan Poe — Volume 1 Author: Edgar Allan Poe Contributor: James Russell Lowell Nathaniel Parker Willis Release date: April 1, 2000 [eBook #2147] Most recently updated: September 13, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Works of Edgar Allan Poe — Volume 1: Section 7
-
-_Mid-book rhythm_
-
-> FOUR BEASTS IN ONE—THE HOMO-CAMELEOPARD Chacun a ses vertus. —Crébillon’s Xerxes. Antiochus Epiphanes is very generally looked upon as the Gog of the prophet Ezekiel. This honor is, however, more properly attributable to Cambyses, the son of Cyrus. And, indeed, the character of the Syrian monarch does by no means stand in need of any adventitious embellishment. His accession to the throne, or rather his usurpation of the sovereignty, a hundred and seventy-one years before the coming of Christ; his attempt to plunder the temple of Diana at Ephesus; his implacable hostility to the Jews; his pollution of the Holy of Holies; and his miserable death at Taba, after a tumultuous reign of eleven years, are circumstances of a prominent kind, and therefore more generally noticed by the historians of his time than the impious, dastardly, cruel, silly, and whimsical achievements which make up the su…
+> Act I Scene.—The Exchange Coffee House in Philadelphia, a morning in August, during Washington’s first administration. It is a great room with low ceiling and neatly sanded floor. Against wall, back, are cupboards with shining pewter tankards and dishes. Centre, a great fireplace with wide stone hearth, and high-backed settles on each side. Running up right, table with chairs left of it at irregular intervals. Long seat right of table. Right, back, tub stands on floor and contains melons, cucumbers, bottles of wine and a pitcher of milk, cooling. Over fireplace is a large crimson silk liberty cap, with these words above in large letters, “Sacred to Liberty.” On wall near is the following, in large print: “Breakfast﻿—two shillings (fifty cents). Dinner, with grog or toddy﻿—three shillings (seventy-five cents). Quart of Toddy﻿—one and six (thirty-six cents).

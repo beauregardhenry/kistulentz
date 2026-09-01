@@ -2,25 +2,38 @@
 # Americans -- France -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 71592
-- Reading grade: 1.4
-- Average sentence: 5.9 words
-- Average paragraph: 9.4 words
-- Dialogue share: 35%
+- Words analyzed: 164840
+- Reading grade: 4.8
+- Average sentence: 12.6 words
+- Average paragraph: 41.8 words
+- Dialogue share: 22%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, going, people, street, table, night, drink, project, started, wanted, crowd, hotel, you’re, looking, that’s, can’t, walked, bulls, let’s, anything, three, count, square, stairs
-- Character names: Brett, Bill, Mike, Cohn, Jake, Romero, Robert, Robert Cohn, Montoya, Michael, Harris, Belmonte, Pedro Romero, Georgette, Edna, Harvey, Mrs. Braddocks, Gutenberg, Burguete, Marcial, Barnes, San Sebastian, Frances, Zizi, Bill Gorton, Lady Ashley, Mr. Barnes, San Fermin, Braddocks, Harvey Stone
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: three, anything, behind, black, bulls, can’t, certain, count, crowd, directeur, don’t, drink, enormous, everyone, french, friend, going, hands, himself, hotel, let’s, looking, machine, myself, night, paris, people, perfectly, perhaps, planton, plantons, project, square, stairs, started, street, surveillant, table, that’s, voice
+- Character names: Apollyon, B., Barber, Barnes, Belmonte, Bill, Bill Gorton, Bill The Hollander, Braddocks, Bragard, Brett, Burguete, Celina, Cohn, Cook, Count Bragard, Cummings, Edna, Frances, Fritz, Garibaldi, Georgette, Gutenberg, Harree, Harris, Harvey, Harvey Stone, Hollander, Hollanders, Jake, Jean, John, Judas, La Ferté, La Ferté Macé, Lady Ashley, Lena, Marcial, Michael, Mike, Monsieur, Monsieur Auguste, Monsieur Pet, Montoya, Mr, Mr. Barnes, Mrs. Braddocks, Noyon, Pedro Romero, Pete, Pompom, Renée, Robert, Robert Cohn, Romero, San Fermin, San Sebastian, The Zulu, Zizi, Zulu
 
 ## Books
+- [The Enormous Room](../Books/10AB5BA0-2796-4A31-90F8-EBAD52EBECBC.md)
 - [The Sun Also Rises](../Books/5CEAA30B-BF4D-4511-A770-26E28776877A.md)
 
 ## Representative excerpts
+
+### The Enormous Room: Section 10
+
+_Mid-book rhythm_
+
+> VI Apollyon The inhabitants of The Enormous Room whose portraits I have attempted in the preceding chapter, were, with one or two exceptions, inhabiting at the time of my arrival. Now the thing which above all things made death worth living and life worth dying at La Ferté Macé was the kinetic aspect of that institution; the arrivals, singly or in groups, of nouveaux of sundry nationalities whereby our otherwise more or less simple existence was happily complicated, our putrescent placidity shaken by a fortunate violence. Before, however, undertaking this aspect I shall attempt to represent for my own benefit as well as the reader’s certain more obvious elements of that stasis which greeted the candidates for disintegration upon their admittance to our select, not to say distinguished, circle.
+
+### The Enormous Room: Section 8
+
+_Dialogue and character voice_
+
+> IV Le Nouveau “Vous ne voulez pas de café?” The threatening question recited in a hoarse voice woke me like a shot. Sprawled half on and half off my paillasse, I looked suddenly up into a juvenile pimply face with a red tassel bobbing in its eyes. A boy in a Belgian uniform was stooping over me. In one hand a huge pail a third full of liquid slime. I said fiercely: “Au contraire, je veux bien.” And collapsed on the mattress. “Pas de quart, vous?” the face fired at me. “Comprends pas,” I replied, wondering what on earth the words meant. “English?” “American.” At this moment a tin cup appeared mysteriously out of the gloom and was rapidly filled from the pail, after which operation the tassel remarked: “Your friend here” and disappeared. I decided I had gone completely crazy. The cup had been deposited near me.
 
 ### The Sun Also Rises: Section 1
 

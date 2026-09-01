@@ -2,67 +2,167 @@
 # Mystery
 
 - Profile type: Genre
-- Books represented: 4
+- Books represented: 86
 
 ## Learned profile
 
-- Words analyzed: 391809
-- Reading grade: 3.5
-- Average sentence: 7.5 words
-- Average paragraph: 11.4 words
-- Dialogue share: 55%
+- Words analyzed: 8076117
+- Reading grade: 5.9
+- Average sentence: 16.6 words
+- Average paragraph: 52.1 words
+- Dialogue share: 36%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, energetic, narrative-forward
-- Recurring vocabulary: thought, without, himself, shall, began, don’t, going, house, light, matter, night, nothing, project, quite, young, agreement, ain’t, beauty, business, calendar, chapter, copyright, course, cried, electronic, father, finger, forms, gutenberg, gwine, hands, heard, however, human, knife, language, looking, moment, money, morning
-- Character names: Gutenberg, Mr, Adam, Alyona Ivanovna, Angelo, Avdotya Romanovna, Blake, Bradstreet, Briony Lodge, Buckstone, Caesar, Chambers, Clair, Dah, Dave, Dawson, Dey, Dmitri, Doctor, Dostoevsky, Dounia, Dr. Grimesby Roylott, Dr. Roylott, Driscoll, Dushkin, Frank, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hatherley, Holmes, Horner, Howard, Ilya Petrovitch, Irene Adler, James, Jesus, John, Jones, Judge, Judge Driscoll, Katerina Ivanovna, Koch, Lestrade, Lizaveta, Louis, Luigi, Luise Ivanovna, Luzhin, Marfa Petrovna, Marmeladov, Marse Tom, McCarthy, Michael Angelo, Miss Stoner, Mr. Driscoll, Mr. Holmes, Mr. Hosmer Angel, Mr. Luzhin, Mr. Merryweather, Mr. Sherlock Holmes, Mr. Svidrigaïlov, Mr. Wilson, Mr. Windibank, Mrs. Pratt, Nastasya, Nikodim Fomitch, Nikolay, Openshaw, Patsy Cooper, Pembroke Howard, Pestryakov, Petersburg, Peterson, Plotinus, Pratt, Project Gutenberg, Pudd’nhead, Pudd’nhead Wilson, Pulcheria Alexandrovna, Pyotr Petrovitch
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, direct, rhythmically even, balanced, narrative-forward, measured, inquisitive
+- Recurring vocabulary: don’t, thought, nothing, himself, going, house, night, though, without, place, heard, shall, round, moment, that’s, three, quite, didn’t, young, seemed, morning, people, rather, voice, course, things, woman, light, stood, police, street, hands, you’re, cried, money, anything, can’t, friend, toward, behind
+- Character names: Mr, Mrs, Dr, George, John, Frank, Mary, Hardy, Joe, Smith, Brown, Chet, Chet Morton, Fenton Hardy, Joe Hardy, Tony, Watson, Frank Hardy, Holmes, Jack, Jones, Martin, Callie, James, Jerry, Peter, Sherlock Holmes, Tony Prito, Gonsalez, Jove, Lestrade, Manfred, Parker, Poiccart, Tom, Wilson, Arthur, Bill, Bob, Dan, Dick, Harry, Henry, Hudson, Jerry Gilroy, Jew, Leon, Lucy, Phil, Phil Cohen, Scott, Smuff, Turner, Victor, Agatha, Aristotle, Bara, Bernard, Biff, Bunny, Callie Shaw, Carlton, Chan, Charles, Charlie, Charlie Chan, Con Riley, Detective Smuff, Elizabeth, Father Brown, George Manfred, Gertrude, Green, Gregory, Herbert, Hugh, Iola, Jane, Jefferson, Jimmy
 
 ## Books
+- [A Thief in the Night](../Books/40E8B12C-4C43-4CDD-A5F2-4887A84D1F13.md)
+- [A Treatise of Human Nature](../Books/6414B1C0-8AB5-4F83-9D59-B1975850D2C4.md)
+- [Aspects of the Novel](../Books/9E1D9033-E123-4A26-B19A-A73DA8B1F228.md)
+- [Behind That Curtain](../Books/312921AA-113B-40E5-93BE-05F65245C556.md)
+- [Bulldog Drummond](../Books/4513F14C-F744-4BA0-89B1-D2F6F931DED5.md)
+- [Call Mr. Fortune](../Books/1F68F31A-AA32-4414-B116-4B3C93BDD75E.md)
+- [Continental Op Stories](../Books/92EDF66B-F0B7-4584-B229-4A5F525977B8.md)
+- [Craig Kennedy Stories](../Books/2DDC7ADE-E788-4880-9354-3FBC5B7E6F50.md)
 - [Crime and Punishment](../Books/CB9F10BE-C785-454C-8EB5-4ED84B162D31.md)
+- [Democracy and Social Ethics](../Books/427AB8EE-6344-464B-8C72-28F01F147F59.md)
+- [Fred Gross Stories](../Books/C45A20AE-2B01-4E69-9898-77E89D961478.md)
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
+- [Lord Peter Views the Body](../Books/92A8249B-224C-4E2C-8D90-41B86501A3DE.md)
 - [Nature](../Books/EC88239F-3EE2-4E06-BA91-D1F6FD63A4D8.md)
+- [Othello](../Books/46083AB2-3D35-4ED1-A763-90AE4C5EE8A1.md)
+- [Partners in Crime](../Books/77BED452-3EC1-4A65-8DFE-C531A20BD810.md)
+- [Philosophical Works](../Books/91513010-B2B7-4CFF-AF18-C5AE534BD8D9.md)
+- [Poirot Investigates](../Books/DA0B3FE2-54DD-4A9C-B15A-5967F67B4809.md)
+- [Room 13](../Books/4B79C267-89C1-45C7-B018-BDC6A1E2E427.md)
+- [School Stories](../Books/C39CC81F-4348-45FF-88AA-5C1FF008B85B.md)
+- [Seven Pillars of Wisdom](../Books/3FA07147-7B14-45EC-A0EC-3CAF8F819A83.md)
+- [Short Fiction](../Books/F734DB8F-18A1-44C3-8C82-F53CD4EB4B71.md)
+- [Short Fiction](../Books/0C18904C-C6AC-4201-A909-5BC924977DDA.md)
+- [Short Fiction](../Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md)
+- [Short Fiction](../Books/0D1773E5-F6C8-423B-9422-79DB12462E5D.md)
+- [Short Fiction](../Books/B4104ACD-8751-46A3-8CE7-72777AC95FAB.md)
+- [Short Fiction](../Books/FCCF6D0F-A2ED-4329-93A0-211EBE0CE794.md)
+- [Short Fiction](../Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md)
+- [Short Fiction](../Books/B56E9362-1833-4321-A00E-4743AED30529.md)
+- [Tarzan and the Golden Lion](../Books/ABA09281-833F-43A3-9C6A-157DA40057D7.md)
+- [Tarzan the Terrible](../Books/D41CF8ED-AD00-4286-9157-03A1D55173E7.md)
+- [Tarzan the Untamed](../Books/F42B9E07-F17F-42CA-84C7-54B95678781E.md)
+- [Terror Keep](../Books/CC9314C3-481E-463D-9E2D-E7C818612242.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Age of Reason](../Books/2381E057-FC3B-4A96-BFEE-495332317A28.md)
+- [The Amateur Cracksman](../Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md)
+- [The Black Mask](../Books/72058380-BE2E-4FA8-AD38-4834BD773078.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Chinese Parrot](../Books/1BA301D8-A4A0-467F-8C05-C618BCE17AFA.md)
+- [The Clue of the New Pin](../Books/3FCE8075-8056-4D83-9608-5805CA049888.md)
+- [The Clue of the Twisted Candle](../Books/7D293F4A-090A-4BF6-99D9-6202456EBC6B.md)
+- [The Confessions of Arsène Lupin](../Books/EAC5960B-D125-4D16-85F6-1CF8B879BBD8.md)
+- [The Council of Justice](../Books/7EE65772-7F1E-43A1-9099-581BD796FFC3.md)
+- [The Door with Seven Locks](../Books/5923B3E1-C4B1-4F2C-9A27-0A96F165593A.md)
+- [The Extraordinary Adventures of Arsène Lupin, Gentleman-Burglar](../Books/0D6622BA-4843-463A-B3C9-07316BB79DE7.md)
+- [The Four Just Men](../Books/714DD324-FFA2-4A34-BF60-9F49595459D9.md)
+- [The Great Airport Mystery](../Books/D03FB408-0B0F-4D40-8682-B1ED0DE6CD2B.md)
+- [The House on the Cliff](../Books/B8C376A1-E724-46AE-A28A-2D5550C1F6D8.md)
+- [The House Without a Key](../Books/76F874D4-B934-46E5-A9B2-7DC330722F8B.md)
+- [The Incredulity of Father Brown](../Books/81518D11-E6DD-4B4B-9073-A205D12805BC.md)
+- [The Innocence of Father Brown](../Books/A08E9FD9-5919-468C-9E7C-04C3FD49A188.md)
+- [The Just Men of Cordova](../Books/2C45F7BD-82CB-40A9-8BCB-40A61759BFE3.md)
+- [The Law of the Four Just Men](../Books/5DFA9000-0F80-4034-93F3-F807901893CE.md)
+- [The Lone Wolf](../Books/44B3C3B7-E2D0-424A-8A7E-4871892F642F.md)
+- [The Man in the Brown Suit](../Books/21775D97-805B-4CD7-8314-1CD228742B63.md)
+- [The Man Who Knew](../Books/EEF9FBB4-FEDE-4FF4-BCB9-39E8D9F6A41E.md)
+- [The Man Within](../Books/7FB9976E-A041-4F70-9B0D-6343719B1999.md)
+- [The Melody of Death](../Books/7ECB5922-A12F-4D5A-B807-D7A052A0D325.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Mind of Mr. J. G. Reeder](../Books/7155C166-21B4-4030-A6CA-A61F44F0E053.md)
+- [The Missing Chums](../Books/3C3961BF-5C18-424D-9637-49F47E466492.md)
+- [The Murder at the Vicarage](../Books/8659DE35-C91C-475C-BC2F-6ABA8C329B4D.md)
+- [The Mystery of Cabin Island](../Books/8DAE9CDD-404A-479A-9A79-72EA69DFAE60.md)
+- [The New Freedom](../Books/B4EC6F60-9803-47BB-A8FD-2D4B7275871E.md)
+- [The Old Man in the Corner](../Books/EBFC1BDB-4AFB-43DE-9496-84E24C296C5A.md)
+- [The Origin of Species](../Books/B4CC08FA-BC80-4752-B206-361D34F1A2BD.md)
+- [The Problems of Philosophy](../Books/72D2F5F3-C802-464A-875E-AC85BE62F209.md)
+- [The Red House Mystery](../Books/BACBEA39-B830-40F1-B9E0-90A7365B446F.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
+- [The Secret House](../Books/2DDDEC42-DF7E-4E9D-A4B5-BBBA99952EEA.md)
+- [The Secret of Father Brown](../Books/ADC595DB-C4F6-49EB-B32B-C8F6460D0520.md)
+- [The Secret of the Caves](../Books/2A85F61B-3E11-4D07-8CCF-1A9A6D85CE8B.md)
+- [The Secret of the Old Mill](../Books/E1091E68-51CC-44FF-A4AF-76AA10298D73.md)
+- [The Seven Dials Mystery](../Books/703DFD5E-EE15-46E0-9E73-E13B4B99B820.md)
+- [The Shore Road Mystery](../Books/157EF2C1-4961-4D7D-A564-76DCA940C56E.md)
+- [The Square Emerald](../Books/DF9CDCD8-400C-4AF1-B3A0-1CAA512124BB.md)
+- [The Subjection of Women](../Books/B2550963-C612-46FA-BB36-3559AD6C279B.md)
+- [The Thirty-Nine Steps](../Books/8709201F-2E6F-4577-A284-3F75A58EE727.md)
+- [The Three Hostages](../Books/2F8BABAA-1F42-4393-B2A5-04108B600866.md)
+- [The Three Just Men](../Books/A6973305-DD7D-4CC1-8052-8A6385B67D39.md)
+- [The Tower Treasure](../Books/45019793-2533-4C26-8283-5F47AD71B2AF.md)
 - [The Tragedy of Pudd'nhead Wilson](../Books/91EDE7E9-8E45-46E3-8CB8-A79B05F3290C.md)
+- [The Wealth of Nations](../Books/B695BD3A-DF62-4ABD-BFDA-C1CB52CE5164.md)
+- [Tractatus Logico-Philosophicus](../Books/7F51E844-4F9D-4A8E-AC0D-6F3C061A4E82.md)
+- [Ukridge Stories](../Books/DA332843-8616-447F-BDD5-C86B00130D2A.md)
 
 ## Representative excerpts
 
-### Crime and Punishment: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Crime and Punishment This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Crime and Punishment Author: Fyodor Dostoyevsky Translator: Constance Garnett Release date: March 28, 2006 [eBook #2554] Most recently updated: January 10, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Crime and Punishment: Section 23
+### A Thief in the Night: Section 8
 
 _Mid-book rhythm_
 
-> CHAPTER VI “I don’t believe it, I can’t believe it!” repeated Razumihin, trying in perplexity to refute Raskolnikov’s arguments. They were by now approaching Bakaleyev’s lodgings, where Pulcheria Alexandrovna and Dounia had been expecting them a long while. Razumihin kept stopping on the way in the heat of discussion, confused and excited by the very fact that they were for the first time speaking openly about it. “Don’t believe it, then!” answered Raskolnikov, with a cold, careless smile. “You were noticing nothing as usual, but I was weighing every word.” “You are suspicious. That is why you weighed their words... h’m... certainly, I agree, Porfiry’s tone was rather strange, and still more that wretch Zametov!... You are right, there was something about him—but why? Why?” “He has changed his mind since last night.” “Quite the contrary!
+> A Bad Night There was to be a certain little wedding in which Raffles and I took a surreptitious interest. The bride-elect was living in some retirement, with a recently widowed mother and an asthmatical brother, in a mellow hermitage on the banks of the Mole. The bridegroom was a prosperous son of the same suburban soil which had nourished both families for generations. The wedding presents were so numerous as to fill several rooms at the pretty retreat upon the Mole, and of an intrinsic value calling for a special transaction with the Burglary Insurance Company in Cheapside. I cannot say how Raffles obtained all this information. I only know that it proved correct in each particular. I was not indeed deeply interested before the event, since Raffles assured me that it was “a one-man job,” and naturally intended to be the one man himself.
 
-### Nature: Section 1
+### A Thief in the Night: Section 6
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Nature This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Nature Author: Ralph Waldo Emerson Release date: July 17, 2009 [eBook #29433] Language: English Other information and formats: www.gutenberg.org/ebooks/29433 Credits: Produced by Ruth Hart *** START OF THE PROJECT GUTENBERG EBOOK NATURE *** NATURE BY R. W.
+> The Criminologists’ Club “But who are they, Raffles, and where’s their house? There’s no such club on the list in Whitaker.” “The Criminologists, my dear Bunny, are too few for a local habitation, and too select to tell their name in Gath. They are merely so many solemn students of contemporary crime, who meet and dine periodically at each other’s clubs or houses.” “But why in the world should they ask us to dine with them?” And I brandished the invitation which had brought me hotfoot to the Albany: it was from the Right Hon. the Earl of Thornaby, K.G.; and it requested the honor of my company at dinner, at Thornaby House, Park Lane, to meet the members of the Criminologists’ Club. That in itself was a disturbing compliment: judge then of my dismay on learning that Raffles had been invited too! “They have got it into their heads,”
 
-### The Adventures of Sherlock Holmes: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Adventures of Sherlock Holmes This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Adventures of Sherlock Holmes Author: Arthur Conan Doyle Release date: March 1, 1999 [eBook #1661] Most recently updated: October 10, 2023 Language: English Other information and formats: www.gutenberg.
-
-### The Adventures of Sherlock Holmes: Section 8
+### A Treatise of Human Nature: Section 57
 
 _Mid-book rhythm_
 
-> VII. THE ADVENTURE OF THE BLUE CARBUNCLE I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+> Section VIII Of Beauty and Deformity Whether we consider the body as a part of ourselves, or assent to those philosophers, who regard it as something external, it must still be allowed to be near enough connected with us to form one of these double relations, which I have asserted to be necessary to the causes of pride and humility. Wherever, therefore, we can find the other relation of impressions to join to this of ideas, we may expect with assurance either of these passions, according as the impression is pleasant or uneasy. But beauty of all kinds gives us a peculiar delight and satisfaction; as deformity produces pain, upon whatever subject it may be placed, and whether surveyed in an animate or inanimate object.
 
-### The Tragedy of Pudd'nhead Wilson: Section 1
+### A Treatise of Human Nature: Section 111
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Tragedy of Pudd'nhead Wilson This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Tragedy of Pudd'nhead Wilson Author: Mark Twain Release date: September 14, 2004 [eBook #102] Most recently updated: October 29, 2024 Language: English Other information and formats: www.gutenberg.
+> Endnotes Mr. Locke, my Lord Shaftesbury, Dr. Mandeville, Mr. Hutchinson, Dr. Butler, etc. ↩︎ I here make use of these terms, impression and idea, in a sense different from what is usual, and I hope this liberty will be allowed me. Perhaps I rather restore the word, idea, to its original sense, from which Mr. Locke had perverted it, in making it stand for all our perceptions. By the terms of impression I would not be understood to express the manner, in which our lively perceptions are produced in the soul, but merely the perceptions themselves; for which there is no particular name either in the English or any other language, that I know of. ↩︎ Part III, sect. 5. ↩︎ Dr. Berkeley. [Introd.: to Principles of Human Knowledge, secs. 18 etc. Cf. also Introd. to this volume paragraphs 183 and ff. —﻿Ed.
 
-### The Tragedy of Pudd'nhead Wilson: Section 3
+### Aspects of the Novel: Section 9
 
 _Mid-book rhythm_
 
-> CHAPTER XIX. The Prophecy Realized. Few things are harder to put up with than the annoyance of a good example.—Pudd’nhead Wilson’s Calendar. It were not best that we should all think alike; it is difference of opinion that makes horse-races.—Pudd’nhead Wilson’s Calendar. Dawson’s Landing was comfortably finishing its season of dull repose and waiting patiently for the duel. Count Luigi was waiting, too; but not patiently, rumor said. Sunday came, and Luigi insisted on having his challenge conveyed. Wilson carried it. Judge Driscoll declined to fight with an assassin—“that is,” he added significantly, “in the field of honor.” Elsewhere, of course, he would be ready.
+> IV People (Continued) We now turn from transplantation to acclimatization. We have discussed whether people could be taken out of life and put into a book, and conversely whether they could come out of books and sit down in this room. The answer suggested was in the negative and led to a more vital question: can we, in daily life, understand each other? Today our problems are more academic. We are concerned with the characters in their relation to other aspects of the novel; to a plot, a moral, their fellow characters, atmosphere, etc. They will have to adapt themselves to other requirements of their creator. It follows that we shall no longer expect them to coincide as a whole with daily life, only to parallel it. When we say that a character in Jane Austen, Miss Bates for instance, is “so like life”
+
+### Aspects of the Novel: Section 10
+
+_Dialogue and character voice_
+
+> V The Plot “Character,” says Aristotle, “gives us qualities, but it is in actions⁠—what we do⁠—that we are happy or the reverse.” We have already decided that Aristotle is wrong and now we must face the consequences of disagreeing with him. “All human happiness and misery,” says Aristotle, “take the form of action.” We know better. We believe that happiness and misery exist in the secret life, which each of us leads privately and to which (in his characters) the novelist has access. And by the secret life we mean the life for which there is no external evidence, not, as is vulgarly supposed, that which is revealed by a chance word or a sigh. A chance word or sigh are just as much evidence as a speech or a murder: the life they reveal ceases to be secret and enters the realm of action. There is, however, no occasion to be hard on Aristotle.
+
+### Behind That Curtain: Section 15
+
+_Mid-book rhythm_
+
+> XI The Muddy Water Clears Flannery departed, and Miss Morrow picked up her coat. Reluctantly Kirk held it for her. “Must you go?” he protested. “Back to the office⁠—yes,” she said. “I’ve oceans of work. The district attorney keeps asking me for results in this investigation, and so far all I have been able to report is further mysteries. I wonder if I’ll ever have anything else.” “It was my hope,” remarked Chan, “that today we take a seven-league step forward. But it is fated otherwise. Not before Monday now.” “Monday,” repeated the girl. “What do you mean, Mr. Chan?” “I mean I experience great yearning to bring Miss Gloria Garland to this building again. I have what my cousin Willie Chan, a vulgar speaker, calls a hunch. But this morning when I call Miss Garland on the telephone I learn that she is absent in Del Monte, and will not return until Sunday night.” “Miss Garland?
+
+### Behind That Curtain: Section 6
+
+_Dialogue and character voice_
+
+> II What Happened to Eve Durand? The next day at one Sir Frederic Bruce stood in the lobby of the St. Francis, a commanding figure in a gray tweed suit. By his side, as immaculate as his guest, stood Barry Kirk, looking out on the busy scene with the amused tolerance befitting a young man of vast leisure and not a care in the world. Kirk hung his stick on his arm, and took a letter from his pocket. “By the way, I had this note from J. V. Morrow in the morning’s mail,” he said. “Thanks me very politely for my invitation, and says that I’ll know him when he shows up because he’ll be wearing a green hat. One of those green plush hats, I suppose. Hardly the sort of thing I’d put on my head if I were a deputy district attorney.” Sir Frederic did not reply. He was watching Bill Rankin approach rapidly across the floor.
+
+### Bulldog Drummond: Section 10
+
+_Mid-book rhythm_
+
+> VII In Which He Spends an Hour or Two on a Roof I Drummond paused for a moment at the door of the sitting-room, then with a slight shrug he stepped past Peterson. During the last few days he had grown to look on this particular room as the private den of the principals of the gang. He associated it in his mind with Peterson himself, suave, impassive, ruthless; with the girl Irma, perfectly gowned, lying on the sofa, smoking innumerable cigarettes, and manicuring her already faultless nails; and in a lesser degree, with Henry Lakington’s thin, cruel face, and blue, staring eyes. But tonight a different scene confronted him. The girl was not there: her accustomed place on the sofa was occupied by an unkempt-looking man with a ragged beard. At the end of the table was a vacant chair, on the right of which sat Lakington regarding him with malevolent fury.
+
+### Bulldog Drummond: Section 15
+
+_Dialogue and character voice_
+
+> XII In Which the Last Round Takes Place I It was during the next hour or two that the full value of Mr. Jerome K. Green as an acquisition to the party became apparent. Certain other preparations in honour of Peterson’s arrival were duly carried out, and then arose the question of the safe in which the all-important ledger was kept. “There it is,” said Drummond, pointing to a heavy steel door flush with the wall, on the opposite side of the room to the big one containing Lakington’s ill-gotten treasure. “And it doesn’t seem to me that you’re going to open that one by pressing any buttons in the wall.” “Then, Captain,” drawled the American, “I guess we’ll open it otherwise. It’s sure plumb easy. I’ve been getting gay with some of the household effects, and this bar of soap sort of caught my eye.”

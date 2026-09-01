@@ -2,26 +2,80 @@
 # Married women -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 8
 
 ## Learned profile
 
-- Words analyzed: 139783
-- Reading grade: 4.7
-- Average sentence: 9.6 words
-- Average paragraph: 16.1 words
-- Dialogue share: 21%
+- Words analyzed: 1204215
+- Reading grade: 5.5
+- Average sentence: 14.8 words
+- Average paragraph: 43.0 words
+- Dialogue share: 31%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, energetic, rhythmically even, rhythmically varied
-- Recurring vocabulary: house, people, seemed, years, afternoon, answered, began, better, child, didn’t, dimmesdale, don’t, gatsby’s, going, gutenberg, hands, heard, heart, herself, himself, human, letter, light, minister, moment, mother, nature, night, project, scarlet, shall, sport, suddenly, that’s, thought, toward, voice, wasn’t, white, within
-- Character names: Hester, Wilson, Ann Hutchinson, Arthur, Bellingham, Biloxi, Carraway, Catherine, Chillingworth, Daisy, Dan Cody, Eliot, Gatsby, George, Gutenberg, Halifax, Hath, Hester Prynne, Hush, Isaac Johnson, James, James Gatz, Jay Gatsby, Jimmy, Jordan, Jordan Baker, Little Pearl, Lucille, Madam Hester, Michaelis, Miss Baker, Mistress Hester, Mistress Hibbins, Mistress Prynne, Mr, Mr. Carraway, Mr. Gatsby, Mr. Gatz, Mr. McKee, Mr. Sloane, Mr. Surveyor Pue, Mr. Wilson, Mr. Wolfshiem, Mrs. McKee, Mrs. Wilson, Myrtle, Myrtle Wilson, Pearl, Project Gutenberg, Prynne, Roger Chillingworth, Sam, Satan, Surveyor, Tom, Tom Buchanan, Winthrop, brown
+- Tempo: steady
+- Tone: rhythmically varied, dialogue-forward, direct, energetic, narrative-forward, balanced, rhythmically even, measured
+- Recurring vocabulary: seemed, don’t, herself, himself, people, thought, nothing, woman, going, though, without, answered, better, child, didn’t, heart, house, looking, moment, mother, perhaps, shall, things, world, years, young, began, can’t, dimmesdale, feeling, heard, human, letter, minister, nature, night, quite, rather, scarlet, smile
+- Character names: Mr, Mrs, Wilson, Hester, Ann Hutchinson, Arthur, Bellingham, Eliot, Halifax, Hath, Hester Prynne, Hush, Isaac Johnson, Little Pearl, Madam Hester, Michaelis, Mistress Hester, Mistress Hibbins, Mistress Prynne, Pearl, Roger Chillingworth, Sam, Satan, Surveyor, Ted, Winthrop, brown, Agafea Mihalovna, Alexey Alexandrovitch, Alphabet Jones, Anna, Anna Arkadyevna, Annabella, Annabella Wilmot, Annie, Annie Poole, Bellew, Berry, Besalul, Betsy, Betts, Bill Lowndes, Biloxi, Bob Kendry, Bolton, Brian, Bucholz, Carraway, Catherine, Charlie, Chatterley, Chillingworth, Chris, Claire, Clare, Clare Kendry, Clifford, Connie, Constance, Daisy, Dan Cody, Darya Alexandrovna, Don Jayme, Don Ruis, Doña Fausta, Dr, Dugald Maule, Eden, Edward, Eliza, Eliza Millward, Elizabeth, Fairbanks, Fanny, Felise, Fergus, Flossie, Fred, Gatsby, George
 
 ## Books
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
+- [Lady Chatterley’s Lover](../Books/35BF24CF-4D51-41AE-AD44-647324261333.md)
+- [Short Fiction](../Books/371F14D9-4B15-4462-A311-570176E2BE12.md)
+- [Short Fiction](../Books/B7CF001F-8FAC-477E-A13F-BA7439FFC107.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
+- [The Tenant of Wildfell Hall](../Books/A39B3C0D-7D3E-4854-A382-97C351FAA110.md)
 
 ## Representative excerpts
+
+### Anna Karenina: Section 126
+
+_Mid-book rhythm_
+
+> XIX The mistake made by Alexey Alexandrovitch in that, when preparing for seeing his wife, he had overlooked the possibility that her repentance might be sincere, and he might forgive her, and she might not die⁠—this mistake was two months after his return from Moscow brought home to him in all its significance. But the mistake made by him had arisen not simply from his having overlooked that contingency, but also from the fact that until that day of his interview with his dying wife, he had not known his own heart. At his sick wife’s bedside he had for the first time in his life given way to that feeling of sympathetic suffering always roused in him by the sufferings of others, and hitherto looked on by him with shame as a harmful weakness.
+
+### Anna Karenina: Section 101
+
+_Dialogue and character voice_
+
+> XXVII “If I’d only the heart to throw up what’s been set going⁠ ⁠… such a lot of trouble wasted⁠ ⁠… I’d turn my back on the whole business, sell up, go off like Nikolay Ivanovitch⁠ ⁠… to hear La Belle Hélène,” said the landowner, a pleasant smile lighting up his shrewd old face. “But you see you don’t throw it up,” said Nikolay Ivanovitch Sviazhsky; “so there must be something gained.” “The only gain is that I live in my own house, neither bought nor hired. Besides, one keeps hoping the people will learn sense. Though, instead of that, you’d never believe it⁠—the drunkenness, the immorality! They keep chopping and changing their bits of land. Not a sight of a horse or a cow. The peasant’s dying of hunger, but just go and take him on as a laborer, he’ll do his best to do you a mischief, and then bring you up before the justice of the peace.”
+
+### Lady Chatterley’s Lover: Section 12
+
+_Mid-book rhythm_
+
+> X Connie was a good deal alone now, fewer people came to Wragby. Clifford no longer wanted them. He had turned against even the cronies. He was queer. He preferred the radio, which he had installed at some expense, with a good deal of success at last. He could sometimes get Madrid or Frankfurt, even there in the uneasy Midlands. And he would sit alone for hours listening to the loudspeaker bellowing forth. It amazed and stunned Connie. But there he would sit, with a blank entranced expression on his face, like a person losing his mind, and listen, or seem to listen, to the unspeakable thing. Was he really listening? Or was it a sort of soporific he took, whilst something else worked on underneath in him? Connie did not know. She fled up to her room, or out of doors to the wood. A kind of terror filled her sometimes, a terror of the incipient insanity of the whole civilised species.
+
+### Lady Chatterley’s Lover: Section 16
+
+_Dialogue and character voice_
+
+> XIV When she got near the park gate, she heard the click of the latch. He was there, then, in the darkness of the wood, and had seen her! “You are good and early,” he said out of the dark. “Was everything all right?” “Perfectly easy.” He shut the gate quietly after her, and made a spot of light on the dark ground, showing the pallid flowers still standing there open in the night. They went on apart, in silence. “Are you sure you didn’t hurt yourself this morning with that chair?” she asked. “No, no!” “When you had that pneumonia, what did it do to you?” “Oh, nothing! it left my heart not so strong and the lungs not so elastic. But it always does that.” “And you ought not to make violent physical efforts?” “Not often.” She plodded on in an angry silence. “Did you hate Clifford?” she said at last. “Hate him, no! I’ve met too many like him to upset myself hating him.
+
+### Short Fiction: Section 19
+
+_Mid-book rhythm_
+
+> Daughters of the Rich The People in It Gerard Welden, M.F.H., An American sportsman Maud Barhyte, a New York girl of the fashionable set Sally Malakoff, afterward Mrs. Welden The Duc de Malakoff, Sally’s first husband Mrs. Kandy, Sally’s mother, a rich widow General Barhyte, Maud’s father, a rich widower The Comte de Dol, a French sportsman The Marquis Aquaviva, an Italian sportsman Prince Kara, a Russian sportsman Lord Ferrers, an English sportsman Mull Cantire, undersecretary, British Embassy, Paris Mme. Oppensheim, a mondaine Mme. de Cérisy, another mondaine The Princesse de Solférino, a third mondaine Louis Le Hillel, a swordsman Baron Louradour, another swordsman Dr.
+
+### Short Fiction: Section 12
+
+_Dialogue and character voice_
+
+> Madam Sapphira A Fifth Avenue Story I “I told my father that you expected to make a hundred thousand this year. He said he didn’t believe in miracles.” It was Mrs. Carol Nevius who, from the head of the dinner-table, addressed her husband. “Did he though! That’s odd, seeing that it has taken a succession of them to keep him out of Sing Sing.” Mrs. Nevius laughed. She was a pretty little woman, very well dressed, with a noticeably good manner. And as she laughed it was evident that her father was not one who inspired respect. “But if you do,” she insisted, “if you make a lot, you will let me entertain, won’t you?” Nevius shook his head. No, not though it were millions. In the now remote bachelor days he had his fill of society, and while it is colloquial to maintain that those who do not care for society are those for whom society does not care, in his case the argument was invalid.
+
+### Short Fiction: Section 4
+
+_Mid-book rhythm_
+
+> Sanctuary I On the Southern coast, between Merton and Shawboro, there is a strip of desolation some half a mile wide and nearly ten miles long between the sea and old fields of ruined plantations. Skirting the edge of this narrow jungle is a partly grown-over road which still shows traces of furrows made by the wheels of wagons that have long since rotted away or been cut into firewood. This road is little used, now that the state has built its new highway a bit to the west and wagons are less numerous than automobiles. In the forsaken road a man was walking swiftly. But in spite of his hurry, at every step he set down his feet with infinite care for the night was windless and the heavy silence intensified each sound; even the breaking of a twig could be plainly heard. And the man had need of caution as well as haste.
+
+### Short Fiction: Section 3
+
+_Dialogue and character voice_
+
+> Passing For Carl Van Vechten and Fania Marinoff One three centuries removed From the scenes his fathers loved, Spicy grove, cinnamon tree, What is Africa to me? Countée Cullen Part I Encounter I It was the last letter in Irene Redfield’s little pile of morning mail. After her other ordinary and clearly directed letters the long envelope of thin Italian paper with its almost illegible scrawl seemed out of place and alien. And there was, too, something mysterious and slightly furtive about it. A thin sly thing which bore no return address to betray the sender. Not that she hadn’t immediately known who its sender was. Some two years ago she had one very like it in outward appearance. Furtive, but yet in some peculiar, determined way a little flaunting. Purple ink. Foreign paper of extraordinary size. It had been, Irene noted, postmarked in New York the day before.
 
 ### The Great Gatsby: Section 1
 
@@ -34,15 +88,3 @@ _Opening voice_
 _Mid-book rhythm_
 
 > VI About this time an ambitious young reporter from New York arrived one morning at Gatsby’s door and asked him if he had anything to say. “Anything to say about what?” inquired Gatsby politely. “Why—any statement to give out.” It transpired after a confused five minutes that the man had heard Gatsby’s name around his office in a connection which he either wouldn’t reveal or didn’t fully understand. This was his day off and with laudable initiative he had hurried out “to see.” It was a random shot, and yet the reporter’s instinct was right. Gatsby’s notoriety, spread about by the hundreds who had accepted his hospitality and so become authorities upon his past, had increased all summer until he fell just short of being news. Contemporary legends such as the “underground pipeline to Canada”
-
-### The Scarlet Letter: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Scarlet Letter This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Scarlet Letter Author: Nathaniel Hawthorne Engraver: A. V. S. Anthony Illustrator: Mary Hallock Foote Ludvig Sandöe Ipsen Release date: May 5, 2008 [eBook #25344] Most recently updated: August 9, 2025 Language: English Other information and formats: www.gutenberg.
-
-### The Scarlet Letter: Section 3
-
-_Dialogue and character voice_
-
-> XI. THE INTERIOR OF A HEART. fter the incident last described, the intercourse between the clergyman and the physician, though externally the same, was really of another character than it had previously been. The intellect of Roger Chillingworth had now a sufficiently plain path before it. It was not, indeed, precisely that which he had laid out for himself to tread. Calm, gentle, passionless, as he appeared, there was yet, we fear, a quiet depth of malice, hitherto latent, but active now, in this unfortunate old man, which led him to imagine a more intimate revenge than any mortal had ever wreaked upon an enemy. To make himself the one trusted friend, to whom should be confided all the fear, the remorse, the agony, the ineffectual repentance, the backward rush of sinful thoughts, expelled in vain!

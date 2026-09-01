@@ -2,25 +2,39 @@
 # Nathaniel Hawthorne
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 88073
-- Reading grade: 4.7
-- Average sentence: 7.8 words
-- Average paragraph: 10.1 words
-- Dialogue share: 18%
+- Words analyzed: 277193
+- Reading grade: 7.7
+- Average sentence: 17.7 words
+- Average paragraph: 72.0 words
+- Dialogue share: 19%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: child, minister, letter, heart, mother, scarlet, himself, dimmesdale, seemed, gutenberg, project, woman, world, herself, years, human, nature, people, within, shall, without, answered, house, better
-- Character names: Hester, Hester Prynne, Pearl, Roger Chillingworth, Prynne, Bellingham, Mr. Wilson, Mistress Hibbins, Satan, Mr, Mistress Prynne, Chillingworth, Hush, Mr. Surveyor Pue, brown, Eliot, Hath, Little Pearl, Madam Hester, Mistress Hester, Sam, Surveyor, Wilson, Winthrop, Ann Hutchinson, Arthur, HESTER, Halifax, Isaac Johnson, James
+- Tempo: steady
+- Tone: energetic, narrative-forward, measured, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: better, heart, herself, himself, human, seemed, shall, world, years, answered, child, dimmesdale, house, indeed, letter, minister, mother, nature, people, scarlet, within, without, woman, bosom, character, gables, garden, gutenberg, hepzibah’s, however, moment, nothing, perhaps, project, public, seven, street, whether, window, young
+- Character names: Hester, Mr, Ann Hutchinson, Bellingham, Eliot, Halifax, Hath, Hester Prynne, Hush, Isaac Johnson, Little Pearl, Madam Hester, Mistress Hester, Mistress Hibbins, Mistress Prynne, Pearl, Roger Chillingworth, Sam, Satan, Surveyor, Wilson, Winthrop, brown, Adam, Alice, Alice Pyncheon, Arthur, Chanticleer, Chillingworth, Clifford, Clifford Pyncheon, Colonel Pyncheon, Cousin Clifford, Cousin Jaffrey, Cousin Phoebe, Dixey, Elizabeth, Hepzibah, Higginson, Jaffrey, James, Jim Crow, John Wilson, Judge, Judge Pyncheon, King James, Master Brackett, Matthew Maule, Maule, Miss Hepzibah, Miss Phoebe, Mistress Alice, Mr. Surveyor Pue, Mr. Wilson, Phoebe, Phoebe Pyncheon, Pray, Prynne, Pue, Pyncheon, Salem, Scipio, Surveyor Pue, Uncle Venner, Venner
 
 ## Books
+- [The House of the Seven Gables](../Books/A7C6ACB9-6532-41C9-AF87-D3CAD6629AAB.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
 
 ## Representative excerpts
+
+### The House of the Seven Gables: Section 14
+
+_Mid-book rhythm_
+
+> X The Pyncheon Garden Clifford, except for Phoebe’s more active instigation, would ordinarily have yielded to the torpor which had crept through all his modes of being, and which sluggishly counselled him to sit in his morning chair till eventide. But the girl seldom failed to propose a removal to the garden, where Uncle Venner and the daguerreotypist had made such repairs on the roof of the ruinous arbor, or summerhouse, that it was now a sufficient shelter from sunshine and casual showers. The hop-vine, too, had begun to grow luxuriantly over the sides of the little edifice, and made an interior of verdant seclusion, with innumerable peeps and glimpses into the wider solitude of the garden. Here, sometimes, in this green play-place of flickering light, Phoebe read to Clifford.
+
+### The House of the Seven Gables: Section 21
+
+_Dialogue and character voice_
+
+> XVII The Flight of Two Owls Summer as it was, the east wind set poor Hepzibah’s few remaining teeth chattering in her head, as she and Clifford faced it, on their way up Pyncheon Street, and towards the centre of the town. Not merely was it the shiver which this pitiless blast brought to her frame (although her feet and hands, especially, had never seemed so death-a-cold as now), but there was a moral sensation, mingling itself with the physical chill, and causing her to shake more in spirit than in body. The world’s broad, bleak atmosphere was all so comfortless! Such, indeed, is the impression which it makes on every new adventurer, even if he plunge into it while the warmest tide of life is bubbling through his veins.
 
 ### The Scarlet Letter: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Dialogue and character voice_
 
 > XI. THE INTERIOR OF A HEART. fter the incident last described, the intercourse between the clergyman and the physician, though externally the same, was really of another character than it had previously been. The intellect of Roger Chillingworth had now a sufficiently plain path before it. It was not, indeed, precisely that which he had laid out for himself to tread. Calm, gentle, passionless, as he appeared, there was yet, we fear, a quiet depth of malice, hitherto latent, but active now, in this unfortunate old man, which led him to imagine a more intimate revenge than any mortal had ever wreaked upon an enemy. To make himself the one trusted friend, to whom should be confided all the fear, the remorse, the agony, the ineffectual repentance, the backward rush of sinful thoughts, expelled in vain!
+
+### The Scarlet Letter: Section 17
+
+_Mid-book rhythm_
+
+> XII The Minister’s Vigil Walking in the shadow of a dream, as it were, and perhaps actually under the influence of a species of somnambulism, Mr. Dimmesdale reached the spot where, now so long since, Hester Prynne had lived through her first hours of public ignominy. The same platform or scaffold, black and weather-stained with the storm or sunshine of seven long years, and foot-worn, too, with the tread of many culprits who had since ascended it, remained standing beneath the balcony of the meetinghouse. The minister went up the steps. It was an obscure night of early May. An unvaried pall of cloud muffled the whole expanse of sky from zenith to horizon.
+
+### The Scarlet Letter: Section 22
+
+_Dialogue and character voice_
+
+> XVII The Pastor and His Parishioner Slowly as the minister walked, he had almost gone by, before Hester Prynne could gather voice enough to attract his observation. At length, she succeeded. “Arthur Dimmesdale!” she said, faintly at first; then louder, but hoarsely. “Arthur Dimmesdale!” “Who speaks?” answered the minister. Gathering himself quickly up, he stood more erect, like a man taken by surprise in a mood to which he was reluctant to have witnesses. Throwing his eyes anxiously in the direction of the voice, he indistinctly beheld a form under the trees, clad in garments so sombre, and so little relieved from the gray twilight into which the clouded sky and the heavy foliage had darkened the noontide, that he knew not whether it were a woman or a shadow. It may be, that his pathway through life was haunted thus, by a spectre that had stolen out from among his thoughts.

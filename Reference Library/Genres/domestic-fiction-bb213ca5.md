@@ -2,29 +2,47 @@
 # Domestic fiction
 
 - Profile type: Genre
-- Books represented: 5
+- Books represented: 11
 
 ## Learned profile
 
-- Words analyzed: 624785
-- Reading grade: 3.1
-- Average sentence: 7.7 words
-- Average paragraph: 11.3 words
-- Dialogue share: 41%
+- Words analyzed: 1316231
+- Reading grade: 5.2
+- Average sentence: 13.9 words
+- Average paragraph: 41.6 words
+- Dialogue share: 40%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: house, though, thought, going, herself, without, young, anything, began, better, didn’t, don’t, enough, guess, gutenberg, hands, happy, heard, heart, himself, kitchen, looking, money, night, nothing, quite, seemed, shall, stood, things, ain't, ain’t, alone, billy's, can't, cannot, can’t, chapter, couldn’t, cried
-- Character names: Ethan Frome, Frank, Mother, Mr, Ned, Amy, Andrew Hale, Annie, Anse, Barry, Ben, Benjamin, Benjy, Bert, Beth, Bill, Bill Roberts, Billy, Billy Murphy, Billy Roberts, Blanchard, Brandon, Brooke, Bud Strothers, Caddy, Cady, Charley, Charley Long, Charlie, Charlotte, Chester, Chester Johnson, Colonel Brandon, Compson, Dalton Ames, Dan’l Byrne, Dashwood, Denis, Denis Eady, Dilsey, Dr. Buck, Eady, Earl, Edward, Elinor, Esther, Ethan, Fanny, Fred, Frome, Frony, Gee, Gerald, Gutenberg, Gutenberg Literary Archive Foundation, Hagar, Hale, Hannah, Harmon, Harmon Gow, Henderson, Herbert, Hugo, Hush, Jackson, Jason, Jennings, Jo, John, Jotham, Jotham Powell, Julio, Kate, Lady Middleton, Laurence, Laurie, Louis, Lucy, Luster, Madame
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, rhythmically even, narrative-forward, energetic, measured
+- Recurring vocabulary: thought, house, though, without, heart, herself, himself, nothing, shall, young, better, don’t, enough, going, moment, quite, seemed, anything, happy, however, indeed, night, alone, cannot, didn’t, guess, heard, kitchen, mother, myself, replied, sister, stood, things, world, ain’t, began, can’t, cried, ethan’s
+- Character names: Mr, Mrs, Ethan Frome, Fanny, Mary, Ned, Andrew Hale, Anne, Barry, Brandon, Charlotte, Colonel Brandon, Dan’l Byrne, Dashwood, Denis, Denis Eady, Dr, Eady, Edward, Elinor, Ethan, Frank, Frome, Gilbert, Hale, Harmon, Harmon Gow, Jennings, Jotham, Jotham Powell, Lady Middleton, Lucy, Marianne, Matt, Mattie, Mattie Silver, Michael Eady, Miss Dashwood, Miss Marianne, Miss Steele, Mother, Ned Hale, Rachel, Ruth, Shadd, Sir John, Starkfield, Steeles, Thomas, Tom, Willoughby, Zeena, Zenobia, Adam, Agatha, Alice, Alice Pyncheon, Allan, Amy, Annabella, Annabella Wilmot, Anne Shirley, Annie, Anse, Arthur, Ben, Benjamin, Benjy, Bert, Bertram, Bertrams, Beth, Bill, Bill Roberts, Billy, Billy Murphy, Billy Roberts, Blanchard, Blewett, Brooke
 
 ## Books
+- [Anne of Green Gables](../Books/518A6E9C-B80A-462D-A688-4E3A1584C9FB.md)
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
 - [Little Women](../Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md)
+- [Mansfield Park](../Books/AA2BDFD7-B608-4192-BC7F-67079F09D869.md)
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [The House of the Seven Gables](../Books/A7C6ACB9-6532-41C9-AF87-D3CAD6629AAB.md)
 - [The sound and the fury](../Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md)
+- [The Tenant of Wildfell Hall](../Books/A39B3C0D-7D3E-4854-A382-97C351FAA110.md)
 - [The Valley of the Moon](../Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md)
 
 ## Representative excerpts
+
+### Anne of Green Gables: Section 22
+
+_Mid-book rhythm_
+
+> XX A Good Imagination Gone Wrong Spring had come once more to Green Gables⁠—the beautiful, capricious, reluctant Canadian spring, lingering along through April and May in a succession of sweet, fresh, chilly days, with pink sunsets and miracles of resurrection and growth. The maples in Lovers’ Lane were red budded and little curly ferns pushed up around the Dryad’s Bubble. Away up in the barrens, behind Mr. Silas Sloane’s place, the Mayflowers blossomed out, pink and white stars of sweetness under their brown leaves. All the school girls and boys had one golden afternoon gathering them, coming home in the clear, echoing twilight with arms and baskets full of flowery spoil. “I’m so sorry for people who live in lands where there are no Mayflowers,” said Anne. “Diana says perhaps they have something better, but there couldn’t be anything better than Mayflowers, could there, Marilla?
+
+### Anne of Green Gables: Section 4
+
+_Dialogue and character voice_
+
+> II Matthew Cuthbert Is Surprised Matthew Cuthbert and the sorrel mare jogged comfortably over the eight miles to Bright River. It was a pretty road, running along between snug farmsteads, with now and again a bit of balsamy fir wood to drive through or a hollow where wild plums hung out their filmy bloom. The air was sweet with the breath of many apple orchards and the meadows sloped away in the distance to horizon mists of pearl and purple; while “The little birds sang as if it were The one day of summer in all the year.” Matthew enjoyed the drive after his own fashion, except during the moments when he met women and had to nod to them⁠—for in Prince Edward Island you are supposed to nod to all and sundry you meet on the road whether you know them or not. Matthew dreaded all women except Marilla and Mrs.
 
 ### Ethan Frome: Section 1
 
@@ -38,6 +56,18 @@ _Mid-book rhythm_
 
 > V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
 
+### Ethan Frome: Section 9
+
+_Mid-book rhythm_
+
+> IV As soon as his wife had driven off Ethan took his coat and cap from the peg. Mattie was washing up the dishes, humming one of the dance tunes of the night before. He said “So long, Matt,” and she answered gaily “So long, Ethan”; and that was all. It was warm and bright in the kitchen. The sun slanted through the south window on the girl’s moving figure, on the cat dozing in a chair, and on the geraniums brought in from the doorway, where Ethan had planted them in the summer to “make a garden” for Mattie. He would have liked to linger on, watching her tidy up and then settle down to her sewing; but he wanted still more to get the hauling done and be back at the farm before night. All the way down to the village he continued to think of his return to Mattie. The kitchen was a poor place, not “spruce”
+
+### Ethan Frome: Section 12
+
+_Dialogue and character voice_
+
+> VII Ethan went out into the passage to hang up his wet garments. He listened for Zeena’s step and, not hearing it, called her name up the stairs. She did not answer, and after a moment’s hesitation he went up and opened her door. The room was almost dark, but in the obscurity he saw her sitting by the window, bolt upright, and knew by the rigidity of the outline projected against the pane that she had not taken off her travelling dress. “Well, Zeena,” he ventured from the threshold. She did not move, and he continued: “Supper’s about ready. Ain’t you coming?” She replied: “I don’t feel as if I could touch a morsel.” It was the consecrated formula, and he expected it to be followed, as usual, by her rising and going down to supper. But she remained seated, and he could think of nothing more felicitous than: “I presume you’re tired after the long ride.”
+
 ### Little Women: Section 1
 
 _Opening voice_
@@ -50,38 +80,14 @@ _Mid-book rhythm_
 
 > PART 2 In order that we may start afresh and go to Meg’s wedding... CHAPTER TWENTY-FOUR GOSSIP In order that we may start afresh and go to Meg’s wedding with free minds, it will be well to begin with a little gossip about the Marches. And here let me premise that if any of the elders think there is too much ‘lovering’ in the story, as I fear they may (I’m not afraid the young folks will make that objection), I can only say with Mrs. March, “What can you expect when I have four gay girls in the house, and a dashing young neighbor over the way?” The three years that have passed have brought but few changes to the quiet family. The war is over, and Mr.
 
-### Sense and Sensibility: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Sense and Sensibility This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Sense and Sensibility Author: Jane Austen Commentator: Austin Dobson Illustrator: Hugh Thomson Release date: June 15, 2007 [eBook #21839] Most recently updated: July 27, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Sense and Sensibility: Section 4
+### Mansfield Park: Section 27
 
 _Mid-book rhythm_
 
-> Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+> XXV The intercourse of the two families was at this period more nearly restored to what it had been in the autumn, than any member of the old intimacy had thought ever likely to be again. The return of Henry Crawford, and the arrival of William Price, had much to do with it, but much was still owing to Sir Thomas’s more than toleration of the neighbourly attempts at the Parsonage. His mind, now disengaged from the cares which had pressed on him at first, was at leisure to find the Grants and their young inmates really worth visiting; and though infinitely above scheming or contriving for any the most advantageous matrimonial establishment that could be among the apparent possibilities of anyone most dear to him, and disdaining even as a littleness the being quick-sighted on such points, he could not avoid perceiving, in a grand and careless way, that Mr.
 
-### The sound and the fury: Section 1
+### Mansfield Park: Section 37
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The sound and the fury This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The sound and the fury Author: William Faulkner Release date: January 21, 2025 [eBook #75170] Language: English Original publication: New York: Random House, 1929 Other information and formats: www.gutenberg.org/ebooks/75170 Credits: David T. Jones, Peter Bayes, Paulina Chin & the online Distributed Proofreaders Canada team at http://www.pgdpcanada.
-
-### The sound and the fury: Section 3
-
-_Mid-book rhythm_
-
-> APRIL SIXTH, 1928 Once a bitch always a bitch, what I say. I says you’re lucky if her playing out of school is all that worries you. I says she ought to be down there in that kitchen right now, instead of up there in her room, gobbing paint on her face and waiting for six niggers that cant even stand up out of a chair unless they’ve got a pan full of bread and meat to balance them, to fix breakfast for her. And Mother says, “But to have the school authorities think that I have no control over her, that I cant—” “Well,” I says, “You cant, can you? You never have tried to do anything with her,” I says, “How do you expect to begin this late, when she’s seventeen years old?” She thought about that for a while. “But to have them think that . . . I didn’t even know she had a report card. She told me last fall that they had quit using them this year.
-
-### The Valley of the Moon: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Valley of the Moon This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Valley of the Moon Author: Jack London Release date: September 1, 1998 [eBook #1449] Most recently updated: October 29, 2024 Language: English Other information and formats: www.gutenberg.
-
-### The Valley of the Moon: Section 5
-
-_Mid-book rhythm_
-
-> CHAPTER XVIII It was early evening when they got off the car at Seventh and Pine on their way home from Bell's Theater. Billy and Saxon did their little marketing together, then separated at the corner, Saxon to go on to the house and prepare supper, Billy to go and see the boys—the teamsters who had fought on in the strike during his month of retirement. “Take care of yourself, Billy,” she called, as he started off. “Sure,” he answered, turning his face to her over his shoulder. Her heart leaped at the smile. It was his old, unsullied love-smile which she wanted always to see on his face—for which, armed with her own wisdom and the wisdom of Mercedes, she would wage the utmost woman's war to possess.
+> XXXV Edmund had determined that it belonged entirely to Fanny to choose whether her situation with regard to Crawford should be mentioned between them or not; and that if she did not lead the way, it should never be touched on by him; but after a day or two of mutual reserve, he was induced by his father to change his mind, and try what his influence might do for his friend. A day, and a very early day, was actually fixed for the Crawfords’ departure; and Sir Thomas thought it might be as well to make one more effort for the young man before he left Mansfield, that all his professions and vows of unshaken attachment might have as much hope to sustain them as possible. Sir Thomas was most cordially anxious for the perfection of Mr. Crawford’s character in that point. He wished him to be a model of constancy; and fancied the best means of effecting it would be by not trying him too long.

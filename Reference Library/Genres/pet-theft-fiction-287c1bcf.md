@@ -2,23 +2,24 @@
 # Pet theft -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 35129
-- Reading grade: 3.8
-- Average sentence: 8.4 words
-- Average paragraph: 12.5 words
+- Words analyzed: 67774
+- Reading grade: 5.0
+- Average sentence: 13.2 words
+- Average paragraph: 46.3 words
 - Dialogue share: 4%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: though, buck’s, himself, trail, night, three, hundred, works, things, teeth, behind, traces, water, electronic, forth, place, seemed, sprang, forest, without, nothing, stood, terms, foundation
-- Character names: Buck, Thornton, Spitz, François, Hal, John Thornton, Perrault, Dave, Charles, Hans, Pete, Billee, Dawson, Gutenberg, Mercedes, Curly, Joe, Matthewson, Pike, Judge, Manuel, Dub, John, Nig, Skeet, Teek, Gad, Judge Miller, Mush, Project Gutenberg
+- Tempo: steady
+- Tone: narrative-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: behind, buck’s, forest, himself, hundred, night, nothing, place, seemed, sprang, stood, teeth, things, though, three, traces, trail, water, called, cried, electronic, forth, foundation, morning, strength, terms, thornton’s, white, without, works
+- Character names: Billee, Buck, Charles, Curly, Dave, Dawson, Dub, François, Gad, Hal, Hans, Joe, John Thornton, Judge, Judge Miller, Manuel, Matthewson, Mercedes, Mush, Nig, Perrault, Pete, Pike, Skeet, Spitz, Teek, Thornton, Bernard, Burton, Gutenberg, John, Project Gutenberg, Ysabel
 
 ## Books
 - [The call of the wild](../Books/30BF27F3-CC02-46CC-8CE2-9046D310B2F5.md)
+- [The Call of the Wild](../Books/ED95A4B8-1FE4-4E9D-AB82-3C77D8A45CFD.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Chapter IV. Who Has Won to Mastership “Eh? Wot I say? I spik true w’en I say dat Buck two devils.” This was François’s speech next morning when he discovered Spitz missing and Buck covered with wounds. He drew him to the fire and by its light pointed them out. “Dat Spitz fight lak hell,” said Perrault, as he surveyed the gaping rips and cuts. “An’ dat Buck fight lak two hells,” was François’s answer. “An’ now we make good time. No more Spitz, no more trouble, sure.” While Perrault packed the camp outfit and loaded the sled, the dog-driver proceeded to harness the dogs. Buck trotted up to the place Spitz would have occupied as leader; but François, not noticing him, brought Sol-leks to the coveted position. In his judgment, Sol-leks was the best lead-dog left. Buck sprang upon Sol-leks in a fury, driving him back and standing in his place. “Eh? eh?”
+
+### The Call of the Wild: Section 7
+
+_Mid-book rhythm_
+
+> III The Dominant Primordial Beast The dominant primordial beast was strong in Buck, and under the fierce conditions of trail life it grew and grew. Yet it was a secret growth. His newborn cunning gave him poise and control. He was too busy adjusting himself to the new life to feel at ease, and not only did he not pick fights, but he avoided them whenever possible. A certain deliberateness characterized his attitude. He was not prone to rashness and precipitate action; and in the bitter hatred between him and Spitz he betrayed no impatience, shunned all offensive acts. On the other hand, possibly because he divined in Buck a dangerous rival, Spitz never lost an opportunity of showing his teeth. He even went out of his way to bully Buck, striving constantly to start the fight which could end only in the death of one or the other.
+
+### The Call of the Wild: Section 9
+
+_Dialogue and character voice_
+
+> V The Toil of Trace and Trail Thirty days from the time it left Dawson, the Salt Water Mail, with Buck and his mates at the fore, arrived at Skaguay. They were in a wretched state, worn out and worn down. Buck’s one hundred and forty pounds had dwindled to one hundred and fifteen. The rest of his mates, though lighter dogs, had relatively lost more weight than he. Pike, the malingerer, who, in his lifetime of deceit, had often successfully feigned a hurt leg, was now limping in earnest. Sol-leks was limping, and Dub was suffering from a wrenched shoulder-blade. They were all terribly footsore. No spring or rebound was left in them. Their feet fell heavily on the trail, jarring their bodies and doubling the fatigue of a day’s travel. There was nothing the matter with them except that they were dead tired.

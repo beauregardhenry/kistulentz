@@ -2,24 +2,29 @@
 # Triangles (Interpersonal relations) -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 7
 
 ## Learned profile
 
-- Words analyzed: 126202
-- Reading grade: 4.3
-- Average sentence: 8.0 words
-- Average paragraph: 10.6 words
-- Dialogue share: 18%
+- Words analyzed: 729512
+- Reading grade: 6.5
+- Average sentence: 18.5 words
+- Average paragraph: 46.5 words
+- Dialogue share: 31%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even, energetic
-- Recurring vocabulary: himself, house, seemed, without, ain’t, alone, answered, better, child, dimmesdale, don’t, ethan’s, going, guess, gutenberg, heard, heart, herself, human, kitchen, letter, light, minister, moment, mother, nature, night, people, place, project, scarlet, shall, stood, table, though, thought, toward, voice, within, woman
-- Character names: Ethan Frome, Hester, Andrew Hale, Ann Hutchinson, Arthur, Bellingham, Chillingworth, Dan’l Byrne, Denis, Denis Eady, Dr. Buck, Eady, Eliot, Ethan, Frome, Gutenberg, Gutenberg Literary Archive Foundation, Hale, Halifax, Harmon, Harmon Gow, Hath, Hester Prynne, Hush, Isaac Johnson, James, Jotham, Jotham Powell, Little Pearl, Madam Hester, Matt, Mattie, Mattie Silver, Michael Eady, Mistress Hester, Mistress Hibbins, Mistress Prynne, Mr, Mr. Surveyor Pue, Mr. Wilson, Mrs. Hale, Ned, Ned Hale, Pearl, Project Gutenberg, Prynne, Roger Chillingworth, Ruth, Sam, Satan, Shadd, Starkfield, Surveyor, Wilson, Winthrop, Zeena, Zenobia, brown
+- Tempo: steady
+- Tone: narrative-forward, rhythmically varied, balanced, dialogue-forward, direct, energetic, measured, rhythmically even
+- Recurring vocabulary: himself, seemed, without, house, place, don’t, going, heard, herself, night, shall, though, thought, woman, answered, better, light, mother, stood, ain’t, alone, child, dimmesdale, ethan’s, father, guess, heart, human, kitchen, letter, minister, moment, nature, nothing, people, quite, round, scarlet, table, toward
+- Character names: Mr, Ethan Frome, Hester, Mrs, Andrew Hale, Ann Hutchinson, Bellingham, Dan’l Byrne, Denis, Denis Eady, Eady, Eliot, Ethan, Frome, Hale, Halifax, Harmon, Harmon Gow, Hath, Hester Prynne, Hush, Isaac Johnson, John, Jotham, Jotham Powell, Little Pearl, Madam Hester, Matt, Mattie, Mattie Silver, Michael Eady, Mistress Hester, Mistress Hibbins, Mistress Prynne, Ned, Ned Hale, Pearl, Roger Chillingworth, Ruth, Sam, Satan, Shadd, Starkfield, Surveyor, Wilson, Winthrop, Zeena, Zenobia, brown, Abraham, Alec, Alexander, Angel, Angel Clare, Arthur, Ashby, Aymer, Bathsheba, Bathsheba Everdene, Blakemore, Bois-Guilbert, Boldwood, Brian de Bois-Guilbert, Buck, Cain, Cain Ball, Cedric, Chillingworth, Clare, Coggan, Crick, Cuthbert, De Bracy, Deb, Dr, Dr. Buck, Dunstan, Durbeyfield, Edith Wharton, Elizabeth
 
 ## Books
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
+- [Far from the Madding Crowd](../Books/70470CBB-9CB0-4037-ACAB-6047AFA2479E.md)
+- [Ivanhoe](../Books/C2611716-5F13-48E1-A248-8CFB0DF89049.md)
+- [Tess of the d’Urbervilles](../Books/14A7C844-81C6-4759-8E1E-395972D47B3A.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
 
 ## Representative excerpts
 
@@ -35,14 +40,50 @@ _Mid-book rhythm_
 
 > V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
 
-### The Scarlet Letter: Section 1
+### Ethan Frome: Section 9
 
-_Opening voice_
+_Mid-book rhythm_
 
-> The Project Gutenberg eBook of The Scarlet Letter This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Scarlet Letter Author: Nathaniel Hawthorne Engraver: A. V. S. Anthony Illustrator: Mary Hallock Foote Ludvig Sandöe Ipsen Release date: May 5, 2008 [eBook #25344] Most recently updated: August 9, 2025 Language: English Other information and formats: www.gutenberg.
+> IV As soon as his wife had driven off Ethan took his coat and cap from the peg. Mattie was washing up the dishes, humming one of the dance tunes of the night before. He said “So long, Matt,” and she answered gaily “So long, Ethan”; and that was all. It was warm and bright in the kitchen. The sun slanted through the south window on the girl’s moving figure, on the cat dozing in a chair, and on the geraniums brought in from the doorway, where Ethan had planted them in the summer to “make a garden” for Mattie. He would have liked to linger on, watching her tidy up and then settle down to her sewing; but he wanted still more to get the hauling done and be back at the farm before night. All the way down to the village he continued to think of his return to Mattie. The kitchen was a poor place, not “spruce”
 
-### The Scarlet Letter: Section 3
+### Ethan Frome: Section 12
 
 _Dialogue and character voice_
 
-> XI. THE INTERIOR OF A HEART. fter the incident last described, the intercourse between the clergyman and the physician, though externally the same, was really of another character than it had previously been. The intellect of Roger Chillingworth had now a sufficiently plain path before it. It was not, indeed, precisely that which he had laid out for himself to tread. Calm, gentle, passionless, as he appeared, there was yet, we fear, a quiet depth of malice, hitherto latent, but active now, in this unfortunate old man, which led him to imagine a more intimate revenge than any mortal had ever wreaked upon an enemy. To make himself the one trusted friend, to whom should be confided all the fear, the remorse, the agony, the ineffectual repentance, the backward rush of sinful thoughts, expelled in vain!
+> VII Ethan went out into the passage to hang up his wet garments. He listened for Zeena’s step and, not hearing it, called her name up the stairs. She did not answer, and after a moment’s hesitation he went up and opened her door. The room was almost dark, but in the obscurity he saw her sitting by the window, bolt upright, and knew by the rigidity of the outline projected against the pane that she had not taken off her travelling dress. “Well, Zeena,” he ventured from the threshold. She did not move, and he continued: “Supper’s about ready. Ain’t you coming?” She replied: “I don’t feel as if I could touch a morsel.” It was the consecrated formula, and he expected it to be followed, as usual, by her rising and going down to supper. But she remained seated, and he could think of nothing more felicitous than: “I presume you’re tired after the long ride.”
+
+### Far from the Madding Crowd: Section 33
+
+_Mid-book rhythm_
+
+> XXIX Particulars of a Twilight Walk We now see the element of folly distinctly mingling with the many varying particulars which made up the character of Bathsheba Everdene. It was almost foreign to her intrinsic nature. Introduced as lymph on the dart of Eros, it eventually permeated and coloured her whole constitution. Bathsheba, though she had too much understanding to be entirely governed by her womanliness, had too much womanliness to use her understanding to the best advantage. Perhaps in no minor point does woman astonish her helpmate more than in the strange power she possesses of believing cajoleries that she knows to be false⁠—except, indeed, in that of being utterly sceptical on strictures that she knows to be true. Bathsheba loved Troy in the way that only self-reliant women love when they abandon their self-reliance.
+
+### Far from the Madding Crowd: Section 12
+
+_Dialogue and character voice_
+
+> VIII The Malthouse; The Chat; News Warren’s Malthouse was enclosed by an old wall inwrapped with ivy, and though not much of the exterior was visible at this hour, the character and purposes of the building were clearly enough shown by its outline upon the sky. From the walls an overhanging thatched roof sloped up to a point in the centre, upon which rose a small wooden lantern, fitted with louvre-boards on all the four sides, and from these openings a mist was dimly perceived to be escaping into the night air. There was no window in front; but a square hole in the door was glazed with a single pane, through which red, comfortable rays now stretched out upon the ivied wall in front. Voices were to be heard inside. Oak’s hand skimmed the surface of the door with fingers extended to an Elymas-the-Sorcerer pattern, till he found a leathern strap, which he pulled.
+
+### Ivanhoe: Section 27
+
+_Mid-book rhythm_
+
+> XXI Alas, how many hours and years have past, Since human forms have round this table sat, Or lamp, or taper, on its surface gleamed! Methinks, I hear the sound of time long pass’d Still murmuring o’er us, in the lofty void Of these dark arches, like the ling’ring voices Of those who long within their graves have slept. Orra, a Tragedy While these measures were taking in behalf of Cedric and his companions, the armed men by whom the latter had been seized, hurried their captives along towards the place of security, where they intended to imprison them. But darkness came on fast, and the paths of the wood seemed but imperfectly known to the marauders. They were compelled to make several long halts, and once or twice to return on their road to resume the direction which they wished to pursue.
+
+### Ivanhoe: Section 33
+
+_Dialogue and character voice_
+
+> XXVII Fond wretch! and what canst thou relate, But deeds of sorrow, shame, and sin? Thy deeds are proved⁠—thou know’st thy fate; But come, thy tale⁠—begin⁠—begin. But I have griefs of other kind, Troubles and sorrows more severe; Give me to ease my tortured mind, Lend to my woes a patient ear; And let me, if I may not find A friend to help⁠—find one to hear. Crabbe’s Hall of Justice When Urfried had with clamours and menaces driven Rebecca back to the apartment from which she had sallied, she proceeded to conduct the unwilling Cedric into a small apartment, the door of which she heedfully secured. Then fetching from a cupboard a stoup of wine and two flagons, she placed them on the table, and said in a tone rather asserting a fact than asking a question, “Thou art Saxon, father⁠—Deny it not,”
+
+### Tess of the d’Urbervilles: Section 37
+
+_Mid-book rhythm_
+
+> XXVIII Her refusal, though unexpected, did not permanently daunt Clare. His experience of women was great enough for him to be aware that the negative often meant nothing more than the preface to the affirmative; and it was little enough for him not to know that in the manner of the present negative there lay a great exception to the dallyings of coyness. That she had already permitted him to make love to her he read as an additional assurance, not fully trowing that in the fields and pastures to “sigh gratis” is by no means deemed waste; lovemaking being here more often accepted inconsiderately and for its own sweet sake than in the carking, anxious homes of the ambitious, where a girl’s craving for an establishment paralyzes her healthy thought of a passion as an end. “Tess, why did you say ‘no’ in such a positive way?” he asked her in the course of a few days. She started.
+
+### Tess of the d’Urbervilles: Section 57
+
+_Dialogue and character voice_
+
+> XLVI Several days had passed since her futile journey, and Tess was afield. The dry winter wind still blew, but a screen of thatched hurdles erected in the eye of the blast kept its force away from her. On the sheltered side was a turnip-slicing machine, whose bright blue hue of new paint seemed almost vocal in the otherwise subdued scene. Opposite its front was a long mound or “grave,” in which the roots had been preserved since early winter. Tess was standing at the uncovered end, chopping off with a billhook the fibres and earth from each root, and throwing it after the operation into the slicer. A man was turning the handle of the machine, and from its trough came the newly-cut swedes, the fresh smell of whose yellow chips was accompanied by the sounds of the snuffling wind, the smart swish of the slicing-blades, and the choppings of the hook in Tess’s leather-gloved hand.

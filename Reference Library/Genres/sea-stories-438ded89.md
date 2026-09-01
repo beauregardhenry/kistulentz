@@ -2,25 +2,57 @@
 # Sea stories
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 9
 
 ## Learned profile
 
-- Words analyzed: 219608
-- Reading grade: 4.3
-- Average sentence: 8.5 words
-- Average paragraph: 11.8 words
-- Dialogue share: 22%
+- Words analyzed: 814011
+- Reading grade: 5.2
+- Average sentence: 14.0 words
+- Average paragraph: 45.4 words
+- Dialogue share: 23%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: whale, though, captain, chapter, seemed, white, whales, round, three, sperm, himself, water, without, world, cried, thought, night, boats, whole, things, whaling, hands, small, pequod
-- Character names: Queequeg, Peleg, Jonah, Stubb, Starbuck, Ahab, Moby Dick, Ishmael, Yojo, Mrs. Hussey, Horn, Elijah, Tashtego, Bildad, Leviathan, Pip, Mr. Starbuck, Woe, Hark, Linnæus, Peter Coffin, Tarshish, Adam, Albino, Belshazzar, Cabaco, Dost, Emir, John Hunter, Lazarus
+- Tempo: steady
+- Tone: rhythmically varied, balanced, narrative-forward, dialogue-forward, energetic, direct, measured, rhythmically even
+- Recurring vocabulary: himself, seemed, without, moment, stood, thought, water, cried, night, nothing, round, though, hands, heard, quite, shall, three, voice, whole, began, captain, don’t, however, things, white, above, answered, behind, black, board, boats, cabin, course, house, hundred, light, matter, myself, people, world
+- Character names: Mr, Curtis, Dr, Jack, Mr., Mrs, Peter, Adam, Ahab, Albino, Ali, Allah, Allistoun, Amundsen, André, André Letourneur, Anne, Anthony, Arabella, Arabella Knowles, Archie, Arwenack, Asad, Aspinwall, Ayoub, Baal, Bahr, Baker, Bas-Thornton, Basha, Baynes, Belshazzar, Berg, Bergen, Bering Sea, Bernt, Bildad, Bill, Bill Scanlan, Bishop, Bob Scanlan, Boel, Brandi, Brunsberg, Burke, Cabaco, Cahusac, Captain Allistoun, Captain Curtis, Captain Howie, Captain Huntly, Charleston, Charley, Charley Furuseth, Cinco Llagas, Clorinda, Colonel Bishop, Cook, Cooky, Craik, Creighton, Cyrus Headley, Davis, Dawson, Death Larsen, Don Diego, Don Esteban, Don Francisco, Don Miguel, Don Miguel de Espinosa, Donkin, Dost, Dowlas, Dundee, E. Henley, Edward, Eilert, Elias, Elijah, Emily
 
 ## Books
+- [A High Wind in Jamaica](../Books/8A68D93A-32DA-4268-AC97-1CEBAE4FBDD3.md)
+- [Captain Blood](../Books/B15BDB89-D911-404F-80D9-3C623CC15589.md)
 - [Moby Dick; Or, The Whale](../Books/8EED98A3-73C5-4C4D-B943-2EBCE6CDA5D5.md)
+- [Short Fiction](../Books/40FB11AD-07A9-45B8-A6FA-109EE49C74DE.md)
+- [The Maracot Deep](../Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md)
+- [The Nigger of the Narcissus](../Books/B5E8C3BF-C593-407F-872B-FFB86170B141.md)
+- [The Sea Hawk](../Books/9D1C03FF-B1E0-403D-8F88-82DDDA2284FF.md)
+- [The Sea-Wolf](../Books/7A163332-7787-4A84-B3DA-49A5361AF86E.md)
+- [The Survivors of the Chancellor](../Books/0961F477-ACBC-4682-9147-B2E00C4E861E.md)
 
 ## Representative excerpts
+
+### A High Wind in Jamaica: Section 8
+
+_Mid-book rhythm_
+
+> VI I The weeks passed in aimless wandering. For the children, the lapse of time acquired once more the texture of a dream: things ceased happening: every inch of the schooner was now as familiar to them as the Clorinda had been, or Ferndale: they settled down quietly to grow, as they had done at Ferndale, and as they would have done, had there been time, on the Clorinda. And then an event did occur, to Emily, of considerable importance. She suddenly realised who she was. There is little reason that one can see why it should not have happened to her five years earlier, or even five later; and none, why it should have come that particular afternoon.
+
+### A High Wind in Jamaica: Section 12
+
+_Dialogue and character voice_
+
+> X I Emily grew quite a lot during the passage to England on the steamer: suddenly shot up, as children will at that age. But she did it without any gawkiness: instead, an actual increase of grace. Her legs and arms, though longer, did not lose any of the nicety of their shape; and her grave face lost none of its attractiveness by being a fraction nearer your own. The only drawback was that she used to get pains in the calves of her legs, now, and sometimes in her back: but those of course did not show. (They were all provided with clothes by a general collection, so it did not matter that she grew out of her old ones.) She was a nice child: and being a little less shy than formerly, was soon the most popular of all of them. Somehow, no one seemed to care very much for Margaret: old ladies used to shake their heads over her a good deal.
+
+### Captain Blood: Section 18
+
+_Mid-book rhythm_
+
+> XVI The Trap That affair of Mademoiselle d’Ogeron bore as its natural fruit an improvement in the already cordial relations between Captain Blood and the Governor of Tortuga. At the fine stone house, with its green-jalousied windows, which M. d’Ogeron had built himself in a spacious and luxuriant garden to the east of Cayona, the Captain became a very welcome guest. M. d’Ogeron was in the Captain’s debt for more than the twenty thousand pieces of eight which he had provided for mademoiselle’s ransom; and shrewd, hard bargain-driver though he might be, the Frenchman could be generous and understood the sentiment of gratitude. This he now proved in every possible way, and under his powerful protection the credit of Captain Blood among the buccaneers very rapidly reached its zenith.
+
+### Captain Blood: Section 28
+
+_Dialogue and character voice_
+
+> XXVI M. de Rivarol Captain Blood was still in that disgruntled mood when he sailed from Tortuga, and still in that mood when he came to his moorings in the bay of Petit Goave. In that same mood he greeted M. le Baron de Rivarol when this nobleman with his fleet of five men-of-war at last dropped anchor alongside the buccaneer ships, in the middle of February. The Frenchman had been six weeks on the voyage, he announced, delayed by unfavourable weather. Summoned to wait on him, Captain Blood repaired to the Castle of Petit Goave, where the interview was to take place. The Baron, a tall, hawk-faced man of forty, very cold and distant of manner, measured Captain Blood with an eye of obvious disapproval. Of Hagthorpe, Yberville, and Wolverstone who stood ranged behind their captain, he took no heed whatever. M. de Cussy offered Captain Blood a chair. “A moment, M. de Cussy. I do not think M.
 
 ### Moby Dick; Or, The Whale: Section 1
 
@@ -33,3 +65,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER 62. The Dart. A word concerning an incident in the last chapter. According to the invariable usage of the fishery, the whale-boat pushes off from the ship, with the headsman or whale-killer as temporary steersman, and the harpooneer or whale-fastener pulling the foremost oar, the one known as the harpooneer-oar. Now it needs a strong, nervous arm to strike the first iron into the fish; for often, in what is called a long dart, the heavy implement has to be flung to the distance of twenty or thirty feet.
+
+### Short Fiction: Section 1
+
+_Opening voice_
+
+> Short Fiction By Jonas Lie. Translated by Robert Nisbet Bain and Littell’s Living Age.
+
+### Short Fiction: Section 10
+
+_Mid-book rhythm_
+
+> The Cormorants of Andvaer Outside Andvaer lies an island, the haunt of wild birds, which no man can land upon, be the sea never so quiet; the sea-swell girds it round about with sucking whirlpools and dashing breakers. On fine summer days something sparkles there through the sea-foam like a large gold ring; and, time out of mind, folks have fancied there was a treasure there left by some pirates of old. At sunset, sometimes, there looms forth from thence a vessel with a castle astern, and a glimpse is caught now and then of an old-fashioned galley. There it lies as if in a tempest, and carves its way along through heavy white rollers. Along the rocks sit the cormorants in a long black row, lying in wait for dogfish. But there was a time when one knew the exact number of these birds.
+
+### The Maracot Deep: Section 6
+
+_Mid-book rhythm_
+
+> IV It was a few days after our arrival that our hosts or our captors⁠—we were dubious sometimes as to which to call them⁠—took us out for an expedition upon the bottom of the ocean. Six of them came with us, including Manda, the chief. We assembled in the same exit chamber in which we had originally been received, and we were now in a condition to examine it a little more closely. It was a very large place, at least a hundred feet each way, and its low walls and ceiling were green with marine growths and dripping with moisture. A long row of pegs, with marks which I presume were numbers, ran round the whole room, and on each was hung one of the semitransparent bells of vitrine and a pair of the shoulder batteries which ensured respiration. The floor was of flagged stone worn into concavities, the footsteps of many generations, these hollows now lying as pools of shallow water.
+
+### The Maracot Deep: Section 9
+
+_Dialogue and character voice_
+
+> VII I have already said that within a short distance of the underground dwelling of the Atlanteans, prepared beforehand to meet the catastrophe which overwhelmed their native land, there lay the ruins of that great city of which their dwelling had once been part. I have described also how with the vitrine bells charged with oxygen upon our heads we were taken to visit this place, and I tried to convey how deep were our emotions as we viewed it. No words can describe the tremendous impression produced by those colossal ruins, the huge carved pillars and gigantic buildings, all lying stark and silent in the grey phosphorescent light of the bathybian deeps, with no movement save the slow wash of the giant fronds in the deep-sea currents, or the flickering shadows of the great fish which passed through the gaping doors or flitted round the dismantled chambers.

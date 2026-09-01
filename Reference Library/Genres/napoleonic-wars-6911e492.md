@@ -2,25 +2,39 @@
 # Napoleonic Wars
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 434530
-- Reading grade: 3.8
-- Average sentence: 7.8 words
-- Average paragraph: 11.1 words
-- Dialogue share: 24%
+- Words analyzed: 1191386
+- Reading grade: 5.5
+- Average sentence: 14.3 words
+- Average paragraph: 38.3 words
+- Dialogue share: 30%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: himself, princess, chapter, thought, count, french, began, moscow, without, emperor, don’t, seemed, heard, young, general, nothing, whole, countess, looking, though, people, round, voice, smile
-- Character names: Pierre, Andrew, Kutúzov, Anna Mikháylovna, Rostóv, Borís, Anna Pávlovna, Denísov, Natásha, Dólokhov, Nicholas, Bilíbin, Mary, Nesvítski, Telyánin, Prince Andrew, Bagratión, Bolkónski, Véra, Bezúkhov, Anna, Napoleon, Hippolyte, Mack, Petersburg, Dmítrievna, Lise, Buonaparte, Mademoiselle Bourienne, Mamma
+- Tone: balanced, narrative-forward, rhythmically varied, dialogue-forward, direct, rhythmically even
+- Recurring vocabulary: count, countess, himself, nothing, seemed, though, thought, without, young, began, don’t, emperor, french, general, heard, looking, moscow, people, princess, round, smile, voice, whole, chapter, father, francs, heart, house, husband, moment, mother, paris, perhaps, prince, thousand, three, whose, woman, women, world
+- Character names: Napoleon, Anna Mikháylovna, Anna Pávlovna, Bagratión, Bezúkhov, Bilíbin, Bolkónski, Borís, Denísov, Dmítrievna, Dólokhov, Hippolyte, Kutúzov, Mack, Mademoiselle Bourienne, Natásha, Nesvítski, Petersburg, Pierre, Rostóv, Telyánin, Véra, Adélaïde, Andrew, André, Anna, Auersperg, Augustine, Bartolomeo, Berg, Buonaparte, Clara, Denis, Emilie, Ginevra, Guillaume, Ippolit, Joseph, Joseph Lebas, Kozlóvski, Laure, Lise, Liza, Louis, Lucien, Luigi, Madame Guillaume, Madame Roguin, Madame Servin, Madame de Rouville, Mademoiselle Thirion, Mademoiselle de Fontaine, Mamma, Mary, Maximilien, Monsieur, Monsieur Guillaume, Monsieur Pierre, Monsieur de Fontaine, Murat, Nicholas, Nikoláy, Piombo, Prince Andrew, Servin, Virginie, de Fontaine
 
 ## Books
+- [Shorts from Scenes from Private Life](../Books/DBD7123B-29E7-4484-954F-B0B239145E79.md)
 - [War and Peace](../Books/7F6ABC84-93E3-4FF3-B5CA-F4A05CED182D.md)
+- [War and Peace](../Books/FEB46721-EB3E-4498-8BD1-46DB874BBD08.md)
 
 ## Representative excerpts
+
+### Shorts from Scenes from Private Life: Section 1
+
+_Opening voice_
+
+> Shorts from Scenes from Private Life By Honoré de Balzac. Translated by Clara Bell and Ellen Marriage.
+
+### Shorts from Scenes from Private Life: Section 14
+
+_Mid-book rhythm_
+
+> Another Study of Woman To Léon Gozlan as a Token of Literary Good-fellowship. At Paris there are almost always two separate parties going on at every ball and rout. First, an official party, composed of the persons invited, a fashionable and much-bored circle. Each one grimaces for his neighbor’s eye; most of the younger women are there for one person only; when each woman has assured herself that for that one she is the handsomest woman in the room, and that the opinion is perhaps shared by a few others, a few insignificant phrases are exchanged, as: “Do you think of going away soon to La Crampade?” “How well Madame de Portenduère sang!” “Who is that little woman with such a load of diamonds?”
 
 ### War and Peace: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER III The weather was already growing wintry and morning frosts congealed an earth saturated by autumn rains. The verdure had thickened and its bright green stood out sharply against the brownish strips of winter rye trodden down by the cattle, and against the pale-yellow stubble of the spring buckwheat. The wooded ravines and the copses, which at the end of August had still been green islands amid black fields and stubble, had become golden and bright-red islands amid the green winter rye. The hares had already half changed their summer coats, the fox cubs were beginning to scatter, and the young wolves were bigger than dogs. It was the best time of the year for the chase.
+
+### War and Peace: Section 145
+
+_Mid-book rhythm_
+
+> I The Bible legend tells us that the absence of labor⁠—idleness⁠—was a condition of the first man’s blessedness before the Fall. Fallen man has retained a love of idleness, but the curse weighs on the race not only because we have to seek our bread in the sweat of our brows, but because our moral nature is such that we cannot be both idle and at ease. An inner voice tells us we are in the wrong if we are idle. If man could find a state in which he felt that though idle he was fulfilling his duty, he would have found one of the conditions of man’s primitive blessedness. And such a state of obligatory and irreproachable idleness is the lot of a whole class⁠—the military. The chief attraction of military service has consisted and will consist in this compulsory and irreproachable idleness.
+
+### War and Peace: Section 231
+
+_Dialogue and character voice_
+
+> XXV The officers were about to take leave, but Prince Andréy, apparently reluctant to be left alone with his friend, asked them to stay and have tea. Seats were brought in and so was the tea. The officers gazed with surprise at Pierre’s huge stout figure and listened to his talk of Moscow and the position of our army, round which he had ridden. Prince Andréy remained silent, and his expression was so forbidding that Pierre addressed his remarks chiefly to the good-natured battalion commander. “So you understand the whole position of our troops?” Prince Andréy interrupted him. “Yes⁠—that is, how do you mean?” said Pierre. “Not being a military man I can’t say I have understood it fully, but I understand the general position.” “Well, then, you know more than anyone else, be it who it may,” said Prince Andréy. “Oh!” said Pierre, looking over his spectacles in perplexity at Prince Andréy.

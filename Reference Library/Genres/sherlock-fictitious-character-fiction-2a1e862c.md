@@ -2,25 +2,42 @@
 # Sherlock (Fictitious character) -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 6
 
 ## Learned profile
 
-- Words analyzed: 108301
-- Reading grade: 3.1
-- Average sentence: 7.8 words
-- Average paragraph: 11.7 words
-- Dialogue share: 74%
+- Words analyzed: 566876
+- Reading grade: 4.3
+- Average sentence: 12.5 words
+- Average paragraph: 35.3 words
+- Dialogue share: 72%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: shall, matter, house, night, heard, however, nothing, quite, morning, gutenberg, project, street, round, small, without, young, myself, thought, light, business, father, hands, himself, window
-- Character names: Holmes, Sherlock Holmes, Watson, Mr. Holmes, Lestrade, Simon, Clair, McCarthy, Mr, Irene Adler, Mr. Wilson, Frank, Miss Stoner, Bradstreet, Doctor, Horner, Mr. Sherlock Holmes, Peterson, Mr. Windibank, Mr. Hosmer Angel, Mr. Merryweather, Turner, Briony Lodge, Dr. Grimesby Roylott, Dr. Roylott, James, Openshaw, Hatherley, John, Jones
+- Tone: dialogue-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: heard, himself, house, matter, morning, night, nothing, round, shall, thought, however, don’t, friend, quite, street, three, window, young, certainly, cried, hands, light, myself, place, without, woman, business, clear, course, father, london, moment, papers, small, enough, fellow, gutenberg, inspector, leave, paper
+- Character names: Holmes, Mr, Sherlock Holmes, Watson, Dr, Lestrade, Mrs, Hudson, James, Bradstreet, Briony Lodge, Clair, Doctor, Frank, Hatherley, Horner, Irene Adler, Jones, McCarthy, Miss Stoner, Mycroft, Peterson, Simon, Turner, Alec, Alec Cunningham, Altamont, Amberley, Barclay, Baron Gruner, Baynes, Bennett, Beppo, Billy, Blessington, Breckinridge, Brunton, Cadogan West, Carruthers, Caulfield Gardens, Colonel Moran, Colonel Ross, Culverton Smith, Cunningham, Dodd, Dolores, Dr. Grimesby Roylott, Dr. Roylott, Duncan Ross, Esher, Ferguson, Garcia, Gennaro, George, Gibson, Gilchrist, Gloria Scott, Godfrey, Gregson, Hall Pycroft, Hayes, Henderson, Henry Baker, Hilton Cubitt, Hopkins, Hosmer Angel, Huxtable, Ian Murdoch, Jabez Wilson, Jack, James Wilder, John, John Straker, Jonas Oldacre, Josiah Amberley, Kent, Lady Frances, Leonardo, Maberley, Martha
 
 ## Books
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
 
 ## Representative excerpts
+
+### His Last Bow: Section 7
+
+_Mid-book rhythm_
+
+> The Adventure of the Bruce-Partington Plans In the third week of November, in the year 1895, a dense yellow fog settled down upon London. From the Monday to the Thursday I doubt whether it was ever possible from our windows in Baker Street to see the loom of the opposite houses. The first day Holmes had spent in cross-indexing his huge book of references. The second and third had been patiently occupied upon a subject which he had recently made his hobby⁠—the music of the Middle Ages. But when, for the fourth time, after pushing back our chairs from breakfast we saw the greasy, heavy brown swirl still drifting past us and condensing in oily drops upon the windowpanes, my comrade’s impatient and active nature could endure this drab existence no longer.
+
+### His Last Bow: Section 5
+
+_Dialogue and character voice_
+
+> The Adventure of Wisteria Lodge The Singular Experience of Mr. John Scott Eccles I find it recorded in my notebook that it was a bleak and windy day towards the end of March in the year 1892. Holmes had received a telegram while we sat at our lunch, and he had scribbled a reply. He made no remark, but the matter remained in his thoughts, for he stood in front of the fire afterwards with a thoughtful face, smoking his pipe, and casting an occasional glance at the message. Suddenly he turned upon me with a mischievous twinkle in his eyes. “I suppose, Watson, we must look upon you as a man of letters,” said he. “How do you define the word ‘grotesque’?” “Strange⁠—remarkable,” I suggested. He shook his head at my definition. “There is surely something more than that,” said he; “some underlying suggestion of the tragic and the terrible.
 
 ### The Adventures of Sherlock Holmes: Section 1
 
@@ -33,3 +50,39 @@ _Opening voice_
 _Mid-book rhythm_
 
 > VII. THE ADVENTURE OF THE BLUE CARBUNCLE I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+
+### The Adventures of Sherlock Holmes: Section 9
+
+_Mid-book rhythm_
+
+> The Adventure of the Blue Carbuncle I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+
+### The Adventures of Sherlock Holmes: Section 14
+
+_Dialogue and character voice_
+
+> The Adventure of the Copper Beeches “To the man who loves art for its own sake,” remarked Sherlock Holmes, tossing aside the advertisement sheet of the Daily Telegraph, “it is frequently in its least important and lowliest manifestations that the keenest pleasure is to be derived. It is pleasant to me to observe, Watson, that you have so far grasped this truth that in these little records of our cases which you have been good enough to draw up, and, I am bound to say, occasionally to embellish, you have given prominence not so much to the many causes célèbres and sensational trials in which I have figured but rather to those incidents which may have been trivial in themselves, but which have given room for those faculties of deduction and of logical synthesis which I have made my special province.” “And yet,”
+
+### The Casebook of Sherlock Holmes: Section 10
+
+_Mid-book rhythm_
+
+> The Adventure of the Three Garridebs It may have been a comedy, or it may have been a tragedy. It cost one man his reason, it cost me a bloodletting, and it cost yet another man the penalties of the law. Yet there was certainly an element of comedy. Well, you shall judge for yourselves. I remember the date very well, for it was in the same month that Holmes refused a knighthood for services which may perhaps some day be described. I only refer to the matter in passing, for in my position of partner and confidant I am obliged to be particularly careful to avoid any indiscretion. I repeat, however, that this enables me to fix the date, which was the latter end of June, 1902, shortly after the conclusion of the South African War.
+
+### The Casebook of Sherlock Holmes: Section 11
+
+_Dialogue and character voice_
+
+> The Problem of Thor Bridge Somewhere in the vaults of the bank of Cox and Co., at Charing Cross, there is a travel-worn and battered tin dispatch-box with my name, John H. Watson, M. D., Late Indian Army, painted upon the lid. It is crammed with papers, nearly all of which are records of cases to illustrate the curious problems which Mr. Sherlock Holmes had at various times to examine. Some, and not the least interesting, were complete failures, and as such will hardly bear narrating, since no final explanation is forthcoming. A problem without a solution may interest the student, but can hardly fail to annoy the casual reader. Among these unfinished tales is that of Mr. James Phillimore, who, stepping back into his own house to get his umbrella, was never more seen in this world.
+
+### The Memoirs of Sherlock Holmes: Section 9
+
+_Mid-book rhythm_
+
+> The Reigate Puzzle It was some time before the health of my friend Mr. Sherlock Holmes recovered from the strain caused by his immense exertions in the spring of ’87. The whole question of the Netherland-Sumatra Company and of the colossal schemes of Baron Maupertuis are too recent in the minds of the public, and are too intimately concerned with politics and finance to be fitting subjects for this series of sketches. They led, however, in an indirect fashion to a singular and complex problem which gave my friend an opportunity of demonstrating the value of a fresh weapon among the many with which he waged his lifelong battle against crime. On referring to my notes I see that it was upon the 14th of April that I received a telegram from Lyons which informed me that Holmes was lying ill in the Hotel Dulong.
+
+### The Memoirs of Sherlock Holmes: Section 13
+
+_Dialogue and character voice_
+
+> The Naval Treaty The July which immediately succeeded my marriage was made memorable by three cases of interest, in which I had the privilege of being associated with Sherlock Holmes and of studying his methods. I find them recorded in my notes under the headings of “The Adventure of the Second Stain,” “The Adventure of the Naval Treaty,” and “The Adventure of the Tired Captain.” The first of these, however, deals with interest of such importance and implicates so many of the first families in the kingdom that for many years it will be impossible to make it public. No case, however, in which Holmes was engaged has ever illustrated the value of his analytical methods so clearly or has impressed those who were associated with him so deeply.

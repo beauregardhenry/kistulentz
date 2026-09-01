@@ -2,23 +2,25 @@
 # Knights and knighthood -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 122262
-- Reading grade: 3.3
-- Average sentence: 8.3 words
-- Average paragraph: 11.6 words
-- Dialogue share: 28%
+- Words analyzed: 396078
+- Reading grade: 6.0
+- Average sentence: 18.6 words
+- Average paragraph: 38.1 words
+- Dialogue share: 40%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: people, couldn’t, without, didn’t, nothing, enough, three, project, going, gutenberg, myself, years, chapter, hundred, knights, shall, knight, things, world, place, course, don’t, thought, himself
-- Character names: Sandy, Merlin, Arthur, Launcelot, Kay, Clarence, Marco, Sir Marhaus, Gareth, Gawaine, Jones, Sir Gawaine, Alisande, Sir Launcelot, Dowley, Morgan le Fay, Ozana, Scott, Garry, Gaul, Joseph, Madame, Marcos, Sir Sagramor, Boss, Inde, LAUNCELOT, Latin, Lionel, Lo
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, measured, narrative-forward, rhythmically even
+- Recurring vocabulary: himself, knight, shall, answered, black, place, replied, without, arrow, athelstane, began, behind, better, boeuf, castle, chapter, continued, couldn’t, course, cried, didn’t, don’t, enough, father, forest, forth, front, going, grand, guilbert, gutenberg, heart, house, hundred, indeed, knights, lawless, lists, master, moment
+- Character names: John, Launcelot, Richard, Alicia, Alisande, Arblaster, Arthur, Ashby, Aymer, Bennet, Bois-Guilbert, Boss, Brian de Bois-Guilbert, Carter, Cedric, Clarence, Daniel, Daniel Brackley, De Bracy, Dick, Dick Shelton, Dowley, Duckworth, Dunstan, Ellis, Ellis Duckworth, Fitzurse, Gareth, Garry, Gaul, Gawaine, Gurth, Harry, Hatch, Hubert, Hugh, Inde, Isaac, Isaac the Jew, Ivanhoe, Jack, Jew, Joan, Joanna, Joanna Sedley, Jones, Joseph, Kay, Latin, Lionel, Lo, Locksley, Madame, Marco, Marcos, Mary, Master Shelton, Matcham, Merlin, Miller, Morgan le Fay, Mr, Oswald, Ozana, Palmer, Pirret, Rebecca, Richard Shelton, Rowena, Sandy, Saxon, Scott, Selden, Shelton, Sir Daniel, Sir Gawaine, Sir Launcelot, Sir Marhaus, Sir Sagramor, St
 
 ## Books
 - [A Connecticut Yankee in King Arthur's Court](../Books/A5DD5A9F-9C99-4931-BA33-F1088AD975F1.md)
+- [Ivanhoe](../Books/C2611716-5F13-48E1-A248-8CFB0DF89049.md)
+- [The Black Arrow](../Books/A555B44C-89E6-4599-BA25-745CB505D8C1.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XXI. THE PILGRIMS When I did get to bed at last I was unspeakably tired; the stretching out, and the relaxing of the long-tense muscles, how luxurious, how delicious! but that was as far as I could get—sleep was out of the question for the present. The ripping and tearing and squealing of the nobility up and down the halls and corridors was pandemonium come again, and kept me broad awake. Being awake, my thoughts were busy, of course; and mainly they busied themselves with Sandy’s curious delusion. Here she was, as sane a person as the kingdom could produce; and yet, from my point of view she was acting like a crazy woman. My land, the power of training! of influence! of education! It can bring a body up to believe anything. I had to put myself in Sandy’s place to realize that she was not a lunatic.
+
+### Ivanhoe: Section 27
+
+_Mid-book rhythm_
+
+> XXI Alas, how many hours and years have past, Since human forms have round this table sat, Or lamp, or taper, on its surface gleamed! Methinks, I hear the sound of time long pass’d Still murmuring o’er us, in the lofty void Of these dark arches, like the ling’ring voices Of those who long within their graves have slept. Orra, a Tragedy While these measures were taking in behalf of Cedric and his companions, the armed men by whom the latter had been seized, hurried their captives along towards the place of security, where they intended to imprison them. But darkness came on fast, and the paths of the wood seemed but imperfectly known to the marauders. They were compelled to make several long halts, and once or twice to return on their road to resume the direction which they wished to pursue.
+
+### Ivanhoe: Section 33
+
+_Dialogue and character voice_
+
+> XXVII Fond wretch! and what canst thou relate, But deeds of sorrow, shame, and sin? Thy deeds are proved⁠—thou know’st thy fate; But come, thy tale⁠—begin⁠—begin. But I have griefs of other kind, Troubles and sorrows more severe; Give me to ease my tortured mind, Lend to my woes a patient ear; And let me, if I may not find A friend to help⁠—find one to hear. Crabbe’s Hall of Justice When Urfried had with clamours and menaces driven Rebecca back to the apartment from which she had sallied, she proceeded to conduct the unwilling Cedric into a small apartment, the door of which she heedfully secured. Then fetching from a cupboard a stoup of wine and two flagons, she placed them on the table, and said in a tone rather asserting a fact than asking a question, “Thou art Saxon, father⁠—Deny it not,”
+
+### The Black Arrow: Section 22
+
+_Mid-book rhythm_
+
+> IV The “Good Hope” An hour thereafter, Dick was back at the Goat and Bagpipes, breaking his fast, and receiving the report of his messengers and sentries. Duckworth was still absent from Shoreby; and this was frequently the case, for he played many parts in the world, shared many different interests, and conducted many various affairs. He had founded that fellowship of the Black Arrow, as a ruined man longing for vengeance and money; and yet among those who knew him best, he was thought to be the agent and emissary of the great kingmaker of England, Richard, Earl of Warwick. In his absence, at any rate, it fell upon Richard Shelton to command affairs in Shoreby; and, as he sat at meat, his mind was full of care, and his face heavy with consideration. It had been determined, between him and the Lord Foxham, to make one bold stroke that evening, and, by brute force, to set Joanna free.
+
+### The Black Arrow: Section 3
+
+_Dialogue and character voice_
+
+> Prologue John Amend-All On a certain afternoon, in the late springtime, the bell upon Tunstall Moat House was heard ringing at an unaccustomed hour. Far and near, in the forest and in the fields along the river, people began to desert their labours and hurry towards the sound; and in Tunstall hamlet a group of poor countryfolk stood wondering at the summons. Tunstall hamlet at that period, in the reign of old King Henry VI, wore much the same appearance as it wears today. A score or so of houses, heavily framed with oak, stood scattered in a long green valley ascending from the river. At the foot, the road crossed a bridge, and mounting on the other side, disappeared into the fringes of the forest on its way to the Moat House, and further forth to Holywood Abbey. Halfway up the village, the church stood among yews.

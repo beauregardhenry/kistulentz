@@ -2,24 +2,25 @@
 # Ethics
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 144720
-- Reading grade: 5.2
-- Average sentence: 8.5 words
-- Average paragraph: 11.4 words
-- Dialogue share: 11%
+- Words analyzed: 245443
+- Reading grade: 6.6
+- Average sentence: 17.8 words
+- Average paragraph: 27.6 words
+- Dialogue share: 7%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: himself, nature, power, themselves, things, without, world, according, anything, common, conscience, consider, death, either, europe, everything, german, hitherto, however, means, moral, morality, neither, nothing, people, perhaps, philosophers, philosophy, project, proper, reason, shall, shalt, spirit, taste, therefore, thyself, truth, whatsoever, whole
-- Character names: Christian, Gutenberg, Socrates, Adrianus, Alexander, Antoninus, Antoninus Pius, Apollonius, Aristophanes, Augustine, Augustus, Aurelius, Beethoven, Byron, C., Cagliostro, Casaubon, Cassius, Democritus, Descartes, Epictetus, Epicurus, Euripides, Evil, Farewell, Faustina, Florentine, Frederick, Galiani, Gods, Goethe, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hegel, Heraclitus, Jean Paul, Kant, Locke, Lucilla, Marcus, Marcus Aurelius, Napoleon, Pascal, Plato, Project Gutenberg, Rousseau, Schopenhauer, Schumann, Spinoza, VI, VIII, Verus, X., XI, XV, XVI, Zeno
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, measured, rhythmically varied
+- Recurring vocabulary: himself, nature, themselves, things, people, power, reason, therefore, without, world, according, anything, called, cannot, character, common, conscience, consider, death, different, either, europe, everything, faculty, friends, friendship, german, hitherto, however, means, moral, morality, neither, noble, nothing, others, ought, perhaps, philosophers, philosophy
+- Character names: Socrates, Christian, Euripides, Gutenberg, Heraclitus, Adrianus, Agathon, Alexander, Antoninus, Antoninus Pius, Apollonius, Aristophanes, Augustine, Augustus, Aurelius, Beethoven, Byron, Bywater, C., Cagliostro, Casaubon, Cassius, Democritus, Descartes, Epictetus, Epicurus, Evil, Farewell, Faustina, Florentine, Frederick, Galiani, Gods, Goethe, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hector, Hegel, Jean Paul, Kant, Locke, Lucilla, Marcus, Marcus Aurelius, Mr, Napoleon, Pascal, Peters, Pittacus, Plato, Priam, Project Gutenberg, Rousseau, Schopenhauer, Schumann, Solon, Spinoza, Troy, VI, VIII, Verus, X., XI, XV, XVI, Zeno, Zeus
 
 ## Books
 - [Beyond Good and Evil](../Books/7325DA2E-E663-49DC-93E0-87E829E8B764.md)
 - [Meditations](../Books/8042EE51-3745-41F4-A6F7-12F47276331D.md)
+- [Nicomachean Ethics](../Books/DD151E0F-1FCD-44DA-9C20-D4E694AA0463.md)
 
 ## Representative excerpts
 
@@ -46,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > THE EIGHTH BOOK I. This also, among other things, may serve to keep thee from vainglory; if thou shalt consider, that thou art now altogether incapable of the commendation of one, who all his life long, or from his youth at least, hath lived a philosopher's life. For both unto others, and to thyself especially, it is well known, that thou hast done many things contrary to that perfection of life. Thou hast therefore been confounded in thy course, and henceforth it will be hard for thee to recover the title and credit of a philosopher. And to it also is thy calling and profession repugnant.
+
+### Nicomachean Ethics: Section 10
+
+_Mid-book rhythm_
+
+> Book V Justice I We now have to inquire about justice and injustice, and to ask what sorts of acts they are concerned with, and in what sense justice observes the mean, and what are the extremes whose mean is that which is just. And in this inquiry we will follow the same method as before. We see that all men intend by justice to signify the sort of habit or character that makes men apt to do what is just, and which further makes them act justly92 and wish what is just; while by injustice they intend in like manner to signify the sort of character that makes men act unjustly and wish what is unjust. Let us lay this down, then, as an outline to work upon. We thus oppose justice and injustice, because a habit or trained faculty differs in this respect both from a science and a faculty or power.
+
+### Nicomachean Ethics: Section 16
+
+_Dialogue and character voice_
+
+> Endnotes In the few passages where this text is not followed, the reading adopted is indicated in a note. ↩ Reading τὸν αὐτὸν δὲ. ↩ To Aristotle, Politics is a much wider term than to us; it covers the whole field of human life, since man is essentially social (see the remainder of this and the following paragraph); it has to determine (1) what is the good?⁠—the question of this treatise (see the final paragraph of this section)⁠—and (2) what can law do to promote this good?⁠—the question of the sequel, which is specially called “The Politics;” cf. X 9. ↩ I.e. covers a part of the ground only: see preceding note. ↩ The expression τὰ ὡς ἐπὶ τὸ πολύ covers both (1) what is generally though not universally true, and (2) what is probable though not certain. ↩ “Works and Days,” 291⁠–⁠295. ↩ Cf. the opening paragraphs of VI 7 and 12, and X 7 and 8. ↩ Plato’s nephew and successor.

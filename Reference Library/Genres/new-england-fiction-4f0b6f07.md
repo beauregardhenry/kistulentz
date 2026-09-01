@@ -2,23 +2,24 @@
 # New England -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 228033
-- Reading grade: 3.3
-- Average sentence: 8.5 words
-- Average paragraph: 11.7 words
-- Dialogue share: 33%
+- Words analyzed: 264558
+- Reading grade: 3.6
+- Average sentence: 9.9 words
+- Average paragraph: 16.3 words
+- Dialogue share: 31%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: don’t, going, seemed, though, thought, ain’t, alone, anything, began, better, can’t, cried, didn’t, ethan’s, girls, guess, happy, heard, heart, herself, himself, house, kitchen, light, looking, moment, night, nothing, people, place, quite, rather, shall, stood, table, things, toward, voice, without, won’t
-- Character names: Ethan Frome, Ned, Amy, Andrew Hale, Annie, Beth, Brooke, Dan’l Byrne, Denis, Denis Eady, Dr. Buck, Eady, Esther, Ethan, Frank, Fred, Frome, Gutenberg, Gutenberg Literary Archive Foundation, Hagar, Hale, Hannah, Harmon, Harmon Gow, Hugo, Jo, John, Jotham, Jotham Powell, Kate, Laurence, Laurie, Madame, Marmee, Matt, Mattie, Mattie Silver, Meg, Michael Eady, Miss Kate, Mother, Mr, Mr. Brooke, Mr. Davis, Mr. Laurence, Mrs. Hale, Mrs. March, Mrs. Moffat, Ned Hale, Pip, Project Gutenberg, Ruth, Sallie, Shadd, Starkfield, Teddy, Zeena, Zenobia
+- Tone: direct, narrative-forward, rhythmically even, balanced, dialogue-forward, rhythmically varied
+- Recurring vocabulary: don’t, going, seemed, though, thought, ain’t, alone, ethan’s, guess, heard, himself, house, kitchen, light, moment, night, place, stood, table, toward, voice, without, zeena’s, anything, began, better, can’t, cried, didn’t, girls, happy, heart, herself, looking, nothing, people, quite, rather, shall, silence
+- Character names: Ethan Frome, Ned, Andrew Hale, Dan’l Byrne, Denis, Denis Eady, Eady, Ethan, Frome, Hale, Harmon, Harmon Gow, Jotham, Jotham Powell, Matt, Mattie, Mattie Silver, Michael Eady, Mr, Ned Hale, Ruth, Shadd, Starkfield, Zeena, Zenobia, Amy, Annie, Beth, Brooke, Buck, Dr, Dr. Buck, Edith Wharton, Esther, Frank, Fred, Gutenberg, Gutenberg Literary Archive Foundation, Hagar, Hannah, Hugo, Jo, John, Kate, Laurence, Laurie, Madame, Marmee, Meg, Miss Kate, Mother, Mr. Brooke, Mr. Davis, Mr. Laurence, Mrs, Mrs. Hale, Mrs. March, Mrs. Moffat, Pip, Project Gutenberg, Sallie, Teddy, Varnum
 
 ## Books
 - [Ethan Frome](../Books/E7B24322-665E-4F11-9592-438D0BC7FC75.md)
+- [Ethan Frome](../Books/274A8134-4AB5-48EA-9EDA-42D09D2598AD.md)
 - [Little Women](../Books/F45C776B-2ECC-4B2C-9B07-F5B00A6910A6.md)
 
 ## Representative excerpts
@@ -34,6 +35,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > V They finished supper, and while Mattie cleared the table Ethan went to look at the cows and then took a last turn about the house. The earth lay dark under a muffled sky and the air was so still that now and then he heard a lump of snow come thumping down from a tree far off on the edge of the wood-lot. When he returned to the kitchen Mattie had pushed up his chair to the stove and seated herself near the lamp with a bit of sewing. The scene was just as he had dreamed of it that morning. He sat down, drew his pipe from his pocket and stretched his feet to the glow. His hard day’s work in the keen air made him feel at once lazy and light of mood, and he had a confused sense of being in another world, where all was warmth and harmony and time could bring no change.
+
+### Ethan Frome: Section 9
+
+_Mid-book rhythm_
+
+> IV As soon as his wife had driven off Ethan took his coat and cap from the peg. Mattie was washing up the dishes, humming one of the dance tunes of the night before. He said “So long, Matt,” and she answered gaily “So long, Ethan”; and that was all. It was warm and bright in the kitchen. The sun slanted through the south window on the girl’s moving figure, on the cat dozing in a chair, and on the geraniums brought in from the doorway, where Ethan had planted them in the summer to “make a garden” for Mattie. He would have liked to linger on, watching her tidy up and then settle down to her sewing; but he wanted still more to get the hauling done and be back at the farm before night. All the way down to the village he continued to think of his return to Mattie. The kitchen was a poor place, not “spruce”
+
+### Ethan Frome: Section 12
+
+_Dialogue and character voice_
+
+> VII Ethan went out into the passage to hang up his wet garments. He listened for Zeena’s step and, not hearing it, called her name up the stairs. She did not answer, and after a moment’s hesitation he went up and opened her door. The room was almost dark, but in the obscurity he saw her sitting by the window, bolt upright, and knew by the rigidity of the outline projected against the pane that she had not taken off her travelling dress. “Well, Zeena,” he ventured from the threshold. She did not move, and he continued: “Supper’s about ready. Ain’t you coming?” She replied: “I don’t feel as if I could touch a morsel.” It was the consecrated formula, and he expected it to be followed, as usual, by her rising and going down to supper. But she remained seated, and he could think of nothing more felicitous than: “I presume you’re tired after the long ride.”
 
 ### Little Women: Section 1
 

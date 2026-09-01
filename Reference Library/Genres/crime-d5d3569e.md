@@ -2,39 +2,185 @@
 # Crime
 
 - Profile type: Genre
-- Books represented: 15
+- Books represented: 137
 
 ## Learned profile
 
-- Words analyzed: 2342097
-- Reading grade: 3.4
-- Average sentence: 7.4 words
-- Average paragraph: 10.8 words
-- Dialogue share: 27%
+- Words analyzed: 13644566
+- Reading grade: 5.0
+- Average sentence: 14.1 words
+- Average paragraph: 40.4 words
+- Dialogue share: 34%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward, energetic, rhythmically varied
-- Recurring vocabulary: without, nothing, people, himself, money, night, shall, began, place, things, though, thought, three, world, hands, house, moment, years, chapter, country, don’t, gutenberg, hundred, that’s, business, cannot, enough, father, heard, light, myself, perhaps, project, quite, stood, suddenly, water, white, young, above
-- Character names: Mr, Gutenberg, John, Project Gutenberg, Bill, Dr, George, Gutenberg Literary Archive Foundation, Smith, Tom, William, Alice, Brown, Brutus, Christ, Dmitri, Frank, Gutenberg Literary, Henderson, Jones, Joseph, Katerina Ivanovna, Mary, Peter, Saxon, White, Abelard, Abraham, Adam, Adams, Addison, Adelaide, Adelaïda Ivanovna, Agrippa, Alexey, Alexey Fyodorovitch, Allen, Alyona Ivanovna, Alyosha, Aniele, Anne, Antanas, Antanas Rudkus, Antony, Aristotle, Asaph, Avdotya Romanovna, B., B. Vaughan, Ballarat, Barry, Bartlett, Beauty Smith, Beaver, Ben, Benjamin, Benjamin Franklin, Bennett, Benny, Bert, Bertram, Beth, Bill Roberts, Billy, Billy Murphy, Billy Roberts, Biloxi, Blanchard, Blucher, Blunt, Boer, Bonajutus, Boult, Bradstreet, Brandreth, Bridewell, Briony Lodge, Bristed, Bud Strothers, Burton
+- Tone: dialogue-forward, rhythmically varied, direct, rhythmically even, balanced, narrative-forward, measured, inquisitive
+- Recurring vocabulary: nothing, thought, don’t, himself, night, house, going, without, three, though, shall, place, heard, that’s, people, moment, young, seemed, hands, voice, round, money, course, didn’t, quite, stood, woman, began, enough, light, morning, myself, things, father, world, you’re, anything, can’t, street, years
+- Character names: Mr, Mrs, Dr, George, John, Frank, Peter, Smith, Bill, Joe, Mary, Jack, Dick, Brown, Christ, Henry, James, Jerry, William, Chet, Chet Morton, Fenton Hardy, Hardy, Jim, Jimmy, Joe Hardy, Frank Hardy, Jew, Jones, Madame, Tom, Bob, Charles, Dan, Holmes, Hugh, Martin, Sherlock Holmes, Ted, Tony, Tony Prito, Watson, Albert, Alice, Arthur, Ben, Billy, Callie, David, Gee, Gonsalez, Harry, Jerry Gilroy, Johnny, Joseph, Lestrade, Léon, Manfred, Napoleon, Parker, Peterson, Poiccart, Robinson, Turner, Willie, Abraham, Adam, Anne, Antonio, Barney, Bennett, Bernard, Caesar, Charlie, Con Riley, De, Denny, Diana, Doctor, Drummond
 
 ## Books
+- [A Farewell to Arms](../Books/1E8AC6D5-88B7-4B83-9485-68FA3BDDD32A.md)
+- [A Thief in the Night](../Books/40E8B12C-4C43-4CDD-A5F2-4887A84D1F13.md)
 - [Alice's Adventures in Wonderland](../Books/A76E7C30-7CE8-4B66-A0D7-F527434B674B.md)
+- [American Indian Stories](../Books/DC4FA6FB-7FE2-4B18-94CB-E1EF24AC1434.md)
+- [Analects](../Books/BA82DEBF-08BE-4577-8603-91614AAD87D4.md)
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
+- [Around the World in Eighty Days](../Books/D78BDAF1-BC42-445C-9ADA-DFB464242C82.md)
+- [Ashenden](../Books/9AE25B84-43D4-431D-8E1F-E78C6D116855.md)
+- [Babbitt](../Books/3289091D-28CA-4DCC-BA1B-93C199BC5801.md)
+- [Black Beauty](../Books/4057CCD9-601D-4610-866D-1F15C4A8A3D7.md)
+- [Blue Hand](../Books/B91C524F-2BCF-4F70-903D-36EBEA262372.md)
+- [Bulldog Drummond](../Books/4513F14C-F744-4BA0-89B1-D2F6F931DED5.md)
+- [Call Mr. Fortune](../Books/1F68F31A-AA32-4414-B116-4B3C93BDD75E.md)
+- [Catriona](../Books/497657E2-3F7B-474C-8D6D-E2C0D5F5FB1F.md)
+- [Continental Op Stories](../Books/92EDF66B-F0B7-4584-B229-4A5F525977B8.md)
+- [Craig Kennedy Stories](../Books/2DDC7ADE-E788-4880-9354-3FBC5B7E6F50.md)
 - [Crime and Punishment](../Books/CB9F10BE-C785-454C-8EB5-4ED84B162D31.md)
+- [Democracy and Social Ethics](../Books/427AB8EE-6344-464B-8C72-28F01F147F59.md)
+- [Doctor Syn](../Books/56771839-E8CE-4E46-9EAB-8DD2A8086B80.md)
+- [Dubliners](../Books/B97DA2E7-F7DA-48AC-9BCE-7617370C6BA7.md)
+- [Essays](../Books/26D4DDC4-FE52-4D8D-B009-5CF361319D82.md)
 - [Following the Equator: A Journey Around the World](../Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md)
+- [Fred Gross Stories](../Books/C45A20AE-2B01-4E69-9898-77E89D961478.md)
+- [Ghost Stories](../Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md)
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
+- [Hunting for Hidden Gold](../Books/070A3190-5FFD-4A8A-A1D7-215054BD90E3.md)
+- [Huntingtower](../Books/534B5714-6330-416F-89DC-A2EBED4C2C3F.md)
+- [I Will Repay](../Books/EE1420DD-42C1-45EF-A6C3-3DD1708274F8.md)
+- [Kidnapped](../Books/97B01DE7-A22E-4074-A4CE-A1FA18B39AF3.md)
+- [Les Misérables](../Books/54C22B5C-C854-4041-B905-90ED4A05AB72.md)
+- [Leviathan](../Books/A8BEBEDD-6A78-4D58-9930-60BE6E21BB5C.md)
+- [Manalive](../Books/B9C3B0E0-ECE8-4AFB-BD16-B5C8FAE3CC6E.md)
 - [Memoirs of Benjamin Franklin; Written by Himself. \[Vol. 2 of 2\] / With his Most Interesting Essays, Letters, and Miscellaneous Writings; Familiar, Moral, Political, Economical, and Philosophical, Selected with Care from All His Published Productions, and Comprising Whatever Is Most Entertaining and Valuable to the General Reader](../Books/25B3973C-8C33-4DEC-B696-FE50B72043D7.md)
+- [Mr. Standfast](../Books/6FABB4C5-0118-4C59-92DF-47D609A66433.md)
+- [Narrative of the Life of Frederick Douglass](../Books/F0759194-183E-493D-825F-6D8DD5323EB3.md)
+- [Notes from Underground](../Books/F2F70316-110C-4FEC-918E-E293E7F281F4.md)
+- [Oliver Twist](../Books/2F1D0CB3-82FD-4509-BDAA-0E67FC9CA799.md)
 - [On the Duty of Civil Disobedience](../Books/BCDE62B6-FB87-48CF-A6A3-28FC16221F09.md)
+- [Partners in Crime](../Books/77BED452-3EC1-4A65-8DFE-C531A20BD810.md)
+- [Payment Deferred](../Books/E7B36F81-335D-44A0-BF15-3E56685595F7.md)
+- [Perishable Goods](../Books/1E3E3E45-91ED-4697-94FA-577CA9BB6163.md)
+- [Pimpernel and Rosemary](../Books/A5EC2717-0CF0-4423-8B16-D146EA2170F0.md)
+- [Pirates of Venus](../Books/4E627EE7-4C1A-431A-8F54-5FB07CDE8D37.md)
+- [Poirot Investigates](../Books/DA0B3FE2-54DD-4A9C-B15A-5967F67B4809.md)
+- [Room 13](../Books/4B79C267-89C1-45C7-B018-BDC6A1E2E427.md)
+- [Sailing Alone Around the World](../Books/BF702BC7-1E06-4927-9B35-BAF483DB1899.md)
+- [Savrola](../Books/6279F876-441F-4758-875C-86CD2E15D799.md)
+- [Short Fiction](../Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md)
+- [Short Fiction](../Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md)
+- [Short Fiction](../Books/7203B04C-2236-4B1B-991D-79C515DD4A33.md)
+- [Short Fiction](../Books/579B7B74-3280-4558-85F2-9E9F25489474.md)
+- [Short Fiction](../Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md)
+- [Short Fiction](../Books/A5847CBD-6206-4483-9BD7-CCAF81C665E2.md)
+- [Short Fiction](../Books/1B9A32A2-78E6-4A1A-B0AD-18D4797F34E0.md)
+- [Short Fiction](../Books/2D843B80-972F-458F-B8EA-685E290EF346.md)
+- [Short Fiction](../Books/CFD1BE27-28FA-45BD-BC4D-A5D17E95958F.md)
+- [Short Fiction](../Books/F53A3CD5-28E4-41C6-826D-3299F7FF213C.md)
+- [Short Science Fiction](../Books/92084061-D341-4079-B02B-B4AC66491131.md)
+- [Short Science Fiction](../Books/5913FEFF-D0A3-4955-A1BA-94BACF6EA0CD.md)
+- [Terror Keep](../Books/CC9314C3-481E-463D-9E2D-E7C818612242.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Amateur Cracksman](../Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md)
+- [The American Crisis](../Books/B0F30610-550F-4FC7-A8F5-DB72B9260FCF.md)
 - [The American Language / A Preliminary Inquiry into the Development of English in the United States](../Books/2CA65016-8046-41E2-A393-B0FA9D6EA43E.md)
+- [The Avenger](../Books/804C3344-FC00-44DD-9CB3-B0018119EA00.md)
+- [The Black Gang](../Books/3518182F-4869-4902-A704-F01283879F66.md)
+- [The Black Mask](../Books/72058380-BE2E-4FA8-AD38-4834BD773078.md)
 - [The Brothers Karamazov](../Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md)
+- [The Brothers Karamazov](../Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Chinese Parrot](../Books/1BA301D8-A4A0-467F-8C05-C618BCE17AFA.md)
+- [The Clue of the New Pin](../Books/3FCE8075-8056-4D83-9608-5805CA049888.md)
+- [The Clue of the Twisted Candle](../Books/7D293F4A-090A-4BF6-99D9-6202456EBC6B.md)
+- [The Comedy of Errors](../Books/DB84D839-9AB6-41FC-90FC-4F2EDBF64F92.md)
 - [The Complete Works of William Shakespeare](../Books/77215495-099F-4FA4-A57B-B79019AC6B8D.md)
+- [The Confessions of Arsène Lupin](../Books/EAC5960B-D125-4D16-85F6-1CF8B879BBD8.md)
+- [The Conjure Woman](../Books/17947445-CB15-4413-B18E-133521AB1859.md)
+- [The Council of Justice](../Books/7EE65772-7F1E-43A1-9099-581BD796FFC3.md)
+- [The Cruise of the Alerte](../Books/2A1E3CE2-3932-4FF7-9CB8-71349FDFAA79.md)
+- [The Door with Seven Locks](../Books/5923B3E1-C4B1-4F2C-9A27-0A96F165593A.md)
+- [The Four Just Men](../Books/714DD324-FFA2-4A34-BF60-9F49595459D9.md)
+- [The Giant Raft](../Books/4546D9E0-A37B-461F-B1F3-E3BB75011631.md)
+- [The Great Airport Mystery](../Books/D03FB408-0B0F-4D40-8682-B1ED0DE6CD2B.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
+- [The Hairy Ape](../Books/FE40BA9F-6774-4EAA-8C33-A3C6BB50786D.md)
+- [The House of the Dead](../Books/83BC8611-76C2-452B-A9C4-A1EC7987403C.md)
+- [The House on the Cliff](../Books/B8C376A1-E724-46AE-A28A-2D5550C1F6D8.md)
+- [The House Without a Key](../Books/76F874D4-B934-46E5-A9B2-7DC330722F8B.md)
+- [The Humbugs of the World](../Books/8C37E9CC-F136-4584-9011-7475E6A639D3.md)
 - [The Humbugs of the World / An Account of Humbugs, Delusions, Impositions, Quackeries, Deceits and Deceivers Generally, in All Ages](../Books/E74A1309-5B35-430A-B32A-2D9F96FAEA62.md)
 - [The Innocents Abroad](../Books/D1854AF8-409B-4868-A06A-820257E8A613.md)
+- [The Innocents Abroad](../Books/5C0775CF-C8B8-437F-9AEE-E5525FB08BC8.md)
+- [The Jew of Malta](../Books/95F1DA79-BC9C-47DB-89E4-BB4D63ACB9E1.md)
 - [The Jungle](../Books/2D55F5EC-8562-421D-8CC2-35A5FA87ADCA.md)
+- [The Just Men of Cordova](../Books/2C45F7BD-82CB-40A9-8BCB-40A61759BFE3.md)
+- [The Lady of the Barge](../Books/62B3F40E-F391-4E03-B606-D38F2E68F412.md)
+- [The Law of the Four Just Men](../Books/5DFA9000-0F80-4034-93F3-F807901893CE.md)
+- [The Lone Wolf](../Books/44B3C3B7-E2D0-424A-8A7E-4871892F642F.md)
+- [The Man in the Brown Suit](../Books/21775D97-805B-4CD7-8314-1CD228742B63.md)
+- [The Man of Destiny](../Books/AFB2537E-F5AD-47EE-8C14-81D577862B01.md)
+- [The Man Who Knew](../Books/EEF9FBB4-FEDE-4FF4-BCB9-39E8D9F6A41E.md)
+- [The Man Within](../Books/7FB9976E-A041-4F70-9B0D-6343719B1999.md)
+- [The Melody of Death](../Books/7ECB5922-A12F-4D5A-B807-D7A052A0D325.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Mind of Mr. J. G. Reeder](../Books/7155C166-21B4-4030-A6CA-A61F44F0E053.md)
+- [The Missing Chums](../Books/3C3961BF-5C18-424D-9637-49F47E466492.md)
+- [The Mucker](../Books/51ECEA12-65F8-40E8-AEC4-BC065F39CEA8.md)
+- [The Murder at the Vicarage](../Books/8659DE35-C91C-475C-BC2F-6ABA8C329B4D.md)
+- [The Old Man in the Corner](../Books/EBFC1BDB-4AFB-43DE-9496-84E24C296C5A.md)
+- [The Power of Darkness](../Books/BD49101C-CAE7-4BAD-AFDF-F19566E05C76.md)
+- [The Practice and Theory of Bolshevism](../Books/437979BF-7CF3-487B-AFD5-96C4B80FC2AB.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
+- [The Secret House](../Books/2DDDEC42-DF7E-4E9D-A4B5-BBBA99952EEA.md)
+- [The Secret of the Caves](../Books/2A85F61B-3E11-4D07-8CCF-1A9A6D85CE8B.md)
+- [The Secret of the Old Mill](../Books/E1091E68-51CC-44FF-A4AF-76AA10298D73.md)
+- [The Seven Dials Mystery](../Books/703DFD5E-EE15-46E0-9E73-E13B4B99B820.md)
+- [The Shore Road Mystery](../Books/157EF2C1-4961-4D7D-A564-76DCA940C56E.md)
+- [The Souls of Black Folk](../Books/71CEEAB7-577C-4275-B4A1-F41B17F8F1D2.md)
+- [The Sound and the Fury](../Books/B56CCC8B-ADB5-4CEC-83A0-B2F9D902CFBE.md)
+- [The Special Correspondent](../Books/D5FE565B-C52D-4821-8E2D-E353245F543F.md)
+- [The Square Emerald](../Books/DF9CDCD8-400C-4AF1-B3A0-1CAA512124BB.md)
+- [The Story of the Treasure Seekers](../Books/53F44F6B-3F84-4255-A93D-40A8C317F8DE.md)
+- [The Sword of Damocles](../Books/28461A01-8141-4C30-991A-5A00B38B78E3.md)
+- [The Taming of the Shrew](../Books/93427583-6CCA-411A-B642-16949719BFC2.md)
+- [The Third Round](../Books/F198F685-F32D-4BDC-B58B-81BB6D8DCAF4.md)
+- [The Three Hostages](../Books/2F8BABAA-1F42-4393-B2A5-04108B600866.md)
+- [The Three Just Men](../Books/A6973305-DD7D-4CC1-8052-8A6385B67D39.md)
+- [The Three Musketeers](../Books/684063C0-2D66-48E7-BAA5-703223E73126.md)
+- [The Tower Treasure](../Books/45019793-2533-4C26-8283-5F47AD71B2AF.md)
 - [The Valley of the Moon](../Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md)
+- [The Voyages of Doctor Dolittle](../Books/B4E5027A-E96F-4FBA-8DD5-EE77A51BEF14.md)
+- [Two Treatises of Government](../Books/096DE377-B223-4D80-A337-0364D4CAA082.md)
+- [Vikram and the Vampire](../Books/4930CFF2-D344-4FC1-967E-E01C0003CB6E.md)
+- [When God Laughs](../Books/F1B8023A-5748-4ED4-AB0B-633E40802E58.md)
 - [White Fang](../Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md)
+- [White Fang](../Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md)
 
 ## Representative excerpts
+
+### A Farewell to Arms: Section 27
+
+_Mid-book rhythm_
+
+> XXI In September the first cool nights came, then the days were cool and the leaves on the trees in the park began to turn color and we knew the summer was gone. The fighting at the front went very badly and they could not take San Gabriele. The fighting on the Bainsizza plateau was over and by the middle of the month the fighting for San Gabriele was about over too. They could not take it. Ettore was gone back to the front. The horses were gone to Rome and there was no more racing. Crowell had gone to Rome too, to be sent back to America. There were riots twice in the town against the war and bad rioting in Turin. A British major at the club told me the Italians had lost one hundred and fifty thousand men on the Bainsizza plateau and on San Gabriele. He said they had lost forty thousand on the Carso besides. We had a drink and he talked.
+
+### A Farewell to Arms: Section 32
+
+_Dialogue and character voice_
+
+> XXV Now in the fall the trees were all bare and the roads were muddy. I rode to Gorizia from Udine on a camion. We passed other camions on the road and I looked at the country. The mulberry trees were bare and the fields were brown. There were wet dead leaves on the road from the rows of bare trees and men were working on the road, tamping stone in the ruts from piles of crushed stone along the side of the road between the trees. We saw the town with a mist over it that cut off the mountains. We crossed the river and I saw that it was running high. It had been raining in the mountains. We came into the town past the factories and then the houses and villas and I saw that many more houses had been hit. On a narrow street we passed a British Red Cross ambulance. The driver wore a cap and his face was thin and very tanned. I did not know him.
+
+### A Thief in the Night: Section 8
+
+_Mid-book rhythm_
+
+> A Bad Night There was to be a certain little wedding in which Raffles and I took a surreptitious interest. The bride-elect was living in some retirement, with a recently widowed mother and an asthmatical brother, in a mellow hermitage on the banks of the Mole. The bridegroom was a prosperous son of the same suburban soil which had nourished both families for generations. The wedding presents were so numerous as to fill several rooms at the pretty retreat upon the Mole, and of an intrinsic value calling for a special transaction with the Burglary Insurance Company in Cheapside. I cannot say how Raffles obtained all this information. I only know that it proved correct in each particular. I was not indeed deeply interested before the event, since Raffles assured me that it was “a one-man job,” and naturally intended to be the one man himself.
+
+### A Thief in the Night: Section 6
+
+_Dialogue and character voice_
+
+> The Criminologists’ Club “But who are they, Raffles, and where’s their house? There’s no such club on the list in Whitaker.” “The Criminologists, my dear Bunny, are too few for a local habitation, and too select to tell their name in Gath. They are merely so many solemn students of contemporary crime, who meet and dine periodically at each other’s clubs or houses.” “But why in the world should they ask us to dine with them?” And I brandished the invitation which had brought me hotfoot to the Albany: it was from the Right Hon. the Earl of Thornaby, K.G.; and it requested the honor of my company at dinner, at Thornaby House, Park Lane, to meet the members of the Criminologists’ Club. That in itself was a disturbing compliment: judge then of my dismay on learning that Raffles had been invited too! “They have got it into their heads,”
 
 ### Alice's Adventures in Wonderland: Section 1
 
@@ -48,50 +194,26 @@ _Mid-book rhythm_
 
 > CHAPTER VII. A Mad Tea-Party There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. “Very uncomfortable for the Dormouse,” thought Alice; “only, as it’s asleep, I suppose it doesn’t mind.” The table was a large one, but the three were all crowded together at one corner of it: “No room! No room!” they cried out when they saw Alice coming. “There’s plenty of room!” said Alice indignantly, and she sat down in a large arm-chair at one end of the table. “Have some wine,” the March Hare said in an encouraging tone. Alice looked all round the table, but there was nothing on it but tea. “I don’t see any wine,” she remarked. “There isn’t any,” said the March Hare.
 
-### Crime and Punishment: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Crime and Punishment This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Crime and Punishment Author: Fyodor Dostoyevsky Translator: Constance Garnett Release date: March 28, 2006 [eBook #2554] Most recently updated: January 10, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Crime and Punishment: Section 23
+### American Indian Stories: Section 10
 
 _Mid-book rhythm_
 
-> CHAPTER VI “I don’t believe it, I can’t believe it!” repeated Razumihin, trying in perplexity to refute Raskolnikov’s arguments. They were by now approaching Bakaleyev’s lodgings, where Pulcheria Alexandrovna and Dounia had been expecting them a long while. Razumihin kept stopping on the way in the heat of discussion, confused and excited by the very fact that they were for the first time speaking openly about it. “Don’t believe it, then!” answered Raskolnikov, with a cold, careless smile. “You were noticing nothing as usual, but I was weighing every word.” “You are suspicious. That is why you weighed their words... h’m... certainly, I agree, Porfiry’s tone was rather strange, and still more that wretch Zametov!... You are right, there was something about him—but why? Why?” “He has changed his mind since last night.” “Quite the contrary!
+> The Softhearted Sioux I Beside the open fire I sat within our teepee. With my red blanket wrapped tightly about my crossed legs, I was thinking of the coming season, my sixteenth winter. On either side of the wigwam were my parents. My father was whistling a tune between his teeth while polishing with his bare hand a red stone pipe he had recently carved. Almost in front of me, beyond the center fire, my old grandmother sat near the entranceway. She turned her face toward her right and addressed most of her words to my mother. Now and then she spoke to me, but never did she allow her eyes to rest upon her daughter’s husband, my father. It was only upon rare occasions that my grandmother said anything to him. Thus his ears were open and ready to catch the smallest wish she might express.
 
-### Following the Equator: A Journey Around the World: Section 1
+### American Indian Stories: Section 11
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Following the Equator: A Journey Around the World This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Following the Equator: A Journey Around the World Author: Mark Twain Release date: June 24, 2004 [eBook #2895] Most recently updated: May 22, 2025 Language: English Other information and formats: www.gutenberg.
+> The Trial Path It was an autumn night on the plain. The smoke-lapels of the cone-shaped teepee flapped gently in the breeze. From the low night sky, with its myriad fire points, a large bright star peeped in at the smoke-hole of the wigwam between its fluttering lapels, down upon two Dakotas talking in the dark. The mellow stream from the star above, a maid of twenty summers, on a bed of sweetgrass, drank in with her wakeful eyes. On the opposite side of the teepee, beyond the centre fireplace, the grandmother spread her rug. Though once she had lain down, the telling of a story has aroused her to a sitting posture. Her eyes are tight closed. With a thin palm she strokes her windshorn hair. “Yes, my grandchild, the legend says the large bright stars are wise old warriors, and the small dim ones are handsome young braves,” she reiterates, in a high, tremulous voice.
 
-### Following the Equator: A Journey Around the World: Section 6
-
-_Mid-book rhythm_
-
-> I wonder how old the town is. There are patches of building—massive structures, monuments, apparently—that are so battered and worn, and seemingly so tired and so burdened with the weight of age, and so dulled and stupefied with trying to remember things they forgot before history began, that they give one the feeling that they must have been a part of original Creation. This is indeed one of the oldest of the princedoms of India, and has always been celebrated for its barbaric pomps and splendors, and for the wealth of its princes. CHAPTER XLV. It takes your enemy and your friend, working together, to hurt you to the heart; the one to slander you and the other to get the news to you. —Pudd’nhead Wilson’s New Calendar.
-
-### Memoirs of Benjamin Franklin; Written by Himself. [Vol. 2 of 2] / With his Most Interesting Essays, Letters, and Miscellaneous Writings; Familiar, Moral, Political, Economical, and Philosophical, Selected with Care from All His Published Productions, and Comprising Whatever Is Most Entertaining and Valuable to the General Reader: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Memoirs of Benjamin Franklin; Written by Himself. [Vol. 2 of 2] This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Memoirs of Benjamin Franklin; Written by Himself. [Vol. 2 of 2] Author: Benjamin Franklin Release date: July 14, 2012 [eBook #40236] Most recently updated: October 23, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/40236 Credits: E-text prepared by Steven Gibbs, Richard J.
-
-### Memoirs of Benjamin Franklin; Written by Himself. [Vol. 2 of 2] / With his Most Interesting Essays, Letters, and Miscellaneous Writings; Familiar, Moral, Political, Economical, and Philosophical, Selected with Care from All His Published Productions, and Comprising Whatever Is Most Entertaining and Valuable to the General Reader: Section 4
+### Analects: Section 13
 
 _Mid-book rhythm_
 
-> [37] See a paper on this subject, by the late ingenious Mr. Hadley, in the Philadelphia Transactions, wherein this hypothesis of explaining the tradewinds first appeared. [38] In Pennsylvania. To Dr. Perkins. Water-spouts and Whirlwinds compared.—Read at the Royal Society, June 24, 1753. Philadelphia, Feb. 4, 1753. I ought to have written to you long since, in answer to yours of October 16, concerning the water-spout; but business partly, and partly a desire of procuring farther information by inquiry among my seafaring acquaintance, induced me to postpone writing, from time to time, till I am almost ashamed to resume the subject, not knowing but you may have forgot what has been said upon it.
+> Book XI Hsien Tsin I The Master said, “The men of former times, in the matters of ceremonies and music were rustics, it is said, while the men of these latter times, in ceremonies and music, are accomplished gentlemen. “If I have occasion to use those things, I follow the men of former times.” II The Master said, “Of those who were with me in Ch’ǎn and Ts’âi, there are none to be found to enter my door.” Distinguished for their virtuous principles and practice, there were Yen Yûan, Min Tsze-ch’ien, Zan Po-niû, and Chung-kung; for their ability in speech, Tsâi Wo and Tsze-kung; for their administrative talents, Zǎn Yû and Chî Lû; for their literary acquirements, Tsze-yû and Tsze-hsîâ. III The Master said, “Hûi gives me no assistance. There is nothing that I say in which he does not delight.” IV The Master said, “Filial indeed is Min Tsze-ch’ien!
 
-### On the Duty of Civil Disobedience: Section 1
+### Analects: Section 16
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of On the Duty of Civil Disobedience This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: On the Duty of Civil Disobedience Author: Henry David Thoreau Release date: June 1, 1993 [eBook #71] Most recently updated: February 14, 2021 Language: English Other information and formats: www.gutenberg.
-
-### On the Duty of Civil Disobedience: Section 2
-
-_Mid-book rhythm_
-
-> I heartily accept the motto,—“That government is best which governs least;” and I should like to see it acted up to more rapidly and systematically. Carried out, it finally amounts to this, which also I believe—“That government is best which governs not at all;” and when men are prepared for it, that will be the kind of government which they will have. Government is at best but an expedient; but most governments are usually, and all governments are sometimes, inexpedient. The objections which have been brought against a standing army, and they are many and weighty, and deserve to prevail, may also at last be brought against a standing government. The standing army is only an arm of the standing government. The government itself, which is only the mode which the people have chosen to execute their will, is equally liable to be abused and perverted before the people can act through it.
+> Book XIV Hsien Wǎn I Hsien asked what was shameful. The Master said, “When good government prevails in a state, to be thinking only of salary; and, when bad government prevails, to be thinking, in the same way, only of salary;﻿—this is shameful.” II “When the love of superiority, boasting, resentments, and covetousness are repressed, this may be deemed perfect virtue.” The Master said, “This may be regarded as the achievement of what is difficult. But I do not know that it is to be deemed perfect virtue.” III The Master said, “The scholar who cherishes the love of comfort is not fit to be deemed a scholar.” IV The Master said, “When good government prevails in a state, language may be lofty and bold, and actions the same. When bad government prevails, the actions may be lofty and bold, but the language may be with some reserve.”

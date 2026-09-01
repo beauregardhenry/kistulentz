@@ -2,25 +2,38 @@
 # California -- Description and travel
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 94940
-- Reading grade: 5.5
-- Average sentence: 9.7 words
-- Average paragraph: 12.4 words
+- Words analyzed: 131260
+- Reading grade: 6.4
+- Average sentence: 13.8 words
+- Average paragraph: 42.8 words
 - Dialogue share: 1%
-- Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: trees, mountain, ground, range, above, glacier, mountains, species, glaciers, water, small, forest, flowers, storm, gutenberg, branches, beautiful, project, river, however, nearly, without, winter, woods
-- Character names: Owen, Nature, Douglas, Ritter, Hemlock Spruce, Juniper, Valley, Clark, Joaquin, Lyell, Stanislaus, TENAYA, Elias, Kern, Mount Ritter, SIERRA NEVADA, Tom, Carson, Clark Crow, Conness, Dana, David Douglas, Deer, Donner, Donner Lake, Douglas Spruce, Douglas Squirrel, Fresno, GENERAL GRANT, Gibbs
+- Voice: observational third-person
+- Tempo: steady
+- Tone: narrative-forward, direct, measured, rhythmically even, rhythmically varied
+- Recurring vocabulary: above, ground, mountain, small, water, without, across, beautiful, black, borders, branches, country, coyote, enough, field, flowers, forest, glacier, glaciers, gutenberg, hills, however, mountains, nearly, night, pines, project, range, river, south, species, spring, storm, things, though, three, trail, trees, white, winter
+- Character names: Clark, Valley, Amos, Bill, Bret Harte, Carrizo, Carson, Charley, Clark Crow, Conness, Connor, Dana, David Douglas, Deer, Desert, Diedrick, Dimmick, Donner, Donner Lake, Douglas, Douglas Spruce, Douglas Squirrel, Edswick, Elias, Fanshawe, Father Shannon, Fresno, GENERAL GRANT, Gibbs, Harte, Hemlock Spruce, Jim, Jim Calkins, Jim Jenkins, Jimville, Joaquin, Judson, Juniper, Kern, Las Uvas, Lyell, Mount Ritter, Mr, Naboth, Nature, Owen, Paddy Jack, Pete, Ritter, Roeder, SIERRA NEVADA, Salty, Seyavi, Squaw Gulch, Stanislaus, TENAYA, Tom, Wilkins
 
 ## Books
+- [The Land of Little Rain](../Books/45B435F1-CEF9-4812-9758-AC6DA46648A1.md)
 - [The Mountains of California](../Books/DA8C1F86-6C5F-4677-B462-E6B5E8A82B67.md)
 
 ## Representative excerpts
+
+### The Land of Little Rain: Section 11
+
+_Mid-book rhythm_
+
+> Jimville A Bret Harte Town When Mr. Harte found himself with a fresh palette and his particular local color fading from the West, he did what he considered the only safe thing, and carried his young impression away to be worked out untroubled by any newer fact. He should have gone to Jimville. There he would have found cast up on the ore-ribbed hills the bleached timbers of more tales, and better ones. You could not think of Jimville as anything more than a survival, like the herb-eating, bony-cased old tortoise that pokes cheerfully about those borders some thousands of years beyond his proper epoch. Not that Jimville is old, but it has an atmosphere favorable to the type of a half century back, if not “forty-niners,” of that breed.
+
+### The Land of Little Rain: Section 19
+
+_Dialogue and character voice_
+
+> The Little Town of the Grape Vines There are still some places in the west where the quails cry “cuidado”; where all the speech is soft, all the manners gentle; where all the dishes have chile in them, and they make more of the Sixteenth of September than they do of the Fourth of July. I mean in particular El Pueblo de Las Uvas. Where it lies, how to come at it, you will not get from me; rather would I show you the heron’s nest in the tulares. It has a peak behind it, glinting above the tamarack pines, above a breaker of ruddy hills that have a long slope valley-wards and the shoreward steep of waves toward the Sierras. Below the Town of the Grape Vines, which shortens to Las Uvas for common use, the land dips away to the river pastures and the tulares. It shrouds under a twilight thicket of vines, under a dome of cottonwood-trees, drowsy and murmurous as a hive.
 
 ### The Mountains of California: Section 1
 

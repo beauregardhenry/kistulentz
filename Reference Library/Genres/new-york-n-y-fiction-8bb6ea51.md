@@ -2,24 +2,27 @@
 # New York (N.Y.) -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 101791
-- Reading grade: 3.6
-- Average sentence: 6.9 words
-- Average paragraph: 10.0 words
-- Dialogue share: 30%
+- Words analyzed: 363760
+- Reading grade: 5.1
+- Average sentence: 13.2 words
+- Average paragraph: 36.9 words
+- Dialogue share: 45%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, rhythmically even, dialogue-forward, narrative-forward
-- Recurring vocabulary: myself, nothing, seemed, thought, without, agreement, behind, business, can’t, certain, copyright, course, didn’t, don’t, electronic, eva’s, friends, going, gutenberg, heard, herself, house, indeed, license, morning, nippers, office, people, prefer, project, screen, scrivener, she’s, states, terms, things, though, turkey, voice, wanted
-- Character names: Adam, Adams, Addis Wickersham, Anthony Bloodgood, Astor, Bartleby, Charles Glidden, Dinah, Englishman, Eva, Eva Litchfield, Florence, Florence Quincy, Gertrude, Gertrude Cuyler, Ginger Nut, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Ingoldsby, John Jacob, Mapes, Mattie, Miss Augusta, Miss Lois, Molly, Molly Underhill, Mr. Tillinghast, Mrs. Avery, Mrs. Van Suydam, Nicholas, Nicholas Van Suydam, Nick, Pentreath, Pomeroy, Project Gutenberg, Spencer Mapes, Suydam, Van Suydam, Winnie, Winnie Conant
+- Tone: dialogue-forward, direct, rhythmically varied, balanced, rhythmically even, narrative-forward
+- Recurring vocabulary: nothing, seemed, myself, thought, without, don’t, going, herself, house, though, voice, woman, words, can’t, didn’t, heard, moment, morning, office, people, smile, things, agreement, anything, behind, black, blood, business, certain, child, clare’s, close, copyright, couldn’t, course, cried, doctor, electronic, eva’s, father
+- Character names: Mr, Mrs, Gertrude, Adam, Adams, Addis Wickersham, Albano, Andrews, Annie, Annie Poole, Anthony Bloodgood, Astor, Bartleby, Belinda, Bellew, Bertram, Bertram Sylvester, Bill Lowndes, Bisbee, Bob Kendry, Brian, Bruce, Charles Glidden, Clare, Clare Kendry, Colonel Japha, Craig, Damocles, Dinah, Downey, Dr, Edward, Edward Sylvester, Englishman, Eva, Eva Litchfield, Farrar, Felise, Fletcher, Florence, Florence Quincy, Fred, Gennaro, Geraldine, Germain, Gertrude Cuyler, Ginger Nut, Gregory, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hamlin, Holt, Hopgood, Hugh, Hugh Wentworth, Ingoldsby, Irene, Irene Redfield, Jack, Jacqueline, Jameson, Japha, Jim Hammer, John, John Bellew, John Jacob, Junior, Kahan, Kennedy, Langley, Lawrence, Lewis Langley, Luigi, Mandeville, Mapes, Margery, Mattie, Miss Abby, Miss Augusta
 
 ## Books
 - [Bartleby, the Scrivener: A Story of Wall-Street](../Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md)
+- [Craig Kennedy Stories](../Books/2DDC7ADE-E788-4880-9354-3FBC5B7E6F50.md)
 - [East of Eden](../Books/A1BFD5AA-C21A-451C-B0F2-C43A708C21FC.md)
+- [Short Fiction](../Books/B7CF001F-8FAC-477E-A13F-BA7439FFC107.md)
+- [The Sword of Damocles](../Books/28461A01-8141-4C30-991A-5A00B38B78E3.md)
 
 ## Representative excerpts
 
@@ -35,6 +38,18 @@ _Mid-book rhythm_
 
 > I am a rather elderly man. The nature of my avocations for the last thirty years has brought me into more than ordinary contact with what would seem an interesting and somewhat singular set of men, of whom as yet nothing that I know of has ever been written:—I mean the law-copyists or scriveners. I have known very many of them, professionally and privately, and if I pleased, could relate divers histories, at which good-natured gentlemen might smile, and sentimental souls might weep. But I waive the biographies of all other scriveners for a few passages in the life of Bartleby, who was a scrivener of the strangest I ever saw or heard of. While of other law-copyists I might write the complete life, of Bartleby nothing of that sort can be done. I believe that no materials exist for a full and satisfactory biography of this man. It is an irreparable loss to literature.
 
+### Craig Kennedy Stories: Section 9
+
+_Mid-book rhythm_
+
+> The Diamond Maker “I’ve called, Professor Kennedy, to see if we can retain you in a case which I am sure will tax even your resources. Heaven knows it has taxed ours.” The visitor was a large, well-built man. He placed his hat on the table and, without taking off his gloves, sat down in an easy chair which he completely filled. “Andrews is my name⁠—third vice-president of the Great Eastern Life Insurance Company. I am the nominal head of the company’s private detective force, and though I have some pretty clever fellows on my staff we’ve got a case that, so far, none of us has been able to unravel. I’d like to consult you about it.” Kennedy expressed his entire willingness to be consulted, and after the usual formalities were over, Mr. Andrews proceeded.
+
+### Craig Kennedy Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Azure Ring Files of newspapers and innumerable clippings from the press bureaus littered Kennedy’s desk in rank profusion. Kennedy himself was so deeply absorbed that I had merely said good evening as I came in and had started to open my mail. With an impatient sweep of his hand, however, he brushed the whole mass of newspapers into the wastebasket. “It seems to me, Walter,” he exclaimed in disgust, “that this mystery is considered insoluble for the very reason which should make it easy to solve⁠—the extraordinary character of its features.” Inasmuch as he had opened the subject, I laid down the letter I was reading. “I’ll wager I can tell you just why you made that remark, Craig,” I ventured. “You’re reading up on that Wainwright-Templeton affair.” “You are on the road to becoming a detective yourself, Walter,” he answered with a touch of sarcasm.
+
 ### East of Eden: Section 1
 
 _Opening voice_
@@ -46,3 +61,27 @@ _Opening voice_
 _Dialogue and character voice_
 
 > II The sun shone, sparrows twittered love, and false spring tricked me into a rebirth of my first delight in New York. If I sat long enough on the bench in Washington Square I would catch the early crocuses springing up. But it was December, and nothing pleasant could last. There was dirty weather lying dead ahead. Because the day was so fine, I had walked downtown. I was going to call on Eva, who lived four blocks away; but it was early, and she might still be at work. And to sit in the sun and gaze at the pleasant pinkish bricks in the row of old Georgian houses on the northern side of the Square was delightful. I was pleased when Mrs. Van Suydam’s maroon brougham came in sight around the corner from Macdougal Street; its colour toned in with the pinkish bricks and with the pale blue sky.
+
+### Short Fiction: Section 4
+
+_Mid-book rhythm_
+
+> Sanctuary I On the Southern coast, between Merton and Shawboro, there is a strip of desolation some half a mile wide and nearly ten miles long between the sea and old fields of ruined plantations. Skirting the edge of this narrow jungle is a partly grown-over road which still shows traces of furrows made by the wheels of wagons that have long since rotted away or been cut into firewood. This road is little used, now that the state has built its new highway a bit to the west and wagons are less numerous than automobiles. In the forsaken road a man was walking swiftly. But in spite of his hurry, at every step he set down his feet with infinite care for the night was windless and the heavy silence intensified each sound; even the breaking of a twig could be plainly heard. And the man had need of caution as well as haste.
+
+### Short Fiction: Section 3
+
+_Dialogue and character voice_
+
+> Passing For Carl Van Vechten and Fania Marinoff One three centuries removed From the scenes his fathers loved, Spicy grove, cinnamon tree, What is Africa to me? Countée Cullen Part I Encounter I It was the last letter in Irene Redfield’s little pile of morning mail. After her other ordinary and clearly directed letters the long envelope of thin Italian paper with its almost illegible scrawl seemed out of place and alien. And there was, too, something mysterious and slightly furtive about it. A thin sly thing which bore no return address to betray the sender. Not that she hadn’t immediately known who its sender was. Some two years ago she had one very like it in outward appearance. Furtive, but yet in some peculiar, determined way a little flaunting. Purple ink. Foreign paper of extraordinary size. It had been, Irene noted, postmarked in New York the day before.
+
+### The Sword of Damocles: Section 44
+
+_Dialogue and character voice_
+
+> XXXV Miss Belinda Makes Conditions “Foul deeds will rise, Though all the world o’erwhelm them, to men’s eyes.” Hamlet Mr. Sylvester towered on his nephew with an expression such as few men had ever seen even on his powerful and commanding face. “What do you mean?” asked he, and his voice rang like a clarion through the room. Bertram trembled and for a moment stood aghast, the ready flush bathing his brow with burning crimson. “I mean,” stammered he, with difficulty recovering himself, “that when Mr. Stuyvesant came to open his private box in the bank today, that he not only found its lock had been tampered with, but that money and valuables to the amount of some twelve hundred dollars were missing from among its contents.” “What?” The expression which had made Mr. Sylvester’s brow so terrible had vanished, but his wonder remained. “It is impossible,” he declared.
+
+### The Sword of Damocles: Section 10
+
+_Sentence variation_
+
+> IV Searchings “Patience, and shuffle the cards.” Cervantes If I had expected anything from the presence in the carriage of the woman who had arranged this interview, I was doomed to disappointment. Reticent before, she was absolutely silent now, sitting at my side like a grim statue or a frozen image of watchfulness, ready to awake and stop me if I offered to open the door or make any other move indicative of a determination to know where I was, or in what direction I was going.

@@ -2,27 +2,45 @@
 # Jack London
 
 - Profile type: Author
-- Books represented: 3
+- Books represented: 9
 
 ## Learned profile
 
-- Words analyzed: 283436
-- Reading grade: 3.1
-- Average sentence: 7.4 words
-- Average paragraph: 11.9 words
-- Dialogue share: 32%
+- Words analyzed: 639869
+- Reading grade: 4.2
+- Average sentence: 11.5 words
+- Average paragraph: 36.6 words
+- Dialogue share: 26%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward
-- Recurring vocabulary: night, things, though, himself, hundred, nothing, teeth, three, trail, without, ain't, alone, animals, began, behind, billy's, buck’s, can't, chapter, didn't, dollars, don't, electronic, fang’s, fight, forest, forth, foundation, guess, hands, herself, horses, house, learned, light, master, moment, money, mother, place
-- Character names: Bill, Gutenberg, Mercedes, Project Gutenberg, Alice, Barry, Beauty Smith, Beaver, Bert, Beth, Bill Roberts, Billee, Billy, Billy Murphy, Billy Roberts, Blanchard, Buck, Bud Strothers, Cady, Charles, Charley, Charley Long, Cherokee, Chester, Chester Johnson, Collie, Curly, Dave, Dawn, Dawson, Dick, Dub, Fang, Frank, François, Frog, Gad, Gee, Grey, Grey Beaver, Gutenberg Literary Archive Foundation, Hal, Hans, Henderson, Henry, Jim Hall, Joe, John, John Thornton, Judge, Judge Miller, Judge Scott, Kiche, Mackenzie, Maggie Donahue, Manuel, Mary, Matt, Matthewson, Mercedes Higgins, Mr. Scott, Mrs. Higgins, Mrs. Olsen, Mush, Nig, Otto Frank, Perrault, Pete, Pike, Roberts, Sarah, Saxon, Scott, Skeet, Smith, Spitz, Teek, Thornton, Tim, Tim Keenan
+- Tone: narrative-forward, balanced, rhythmically even, direct, rhythmically varied, dialogue-forward
+- Recurring vocabulary: night, things, though, three, himself, nothing, trail, water, without, began, hands, hundred, moment, stood, teeth, don’t, mother, seemed, shall, strange, thought, white, world, years, alone, animals, behind, buck’s, cabin, dollars, fang’s, fight, forest, heard, house, learned, light, master, place, river
+- Character names: Dawson, Bill, Curly, Dave, Joe, Judge, Mackenzie, Matt, Mercedes, Mr, Alice, Beauty Smith, Bering Sea, Beth, Billee, Billy, Buck, Charles, Cherokee, Collie, Dawn, Dick, Dub, François, Frog, Gad, Grey Beaver, Gutenberg, Hal, Hans, Henderson, Henry, Jim Hall, John Thornton, Judge Miller, Judge Scott, Kiche, Lon, Lon McFane, Manuel, Matthewson, Maud, Mrs, Mush, Nig, O’Brien, Perrault, Pete, Pike, Project Gutenberg, Scott, Skeet, Smith, Spitz, Teek, Thornton, Tim Keenan, Weedon, Weedon Scott, White Fang, Yukon, Ah Cho, Akatan, Akoon, Al, Antonsen, Arizona Jack, Axel Gunderson, Barry, Bashford, Beaver, Bernard, Bert, Bettles, Bill Roberts, Billy Murphy, Billy Roberts, Blanchard, Bondell, Bud Strothers
 
 ## Books
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
 - [The call of the wild](../Books/30BF27F3-CC02-46CC-8CE2-9046D310B2F5.md)
+- [The Call of the Wild](../Books/ED95A4B8-1FE4-4E9D-AB82-3C77D8A45CFD.md)
+- [The Sea-Wolf](../Books/7A163332-7787-4A84-B3DA-49A5361AF86E.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
 - [The Valley of the Moon](../Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md)
+- [When God Laughs](../Books/F1B8023A-5748-4ED4-AB0B-633E40802E58.md)
 - [White Fang](../Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md)
+- [White Fang](../Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md)
 
 ## Representative excerpts
+
+### Lost Face: Section 6
+
+_Mid-book rhythm_
+
+> That Spot I don’t think much of Stephen Mackaye any more, though I used to swear by him. I know that in those days I loved him more than my own brother. If ever I meet Stephen Mackaye again, I shall not be responsible for my actions. It passes beyond me that a man with whom I shared food and blanket, and with whom I mushed over the Chilcoot Trail, should turn out the way he did. I always sized Steve up as a square man, a kindly comrade, without an iota of anything vindictive or malicious in his nature. I shall never trust my judgment in men again. Why, I nursed that man through typhoid fever; we starved together on the headwaters of the Stewart; and he saved my life on the Little Salmon. And now, after the years we were together, all I can say of Stephen Mackaye is that he is the meanest man I ever knew.
+
+### Lost Face: Section 7
+
+_Dialogue and character voice_
+
+> Flush of Gold Lon McFane was a bit grumpy, what of losing his tobacco pouch, or else he might have told me, before we got to it, something about the cabin at Surprise Lake. All day, turn and turn about, we had spelled each other at going to the fore and breaking trail for the dogs. It was heavy snowshoe work, and did not tend to make a man voluble, yet Lon McFane might have found breath enough at noon, when we stopped to boil coffee, with which to tell me. But he didn’t. Surprise Lake?⁠—it was Surprise Cabin to me. I had never heard of it before. I confess I was a bit tired. I had been looking for Lon to stop and make camp any time for an hour; but I had too much pride to suggest making camp or to ask him his intentions; and yet he was my man, lured at a handsome wage to mush my dogs for me and to obey my commands. I guess I was a bit grumpy myself.
 
 ### The call of the wild: Section 1
 
@@ -36,26 +54,38 @@ _Mid-book rhythm_
 
 > Chapter IV. Who Has Won to Mastership “Eh? Wot I say? I spik true w’en I say dat Buck two devils.” This was François’s speech next morning when he discovered Spitz missing and Buck covered with wounds. He drew him to the fire and by its light pointed them out. “Dat Spitz fight lak hell,” said Perrault, as he surveyed the gaping rips and cuts. “An’ dat Buck fight lak two hells,” was François’s answer. “An’ now we make good time. No more Spitz, no more trouble, sure.” While Perrault packed the camp outfit and loaded the sled, the dog-driver proceeded to harness the dogs. Buck trotted up to the place Spitz would have occupied as leader; but François, not noticing him, brought Sol-leks to the coveted position. In his judgment, Sol-leks was the best lead-dog left. Buck sprang upon Sol-leks in a fury, driving him back and standing in his place. “Eh? eh?”
 
-### The Valley of the Moon: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Valley of the Moon This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Valley of the Moon Author: Jack London Release date: September 1, 1998 [eBook #1449] Most recently updated: October 29, 2024 Language: English Other information and formats: www.gutenberg.
-
-### The Valley of the Moon: Section 5
+### The Call of the Wild: Section 7
 
 _Mid-book rhythm_
 
-> CHAPTER XVIII It was early evening when they got off the car at Seventh and Pine on their way home from Bell's Theater. Billy and Saxon did their little marketing together, then separated at the corner, Saxon to go on to the house and prepare supper, Billy to go and see the boys—the teamsters who had fought on in the strike during his month of retirement. “Take care of yourself, Billy,” she called, as he started off. “Sure,” he answered, turning his face to her over his shoulder. Her heart leaped at the smile. It was his old, unsullied love-smile which she wanted always to see on his face—for which, armed with her own wisdom and the wisdom of Mercedes, she would wage the utmost woman's war to possess.
+> III The Dominant Primordial Beast The dominant primordial beast was strong in Buck, and under the fierce conditions of trail life it grew and grew. Yet it was a secret growth. His newborn cunning gave him poise and control. He was too busy adjusting himself to the new life to feel at ease, and not only did he not pick fights, but he avoided them whenever possible. A certain deliberateness characterized his attitude. He was not prone to rashness and precipitate action; and in the bitter hatred between him and Spitz he betrayed no impatience, shunned all offensive acts. On the other hand, possibly because he divined in Buck a dangerous rival, Spitz never lost an opportunity of showing his teeth. He even went out of his way to bully Buck, striving constantly to start the fight which could end only in the death of one or the other.
 
-### White Fang: Section 1
+### The Call of the Wild: Section 9
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of White Fang This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: White Fang Author: Jack London Release date: May 1, 1997 [eBook #910] Most recently updated: August 4, 2024 Language: English Other information and formats: www.gutenberg.
+> V The Toil of Trace and Trail Thirty days from the time it left Dawson, the Salt Water Mail, with Buck and his mates at the fore, arrived at Skaguay. They were in a wretched state, worn out and worn down. Buck’s one hundred and forty pounds had dwindled to one hundred and fifteen. The rest of his mates, though lighter dogs, had relatively lost more weight than he. Pike, the malingerer, who, in his lifetime of deceit, had often successfully feigned a hurt leg, was now limping in earnest. Sol-leks was limping, and Dub was suffering from a wrenched shoulder-blade. They were all terribly footsore. No spring or rebound was left in them. Their feet fell heavily on the trail, jarring their bodies and doubling the fatigue of a day’s travel. There was nothing the matter with them except that they were dead tired.
 
-### White Fang: Section 14
+### The Sea-Wolf: Section 22
 
 _Mid-book rhythm_
 
-> CHAPTER V THE COVENANT When December was well along, Grey Beaver went on a journey up the Mackenzie. Mit-sah and Kloo-kooch went with him. One sled he drove himself, drawn by dogs he had traded for or borrowed. A second and smaller sled was driven by Mit-sah, and to this was harnessed a team of puppies. It was more of a toy affair than anything else, yet it was the delight of Mit-sah, who felt that he was beginning to do a man’s work in the world. Also, he was learning to drive dogs and to train dogs; while the puppies themselves were being broken in to the harness. Furthermore, the sled was of some service, for it carried nearly two hundred pounds of outfit and food. White Fang had seen the camp-dogs toiling in the harness, so that he did not resent overmuch the first placing of the harness upon himself.
+> XX The remainder of the day passed uneventfully. The young slip of a gale, having wetted our gills, proceeded to moderate. The fourth engineer and the three oilers, after a warm interview with Wolf Larsen, were furnished with outfits from the slop chests, assigned places under the hunters in the various boats and watches on the vessel, and bundled forward into the forecastle. They went protestingly, but their voices were not loud. They were awed by what they had already seen of Wolf Larsen’s character, while the tale of woe they speedily heard in the forecastle took the last bit of rebellion out of them. Miss Brewster⁠—we had learned her name from the engineer⁠—slept on and on. At supper I requested the hunters to lower their voices, so she was not disturbed; and it was not till next morning that she made her appearance.
+
+### The Sea-Wolf: Section 8
+
+_Dialogue and character voice_
+
+> VI By the following morning the storm had blown itself quite out and the Ghost was rolling slightly on a calm sea without a breath of wind. Occasional light airs were felt, however, and Wolf Larsen patrolled the poop constantly, his eyes ever searching the sea to the northeastward, from which direction the great trade wind must blow. The men were all on deck and busy preparing their various boats for the season’s hunting. There are seven boats aboard, the captain’s dingey, and the six which the hunters will use. Three, a hunter, a boat puller, and a boat steerer, compose a boat’s crew. On board the schooner the boat pullers and steerers are the crew. The hunters, too, are supposed to be in command of the watches, subject, always, to the orders of Wolf Larsen. All this, and more, I have learned. The Ghost is considered the fastest schooner in both the San Francisco and Victoria fleets.
+
+### The Son of the Wolf: Section 7
+
+_Mid-book rhythm_
+
+> To the Man on Trail “Dump it in.” “But I say, Kid, isn’t that going it a little too strong? Whisky and alcohol’s bad enough; but when it comes to brandy and pepper sauce and⁠—” “Dump it in. Who’s making this punch, anyway?” And Malemute Kid smiled benignantly through the clouds of steam. “By the time you’ve been in this country as long as I have, my son, and lived on rabbit tracks and salmon belly, you’ll learn that Christmas comes only once per annum. And a Christmas without punch is sinking a hole to bedrock with nary a pay streak.” “Stack up on that fer a high cyard,” approved Big Jim Belden, who had come down from his claim on Mazy May to spend Christmas, and who, as everyone knew, had been living the two months past on straight moose meat. “Hain’t fergot the hooch we-uns made on the Tanana, hev yeh?” “Well, I guess yes.
+
+### The Son of the Wolf: Section 11
+
+_Dialogue and character voice_
+
+> An Odyssey of the North I The sleds were singing their eternal lament to the creaking of the harness and the tinkling bells of the leaders; but the men and dogs were tired and made no sound. The trail was heavy with new-fallen snow, and they had come far, and the runners, burdened with flint-like quarters of frozen moose, clung tenaciously to the unpacked surface and held back with a stubbornness almost human. Darkness was coming on, but there was no camp to pitch that night. The snow fell gently through the pulseless air, not in flakes, but in tiny frost crystals of delicate design. It was very warm⁠—barely ten below zero⁠—and the men did not mind. Meyers and Bettles had raised their ear flaps, while Malemute Kid had even taken off his mittens. The dogs had been fagged out early in the after noon, but they now began to show new vigor.

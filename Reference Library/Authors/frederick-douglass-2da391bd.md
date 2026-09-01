@@ -2,23 +2,24 @@
 # Frederick Douglass
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 183590
-- Reading grade: 4.8
-- Average sentence: 8.6 words
-- Average paragraph: 12.8 words
+- Words analyzed: 224812
+- Reading grade: 5.3
+- Average sentence: 10.3 words
+- Average paragraph: 32.1 words
 - Dialogue share: 5%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: baltimore, children, himself, house, myself, place, plantation, slave, slavery, slaves, thought, white, without, years, american, blood, called, colored, death, enough, friends, gutenberg, hands, human, nothing, people, power, project, seemed, slaveholders, state, states, three, works
-- Character names: Frederick Douglass, Covey, Henry, Hugh, John, Master Hugh, Master Thomas, Michael, Mr, Mr. Covey, Mr. Freeland, Mr. Hamilton, Mrs. Lucretia, Sandy, Thomas, Andrew, Aunt Katy, Barney, Bill, Bill Smith, Charles, Colonel Lloyd, Demby, Edward, Edward Lloyd, Esther, Frederick, Gutenberg, Henny, Hughes, Katy, Lucretia, Mary, Mr. Douglass, Mr. Gardner, Mr. Gore, Mr. Hopkins, Mr. Johnson, Mr. Ruggles, Mr. Sevier, Mrs. Auld, Nelly, Thomas Auld, William
+- Tone: narrative-forward, direct, rhythmically even, balanced, rhythmically varied
+- Recurring vocabulary: baltimore, children, himself, house, myself, place, plantation, slave, slavery, slaves, thought, white, without, years, blood, called, death, enough, hands, nothing, seemed, three, american, colored, during, friends, gutenberg, human, lived, people, power, project, slaveholders, state, states, works
+- Character names: Frederick Douglass, Covey, Henry, Hugh, John, Master Hugh, Master Thomas, Michael, Mr, Sandy, Thomas, Barney, Bill, Charles, Colonel Lloyd, Demby, Hughes, Lucretia, Mary, Mr. Covey, Mr. Freeland, Mr. Hamilton, Mrs. Lucretia, Andrew, Aunt Katy, Bill Smith, Douglass, Edward, Edward Lloyd, Esther, Frederick, Freeland, Gardner, Gore, Gutenberg, Hamilton, Henny, Henry Bailey, Hester, Hopkins, Johnson, Katy, Mr. Douglass, Mr. Gardner, Mr. Gore, Mr. Hopkins, Mr. Johnson, Mr. Ruggles, Mr. Sevier, Mrs, Mrs. Auld, Nelly, Ruggles, Thomas Auld, William
 
 ## Books
 - [My Bondage and My Freedom](../Books/6E44812A-E1CA-4FEA-90B9-CC2F23978084.md)
+- [Narrative of the Life of Frederick Douglass](../Books/F0759194-183E-493D-825F-6D8DD5323EB3.md)
 - [Narrative of the Life of Frederick Douglass, an American Slave](../Books/02C39B47-8A9F-4267-8DFD-A5940B0CADE3.md)
 
 ## Representative excerpts
@@ -34,6 +35,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XVII. The Last Flogging A SLEEPLESS NIGHT—RETURN TO COVEY’S—PURSUED BY COVEY—THE CHASE DEFEATED—VENGEANCE POSTPONED—MUSINGS IN THE WOODS—THE ALTERNATIVE—DEPLORABLE SPECTACLE—NIGHT IN THE WOODS—EXPECTED ATTACK—ACCOSTED BY SANDY, A FRIEND, NOT A HUNTER—SANDY’S HOSPITALITY—THE “ASH CAKE” SUPPER—THE INTERVIEW WITH SANDY—HIS ADVICE—SANDY A CONJURER AS WELL AS A CHRISTIAN—THE MAGIC ROOT—STRANGE MEETING WITH COVEY—HIS MANNER—COVEY’S SUNDAY FACE—MY DEFENSIVE RESOLVE—THE FIGHT—THE VICTORY, AND ITS RESULTS. Sleep itself does not always come to the relief of the weary in body, and the broken in spirit; especially when past troubles only foreshadow coming disasters. The last hope had been extinguished.
+
+### Narrative of the Life of Frederick Douglass: Section 11
+
+_Mid-book rhythm_
+
+> VI My new mistress proved to be all she appeared when I first met her at the door⁠—a woman of the kindest heart and finest feelings. She had never had a slave under her control previously to myself, and prior to her marriage she had been dependent upon her own industry for a living. She was by trade a weaver; and by constant application to her business, she had been in a good degree preserved from the blighting and dehumanizing effects of slavery. I was utterly astonished at her goodness. I scarcely knew how to behave towards her. She was entirely unlike any other white woman I had ever seen. I could not approach her as I was accustomed to approach other white ladies. My early instruction was all out of place. The crouching servility, usually so acceptable a quality in a slave, did not answer when manifested toward her. Her favor was not gained by it; she seemed to be disturbed by it.
+
+### Narrative of the Life of Frederick Douglass: Section 17
+
+_Dialogue and character voice_
+
+> Appendix I find, since reading over the foregoing Narrative, that I have, in several instances, spoken in such a tone and manner, respecting religion, as may possibly lead those unacquainted with my religious views to suppose me an opponent of all religion. To remove the liability of such misapprehension, I deem it proper to append the following brief explanation. What I have said respecting and against religion, I mean strictly to apply to the slaveholding religion of this land, and with no possible reference to Christianity proper; for, between the Christianity of this land, and the Christianity of Christ, I recognize the widest possible difference⁠—so wide, that to receive the one as good, pure, and holy, is of necessity to reject the other as bad, corrupt, and wicked. To be the friend of the one, is of necessity to be the enemy of the other.
 
 ### Narrative of the Life of Frederick Douglass, an American Slave: Section 1
 

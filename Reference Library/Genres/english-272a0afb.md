@@ -2,34 +2,130 @@
 # English
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 49
 
 ## Learned profile
 
-- Words analyzed: 108301
-- Reading grade: 3.1
-- Average sentence: 7.8 words
-- Average paragraph: 11.7 words
-- Dialogue share: 74%
-- Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: shall, matter, house, night, heard, however, nothing, quite, morning, gutenberg, project, street, round, small, without, young, myself, thought, light, business, father, hands, himself, window
-- Character names: Holmes, Sherlock Holmes, Watson, Mr. Holmes, Lestrade, Simon, Clair, McCarthy, Mr, Irene Adler, Mr. Wilson, Frank, Miss Stoner, Bradstreet, Doctor, Horner, Mr. Sherlock Holmes, Peterson, Mr. Windibank, Mr. Hosmer Angel, Mr. Merryweather, Turner, Briony Lodge, Dr. Grimesby Roylott, Dr. Roylott, James, Openshaw, Hatherley, John, Jones
+- Words analyzed: 5195210
+- Reading grade: 5.7
+- Average sentence: 16.4 words
+- Average paragraph: 49.6 words
+- Dialogue share: 41%
+- Voice: observational third-person
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, rhythmically even, narrative-forward, measured, energetic
+- Recurring vocabulary: himself, thought, don’t, house, nothing, night, quite, heard, round, shall, young, seemed, though, going, moment, place, voice, three, morning, people, things, without, course, rather, stood, cried, father, friend, woman, years, world, hands, light, street, however, myself, looking, matter, police, window
+- Character names: Mr, Mrs, Dr, George, John, Arthur, James, Manfred, Brown, Ellen, Cyril, Frank, Gonsalez, Holmes, Jones, Poiccart, Sherlock Holmes, Watson, Adam, Agatha, Father Brown, Leon, Lestrade, Merton, Anderson, Bill, Billy, Charles, Edward, Emily, Flambeau, George Manfred, Gregory, Jack, Jane, Leon Gonsalez, Louis, Lucas, Maria, Mary, Michael, Miller, Oswald, Philip, Reeder, Simon, Simpson, Smith, Stephen, Susan, Thomas, Trevor, Vernon, William, Wilson, Adalinda, Agnes, Alan, Alice, Andrews, Anina, Arthur Savile, Bailey, Barnet, Baron, Bertie, Bill Mills, Black, Bradstreet, Briony Lodge, Burton, Cecil, Charlson, Cincolo, Clair, Collins, Colonel Leyland, Corradino, Cyril Graham, Davids
 
 ## Books
+- [Children’s Stories](../Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md)
+- [Fifty-One Tales](../Books/65E981EA-7BF0-4885-82BF-CBA2AE64C9D5.md)
+- [Ghost Stories](../Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md)
+- [Giant’s Bread](../Books/8C41294A-84FE-4FD9-A677-E7FE1369BE86.md)
+- [Jeeves Stories](../Books/592B8ACE-4B06-4E70-9479-2E49CAD7BBEE.md)
+- [John Silence Stories](../Books/6A31FCE5-2847-4CA1-866C-DC461BE3CCD3.md)
+- [Just So Stories](../Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/7C4FA643-F964-439C-BD3F-21FC9AACEB4B.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/AE827DF5-44D7-48A5-8888-926CFC6C8CDA.md)
+- [Mr. Mulliner Stories](../Books/BC6A63D9-09A6-49C3-9BDA-BC9804F51615.md)
+- [Nonsense Books](../Books/3C115034-37FA-4374-9E7E-E2BAC88914E9.md)
+- [Partners in Crime](../Books/77BED452-3EC1-4A65-8DFE-C531A20BD810.md)
+- [Poirot Investigates](../Books/DA0B3FE2-54DD-4A9C-B15A-5967F67B4809.md)
+- [Room 13](../Books/4B79C267-89C1-45C7-B018-BDC6A1E2E427.md)
+- [Short Fiction](../Books/53316201-814F-4714-9D77-7EEAA566723E.md)
+- [Short Fiction](../Books/6192826A-C799-446A-BF8F-B781ADD383CD.md)
+- [Short Fiction](../Books/F734DB8F-18A1-44C3-8C82-F53CD4EB4B71.md)
+- [Short Fiction](../Books/D7A6AC70-7FF0-4447-BE63-1578B873F962.md)
+- [Short Fiction](../Books/5FFD0BE2-62DB-4A7C-9A29-EF38FF3C825C.md)
+- [Short Fiction](../Books/8227C284-ABF0-400A-8193-1DE53BF2DE60.md)
+- [Short Fiction](../Books/635FCFD4-B245-45A0-8140-6F94A21EE9DA.md)
+- [Short Fiction](../Books/233E9C32-6ADC-4AF8-AAB2-CAB10464FBA4.md)
+- [Short Fiction](../Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md)
+- [Short Fiction](../Books/9DF0999E-892A-42F6-AC67-98F33B187CAB.md)
+- [Short Fiction](../Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md)
+- [Short Fiction](../Books/B56E9362-1833-4321-A00E-4743AED30529.md)
+- [Terror Keep](../Books/CC9314C3-481E-463D-9E2D-E7C818612242.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Amateur Cracksman](../Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md)
+- [The Avenger](../Books/804C3344-FC00-44DD-9CB3-B0018119EA00.md)
+- [The Book of Wonder](../Books/D5A3CAD6-23A0-4F9C-B1D6-69806D0EAF8B.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Council of Justice](../Books/7EE65772-7F1E-43A1-9099-581BD796FFC3.md)
+- [The Four Just Men](../Books/714DD324-FFA2-4A34-BF60-9F49595459D9.md)
+- [The Incredulity of Father Brown](../Books/81518D11-E6DD-4B4B-9073-A205D12805BC.md)
+- [The Innocence of Father Brown](../Books/A08E9FD9-5919-468C-9E7C-04C3FD49A188.md)
+- [The Jungle Book](../Books/C653A429-FF59-4DAA-B45D-A300A1EECBAF.md)
+- [The Just Men of Cordova](../Books/2C45F7BD-82CB-40A9-8BCB-40A61759BFE3.md)
+- [The Lady of the Barge](../Books/62B3F40E-F391-4E03-B606-D38F2E68F412.md)
+- [The Law of the Four Just Men](../Books/5DFA9000-0F80-4034-93F3-F807901893CE.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
+- [The Mind of Mr. J. G. Reeder](../Books/7155C166-21B4-4030-A6CA-A61F44F0E053.md)
+- [The Old Man in the Corner](../Books/EBFC1BDB-4AFB-43DE-9496-84E24C296C5A.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
+- [The Secret House](../Books/2DDDEC42-DF7E-4E9D-A4B5-BBBA99952EEA.md)
+- [The Secret of Father Brown](../Books/ADC595DB-C4F6-49EB-B32B-C8F6460D0520.md)
+- [The Three Just Men](../Books/A6973305-DD7D-4CC1-8052-8A6385B67D39.md)
+- [The Wisdom of Father Brown](../Books/5B4349AB-C34E-40A0-96F1-2AF5E770C130.md)
 
 ## Representative excerpts
 
-### The Adventures of Sherlock Holmes: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Adventures of Sherlock Holmes This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Adventures of Sherlock Holmes Author: Arthur Conan Doyle Release date: March 1, 1999 [eBook #1661] Most recently updated: October 10, 2023 Language: English Other information and formats: www.gutenberg.
-
-### The Adventures of Sherlock Holmes: Section 8
+### Children’s Stories: Section 7
 
 _Mid-book rhythm_
 
-> VII. THE ADVENTURE OF THE BLUE CARBUNCLE I had called upon my friend Sherlock Holmes upon the second morning after Christmas, with the intention of wishing him the compliments of the season. He was lounging upon the sofa in a purple dressing-gown, a pipe-rack within his reach upon the right, and a pile of crumpled morning papers, evidently newly studied, near at hand. Beside the couch was a wooden chair, and on the angle of the back hung a very seedy and disreputable hard-felt hat, much the worse for wear, and cracked in several places. A lens and a forceps lying upon the seat of the chair suggested that the hat had been suspended in this manner for the purpose of examination. “You are engaged,” said I; “perhaps I interrupt you.” “Not at all. I am glad to have a friend with whom I can discuss my results. The matter is a perfectly trivial one”
+> The Remarkable Rocket The King’s son was going to be married, so there were general rejoicings. He had waited a whole year for his bride, and at last she had arrived. She was a Russian Princess, and had driven all the way from Finland in a sledge drawn by six reindeer. The sledge was shaped like a great golden swan, and between the swan’s wings lay the little Princess herself. Her long ermine-cloak reached right down to her feet, on her head was a tiny cap of silver tissue, and she was as pale as the Snow Palace in which she had always lived. So pale was she that as she drove through the streets all the people wondered. “She is like a white rose!” they cried, and they threw down flowers on her from the balconies. At the gate of the Castle the Prince was waiting to receive her. He had dreamy violet eyes, and his hair was like fine gold.
+
+### Children’s Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Fisherman and His Soul To H.S.H. Alice, Princess of Monaco Every evening the young Fisherman went out upon the sea, and threw his nets into the water. When the wind blew from the land he caught nothing, or but little at best, for it was a bitter and black-winged wind, and rough waves rose up to meet it. But when the wind blew to the shore, the fish came in from the deep, and swam into the meshes of his nets, and he took them to the marketplace and sold them. Every evening he went out upon the sea, and one evening the net was so heavy that hardly could he draw it into the boat. And he laughed, and said to himself, “Surely I have caught all the fish that swim, or snared some dull monster that will be a marvel to men, or some thing of horror that the great Queen will desire,”
+
+### Fifty-One Tales: Section 29
+
+_Mid-book rhythm_
+
+> Alone the Immortals I heard it said that far away from here, on the wrong side of the deserts of Cathay and in a country dedicate to winter, are all the years that are dead. And there a certain valley shuts them in and hides them, as rumor has it, from the world, but not from the sight of the moon nor from those that dream in his rays. And I said: I will go from here by ways of dream and I will come to that valley and enter in and mourn there for the good years that are dead. And I said: I will take a wreath, a wreath of mourning, and lay it at their feet in token of my sorrow for their dooms. And when I sought about among the flowers, among the flowers for my wreath of mourning, the lily looked too large and the laurel looked too solemn and I found nothing frail enough nor slender to serve as an offering to the years that were dead.
+
+### Fifty-One Tales: Section 25
+
+_Dialogue and character voice_
+
+> The Dream of King Karna-Vootra King Karna-Vootra sitting on his throne commanding all things said: “I very clearly saw last night the queenly Vava-Nyria. Though partly she was hidden by great clouds that swept continually by her, rolling over and over, yet her face was unhidden and shone, being full of moonlight. “I said to her: “ ‘Walk with me by the great pools in many-gardened, beautiful Istrakhan where the lilies float that give delectable dreams; or, drawing aside the curtain of hanging orchids, pass with me thence from the pools by a secret path through the else-impassable jungle that fills the only way between the mountains that shut in Istrakhan. They shut it in and look on it with joy at morning and at evening when the pools are strange with light, till in their gladness sometimes there melts the deadly snow that kills upon lonely heights the mountaineer.
+
+### Ghost Stories: Section 17
+
+_Mid-book rhythm_
+
+> The Other Bed I had gone out to Switzerland just before Christmas, expecting, from experience, a month of divinely renovating weather, of skating all day in brilliant sun, and basking in the hot frost of that windless atmosphere. Occasionally, as I knew, there might be a snowfall, which would last perhaps for forty-eight hours at the outside, and would be succeeded by another ten days of cloudless perfection, cold even to zero at night, but irradiated all day long by the unflecked splendour of the sun. Instead the climatic conditions were horrible. Day after day a gale screamed through this upland valley that should have been so windless and serene, bringing with it a tornado of sleet that changed to snow by night.
+
+### Ghost Stories: Section 18
+
+_Dialogue and character voice_
+
+> The Thing in the Hall The following pages are the account given me by Dr. Assheton of the Thing in the Hall. I took notes, as copious as my quickness of hand allowed me, from his dictation, and subsequently read to him this narrative in its transcribed and connected form. This was on the day before his death, which indeed probably occurred within an hour after I had left him, and, as readers of inquests and such atrocious literature may remember, I had to give evidence before the coroner’s jury. Only a week before Dr. Assheton had to give similar evidence, but as a medical expert, with regard to the death of his friend, Louis Fielder, which occurred in a manner identical with his own. As a specialist, he said he believed that his friend had committed suicide while of unsound mind, and the verdict was brought in accordingly. But in the inquest held over Dr.
+
+### Giant’s Bread: Section 20
+
+_Mid-book rhythm_
+
+> VII I August was a difficult month for Vernon. Nell and her mother were in Dinard. He wrote to her and she to him, but her letters told him little or nothing of what he wanted to know. She was having a gay time, he gathered, and enjoying herself though longing for Vernon to be there. Vernon’s work was of the purely routine order. It required little intelligence. You needed to be careful and methodical, that was all. His mind, free from other distractions, swung back to its secret love, music. He had formed the idea of writing an opera and had taken for his theme the half-forgotten fairy story of his youth. It was now bound up in his mind with Nell⁠—the whole strength of his love for her flowed into this new channel. He worked feverishly. Nell’s words about his living comfortably with his mother had rankled, and he had insisted on having rooms of his own.
+
+### Giant’s Bread: Section 23
+
+_Dialogue and character voice_
+
+> II I Nell was back in London. Vernon came up to see her the day after her return. She noticed the change in him at once. He looked haggard, excited. He said abruptly: “Nell, I’m going to chuck Birmingham.” “What?” “Listen while I tell you⁠ ⁠…” He talked eagerly, excitedly. His music⁠—he’d got to give himself up to it. He told her of the opera. “Listen, Nell. This is you⁠—in your tower⁠—with your golden hair hanging down and shining⁠—shining in the sun.” He went to the piano, began to play, explaining as he did so⁠ ⁠… “Violins⁠—you see⁠—and this is all for harps⁠ ⁠… and these are the round jewels.⁠ ⁠…” He played what seemed to Nell to be a series of rather ugly discords. She privately thought it all hideous. Perhaps it would sound different played by an orchestra. But she loved him⁠—and because she loved him, everything he did must be right. She smiled and said: “It’s lovely, Vernon.”
+
+### Jeeves Stories: Section 16
+
+_Mid-book rhythm_
+
+> Comrade Bingo The thing really started in the Park⁠—at the Marble Arch end⁠—where weird birds of every description collect on Sunday afternoons and stand on soapboxes and make speeches. It isn’t often you’ll find me there, but it so happened that on the Sabbath after my return to the good old metrop. I had a call to pay in Manchester Square, and, taking a stroll round in that direction so as not to arrive too early, I found myself right in the middle of it. Now that the Empire isn’t the place it was, I always think the Park on a Sunday is the centre of London, if you know what I mean. I mean to say, that’s the spot that makes the returned exile really sure he’s back again. After what you might call my enforced sojourn in New York I’m bound to say that I stood there fairly lapping it all up.
+
+### Jeeves Stories: Section 7
+
+_Dialogue and character voice_
+
+> The Aunt and the Sluggard Now that it’s all over, I may as well admit that there was a time during the rather funny affair of Rockmetteller Todd when I thought that Jeeves was going to let me down. The man had the appearance of being baffled. Jeeves is my man, you know. Officially he pulls in his weekly wages for pressing my clothes and all that sort of thing; but actually he’s more like what the poet Johnnie called some bird of his acquaintance who was apt to rally round him in times of need⁠—a guide, don’t you know; philosopher, if I remember rightly, and⁠—I rather fancy⁠—friend. I rely on him at every turn. So naturally, when Rocky Todd told me about his aunt, I didn’t hesitate. Jeeves was in on the thing from the start. The affair of Rocky Todd broke loose early one morning of spring.

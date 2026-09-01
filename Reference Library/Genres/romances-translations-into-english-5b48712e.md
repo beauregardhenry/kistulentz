@@ -2,23 +2,24 @@
 # Romances -- Translations into English
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 153975
-- Reading grade: 3.1
-- Average sentence: 8.3 words
-- Average paragraph: 13.1 words
-- Dialogue share: 40%
+- Words analyzed: 202718
+- Reading grade: 3.8
+- Average sentence: 10.7 words
+- Average paragraph: 34.8 words
+- Dialogue share: 36%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: shall, knight, without, return, himself, knights, heart, court, damsel, place, nothing, honour, truth, desire, cannot, heard, night, speak, leave, rather, replies, horse, grief, others
-- Character names: Erec, Cligés, Alexander, John, Arthur, Gawain, Kay, Alis, Tristan, Chrétien, Yvain, Iseut, Lac, Lancelot, Bertrand, Ovid, Charlemagne, Geraint, Foerster, Nature, Perceval, Philomena, Queen Guinevere, Samson, Solomon, W.W, Bilis, Brangien, Caesar, Cornwall
+- Tone: rhythmically even, balanced, dialogue-forward, direct, narrative-forward
+- Recurring vocabulary: damsel, heard, heart, himself, knight, shall, without, called, cannot, chamber, court, desire, eliduc, forth, friend, greatly, grief, honour, horse, house, husband, knights, leave, loved, maiden, neither, night, nothing, others, place, rather, realm, reason, replies, return, returned, speak, together, truth, within
+- Character names: Arthur, Gawain, Tristan, Abbey, Alexander, Alis, Bertrand, Bilis, Brangien, Breton, Buron, Caesar, Charlemagne, Christ, Chrétien, Cligés, Cornwall, Equitan, Erec, Foerster, Geraint, Goatleaf, Gugemar, Guillardun, Henry, Iseut, John, Kay, Lac, Lancelot, Launfal, Marie, Mark, Meriadus, Milon, Nature, Norman, Ovid, Pentecost, Perceval, Philomena, Queen Guinevere, Samson, Solomon, Thereon, W.W, Yvain
 
 ## Books
 - [Four Arthurian Romances](../Books/BFFC3AAD-BDC5-4567-B344-83382F2CEA2A.md)
+- [Lais](../Books/BF0EA437-3E0B-453B-8D93-6DE7AC65225B.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > (Vv. 3131-3254.) Then they say no more about the box, but minister in every way they can to the comfort of my lord Yvain, bathing him and washing his hair, having him shaved and clipped, for one could have taken up a fist full of hair upon his face. His every want is satisfied: if he asks for arms, they are furnished him: if he wants a horse, they provide him with one that is large and handsome, strong and spirited. He stayed there until, upon a Tuesday, Count Alier came to the town with his men and knights, who started fires and took plunder. Those in the town at once rose up and equipped themselves with arms. Some armed and some unarmed, they issued forth to meet the plunderers, who did not deign to retreat before them, but awaited them in a narrow pass.
+
+### Lais: Section 11
+
+_Mid-book rhythm_
+
+> The Lay of the Two Lovers Once upon a time there lived in Normandy two lovers, who were passing fond, and were brought by Love to Death. The story of their love was bruited so abroad, that the Bretons made a song in their own tongue, and named this song the Lay of the Two Lovers. In Neustria⁠—that men call Normandy⁠—there is verily a high and marvellously great mountain, where lie the relics of the Two Children. Near this high place the King of those parts caused to be built a certain fair and cunning city, and since he was lord of the Pistrians, it was known as Pistres. The town yet endures, with its towers and houses, to bear witness to the truth; moreover the country thereabouts is known to us all as the Valley of Pistres. This King had one fair daughter, a damsel sweet of face and gracious of manner, very near to her father’s heart, since he had lost his Queen.
+
+### Lais: Section 8
+
+_Dialogue and character voice_
+
+> The Lay of Eliduc Now will I rehearse before you a very ancient Breton Lay. As the tale was told to me, so, in turn, will I tell it over again, to the best of my art and knowledge. Hearken now to my story, its why and its reason. In Brittany there lived a knight, so courteous and so brave, that in all the realm there was no worthier lord than he. This knight was named Eliduc. He had wedded in his youth a noble lady of proud race and name. They had long dwelt together in peace and content, for their hearts were fixed on one another in faith and loyalty. Now it chanced that Eliduc sought his fortune in a far land, where there was a great war. There he loved a Princess, the daughter of the King and Queen of those parts. Guillardun was the maiden’s name, and in all the realm was none more fair. The wife of Eliduc had to name, Guildeluec, in her own country.

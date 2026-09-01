@@ -2,24 +2,26 @@
 # Herman Melville
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 237247
-- Reading grade: 4.4
-- Average sentence: 8.5 words
-- Average paragraph: 11.8 words
-- Dialogue share: 21%
-- Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even, energetic
-- Recurring vocabulary: seemed, though, thought, without, agreement, behind, boats, business, captain, certain, chapter, copyright, cried, electronic, hands, himself, indeed, license, morning, myself, night, nippers, nothing, office, pequod, prefer, round, screen, scrivener, small, sperm, states, terms, things, three, turkey, water, whale, whales, whaling
-- Character names: Adam, Adams, Ahab, Albino, Astor, Bartleby, Belshazzar, Bildad, Cabaco, Dost, Elijah, Emir, Englishman, Ginger Nut, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hark, Horn, Ishmael, John Hunter, John Jacob, Jonah, Lazarus, Leviathan, Linnæus, Moby Dick, Mr. Starbuck, Mrs. Hussey, Peleg, Peter Coffin, Pip, Project Gutenberg, Queequeg, Starbuck, Stubb, Tarshish, Tashtego, Woe, Yojo
+- Words analyzed: 516687
+- Reading grade: 6.9
+- Average sentence: 16.6 words
+- Average paragraph: 44.5 words
+- Dialogue share: 16%
+- Voice: mixed or shifting perspective
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, rhythmically varied, balanced, energetic, measured
+- Recurring vocabulary: seemed, without, himself, myself, nothing, though, thought, three, captain, certain, house, indeed, morning, night, place, round, small, water, whole, agreement, appeared, behind, billy, boats, business, chapter, chimney, copyright, cried, during, electronic, hands, however, island, islanders, islands, license, master, moment, natives
+- Character names: Adam, Bartleby, Dr, Ginger Nut, Hark, Horn, Moby Dick, Mr, Adams, Ahab, Albemarle, Albino, Allan, Amar, Astor, Babo, Bannadonna, Barrington Isle, Belshazzar, Bildad, Black, Cabaco, Charles, Coulter, Cowley, Cupid, Dana, Delano, Devil, Don Benito, Dost, Dungeon, Elijah, Emir, Englishman, Fayaway, Felipe, Gansevoort, Gansevoort Melville, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Happar, Hautboy, Hawthorne, Herman Melville, Ishmael, Jack, James, John Hunter, John Jacob, Jonah, Kory, Kory-Kory, Lazarus, Leviathan, Linnæus, Mardi, Marheyo, Martha, Mehevi, Melville, Mr. Starbuck, Mrs, Mrs. Hussey, Nukuheva, Pedro, Peleg, Peter Coffin, Pip, Porter, Pray, Pritchard, Project Gutenberg, Queequeg, Rodondo, Russell, Signor Beneventano, Socrates, Starbuck
 
 ## Books
 - [Bartleby, the Scrivener: A Story of Wall-Street](../Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md)
 - [Moby Dick; Or, The Whale](../Books/8EED98A3-73C5-4C4D-B943-2EBCE6CDA5D5.md)
+- [Short Fiction](../Books/132F152E-693D-442C-BABD-C9CDD7EBA5D6.md)
+- [Typee](../Books/1251A293-D2FF-4EAF-9EC2-E08942374DBF.md)
 
 ## Representative excerpts
 
@@ -46,3 +48,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER 62. The Dart. A word concerning an incident in the last chapter. According to the invariable usage of the fishery, the whale-boat pushes off from the ship, with the headsman or whale-killer as temporary steersman, and the harpooneer or whale-fastener pulling the foremost oar, the one known as the harpooneer-oar. Now it needs a strong, nervous arm to strike the first iron into the fish; for often, in what is called a long dart, the heavy implement has to be flung to the distance of twenty or thirty feet.
+
+### Short Fiction: Section 12
+
+_Mid-book rhythm_
+
+> Benito Cereno In the year 1799, Captain Amasa Delano, of Duxbury, in Massachusetts, commanding a large sealer and general trader, lay at anchor with a valuable cargo, in the harbor of St. Maria⁠—a small, desert, uninhabited island toward the southern extremity of the long coast of Chile. There he had touched for water. On the second day, not long after dawn, while lying in his berth, his mate came below, informing him that a strange sail was coming into the bay. Ships were then not so plenty in those waters as now. He rose, dressed, and went on deck. The morning was one peculiar to that coast. Everything was mute and calm; everything gray. The sea, though undulated into long roods of swells, seemed fixed, and was sleeked at the surface like waved lead that has cooled and set in the smelter’s mould. The sky seemed a gray surtout.
+
+### Short Fiction: Section 18
+
+_Dialogue and character voice_
+
+> Billy Budd, Foretopman3 What Befell Him in the Year of the Great Mutiny, etc. Dedicated to Jack Chase Englishman Wherever that great heart may now be here on earth or harboured in paradise Captain of the Main-Top in the year 1843 in the U.S. frigate United States Preface The year 1797, the year of this narrative, belongs to a period which, as every thinker now feels, involved a crisis for Christendom, not exceeded in its undetermined momentousness at the time by any other era whereof there is record. The opening proposition made by the Spirit of that Age,4 involved a rectification of the Old World’s hereditary wrongs. In France, to some extent, this was bloodily effected. But what then? Straightway the Revolution itself became a wrongdoer, one more oppressive than the kings.
+
+### Typee: Section 23
+
+_Mid-book rhythm_
+
+> XVIII Swimming in company with the girls of the valley⁠—A canoe⁠—Effects of the taboo⁠—A pleasure excursion on the pond⁠—Beautiful freak of Fayaway⁠—Mantua-making⁠—A stranger arrives in the valley⁠—His mysterious conduct⁠—Native oratory⁠—The interview⁠—Its results⁠—Departure of the stranger. Returning health and peace of mind gave a new interest to everything around me. I sought to diversify my time by as many enjoyments as lay within my reach. Bathing in company with troops of girls formed one of my chief amusements. We sometimes enjoyed the recreation in the waters of a miniature lake, to which the central stream of the valley expanded. This lovely sheet of water was almost circular in figure, and about three hundred yards across. Its beauty was indescribable.
+
+### Typee: Section 3
+
+_Dialogue and character voice_
+
+> Introduction to the Edition of 1892 Of the trinity of American authors whose births made the year 1819 a notable one in our literary history⁠—Lowell, Whitman, and Melville⁠—it is interesting to observe that the two latter were both descended, on the fathers’ and mothers’ sides respectively, from families of British New England and Dutch New York extraction. Whitman and Van Velsor, Melville and Gansevoort, were the several combinations which produced these men; and it is easy to trace in the life and character of each author the qualities derived from his joint ancestry. Here, however, the resemblance ceases, for Whitman’s forebears, while worthy country people of good descent, were not prominent in public or private life.

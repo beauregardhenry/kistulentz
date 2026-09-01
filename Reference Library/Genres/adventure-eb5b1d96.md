@@ -2,90 +2,163 @@
 # Adventure
 
 - Profile type: Genre
-- Books represented: 9
+- Books represented: 82
 
 ## Learned profile
 
-- Words analyzed: 798771
-- Reading grade: 4.3
-- Average sentence: 8.9 words
-- Average paragraph: 12.0 words
-- Dialogue share: 38%
+- Words analyzed: 7290660
+- Reading grade: 6.0
+- Average sentence: 17.3 words
+- Average paragraph: 53.0 words
+- Dialogue share: 25%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward
-- Recurring vocabulary: without, himself, house, people, water, country, gutenberg, however, project, though, father, nature, nothing, place, shall, therefore, three, works, world, agreement, answered, brought, business, chapter, copyright, donations, drink, earth, ebook, electronic, england, going, hands, heard, heaven, ithaca, license, miles, myself, night
-- Character names: Gutenberg, Aegisthus, Agamemnon, Alcinous, Arete, Atreus, Benjamin, Brown, Butler, Calypso, Circe, Collins, Dawn, Diana, General Grant, Gutenberg Literary, Gutenberg Literary Archive Foundation, Hades, Helen, John, Jove, Laertes, Menelaus, Minerva, Mr, Nausicaa, Neptune, Nestor, Penelope, Piraeus, Pisistratus, Poe, Priam, Project Gutenberg, Scylla, Teiresias, Telemachus, Thereon, Troy, Ulysses, Venus, massa, Absaroka, Adam, Adelaide, Andromeda, Andrée, Angell, Antiochus Epiphanes, Antone, B., Ballarat, Beauvais, Benjamin Franklin, Birds, Bob White, Boer, Braddock, Bradford, Briden, Brownie, Carlo, Castro, Chaucer, Christ, Clark, Clarke, Cooper, Cora, Cthulhu, Dana, David Brown, David Widger, Deerslayer, Denny, Douglas, Dr. Fothergill, Dr. Tobey, Duncan, Dupin
+- Tempo: steady
+- Tone: rhythmically varied, narrative-forward, balanced, dialogue-forward, rhythmically even, direct, measured, energetic
+- Recurring vocabulary: without, shall, himself, nothing, three, though, thought, night, water, house, place, people, don’t, seemed, going, heard, moment, things, world, stood, hands, course, cried, however, myself, round, above, toward, quite, began, replied, white, young, black, didn’t, hundred, that’s, woman, whole, within
+- Character names: Mr, Mrs, Dr, John, Joe, James, Jane, George, Jove, Jack, Numa, Tarzan, Troy, Venus, bush, Arthur, Harry, William, brown, Adam, Bill, Diana, Gutenberg, Hardy, Hath, Helen, Jim, Jones, Lady Greystoke, Laertes, Louis, Madame, Marie, Michael, Nature, Neptune, Poe, Priam, Tom, Waziri, Wilson, Aegisthus, Agamemnon, Alcinoüs, Alexander, Allen, Arab, Arthur Gordon Pym, Atreus, Bara, Butler, Callie, Callie Shaw, Carl, Charles, Chet, Chet Morton, Circe, Curtis, Dana, Dawson, Douglas, D’Arnot, Edward, Fate, Fenton Hardy, Frank, Frank Hardy, Hades, Hans, Humphry Davy, Iola, Jane Clayton, Joe Hardy, John Clayton, Johnson, Juno, Kala, Larsen, Mackenzie
 
 ## Books
+- [“We”](../Books/0BE6B84F-4AB5-4A92-904D-A7881053F0CD.md)
+- [A High Wind in Jamaica](../Books/8A68D93A-32DA-4268-AC97-1CEBAE4FBDD3.md)
+- [After London](../Books/BD5A4C69-C84E-4433-809A-9F3E4A35294B.md)
+- [Allan Quatermain Stories](../Books/516C697F-7657-492A-B266-1035C2073CCF.md)
+- [An Antarctic Mystery](../Books/B07C646D-EC55-4927-A8E3-C7FDC454592B.md)
+- [Around the World in Eighty Days](../Books/D78BDAF1-BC42-445C-9ADA-DFB464242C82.md)
+- [At the Mountains of Madness](../Books/CF9C1AF5-31C8-4BA1-BC16-D56A3D0DE475.md)
 - [Autobiography of Benjamin Franklin](../Books/36D10C57-716F-4BC6-BAFC-645FF08DF515.md)
+- [Behind That Curtain](../Books/312921AA-113B-40E5-93BE-05F65245C556.md)
+- [Captain Blood](../Books/B15BDB89-D911-404F-80D9-3C623CC15589.md)
+- [Commentaries on the Gallic War](../Books/555D9213-CE97-4864-919A-E71A4F1451B7.md)
+- [Demons](../Books/75AAB312-A2DA-401C-8D4D-21E36D1B8522.md)
+- [Fables](../Books/6DFCE33A-6CBF-4062-82B7-AC0DF3B3492A.md)
+- [Five Weeks in a Balloon](../Books/564274E3-64C1-43EC-9823-2BFEF761C4FC.md)
 - [Following the Equator: A Journey Around the World](../Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md)
+- [Golf Stories](../Books/1DB751CA-1BE6-4D0F-BBB2-E5198C1980CB.md)
 - [Index of the Project Gutenberg Works of Henry David Thoreau](../Books/20DFDF06-FD09-4E00-AED6-882B4FC889A6.md)
+- [Irish Fairy Tales](../Books/652FCA03-A423-471E-AE0A-1907FAB0E4C8.md)
+- [Jibby Jones](../Books/216055F7-E991-473A-A788-F9CE95334AA0.md)
+- [Journals](../Books/D80EDB16-78C8-4445-A84E-8464F738662D.md)
+- [Journey to the Center of the Earth](../Books/06A26BC1-47F2-4533-B65E-FFF2F12ECBC8.md)
+- [Journey to the Center of the Earth](../Books/25226025-591E-480D-9168-06B8E051706B.md)
+- [Le Morte d’Arthur](../Books/EE981D9A-24CF-4182-9932-BD5D537EB2CC.md)
+- [Legends of Vancouver](../Books/08E0AA71-C9CA-4B45-844D-595352D7230A.md)
+- [Lost Face](../Books/3D239EB4-D931-40F0-9115-33417EEBC0BE.md)
+- [My First Summer in the Sierra](../Books/85EAC71C-97AE-4464-8025-074E99BADD64.md)
+- [Nonsense Books](../Books/3C115034-37FA-4374-9E7E-E2BAC88914E9.md)
 - [Our National Parks](../Books/8700D61F-D818-4A85-84C0-85189596F2B9.md)
+- [Paradise Lost](../Books/48EAD193-5720-4A5C-8692-9EB5695F829E.md)
+- [Passages from the Life of a Philosopher](../Books/19A57E6A-C76F-46ED-B8F9-0C717D5DA7FF.md)
+- [Philoctetes](../Books/5A3445E0-A649-40F3-BF0B-F857390E456B.md)
+- [Poetry](../Books/1B240C4F-C43B-4968-A5C5-BABC8300DE69.md)
+- [Roughing It](../Books/0CE9012E-AACF-466B-B2D5-6CF3445B6ECB.md)
+- [Short Fiction](../Books/F68BDE11-8B41-42E6-8087-ACBA16E6BF01.md)
+- [Short Fiction](../Books/1481AE97-4571-4128-9931-E03D5B25B229.md)
+- [Short Fiction](../Books/87CADE27-8A89-42DB-9235-A97C42C936A6.md)
+- [Short Fiction](../Books/635FCFD4-B245-45A0-8140-6F94A21EE9DA.md)
+- [Short Fiction](../Books/3DDAB3AF-4D89-43EF-B50B-1F604BE4E427.md)
+- [Short Fiction](../Books/40FB11AD-07A9-45B8-A6FA-109EE49C74DE.md)
+- [Short Fiction](../Books/F53A3CD5-28E4-41C6-826D-3299F7FF213C.md)
 - [Studies in Classic American Literature](../Books/A1B1D0A6-4E8D-46E6-BA24-B5357DD40247.md)
+- [Tarzan and the Golden Lion](../Books/ABA09281-833F-43A3-9C6A-157DA40057D7.md)
+- [Tarzan and the Jewels of Opar](../Books/E2479C9F-3135-4004-BF6C-FE08D5CD113B.md)
+- [Tarzan of the Apes](../Books/B0FBAFFA-8B8A-420D-BA86-A504DDD1CC01.md)
+- [Tarzan, Lord of the Jungle](../Books/8DFAA58F-DFCB-4841-B6A3-BD5B287CBC78.md)
+- [The Aeneid](../Books/A53A93AF-2360-43AA-8A06-6BC67771857A.md)
+- [The Amateur Cracksman](../Books/8F1A6EE6-2C8B-4BC6-AD4F-4A72C302EC58.md)
+- [The American Crisis](../Books/B0F30610-550F-4FC7-A8F5-DB72B9260FCF.md)
+- [The Beasts of Tarzan](../Books/1CB1EE31-DE65-4E65-BA9D-A4DF115BD71E.md)
+- [The Book of Wonder](../Books/D5A3CAD6-23A0-4F9C-B1D6-69806D0EAF8B.md)
 - [The call of Cthulhu](../Books/AD320115-98F9-4795-BA81-A4D8DED280D2.md)
+- [The Cruise of the Alerte](../Books/2A1E3CE2-3932-4FF7-9CB8-71349FDFAA79.md)
+- [The Defiant Agents](../Books/C1C301DB-D863-48E0-9F48-5B87C2EDB480.md)
+- [The Fur Country](../Books/133D7A41-86E3-4A37-A565-7D5A6D9C6CA5.md)
+- [The Great Airport Mystery](../Books/D03FB408-0B0F-4D40-8682-B1ED0DE6CD2B.md)
+- [The Land That Time Forgot](../Books/659DAA74-5C49-4D6A-9A6C-D6F4991BEE1D.md)
+- [The Man in the Brown Suit](../Books/21775D97-805B-4CD7-8314-1CD228742B63.md)
+- [The Maracot Deep](../Books/BA0DE4BC-C1AB-4046-8EC9-22C2D5073F00.md)
+- [The Master of Ballantrae](../Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md)
+- [The Missing Chums](../Books/3C3961BF-5C18-424D-9637-49F47E466492.md)
+- [The Narrative of Arthur Gordon Pym of Nantucket](../Books/99706ED7-E9F6-409D-8318-473DBA8BFDF5.md)
+- [The Odyssey](../Books/C945079C-AC32-4190-A09D-23C198C904DF.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/BA3B84A4-169F-4B40-804A-6CDA495B790B.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/B2311001-F34E-4668-84D8-AAB8245CFA57.md)
+- [The Prophet](../Books/E1528CD9-5F01-4850-B19E-D86DE0CB0021.md)
+- [The Prophet](../Books/9BD88F10-D755-40E2-812C-A85C20BDF962.md)
+- [The Return of Sherlock Holmes](../Books/D19602D6-4986-4F3A-8191-83C0F905B413.md)
+- [The Return of Tarzan](../Books/14797A02-94E3-4112-8FCF-DEE015C98343.md)
+- [The Roots of the Mountains](../Books/96D5CC00-DC6A-47E2-B90A-99A98CF2FDCA.md)
+- [The Sea-Wolf](../Books/7A163332-7787-4A84-B3DA-49A5361AF86E.md)
+- [The Seagull](../Books/D1D9E1D1-25B7-419C-82B4-ED645FBC57C8.md)
+- [The Secret of the Caves](../Books/2A85F61B-3E11-4D07-8CCF-1A9A6D85CE8B.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
+- [The Special Correspondent](../Books/D5FE565B-C52D-4821-8E2D-E353245F543F.md)
+- [The Story of Doctor Dolittle](../Books/87A45FF5-E591-49F4-953D-F3D5C1335418.md)
+- [The Survivors of the Chancellor](../Books/0961F477-ACBC-4682-9147-B2E00C4E861E.md)
+- [The Voyages of Doctor Dolittle](../Books/B4E5027A-E96F-4FBA-8DD5-EE77A51BEF14.md)
+- [The Water of the Wondrous Isles](../Books/0291AC39-E5E2-44CB-BD62-D36A1BF3AC89.md)
 - [The Works of Edgar Allan Poe — Volume 1](../Books/3FE1260F-E736-4671-80C2-7DF5638935F2.md)
+- [Treasure Island](../Books/7A7FD9AA-0B3F-43AD-A305-8AE6C42B798A.md)
+- [Typee](../Books/1251A293-D2FF-4EAF-9EC2-E08942374DBF.md)
+- [Winnie-the-Pooh](../Books/66247FE6-E2BF-4D37-ABF8-7EF40F024C6B.md)
 
 ## Representative excerpts
 
-### Autobiography of Benjamin Franklin: Section 1
+### “We”: Section 15
 
-_Opening voice_
+_Mid-book rhythm_
 
-> The Project Gutenberg eBook of Autobiography of Benjamin Franklin This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Autobiography of Benjamin Franklin Author: Benjamin Franklin Editor: Frank Woodworth Pine Illustrator: E. Boyd Smith Release date: December 28, 2006 [eBook #20203] Most recently updated: October 19, 2022 Language: English Other information and formats: www.gutenberg.
+> IX San Diego⁠–⁠St. Louis⁠–⁠New York The transatlantic nonstop flight between New York and Paris was first brought into public consideration by Raymond Orteig who, in 1919, issued a challenge to the Aeronautical world by offering a prize of $25,000 to the first successful entrant. Details of the flight were placed in the hands of the National Aeronautic Association and a committee was appointed to form and administer the rules of the undertaking. I first considered the possibility of the New York⁠–⁠Paris flight while flying the mail one night in the fall of 1926. Several facts soon became outstanding. The foremost was that with the modern radial air-cooled motor, high lift airfoils, and lightened construction, it would not only be possible to reach Paris but, under normal conditions, to land with a large reserve of fuel and have a high factor of safety throughout the entire trip as well.
 
-### Autobiography of Benjamin Franklin: Section 3
+### “We”: Section 23
 
 _Dialogue and character voice_
 
-> [74] The almanac at that time was a kind of periodical as well as a guide to natural phenomena and the weather. Franklin took his title from Poor Robin, a famous English almanac, and from Richard Saunders, a well-known almanac publisher. For the maxims of Poor Richard, see pages 331-335. [75] June 23 and July 7, 1730.—Smyth. [76] See "A List of Books written by, or relating to Benjamin Franklin," by Paul Leicester Ford. 1889. p. 15.—Smyth. [77] Dr. James Foster (1697-1753):— "Let modest Foster, if he will excel Ten metropolitans in preaching well." —Pope (Epilogue to the Satires, I, 132). "Those who had not heard Farinelli sing and Foster preach were not qualified to appear in genteel company," Hawkins. "History of Music."—Smyth. [78] "
+> IV Washington It is probable that when Lindbergh reached America he got the greatest welcome any man in history has ever received; certainly the greatest when judged by numbers; and by far the greatest in its freedom from that unkind emotion which in such cases usually springs from one people’s triumph over another. Lindbergh’s victory was all victory; for it was not internecine, but that of our human species over the elements against which for thousands of centuries man’s weakness has been pitted. The striking part of it all was that a composite picture of past homecoming heroes wouldn’t look any more like Charles Lindbergh did that day of his arrival in Washington than a hitching post looks like a green bay tree. Caesar was glum when he came back from Gaul; Napoleon grim; Paul Jones defiant; Peary blunt; Roosevelt abrupt; Dewey deferential; Wilson brooding; Pershing imposing.
 
-### Following the Equator: A Journey Around the World: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Following the Equator: A Journey Around the World This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Following the Equator: A Journey Around the World Author: Mark Twain Release date: June 24, 2004 [eBook #2895] Most recently updated: May 22, 2025 Language: English Other information and formats: www.gutenberg.
-
-### Following the Equator: A Journey Around the World: Section 6
+### A High Wind in Jamaica: Section 8
 
 _Mid-book rhythm_
 
-> I wonder how old the town is. There are patches of building—massive structures, monuments, apparently—that are so battered and worn, and seemingly so tired and so burdened with the weight of age, and so dulled and stupefied with trying to remember things they forgot before history began, that they give one the feeling that they must have been a part of original Creation. This is indeed one of the oldest of the princedoms of India, and has always been celebrated for its barbaric pomps and splendors, and for the wealth of its princes. CHAPTER XLV. It takes your enemy and your friend, working together, to hurt you to the heart; the one to slander you and the other to get the news to you. —Pudd’nhead Wilson’s New Calendar.
+> VI I The weeks passed in aimless wandering. For the children, the lapse of time acquired once more the texture of a dream: things ceased happening: every inch of the schooner was now as familiar to them as the Clorinda had been, or Ferndale: they settled down quietly to grow, as they had done at Ferndale, and as they would have done, had there been time, on the Clorinda. And then an event did occur, to Emily, of considerable importance. She suddenly realised who she was. There is little reason that one can see why it should not have happened to her five years earlier, or even five later; and none, why it should have come that particular afternoon.
 
-### Index of the Project Gutenberg Works of Henry David Thoreau: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Index of the Project Gutenberg Works of Henry David Thoreau This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Index of the Project Gutenberg Works of Henry David Thoreau Author: Henry David Thoreau Editor: David Widger Release date: November 11, 2018 [eBook #58273] Most recently updated: May 2, 2019 Language: English Other information and formats: www.gutenberg.
-
-### Index of the Project Gutenberg Works of Henry David Thoreau: Section 2
+### A High Wind in Jamaica: Section 12
 
 _Dialogue and character voice_
 
-> *** END OF THE PROJECT GUTENBERG EBOOK INDEX OF THE PROJECT GUTENBERG WORKS OF HENRY DAVID THOREAU *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
+> X I Emily grew quite a lot during the passage to England on the steamer: suddenly shot up, as children will at that age. But she did it without any gawkiness: instead, an actual increase of grace. Her legs and arms, though longer, did not lose any of the nicety of their shape; and her grave face lost none of its attractiveness by being a fraction nearer your own. The only drawback was that she used to get pains in the calves of her legs, now, and sometimes in her back: but those of course did not show. (They were all provided with clothes by a general collection, so it did not matter that she grew out of her old ones.) She was a nice child: and being a little less shy than formerly, was soon the most popular of all of them. Somehow, no one seemed to care very much for Margaret: old ladies used to shake their heads over her a good deal.
 
-### Our National Parks: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Our National Parks This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Our National Parks Author: John Muir Release date: December 15, 2019 [eBook #60929] Most recently updated: August 4, 2026 Language: English Other information and formats: www.gutenberg.org/ebooks/60929 *** START OF THE PROJECT GUTENBERG EBOOK OUR NATIONAL PARKS *** Our National Parks by John Muir Contents PREFACE Chapter I. The Wild Parks and Forest Reservations of the West Chapter II.
-
-### Our National Parks: Section 8
+### After London: Section 20
 
 _Mid-book rhythm_
 
-> CHAPTER VI Among the Animals of the Yosemite The Sierra bear, brown or gray, the sequoia of the animals, tramps over all the park, though few travelers have the pleasure of seeing him. On he fares through the majestic forests and cañons, facing all sorts of weather, rejoicing in his strength, everywhere at home, harmonizing with the trees and rocks and shaggy chaparral. Happy fellow! his lines have fallen in pleasant places,—lily gardens in silver-fir forests, miles of bushes in endless variety and exuberance of bloom over hill-waves and valleys and along the banks of streams, cañons full of music and waterfalls, parks fair as Eden,—places in which one might expect to meet angels rather than bears. In this happy land no famine comes nigh him.
+> XI Aurora Felix fell on the seat beside her, burying his face in the folds of her dress; he sobbed, not with tears, but choking passion. She held him to her heart as if he had been a child, stroking his hair and kissing it, whispering to him, assuring him that her love was his, that she was unchanged. She told him that it was not her fault. A little while before the feast the Baron had suddenly broken out into a fit of temper, such as she had never seen him indulge in previously; the cause was pressure put upon him by his creditors. Unpleasant truths had escaped him; amongst the rest, his dislike, his positive disapproval of the tacit engagement they had entered into. He declared that if the least outward sign of it appeared before the guests that were expected, he would order Felix to leave the place, and cancel the hearth-friendship, no matter what the consequence.
 
-### Studies in Classic American Literature: Section 1
+### After London: Section 13
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of Studies in Classic American Literature This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Studies in Classic American Literature Author: D. H. Lawrence Release date: October 21, 2019 [eBook #60547] Most recently updated: October 17, 2024 Language: English Other information and formats: www.gutenberg.org/ebooks/60547 Credits: Produced by Laura Natal Rodrigues at Free Literature (Images generously made available by Hathi Trust.
+> IV The Canoe Felix had scarcely worked half an hour before Oliver returned and threw himself on the ground at full length. He had wearied of fishing, the delicate adjustment of the tackle and the care necessary to keep the hook and line from catching in the branches had quickly proved too much for his patience. He lay on the grass, his feet towards the stream which ran and bubbled beneath, and watched Felix chipping out the block intended to fit into the secret opening or locker. “Is it nearly finished, then?” he said presently. “What a time you have been at it!” “Nearly three months.” “Why did you make it so big? It is too big.” “Is it really? Perhaps I want to put some things in it.” “Oh, I see; cargo. But where are you going to launch it?” “Below the stones there.” “Well, you won’t be able to go far; there’s an old fir across the river down yonder, and a hollow willow has fallen in.
 
-### Studies in Classic American Literature: Section 2
+### Allan Quatermain Stories: Section 5
 
 _Mid-book rhythm_
 
-> The same if you make a breach with your own Holy Ghost. You go soul-rotten. Like the Pearls. These dear Pearls, they do anything they like, and remain pure. Oh, purity! But they can't stop themselves from going rotten inside. Rotten Pearls, fair outside. Their souls smell, because their souls are putrefying inside them. The sin against the Holy Ghost. And gradually, from within outwards, they rot. Some form of dementia. A thing disintegrating. A decomposing psyche. Dementia. Quos vult perdere Deus, dementat prius. Watch these Pearls, these Pearls of modern women. Particularly American women. Battening on love. And fluttering in the first bat-like throes of dementia. You can have your cake and eat it. But my God, it will go rotten inside you. Hawthorne's other books are nothing compared to The Scarlet Letter.
+> A Tale of Three Lions I The Interest on Ten Shillings Most of you will have heard of Allan Quatermain, who was one of the party that discovered King Solomon’s mines some little time ago, and who afterwards came to live in England near his friend Sir Henry Curtis. He went back to the wilderness again, as these old hunters almost invariably do, on one pretext or another.2 They cannot endure civilization for very long, its noise and racket and the omnipresence of broad-clothed humanity proving more trying to their nerves than the dangers of the desert. I think that they feel lonely here, for it is a fact that is too little understood, though it has often been stated, that there is no loneliness like the loneliness of crowds, especially to those who are unaccustomed to them. “What is there in the world,”
+
+### An Antarctic Mystery: Section 16
+
+_Mid-book rhythm_
+
+> XIV A Voice in a Dream Entirely free from ice? No. It would have been premature to affirm this as a fact. A few icebergs were visible in the distance, while some drifts and packs were still going east. Nevertheless, the breakup had been very thorough on that side, and the sea was in reality open, since a ship could sail freely. “God has come to our aid,” said Captain Len Guy. “May He be pleased to guide us to the end.” “In a week,” I remarked, “our schooner might come in sight of Tsalal Island.” “Provided that the east wind lasts, Mr. Jeorling. Don’t forget that in sailing along the icebergs to their eastern extremity, the Halbrane went out of her course, and she must be brought back towards the west.” “The breeze is for us, captain.” “And we shall profit by it, for my intention is to make for Bennet Islet.
+
+### An Antarctic Mystery: Section 22
+
+_Dialogue and character voice_
+
+> XX “Unmerciful Disaster” In the morning, after breakfast, it was decided that the men should begin to dig a sloping bed which would allow the Halbrane to slide to the foot of the iceberg. Would that Heaven might grant success to the operation, for who could contemplate without terror having to brave the severity of the austral winter, and to pass six months under such conditions as ours on a vast iceberg, dragged none could tell whither? Once the winter had set in, none of us could have escaped from that most terrible of fates⁠—dying of cold. At this moment, Dirk Peters, who was observing the horizon from south to east at about one hundred paces off, cried out in a rough voice: “Lying to!” Lying to? What could the half-breed mean by that, except that the floating mass had suddenly ceased to drift?
+
+### Around the World in Eighty Days: Section 1
+
+_Opening voice_
+
+> Around the World in Eighty Days By Jules Verne. Translated by George Makepeace Towle.

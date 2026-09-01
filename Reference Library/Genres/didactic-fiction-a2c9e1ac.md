@@ -2,27 +2,81 @@
 # Didactic fiction
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 9
 
 ## Learned profile
 
-- Words analyzed: 624803
-- Reading grade: 3.4
-- Average sentence: 7.6 words
-- Average paragraph: 11.6 words
-- Dialogue share: 51%
+- Words analyzed: 1871374
+- Reading grade: 4.8
+- Average sentence: 12.7 words
+- Average paragraph: 34.9 words
+- Dialogue share: 42%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: don’t, himself, shall, thought, anything, cried, everything, going, heart, moment, nothing, people, seemed, things, won’t, young, across, answered, began, believe, better, can’t, cassy, child, father, hands, heard, legree, looking, master, mas’r, money, mother, myself, night, perhaps, picture, place, project, quite
-- Character names: George, Harry, Jim, Adelaïda Ivanovna, Adrian Singleton, Alan, Alan Campbell, Alexey, Alexey Fyodorovitch, Alyosha, Andy, Basil, Basil Hallward, Campbell, Chloe, Christ, Clare, Dmitri, Dmitri Fyodorovitch, Dorian, Dorian Gray, Eliza, Eva, Francis, Fyodor, Fyodor Pavlovitch, Geoffrey, Gray, Grigory, Grigory Vassilyevitch, Grushenka, Gutenberg, Haley, Henry, Henry Wotton, Ivan, Ivan Fyodorovitch, Ivanovna, James, James Vane, Jew, John, Juliet, Karamazov, Katerina, Katerina Ivanovna, Katya, Kelso, Lady Agatha, Lady Narborough, Lise, Lord Henry, Madame Hohlakov, Mammy, Marfa, Marie, Marks, Maximov, Miss Ophelia, Missis, Mitya, Miüsov, Mr. Erskine, Mr. Gray, Mr. Hubbard, Mr. Shelby, Mr. Wilson, Mrs. Bird, Mrs. Shelby, Ophelia, Pavlovitch, Phineas, Pyotr Alexandrovitch, Rachel, Rakitin, Ruth, Sam, Shelby, Sibyl, Sibyl Vane
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, rhythmically even, narrative-forward, energetic
+- Recurring vocabulary: don’t, himself, nothing, thought, going, seemed, shall, that’s, though, without, began, cried, everything, herself, house, night, people, place, quite, round, stood, woman, young, can’t, father, heard, heart, looking, moment, money, mother, suddenly, three, won’t, anything, believe, better, enough, hands, light
+- Character names: Mr, Mrs, George, Jim, John, Adelaïda Ivanovna, Alexander, Alexey, Alexey Fyodorovitch, Alyosha, Christ, Clare, Dmitri, Dmitri Fyodorovitch, Fyodor Pavlovitch, Grigory, Grigory Vassilyevitch, Grushenka, Harry, Ivan, Ivan Fyodorovitch, Jew, Joe, Karamazov, Katerina Ivanovna, Katya, Lise, Madame Hohlakov, Marfa, Maximov, Mitya, Miüsov, Pyotr Alexandrovitch, Rakitin, Sam, Smerdyakov, Abraham, Ach, Adrian Singleton, Agafea Mihalovna, Alan, Alan Campbell, Alec, Alexey Alexandrovitch, Allen, Andrey, Andy, Angel, Angel Clare, Anna, Anna Arkadyevna, Basil, Basil Hallward, Bathsheba, Bathsheba Everdene, Betsy, Blakemore, Boldwood, Cain, Cain Ball, Campbell, Charley, Chloe, Christian, Christian Cantle, Coggan, Crick, Cuthbert, Darya Alexandrovna, Deb, Diggory, Diggory Venn, Doctor, Doctor McTeague, Dorian, Dorian Gray, Durbeyfield, Egdon, Egdon Heath, Eliza
 
 ## Books
+- [Anna Karenina](../Books/BB961E22-ED55-4B9C-AB18-A408F943D1BD.md)
+- [Far from the Madding Crowd](../Books/70470CBB-9CB0-4037-ACAB-6047AFA2479E.md)
+- [McTeague](../Books/8A3FC784-334D-4B9C-A35B-D3C06B502E94.md)
+- [Tess of the d’Urbervilles](../Books/14A7C844-81C6-4759-8E1E-395972D47B3A.md)
 - [The Brothers Karamazov](../Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md)
+- [The Brothers Karamazov](../Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md)
 - [The Picture of Dorian Gray](../Books/186EE454-E11F-4E42-A7E9-C582FB94CA22.md)
+- [The Return of the Native](../Books/18842CF9-474F-4A11-AA22-371DA9B597B9.md)
 - [Uncle Tom's Cabin](../Books/6CAED790-DF2B-452A-9C4C-92B00356F2FA.md)
 
 ## Representative excerpts
+
+### Anna Karenina: Section 126
+
+_Mid-book rhythm_
+
+> XIX The mistake made by Alexey Alexandrovitch in that, when preparing for seeing his wife, he had overlooked the possibility that her repentance might be sincere, and he might forgive her, and she might not die⁠—this mistake was two months after his return from Moscow brought home to him in all its significance. But the mistake made by him had arisen not simply from his having overlooked that contingency, but also from the fact that until that day of his interview with his dying wife, he had not known his own heart. At his sick wife’s bedside he had for the first time in his life given way to that feeling of sympathetic suffering always roused in him by the sufferings of others, and hitherto looked on by him with shame as a harmful weakness.
+
+### Anna Karenina: Section 101
+
+_Dialogue and character voice_
+
+> XXVII “If I’d only the heart to throw up what’s been set going⁠ ⁠… such a lot of trouble wasted⁠ ⁠… I’d turn my back on the whole business, sell up, go off like Nikolay Ivanovitch⁠ ⁠… to hear La Belle Hélène,” said the landowner, a pleasant smile lighting up his shrewd old face. “But you see you don’t throw it up,” said Nikolay Ivanovitch Sviazhsky; “so there must be something gained.” “The only gain is that I live in my own house, neither bought nor hired. Besides, one keeps hoping the people will learn sense. Though, instead of that, you’d never believe it⁠—the drunkenness, the immorality! They keep chopping and changing their bits of land. Not a sight of a horse or a cow. The peasant’s dying of hunger, but just go and take him on as a laborer, he’ll do his best to do you a mischief, and then bring you up before the justice of the peace.”
+
+### Far from the Madding Crowd: Section 33
+
+_Mid-book rhythm_
+
+> XXIX Particulars of a Twilight Walk We now see the element of folly distinctly mingling with the many varying particulars which made up the character of Bathsheba Everdene. It was almost foreign to her intrinsic nature. Introduced as lymph on the dart of Eros, it eventually permeated and coloured her whole constitution. Bathsheba, though she had too much understanding to be entirely governed by her womanliness, had too much womanliness to use her understanding to the best advantage. Perhaps in no minor point does woman astonish her helpmate more than in the strange power she possesses of believing cajoleries that she knows to be false⁠—except, indeed, in that of being utterly sceptical on strictures that she knows to be true. Bathsheba loved Troy in the way that only self-reliant women love when they abandon their self-reliance.
+
+### Far from the Madding Crowd: Section 12
+
+_Dialogue and character voice_
+
+> VIII The Malthouse; The Chat; News Warren’s Malthouse was enclosed by an old wall inwrapped with ivy, and though not much of the exterior was visible at this hour, the character and purposes of the building were clearly enough shown by its outline upon the sky. From the walls an overhanging thatched roof sloped up to a point in the centre, upon which rose a small wooden lantern, fitted with louvre-boards on all the four sides, and from these openings a mist was dimly perceived to be escaping into the night air. There was no window in front; but a square hole in the door was glazed with a single pane, through which red, comfortable rays now stretched out upon the ivied wall in front. Voices were to be heard inside. Oak’s hand skimmed the surface of the door with fingers extended to an Elymas-the-Sorcerer pattern, till he found a leathern strap, which he pulled.
+
+### McTeague: Section 15
+
+_Mid-book rhythm_
+
+> XI On that particular morning the McTeagues had risen a half hour earlier than usual and taken a hurried breakfast in the kitchen on the deal table with its oilcloth cover. Trina was housecleaning that week and had a presentiment of a hard day’s work ahead of her, while McTeague remembered a seven o’clock appointment with a little German shoemaker. At about eight o’clock, when the dentist had been in his office for over an hour, Trina descended upon the bedroom, a towel about her head and the roller-sweeper in her hand. She covered the bureau and sewing machine with sheets, and unhooked the chenille portieres between the bedroom and the sitting-room. As she was tying the Nottingham lace curtains at the window into great knots, she saw old Miss Baker on the opposite sidewalk in the street below, and raising the sash called down to her. “Oh, it’s you, Mrs. McTeague,”
+
+### McTeague: Section 25
+
+_Dialogue and character voice_
+
+> XXI “Well,” said one of the deputies, as he backed the horse into the shafts of the buggy in which the pursuers had driven over from the Hill, “we’ve about as good as got him. It isn’t hard to follow a man who carries a bird cage with him wherever he goes.” McTeague crossed the mountains on foot the Friday and Saturday of that week, going over through Emigrant Gap, following the line of the Overland railroad. He reached Reno Monday night. By degrees a vague plan of action outlined itself in the dentist’s mind. “Mexico,” he muttered to himself. “Mexico, that’s the place. They’ll watch the coast and they’ll watch the Eastern trains, but they won’t think of Mexico.” The sense of pursuit which had harassed him during the last week of his stay at the Big Dipper mine had worn off, and he believed himself to be very cunning. “I’m pretty far ahead now, I guess,” he said.
+
+### Tess of the d’Urbervilles: Section 37
+
+_Mid-book rhythm_
+
+> XXVIII Her refusal, though unexpected, did not permanently daunt Clare. His experience of women was great enough for him to be aware that the negative often meant nothing more than the preface to the affirmative; and it was little enough for him not to know that in the manner of the present negative there lay a great exception to the dallyings of coyness. That she had already permitted him to make love to her he read as an additional assurance, not fully trowing that in the fields and pastures to “sigh gratis” is by no means deemed waste; lovemaking being here more often accepted inconsiderately and for its own sweet sake than in the carking, anxious homes of the ambitious, where a girl’s craving for an establishment paralyzes her healthy thought of a passion as an end. “Tess, why did you say ‘no’ in such a positive way?” he asked her in the course of a few days. She started.
+
+### Tess of the d’Urbervilles: Section 57
+
+_Dialogue and character voice_
+
+> XLVI Several days had passed since her futile journey, and Tess was afield. The dry winter wind still blew, but a screen of thatched hurdles erected in the eye of the blast kept its force away from her. On the sheltered side was a turnip-slicing machine, whose bright blue hue of new paint seemed almost vocal in the otherwise subdued scene. Opposite its front was a long mound or “grave,” in which the roots had been preserved since early winter. Tess was standing at the uncovered end, chopping off with a billhook the fibres and earth from each root, and throwing it after the operation into the slicer. A man was turning the handle of the machine, and from its trough came the newly-cut swedes, the fresh smell of whose yellow chips was accompanied by the sounds of the snuffling wind, the smart swish of the slicing-blades, and the choppings of the hook in Tess’s leather-gloved hand.
 
 ### The Brothers Karamazov: Section 1
 
@@ -35,27 +89,3 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Chapter IV. In The Dark Where was he running? “Where could she be except at Fyodor Pavlovitch’s? She must have run straight to him from Samsonov’s, that was clear now. The whole intrigue, the whole deceit was evident.” ... It all rushed whirling through his mind. He did not run to Marya Kondratyevna’s. “There was no need to go there ... not the slightest need ... he must raise no alarm ... they would run and tell directly.... Marya Kondratyevna was clearly in the plot, Smerdyakov too, he too, all had been bought over!”
-
-### The Picture of Dorian Gray: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Picture of Dorian Gray This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Picture of Dorian Gray Author: Oscar Wilde Release date: October 1, 1994 [eBook #174] Most recently updated: September 17, 2025 Language: English Other information and formats: www.gutenberg.org/ebooks/174 Credits: Judith Boss. HTML version by Al Haines.
-
-### The Picture of Dorian Gray: Section 12
-
-_Mid-book rhythm_
-
-> CHAPTER X. When his servant entered, he looked at him steadfastly and wondered if he had thought of peering behind the screen. The man was quite impassive and waited for his orders. Dorian lit a cigarette and walked over to the glass and glanced into it. He could see the reflection of Victor’s face perfectly. It was like a placid mask of servility. There was nothing to be afraid of, there. Yet he thought it best to be on his guard. Speaking very slowly, he told him to tell the house-keeper that he wanted to see her, and then to go to the frame-maker and ask him to send two of his men round at once. It seemed to him that as the man left the room his eyes wandered in the direction of the screen. Or was that merely his own fancy? After a few moments, in her black silk dress, with old-fashioned thread mittens on her wrinkled hands, Mrs. Leaf bustled into the library.
-
-### Uncle Tom's Cabin: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Uncle Tom's Cabin This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Uncle Tom's Cabin Author: Harriet Beecher Stowe Release date: January 13, 2006 [eBook #203] Most recently updated: January 13, 2026 Language: English Other information and formats: www.gutenberg.
-
-### Uncle Tom's Cabin: Section 24
-
-_Mid-book rhythm_
-
-> CHAPTER XXIII Henrique About this time, St. Clare’s brother Alfred, with his eldest son, a boy of twelve, spent a day or two with the family at the lake. No sight could be more singular and beautiful than that of these twin brothers. Nature, instead of instituting resemblances between them, had made them opposites on every point; yet a mysterious tie seemed to unite them in a closer friendship than ordinary. They used to saunter, arm in arm, up and down the alleys and walks of the garden. Augustine, with his blue eyes and golden hair, his ethereally flexible form and vivacious features; and Alfred, dark-eyed, with haughty Roman profile, firmly-knit limbs, and decided bearing.

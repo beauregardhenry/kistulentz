@@ -2,25 +2,80 @@
 # Private investigators -- England -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 8
 
 ## Learned profile
 
-- Words analyzed: 108301
-- Reading grade: 3.1
-- Average sentence: 7.8 words
-- Average paragraph: 11.7 words
-- Dialogue share: 74%
+- Words analyzed: 669822
+- Reading grade: 4.1
+- Average sentence: 11.6 words
+- Average paragraph: 31.5 words
+- Dialogue share: 71%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: shall, matter, house, night, heard, however, nothing, quite, morning, gutenberg, project, street, round, small, without, young, myself, thought, light, business, father, hands, himself, window
-- Character names: Holmes, Sherlock Holmes, Watson, Mr. Holmes, Lestrade, Simon, Clair, McCarthy, Mr, Irene Adler, Mr. Wilson, Frank, Miss Stoner, Bradstreet, Doctor, Horner, Mr. Sherlock Holmes, Peterson, Mr. Windibank, Mr. Hosmer Angel, Mr. Merryweather, Turner, Briony Lodge, Dr. Grimesby Roylott, Dr. Roylott, James, Openshaw, Hatherley, John, Jones
+- Tone: dialogue-forward, direct, rhythmically even, balanced, inquisitive, rhythmically varied
+- Recurring vocabulary: nothing, himself, house, morning, quite, round, shall, thought, don’t, night, young, course, heard, matter, place, cried, friend, however, rather, three, woman, going, light, moment, myself, small, street, window, without, anything, business, can’t, certainly, clear, didn’t, father, hands, inspector, london, seemed
+- Character names: Mr, Dr, Mrs, Holmes, Sherlock Holmes, Watson, Lestrade, Bradstreet, Briony Lodge, Clair, Doctor, Frank, Hatherley, Horner, Hudson, Irene Adler, James, Jones, Mary, McCarthy, Miss Stoner, Mycroft, Parker, Peterson, Simon, Turner, Albert, Alec, Alec Cunningham, Altamont, Amberley, Arthur, Baker, Barclay, Baron Gruner, Baynes, Bennett, Betts, Billy, Bleibner, Blessington, Blunt, Breckinridge, Bredon, Brotherton, Brunton, Burton, Cadogan West, Carter, Caulfield Gardens, Colonel Ross, Culverton Smith, Cunningham, Célestine, Daniels, Davenheim, Dodd, Dolores, Doris Evans, Dr. Grimesby Roylott, Dr. Roylott, Duncan Ross, Elise, Ellen, Esher, Ferguson, Frobisher-Pym, Garcia, Gennaro, George, Gherkins, Gibson, Gilda Glen, Gloria Scott, Godfrey, Gregson, Hall Pycroft, Hancock, Hannah, Harper
 
 ## Books
+- [His Last Bow](../Books/9C4A6AC2-7126-48E0-BF21-C3A1805283B8.md)
+- [Lord Peter Views the Body](../Books/92A8249B-224C-4E2C-8D90-41B86501A3DE.md)
+- [Partners in Crime](../Books/77BED452-3EC1-4A65-8DFE-C531A20BD810.md)
+- [Poirot Investigates](../Books/DA0B3FE2-54DD-4A9C-B15A-5967F67B4809.md)
 - [The Adventures of Sherlock Holmes](../Books/4A481179-3905-447B-9B4B-52D1246DD60D.md)
+- [The Adventures of Sherlock Holmes](../Books/C760C0A2-054D-4A2C-A65C-CE7E80AF1B3A.md)
+- [The Casebook of Sherlock Holmes](../Books/3740E43E-F142-4660-8E94-D19F49BD05C0.md)
+- [The Memoirs of Sherlock Holmes](../Books/139F0EF6-12CB-412C-B747-66947E57D123.md)
 
 ## Representative excerpts
+
+### His Last Bow: Section 7
+
+_Mid-book rhythm_
+
+> The Adventure of the Bruce-Partington Plans In the third week of November, in the year 1895, a dense yellow fog settled down upon London. From the Monday to the Thursday I doubt whether it was ever possible from our windows in Baker Street to see the loom of the opposite houses. The first day Holmes had spent in cross-indexing his huge book of references. The second and third had been patiently occupied upon a subject which he had recently made his hobby⁠—the music of the Middle Ages. But when, for the fourth time, after pushing back our chairs from breakfast we saw the greasy, heavy brown swirl still drifting past us and condensing in oily drops upon the windowpanes, my comrade’s impatient and active nature could endure this drab existence no longer.
+
+### His Last Bow: Section 5
+
+_Dialogue and character voice_
+
+> The Adventure of Wisteria Lodge The Singular Experience of Mr. John Scott Eccles I find it recorded in my notebook that it was a bleak and windy day towards the end of March in the year 1892. Holmes had received a telegram while we sat at our lunch, and he had scribbled a reply. He made no remark, but the matter remained in his thoughts, for he stood in front of the fire afterwards with a thoughtful face, smoking his pipe, and casting an occasional glance at the message. Suddenly he turned upon me with a mischievous twinkle in his eyes. “I suppose, Watson, we must look upon you as a man of letters,” said he. “How do you define the word ‘grotesque’?” “Strange⁠—remarkable,” I suggested. He shook his head at my definition. “There is surely something more than that,” said he; “some underlying suggestion of the tragic and the terrible.
+
+### Lord Peter Views the Body: Section 9
+
+_Mid-book rhythm_
+
+> The Vindictive Story of the Footsteps That Ran Mr. Bunter withdrew his head from beneath the focusing cloth. “I fancy that will be quite adequate, sir,” he said deferentially, “unless there are any further patients, if I may call them so, which you would wish put on record.” “Not today,” replied the doctor. He took the last stricken rat gently from the table, and replaced it in its cage with an air of satisfaction. “Perhaps on Wednesday, if Lord Peter can kindly spare your services once again⁠—” “What’s that?” murmured his lordship, withdrawing his long nose from the investigation of a number of unattractive-looking glass jars. “Nice old dog,” he added vaguely. “Wags his tail when you mention his name, what? Are these monkey-glands, Hartman, or a southwest elevation of Cleopatra’s duodenum?” “You don’t know anything, do you?” said the young physician, laughing.
+
+### Lord Peter Views the Body: Section 8
+
+_Dialogue and character voice_
+
+> The Undignified Melodrama of the Bone of Contention “I am afraid you have brought shocking weather with you, Lord Peter,” said Mrs. Frobisher-Pym, with playful reproof. “If it goes on like this they will have a bad day for the funeral.” Lord Peter Wimsey glanced out of the morning-room window to the soaked green lawn and the shrubbery, where the rain streamed down remorselessly over the laurel leaves, stiff and shiny like mackintoshes. “Nasty exposed business, standing round at funerals,” he agreed. “Yes, I always think it’s such a shame for the old people. In a tiny village like this it’s about the only pleasure they get during the winter. It makes something for them to talk about for weeks.” “Is it anybody’s funeral in particular?” “My dear Wimsey,” said his host, “it is plain that you, coming from your little village of London, are quite out of the swim.
+
+### Partners in Crime: Section 11
+
+_Mid-book rhythm_
+
+> IX The Man in the Mist I Tommy was not pleased with life. Blunt’s Brilliant Detectives had met with a reverse, distressing to their pride if not to their pockets. Called in professionally to elucidate the mystery of a stolen pearl necklace at Adlington Hall, Adlington, Blunt’s Brilliant Detectives had failed to make good. Whilst Tommy, hard on the track of a gambling Countess, was tracking her in the disguise of a Roman Catholic Priest, and Tuppence was “getting off” with a nephew of the house on the golf links, the local Inspector of Police had unemotionally arrested the second footman who proved to be a thief well known at headquarters and who admitted his guilt without making any bones about it. Tommy and Tuppence, therefore, had withdrawn with what dignity they could muster, and were at the present moment solacing themselves with cocktails at the Grand Adlington Hotel.
+
+### Partners in Crime: Section 13
+
+_Dialogue and character voice_
+
+> XI The Sunningdale Mystery I “Do you know where we are going to lunch today, Tuppence?” Mrs. Beresford considered the question. “The Ritz?” she suggested hopefully. “Think again.” “That nice little place in Soho?” “No.” Tommy’s tone was full of importance. “An A.B.C. shop. This one in fact.” He drew her deftly inside an establishment of the kind indicated, and steered her to a corner marble-topped table. “Excellent,” said Tommy with satisfaction, as he seated himself. “Couldn’t be better.” “Why has this craze for the simple life come upon you?” demanded Tuppence. “You see, Watson, but you do not observe. I wonder now whether one of these haughty damsels would condescend to notice us? Splendid, she drifts this way. It is true that she appears to be thinking of something else, but doubtless her subconscious mind is functioning busily with such matters as ham and eggs and pots of tea.
+
+### Poirot Investigates: Section 8
+
+_Mid-book rhythm_
+
+> The Adventure of the Egyptian Tomb I have always considered that one of the most thrilling and dramatic of the many adventures I have shared with Poirot was that of our investigation into the strange series of deaths which followed upon the discovery and opening of the Tomb of King Men-her-Ra. Hard upon the discovery of the Tomb of Tut-ankh-Amen by Lord Carnarvon, Sir John Willard and Mr. Bleibner of New York, pursuing their excavations not far from Cairo, in the vicinity of the Pyramids of Giza, came unexpectedly on a series of funeral chambers. The greatest interest was aroused by their discovery. The tomb appeared to be that of King Men-her-Ra, one of those shadowy kings of the Eighth Dynasty, when the Old Kingdom was falling to decay. Little was known about this period, and the discoveries were fully reported in the newspapers.
+
+### Poirot Investigates: Section 3
+
+_Dialogue and character voice_
+
+> The Adventure of the Western Star I was standing at the window of Poirot’s rooms looking out idly on the street below. “That’s queer,” I ejaculated suddenly beneath my breath. “What is, mon ami?” asked Poirot placidly, from the depths of his comfortable chair. “Deduce, Poirot, from the following facts! Here is a young lady, richly dressed⁠—fashionable hat, magnificent furs. She is coming along slowly, looking up at the houses as she goes. Unknown to her, she is being shadowed by three men and a middle-aged woman. They have just been joined by an errand boy who points after the girl, gesticulating as he does so. What drama is this being played? Is the girl a crook, and are the shadowers detectives preparing to arrest her? Or are they the scoundrels, and are they plotting to attack an innocent victim? What does the great detective say?”
 
 ### The Adventures of Sherlock Holmes: Section 1
 

@@ -2,20 +2,20 @@
 # Mark Twain
 
 - Profile type: Author
-- Books represented: 9
+- Books represented: 12
 
 ## Learned profile
 
-- Words analyzed: 1096771
-- Reading grade: 3.8
-- Average sentence: 8.3 words
-- Average paragraph: 11.6 words
-- Dialogue share: 18%
+- Words analyzed: 1585256
+- Reading grade: 5.0
+- Average sentence: 12.2 words
+- Average paragraph: 35.3 words
+- Dialogue share: 16%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, dialogue-forward, energetic
-- Recurring vocabulary: people, three, without, chapter, night, place, house, years, don’t, enough, going, himself, hundred, nothing, things, gutenberg, miles, thought, water, world, ain’t, project, shall, thousand, began, couldn’t, course, didn’t, nigger, person, reckon, river, that’s, white, young, above, agreement, ancient, anything, australia
-- Character names: George, Tom, Gutenberg, Jack, Joseph, Louis, Mary, Mr, Peter, Ben, Ben Rogers, Bob, Brown, Dey, FENIMORE COOPER, Huck, Huck Finn, Jim, John, Jones, Judge, Launcelot, Luigi, Mr. Brown, Napoleon, Smith, Tom Sawyer, Abelard, Adelaide, Adler, Alisande, Allbright, Allen, Amy, Angelo, Arthur, Aunt Polly, B., Ballarat, Ballou, Becky, Becky Thatcher, Bemis, Ben Holliday, Bill, Bixby, Blake, Blucher, Boer, Boggs, Boss, Brander Matthews, Brigham Young, Buck, Buckstone, Carson, Chambers, Civita Vecchia, Clarence, Cooper, Crenshaw, Dah, Dan, Dave, Dawson, De, De Soto, Deerslayer, Deerslayer tale, Dick Allbright, Dowley, Driscoll, Ealer, Eckert, Ed, Ferguson, Florence, Fulbert, G., Gareth
+- Tone: direct, narrative-forward, rhythmically even, dialogue-forward, rhythmically varied, measured, balanced, energetic
+- Recurring vocabulary: people, three, without, night, place, years, house, hundred, nothing, things, chapter, enough, himself, world, don’t, going, miles, water, thought, thousand, gutenberg, shall, twenty, ain’t, didn’t, project, young, above, ancient, anything, beautiful, began, church, couldn’t, course, dollars, grand, horse, matter, myself
+- Character names: George, Mr, Jack, John, Joseph, Louis, Peter, Tom, Gutenberg, Jim, Jones, Luigi, Mary, Napoleon, Smith, Abelard, Allen, Ballou, Bemis, Ben, Ben Rogers, Blucher, Bob, Boggs, Brigham Young, Brown, Carson, Civita Vecchia, Dan, Dey, Eckert, FENIMORE COOPER, Ferguson, Florence, Fulbert, Garibaldi, General Grant, Hank Monk, Heloise, Huck, Huck Finn, Humboldt, Johnny, Johnson, Judge, Jules, Launcelot, Leonardo, Mark, Mark Twain, Marseilles, Mr. Brown, Mrs, Ollendorff, Pisa, Rogers, Roop, Sandy, Saviour, Shiz, Slade, St, Tahoe, Titian, Tom Sawyer, Whiteman, Adelaide, Adler, Alisande, Allbright, Amy, Angelo, Arthur, Aunt Polly, B., Ballarat, Barnes, Becky, Becky Thatcher, Ben Holliday
 
 ## Books
 - [A Connecticut Yankee in King Arthur's Court](../Books/A5DD5A9F-9C99-4931-BA33-F1088AD975F1.md)
@@ -24,8 +24,11 @@
 - [Following the Equator: A Journey Around the World](../Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md)
 - [Life on the Mississippi](../Books/37B7B288-947A-4452-B397-94B8707D337F.md)
 - [Roughing It](../Books/0FBD4219-E6C9-4560-8575-BA69C5314EE2.md)
+- [Roughing It](../Books/0CE9012E-AACF-466B-B2D5-6CF3445B6ECB.md)
 - [The Adventures of Tom Sawyer, Complete](../Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md)
+- [The Autobiography of Mark Twain](../Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md)
 - [The Innocents Abroad](../Books/D1854AF8-409B-4868-A06A-820257E8A613.md)
+- [The Innocents Abroad](../Books/5C0775CF-C8B8-437F-9AEE-E5525FB08BC8.md)
 - [The Tragedy of Pudd'nhead Wilson](../Books/91EDE7E9-8E45-46E3-8CB8-A79B05F3290C.md)
 
 ## Representative excerpts

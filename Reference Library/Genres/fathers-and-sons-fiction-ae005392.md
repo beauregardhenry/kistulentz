@@ -2,25 +2,65 @@
 # Fathers and sons -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 355361
-- Reading grade: 3.6
-- Average sentence: 7.4 words
-- Average paragraph: 11.8 words
-- Dialogue share: 55%
+- Words analyzed: 1125000
+- Reading grade: 5.8
+- Average sentence: 14.4 words
+- Average paragraph: 56.3 words
+- Dialogue share: 45%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: though, don’t, father, that’s, himself, suddenly, cried, three, money, shall, nothing, perhaps, without, thought, heart, moment, began, believe, people, whole, thousand, won’t, myself, everything
-- Character names: Alyosha, Ivan, Fyodor Pavlovitch, Dmitri, Grigory, Miüsov, Katerina Ivanovna, Mitya, Smerdyakov, Lise, Grushenka, Alexey Fyodorovitch, Alexey, Pyotr Alexandrovitch, Rakitin, Fyodor, Pavlovitch, Madame Hohlakov, Ivanovna, Marfa, Sohn, Christ, Dmitri Fyodorovitch, Karamazov, Katerina, Maximov, Ivan Fyodorovitch, Grigory Vassilyevitch, Katya, Adelaïda Ivanovna
+- Tone: dialogue-forward, rhythmically varied, direct, measured, narrative-forward, rhythmically even, balanced
+- Recurring vocabulary: father, himself, thought, heart, moment, myself, shall, though, don’t, money, night, nothing, people, that’s, three, voice, young, alone, became, began, believe, child, cried, death, everything, heard, herself, mother, passed, perhaps, return, seemed, suddenly, thousand, whole, whose, without, won’t, words, years
+- Character names: Dmitri, Adalinda, Adelaïda Ivanovna, Alexey, Alexey Fyodorovitch, Alyosha, Anina, Charles, Christ, Cincolo, Corradino, Cyril, Despina, Dmitri Fyodorovitch, Domenico, Ellen, Fabian, Fanny, Ferdinand, Fyodor Pavlovitch, Gaspar, Gegia, Grigory, Grigory Vassilyevitch, Grushenka, Henry, Ivan, Ivan Fyodorovitch, Juliet, Karamazov, Katerina Ivanovna, Katusthius, Katya, Lewis, Lise, Lorenzo, Louis, Madame Hohlakov, Madame de Marville, Manfred, Manon, Marfa, Maria, Maximov, Mitya, Miüsov, Pyotr Alexandrovitch, Rakitin, Ricciardo, Rosina, Smerdyakov, Torella, Vernon, Zella, Abednego, Abednego Danner, Anna, Bessie, Cane, Charlotte, Crouan, Danner, Epstein, Fyodor, Hardin, Hugo, Hugo Danner, Ivanovna, Izzie, Jerry, Jesus, Kalganov, Katerina, Katrina, Lefty, Lizaveta, McClaren, Melcher, Mr, Mrs
 
 ## Books
+- [Gladiator](../Books/1D521F7C-57D8-4EE0-ACB9-1F79D45DA3D9.md)
+- [Short Fiction](../Books/53316201-814F-4714-9D77-7EEAA566723E.md)
+- [Short Fiction](../Books/9DF0999E-892A-42F6-AC67-98F33B187CAB.md)
 - [The Brothers Karamazov](../Books/5C700206-2B07-4566-A55F-CEAF21F7FD23.md)
+- [The Brothers Karamazov](../Books/3719FAFE-F39C-4CA8-B990-61C1FAD221EE.md)
 
 ## Representative excerpts
+
+### Gladiator: Section 15
+
+_Mid-book rhythm_
+
+> XI In a day the last veil of mist that had shrouded his feelings and thoughts, making them numb and sterile, vanished; in a day Hugo found himself⁠—or believed that he had; in a day his life changed and flung itself on the course which, in a measure, destined its fixation. He never forgot that day. It began in the early morning when the anchor of the freighter thundered into the harbour water. The crew was not given shore leave until noon. Then the mysterious silence of the captain and the change in the ship’s course was explained. Through the third officer he sent a message to the seamen. War had been declared. The seaways were unsafe. The Katrina would remain indefinitely at Marseilles. The men could go ashore. They would report on the following day. The first announcement of the word sent Hugo’s blood racing. War! What war? With whom? Why? Was America in it, or interested in it?
+
+### Gladiator: Section 12
+
+_Dialogue and character voice_
+
+> VIII Greatness seemed to elude Hugo, success such as he had earned was inadequate, and his friendships as well as his popularity were tinged with a sort of question that he never understood. By the end of winter he was well established in Webster as a great athlete. Psi Delta sang his praises and was envied his deeds. Lefty and Chuck treated him as a brother. And, Hugo perceived, none of that treatment and none of that society was quite real. He wondered if his personality was so meagre that it was not equal to his strength. He wondered if his strength was really the asset he had dreamed it would be, and if, perhaps, other people were not different from him in every way, so that any close human contact was impossible to him. It was a rather tragic question to absorb a man so filled with life and ambition as he. Yet every month had raised it more insistently.
+
+### Short Fiction: Section 13
+
+_Mid-book rhythm_
+
+> The Invisible Girl This slender narrative has no pretensions to the regularity of a story, or the development of situations and feelings; it is but a slight sketch, delivered nearly as it was narrated to me by one of the humblest of the actors concerned: nor will I spin out a circumstance interesting principally from its singularity and truth, but narrate, as concisely as I can, how I was surprised on visiting what seemed a ruined tower, crowning a bleak promontory overhanging the sea, that flows between Wales and Ireland, to find that though the exterior preserved all the savage rudeness that betokened many a war with the elements, the interior was fitted up somewhat in the guise of a summerhouse, for it was too small to deserve any other name.
+
+### Short Fiction: Section 21
+
+_Dialogue and character voice_
+
+> Mathilda9 I Florence. Nov. 9th 1819 It is only four o’clock; but it is winter and the sun has already set: there are no clouds in the clear, frosty sky to reflect its slant beams, but the air itself is tinged with a slight roseate colour which is again reflected on the snow that covers the ground. I live in a lone cottage on a solitary, wide heath: no voice of life reaches me. I see the desolate plain covered with white, save a few black patches that the noonday sun has made at the top of those sharp pointed hillocks from which the snow, sliding as it fell, lay thinner than on the plain ground: a few birds are pecking at the hard ice that covers the pools⁠—for the frost has been of long continuance10 I am in a strange state of mind.11 I am alone⁠—quite alone⁠—in the world⁠—the blight of misfortune has passed over me and withered me; I know that I am about to die and I feel happy⁠—joyous.
+
+### Short Fiction: Section 13
+
+_Mid-book rhythm_
+
+> The Invisible Girl This slender narrative has no pretensions to the regularity of a story, or the development of situations and feelings; it is but a slight sketch, delivered nearly as it was narrated to me by one of the humblest of the actors concerned: nor will I spin out a circumstance interesting principally from its singularity and truth, but narrate, as concisely as I can, how I was surprised on visiting what seemed a ruined tower, crowning a bleak promontory overhanging the sea, that flows between Wales and Ireland, to find that though the exterior preserved all the savage rudeness that betokened many a war with the elements, the interior was fitted up somewhat in the guise of a summerhouse, for it was too small to deserve any other name.
+
+### Short Fiction: Section 21
+
+_Dialogue and character voice_
+
+> Mathilda9 I Florence. Nov. 9th 1819 It is only four o’clock; but it is winter and the sun has already set: there are no clouds in the clear, frosty sky to reflect its slant beams, but the air itself is tinged with a slight roseate colour which is again reflected on the snow that covers the ground. I live in a lone cottage on a solitary, wide heath: no voice of life reaches me. I see the desolate plain covered with white, save a few black patches that the noonday sun has made at the top of those sharp pointed hillocks from which the snow, sliding as it fell, lay thinner than on the plain ground: a few birds are pecking at the hard ice that covers the pools⁠—for the frost has been of long continuance10 I am in a strange state of mind.11 I am alone⁠—quite alone⁠—in the world⁠—the blight of misfortune has passed over me and withered me; I know that I am about to die and I feel happy⁠—joyous.
 
 ### The Brothers Karamazov: Section 1
 
@@ -33,3 +73,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Chapter IV. In The Dark Where was he running? “Where could she be except at Fyodor Pavlovitch’s? She must have run straight to him from Samsonov’s, that was clear now. The whole intrigue, the whole deceit was evident.” ... It all rushed whirling through his mind. He did not run to Marya Kondratyevna’s. “There was no need to go there ... not the slightest need ... he must raise no alarm ... they would run and tell directly.... Marya Kondratyevna was clearly in the plot, Smerdyakov too, he too, all had been bought over!”
+
+### The Brothers Karamazov: Section 61
+
+_Mid-book rhythm_
+
+> I Kuzma Samsonov But Dmitri, to whom Grushenka, flying away to a new life, had left her last greetings, bidding him remember the hour of her love forever, knew nothing of what had happened to her, and was at that moment in a condition of feverish agitation and activity. For the last two days he had been in such an inconceivable state of mind that he might easily have fallen ill with brain fever, as he said himself afterwards. Alyosha had not been able to find him the morning before, and Ivan had not succeeded in meeting him at the tavern on the same day. The people at his lodgings, by his orders, concealed his movements. He had spent those two days literally rushing in all directions, “struggling with his destiny and trying to save himself,”
+
+### The Brothers Karamazov: Section 97
+
+_Dialogue and character voice_
+
+> IX The Devil. Ivan’s Nightmare I am not a doctor, but yet I feel that the moment has come when I must inevitably give the reader some account of the nature of Ivan’s illness. Anticipating events I can say at least one thing: he was at that moment on the very eve of an attack of brain fever. Though his health had long been affected, it had offered a stubborn resistance to the fever which in the end gained complete mastery over it. Though I know nothing of medicine, I venture to hazard the suggestion that he really had perhaps, by a terrible effort of will, succeeded in delaying the attack for a time, hoping, of course, to check it completely.

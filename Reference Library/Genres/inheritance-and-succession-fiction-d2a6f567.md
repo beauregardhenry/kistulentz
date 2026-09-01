@@ -2,23 +2,25 @@
 # Inheritance and succession -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 125932
-- Reading grade: 4.6
-- Average sentence: 8.2 words
-- Average paragraph: 11.1 words
-- Dialogue share: 47%
+- Words analyzed: 333363
+- Reading grade: 6.0
+- Average sentence: 15.1 words
+- Average paragraph: 43.5 words
+- Dialogue share: 40%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: herself, sister, though, mother, nothing, without, house, however, shall, heart, thought, himself, chapter, enough, myself, young, replied, indeed, happy, gutenberg, quite, cannot, world, therefore
-- Character names: Elinor, Marianne, Willoughby, Edward, Mrs. Jennings, Lucy, Sir John, Lady Middleton, Mrs. Dashwood, Colonel Brandon, Miss Dashwood, Mrs, Mrs. Palmer, Dashwood, Mr. Willoughby, Mr. Palmer, Mrs. Ferrars, Mrs. John Dashwood, Brandon, Fanny, Jennings, Miss Steele, Mr. Dashwood, Charlotte, Miss Austen, Mr, Mamma, Miss Marianne, Mrs. Smith, Steeles
+- Tone: balanced, dialogue-forward, rhythmically varied, direct, narrative-forward, rhythmically even
+- Recurring vocabulary: enough, himself, house, indeed, myself, nothing, quite, shall, thought, without, happy, heart, herself, however, mother, replied, seemed, sister, therefore, though, world, young, ballantrae, believe, cannot, chapter, cried, durrisdeer, everything, family, gutenberg, hands, heard, least, master, matter, night, perhaps, place, words
+- Character names: Mr, Mrs, Brandon, Charlotte, Colonel Brandon, Dashwood, Edward, Elinor, Fanny, Jennings, Lady Middleton, Lucy, Marianne, Miss Dashwood, Miss Marianne, Miss Steele, Sir John, Steeles, Willoughby, Albany, Alexander, Anne, Bally, Burke, Carlyle, Chevalier, Crail, Devonshire, Durie, Dutton, Edward Ferrars, Gray, Harris, Harry, Hastie, Henry, Henry Durie, Jacob, James, Jessie, John, John Dashwood, John Paul, Mackellar, Mamma, Margaret, Miss Alison, Miss Austen, Miss Katharine, Mountain, Mr., Mr. Dashwood, Mr. Palmer, Mr. Willoughby, Mrs. Dashwood, Mrs. Ferrars, Mrs. Jennings, Mrs. John Dashwood, Mrs. Palmer, Mrs. Smith, Palmer, Pinkerton, Sarah, Secundra Dass, Smith, Stewart, Thomson, Whitwell, William
 
 ## Books
 - [Sense and Sensibility](../Books/890AF256-581B-4E99-A9F5-160BC0C55C5F.md)
+- [Sense and Sensibility](../Books/892D91AC-7DEB-4FE9-B41D-1EEAFA279074.md)
+- [The Master of Ballantrae](../Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Introduced to Mrs. Jennings. Their affection and pleasure in meeting was just enough to make a very creditable appearance in Mr. Gray's shop. John Dashwood was really far from being sorry to see his sisters again; it rather gave them satisfaction; and his inquiries after their mother were respectful and attentive. Elinor found that he and Fanny had been in town two days. "I wished very much to call upon you yesterday," said he, "but it was impossible, for we were obliged to take Harry to see the wild beasts at Exeter Exchange; and we spent the rest of the day with Mrs. Ferrars. Harry was vastly pleased. This morning I had fully intended to call on you, if I could possibly find a spare half hour, but one has always so much to do on first coming to town. I am come here to bespeak Fanny a seal.
+
+### Sense and Sensibility: Section 28
+
+_Mid-book rhythm_
+
+> XXVI Elinor could not find herself in the carriage with Mrs. Jennings, and beginning a journey to London under her protection, and as her guest, without wondering at her own situation, so short had their acquaintance with that lady been, so wholly unsuited were they in age and disposition, and so many had been her objections against such a measure only a few days before! But these objections had all, with that happy ardour of youth which Marianne and her mother equally shared, been overcome or overlooked; and Elinor, in spite of every occasional doubt of Willoughby’s constancy, could not witness the rapture of delightful expectation which filled the whole soul and beamed in the eyes of Marianne, without feeling how blank was her own prospect, how cheerless her own state of mind in the comparison, and how gladly she would engage in the solicitude of Marianne’s situation to have the same a…
+
+### Sense and Sensibility: Section 46
+
+_Dialogue and character voice_
+
+> XLIV Elinor, starting back with a look of horror at the sight of him, obeyed the first impulse of her heart in turning instantly to quit the room, and her hand was already on the lock, when its action was suspended by his hastily advancing, and saying, in a voice rather of command than supplication⁠— “Miss Dashwood, for half an hour⁠—for ten minutes⁠—I entreat you to stay.” “No, sir,” she replied with firmness, “I shall not stay. Your business cannot be with me. The servants, I suppose, forgot to tell you that Mr. Palmer was not in the house.” “Had they told me,” he cried with vehemence, “that Mr. Palmer and all his relations were at the devil, it would not have turned me from the door. My business is with you, and only you.” “With me!”⁠—in the utmost amazement⁠—“well, sir⁠—be quick⁠—and if you can⁠—less violent.” “Sit down, and I will be both.” She hesitated; she knew not what to do.
+
+### The Master of Ballantrae: Section 11
+
+_Mid-book rhythm_
+
+> VI Summary of Events During the Master’s Second Absence Of the heavy sickness which declared itself next morning I can think with equanimity, as of the last unmingled trouble that befell my master; and even that was perhaps a mercy in disguise; for what pains of the body could equal the miseries of his mind? Mrs. Henry and I had the watching by the bed. My old lord called from time to time to take the news, but would not usually pass the door. Once, I remember, when hope was nigh gone, he stepped to the bedside, looked a while in his son’s face, and turned away with a singular gesture of the head and hand thrown up, that remains upon my mind as something tragic; such grief and such a scorn of sublunary things were there expressed. But the most of the time Mrs. Henry and I had the room to ourselves, taking turns by night, and bearing each other company by day, for it was dreary watching.
+
+### The Master of Ballantrae: Section 9
+
+_Dialogue and character voice_
+
+> IV Persecutions Endured by Mr. Henry You can guess on what part of his adventures the Colonel principally dwelled. Indeed, if we had heard it all, it is to be thought the current of this business had been wholly altered; but the pirate ship was very gently touched upon. Nor did I hear the Colonel to an end even of that which he was willing to disclose; for Mr. Henry, having for some while been plunged in a brown study, rose at last from his seat and (reminding the Colonel there were matters that he must attend to) bade me follow him immediately to the office. Once there, he sought no longer to dissemble his concern, walking to and fro in the room with a contorted face, and passing his hand repeatedly upon his brow. “We have some business,” he began at last; and there broke off, declared we must have wine, and sent for a magnum of the best.

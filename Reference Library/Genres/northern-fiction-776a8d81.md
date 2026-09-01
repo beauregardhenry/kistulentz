@@ -2,25 +2,39 @@
 # Northern -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 76102
-- Reading grade: 3.4
-- Average sentence: 7.8 words
-- Average paragraph: 12.3 words
-- Dialogue share: 6%
+- Words analyzed: 327888
+- Reading grade: 5.2
+- Average sentence: 13.8 words
+- Average paragraph: 46.7 words
+- Dialogue share: 11%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: himself, teeth, master, things, mother, fang’s, learned, moment, though, without, world, began, nothing, strange, alone, throat, chapter, night, light, trail, animals, snarl, times, fight
-- Character names: White Fang, Henry, Bill, Matt, Beauty Smith, Scott, Fang, Weedon Scott, Smith, Kiche, Grey Beaver, Cherokee, Judge Scott, Jim Hall, Weedon, Collie, White, Dick, Gutenberg, Beaver, Tim Keenan, Mr. Scott, Beth, Mackenzie, Project Gutenberg, Gutenberg Literary Archive Foundation, Alice, Dawn, Frog, Grey
+- Tempo: steady
+- Tone: narrative-forward, balanced, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: began, himself, night, nothing, without, alone, animals, fang’s, fight, learned, light, master, moment, mother, snarl, strange, teeth, things, though, three, throat, times, world, behind, beneath, bread, chapter, don’t, earth, going, house, large, longer, maheude, montsou, others, people, remained, seemed, stood
+- Character names: Alice, Beauty Smith, Beth, Bill, Cherokee, Collie, Dawn, Dick, Frog, Grey Beaver, Henry, Jim Hall, Judge Scott, Kiche, Mackenzie, Matt, Scott, Smith, Tim Keenan, Weedon, Weedon Scott, White Fang, Bataille, Beaver, Bonnemort, Bébert, Catherine, Chaval, Cécile, Dansaert, Deneulin, Estelle, Fang, Grey, Gutenberg, Gutenberg Literary Archive Foundation, Henri, Jeanlin, Judge, Levaque, Lydie, M. Grégoire, M. Hennebeau, Madame Grégoire, Madame Hennebeau, Maheu, Maigrat, Major, Marchiennes, Maud, Mouque, Mouquet, Mr, Mr. Scott, Nature, Négrel, Paul, Pierron, Project Gutenberg, Richomme, Round, Souvarine, White, Zacharie, Zola, Étienne
 
 ## Books
+- [Germinal](../Books/919A4D92-DCB6-413E-9B55-76DB5FD6FC59.md)
 - [White Fang](../Books/25097A48-2B2C-4BA4-B1DD-319CEC8EDB23.md)
+- [White Fang](../Books/05CC1AC4-B599-4D55-B66B-CBA58B6B1388.md)
 
 ## Representative excerpts
+
+### Germinal: Section 27
+
+_Mid-book rhythm_
+
+> III A fortnight had passed, and on the Monday of the third week the lists sent up to the managers showed a fresh decrease in the number of the miners who had gone down. It was expected that on that morning work would be resumed, but the obstinacy of the directors in not yielding exasperated the miners. The Voreux, Crévecœur, Mirou, and Madeleine were not the only pits resting; at the Victoire and at Feutry-Cantel only about a quarter of the men had gone down; even Saint-Thomas was affected. The strike was gradually becoming general. At the Voreux a heavy silence hung over the pit-mouth. It was a dead workshop, these great empty abandoned Yards where work was sleeping. In the grey December sky, along the high footbridges three or four empty trams bore witness to the mute sadness of things.
+
+### Germinal: Section 26
+
+_Dialogue and character voice_
+
+> II The previous day, at a meeting held at Rasseneur’s, Étienne and some comrades had chosen the delegates who were to proceed on the following day to the manager’s house. When, in the evening, Maheude learnt that her man was one of them, she was in despair, and asked him if he wanted them to be thrown on the street. Maheu himself had agreed with reluctance. Both of them, when the moment of action came, in spite of the injustice of their wretchedness fell back on the resignation of their race, trembling before the morrow, preferring still to bend their backs to the yoke. In the management of affairs he usually gave way to his wife, whose advice was sound. This time, however, he grew angry at last, all the more so since he secretly shared her fears. “Just leave me alone, will you?” he said, going to bed and turning his back. “A fine thing to leave the mates now! I’m doing my duty.”
 
 ### White Fang: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER V THE COVENANT When December was well along, Grey Beaver went on a journey up the Mackenzie. Mit-sah and Kloo-kooch went with him. One sled he drove himself, drawn by dogs he had traded for or borrowed. A second and smaller sled was driven by Mit-sah, and to this was harnessed a team of puppies. It was more of a toy affair than anything else, yet it was the delight of Mit-sah, who felt that he was beginning to do a man’s work in the world. Also, he was learning to drive dogs and to train dogs; while the puppies themselves were being broken in to the harness. Furthermore, the sled was of some service, for it carried nearly two hundred pounds of outfit and food. White Fang had seen the camp-dogs toiling in the harness, so that he did not resent overmuch the first placing of the harness upon himself.
+
+### White Fang: Section 18
+
+_Mid-book rhythm_
+
+> V The Covenant When December was well along, Grey Beaver went on a journey up the Mackenzie. Mit-sah and Kloo-kooch went with him. One sled he drove himself, drawn by dogs he had traded for or borrowed. A second and smaller sled was driven by Mit-sah, and to this was harnessed a team of puppies. It was more of a toy affair than anything else, yet it was the delight of Mit-sah, who felt that he was beginning to do a man’s work in the world. Also, he was learning to drive dogs and to train dogs; while the puppies themselves were being broken in to the harness. Furthermore, the sled was of some service, for it carried nearly two hundred pounds of outfit and food. White Fang had seen the camp-dogs toiling in the harness, so that he did not resent overmuch the first placing of the harness upon himself.
+
+### White Fang: Section 5
+
+_Dialogue and character voice_
+
+> II The She-Wolf Breakfast eaten and the slim camp-outfit lashed to the sled, the men turned their backs on the cheery fire and launched out into the darkness. At once began to rise the cries that were fiercely sad⁠—cries that called through the darkness and cold to one another and answered back. Conversation ceased. Daylight came at nine o’clock. At midday the sky to the south warmed to rose-colour, and marked where the bulge of the earth intervened between the meridian sun and the northern world. But the rose-colour swiftly faded. The grey light of day that remained lasted until three o’clock, when it, too, faded, and the pall of the Arctic night descended upon the lone and silent land. As darkness came on, the hunting-cries to right and left and rear drew closer⁠—so close that more than once they sent surges of fear through the toiling dogs, throwing them into short-lived panics.

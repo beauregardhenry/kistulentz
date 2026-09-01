@@ -2,25 +2,38 @@
 # First loves -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 51710
-- Reading grade: 4.7
-- Average sentence: 12.6 words
-- Average paragraph: 26.3 words
-- Dialogue share: 26%
-- Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically varied
-- Recurring vocabulary: don’t, house, didn’t, night, going, moment, gatsby’s, people, voice, began, thought, sport, toward, white, that’s, young, heard, afternoon, light, suddenly, years, seemed, wasn’t, hands
-- Character names: Gatsby, Tom, Wilson, Daisy, Miss Baker, Mr. Gatsby, Michaelis, Mrs. Wilson, Tom Buchanan, Myrtle, Catherine, Jordan Baker, Gutenberg, Jay Gatsby, Mr. Wolfshiem, George, Mr. McKee, Mr. Sloane, Dan Cody, Mrs. McKee, Jordan, Lucille, Myrtle Wilson, Jimmy, Mr. Carraway, Biloxi, Carraway, James Gatz, Mr. Gatz, Project Gutenberg
+- Words analyzed: 135803
+- Reading grade: 6.4
+- Average sentence: 16.8 words
+- Average paragraph: 58.3 words
+- Dialogue share: 32%
+- Voice: observational third-person
+- Tempo: steady
+- Tone: rhythmically varied, balanced, dialogue-forward, direct, narrative-forward
+- Recurring vocabulary: going, heard, house, seemed, thought, young, afternoon, began, better, didn’t, don’t, enough, family, father, feelings, friend, gatsby’s, hands, happy, herself, himself, however, light, moment, night, nothing, people, place, present, quite, sister, sport, suddenly, that’s, though, toward, uppercross, voice, wasn’t, white
+- Character names: Anne, Anne Elliot, Benwick, Biloxi, Captain Wentworth, Carraway, Catherine, Charles, Charles Hayter, Charles Musgrove, Clay, Colonel Wallis, Daisy, Dan Cody, Elizabeth, Elliot, Frederick, Gatsby, George, Gutenberg, Harville, Henrietta, James Gatz, Jay Gatsby, Jimmy, Jordan, Jordan Baker, Kellynch Hall, Lady Dalrymple, Lady Russell, Louisa Musgrove, Lucille, Mary, Michaelis, Miss Baker, Miss Elliot, Mr, Mr., Mr. Carraway, Mr. Gatsby, Mr. Gatz, Mr. McKee, Mr. Sloane, Mr. Wolfshiem, Mrs, Mrs. McKee, Mrs. Wilson, Musgrove, Myrtle, Myrtle Wilson, Project Gutenberg, Russell, Sir Walter, Smith, Tom, Tom Buchanan, Wallis, Walter, Wentworth, Wilson
 
 ## Books
+- [Persuasion](../Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
 
 ## Representative excerpts
+
+### Persuasion: Section 15
+
+_Mid-book rhythm_
+
+> XIII The remainder of Anne’s time at Uppercross, comprehending only two days, was spent entirely at the Mansion House; and she had the satisfaction of knowing herself extremely useful there, both as an immediate companion, and as assisting in all those arrangements for the future, which, in Mr. and Mrs. Musgrove’s distressed state of spirits, would have been difficulties. They had an early account from Lyme the next morning. Louisa was much the same. No symptoms worse than before had appeared. Charles came a few hours afterwards, to bring a later and more particular account. He was tolerably cheerful. A speedy cure must not be hoped, but everything was going on as well as the nature of the case admitted. In speaking of the Harvilles, he seemed unable to satisfy his own sense of their kindness, especially of Mrs. Harville’s exertions as a nurse. “She really left nothing for Mary to do.
+
+### Persuasion: Section 23
+
+_Dialogue and character voice_
+
+> XXI Anne recollected with pleasure the next morning her promise of going to Mrs. Smith, meaning that it should engage her from home at the time when Mr. Elliot would be most likely to call; for to avoid Mr. Elliot was almost a first object. She felt a great deal of goodwill towards him. In spite of the mischief of his attentions, she owed him gratitude and regard, perhaps compassion. She could not help thinking much of the extraordinary circumstances attending their acquaintance, of the right which he seemed to have to interest her, by everything in situation, by his own sentiments, by his early prepossession. It was altogether very extraordinary; flattering, but painful. There was much to regret.
 
 ### The Great Gatsby: Section 1
 

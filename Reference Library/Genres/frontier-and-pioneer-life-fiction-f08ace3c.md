@@ -2,25 +2,39 @@
 # Frontier and pioneer life -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 152006
-- Reading grade: 5.0
-- Average sentence: 9.2 words
-- Average paragraph: 11.9 words
+- Words analyzed: 384912
+- Reading grade: 6.2
+- Average sentence: 16.3 words
+- Average paragraph: 38.1 words
 - Dialogue share: 32%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: scout, though, uncas, without, indian, young, himself, place, moment, returned, huron, toward, however, whose, manner, voice, hurons, chief, words, white, woods, rifle, water, heard
-- Character names: Duncan, Heyward, Cora, Alice, Munro, David, Hawkeye, Montcalm, Le Renard, Major Heyward, William Henry, Webb, Mingo, Edward, Renard, Hugh, William, Henry, Maquas, Carabine, Fort Edward, Gray, Longue Carabine, Louis, Magua, Major Effingham, Monsieur de Montcalm, Abraham, Cora Munro, Hudson
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, balanced, direct, measured, rhythmically even
+- Recurring vocabulary: himself, place, chief, heard, however, huron, hurons, indian, manner, moment, returned, rifle, scout, though, toward, uncas, voice, white, whose, without, woods, words, young, ain’t, better, can’t, country, didn’t, don’t, enough, going, morning, mother, night, nothing, perhaps, round, savage, seemed, things
+- Character names: Abraham, Alice, Cora, Cora Munro, David, Duncan, Edward, Fort Edward, Hawkeye, Heyward, Hudson, Hugh, Le Renard, Longue Carabine, Louis, Magua, Major Effingham, Major Heyward, Mingo, Monsieur de Montcalm, Montcalm, Munro, Renard, Webb, William Henry, Alley, Arvie, Aspinall, Bill, Billy, Bob, Bobbie, Brook, Brown, Carabine, Colonel Munro, Dave, Dunbar, Gray, Henry, Isley, Jack, Jacky, Jim, Jimmy Nowlett, Joe, Jones, La Longue Carabine, Le Cerf Agile, Le Gros Serpent, Le Renard Subtil, Lizzie, Macquarie, Malachi, Maquas, Mason, Mitchell, Mr, Mrs, Smith, Steelman, Stiffner, Tom, Tommy, William
 
 ## Books
+- [The Last of the Mohicans](../Books/FDAB0174-55A5-4C21-8B6D-D633333427F1.md)
 - [The Last of the Mohicans; A narrative of 1757](../Books/550041B1-2BA8-418F-9C39-6F08CB99B55B.md)
+- [While the Billy Boils](../Books/A6D99FCE-7EFE-47FF-BDAB-5337E6850F7A.md)
 
 ## Representative excerpts
+
+### The Last of the Mohicans: Section 21
+
+_Mid-book rhythm_
+
+> XVII Weave we the woof. The thread is spun. The web is wove. The work is done. Gray The hostile armies, which lay in the wilds of the Horican, passed the night of the ninth of August, 1757, much in the manner they would, had they encountered on the fairest field of Europe. While the conquered were still, sullen, and dejected, the victors triumphed. But there are limits alike to grief and joy; and long before the watches of the morning came the stillness of those boundless woods was only broken by a gay call from some exulting young Frenchman of the advanced pickets, or a menacing challenge from the fort, which sternly forbade the approach of any hostile footsteps before the stipulated moment.
+
+### The Last of the Mohicans: Section 20
+
+_Dialogue and character voice_
+
+> XVI Edgar Before you fight the battle, ope this letter. Lear Major Heyward found Munro attended only by his daughters. Alice sat upon his knee, parting the gray hairs on the forehead of the old man with her delicate fingers; and whenever he affected to frown on her trifling, appeasing his assumed anger by pressing her ruby lips fondly on his wrinkled brow. Cora was seated nigh them, a calm and amused looker-on; regarding the wayward movements of her more youthful sister with that species of maternal fondness which characterized her love for Alice. Not only the dangers through which they had passed, but those which still impended above them, appeared to be momentarily forgotten, in the soothing indulgence of such a family meeting.
 
 ### The Last of the Mohicans; A narrative of 1757: Section 1
 
@@ -33,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XVII. “Weave we the woof. The thread is spun. The web is wove. The work is done.”—Gray The hostile armies, which lay in the wilds of the Horican, passed the night of the ninth of August, 1757, much in the manner they would, had they encountered on the fairest field of Europe. While the conquered were still, sullen, and dejected, the victors triumphed. But there are limits alike to grief and joy; and long before the watches of the morning came the stillness of those boundless woods was only broken by a gay call from some exulting young Frenchman of the advanced pickets, or a menacing challenge from the fort, which sternly forbade the approach of any hostile footsteps before the stipulated moment.
+
+### While the Billy Boils: Section 30
+
+_Mid-book rhythm_
+
+> An Echo from the Old Bark School It was the first Monday after the holidays. The children had taken their seats in the Old Bark School, and the master called out the roll as usual:⁠— “Arvie Aspinall.”⁠ ⁠… “ ’Es, sir.” “David Cooper.”⁠ ⁠… “Yes, sir.” “John Heegard.”⁠ ⁠… “Yezzer.” “Joseph Swallow.”⁠ ⁠… “Yesser.” “James Bullock.”⁠ ⁠… “Present.” “Frederick Swallow.”⁠ ⁠… “Y’sir.” “James Nowlett.”⁠ ⁠… (Chorus of “Absent.”) “William Atkins.”⁠ ⁠… (Chorus of “Absent.”) “Daniel Lyons.”⁠ ⁠… “Perresent, sor-r-r.” Dan was a young immigrant, just out from the sod, and rolled his r’s like a cock-dove. His brogue was rich enough to make an Irishman laugh. Bill was “wagging it.” His own especial chum was of the opinion that Bill was sick. The master’s opinion did not coincide, so he penned a note to William’s parents, to be delivered by the model boy of the school. “Bertha Lambert.”⁠ ⁠… “Yes, ’air.”
+
+### While the Billy Boils: Section 49
+
+_Dialogue and character voice_
+
+> Jones’s Alley She lived in Jones’s Alley. She cleaned offices, washed, and nursed from daylight until any time after dark, and filled in her spare time cleaning her own place (which she always found dirty⁠—in a “beastly filthy state,” she called it⁠—on account of the children being left in possession all day), cooking, and nursing her own sick⁠—for her family, though small, was so in the two senses of the word, and sickly; one or another of the children was always sick, but not through her fault. She did her own, or rather the family washing, at home too, when she couldn’t do it by kind permission, or surreptitiously in connection with that of her employers. She was a haggard woman. Her second husband was supposed to be dead, and she, lived in dread of his daily resurrection.

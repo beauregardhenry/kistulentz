@@ -2,23 +2,26 @@
 # Boys -- Fiction
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 191643
-- Reading grade: 2.3
-- Average sentence: 8.3 words
-- Average paragraph: 12.0 words
-- Dialogue share: 33%
+- Words analyzed: 524595
+- Reading grade: 3.6
+- Average sentence: 11.8 words
+- Average paragraph: 29.6 words
+- Dialogue share: 37%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even, energetic
-- Recurring vocabulary: ain’t, don’t, enough, going, house, night, place, reckon, that’s, three, anything, began, better, can’t, chapter, couldn’t, didn’t, gutenberg, heart, himself, moment, nigger, nothing, people, presently, pretty, project, river, school, seemed, things, thought, tom’s, wanted, warn’t, without, won’t, wouldn’t
-- Character names: Ben Rogers, Huck, Huck Finn, Jim, Mary, Peter, Tom, Tom Sawyer, Amy, Aunt Polly, Becky, Becky Thatcher, Ben, Bill, Bob, Boggs, Buck, De, Dey, George, Gutenberg, Harney, Harvey, Huckleberry, Huckleberry Finn, Hucky, Injun Joe, Jack, Jackson, Jeff Thatcher, Joe, Joe Harper, Judge, Judge Thatcher, Juliet, Le, Mary Jane, Miss Mary Jane, Miss Sophia, Miss Watson, Mrs. Harper, Mrs. Thatcher, Muff Potter, Pap, Polly, Potter, Robin Hood, Sid, Susan, Uncle Harvey, Widow Douglas, William
+- Tone: dialogue-forward, direct, rhythmically varied, balanced, energetic, rhythmically even
+- Recurring vocabulary: house, place, don’t, night, that’s, enough, going, himself, river, things, thought, three, ain’t, anything, better, can’t, child, didn’t, nothing, reckon, shall, without, woman, young, began, behind, chapter, chela, couldn’t, creek, cried, customer, doctor, dodger, dollar, english, father, gentleman, guess, gutenberg
+- Character names: Jim, Mary, Mr, Tom, Ben Rogers, Bill, George, Huck, Huck Finn, Peter, Tom Sawyer, Abdullah, Allah, Amy, Aunt Polly, Barney, Becky, Becky Thatcher, Bedwin, Ben, Benares, Bennett, Bill Catlin, Bill Sikes, Bob, Boggs, Brahmin, Brownlow, Buck, Bumble, Cawl, Cawl Romer, Charley, Charley Bates, Charlotte, Colonel Creighton, Corney, Creighton, Creighton Sahib, Dawkins, De, Dey, Dick, E.23, Edwin Skreever, Fagin, Fang, Father Victor, Gamfield, Giles, Gutenberg, Hajji, Harney, Harvey, Huckleberry, Huckleberry Finn, Hucky, Hurree Babu, Injun Joe, Jack, Jack Betts, Jackson, Jake, Jat, Jeff Thatcher, Jew, Jibby, Jibby Jones, Joe, Joe Harper, John A. Murrell, Jones, Jove, Judge, Judge Thatcher, Juliet, Kim, Le, Lurgan, Lurgan Sahib
 
 ## Books
 - [Adventures of Huckleberry Finn](../Books/ED046AD7-93DC-4645-B7B2-1DBCBD68E9B2.md)
+- [Jibby Jones](../Books/216055F7-E991-473A-A788-F9CE95334AA0.md)
+- [Kim](../Books/37A6FA59-425B-4CC5-A738-5AC4C7FB00D5.md)
+- [Oliver Twist](../Books/2F1D0CB3-82FD-4509-BDAA-0E67FC9CA799.md)
 - [The Adventures of Tom Sawyer, Complete](../Books/2FD47C7A-C847-40C7-8446-FB079003A6EB.md)
 
 ## Representative excerpts
@@ -34,6 +37,42 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XX. They asked us considerable many questions; wanted to know what we covered up the raft that way for, and laid by in the daytime instead of running—was Jim a runaway nigger? Says I: “Goodness sakes, would a runaway nigger run south?” No, they allowed he wouldn’t. I had to account for things some way, so I says: “My folks was living in Pike County, in Missouri, where I was born, and they all died off but me and pa and my brother Ike. Pa, he ’lowed he’d break up and go down and live with Uncle Ben, who’s got a little one-horse place on the river, forty-four mile below Orleans. Pa was pretty poor, and had some debts; so when he’d squared up there warn’t nothing left but sixteen dollars and our nigger, Jim. That warn’t enough to take us fourteen hundred mile, deck passage nor no other way.
+
+### Jibby Jones: Section 15
+
+_Mid-book rhythm_
+
+> XIII The Viking Ship In a little while we had every old tin can on the island filled with worms and choice crumbly black earth in which they would be well and hearty and feel comfortable and at home. Then we began filling old pails, and wash-pitchers with the handles off, and boxes, and were fussing a little about who would go on the road and travel from town to town selling worms for the Five Friends’ and taking winter orders for spring delivery. We decided that Jibby would be the best salesman because he looked serious-minded and truthful with his big nose and tortoiseshell rimmed spectacles, but we decided he would have to wear a brand-new suit of clothes and carry a cane.
+
+### Jibby Jones: Section 5
+
+_Dialogue and character voice_
+
+> III The Climbing Rabbit Maybe feeling sorry that Jibby had to go away was what made us feel so glad he had found that pearl and did not have to go. Teasing him had come to be part of the fun we counted on having, and, when we saw old Jib come out of his cottage, one or the other of us would nearly always say: “There’s Jibby⁠—let’s go tell him something about the river.” And between-times we thought up things to tell him. But all the time we were getting to like him more and more. A couple of days after Mr. Willing had bought the pearl, Skippy and Wampus and Tad and I were under my folks’ cottage, because it was raining. There was always plenty to do on the island, enough kinds of fun each summer to keep us busy ten years, and on rainy days we could always sit under one of the cottages and whittle or talk or make mud statues.
+
+### Kim: Section 11
+
+_Mid-book rhythm_
+
+> IX S’doaks was son of Yelth the wise⁠— Chief of the Raven clan. Itswoot the Bear had him in care To make him a medicine-man. He was quick and quicker to learn⁠— Bold and bolder to dare: He danced the dread Kloo-Kwallie Dance To tickle Itswoot the Bear! Oregon Legend Kim flung himself wholeheartedly upon the next turn of the wheel. He would be a Sahib again for a while. In that idea, so soon as he had reached the broad road under Simla Town Hall, he cast about for one to impress. A Hindu child, some ten years old, squatted under a lamppost. “Where is Mr. Lurgan’s house?” demanded Kim. “I do not understand English,” was the answer, and Kim shifted his speech accordingly. “I will show.” Together they set off through the mysterious dusk, full of the noises of a city below the hillside, and the breath of a cool wind in deodar-crowned Jakko, shouldering the stars.
+
+### Kim: Section 17
+
+_Dialogue and character voice_
+
+> XV I’d not give room for an Emperor⁠— I’d hold my road for a King. To the Triple Crown I’d not bow down⁠— But this is a different thing! I’ll not fight with the Powers of Air⁠— Sentry, pass him through! Drawbridge let fall⁠—He’s the Lord of us all⁠— The Dreamer whose dream came true! The Siege of the Fairies Two hundred miles north of Chini, on the blue shale of Ladakh, lies Yankling Sahib, the merry-minded man, spy-glassing wrathfully across the ridges for some sign of his pet tracker⁠—a man from Ao-chung. But that renegade, with a new Männlicher rifle and two hundred cartridges, is elsewhere, shooting musk-deer for the market, and Yankling Sahib will learn next season how very ill he has been. Up the valleys of Bushahr⁠—the far-beholding eagles of the Himalayas swerve at his new blue-and-white gored umbrella⁠—hurries a Bengali, once fat and well-looking, now lean and weatherworn.
+
+### Oliver Twist: Section 30
+
+_Mid-book rhythm_
+
+> XXVIII Looks After Oliver, and Proceeds with His Adventures “Wolves tear your throats!” muttered Sikes, grinding his teeth. “I wish I was among some of you; you’d howl the hoarser for it.” As Sikes growled forth this imprecation, with the most desperate ferocity that his desperate nature was capable of, he rested the body of the wounded boy across his bended knee; and turned his head, for an instant, to look back at his pursuers. There was little to be made out, in the mist and darkness; but the loud shouting of men vibrated through the air, and the barking of the neighbouring dogs, roused by the sound of the alarm bell, resounded in every direction. “Stop, you white-livered hound!” cried the robber, shouting after Toby Crackit, who, making the best use of his long legs, was already ahead. “Stop!” The repetition of the word, brought Toby to a dead standstill.
+
+### Oliver Twist: Section 53
+
+_Dialogue and character voice_
+
+> LI Affording an Explanation of More Mysteries Than One, and Comprehending a Proposal of Marriage with No Word of Settlement or Pin-Money The events narrated in the last chapter were yet but two days old, when Oliver found himself, at three o’clock in the afternoon, in a travelling-carriage rolling fast towards his native town. Mrs. Maylie, and Rose, and Mrs. Bedwin, and the good doctor were with him: and Mr. Brownlow followed in a post-chaise, accompanied by one other person whose name had not been mentioned. They had not talked much upon the way; for Oliver was in a flutter of agitation and uncertainty which deprived him of the power of collecting his thoughts, and almost of speech, and appeared to have scarcely less effect on his companions, who shared it, in at least an equal degree. He and the two ladies had been very carefully made acquainted by Mr.
 
 ### The Adventures of Tom Sawyer, Complete: Section 1
 

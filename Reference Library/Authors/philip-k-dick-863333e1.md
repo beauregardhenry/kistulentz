@@ -2,25 +2,38 @@
 # Philip K. Dick
 
 - Profile type: Author
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 4204
-- Reading grade: 5.9
-- Average sentence: 6.9 words
-- Average paragraph: 9.9 words
-- Dialogue share: 1%
-- Voice: mixed or shifting perspective
+- Words analyzed: 107109
+- Reading grade: 3.2
+- Average sentence: 7.3 words
+- Average paragraph: 23.7 words
+- Dialogue share: 41%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: works, electronic, terms, copyright, states, agreement, license, donations, united, trademark, ebook, without, paragraph, access, person, refund, agree, including, information, ebooks, forth, associated, copies, distributing
-- Character names: Gutenberg, Julia, Project Gutenberg, Gutenberg Literary Archive Foundation, Gutenberg Literary
+- Tone: direct, rhythmically even, dialogue-forward, inquisitive, narrative-forward
+- Recurring vocabulary: without, access, across, agree, agreement, anything, associated, behind, can’t, conger, copies, copyright, distributing, donations, don’t, ebook, ebooks, electronic, forth, going, ground, hands, including, information, license, maybe, metal, moment, moved, nodded, nothing, paragraph, person, refund, slowly, states, stood, surface, terms, that’s
+- Character names: B’prith, Cole, David, Dolores, Dorle, Earl, Ed, Franco, Franks, Gross, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harris, Hendricks, Julia, Kaplan, Klaus, Kramer, Leone, Lora, Loyce, Mr, Nasha, Peterson, Project Gutenberg, Reinhart, Rudi, Scott, Sherikov, Steven, Tasso, Taylor, Terra, Tony
 
 ## Books
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
 - [The Eyes Have It](../Books/F2FCCE60-E492-439D-A76A-423067D50671.md)
 
 ## Representative excerpts
+
+### Short Fiction: Section 9
+
+_Mid-book rhythm_
+
+> Mr. Spaceship Kramer leaned back. “You can see the situation. How can we deal with a factor like this? The perfect variable.” “Perfect? Prediction should still be possible. A living thing still acts from necessity, the same as inanimate material. But the cause-effect chain is more subtle; there are more factors to be considered. The difference is quantitative, I think. The reaction of the living organism parallels natural causation, but with greater complexity.” Gross and Kramer looked up at the board plates, suspended on the wall, still dripping, the images hardening into place. Kramer traced a line with his pencil. “See that? It’s a pseudopodium. They’re alive, and so far, a weapon we can’t beat. No mechanical system can compete with that, simple or intricate. We’ll have to scrap the Johnson Control and find something else.” “Meanwhile the war continues as it is. Stalemate. Checkmate.
+
+### Short Fiction: Section 13
+
+_Dialogue and character voice_
+
+> The Variable Man I Security Commissioner Reinhart rapidly climbed the front steps and entered the Council building. Council guards stepped quickly aside and he entered the familiar place of great whirring machines. His thin face rapt, eyes alight with emotion, Reinhart gazed intently up at the central S.R.B. computer, studying its reading. “Straight gain for the last quarter,” observed Kaplan, the lab organizer. He grinned proudly, as if personally responsible. “Not bad, Commissioner.” “We’re catching up to them,” Reinhart retorted. “But too damn slowly. We must finally go over⁠—and soon.” Kaplan was in a talkative mood. “We design new offensive weapons, they counter with improved defenses. And nothing is actually made! Continual improvement, but neither we nor Centaurus can stop designing long enough to stabilize for production.” “It will end,”
 
 ### The Eyes Have It: Section 1
 

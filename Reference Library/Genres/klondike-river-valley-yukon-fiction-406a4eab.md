@@ -2,23 +2,25 @@
 # Klondike River Valley (Yukon) -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 35129
-- Reading grade: 3.8
-- Average sentence: 8.4 words
-- Average paragraph: 12.5 words
-- Dialogue share: 4%
+- Words analyzed: 117308
+- Reading grade: 5.1
+- Average sentence: 14.2 words
+- Average paragraph: 50.1 words
+- Dialogue share: 18%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: though, buck’s, himself, trail, night, three, hundred, works, things, teeth, behind, traces, water, electronic, forth, place, seemed, sprang, forest, without, nothing, stood, terms, foundation
-- Character names: Buck, Thornton, Spitz, François, Hal, John Thornton, Perrault, Dave, Charles, Hans, Pete, Billee, Dawson, Gutenberg, Mercedes, Curly, Joe, Matthewson, Pike, Judge, Manuel, Dub, John, Nig, Skeet, Teek, Gad, Judge Miller, Mush, Project Gutenberg
+- Tempo: steady
+- Tone: balanced, narrative-forward, rhythmically varied, dialogue-forward, direct, rhythmically even
+- Recurring vocabulary: himself, night, things, though, three, trail, water, behind, buck’s, forest, hundred, nothing, place, seemed, sprang, stood, teeth, traces, white, without, cabin, called, cried, don’t, electronic, forth, foundation, heard, morning, north, people, prince, river, shall, strange, strength, terms, thornton’s, thought, woman
+- Character names: Dawson, Joe, Billee, Buck, Charles, Curly, Dave, Dub, François, Gad, Hal, Hans, John Thornton, Judge, Judge Miller, Manuel, Matthewson, Mercedes, Mush, Nig, Perrault, Pete, Pike, Skeet, Spitz, Teek, Thornton, Akatan, Axel Gunderson, Bernard, Bettles, Burton, Cal Galbraith, Cuthfert, Edwin Bentham, Father Roubeau, Freda, Grace Bentham, Gutenberg, Harrington, Jacques Baptiste, John, Lon, Lon McFane, Mackenzie, Madeline, Malemute Kid, Mason, Mr, Mrs, Parker, Percy Cuthfert, Project Gutenberg, Raven, Ruth, Sitka Charley, Sloper, Wharton, Ysabel, Yukon, Zarinska
 
 ## Books
 - [The call of the wild](../Books/30BF27F3-CC02-46CC-8CE2-9046D310B2F5.md)
+- [The Call of the Wild](../Books/ED95A4B8-1FE4-4E9D-AB82-3C77D8A45CFD.md)
+- [The Son of the Wolf](../Books/2922EF6C-0FEC-4587-B9BE-79C12D967E44.md)
 
 ## Representative excerpts
 
@@ -33,3 +35,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Chapter IV. Who Has Won to Mastership “Eh? Wot I say? I spik true w’en I say dat Buck two devils.” This was François’s speech next morning when he discovered Spitz missing and Buck covered with wounds. He drew him to the fire and by its light pointed them out. “Dat Spitz fight lak hell,” said Perrault, as he surveyed the gaping rips and cuts. “An’ dat Buck fight lak two hells,” was François’s answer. “An’ now we make good time. No more Spitz, no more trouble, sure.” While Perrault packed the camp outfit and loaded the sled, the dog-driver proceeded to harness the dogs. Buck trotted up to the place Spitz would have occupied as leader; but François, not noticing him, brought Sol-leks to the coveted position. In his judgment, Sol-leks was the best lead-dog left. Buck sprang upon Sol-leks in a fury, driving him back and standing in his place. “Eh? eh?”
+
+### The Call of the Wild: Section 7
+
+_Mid-book rhythm_
+
+> III The Dominant Primordial Beast The dominant primordial beast was strong in Buck, and under the fierce conditions of trail life it grew and grew. Yet it was a secret growth. His newborn cunning gave him poise and control. He was too busy adjusting himself to the new life to feel at ease, and not only did he not pick fights, but he avoided them whenever possible. A certain deliberateness characterized his attitude. He was not prone to rashness and precipitate action; and in the bitter hatred between him and Spitz he betrayed no impatience, shunned all offensive acts. On the other hand, possibly because he divined in Buck a dangerous rival, Spitz never lost an opportunity of showing his teeth. He even went out of his way to bully Buck, striving constantly to start the fight which could end only in the death of one or the other.
+
+### The Call of the Wild: Section 9
+
+_Dialogue and character voice_
+
+> V The Toil of Trace and Trail Thirty days from the time it left Dawson, the Salt Water Mail, with Buck and his mates at the fore, arrived at Skaguay. They were in a wretched state, worn out and worn down. Buck’s one hundred and forty pounds had dwindled to one hundred and fifteen. The rest of his mates, though lighter dogs, had relatively lost more weight than he. Pike, the malingerer, who, in his lifetime of deceit, had often successfully feigned a hurt leg, was now limping in earnest. Sol-leks was limping, and Dub was suffering from a wrenched shoulder-blade. They were all terribly footsore. No spring or rebound was left in them. Their feet fell heavily on the trail, jarring their bodies and doubling the fatigue of a day’s travel. There was nothing the matter with them except that they were dead tired.
+
+### The Son of the Wolf: Section 7
+
+_Mid-book rhythm_
+
+> To the Man on Trail “Dump it in.” “But I say, Kid, isn’t that going it a little too strong? Whisky and alcohol’s bad enough; but when it comes to brandy and pepper sauce and⁠—” “Dump it in. Who’s making this punch, anyway?” And Malemute Kid smiled benignantly through the clouds of steam. “By the time you’ve been in this country as long as I have, my son, and lived on rabbit tracks and salmon belly, you’ll learn that Christmas comes only once per annum. And a Christmas without punch is sinking a hole to bedrock with nary a pay streak.” “Stack up on that fer a high cyard,” approved Big Jim Belden, who had come down from his claim on Mazy May to spend Christmas, and who, as everyone knew, had been living the two months past on straight moose meat. “Hain’t fergot the hooch we-uns made on the Tanana, hev yeh?” “Well, I guess yes.
+
+### The Son of the Wolf: Section 11
+
+_Dialogue and character voice_
+
+> An Odyssey of the North I The sleds were singing their eternal lament to the creaking of the harness and the tinkling bells of the leaders; but the men and dogs were tired and made no sound. The trail was heavy with new-fallen snow, and they had come far, and the runners, burdened with flint-like quarters of frozen moose, clung tenaciously to the unpacked surface and held back with a stubbornness almost human. Darkness was coming on, but there was no camp to pitch that night. The snow fell gently through the pulseless air, not in flakes, but in tiny frost crystals of delicate design. It was very warm⁠—barely ten below zero⁠—and the men did not mind. Meyers and Bettles had raised their ear flaps, while Malemute Kid had even taken off his mittens. The dogs had been fagged out early in the after noon, but they now began to show new vigor.

@@ -2,23 +2,24 @@
 # Voyages around the world
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 193456
-- Reading grade: 4.3
-- Average sentence: 8.2 words
-- Average paragraph: 11.7 words
-- Dialogue share: 18%
-- Voice: observational third-person
+- Words analyzed: 263271
+- Reading grade: 5.2
+- Average sentence: 11.8 words
+- Average paragraph: 37.3 words
+- Dialogue share: 15%
+- Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: people, years, place, nothing, things, india, english, world, white, without, three, chapter, country, water, native, government, miles, himself, night, house, australia, business, british, england
-- Character names: Ed, Brown, Robinson, Ballarat, Mr. Brown, Mrs. Enderby, Kanaka, General Grant, Hanuman, Mr, Samson, Victoria, Mary, Mr. Thomas, Mrs. Taylor, B., Liholiho, Mrs. Glossop, Nancy Taylor, Sullivan, Boer, G., Kamehameha, Kempthorne, Macquarrie Harbor, Mr. Bascom, Roger, Smith, Vanderbilt, Adelaide
+- Tone: narrative-forward, direct, measured, rhythmically even, rhythmically varied
+- Recurring vocabulary: miles, night, place, three, water, world, anchor, australia, board, british, business, captain, chapter, country, course, england, english, enough, government, himself, house, however, india, island, islands, light, morning, native, nothing, people, point, sailed, sailing, sloop, small, strait, things, voyage, weather, white
+- Character names: Mary, Mr, Adelaide, Antonio, B., Ballarat, Black Pedro, Boer, Brown, Bruce, Clark, Douglas, Dr, Ed, G., General Grant, Hanuman, Helena, Horn, Howard, Jardine, Java, John Wilson, Jones, Juan Fernandez, Kamehameha, Kanaka, Kempthorne, Kilda, Krüger, Liholiho, Macquarrie Harbor, Magellan, Malietoa, Mr. Bascom, Mr. Brown, Mr. Thomas, Mrs, Mrs. Enderby, Mrs. Glossop, Mrs. Taylor, Nancy Taylor, Pillar, Roberts, Robinson, Rodriguez, Roger, Ross, Samblich, Samoan, Samson, Smith, Spray, Stanley, Stevenson, Sullivan, Vanderbilt, Victoria
 
 ## Books
 - [Following the Equator: A Journey Around the World](../Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md)
+- [Sailing Alone Around the World](../Books/BF702BC7-1E06-4927-9B35-BAF483DB1899.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > I wonder how old the town is. There are patches of building—massive structures, monuments, apparently—that are so battered and worn, and seemingly so tired and so burdened with the weight of age, and so dulled and stupefied with trying to remember things they forgot before history began, that they give one the feeling that they must have been a part of original Creation. This is indeed one of the oldest of the princedoms of India, and has always been celebrated for its barbaric pomps and splendors, and for the wealth of its princes. CHAPTER XLV. It takes your enemy and your friend, working together, to hurt you to the heart; the one to slander you and the other to get the news to you. —Pudd’nhead Wilson’s New Calendar.
+
+### Sailing Alone Around the World: Section 15
+
+_Mid-book rhythm_
+
+> XI The islanders at Juan Fernandez entertained with Yankee doughnuts⁠—The beauties of Robinson Crusoe’s realm⁠—The mountain monument to Alexander Selkirk⁠—Robinson Crusoe’s cave⁠—A stroll with the children of the island⁠—Westward ho! with a friendly gale⁠—A month’s free sailing with the Southern Cross and the sun for guides⁠—Sighting the Marquesas⁠—Experience in reckoning. The Spray being secured, the islanders returned to the coffee and doughnuts, and I was more than flattered when they did not slight my buns, as the professor had done in the Strait of Magellan. Between buns and doughnuts there was little difference except in name. Both had been fried in tallow, which was the strong point in both, for there was nothing on the island fatter than a goat, and a goat is but a lean beast, to make the best of it.
+
+### Sailing Alone Around the World: Section 19
+
+_Dialogue and character voice_
+
+> XV Arrival at Port Denison, Queensland⁠—A lecture⁠—Reminiscences of Captain Cook⁠—Lecturing for charity at Cooktown⁠—A happy escape from a coral reef⁠—Home Island, Sunday Island, Bird Island⁠—An American pearl-fisherman⁠—Jubilee at Thursday Island⁠—A new ensign for the Spray⁠—Booby Island⁠—Across the Indian Ocean⁠—Christmas Island. On the morning of the 26th Gloucester Island was close aboard, and the Spray anchored in the evening at Port Denison, where rests, on a hill, the sweet little town of Bowen, the future watering place and health-resort of Queensland. The country all about here had a healthful appearance. The harbor was easy of approach, spacious and safe, and afforded excellent holding-ground.

@@ -2,26 +2,40 @@
 # American -- 19th century -- Biography
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 4
 
 ## Learned profile
 
-- Words analyzed: 270288
-- Reading grade: 4.2
-- Average sentence: 9.0 words
-- Average paragraph: 12.5 words
-- Dialogue share: 2%
+- Words analyzed: 634230
+- Reading grade: 6.4
+- Average sentence: 16.5 words
+- Average paragraph: 55.9 words
+- Dialogue share: 6%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: gutenberg, house, night, water, without, years, cannot, captain, chapter, course, don't, earth, going, heard, himself, hundred, miles, mississippi, morning, myself, nature, orleans, people, perhaps, pilot, pilots, place, project, river, shore, sometimes, spring, state, things, though, thought, thousand, three, times, winter
-- Character names: George, Adam, Adler, Allbright, Arab, Ben, Bixby, Bob, Brister, Brown, Confucius, Crenshaw, De Soto, Dick Allbright, Ealer, Evelyn, Fuel, Genius, George Ealer, Grecian, Haven, Helena, Henry, Hill, Hollander, Hollowell, Howard, James, John, John Field, Jones, Kruger, Latin, Lincoln, Louis, Marquette, Mr, Mr. Bixby, Mr. Brown, Mr. Coleman, Mumford, Myrmidons, Napoleon, Paul Jones, Plato, Rogers, Shakespeare, Solomon, Stephen, Thebes, Thompson, Tom, Uncle Mumford, Virgil, Walden, Walden Pond, Walden Woods
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, rhythmically varied, balanced, measured
+- Recurring vocabulary: night, without, years, himself, house, three, water, world, going, gutenberg, heard, hundred, miles, myself, nature, people, perhaps, place, river, sometimes, state, things, though, thought, young, anything, called, cannot, captain, chapter, country, course, didn’t, don't, earth, family, ground, leaves, light, matter
+- Character names: George, Mr, Henry, Jones, Latin, Rogers, Shakespeare, Virgil, Adam, Adler, Allbright, Arab, Barnes, Ben, Bixby, Bob, Brister, Brown, Caesar, Carlyle, Chaucer, Christ, Clemens, Colonel Grant, Confucius, Crenshaw, Cromwell, Davis, De Soto, Dennis, Dick Allbright, Dolby, Ealer, Emerson, Etzler, Evelyn, Fairfax, Fred Grant, Fuel, General Grant, Genius, George Ealer, Gerhardt, Gilder, Goethe, Grant, Grecian, Haven, Helena, Herbert, Hill, Hollander, Hollowell, Howard, Humor, James, Jim, Jim Wolf, John, John Field, John Mackay, Keeler, Kruger, Li Hung-Chang, Lincoln, Louis, Luther, Mark Twain, Marquette, Milton, Morris, Mr. Bixby, Mr. Brown, Mr. Coleman, Mrs, Muhammad, Mumford, Myrmidons, Napoleon, Nuttall
 
 ## Books
+- [Essays](../Books/226D7A38-C83A-4DFD-BB2F-525FA59FC9CA.md)
 - [Life on the Mississippi](../Books/37B7B288-947A-4452-B397-94B8707D337F.md)
+- [The Autobiography of Mark Twain](../Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md)
 - [Walden, and On The Duty Of Civil Disobedience](../Books/5CD7BE2D-462E-4024-9D04-9ACF194BB95D.md)
 
 ## Representative excerpts
+
+### Essays: Section 18
+
+_Mid-book rhythm_
+
+> Sir Walter Raleigh Apparently written over a period of several years in the 1840’s, but only edited and published posthumously, in 1905. Perhaps no one in English history better represents the heroic character than Sir Walter Raleigh, for Sidney has got to be almost as shadowy as Arthur himself. Raleigh’s somewhat antique and Roman virtues appear in his numerous military and naval adventures, in his knightly conduct toward the Queen, in his poems and his employments in the Tower, and not least in his death, but more than all in his constant soldier-like bearing and promise. He was the Bayard of peaceful as well as warlike enterprise, and few lives which are the subject of recent and trustworthy history are so agreeable to the imagination. Not withstanding his temporary unpopularity, he especially possessed the prevalent and popular qualities which command the admiration of men.
+
+### Essays: Section 12
+
+_Dialogue and character voice_
+
+> Paradise (to Be) Regained5 First published in Democratic Review, Vol. 13, November, 1843. We learn that Mr. Etzler is a native of Germany, and originally published his book in Pennsylvania, ten or twelve years ago; and now a second English edition, from the original American one, is demanded by his readers across the water, owing, we suppose, to the recent spread of Fourier’s doctrines. It is one of the signs of the times. We confess that we have risen from reading this book with enlarged ideas, and grander conceptions of our duties in this world. It did expand us a little. It is worth attending to, if only that it entertains large questions. Consider what Mr. Etzler proposes: “Fellow Men!
 
 ### Life on the Mississippi: Section 1
 
@@ -34,6 +48,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > Yes, it was an astonishing thing to see the Mississippi rolling between unpeopled shores and straight over the spot where I used to see a good big self-complacent town twenty years ago. Town that was county-seat of a great and important county; town with a big United States marine hospital; town of innumerable fights—an inquest every day; town where I had used to know the prettiest girl, and the most accomplished in the whole Mississippi Valley; town where we were handed the first printed news of the 'Pennsylvania's' mournful disaster a quarter of a century ago; a town no more—swallowed up, vanished, gone to feed the fishes; nothing left but a fragment of a shanty and a crumbling brick chimney!
+
+### The Autobiography of Mark Twain: Section 13
+
+_Mid-book rhythm_
+
+> Private History of a Ms. That Came to Grief Written in 1900 It happened in London; not recently, and yet not very many years ago. An acquaintance had proposed to himself a certain labor of love, and when he told me about it I was interested. His idea was to have a fine translation made of the evidence given in the Joan of Arc Trials and Rehabilitation, and placed before the English-speaking world. A translation had been made and published a great many years before, but had achieved no currency, and in fact was not entitled to any, for it was a piece of mere shoemaker-work.
+
+### The Autobiography of Mark Twain: Section 22
+
+_Dialogue and character voice_
+
+> The Character of Man Concerning Man⁠—he is too large a subject to be treated as a whole; so I will merely discuss a detail or two of him at this time. I desire to contemplate him from this point of view⁠—this premise: that he was not made for any useful purpose, for the reason that he hasn’t served any; that he was most likely not even made intentionally; and that his working himself up out of the oyster bed to his present position was probably matter of surprise and regret to the Creator.⁠ ⁠… For his history, in all climes, all ages and all circumstances, furnishes oceans and continents of proof that of all the creatures that were made he is the most detestable. Of the entire brood he is the only one⁠—the solitary one⁠—that possesses malice. That is the basest of all instincts, passions, vices⁠—the most hateful. That one thing puts him below the rats, the grubs, the trichinae.
 
 ### Walden, and On The Duty Of Civil Disobedience: Section 1
 

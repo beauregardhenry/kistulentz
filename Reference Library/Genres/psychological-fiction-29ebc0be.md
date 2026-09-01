@@ -2,28 +2,41 @@
 # Psychological fiction
 
 - Profile type: Genre
-- Books represented: 9
+- Books represented: 22
 
 ## Learned profile
 
-- Words analyzed: 760864
-- Reading grade: 3.7
-- Average sentence: 8.0 words
-- Average paragraph: 12.3 words
-- Dialogue share: 31%
-- Voice: mixed or shifting perspective
+- Words analyzed: 1873524
+- Reading grade: 4.6
+- Average sentence: 11.5 words
+- Average paragraph: 37.6 words
+- Dialogue share: 30%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: direct, rhythmically even, narrative-forward, energetic, dialogue-forward, rhythmically varied
-- Recurring vocabulary: without, thought, night, seemed, don’t, hands, house, nothing, things, works, began, better, course, didn’t, electronic, going, himself, moment, shall, stood, that’s, though, world, years, agreement, anything, behind, child, copyright, cried, enough, gutenberg, heard, indeed, license, light, looking, money, mother, myself
-- Character names: Gutenberg, Project Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Adam, Hester, Hush, Mr, Wilson, Adams, Ahab, Albino, Alyona Ivanovna, Ann Hutchinson, Anse, Arthur, Astor, Avdotya Romanovna, Bartleby, Bellingham, Belshazzar, Ben, Benjamin, Benjy, Bildad, Biloxi, Bly, Cabaco, Caddy, Carpenter, Carraway, Catherine, Charlie, Chillingworth, Compson, Daisy, Dalton Ames, Dan Cody, Dilsey, Dmitri, Dost, Dostoevsky, Douglas, Dounia, Dushkin, Earl, Elijah, Eliot, Emir, Englishman, Flora, Frony, Gatsby, George, Gerald, Ginger Nut, Griffin, Grose, Halifax, Hark, Hath, Henry, Herbert, Hester Prynne, Horn, Ilya Petrovitch, Isaac Johnson, Ishmael, Jackson, James, James Gatz, Jason, Jay Gatsby, Jennie, Jessel, Jimmy, John, John Hunter, John Jacob, Jonah
+- Tone: narrative-forward, direct, rhythmically even, rhythmically varied, energetic, balanced, dialogue-forward, measured
+- Recurring vocabulary: thought, don’t, himself, nothing, going, house, night, seemed, without, people, stood, hands, things, that’s, though, young, moment, white, world, began, course, cried, didn’t, heard, herself, quite, shall, woman, better, enough, indeed, light, looking, round, three, voice, years, can’t, father, money
+- Character names: Mr, Mrs, Gutenberg, Project Gutenberg, George, Gutenberg Literary, Gutenberg Literary Archive Foundation, Wilson, Alexander, Dr, Hester, Hush, James, Jimmy, John, Miss Baker, Smith, Adam, Ann Hutchinson, Arthur, Bellingham, Biloxi, Carraway, Catherine, Daisy, Dan Cody, Dostoevsky, Eliot, Elizabeth, Gatsby, Gerald, Halifax, Harry, Hath, Henry, Hester Prynne, Isaac Johnson, Jacob, James Gatz, Jay Gatsby, Joe, Jordan, Jordan Baker, Little Pearl, Louis, Lucille, Madam Hester, Mary, Michaelis, Mistress Hester, Mistress Hibbins, Mistress Prynne, Mother, Myra, Myrtle, Myrtle Wilson, Pearl, Roger Chillingworth, Sam, Satan, Surveyor, Tom, Tom Buchanan, Walter, Winthrop, brown, Abednego, Abednego Danner, Ach, Adams, Ahab, Albany, Albert, Albert Witham, Albino, Allen, Allistoun, Alvina, Alvina Houghton, Alwyn
 
 ## Books
 - [Anthem](../Books/8BAEF5C3-053B-4781-ABA9-181EB85B2CE2.md)
+- [Babbitt](../Books/3289091D-28CA-4DCC-BA1B-93C199BC5801.md)
 - [Bartleby, the Scrivener: A Story of Wall-Street](../Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md)
 - [Crime and Punishment](../Books/CB9F10BE-C785-454C-8EB5-4ED84B162D31.md)
+- [Giant’s Bread](../Books/8C41294A-84FE-4FD9-A677-E7FE1369BE86.md)
+- [Gladiator](../Books/1D521F7C-57D8-4EE0-ACB9-1F79D45DA3D9.md)
+- [Jacob’s Room](../Books/B7388E23-4426-4D38-BAC1-486C823DA7D9.md)
+- [McTeague](../Books/8A3FC784-334D-4B9C-A35B-D3C06B502E94.md)
 - [Moby Dick; Or, The Whale](../Books/8EED98A3-73C5-4C4D-B943-2EBCE6CDA5D5.md)
+- [Persuasion](../Books/3F07EDCD-7B9C-4FD2-B28A-40BBFBAE1DCA.md)
+- [Steppenwolf](../Books/8F5ACE5B-1161-4C72-BE2F-73A5025F5D12.md)
 - [The Great Gatsby](../Books/5B21DF44-0B54-4554-90C5-12E364EB3492.md)
+- [The Great Gatsby](../Books/9DF1EFE6-3977-4A5A-B775-B2BE5B7345CB.md)
+- [The Lost Girl](../Books/552E5CB2-0D47-477C-904C-F1970CD10C51.md)
+- [The Master of Ballantrae](../Books/F7FF6099-57D0-43D2-81E8-8EFA013D6D88.md)
+- [The Nigger of the Narcissus](../Books/B5E8C3BF-C593-407F-872B-FFB86170B141.md)
+- [The Quest of the Silver Fleece](../Books/8D64A15B-2039-4303-9CC6-AC3AA45E32EB.md)
 - [The Scarlet Letter](../Books/E76056F0-C371-4C5A-804D-1FF74CBC0179.md)
+- [The Scarlet Letter](../Books/D38EC361-7724-43A9-8688-B6931CC647CA.md)
 - [The sound and the fury](../Books/D0B0B44D-2CD1-480E-98B4-0A6260E95AEA.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
 - [The Yellow Wallpaper](../Books/3EFCB100-C8FC-4098-BAAB-2D6E3BB0B8BE.md)
@@ -41,6 +54,18 @@ _Opening voice_
 _Mid-book rhythm_
 
 > PART SEVEN It is dark here in the forest. The leaves rustle over our head, black against the last gold of the sky. The moss is soft and warm. We shall sleep on this moss for many nights, till the beasts of the forest come to tear our body. We have no bed now, save the moss, and no future, save the beasts. We are old now, yet we were young this morning, when we carried our glass box through the streets of the City to the Home of the Scholars. No men stopped us, for there were none about from the Palace of Corrective Detention, and the others knew nothing. No men stopped us at the gate. We walked through empty passages and into the great hall where the World Council of Scholars sat in solemn meeting. We saw nothing as we entered, save the sky in the great windows, blue and glowing.
+
+### Babbitt: Section 20
+
+_Mid-book rhythm_
+
+> Chapter XVIII I Though he saw them twice daily, though he knew and amply discussed every detail of their expenditures, yet for weeks together Babbitt was no more conscious of his children than of the buttons on his coat-sleeves. The admiration of Kenneth Escott made him aware of Verona. She had become secretary to Mr. Gruensberg of the Gruensberg Leather Company; she did her work with the thoroughness of a mind which reveres details and never quite understands them; but she was one of the people who give an agitating impression of being on the point of doing something desperate⁠—of leaving a job or a husband⁠—without ever doing it. Babbitt was so hopeful about Escott’s hesitant ardors that he became the playful parent. When he returned from the Elks he peered coyly into the living-room and gurgled, “Has our Kenny been here tonight?”
+
+### Babbitt: Section 8
+
+_Dialogue and character voice_
+
+> Chapter VI I He forgot Paul Riesling in an afternoon of not unagreeable details. After a return to his office, which seemed to have staggered on without him, he drove a “prospect” out to view a four-flat tenement in the Linton district. He was inspired by the customer’s admiration of the new cigar-lighter. Thrice its novelty made him use it, and thrice he hurled half-smoked cigarettes from the car, protesting, “I got to quit smoking so blame much!” Their ample discussion of every detail of the cigar-lighter led them to speak of electric flatirons and bed-warmers. Babbitt apologized for being so shabbily old-fashioned as still to use a hot-water bottle, and he announced that he would have the sleeping-porch wired at once. He had enormous and poetic admiration, though very little understanding, of all mechanical devices. They were his symbols of truth and beauty.
 
 ### Bartleby, the Scrivener: A Story of Wall-Street: Section 1
 
@@ -66,26 +91,14 @@ _Mid-book rhythm_
 
 > CHAPTER VI “I don’t believe it, I can’t believe it!” repeated Razumihin, trying in perplexity to refute Raskolnikov’s arguments. They were by now approaching Bakaleyev’s lodgings, where Pulcheria Alexandrovna and Dounia had been expecting them a long while. Razumihin kept stopping on the way in the heat of discussion, confused and excited by the very fact that they were for the first time speaking openly about it. “Don’t believe it, then!” answered Raskolnikov, with a cold, careless smile. “You were noticing nothing as usual, but I was weighing every word.” “You are suspicious. That is why you weighed their words... h’m... certainly, I agree, Porfiry’s tone was rather strange, and still more that wretch Zametov!... You are right, there was something about him—but why? Why?” “He has changed his mind since last night.” “Quite the contrary!
 
-### Moby Dick; Or, The Whale: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Moby Dick; Or, The Whale This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Moby Dick; Or, The Whale Author: Herman Melville Release date: July 1, 2001 [eBook #2701] Most recently updated: February 10, 2026 Language: English Other information and formats: www.gutenberg.org/ebooks/2701 Credits: Daniel Lazarus, Jonesey, and David Widger *** START OF THE PROJECT GUTENBERG EBOOK MOBY DICK; OR, THE WHALE *** MOBY-DICK; or, THE WHALE.
-
-### Moby Dick; Or, The Whale: Section 6
+### Giant’s Bread: Section 20
 
 _Mid-book rhythm_
 
-> CHAPTER 62. The Dart. A word concerning an incident in the last chapter. According to the invariable usage of the fishery, the whale-boat pushes off from the ship, with the headsman or whale-killer as temporary steersman, and the harpooneer or whale-fastener pulling the foremost oar, the one known as the harpooneer-oar. Now it needs a strong, nervous arm to strike the first iron into the fish; for often, in what is called a long dart, the heavy implement has to be flung to the distance of twenty or thirty feet.
+> VII I August was a difficult month for Vernon. Nell and her mother were in Dinard. He wrote to her and she to him, but her letters told him little or nothing of what he wanted to know. She was having a gay time, he gathered, and enjoying herself though longing for Vernon to be there. Vernon’s work was of the purely routine order. It required little intelligence. You needed to be careful and methodical, that was all. His mind, free from other distractions, swung back to its secret love, music. He had formed the idea of writing an opera and had taken for his theme the half-forgotten fairy story of his youth. It was now bound up in his mind with Nell⁠—the whole strength of his love for her flowed into this new channel. He worked feverishly. Nell’s words about his living comfortably with his mother had rankled, and he had insisted on having rooms of his own.
 
-### The Great Gatsby: Section 1
+### Giant’s Bread: Section 23
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Great Gatsby This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Great Gatsby Author: F. Scott Fitzgerald Release date: January 17, 2021 [eBook #64317] Most recently updated: January 26, 2025 Language: English Other information and formats: www.gutenberg.org/ebooks/64317 Credits: Produced by Alex Cabal for the Standard Ebooks project, based on a transcription produced for Project Gutenberg Australia.
-
-### The Great Gatsby: Section 2
-
-_Mid-book rhythm_
-
-> VI About this time an ambitious young reporter from New York arrived one morning at Gatsby’s door and asked him if he had anything to say. “Anything to say about what?” inquired Gatsby politely. “Why—any statement to give out.” It transpired after a confused five minutes that the man had heard Gatsby’s name around his office in a connection which he either wouldn’t reveal or didn’t fully understand. This was his day off and with laudable initiative he had hurried out “to see.” It was a random shot, and yet the reporter’s instinct was right. Gatsby’s notoriety, spread about by the hundreds who had accepted his hospitality and so become authorities upon his past, had increased all summer until he fell just short of being news. Contemporary legends such as the “underground pipeline to Canada”
+> II I Nell was back in London. Vernon came up to see her the day after her return. She noticed the change in him at once. He looked haggard, excited. He said abruptly: “Nell, I’m going to chuck Birmingham.” “What?” “Listen while I tell you⁠ ⁠…” He talked eagerly, excitedly. His music⁠—he’d got to give himself up to it. He told her of the opera. “Listen, Nell. This is you⁠—in your tower⁠—with your golden hair hanging down and shining⁠—shining in the sun.” He went to the piano, began to play, explaining as he did so⁠ ⁠… “Violins⁠—you see⁠—and this is all for harps⁠ ⁠… and these are the round jewels.⁠ ⁠…” He played what seemed to Nell to be a series of rather ugly discords. She privately thought it all hideous. Perhaps it would sound different played by an orchestra. But she loved him⁠—and because she loved him, everything he did must be right. She smiled and said: “It’s lovely, Vernon.”

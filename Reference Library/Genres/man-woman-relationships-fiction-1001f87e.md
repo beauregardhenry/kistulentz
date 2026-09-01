@@ -2,23 +2,27 @@
 # Man-woman relationships -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 92136
-- Reading grade: 1.4
-- Average sentence: 5.5 words
-- Average paragraph: 8.3 words
-- Dialogue share: 38%
-- Voice: intimate first-person
+- Words analyzed: 757930
+- Reading grade: 4.3
+- Average sentence: 12.3 words
+- Average paragraph: 34.3 words
+- Dialogue share: 34%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, going, night, darling, you’re, won’t, anything, doctor, gutenberg, that’s, outside, priest, drink, project, we’ll, nothing, can’t, thought, across, better, started, front, hospital, place
-- Character names: Catherine, Rinaldi, Piani, Bonello, Tenente, Aymo, Ferguson, Ettore, Miss Barkley, Passini, Manera, Miss Gage, Miss Van Campen, Crowell, Gino, Simmons, Catherine Barkley, Gordini, Meyers, Abruzzi, Christ, Bacchus, Barto, George, Barkley, Miss Ferguson, Pallanza, Valentini, Anthony, Mr. Henry
+- Tone: dialogue-forward, direct, rhythmically even, balanced, rhythmically varied, energetic, narrative-forward
+- Recurring vocabulary: going, thought, don’t, himself, nothing, seemed, place, stood, woman, young, anything, can’t, didn’t, hands, herself, night, people, quite, round, that’s, though, without, world, you’re, across, began, behind, better, chair, child, course, darling, doctor, drink, d’urberville, earth, enough, evening, family, father
+- Character names: George, Mr, Mrs, Abraham, Abruzzi, Alec, Alexander, Alfric, Alonzo, Angel, Angel Clare, Anse, Anson, Anthony, Aymo, Bacchus, Barbara, Barkley, Barto, Berry, Betts, Blakemore, Bolton, Bonello, Carse, Carson, Catherine, Catherine Barkley, Cerdic, Chang, Charles, Charlie, Chatterley, Christ, Clare, Clifford, Clotilde, Connie, Constance, Corun, Crick, Crowell, Cuthbert, Daddy Walter, Deb, Dominic, Du Roy, Durbeyfield, Duroy, Edward, Eileen, Ellen, Ettore, Felix, Ferguson, Flandry, Flossie, Forestier, George Duroy, Gino, Gordini, Gunli, Hammond, Hawkins, Hilda, Imazu, Ivy Bolton, Izz, Izz Huett, Jack, Jacques Rival, Janazik, Jew, Joan, Joan Durbeyfield, Joe, John, John Durbeyfield, Jove, Julia
 
 ## Books
 - [A farewell to arms](../Books/CF72CA27-3ED2-4D0B-B949-2F8F13569041.md)
+- [Bel Ami](../Books/591376BF-D9FE-4411-8ED3-9C4D34C89970.md)
+- [Lady Chatterley’s Lover](../Books/35BF24CF-4D51-41AE-AD44-647324261333.md)
+- [Short Fiction](../Books/11B6CA7B-461E-4E56-82F8-5B605156D578.md)
+- [Tess of the d’Urbervilles](../Books/14A7C844-81C6-4759-8E1E-395972D47B3A.md)
 
 ## Representative excerpts
 
@@ -33,3 +37,51 @@ _Opening voice_
 _Mid-book rhythm_
 
 > “ ‘But at my back I always hear Time’s wingèd chariot hurrying near,’ ” I said. “I know that poem,” Catherine said. “It’s by Marvell. But it’s about a girl who wouldn’t live with a man.” My head felt very clear and cold and I wanted to talk facts. “Where will you have the baby?” “I don’t know. The best place I can find.” “How will you arrange it?” “The best way I can. Don’t worry, darling. We may have several babies before the war is over.” “It’s nearly time to go.” “I know. You can make it time if you want.” “No.” “Then don’t worry, darling. You were fine until now and now you’re worrying.” “I won’t. How often will you write?” “Every day. Do they read your letters?” “They can’t read English enough to hurt any.” “I’ll make them very confusing,” Catherine said. “But not too confusing.” “I’ll just make them a little confusing.” “I’m afraid we have to start to go.” “All right, darling.”
+
+### Bel Ami: Section 12
+
+_Mid-book rhythm_
+
+> X The Du Roys had been back in Paris a couple of days, and the journalist had taken up his old work pending the moment when he should definitely assume Forestier’s duties, and give himself wholly up to politics. He was going home that evening to his predecessor’s abode to dinner, with a light heart and a keen desire to embrace his wife, whose physical attractions and imperceptible domination exercised a powerful impulse over him. Passing by a florist’s at the bottom of the Rue Notre Dame de Lorette, he was struck by the notion of buying a bouquet for Madeleine, and chose a large bunch of half-open roses, a very bundle of perfumed buds. At each story of his new staircase he eyed himself complacently in the mirrors, the sight of which continually recalled to him his first visit to the house.
+
+### Bel Ami: Section 7
+
+_Dialogue and character voice_
+
+> V Two months had gone by, September was at hand, and the rapid fortune which Duroy had hoped for seemed to him slow in coming. He was, above all, uneasy at the mediocrity of his position, and did not see by what path he could scale the heights on the summit of which one finds respect, power, and money. He felt shut up in the mediocre calling of a reporter, so walled in as to be unable to get out of it. He was appreciated, but estimated in accordance with his position. Even Forestier, to whom he rendered a thousand services, no longer invited him to dinner, and treated him in every way as an inferior, though still accosting him as a friend.
+
+### Lady Chatterley’s Lover: Section 12
+
+_Mid-book rhythm_
+
+> X Connie was a good deal alone now, fewer people came to Wragby. Clifford no longer wanted them. He had turned against even the cronies. He was queer. He preferred the radio, which he had installed at some expense, with a good deal of success at last. He could sometimes get Madrid or Frankfurt, even there in the uneasy Midlands. And he would sit alone for hours listening to the loudspeaker bellowing forth. It amazed and stunned Connie. But there he would sit, with a blank entranced expression on his face, like a person losing his mind, and listen, or seem to listen, to the unspeakable thing. Was he really listening? Or was it a sort of soporific he took, whilst something else worked on underneath in him? Connie did not know. She fled up to her room, or out of doors to the wood. A kind of terror filled her sometimes, a terror of the incipient insanity of the whole civilised species.
+
+### Lady Chatterley’s Lover: Section 16
+
+_Dialogue and character voice_
+
+> XIV When she got near the park gate, she heard the click of the latch. He was there, then, in the darkness of the wood, and had seen her! “You are good and early,” he said out of the dark. “Was everything all right?” “Perfectly easy.” He shut the gate quietly after her, and made a spot of light on the dark ground, showing the pallid flowers still standing there open in the night. They went on apart, in silence. “Are you sure you didn’t hurt yourself this morning with that chair?” she asked. “No, no!” “When you had that pneumonia, what did it do to you?” “Oh, nothing! it left my heart not so strong and the lungs not so elastic. But it always does that.” “And you ought not to make violent physical efforts?” “Not often.” She plodded on in an angry silence. “Did you hate Clifford?” she said at last. “Hate him, no! I’ve met too many like him to upset myself hating him.
+
+### Short Fiction: Section 14
+
+_Mid-book rhythm_
+
+> Security It had been a tough day at the lab, one of those days when nothing seems able to go right. And, of course, it had been precisely the day Hammond, the Efficiency inspector, would choose to stick his nose in. Another mark in his little notebook⁠—and enough marks like that meant a derating, and Control had a habit of sending derated labmen to Venus. That wasn’t a criminal punishment, but it amounted to the same thing. Allen Lancaster had no fear of it for himself; the sector chief of a Project was under direct Control jurisdiction rather than Efficiency, and Control was friendly to him. But he’d hate to see young Rogers get it⁠—the boy had been married only a week now. To top the day off, a report had come to Lancaster’s desk from Sector Seven of the Project.
+
+### Short Fiction: Section 25
+
+_Dialogue and character voice_
+
+> Industrial Revolution “Well, yes,” Amspaugh admitted, “it was a unique war in many ways, including its origin. However, there are so many analogies to other colonial revolutions⁠—” His words trailed off as usual. “I know. Earth’s mercantile policies and so forth,” said Lindgren. He fancies himself a student of interplanetary history. This has led to quite a few arguments since Amspaugh, who teaches in that field, joined the Club. Mostly they’re good. I went to the bar and got myself another drink, listening as the mine owner’s big voice went on: “But what began it? When did the asterites first start realizing they weren’t pseudopods of a dozen Terrestrial nations, but a single nation in their own right? There’s the root of the revolution. And it can be pinned down, too.” “ ’Ware metaphor!” cried someone at my elbow. I turned and saw Missy Blades.
+
+### Tess of the d’Urbervilles: Section 37
+
+_Mid-book rhythm_
+
+> XXVIII Her refusal, though unexpected, did not permanently daunt Clare. His experience of women was great enough for him to be aware that the negative often meant nothing more than the preface to the affirmative; and it was little enough for him not to know that in the manner of the present negative there lay a great exception to the dallyings of coyness. That she had already permitted him to make love to her he read as an additional assurance, not fully trowing that in the fields and pastures to “sigh gratis” is by no means deemed waste; lovemaking being here more often accepted inconsiderately and for its own sweet sake than in the carking, anxious homes of the ambitious, where a girl’s craving for an establishment paralyzes her healthy thought of a passion as an end. “Tess, why did you say ‘no’ in such a positive way?” he asked her in the course of a few days. She started.
+
+### Tess of the d’Urbervilles: Section 57
+
+_Dialogue and character voice_
+
+> XLVI Several days had passed since her futile journey, and Tess was afield. The dry winter wind still blew, but a screen of thatched hurdles erected in the eye of the blast kept its force away from her. On the sheltered side was a turnip-slicing machine, whose bright blue hue of new paint seemed almost vocal in the otherwise subdued scene. Opposite its front was a long mound or “grave,” in which the roots had been preserved since early winter. Tess was standing at the uncovered end, chopping off with a billhook the fibres and earth from each root, and throwing it after the operation into the slicer. A man was turning the handle of the machine, and from its trough came the newly-cut swedes, the fresh smell of whose yellow chips was accompanied by the sounds of the snuffling wind, the smart swish of the slicing-blades, and the choppings of the hook in Tess’s leather-gloved hand.

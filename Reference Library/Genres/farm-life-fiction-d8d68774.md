@@ -2,25 +2,38 @@
 # Farm life -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 172205
-- Reading grade: 2.8
-- Average sentence: 7.0 words
-- Average paragraph: 11.5 words
-- Dialogue share: 50%
+- Words analyzed: 310541
+- Reading grade: 3.9
+- Average sentence: 10.9 words
+- Average paragraph: 23.4 words
+- Dialogue share: 43%
 - Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don't, ain't, that's, you're, horses, three, hundred, can't, woman, things, dollars, house, herself, valley, hands, money, guess, didn't, though, billy's, night, we're, years, young
-- Character names: Saxon, Billy, Bert, Mary, Sarah, Tom, Bill, Mercedes, Mercedes Higgins, Charley Long, Billy Roberts, Tim, Billy Murphy, Blanchard, Maggie Donahue, Barry, Bill Roberts, Chester Johnson, Mrs. Olsen, Henderson, Otto Frank, Charley, Mrs. Higgins, Roberts, Cady, Willie, Bud Strothers, Chester, Frank, Gee
+- Tone: dialogue-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: herself, house, night, though, woman, young, ain't, bathsheba’s, billy's, can't, didn't, dollars, don't, don’t, enough, going, guess, hands, heard, himself, horses, hundred, light, money, nothing, place, quite, round, seemed, shall, that's, that’s, things, thought, three, valley, we're, weatherbury, without, words
+- Character names: Frank, Barry, Bathsheba, Bathsheba Everdene, Bert, Bill, Bill Roberts, Billy, Billy Murphy, Billy Roberts, Blanchard, Boldwood, Bud Strothers, Cady, Cain, Cain Ball, Charley, Charley Long, Chester, Chester Johnson, Coggan, Fanny, Farmer Boldwood, Farmer Oak, Gabriel, Gabriel Oak, Gee, George, Henderson, Henery, Henery Fray, Jacob, Jan Coggan, Joseph, Joseph Poorgrass, Liddy, Maggie Donahue, Mark Clark, Mary, Maryann, Matthew, Matthew Moon, Mercedes, Mercedes Higgins, Miss Everdene, Mr, Mrs, Mrs. Higgins, Mrs. Olsen, Oak, Otto Frank, Roberts, Sarah, Saxon, Sergeant Troy, Tim, Tom, Troy, Willie
 
 ## Books
+- [Far from the Madding Crowd](../Books/70470CBB-9CB0-4037-ACAB-6047AFA2479E.md)
 - [The Valley of the Moon](../Books/47CA1608-0637-4BC0-A2F7-049C7CE6CFC6.md)
 
 ## Representative excerpts
+
+### Far from the Madding Crowd: Section 33
+
+_Mid-book rhythm_
+
+> XXIX Particulars of a Twilight Walk We now see the element of folly distinctly mingling with the many varying particulars which made up the character of Bathsheba Everdene. It was almost foreign to her intrinsic nature. Introduced as lymph on the dart of Eros, it eventually permeated and coloured her whole constitution. Bathsheba, though she had too much understanding to be entirely governed by her womanliness, had too much womanliness to use her understanding to the best advantage. Perhaps in no minor point does woman astonish her helpmate more than in the strange power she possesses of believing cajoleries that she knows to be false⁠—except, indeed, in that of being utterly sceptical on strictures that she knows to be true. Bathsheba loved Troy in the way that only self-reliant women love when they abandon their self-reliance.
+
+### Far from the Madding Crowd: Section 12
+
+_Dialogue and character voice_
+
+> VIII The Malthouse; The Chat; News Warren’s Malthouse was enclosed by an old wall inwrapped with ivy, and though not much of the exterior was visible at this hour, the character and purposes of the building were clearly enough shown by its outline upon the sky. From the walls an overhanging thatched roof sloped up to a point in the centre, upon which rose a small wooden lantern, fitted with louvre-boards on all the four sides, and from these openings a mist was dimly perceived to be escaping into the night air. There was no window in front; but a square hole in the door was glazed with a single pane, through which red, comfortable rays now stretched out upon the ivied wall in front. Voices were to be heard inside. Oak’s hand skimmed the surface of the door with fingers extended to an Elymas-the-Sorcerer pattern, till he found a leathern strap, which he pulled.
 
 ### The Valley of the Moon: Section 1
 

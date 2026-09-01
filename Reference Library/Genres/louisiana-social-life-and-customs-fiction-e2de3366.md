@@ -2,25 +2,51 @@
 # Louisiana -- Social life and customs -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 45770
-- Reading grade: 3.9
-- Average sentence: 7.4 words
-- Average paragraph: 11.3 words
-- Dialogue share: 17%
+- Words analyzed: 309128
+- Reading grade: 5.0
+- Average sentence: 14.2 words
+- Average paragraph: 39.3 words
+- Dialogue share: 23%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: project, herself, woman, house, night, thought, white, black, don’t, young, children, seemed, without, husband, nothing, water, himself, alone, mother, stood, things, going, walked, sometimes
-- Character names: Edna, Robert, Mrs. Pontellier, Mr. Pontellier, Madame Ratignolle, Madame Lebrun, La Folle, Victor, Mademoiselle Reisz, Armand, Chéri, Pauline, Madame, Madame Antoine, Gutenberg, Mam’selle Pauline, Mrs. Sommers, Mrs, Tonie, La Petite, Monsieur Farival, Gaston, Léonce, Madame Valmondé, Désirée, Edmond, Folle, Monsieur, Monsieur Ratignolle, Mrs. Baroda
+- Tempo: steady
+- Tone: narrative-forward, balanced, rhythmically varied, direct, rhythmically even
+- Recurring vocabulary: black, don’t, herself, himself, house, mother, night, nothing, seemed, stood, thought, walked, white, woman, young, across, called, child, gallery, hands, heard, mamzelle, morning, place, alone, children, going, husband, project, sometimes, things, water, without
+- Character names: La Folle, Madame, Tonie, Alcibiade, Alcée, Azenor, Bartner, Bertrand, Billy, Clarisse, Doctor John-Luis, Duplan, Euphrasie, Evariste, Grégoire, Hector, Jacques, Loka, Lolotte, Maman Chavan, Mamouche, Marianne, Marshall, Martinette, Mr, M’sieur Michel, Phillippe, Placide, Suzanne, Tite Reine, Armand, Chéri, Désirée, Edmond, Edna, Folle, Gaston, Gutenberg, La Petite, Léonce, Madame Antoine, Madame Lebrun, Madame Ratignolle, Madame Valmondé, Mademoiselle Reisz, Mam’selle Pauline, Monsieur, Monsieur Farival, Monsieur Ratignolle, Mr. Pontellier, Mrs, Mrs. Baroda, Mrs. Pontellier, Mrs. Sommers, Pauline, Robert, Victor
 
 ## Books
+- [Short Fiction](../Books/28F446D6-13DA-407E-871B-FFF512A4EA44.md)
+- [Short Fiction](../Books/DDE9DED2-203E-4C70-98C1-F935E6492A20.md)
 - [The Awakening, and Selected Short Stories](../Books/CE51DB43-7A5A-4002-B3E5-5203C823D585.md)
 
 ## Representative excerpts
+
+### Short Fiction: Section 28
+
+_Mid-book rhythm_
+
+> Madame Célestin’s Divorce Madame Célestin always wore a neat and snugly fitting calico wrapper when she went out in the morning to sweep her small gallery. Lawyer Paxton thought she looked very pretty in the gray one that was made with a graceful Watteau fold at the back: and with which she invariably wore a bow of pink ribbon at the throat. She was always sweeping her gallery when lawyer Paxton passed by in the morning on his way to his office in St. Denis Street. Sometimes he stopped and leaned over the fence to say good morning at his ease; to criticise or admire her rosebushes; or, when he had time enough, to hear what she had to say. Madame Célestin usually had a good deal to say.
+
+### Short Fiction: Section 4
+
+_Dialogue and character voice_
+
+> A No-Account Creole I One agreeable afternoon in late autumn two young men stood together on Canal Street, closing a conversation that had evidently begun within the clubhouse which they had just quitted. “There’s big money in it, Offdean,” said the elder of the two. “I wouldn’t have you touch it if there wasn’t. Why, they tell me Patchly’s pulled a hundred thousand out of the concern a’ready.” “That may be,” replied Offdean, who had been politely attentive to the words addressed to him, but whose face bore a look indicating that he was closed to conviction. He leaned back upon the clumsy stick which he carried, and continued: “It’s all true, I dare say, Fitch; but a decision of that sort would mean more to me than you’d believe if I were to tell you.
+
+### Short Fiction: Section 28
+
+_Mid-book rhythm_
+
+> Madame Célestin’s Divorce Madame Célestin always wore a neat and snugly fitting calico wrapper when she went out in the morning to sweep her small gallery. Lawyer Paxton thought she looked very pretty in the gray one that was made with a graceful Watteau fold at the back: and with which she invariably wore a bow of pink ribbon at the throat. She was always sweeping her gallery when lawyer Paxton passed by in the morning on his way to his office in St. Denis Street. Sometimes he stopped and leaned over the fence to say good morning at his ease; to criticise or admire her rosebushes; or, when he had time enough, to hear what she had to say. Madame Célestin usually had a good deal to say.
+
+### Short Fiction: Section 4
+
+_Dialogue and character voice_
+
+> A No-Account Creole I One agreeable afternoon in late autumn two young men stood together on Canal Street, closing a conversation that had evidently begun within the clubhouse which they had just quitted. “There’s big money in it, Offdean,” said the elder of the two. “I wouldn’t have you touch it if there wasn’t. Why, they tell me Patchly’s pulled a hundred thousand out of the concern a’ready.” “That may be,” replied Offdean, who had been politely attentive to the words addressed to him, but whose face bore a look indicating that he was closed to conviction. He leaned back upon the clumsy stick which he carried, and continued: “It’s all true, I dare say, Fitch; but a decision of that sort would mean more to me than you’d believe if I were to tell you.
 
 ### The Awakening, and Selected Short Stories: Section 1
 

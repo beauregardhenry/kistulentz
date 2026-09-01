@@ -2,26 +2,39 @@
 # Civil disobedience
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 132368
-- Reading grade: 4.6
-- Average sentence: 9.6 words
-- Average paragraph: 13.3 words
-- Dialogue share: 4%
+- Words analyzed: 367690
+- Reading grade: 6.9
+- Average sentence: 18.2 words
+- Average paragraph: 59.9 words
+- Dialogue share: 8%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: cannot, myself, state, without, agreement, copyright, country, donations, earth, ebook, electronic, government, gutenberg, heard, himself, house, individual, license, money, morning, nature, night, paragraph, people, perhaps, project, property, shall, shore, sometimes, spring, states, terms, themselves, things, though, thought, trademark, united, water
-- Character names: Adam, Arab, Brister, Christ, Confucius, Cæsar, Evelyn, Fuel, Genius, George, Grecian, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Haven, Hill, Hollander, Hollowell, Howard, John, John Field, Latin, Lincoln, Mr. Coleman, Myrmidons, Paley, Plato, Project Gutenberg, Shakespeare, Solomon, Thebes, Virgil, Walden, Walden Pond, Walden Woods
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, measured, rhythmically varied
+- Recurring vocabulary: state, without, cannot, country, heard, himself, myself, nature, night, perhaps, shall, sometimes, though, thought, water, world, years, agreement, called, copyright, donations, earth, ebook, electronic, government, ground, gutenberg, house, individual, leaves, license, light, miles, money, morning, paragraph, people, project, property, river
+- Character names: Christ, Latin, Paley, Shakespeare, Virgil, Adam, Arab, Brister, Caesar, Carlyle, Chaucer, Confucius, Cromwell, Cæsar, Emerson, Etzler, Evelyn, Fuel, Genius, George, Goethe, Grecian, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Haven, Henry, Herbert, Hill, Hollander, Hollowell, Howard, Humor, John, John Field, Lincoln, Luther, Milton, Mr, Mr. Coleman, Muhammad, Myrmidons, Nuttall, Orpheus, Persius, Phillips, Plato, Project Gutenberg, Richter, Schiller, Solomon, Sterling, Thebes, Thomas Carlyle, Thoreau, Wachusett, Walden, Walden Pond, Walden Woods, Wordsworth
 
 ## Books
+- [Essays](../Books/226D7A38-C83A-4DFD-BB2F-525FA59FC9CA.md)
 - [On the Duty of Civil Disobedience](../Books/BCDE62B6-FB87-48CF-A6A3-28FC16221F09.md)
 - [Walden, and On The Duty Of Civil Disobedience](../Books/5CD7BE2D-462E-4024-9D04-9ACF194BB95D.md)
 
 ## Representative excerpts
+
+### Essays: Section 18
+
+_Mid-book rhythm_
+
+> Sir Walter Raleigh Apparently written over a period of several years in the 1840’s, but only edited and published posthumously, in 1905. Perhaps no one in English history better represents the heroic character than Sir Walter Raleigh, for Sidney has got to be almost as shadowy as Arthur himself. Raleigh’s somewhat antique and Roman virtues appear in his numerous military and naval adventures, in his knightly conduct toward the Queen, in his poems and his employments in the Tower, and not least in his death, but more than all in his constant soldier-like bearing and promise. He was the Bayard of peaceful as well as warlike enterprise, and few lives which are the subject of recent and trustworthy history are so agreeable to the imagination. Not withstanding his temporary unpopularity, he especially possessed the prevalent and popular qualities which command the admiration of men.
+
+### Essays: Section 12
+
+_Dialogue and character voice_
+
+> Paradise (to Be) Regained5 First published in Democratic Review, Vol. 13, November, 1843. We learn that Mr. Etzler is a native of Germany, and originally published his book in Pennsylvania, ten or twelve years ago; and now a second English edition, from the original American one, is demanded by his readers across the water, owing, we suppose, to the recent spread of Fourier’s doctrines. It is one of the signs of the times. We confess that we have risen from reading this book with enlarged ideas, and grander conceptions of our duties in this world. It did expand us a little. It is worth attending to, if only that it entertains large questions. Consider what Mr. Etzler proposes: “Fellow Men!
 
 ### On the Duty of Civil Disobedience: Section 1
 

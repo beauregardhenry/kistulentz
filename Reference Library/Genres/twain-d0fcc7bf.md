@@ -2,25 +2,27 @@
 # Twain
 
 - Profile type: Genre
-- Books represented: 3
+- Books represented: 5
 
 ## Learned profile
 
-- Words analyzed: 517308
-- Reading grade: 4.2
-- Average sentence: 8.3 words
-- Average paragraph: 11.6 words
+- Words analyzed: 811566
+- Reading grade: 5.5
+- Average sentence: 12.9 words
+- Average paragraph: 39.1 words
 - Dialogue share: 12%
 - Voice: mixed or shifting perspective
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: chapter, house, miles, night, people, place, three, water, without, years, gutenberg, himself, hundred, nothing, things, thousand, world, australia, british, business, captain, country, course, dollars, don't, don’t, england, english, enough, going, government, horse, india, mississippi, native, orleans, pilot, pilots, river, silver
-- Character names: Mr, Brown, George, Louis, Mr. Brown, Smith, Adelaide, Adler, Allbright, Allen, B., Ballarat, Ballou, Bemis, Ben, Ben Holliday, Bixby, Bob, Boer, Brigham Young, Carson, Crenshaw, De Soto, Dick Allbright, Ealer, Eckert, Ed, G., General Grant, George Ealer, Hank, Hank Monk, Hanuman, Helena, Henry, Horace, Horace Greeley, Humboldt, Hyde, Jack, James, John, Johnny, Johnson, Jones, Joseph, Jules, Kamehameha, Kanaka, Kempthorne, Kruger, Liholiho, Macquarrie Harbor, Marquette, Mary, Mr. Ballou, Mr. Bascom, Mr. Bixby, Mr. Thomas, Mr. Young, Mrs. Enderby, Mrs. Glossop, Mrs. Taylor, Mumford, Nancy Taylor, Napoleon, Ollendorff, Paul Jones, Robinson, Roger, Rogers, Roop, Samson, Shiz, Slade, Stephen, Sullivan, Thompson, Tom, Uncle Mumford
+- Tempo: steady
+- Tone: narrative-forward, direct, rhythmically even, rhythmically varied, balanced, measured
+- Recurring vocabulary: house, night, people, place, three, without, years, himself, hundred, miles, nothing, things, water, world, chapter, thousand, twenty, dollars, don’t, enough, going, gutenberg, horse, matter, silver, thought, young, anything, australia, british, business, captain, country, course, didn’t, don't, england, english, family, government
+- Character names: Mr, George, Louis, Smith, Allen, Ballou, Bemis, Brigham Young, Brown, Carson, Eckert, General Grant, Hank Monk, Humboldt, Jack, John, Johnny, Johnson, Jones, Joseph, Jules, Mr. Brown, Mrs, Ollendorff, Rogers, Roop, Shiz, Slade, Whiteman, Adelaide, Adler, Allbright, B., Ballarat, Barnes, Ben, Ben Holliday, Bixby, Bob, Boer, Boggs, Capt, Clemens, Colonel Grant, Coriantumr, Crenshaw, Davis, De Soto, Dennis, Dick Allbright, Dimsdale, Dolby, Ealer, Ed, Fairfax, Fred Grant, G., George Ealer, Gerhardt, Gilder, Grant, Hank, Hanuman, Helena, Henry, Horace, Horace Greeley, Hyde, James, Jim, Jim Wolf, John Mackay, Joseph Smith, Kamehameha, Kanaka, Keeler, Kempthorne, Kruger, Li Hung-Chang, Liholiho
 
 ## Books
 - [Following the Equator: A Journey Around the World](../Books/CC00BB42-8892-40F6-8CF5-C6FB029C0F28.md)
 - [Life on the Mississippi](../Books/37B7B288-947A-4452-B397-94B8707D337F.md)
 - [Roughing It](../Books/0FBD4219-E6C9-4560-8575-BA69C5314EE2.md)
+- [Roughing It](../Books/0CE9012E-AACF-466B-B2D5-6CF3445B6ECB.md)
+- [The Autobiography of Mark Twain](../Books/40E16D7B-080E-424F-956D-D0D9F45ED73D.md)
 
 ## Representative excerpts
 
@@ -59,3 +61,27 @@ _Opening voice_
 _Mid-book rhythm_
 
 > CHAPTER XXXIX. About seven o’clock one blistering hot morning—for it was now dead summer time—Higbie and I took the boat and started on a voyage of discovery to the two islands. We had often longed to do this, but had been deterred by the fear of storms; for they were frequent, and severe enough to capsize an ordinary row-boat like ours without great difficulty—and once capsized, death would ensue in spite of the bravest swimming, for that venomous water would eat a man’s eyes out like fire, and burn him out inside, too, if he shipped a sea. It was called twelve miles, straight out to the islands—a long pull and a warm one—but the morning was so quiet and sunny, and the lake so smooth and glassy and dead, that we could not resist the temptation.
+
+### Roughing It: Section 45
+
+_Mid-book rhythm_
+
+> XLI Captain Nye was very ill indeed, with spasmodic rheumatism. But the old gentleman was himself⁠—which is to say, he was kindhearted and agreeable when comfortable, but a singularly violent wildcat when things did not go well. He would be smiling along pleasantly enough, when a sudden spasm of his disease would take him and he would go out of his smile into a perfect fury. He would groan and wail and howl with the anguish, and fill up the odd chinks with the most elaborate profanity that strong convictions and a fine fancy could contrive. With fair opportunity he could swear very well and handle his adjectives with considerable judgment; but when the spasm was on him it was painful to listen to him, he was so awkward.
+
+### Roughing It: Section 74
+
+_Dialogue and character voice_
+
+> LXX We stopped some time at one of the plantations, to rest ourselves and refresh the horses. We had a chatty conversation with several gentlemen present; but there was one person, a middle-aged man, with an absent look in his face, who simply glanced up, gave us good day and lapsed again into the meditations which our coming had interrupted. The planters whispered us not to mind him⁠—crazy. They said he was in the Islands for his health; was a preacher; his home, Michigan. They said that if he woke up presently and fell to talking about a correspondence which he had some time held with Mr. Greeley about a trifle of some kind, we must humor him and listen with interest; and we must humor his fancy that this correspondence was the talk of the world. It was easy to see that he was a gentle creature and that his madness had nothing vicious in it.
+
+### The Autobiography of Mark Twain: Section 13
+
+_Mid-book rhythm_
+
+> Private History of a Ms. That Came to Grief Written in 1900 It happened in London; not recently, and yet not very many years ago. An acquaintance had proposed to himself a certain labor of love, and when he told me about it I was interested. His idea was to have a fine translation made of the evidence given in the Joan of Arc Trials and Rehabilitation, and placed before the English-speaking world. A translation had been made and published a great many years before, but had achieved no currency, and in fact was not entitled to any, for it was a piece of mere shoemaker-work.
+
+### The Autobiography of Mark Twain: Section 22
+
+_Dialogue and character voice_
+
+> The Character of Man Concerning Man⁠—he is too large a subject to be treated as a whole; so I will merely discuss a detail or two of him at this time. I desire to contemplate him from this point of view⁠—this premise: that he was not made for any useful purpose, for the reason that he hasn’t served any; that he was most likely not even made intentionally; and that his working himself up out of the oyster bed to his present position was probably matter of surprise and regret to the Creator.⁠ ⁠… For his history, in all climes, all ages and all circumstances, furnishes oceans and continents of proof that of all the creatures that were made he is the most detestable. Of the entire brood he is the only one⁠—the solitary one⁠—that possesses malice. That is the basest of all instincts, passions, vices⁠—the most hateful. That one thing puts him below the rats, the grubs, the trichinae.

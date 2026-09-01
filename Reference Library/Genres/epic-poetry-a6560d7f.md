@@ -2,47 +2,89 @@
 # Epic poetry
 
 - Profile type: Genre
-- Books represented: 2
+- Books represented: 8
 
 ## Learned profile
 
-- Words analyzed: 265392
-- Reading grade: 3.5
-- Average sentence: 10.3 words
-- Average paragraph: 13.6 words
-- Dialogue share: 64%
-- Voice: mixed or shifting perspective
+- Words analyzed: 1106656
+- Reading grade: 2.2
+- Average sentence: 8.0 words
+- Average paragraph: 9.2 words
+- Dialogue share: 47%
+- Voice: observational third-person
 - Tempo: brisk
 - Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: answered, brought, country, drink, father, going, gutenberg, hands, heard, heaven, himself, house, however, ithaca, people, place, return, round, shall, suitors, therefore, though, water, without
-- Character names: Aegisthus, Agamemnon, Alcinous, Arete, Atreus, Butler, Calypso, Circe, Dawn, Diana, Hades, Helen, Jove, Laertes, Menelaus, Minerva, Nausicaa, Neptune, Nestor, Penelope, Piraeus, Pisistratus, Priam, Scylla, Teiresias, Telemachus, Thereon, Troy, Ulysses, Venus
+- Recurring vocabulary: shall, death, though, hands, heard, place, brought, father, within, earth, friends, heart, himself, mighty, people, return, spake, suitors, without, answered, battle, chief, country, drink, forth, going, gutenberg, heaven, heroes, house, however, ithaca, knight, night, prince, queen, round, sight, stood, sword
+- Character names: Helen, Jove, Neptune, Priam, Troy, Venus, Agamemnon, Diana, Menelaus, Nestor, Phoebus, Aegisthus, Alcinoüs, Atreus, Circe, Hades, Juno, Laertes, Minerva, Pallas, Penelope, Scylla, Telemachus, Thereon, Achilles, Aeneas, Arete, Butler, Calypso, Dawn, Hath, Hector, Mars, Nausicaa, Ne’er, Piraeus, Pisistratus, Teiresias, Ulysses, Aeschere, Alberich, Alcina, Alexander, Alphonso, Amata, Angelica, Argalìa, Ariodantes, Ariosto, Ascanius, Aymon, Azo, Bacchus, Bade, Bayardo, Bechelaren, Bechlaren, Beowulf, Betwixt, Bireno, Bradamant, Breca, Brunello, Brunhild, Brunhilda, Cain, Cassandra, Charles, Crete, Creüsa, Dietrich, Dolon, Ebuda, Ecgtheow, Ere, Etzel, Evander, E’en, Ferraù, Finn
 
 ## Books
+- [Beowulf](../Books/5040E95D-0E1D-474D-B658-93F7255A288C.md)
+- [Orlando Furioso](../Books/3A1EE7B4-43E8-45D8-9B20-3DAF2E45C912.md)
+- [The Aeneid](../Books/A53A93AF-2360-43AA-8A06-6BC67771857A.md)
+- [The Iliad](../Books/C00A6B3A-BF65-4194-976E-444C07438260.md)
+- [The Nibelungenlied](../Books/7068A63D-295F-42FA-8488-486411E9E419.md)
+- [The Odyssey](../Books/C945079C-AC32-4190-A09D-23C198C904DF.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/BA3B84A4-169F-4B40-804A-6CDA495B790B.md)
 - [The Odyssey / Rendered into English prose for the use of those who cannot read the original](../Books/B2311001-F34E-4668-84D8-AAB8245CFA57.md)
 
 ## Representative excerpts
 
-### The Odyssey / Rendered into English prose for the use of those who cannot read the original: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Odyssey This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Odyssey Author: Homer Translator: Samuel Butler Release date: April 1, 1999 [eBook #1727] Most recently updated: December 2, 2023 Language: English Other information and formats: www.gutenberg.
-
-### The Odyssey / Rendered into English prose for the use of those who cannot read the original: Section 15
+### Beowulf: Section 26
 
 _Mid-book rhythm_
 
-> BOOK XII THE SIRENS, SCYLLA AND CHARYBDIS, THE CATTLE OF THE SUN. “After we were clear of the river Oceanus, and had got out into the open sea, we went on till we reached the Aeaean island where there is dawn and sun-rise as in other places. We then drew our ship on to the sands and got out of her on to the shore, where we went to sleep and waited till day should break. “Then, when the child of morning, rosy-fingered Dawn, appeared, I sent some men to Circe’s house to fetch the body of Elpenor. We cut firewood from a wood where the headland jutted out into the sea, and after we had wept over him and lamented him we performed his funeral rites. When his body and armour had been burned to ashes, we raised a cairn, set a stone over it, and at the top of the cairn we fixed the oar that he had been used to row with.
+> XXI Hrothgar’s Account of the Monsters Hrothgar rejoined, helm of the Scyldings: “Ask not of joyance! Grief is renewed to The folk of the Danemen. Dead is Aeschere, Yrmenlaf’s brother, older than he, My true-hearted counsellor, trusty adviser, Shoulder-companion, when fighting in battle Our heads we protected, when troopers were clashing, And heroes were dashing; such an earl should be ever, An erst-worthy26 atheling, as Aeschere proved him. The flickering death-spirit became in Heorot His hand-to-hand murderer; I can not tell whither The cruel one turned in the carcass exulting, By cramming discovered. The quarrel she wreaked then, That last night igone Grendel thou killedst In gruesomest manner, with grim-holding clutches, Since too long he had lessened my liege-troop and wasted My folk-men so foully.
 
-### The Odyssey / Rendered into English prose for the use of those who cannot read the original: Section 1
+### Beowulf: Section 46
 
-_Opening voice_
+_Dialogue and character voice_
 
-> The Project Gutenberg eBook of The Odyssey This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Odyssey Author: Homer Translator: Samuel Butler Release date: April 1, 1999 [eBook #1727] Most recently updated: December 2, 2023 Language: English Other information and formats: www.gutenberg.
+> XLI The Messenger’s Retrospect “The blood-stainèd trace of Swedes and Geatmen, The death-rush of warmen, widely was noticed, How the folks with each other feud did awaken. The worthy one went then with well-beloved comrades, Old and dejected to go to the fastness, Ongentheo earl upward then turned him; Of Higelac’s battle he’d heard on inquiry, The exultant one’s prowess, despaired of resistance, With earls of the ocean to be able to struggle, ’Gainst sea-going sailors to save the hoard-treasure, His wife and his children; he fled after thenceward Old ’neath the earth-wall. Then was offered pursuance To the braves of the Swedemen, the banner to Higelac. They fared then forth o’er the field-of-protection, When the Hrethling heroes hedgeward had thronged them.
 
-### The Odyssey / Rendered into English prose for the use of those who cannot read the original: Section 15
+### Orlando Furioso: Section 28
 
 _Mid-book rhythm_
 
-> BOOK XII THE SIRENS, SCYLLA AND CHARYBDIS, THE CATTLE OF THE SUN. “After we were clear of the river Oceanus, and had got out into the open sea, we went on till we reached the Aeaean island where there is dawn and sun-rise as in other places. We then drew our ship on to the sands and got out of her on to the shore, where we went to sleep and waited till day should break. “Then, when the child of morning, rosy-fingered Dawn, appeared, I sent some men to Circe’s house to fetch the body of Elpenor. We cut firewood from a wood where the headland jutted out into the sea, and after we had wept over him and lamented him we performed his funeral rites. When his body and armour had been burned to ashes, we raised a cairn, set a stone over it, and at the top of the cairn we fixed the oar that he had been used to row with.
+> Canto XXIII Astolpho soars in air. Upon account Of Pinnabel is prisoned Scotland’s heir: By Roland freed, Frontino Rodomont Takes from Hippalca, trusted to her care. With Mandricardo strives Anglantes’ count: Who, next, offended by his lady fair, Into the fury falls, so strange and fell, Which in the world has not a parallel. Let each assist the other in his need; Seldom good actions go without their due; And if their just reward should not succeed, At least, nor death, nor shame, nor loss ensue. Who wrongs another, the remembered meed As well shall have, and soon or later rue. That “mountains never meet, but that men may, And oft encounter,” is an ancient say. Now mark what chanced to Pinnabel, the event Of having borne himself so wickedly: He at the last received due punishment, Due and deserved by his iniquity.
+
+### Orlando Furioso: Section 48
+
+_Dialogue and character voice_
+
+> Canto XLIII Rinaldo from his courteous landlord hears What folly had destroyed his every good; Next learns another story, as he steers Toward Ravenna with the falling flood: Then last arrives where, conqueror o’er his foes Orlando was, but in no joyful mood. He, that the Child a Christian made whilere, Christens Sobrino, and heals Olivier. O execrable avarice! O vile thirst Of sordid gold! it doth not me astound So easily thou seizest soul, immersed In baseness, or with other taint unsound; But that thy chain should bind, amid the worst, And that thy talon should strike down and wound One that for loftiness of mind would be Worthy all praise, if he avoided thee.
+
+### The Aeneid: Section 9
+
+_Mid-book rhythm_
+
+> Book VII King Latinus entertains Aeneas, and promises him his only daughter, Lavinia, the heiress of his crown. Turnus, being in love with her, favour’d by her mother, and stirr’d up by Juno and Alecto, breaks the treaty which was made, and engages in his quarrel Mezentius, Camilla, Messapus, and many other of the neighbouring princes; whose forces, and the names of their commanders, are here particularly related. And thou, O matron of immortal fame, Here dying, to the shore hast left thy name; Cajeta still the place is call’d from thee, The nurse of great Aeneas’ infancy. Here rest thy bones in rich Hesperia’s plains; Thy name (’tis all a ghost can have) remains. Now, when the prince her fun’ral rites had paid, He plow’d the Tyrrhene seas with sails display’d.
+
+### The Aeneid: Section 4
+
+_Dialogue and character voice_
+
+> Book II Aeneas relates how the city of Troy was taken, after a ten years’ siege, by the treachery of Sinon, and the stratagem of a wooden horse. He declares the fix’d resolution he had taken not to survive the ruin of his country, and the various adventures he met with in defence of it. At last, having been before advised by Hector’s ghost, and now by the appearance of his mother Venus, he is prevailed upon to leave the town, and settle his household gods in another country. In order to this, he carries off his father on his shoulders, and leads his little son by the hand, his wife following behind. When he comes to the place appointed for the general rendezvous, he finds a great confluence of people, but misses his wife, whose ghost afterwards appears to him, and tells him the land which was designed for him.
+
+### The Iliad: Section 16
+
+_Mid-book rhythm_
+
+> Book XII The Battle at the Grecian Wall Division of the Trojan army, by advice of Polydamas, into five bodies, to storm the Greek entrenchments⁠—A breach in the wall made by Sarpedon⁠—One of the gates beaten open by Hector with a stone⁠—His entrance at the head of his troops. Thus in the camp Menoetius’ valiant son Tended Eurypylus, and dressed his wounds; While yet in mingled throngs the warriors fought⁠— Trojans and Greeks. Nor longer was the trench A barrier for the Greeks, nor the broad wall Which they had built above it to defend Their fleet; for all around it they had drawn The trench, yet not with chosen hecatombs Paid to the gods, that so it might protect The galleys and the heaps of spoil they held. Without the favor of the gods it rose, And therefore was not long to stand entire.
+
+### The Iliad: Section 13
+
+_Dialogue and character voice_
+
+> Book IX The Embassy to Achilles Agamemnon’s Proposal to raise the siege opposed by Diomed and Nestor⁠—A council⁠—Ulysses, Ajax, and Phoenix sent to Achilles to request a reconciliation⁠—Their reception, their persuasions, and their ill success. The Trojans thus kept watch; while through the night The power of Flight, companion of cold Fear, Wrought on the Greeks, and all their bravest men Were bowed beneath a sorrow hard to bear. As when two winds upturn the fishy deep⁠— The north wind and the west, that suddenly Blow from the Thracian coast; the black waves rise At once, and fling the sea-weed to the shore⁠— Thus were the Achaians troubled in their hearts. Atrides, deeply grieving, walked the camp, And bade the clear-voiced heralds call by name To council all the chiefs, but not aloud. The king himself among the foremost gave The summons.
+
+### The Nibelungenlied: Section 24
+
+_Mid-book rhythm_
+
+> Adventure XX How King Etzel Sent to Burgundy After Kriemhilda 1,143 Now on a time it happen’d that lady Helka died; Then was King Etzel minded to woo another bride: His friends all bade him look to the land of Burgundy, Towards a high-born widow; Kriemhilda named was she. 1,144 Soon after the fair Helka departed had this life, Quoth they: “If thou would’st ever possess a noble wife⁠— The highest and most worthy that king did ever have, Then take this self-same lady, widow of Siegfried brave.” 1,145 “How might that be accomplish’d,” then said the mighty king, “Seeing I am a heathen and ne’er had christening? The lady is a Christian; she never would agree. A miracle must happen, if this should ever be.” 1,146 The ready ones made answer: “What if perchance she should? With thy high name to help thee and all thy substance good, To win the noble lady one very well might try.
+
+### The Nibelungenlied: Section 3
+
+_Sentence variation_
+
+> Editor’s Preface The following addition to the existing translations of the Nibelungenlied originated in the desire to place before English readers a rendering which should be at once literal and metrical. Of five which have appeared during the past fifty years not one quite accomplishes this object. Three only are in verse. The first, by Jonathan Birch, which appeared in 1848, was rendered in iambics of seven feet, from the short and to some extent hypothetical text of Lachmann. The second, by W. N. Lettsom, is a spirited performance, but it takes many liberties with the language and fails to preserve the antique flavour of the work. The third, by Mr. A. G. Foster-Barham, which appeared only ten years ago, is much more satisfactory in this respect, and errs chiefly in retaining too great a roughness of rhythm, which makes it displeasing to the modern ear.

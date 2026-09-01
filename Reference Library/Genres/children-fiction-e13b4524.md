@@ -2,25 +2,38 @@
 # Children -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 45912
-- Reading grade: 3.4
-- Average sentence: 7.9 words
-- Average paragraph: 11.7 words
-- Dialogue share: 21%
-- Voice: mixed or shifting perspective
+- Words analyzed: 106902
+- Reading grade: 4.5
+- Average sentence: 12.1 words
+- Average paragraph: 26.3 words
+- Dialogue share: 14%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: myself, nothing, without, moment, don’t, things, quite, place, course, straight, house, child, indeed, round, didn’t, least, night, window, small, question, sense, person, works, anything
-- Character names: Mrs. Grose, Miles, Bly, Gutenberg, Jessel, Miss Jessel, Douglas, Grose, Luke, Mrs, Peter Quint, Project Gutenberg, Gutenberg Literary Archive Foundation, Flora, Griffin, Gutenberg Literary, Mrs. Griffin, Quint
+- Tone: narrative-forward, balanced, direct, rhythmically even, rhythmically varied
+- Recurring vocabulary: course, don’t, house, nothing, quite, round, without, anything, began, board, cabin, captain, child, children, didn’t, going, hardly, himself, however, indeed, least, moment, myself, night, person, place, question, rather, schooner, seemed, sense, small, stood, straight, suddenly, things, though, water, whole, window
+- Character names: Mrs, Anne, Bas-Thornton, Bly, Clorinda, Curtis, Dawson, Douglas, Edward, Emily, Fernandez, Flora, Griffin, Grose, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harold, Harry, Jessel, Jimmie, John, Jonsen, José, Laura, Lizzie Green, Luke, Margaret, Margaret Fernandez, Marghie, Marpole, Mathias, Miles, Miss Dawson, Miss Jessel, Mr, Mr., Mrs. Griffin, Mrs. Grose, Otto, Peter Quint, Project Gutenberg, Quint, Rachel, Sam, Tabby, Thornton
 
 ## Books
+- [A High Wind in Jamaica](../Books/8A68D93A-32DA-4268-AC97-1CEBAE4FBDD3.md)
 - [The Turn of the Screw](../Books/CE5EDAD8-F630-46A6-9856-91272C511AD1.md)
 
 ## Representative excerpts
+
+### A High Wind in Jamaica: Section 8
+
+_Mid-book rhythm_
+
+> VI I The weeks passed in aimless wandering. For the children, the lapse of time acquired once more the texture of a dream: things ceased happening: every inch of the schooner was now as familiar to them as the Clorinda had been, or Ferndale: they settled down quietly to grow, as they had done at Ferndale, and as they would have done, had there been time, on the Clorinda. And then an event did occur, to Emily, of considerable importance. She suddenly realised who she was. There is little reason that one can see why it should not have happened to her five years earlier, or even five later; and none, why it should have come that particular afternoon.
+
+### A High Wind in Jamaica: Section 12
+
+_Dialogue and character voice_
+
+> X I Emily grew quite a lot during the passage to England on the steamer: suddenly shot up, as children will at that age. But she did it without any gawkiness: instead, an actual increase of grace. Her legs and arms, though longer, did not lose any of the nicety of their shape; and her grave face lost none of its attractiveness by being a fraction nearer your own. The only drawback was that she used to get pains in the calves of her legs, now, and sometimes in her back: but those of course did not show. (They were all provided with clothes by a general collection, so it did not matter that she grew out of her old ones.) She was a nice child: and being a little less shy than formerly, was soon the most popular of all of them. Somehow, no one seemed to care very much for Margaret: old ladies used to shake their heads over her a good deal.
 
 ### The Turn of the Screw: Section 1
 

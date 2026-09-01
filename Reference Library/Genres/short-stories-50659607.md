@@ -2,26 +2,95 @@
 # Short stories
 
 - Profile type: Genre
-- Books represented: 4
+- Books represented: 73
 
 ## Learned profile
 
-- Words analyzed: 127569
-- Reading grade: 3.2
-- Average sentence: 6.7 words
-- Average paragraph: 9.6 words
-- Dialogue share: 27%
+- Words analyzed: 11089766
+- Reading grade: 5.4
+- Average sentence: 15.1 words
+- Average paragraph: 45.6 words
+- Dialogue share: 33%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: without, access, agree, agreement, copyright, don't, donations, ebook, electronic, including, information, license, paragraph, project, refund, states, stood, terms, trademark, united, works, across, anything, associated, better, bishop, bright, can’t, copies, course, didn't, didn’t, distributing, don’t, drink, ebooks, forth, given, going, happy
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Julia, Project Gutenberg, Agnes, Al, Alan, Billy, Briga, Carl, Donna Candida, Dr. Hitz, Duncan, Emilio, Frank, Fuentes, George, Harviss, Haskett, Hernandez, Hitz, Hogan, Jack, Jane, Jerry, Joe, Joe Garner, John, Jr., Leora Duncan, Lethbury, Manolo, Manuel, Max, Miss Duncan, Morgan, Mr, Mr. Brympton, Mr. Budd, Mr. Ranford, Mr. Turner, Mr. Wehling, Mrs, Mrs. Blinder, Mrs. Brympton, Mrs. Clinch, Mrs. Fetherel, Mrs. Garner, Mrs. Lethbury, Mrs. Linyard, Mrs. Quentin, Mrs. Vervain, Mrs. Waythorn, Nick, Ole Andreson, Olz, Pinin, Polixena, Retana, Signor Tenente, Steinfelt, Tony, Varick, Walcott, Waythorn, Wehling, Westall, William Campbell, Zurito
+- Tempo: steady
+- Tone: dialogue-forward, rhythmically varied, direct, balanced, rhythmically even, narrative-forward, energetic, inquisitive
+- Recurring vocabulary: himself, thought, don’t, nothing, night, going, seemed, without, young, stood, three, house, voice, people, place, though, began, didn’t, heard, moment, things, that’s, years, quite, shall, course, hands, you’re, can’t, light, world, enough, woman, anything, myself, white, father, round, across, earth
+- Character names: Mr, Mrs, Dr, John, George, Jim, Billy, Jack, Joe, Ellen, Smith, Adam, Arthur, Bill, James, Max, Tom, Venus, Agnes, Dick, Harold, Jane, Jimmy, Jones, Louis, Mary, Al, Alan, Brown, Charles, Cyril, Frederick, Gutenberg, Harry, Henry, Joseph, Manuel, Martin, Mike, Monsieur, Peter, Shakespeare, Thomas, William, Agatha, Alexander, Allan, Ann, Bob, Bruno, Clarence, Duncan, Emily, Evelyn, Fanny, Frank, Fuentes, Hank, Hector, Hernandez, Hogan, Ivan, Laura, Lucas, Madame, Marjorie, Nick, Ole Andreson, Otis, Piper, Red, Retana, Sam, Simon, Slim, Steve, Taylor, Terra, Adalinda, Adams
 
 ## Books
 - [2 B R 0 2 B](../Books/17C4004A-FB11-4F38-8F34-4D53FA7BDF2E.md)
+- [Can Such Things Be?](../Books/17C1079C-2E49-4BDD-83D9-D485E4FD248F.md)
+- [Children’s Stories](../Books/45B8B94E-9C2C-4BEC-AF5F-82922FA6DB1B.md)
+- [Ghost Stories](../Books/BEEE2E4D-71D3-427E-9732-B7C2F50696BD.md)
+- [Just So Stories](../Books/4F9D9269-6B4B-4E3E-83C0-FA4236D65695.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/7C4FA643-F964-439C-BD3F-21FC9AACEB4B.md)
+- [Lord Arthur Savile’s Crime and Other Stories](../Books/AE827DF5-44D7-48A5-8888-926CFC6C8CDA.md)
 - [Men without women](../Books/FDF02B09-67D1-475F-B7ED-F0FE05AC2450.md)
+- [Mr. Mulliner Stories](../Books/BC6A63D9-09A6-49C3-9BDA-BC9804F51615.md)
+- [Short Fiction](../Books/28BEFD12-BA87-4341-928F-6C212F09EFC1.md)
+- [Short Fiction](../Books/53316201-814F-4714-9D77-7EEAA566723E.md)
+- [Short Fiction](../Books/5F0262A2-5555-4440-90B1-A948DE124D20.md)
+- [Short Fiction](../Books/6192826A-C799-446A-BF8F-B781ADD383CD.md)
+- [Short Fiction](../Books/0CCC8F14-F264-41BD-BE65-E025C1B66978.md)
+- [Short Fiction](../Books/28F446D6-13DA-407E-871B-FFF512A4EA44.md)
+- [Short Fiction](../Books/F734DB8F-18A1-44C3-8C82-F53CD4EB4B71.md)
+- [Short Fiction](../Books/242273B5-963A-4416-9C81-42C1BA677D82.md)
+- [Short Fiction](../Books/9C941238-2266-4BA5-B2CD-1F9F6C7822FF.md)
+- [Short Fiction](../Books/F68BDE11-8B41-42E6-8087-ACBA16E6BF01.md)
+- [Short Fiction](../Books/6CA6B449-9148-45CD-9A9A-F643E105DF2A.md)
+- [Short Fiction](../Books/B4104ACD-8751-46A3-8CE7-72777AC95FAB.md)
+- [Short Fiction](../Books/60E1B90C-58B2-43AC-A68D-3C931F0634E0.md)
+- [Short Fiction](../Books/5FFD0BE2-62DB-4A7C-9A29-EF38FF3C825C.md)
+- [Short Fiction](../Books/D8BDAAFA-DE1A-4F5F-9C04-F220A3D54AD0.md)
+- [Short Fiction](../Books/371F14D9-4B15-4462-A311-570176E2BE12.md)
+- [Short Fiction](../Books/82922964-ABCE-4874-AF2D-F7EDEA5433BF.md)
+- [Short Fiction](../Books/57D4FBF5-E143-4495-BE31-1EDEADEF0841.md)
+- [Short Fiction](../Books/87CADE27-8A89-42DB-9235-A97C42C936A6.md)
+- [Short Fiction](../Books/7203B04C-2236-4B1B-991D-79C515DD4A33.md)
+- [Short Fiction](../Books/FCCF6D0F-A2ED-4329-93A0-211EBE0CE794.md)
+- [Short Fiction](../Books/7D302623-52DF-4015-909D-3ECCB8400C0C.md)
+- [Short Fiction](../Books/8227C284-ABF0-400A-8193-1DE53BF2DE60.md)
+- [Short Fiction](../Books/579B7B74-3280-4558-85F2-9E9F25489474.md)
+- [Short Fiction](../Books/6DD666FE-AB60-4B11-A54A-3A881683CD6D.md)
+- [Short Fiction](../Books/635FCFD4-B245-45A0-8140-6F94A21EE9DA.md)
+- [Short Fiction](../Books/9833F5E4-CED0-4289-BEEF-A12B0508787F.md)
+- [Short Fiction](../Books/8C31D700-9155-433B-BEB8-D5B944E02C37.md)
+- [Short Fiction](../Books/132F152E-693D-442C-BABD-C9CDD7EBA5D6.md)
+- [Short Fiction](../Books/85B909D7-0442-4A79-841D-D027CFA2E788.md)
+- [Short Fiction](../Books/233E9C32-6ADC-4AF8-AAB2-CAB10464FBA4.md)
+- [Short Fiction](../Books/DDE9DED2-203E-4C70-98C1-F935E6492A20.md)
+- [Short Fiction](../Books/4693CBD1-2407-4D4D-AA4A-0373B61DC211.md)
+- [Short Fiction](../Books/C57F6B77-842B-4D9D-AE7F-DC54D6FBD5D3.md)
+- [Short Fiction](../Books/8875EE45-7BE4-453D-8CD0-6705CBA61151.md)
+- [Short Fiction](../Books/7C73B6CE-19AF-4D76-98C6-CE302CCEE6B9.md)
+- [Short Fiction](../Books/9DF0999E-892A-42F6-AC67-98F33B187CAB.md)
+- [Short Fiction](../Books/C58E1328-510D-4666-8180-CE1EE65B537B.md)
+- [Short Fiction](../Books/CE3B1521-CBC8-41FA-A266-2DCFC10B57BD.md)
+- [Short Fiction](../Books/4D646767-98CA-4F88-8B14-80BF98E549E9.md)
+- [Short Fiction](../Books/3414A905-8659-4BB0-921E-A1C8D5AE4808.md)
+- [Short Fiction](../Books/11B6CA7B-461E-4E56-82F8-5B605156D578.md)
+- [Short Fiction](../Books/031B1822-5DAC-4919-A354-4BA4598607D4.md)
+- [Short Fiction](../Books/DC049A92-E654-4952-8AC5-CC496B75C82B.md)
+- [Short Fiction](../Books/A5847CBD-6206-4483-9BD7-CCAF81C665E2.md)
+- [Short Fiction](../Books/D80AFB83-8CB5-4997-840A-A184365F8481.md)
+- [Short Fiction](../Books/D12F12D2-D07A-42DA-AEA3-C11B211C3C6A.md)
+- [Short Fiction](../Books/6C2AB2E6-65F5-4954-A4C8-05E2BB13A40E.md)
+- [Short Fiction](../Books/F292C5DB-3C52-4272-9D25-206C7B85A300.md)
+- [Short Fiction](../Books/B56E9362-1833-4321-A00E-4743AED30529.md)
+- [Short Fiction](../Books/1B9A32A2-78E6-4A1A-B0AD-18D4797F34E0.md)
+- [Short Fiction](../Books/CFD1BE27-28FA-45BD-BC4D-A5D17E95958F.md)
+- [Short Fiction](../Books/0CEAD891-DE35-445C-830D-27C242F36CDF.md)
+- [Short Science Fiction](../Books/92084061-D341-4079-B02B-B4AC66491131.md)
+- [Short Science Fiction](../Books/5913FEFF-D0A3-4955-A1BA-94BACF6EA0CD.md)
+- [Short Science Fiction](../Books/DBD8CA59-64A4-46FA-866C-73C274FACA2F.md)
 - [The Descent of Man and Other Stories](../Books/7433F945-B8D6-49E6-A9A5-4951EDA3A9AC.md)
+- [The Extraordinary Adventures of Arsène Lupin, Gentleman-Burglar](../Books/0D6622BA-4843-463A-B3C9-07316BB79DE7.md)
 - [The Eyes Have It](../Books/F2FCCE60-E492-439D-A76A-423067D50671.md)
+- [The Jungle Book](../Books/C653A429-FF59-4DAA-B45D-A300A1EECBAF.md)
+- [The King in Yellow](../Books/3DF6710A-1ED3-43ED-93DF-19AE892E0A7F.md)
+- [The Lady of the Barge](../Books/62B3F40E-F391-4E03-B606-D38F2E68F412.md)
+- [When God Laughs](../Books/F1B8023A-5748-4ED4-AB0B-633E40802E58.md)
+- [While the Billy Boils](../Books/A6D99FCE-7EFE-47FF-BDAB-5337E6850F7A.md)
 
 ## Representative excerpts
 
@@ -37,38 +106,50 @@ _Sentence variation_
 
 > *** END OF THE PROJECT GUTENBERG EBOOK 2 B R 0 2 B *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
 
-### Men without women: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of Men without women This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Men without women Author: Ernest Hemingway Release date: January 1, 2023 [eBook #69683] Most recently updated: October 19, 2024 Language: English Original publication: United States: Charles Scribner's Sons, 1926 Other information and formats: www.gutenberg.
-
-### Men without women: Section 3
+### Can Such Things Be?: Section 30
 
 _Mid-book rhythm_
 
-> A PURSUIT RACE William Campbell had been in a pursuit race with a burlesque show ever since Pittsburgh. In a pursuit race, in bicycle racing, riders start at equal intervals to ride after one another. They ride very fast because the race is usually limited to a short distance and if they slow their riding another rider who maintains his pace will make up the space that separated them equally at the start. As soon as a rider is caught and passed he is out of the race and must get down from his bicycle and leave the track. If none of the riders are caught the winner of the race is the one who has gained the most distance. In most pursuit races, if there are only two riders, one of the riders is caught inside of six miles. The burlesque show caught William Campbell at Kansas City. William Campbell had hoped to hold a slight lead over the burlesque show until they reached the Pacific coast.
+> A Wireless Message In the summer of 1896 Mr. William Holt, a wealthy manufacturer of Chicago, was living temporarily in a little town of central New York, the name of which the writer’s memory has not retained. Mr. Holt had had “trouble with his wife,” from whom he had parted a year before. Whether the trouble was anything more serious than “incompatibility of temper,” he is probably the only living person that knows: he is not addicted to the vice of confidences. Yet he has related the incident herein set down to at least one person without exacting a pledge of secrecy. He is now living in Europe. One evening he had left the house of a brother whom he was visiting, for a stroll in the country.
 
-### The Descent of Man and Other Stories: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Descent of Man and Other Stories This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Descent of Man and Other Stories Author: Edith Wharton Release date: October 1, 2003 [eBook #4519] Most recently updated: December 28, 2020 Language: English Other information and formats: www.gutenberg.org/ebooks/4519 Credits: Produced by Charles Aldarondo. HTML version by Al Haines.
-
-### The Descent of Man and Other Stories: Section 3
-
-_Mid-book rhythm_
-
-> THE LETTER I For many years he had lived withdrawn from the world in which he had once played so active and even turbulent a part. The study of Tuscan art was his only pursuit, and it was to help him in the classification of his notes and documents that I was first called to his villa. Colonel Alingdon had then the look of a very old man, though his age can hardly have exceeded seventy. He was small and bent, with a finely wrinkled face which still wore the tan of youthful exposure. But for this dusky redness it would have been hard to reconstruct from the shrunken recluse, with his low fastidious voice and carefully tended hands, an image of that young knight of adventure whose sword had been at the service of every uprising which stirred the uneasy soil of Italy in the first half of the nineteenth century.
-
-### The Eyes Have It: Section 1
-
-_Opening voice_
-
-> The Project Gutenberg eBook of The Eyes Have It This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Eyes Have It Author: Philip K. Dick Release date: March 6, 2010 [eBook #31516] Most recently updated: January 6, 2021 Language: English Other information and formats: www.gutenberg.org/ebooks/31516 Credits: Produced by Greg Weeks, Barbara Tozier and the Online Distributed Proofreading Team at https://www.pgdp.
-
-### The Eyes Have It: Section 2
+### Can Such Things Be?: Section 23
 
 _Dialogue and character voice_
 
-> *** END OF THE PROJECT GUTENBERG EBOOK THE EYES HAVE IT *** Updated editions will replace the previous one—the old editions will be renamed. Creating the works from print editions not protected by U.S. copyright law means that no one owns a United States copyright in these works, so the Foundation (and you!) can copy and distribute it in the United States without permission and without paying copyright royalties. Special rules, set forth in the General Terms of Use part of this license, apply to copying and distributing Project Gutenberg™ electronic works to protect the PROJECT GUTENBERG™ concept and trademark. Project Gutenberg is a registered trademark, and may not be used if you charge for an eBook, except by following the terms of the trademark license, including paying royalties for use of the Project Gutenberg trademark.
+> The Damned Thing I One Does Not Always Eat What Is on the Table By the light of a tallow candle which had been placed on one end of a rough table a man was reading something written in a book. It was an old account book, greatly worn; and the writing was not, apparently, very legible, for the man sometimes held the page close to the flame of the candle to get a stronger light on it. The shadow of the book would then throw into obscurity a half of the room, darkening a number of faces and figures; for besides the reader, eight other men were present. Seven of them sat against the rough log walls, silent, motionless, and the room being small, not very far from the table. By extending an arm any one of them could have touched the eighth man, who lay on the table, face upward, partly covered by a sheet, his arms at his sides. He was dead.
+
+### Children’s Stories: Section 7
+
+_Mid-book rhythm_
+
+> The Remarkable Rocket The King’s son was going to be married, so there were general rejoicings. He had waited a whole year for his bride, and at last she had arrived. She was a Russian Princess, and had driven all the way from Finland in a sledge drawn by six reindeer. The sledge was shaped like a great golden swan, and between the swan’s wings lay the little Princess herself. Her long ermine-cloak reached right down to her feet, on her head was a tiny cap of silver tissue, and she was as pale as the Snow Palace in which she had always lived. So pale was she that as she drove through the streets all the people wondered. “She is like a white rose!” they cried, and they threw down flowers on her from the balconies. At the gate of the Castle the Prince was waiting to receive her. He had dreamy violet eyes, and his hair was like fine gold.
+
+### Children’s Stories: Section 10
+
+_Dialogue and character voice_
+
+> The Fisherman and His Soul To H.S.H. Alice, Princess of Monaco Every evening the young Fisherman went out upon the sea, and threw his nets into the water. When the wind blew from the land he caught nothing, or but little at best, for it was a bitter and black-winged wind, and rough waves rose up to meet it. But when the wind blew to the shore, the fish came in from the deep, and swam into the meshes of his nets, and he took them to the marketplace and sold them. Every evening he went out upon the sea, and one evening the net was so heavy that hardly could he draw it into the boat. And he laughed, and said to himself, “Surely I have caught all the fish that swim, or snared some dull monster that will be a marvel to men, or some thing of horror that the great Queen will desire,”
+
+### Ghost Stories: Section 17
+
+_Mid-book rhythm_
+
+> The Other Bed I had gone out to Switzerland just before Christmas, expecting, from experience, a month of divinely renovating weather, of skating all day in brilliant sun, and basking in the hot frost of that windless atmosphere. Occasionally, as I knew, there might be a snowfall, which would last perhaps for forty-eight hours at the outside, and would be succeeded by another ten days of cloudless perfection, cold even to zero at night, but irradiated all day long by the unflecked splendour of the sun. Instead the climatic conditions were horrible. Day after day a gale screamed through this upland valley that should have been so windless and serene, bringing with it a tornado of sleet that changed to snow by night.
+
+### Ghost Stories: Section 18
+
+_Dialogue and character voice_
+
+> The Thing in the Hall The following pages are the account given me by Dr. Assheton of the Thing in the Hall. I took notes, as copious as my quickness of hand allowed me, from his dictation, and subsequently read to him this narrative in its transcribed and connected form. This was on the day before his death, which indeed probably occurred within an hour after I had left him, and, as readers of inquests and such atrocious literature may remember, I had to give evidence before the coroner’s jury. Only a week before Dr. Assheton had to give similar evidence, but as a medical expert, with regard to the death of his friend, Louis Fielder, which occurred in a manner identical with his own. As a specialist, he said he believed that his friend had committed suicide while of unsound mind, and the verdict was brought in accordingly. But in the inquest held over Dr.
+
+### Just So Stories: Section 9
+
+_Mid-book rhythm_
+
+> The Beginning of the Armadillos This, O Best Beloved, is another story of the High and Far-Off Times. In the very middle of those times was a Stickly-Prickly Hedgehog, and he lived on the banks of the turbid Amazon, eating shelly snails and things. And he had a friend, a Slow-Solid Tortoise, who lived on the banks of the turbid Amazon, eating green lettuces and things. And so that was all right, Best Beloved. Do you see? But also, and at the same time, in those High and Far-Off Times, there was a Painted Jaguar, and he lived on the banks of the turbid Amazon too; and he ate everything that he could catch. When he could not catch deer or monkeys he would eat frogs and beetles; and when he could not catch frogs and beetles he went to his Mother Jaguar, and she told him how to eat hedgehogs and tortoises.
+
+### Just So Stories: Section 11
+
+_Dialogue and character voice_
+
+> How the Alphabet Was Made The week after Taffimai Metallumai (we will still call her Taffy, Best Beloved) made that little mistake about her Daddy’s spear and the Stranger-man and the picture-letter and all, she went carp-fishing again with her Daddy. Her Mummy wanted her to stay at home and help hang up hides to dry on the big drying-poles outside their Neolithic Cave, but Taffy slipped away down to her Daddy quite early, and they fished. Presently she began to giggle, and her Daddy said, “Don’t be silly, child.” “But wasn’t it inciting!” said Taffy. “Don’t you remember how the Head Chief puffed out his cheeks, and how funny the nice Stranger-man looked with the mud in his hair?” “Well do I,” said Tegumai. “I had to pay two deerskins⁠—soft ones with fringes⁠—to the Stranger-man for the things we did to him.” “We didn’t do anything,” said Taffy.

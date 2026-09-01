@@ -2,24 +2,25 @@
 # Washington Irving
 
 - Profile type: Author
-- Books represented: 2
+- Books represented: 3
 
 ## Learned profile
 
-- Words analyzed: 26964
-- Reading grade: 5.1
-- Average sentence: 8.6 words
-- Average paragraph: 10.9 words
-- Dialogue share: 6%
+- Words analyzed: 156658
+- Reading grade: 8.9
+- Average sentence: 23.4 words
+- Average paragraph: 64.8 words
+- Dialogue share: 8%
 - Voice: observational third-person
-- Tempo: brisk
-- Tone: direct, narrative-forward, rhythmically even
-- Recurring vocabulary: agreement, copyright, country, donations, electronic, forth, himself, however, license, states, terms, trademark, united, without, works, access, bridge, brook, church, ebook, heard, hollow, larger, mountain, mountains, paragraph, place, sleepy, story, strange, trees, village, whole
-- Character names: Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Project Gutenberg, WASHINGTON IRVING, André, Brom, Brom Bones, Brouwer, Cotton Mather, Dame Van, Dame Van Winkle, Gunpowder, Hans Van Ripper, Hendrick Hudson, Hudson, Ichabod, Katrina, Major André, Nicholas Vedder, Peter, Peter Stuyvesant, Rip, Rip Van Winkle, Tappan Zee, Tarry Town, Tassel, Van Ripper, Van Tassel, Van Winkle, Wolf
+- Tempo: deliberate
+- Tone: narrative-forward, direct, rhythmically even, measured, rhythmically varied
+- Recurring vocabulary: country, forth, himself, however, agreement, church, copyright, donations, electronic, heard, license, place, states, terms, trademark, united, village, whole, without, works, access, ancient, bridge, brook, christmas, ebook, english, family, heart, hollow, house, larger, mountain, mountains, nature, paragraph, round, seemed, sleepy, small
+- Character names: Dame Van Winkle, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Nicholas Vedder, Project Gutenberg, Rip, Rip Van Winkle, WASHINGTON IRVING, Wolf, André, Baron Von Landshort, Brom, Brom Bones, Brouwer, Chaucer, Constable, Cotton Mather, Dame Honeyball, Dame Van, Elizabeth, Evelyn, Fletcher, Frank Bracebridge, George, George Somers, Gunpowder, Hans Van Ripper, Hendrick Hudson, Herrick, Hudson, Ichabod, James, Jane, John, Julia, Katrina, Katzenellenbogen, Leslie, Major André, Mary, Master Simon, Michael, Mr, Murray, Peter, Peter Stuyvesant, Roscoe, Scott, Shakespeare, Tappan Zee, Tarry Town, Tassel, Van Ripper, Van Tassel, Van Winkle
 
 ## Books
 - [Rip Van Winkle](../Books/D9F4D198-46E8-445F-9B18-A824D5E23F73.md)
 - [The Legend of Sleepy Hollow](../Books/0A44FD76-CF22-487B-BA44-7AC00B3F53D5.md)
+- [The Sketchbook of Geoffrey Crayon, Gent.](../Books/C9A443B8-889F-4600-A0BE-5B0589907E6A.md)
 
 ## Representative excerpts
 
@@ -46,3 +47,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > FOUND AMONG THE PAPERS OF THE LATE DIEDRICH KNICKERBOCKER. A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE. In the bosom of one of those spacious coves which indent the eastern shore of the Hudson, at that broad expansion of the river denominated by the ancient Dutch navigators the Tappan Zee, and where they always prudently shortened sail and implored the protection of St. Nicholas when they crossed, there lies a small market town or rural port, which by some is called Greensburgh, but which is more generally and properly known by the name of Tarry Town. This name was given, we are told, in former days, by the good housewives of the adjacent country, from the inveterate propensity of their husbands to linger about the village tavern on market days.
+
+### The Sketchbook of Geoffrey Crayon, Gent.: Section 22
+
+_Mid-book rhythm_
+
+> The Inn Kitchen Shall I not take mine ease in mine inn? Falstaff During a journey that I once made through the Netherlands, I had arrived one evening at the Pomme d’Or, the principal inn of a small Flemish village. It was after the hour of the table d’hôte, so that I was obliged to make a solitary supper from the relics of its ampler board. The weather was chilly; I was seated alone in one end of a great gloomy dining-room, and, my repast being over, I had the prospect before me of a long dull evening, without any visible means of enlivening it. I summoned mine host and requested something to read; he brought me the whole literary stock of his household, a Dutch family Bible, an almanac in the same language, and a number of old Paris newspapers.
+
+### The Sketchbook of Geoffrey Crayon, Gent.: Section 20
+
+_Dialogue and character voice_
+
+> The Mutability of Literature A Colloquy in Westminster Abbey I know that all beneath the moon decays, And what by mortals in this world is brought, In time’s great periods shall return to nought. I know that all the muses’ heavenly lays, With toil of sprite which are so dearly bought, As idle sounds, of few or none are sought, That there is nothing lighter than mere praise. Drummond of Hawthornden There are certain half-dreaming moods of mind in which we naturally steal away from noise and glare, and seek some quiet haunt where we may indulge our reveries and build our air castles undisturbed.

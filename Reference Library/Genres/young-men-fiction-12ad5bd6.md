@@ -2,23 +2,24 @@
 # Young men -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 17639
-- Reading grade: 5.2
-- Average sentence: 8.1 words
-- Average paragraph: 11.4 words
-- Dialogue share: 13%
+- Words analyzed: 97833
+- Reading grade: 4.6
+- Average sentence: 14.2 words
+- Average paragraph: 33.5 words
+- Dialogue share: 35%
 - Voice: mixed or shifting perspective
 - Tempo: brisk
-- Tone: narrative-forward, direct, rhythmically even
-- Recurring vocabulary: office, prefer, turkey, nippers, works, thought, electronic, nothing, business, myself, without, morning, terms, scrivener, copyright, screen, states, agreement, behind, license, certain, indeed, though, seemed
-- Character names: Gutenberg, Ginger Nut, Bartleby, Project Gutenberg, Gutenberg Literary Archive Foundation, Adam, Adams, Astor, Englishman, Gutenberg Literary, John Jacob
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: behind, indeed, agreement, answered, arrow, began, black, business, certain, continued, copyright, cried, electronic, forest, forth, heart, himself, house, knight, lawless, license, moment, morning, myself, night, nippers, nothing, office, prefer, replied, returned, screen, scrivener, seemed, shall, shoreby, states, stood, terms, though
+- Character names: Adam, Adams, Alicia, Arblaster, Astor, Bartleby, Bennet, Carter, Daniel, Daniel Brackley, Dick, Dick Shelton, Duckworth, Ellis, Ellis Duckworth, Englishman, Ginger Nut, Gutenberg, Gutenberg Literary, Gutenberg Literary Archive Foundation, Harry, Hatch, Hugh, Jack, Joan, Joanna, Joanna Sedley, John, John Jacob, Mary, Master Shelton, Matcham, Pirret, Project Gutenberg, Richard, Richard Shelton, Selden, Shelton, Sir Daniel, Tom, Tunstall
 
 ## Books
 - [Bartleby, the Scrivener: A Story of Wall-Street](../Books/5877B6B1-8D6A-40FD-BFBF-9DE67C9C706B.md)
+- [The Black Arrow](../Books/A555B44C-89E6-4599-BA25-745CB505D8C1.md)
 
 ## Representative excerpts
 
@@ -33,3 +34,15 @@ _Opening voice_
 _Mid-book rhythm_
 
 > I am a rather elderly man. The nature of my avocations for the last thirty years has brought me into more than ordinary contact with what would seem an interesting and somewhat singular set of men, of whom as yet nothing that I know of has ever been written:—I mean the law-copyists or scriveners. I have known very many of them, professionally and privately, and if I pleased, could relate divers histories, at which good-natured gentlemen might smile, and sentimental souls might weep. But I waive the biographies of all other scriveners for a few passages in the life of Bartleby, who was a scrivener of the strangest I ever saw or heard of. While of other law-copyists I might write the complete life, of Bartleby nothing of that sort can be done. I believe that no materials exist for a full and satisfactory biography of this man. It is an irreparable loss to literature.
+
+### The Black Arrow: Section 22
+
+_Mid-book rhythm_
+
+> IV The “Good Hope” An hour thereafter, Dick was back at the Goat and Bagpipes, breaking his fast, and receiving the report of his messengers and sentries. Duckworth was still absent from Shoreby; and this was frequently the case, for he played many parts in the world, shared many different interests, and conducted many various affairs. He had founded that fellowship of the Black Arrow, as a ruined man longing for vengeance and money; and yet among those who knew him best, he was thought to be the agent and emissary of the great kingmaker of England, Richard, Earl of Warwick. In his absence, at any rate, it fell upon Richard Shelton to command affairs in Shoreby; and, as he sat at meat, his mind was full of care, and his face heavy with consideration. It had been determined, between him and the Lord Foxham, to make one bold stroke that evening, and, by brute force, to set Joanna free.
+
+### The Black Arrow: Section 3
+
+_Dialogue and character voice_
+
+> Prologue John Amend-All On a certain afternoon, in the late springtime, the bell upon Tunstall Moat House was heard ringing at an unaccustomed hour. Far and near, in the forest and in the fields along the river, people began to desert their labours and hurry towards the sound; and in Tunstall hamlet a group of poor countryfolk stood wondering at the summons. Tunstall hamlet at that period, in the reign of old King Henry VI, wore much the same appearance as it wears today. A score or so of houses, heavily framed with oak, stood scattered in a long green valley ascending from the river. At the foot, the road crossed a bridge, and mounting on the other side, disappeared into the fringes of the forest on its way to the Moat House, and further forth to Holywood Abbey. Halfway up the village, the church stood among yews.

@@ -2,25 +2,38 @@
 # Supernatural -- Fiction
 
 - Profile type: Genre
-- Books represented: 1
+- Books represented: 2
 
 ## Learned profile
 
-- Words analyzed: 82767
-- Reading grade: 3.1
-- Average sentence: 7.0 words
-- Average paragraph: 12.0 words
-- Dialogue share: 47%
-- Voice: mixed or shifting perspective
+- Words analyzed: 197619
+- Reading grade: 5.4
+- Average sentence: 14.1 words
+- Average paragraph: 37.1 words
+- Dialogue share: 35%
+- Voice: observational third-person
 - Tempo: brisk
-- Tone: dialogue-forward, direct, rhythmically even
-- Recurring vocabulary: don’t, things, seemed, quite, himself, people, night, cried, nothing, world, project, answered, going, thought, shall, round, picture, young, anything, looking, everything, moment, women, across
-- Character names: Dorian, Harry, Henry, Dorian Gray, Basil, Lord Henry, Mr. Gray, Sibyl Vane, Basil Hallward, Alan, Sibyl, Lady Narborough, Jim, Juliet, Gutenberg, James, James Vane, Henry Wotton, Mr. Erskine, Adrian Singleton, Campbell, Francis, Geoffrey, Gray, Jew, Lady Agatha, Alan Campbell, George, Kelso, Mr. Hubbard
+- Tone: balanced, dialogue-forward, direct, narrative-forward, rhythmically even, rhythmically varied
+- Recurring vocabulary: across, himself, moment, night, nothing, quite, seemed, thought, world, answered, anything, began, behind, course, cried, doctor, don’t, everything, going, heard, house, looking, people, picture, place, project, round, shall, sound, stood, suddenly, things, though, voice, whole, without, women, words, young
+- Character names: Adrian Singleton, Alan, Alan Campbell, Anderson, Arthur Vezin, Asmodelius, Basil, Basil Hallward, Bruder, Bruder Asmodelius, Bruder Harris, Bruder Kalkmann, Bruder Meyer, Bruder Pagel, Bruder Schliemann, Campbell, Colonel Wragge, Dorian, Dorian Gray, Dr, Felix Pender, Flame, Francis, Geoffrey, George, Gray, Gutenberg, Harris, Harry, Henry, Henry Wotton, Herr Harris, Horus, Hubbard, Ilsé, James, James Vane, Jew, Jim, John, John Silence, Juliet, Kalkmann, Kelso, Lady Agatha, Lady Narborough, Lord Henry, Miss Wragge, Mr, Mr. Erskine, Mr. Gray, Mr. Hubbard, Mrs, Osiris, Pender, Putney Hill, Schliemann, Sibyl, Sibyl Vane, Vezin
 
 ## Books
+- [John Silence Stories](../Books/6A31FCE5-2847-4CA1-866C-DC461BE3CCD3.md)
 - [The Picture of Dorian Gray](../Books/186EE454-E11F-4E42-A7E9-C582FB94CA22.md)
 
 ## Representative excerpts
+
+### John Silence Stories: Section 7
+
+_Mid-book rhythm_
+
+> Case III The Nemesis of Fire I By some means which I never could fathom, John Silence always contrived to keep the compartment to himself, and as the train had a clear run of two hours before the first stop, there was ample time to go over the preliminary facts of the case. He had telephoned to me that very morning, and even through the disguise of the miles of wire the thrill of incalculable adventure had sounded in his voice. “As if it were an ordinary country visit,” he called, in reply to my question; “and don’t forget to bring your gun.” “With blank cartridges, I suppose?” for I knew his rigid principles with regard to the taking of life, and guessed that the guns were merely for some obvious purpose of disguise. Then he thanked me for coming, mentioned the train, snapped down the receiver, and left me, vibrating with the excitement of anticipation, to do my packing.
+
+### John Silence Stories: Section 5
+
+_Dialogue and character voice_
+
+> Case I A Psychical Invasion I “And what is it makes you think I could be of use in this particular case?” asked Dr. John Silence, looking across somewhat sceptically at the Swedish lady in the chair facing him. “Your sympathetic heart and your knowledge of occultism⁠—” “Oh, please⁠—that dreadful word!” he interrupted, holding up a finger with a gesture of impatience. “Well, then,” she laughed, “your wonderful clairvoyant gift and your trained psychic knowledge of the processes by which a personality may be disintegrated and destroyed⁠—these strange studies you’ve been experimenting with all these years⁠—” “If it’s only a case of multiple personality I must really cry off,” interrupted the doctor again hastily, a bored expression in his eyes. “It’s not that; now, please, be serious, for I want your help,” she said; “and if I choose my words poorly you must be patient with my ignorance.
 
 ### The Picture of Dorian Gray: Section 1
 
