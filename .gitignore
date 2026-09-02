@@ -4,6 +4,11 @@ dist/
 DerivedData/
 *.xcuserstate
 xcuserdata/
+Reference Library/
+.kistulentz-backups/
+/*.dmg
+/*.zip
+/*.tar.gz
 
 # API keys belong in the macOS Keychain, never in source control.
 .env

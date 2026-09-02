@@ -5,6 +5,14 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
+NEW IN 0.14.1 FRIEND PREVIEW
+- Pasting a long document no longer makes the editor wait for Apple spelling and
+  grammar analysis on the interface thread.
+- Kistulentz avoids a duplicate live text-checking pass after a paste.
+- Highlights are repainted only when the document or its findings change,
+  preventing unnecessary full-document work while typing and pasting.
+- Large-paste responsiveness is now covered by an automated regression test.
+
 INSTALL
 1. Drag Kistulentz into the Applications folder.
 2. Open Kistulentz from Applications.
@@ -29,16 +37,80 @@ Kistulentz analyzes readability and EPUB reference books locally. The EPUB can
 guide style, vocabulary, tone, character, continuity, voice, and tempo even
 without an API key.
 
+Declined writing suggestions are remembered in local app preferences so they
+stay hidden when a document is reopened. The Markdown file is not modified to
+store this information, and a declined suggestion returns after its matching
+passage or nearby context changes.
+
+Kistulentz projects are normal folders of Markdown files. Project settings,
+chapter order, the visual outline, planning fields, search metadata, and revision
+snapshots remain in a hidden .kistulentz folder inside the project. The editable
+Kistulentz Style.md file is also stored at the project root. Kistulentz Manuscript
+Report.md and the editable Kistulentz Bible.md update automatically using local
+analysis. Kistulentz Research Notes.md is also visible at the project root;
+structured bibliography and revision records stay in hidden project metadata.
+Publication setup, profiles, destinations, copied cover assets, checksums, and
+export history also stay inside hidden project metadata. Complete submission
+folders are written only to the output location selected during export. Their
+shareable reports and manifests omit manuscript prose and excerpts.
+
+Project metadata recovery snapshots are stored in a hidden .kistulentz-backups
+folder at the project root. Kistulentz keeps up to three rolling last-known-good
+snapshots and retains pre-migration and pre-recovery snapshots. Recovery changes
+structured project metadata only; it does not replace manuscript Markdown.
+
+Draft recovery journals are stored locally in the user's Application Support
+folder while an editing window is active. They are removed after a successfully
+saved normal close or application quit; unresolved local work remains available.
+If Kistulentz stops abnormally, the next launch
+offers a comparison and never replaces a saved file automatically. Resolved or
+discarded recovery journals are removed.
+
+Custom beta-reader definitions are stored in hidden project metadata; beta
+feedback is shown only for the current in-app session. None of these automatic
+project features contact an AI provider.
+
+Reordering Parts, Chapters, Scenes, or Sections on the Corkboard or Outliner does
+not move files in Finder. The separate Organize Files to Match Outline command
+shows every proposed move, blocks conflicts, creates snapshots, and requires
+approval. Splitting Chapter headings into separate Scene or Section files also
+shows a preview and creates a snapshot. Both operations support normal macOS Undo.
+Local and AI-generated synopsis suggestions remain separate from the author's
+synopsis unless the author explicitly chooses to use one.
+
 The Reference Library is stored in a folder you choose. It contains Markdown
 profiles, short attributed excerpts, combined author and genre profiles, and a
 hidden index used to reopen large libraries quickly. Folder and EPUB imports do
-not contact OpenAI or Anthropic.
+not contact OpenAI, Anthropic, or Ollama. Completed imports and optional Benepar
+profiles are checkpointed after each book so completed work survives interruption.
 
-Kistulentz contacts OpenAI or Anthropic only when you choose Polish or Deepen w/
-AI. It then sends the relevant Markdown, a local reference profile, and selected
-short EPUB excerpts to the provider you selected. It does not upload complete
-EPUB files or the complete Reference Library. API keys are stored in the Mac
-Keychain.
+Kistulentz System Check runs locally from the application menu. Its diagnostic
+report stays in the app unless you explicitly export it, and it never includes
+manuscript text, reference excerpts, filenames, paths, API keys, or account data.
+
+Kistulentz shows a request preview before Polish, Rewrite, or Deepen w/ AI. This
+includes requested manuscript-report, Bible, beta-reader, and outline-synopsis
+deepening. The preview names the provider, model, and destination and shows the
+exact draft or selection, style guide, reference profile, and selected excerpts
+included in the request. Optional material can be excluded or redacted before
+confirming.
+
+OpenAI and Anthropic receive only the material confirmed in that preview. API
+keys are stored in the Mac Keychain. When Ollama is selected, the request goes
+only to Ollama at localhost on the Mac. Kistulentz detects models already
+installed there; it does not install Ollama or download models. Complete EPUB
+files and the complete Reference Library are not uploaded.
+
+The separate Research Library is also stored in a folder you choose. Kistulentz
+can copy attachments into it or link to originals. PDF, EPUB, image, web archive,
+and text indexing stays local; scanned PDF and image text uses Apple's local OCR.
+DOI and ISBN lookups send only the typed identifier to Crossref or Open Library.
+
+The Systemic Revision Center scans locally by default. AI deepening uses the same
+mandatory request preview and only adds suggestions. It cannot write directly to
+manuscript files. Coordinated changes require a separate exact before-and-after
+preview, are rechecked for stale or overlapping passages, snapshot every affected
+file, and apply as one macOS Undo action.
 
 DRM-protected or image-only EPUB files cannot be analyzed because they do not
 provide readable book text.

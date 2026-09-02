@@ -1,0 +1,6 @@
+Real Application Fixture
+
+This document was saved through macOS document services for Kistulentz import regression testing.
+
+First item
+Second item
