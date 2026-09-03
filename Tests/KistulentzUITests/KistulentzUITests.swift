@@ -76,6 +76,24 @@ final class KistulentzUITests: XCTestCase {
         XCTAssertTrue(export.waitForExistence(timeout: 2))
     }
 
+    func testDestinkReviewOpensRunsLocallyAndCloses() {
+        launch(completedOnboarding: true, acknowledgedEnglishPack: true)
+
+        let openReview = app.buttons["De-stink"]
+        XCTAssertTrue(openReview.waitForExistence(timeout: 8))
+        openReview.click()
+
+        let title = app.staticTexts["De-stink Review"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        let score = app.descendants(matching: .any)["DestinkScoreSummary"].firstMatch
+        XCTAssertTrue(score.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Review only: this screen never changes your prose."].exists)
+
+        app.buttons["Done"].click()
+        XCTAssertFalse(title.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.windows.firstMatch.exists)
+    }
+
     private func launch(completedOnboarding: Bool, acknowledgedEnglishPack: Bool) {
         app.launchArguments += [
             "-hasCompletedOnboarding", completedOnboarding ? "YES" : "NO",

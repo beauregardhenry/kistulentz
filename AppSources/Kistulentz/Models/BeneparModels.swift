@@ -78,6 +78,7 @@ struct BeneparWorkerResponse: Decodable {
     let engineVersion: String?
     let metrics: StructuralProfile?
     let issues: [BeneparWorkerIssue]?
+    let destinkFindings: [BeneparWorkerDestinkFinding]?
     let error: String?
 }
 

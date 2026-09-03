@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import traceback
 from dataclasses import dataclass
@@ -25,7 +26,7 @@ from nltk import Tree  # noqa: E402
 
 
 ENGINE_NAME = "Benepar English"
-ENGINE_VERSION = "1"
+ENGINE_VERSION = "2"
 CLAUSE_LABELS = {"S", "SBAR", "SBARQ", "SINV", "SQ"}
 SUBORDINATE_LABELS = {"SBAR", "SBARQ"}
 ADVERB_TAGS = {"RB", "RBR", "RBS"}
@@ -129,6 +130,28 @@ def issue(text: str, start: int, end: int, category: str, message: str) -> dict:
         "length": length,
         "excerpt": text[start:end].strip(),
         "message": message,
+    }
+
+
+def destink_finding(
+    text: str,
+    start: int,
+    end: int,
+    rule_id: str,
+    severity: str,
+    message: str,
+    explanation: str,
+) -> dict:
+    location, length = utf16_range(text, start, end)
+    return {
+        "ruleId": rule_id,
+        "tier": "syntactic",
+        "severity": severity,
+        "location": location,
+        "length": length,
+        "excerpt": text[start:end].strip(),
+        "message": message,
+        "explanation": explanation,
     }
 
 
@@ -281,6 +304,160 @@ def handle_analyze(parser: benepar.Parser, tokenizer, request: dict) -> dict:
     return {"metrics": metrics, "issues": issues}
 
 
+def has_finite_verb(tree: Tree) -> bool:
+    return any(tag.startswith("VB") or tag == "MD" for _, tag in tree.pos())
+
+
+def handle_destink(parser: benepar.Parser, tokenizer, request: dict) -> dict:
+    """Find structural writing tics using Benepar's real POS tags and phrase tree.
+
+    Lexical, Markdown, and document-layout rules live in Swift so the feature remains
+    useful without the optional pack. This pass owns only patterns for which a parse
+    materially improves precision.
+    """
+    text = request.get("text", "")
+    if not isinstance(text, str):
+        raise ValueError("text must be a string")
+    maximum_sentences = max(1, min(int(request.get("maximumSentences", 400)), 400))
+    records = sentence_records(tokenizer, text)[:maximum_sentences]
+    inputs = [benepar.InputSentence(words=r.words, space_after=r.spaces) for r in records]
+    trees = list(parser.parse_sents(inputs)) if inputs else []
+    findings: list[dict] = []
+
+    # Patterns that live inside one sentence.
+    for record, tree in zip(records, trees):
+        lowered = [word.lower() for word in record.words]
+        tagged = tree.pos()
+
+        # "serves as" is only interesting as a verb phrase. POS gating avoids the
+        # noun uses that a raw substring scan cannot distinguish.
+        for index in range(len(lowered) - 1):
+            if lowered[index] not in {"serve", "serves", "served", "serving", "stand", "stands", "stood"}:
+                continue
+            if lowered[index + 1] != "as" or not tagged[index][1].startswith("VB"):
+                continue
+            findings.append(destink_finding(
+                text,
+                record.token_starts[index],
+                record.token_ends[index + 1],
+                "serves-as-dodge",
+                "medium",
+                "A parsed verb phrase uses ‘serves as’ where ‘is’ may be enough",
+                "Benepar confirmed that this is a verb phrase, not a noun mention. Try a plain ‘is’ or ‘was’ and keep the longer form only when it changes the meaning.",
+            ))
+
+        # A comma-set-off VBG clause at the end often restates significance without
+        # giving the participle a clear actor.
+        for index, (_, tag) in enumerate(tagged):
+            if tag != "VBG" or index == 0:
+                continue
+            prefix = text[record.start:record.token_starts[index]]
+            comma = prefix.rfind(",")
+            if comma < 0:
+                continue
+            start = record.start + comma
+            findings.append(destink_finding(
+                text,
+                start,
+                record.end,
+                "ing-tackon",
+                "low",
+                "Benepar found a trailing participial clause",
+                "Check that the -ing clause has a clear actor and adds a distinct action. If it merely announces significance or repeats the main clause, cut it.",
+            ))
+            break
+
+        # Tree-backed three-part coordination. The finding is the sentence because
+        # constituency leaves do not retain a direct source span for each subtree.
+        comma_count = sum(word == "," for word in record.words)
+        conjunction_count = sum(tag == "CC" for _, tag in tagged)
+        if comma_count >= 2 and conjunction_count >= 1:
+            coordinated = any(
+                label(node) in {"NP", "VP", "ADJP"}
+                and sum(child.label() == "CC" for child in node if isinstance(child, Tree)) >= 1
+                and len(node.leaves()) >= 3
+                for node in subtrees(tree)
+            )
+            if coordinated:
+                findings.append(destink_finding(
+                    text,
+                    record.start,
+                    record.end,
+                    "tricolon/comma-series",
+                    "candidate",
+                    "Benepar found a three-or-more-part coordinated series",
+                    "A list of three may be exactly what the sentence needs. Review repeated three-part cadences across the piece; the pattern becomes conspicuous through density, not one use.",
+                ))
+
+        lowered_text = record.text.lower()
+        if re.search(r"\bnot\s+(?:just|only)\b.+\bbut(?:\s+also)?\b", lowered_text):
+            findings.append(destink_finding(
+                text,
+                record.start,
+                record.end,
+                "claude/mirrored-clauses",
+                "low",
+                "Benepar confirmed a mirrored not-only/but-also sentence",
+                "The balanced frame can make an ordinary comparison sound staged. Lead with the stronger half when the contrast adds no information.",
+            ))
+
+    # Patterns whose signal is the relation between adjacent parsed sentences.
+    self_questions: list[tuple[SentenceRecord, SentenceRecord]] = []
+    reframes: list[tuple[SentenceRecord, SentenceRecord]] = []
+    for index in range(len(trees) - 1):
+        first, second = records[index], records[index + 1]
+        first_tree, second_tree = trees[index], trees[index + 1]
+        first_words = [word.lower() for word in first.words]
+        second_words = [word.lower() for word in second.words]
+
+        if first.text.rstrip().endswith("?"):
+            strong = len(first_words) <= 5 and not has_finite_verb(first_tree)
+            short_answer = len(second_words) <= (12 if strong else 6)
+            if short_answer and (strong or not has_finite_verb(second_tree)):
+                self_questions.append((first, second))
+
+        first_reframe = (
+            len(first_words) >= 3
+            and first_words[0] in {"it", "this", "that"}
+            and any(word in {"not", "n't"} for word in first_words)
+            and any(tag.startswith("VB") for _, tag in first_tree.pos())
+        )
+        second_claim = (
+            len(second_words) >= 2
+            and second_words[0] in {"it", "this", "that"}
+            and any(tag.startswith("VB") for _, tag in second_tree.pos())
+            and not any(word in {"not", "n't"} for word in second_words)
+        )
+        if first_reframe and second_claim:
+            reframes.append((first, second))
+
+    question_severity = "high" if len(self_questions) >= 3 else "medium" if len(self_questions) >= 2 else "low"
+    for first, second in self_questions:
+        findings.append(destink_finding(
+            text,
+            first.start,
+            second.end,
+            "syntactic/self-posed-question",
+            question_severity,
+            "A parsed question is answered in the next short beat",
+            "The question creates a reveal rather than opening an inquiry. State the answer directly, or keep the question and answer it fully.",
+        ))
+
+    for first, second in reframes:
+        findings.append(destink_finding(
+            text,
+            first.start,
+            second.end,
+            "reframe",
+            "medium",
+            "Two parsed copular clauses form a not-X/it-is-Y reframe",
+            "The first clause exists mainly to reject a weaker label. Start with the second claim unless the distinction genuinely matters.",
+        ))
+
+    findings.sort(key=lambda item: (item["location"], -item["length"], item["ruleId"]))
+    return {"destinkFindings": findings}
+
+
 def respond(payload: dict) -> None:
     sys.stdout.write(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n")
     sys.stdout.flush()
@@ -301,6 +478,8 @@ def main() -> int:
                 result = {"engine": ENGINE_NAME, "engineVersion": ENGINE_VERSION}
             elif command == "analyze":
                 result = handle_analyze(parser, tokenizer, request)
+            elif command == "destink":
+                result = handle_destink(parser, tokenizer, request)
             else:
                 raise ValueError(f"Unsupported command: {command}")
             respond({"id": request_id, "ok": True, **result})

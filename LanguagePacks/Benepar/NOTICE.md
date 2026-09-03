@@ -8,6 +8,6 @@ The `benepar_en3` model is downloaded from Benepar's official GitHub model relea
 
 The language-pack archive must retain the license and package-metadata files shipped by every included dependency. Those files remain inside the Python runtime’s `site-packages` directory. The pack builder must also retain any license or notice files distributed with the `benepar_en3` model.
 
-Kistulentz uses Benepar output as evidence for advisory sentence-structure signals. A parse is not proof of a writing error. The app does not automatically replace prose based on a parse.
+Kistulentz uses Benepar output as evidence for advisory sentence-structure signals, including the optional structural pass in De-stink Review. A parse is not proof of a writing error. The app does not automatically replace prose based on a parse.
 
 The language pack never opens a network connection while analyzing text. Installation is a separate, explicitly confirmed download from a Kistulentz GitHub release. If the pack is absent, invalid, busy, or unavailable, Kistulentz continues with its native local analysis.

@@ -7,7 +7,8 @@ Complete this review on macOS Sequoia with the release-candidate app, not only a
 - Complete first-launch onboarding without a pointer
 - Create, open, and import a document; cancel every chooser and modal with Escape
 - Reach the project sidebar, readability list, editor, suggestions, and toolbar controls in a predictable order
-- Open and close Research Library, Reference Library, Project Organization, Systemic Revision, Publish & Export, Settings, System Check, and Draft Recovery
+- Open and close De-stink Review, Research Library, Reference Library, Project Organization, Systemic Revision, Publish & Export, Settings, System Check, and Draft Recovery
+- Run De-stink Review for each available scope, filter its categories, and move from a finding to the exact source passage
 - Accept, decline, and undo a concrete suggestion
 - Review, reorder, retry, cancel, and finish a Project Import Assistant batch
 - Save a recovered copy, cancel replacement, and discard a test recovery journal
