@@ -184,6 +184,16 @@ enum DestinkEngine {
             id: "claude-fiction-frames", name: "Stock fiction frame", severity: .medium, escalationAt: 3,
             phrases: ["something else entirely", "barely above a whisper", "voice barely audible", "a breath she didn't know", "a breath he didn't know", "smile didn't reach", "didn't reach his eyes", "didn't reach her eyes", "quiet for a long moment", "a sound like", "like a held breath", "trying to sound casual", "something flickered across", "something shifted in", "seen better days", "couldn't shake the feeling", "for what seemed like an eternity", "little did she know", "little did he know", "the air was thick with", "sent shivers down", "a mix of", "eyes gleamed with", "knuckles whitened", "let out a breath"],
             explanation: "This is a familiar generated-fiction frame. Replace the stock cue with the character's particular action, perception, or consequence."
+        ),
+        PhraseRule(
+            id: "excess-vocabulary", name: "Excess LLM vocabulary", severity: .low, escalationAt: 3,
+            phrases: excessVocabulary,
+            explanation: "This word appears heavily in generated prose and often makes a sentence less specific. Prefer the ordinary word that names what happened."
+        ),
+        PhraseRule(
+            id: "demo/intensifier", name: "Filler intensifier", severity: .low, escalationAt: 3,
+            phrases: ["very", "really", "quite", "extremely", "incredibly", "truly"],
+            explanation: "This adds emphasis without adding information. Remove it or choose a more exact word."
         )
     ]
 
@@ -192,20 +202,8 @@ enum DestinkEngine {
     ]
 
     private static func phraseFindings(in prose: String, original: String) -> [DestinkFinding] {
-        var rules = phraseRules
-        rules.append(PhraseRule(
-            id: "excess-vocabulary", name: "Excess LLM vocabulary", severity: .low, escalationAt: 3,
-            phrases: excessVocabulary,
-            explanation: "This word appears heavily in generated prose and often makes a sentence less specific. Prefer the ordinary word that names what happened."
-        ))
-        rules.append(PhraseRule(
-            id: "demo/intensifier", name: "Filler intensifier", severity: .low, escalationAt: 3,
-            phrases: ["very", "really", "quite", "extremely", "incredibly", "truly"],
-            explanation: "This adds emphasis without adding information. Remove it or choose a more exact word."
-        ))
-
         var findings: [DestinkFinding] = []
-        for rule in rules {
+        for rule in phraseRules {
             var hits: [NSRange] = []
             for phrase in rule.phrases { hits += literalRanges(of: phrase, in: prose) }
             hits = uniqueRanges(hits)
@@ -474,8 +472,15 @@ enum DestinkEngine {
         in text: String,
         requiresBoundary: Bool = true
     ) -> [NSRange] {
-        var body = NSRegularExpression.escapedPattern(for: phrase)
-        body = body.replacingOccurrences(of: #"\ "#, with: #"\s+"#)
+        // `escapedPattern(for:)` leaves spaces alone, so escape each whitespace-separated piece and
+        // rejoin with `\s+`. A phrase must still match when a line wrap splits it across two lines.
+        let pieces = phrase
+            .split(whereSeparator: \.isWhitespace)
+            .map { NSRegularExpression.escapedPattern(for: String($0)) }
+        guard !pieces.isEmpty else { return [] }
+        var body = pieces.joined(separator: #"\s+"#)
+        if phrase.first?.isWhitespace == true { body = #"\s+"# + body }
+        if phrase.last?.isWhitespace == true { body += #"\s+"# }
         let pattern = requiresBoundary
             ? #"(?<![\p{L}\p{N}_])"# + body + #"(?![\p{L}\p{N}_])"#
             : body
@@ -540,6 +545,13 @@ enum DestinkEngine {
             .filter { !source.substring(with: $0).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
     }
 
+    /// A UTF-16 code unit is whitespace only when it is a whole scalar. Half of a surrogate pair —
+    /// every emoji and other non-BMP character — has no scalar, and is never whitespace.
+    private static func isWhitespaceUnit(_ unit: unichar) -> Bool {
+        guard let scalar = UnicodeScalar(unit) else { return false }
+        return CharacterSet.whitespacesAndNewlines.contains(scalar)
+    }
+
     private static func paragraphRanges(in text: String) -> [NSRange] {
         let source = text as NSString
         let separators = regexRanges(pattern: #"\n[\t ]*\n+"#, in: text)
@@ -547,13 +559,11 @@ enum DestinkEngine {
         var start = 0
         for separator in separators + [NSRange(location: source.length, length: 0)] {
             var candidate = NSRange(location: start, length: max(0, separator.location - start))
-            while candidate.length > 0,
-                  CharacterSet.whitespacesAndNewlines.contains(UnicodeScalar(source.character(at: candidate.location))!) {
+            while candidate.length > 0, isWhitespaceUnit(source.character(at: candidate.location)) {
                 candidate.location += 1
                 candidate.length -= 1
             }
-            while candidate.length > 0,
-                  CharacterSet.whitespacesAndNewlines.contains(UnicodeScalar(source.character(at: NSMaxRange(candidate) - 1))!) {
+            while candidate.length > 0, isWhitespaceUnit(source.character(at: NSMaxRange(candidate) - 1)) {
                 candidate.length -= 1
             }
             if candidate.length > 0 { ranges.append(candidate) }

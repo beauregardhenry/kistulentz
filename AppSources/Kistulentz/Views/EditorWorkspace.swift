@@ -54,6 +54,7 @@ struct EditorWorkspace: View {
     @State private var showingRevisionHistory = false
     @State private var showingManuscriptInsights = false
     @State private var showingDestinker = false
+    @State private var destinkManuscriptDocuments: [ManuscriptDocument]?
     @State private var showingProjectOrganization = false
     @State private var showingNamedSnapshot = false
     @State private var editorSelection = NSRange(location: 0, length: 0)
@@ -283,9 +284,7 @@ struct EditorWorkspace: View {
             DestinkView(
                 currentDocument: destinkCurrentDocument,
                 selection: selectedPassage.map { DestinkSelection(text: $0.text, range: $0.range) },
-                manuscriptDocuments: projectStore.isOpen
-                    ? (try? projectStore.documents(for: .manuscript, selection: nil))
-                    : nil,
+                manuscriptDocuments: destinkManuscriptDocuments,
                 onNavigate: navigateToDestinkFinding
             )
             .environmentObject(beneparPack)
@@ -543,7 +542,7 @@ struct EditorWorkspace: View {
                     Button("Create Snapshot…") { showingNamedSnapshot = true }
                     Button("Revision History…") { showingRevisionHistory = true }
                     Button("Manuscript Insights…") { showingManuscriptInsights = true }
-                    Button("De-stink Review…") { showingDestinker = true }
+                    Button("De-stink Review…") { presentDestinker() }
                     Button("Project Organization…") { showingProjectOrganization = true }
                     Button("Project Research…") { showingProjectResearch = true }
                     Button("Polish Project…") { showingProjectPolish = true }
@@ -649,7 +648,7 @@ struct EditorWorkspace: View {
             .help(selectedPassage == nil ? "Select a passage to rewrite" : "Rewrite the selected passage")
 
             Button {
-                showingDestinker = true
+                presentDestinker()
             } label: {
                 Label("De-stink", systemImage: "doc.text.magnifyingglass")
             }
@@ -989,6 +988,15 @@ struct EditorWorkspace: View {
                 : (fileURL?.deletingPathExtension().lastPathComponent ?? "Untitled"),
             text: activeText
         )
+    }
+
+    /// Load the manuscript once, when the review is opened, instead of on every re-render of the
+    /// sheet's builder — reading every chapter from disk is main-thread work.
+    private func presentDestinker() {
+        destinkManuscriptDocuments = projectStore.isOpen
+            ? (try? projectStore.documents(for: .manuscript, selection: nil))
+            : nil
+        showingDestinker = true
     }
 
     private func navigateToDestinkFinding(_ path: String, range: NSRange) {

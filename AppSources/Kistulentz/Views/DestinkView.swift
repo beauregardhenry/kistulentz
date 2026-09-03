@@ -144,7 +144,7 @@ struct DestinkView: View {
                     .foregroundStyle(.secondary)
             }
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("De-stink score (report.score.formatted(.number.precision(.fractionLength(1)))) weighted findings per one thousand words")
+            .accessibilityLabel("De-stink score \(report.score.formatted(.number.precision(.fractionLength(1)))) weighted findings per one thousand words")
 
             Divider().frame(height: 46)
 
@@ -262,13 +262,18 @@ struct DestinkView: View {
 
     @MainActor
     private func run() async {
+        let id = runID
         isRunning = true
         let documents = documentsForRun()
         let result = await DestinkService.analyze(
             documents: documents,
             useBenepar: beneparPack.isInstalled
         )
-        guard !Task.isCancelled else { return }
+        guard !Task.isCancelled else {
+            // Only clear the spinner when no later run has already claimed it.
+            if runID == id { isRunning = false }
+            return
+        }
         report = result
         isRunning = false
     }

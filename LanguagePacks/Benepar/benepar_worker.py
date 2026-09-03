@@ -404,7 +404,7 @@ def handle_destink(parser: benepar.Parser, tokenizer, request: dict) -> dict:
     # Patterns whose signal is the relation between adjacent parsed sentences.
     self_questions: list[tuple[SentenceRecord, SentenceRecord]] = []
     reframes: list[tuple[SentenceRecord, SentenceRecord]] = []
-    for index in range(len(records) - 1):
+    for index in range(len(trees) - 1):
         first, second = records[index], records[index + 1]
         first_tree, second_tree = trees[index], trees[index + 1]
         first_words = [word.lower() for word in first.words]
