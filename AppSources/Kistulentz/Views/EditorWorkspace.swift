@@ -1034,7 +1034,7 @@ struct EditorWorkspace: View {
         case .referenceVoice where viewModel.referenceBook != nil:
             kind = .matchReferences
         case .hardSentence, .veryHardSentence, .structuralComplexity, .complexPhrase,
-             .aiSuggestion, .referenceVoice, .continuity:
+             .aiTell, .aiSuggestion, .referenceVoice, .continuity:
             kind = .simplify
         }
 
@@ -1380,7 +1380,7 @@ private struct ReadabilitySidebar: View {
     let onSelect: (WritingIssue) -> Void
 
     private let categories: [IssueCategory] = [
-        .adverb, .passiveVoice, .structuralComplexity, .complexPhrase, .hardSentence, .veryHardSentence
+        .adverb, .passiveVoice, .structuralComplexity, .complexPhrase, .aiTell, .hardSentence, .veryHardSentence
     ]
 
     var body: some View {

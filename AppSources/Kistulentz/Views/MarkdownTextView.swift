@@ -206,6 +206,8 @@ private extension IssueCategory {
             NSColor.systemOrange.withAlphaComponent(0.20)
         case .complexPhrase:
             NSColor.systemPurple.withAlphaComponent(0.20)
+        case .aiTell:
+            NSColor.systemIndigo.withAlphaComponent(0.22)
         case .spelling:
             NSColor.systemRed.withAlphaComponent(0.17)
         case .grammar:
