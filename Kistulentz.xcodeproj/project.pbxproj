@@ -95,6 +95,10 @@
 		D6F95F4815C237AAC644A157 /* RevisionDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E1E1C30A1010B24902668 /* RevisionDiff.swift */; };
 		D74CC5C9596BC2C5812D5356 /* ReferenceLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69AF877F1E25736EB3DF3D /* ReferenceLibraryView.swift */; };
 		D7C7D5810780E26D4B63BBCD /* SystemicRevisionCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733268E410156100D2A50952 /* SystemicRevisionCenterView.swift */; };
+		D36100000000000000000001 /* DestinkModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35100000000000000000001 /* DestinkModels.swift */; };
+		D36200000000000000000002 /* DestinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35200000000000000000002 /* DestinkService.swift */; };
+		D36300000000000000000003 /* DestinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35300000000000000000003 /* DestinkView.swift */; };
+		D36400000000000000000004 /* AITellEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35400000000000000000004 /* AITellEngine.swift */; };
 		E65E18ACF1C9367268940A0C /* DismissedSuggestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DCAC428503B6BD251220B0 /* DismissedSuggestionStore.swift */; };
 		E9E16A08AAE1B606EDEEEB37 /* MarkdownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C9555A83C0FD8962A6B8F7 /* MarkdownTextView.swift */; };
 		EC954E7B8C12E900FC541D45 /* PDFPublicationWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2910B127816E39CF382BD /* PDFPublicationWriter.swift */; };
@@ -133,6 +137,10 @@
 		2645F1F1CC73FDAF73B40DD5 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		2DE26E5B36E9845E0527B07C /* MarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
 		365CB0C6F47B37AC25F7A25D /* ManuscriptInsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptInsightsView.swift; sourceTree = "<group>"; };
+		D35100000000000000000001 /* DestinkModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinkModels.swift; sourceTree = "<group>"; };
+		D35200000000000000000002 /* DestinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinkService.swift; sourceTree = "<group>"; };
+		D35300000000000000000003 /* DestinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinkView.swift; sourceTree = "<group>"; };
+		D35400000000000000000004 /* AITellEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITellEngine.swift; sourceTree = "<group>"; };
 		3A4591818BB77C51973A165F /* Kistulentz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kistulentz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED901F4419BD6614DC0C319 /* StructuredAIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredAIClient.swift; sourceTree = "<group>"; };
 		40D73AC6FEE05ACF6CFCAF0F /* KistulentzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KistulentzUITests.swift; sourceTree = "<group>"; };
@@ -257,6 +265,7 @@
 				22B9AEEF4455C1778E2B9131 /* AIRequestModels.swift */,
 				D88A8ECEC32BE102F9EAC6CC /* AppSettings.swift */,
 				68D9A10CD7BCB05C05CDF7CF /* BeneparModels.swift */,
+				D35100000000000000000001 /* DestinkModels.swift */,
 				8B9DE2AAE52463D58F856497 /* DocumentImportModels.swift */,
 				E8993A0F8D66A09C84A4E07B /* DraftRecoveryModels.swift */,
 				C85B167CE1322E5DC463653C /* EPUBReference.swift */,
@@ -327,6 +336,7 @@
 				99EF499D28203EAEC8BEE7F5 /* AIRequestViews.swift */,
 				9BF2C72FD1C54454E86BB2D3 /* DocumentImportView.swift */,
 				E39C84CA3730D9167F4D26BF /* DraftRecoveryView.swift */,
+				D35300000000000000000003 /* DestinkView.swift */,
 				7DDB77A0B027A0F419D7D4D5 /* EditorWorkspace.swift */,
 				365CB0C6F47B37AC25F7A25D /* ManuscriptInsightsView.swift */,
 				90C9555A83C0FD8962A6B8F7 /* MarkdownTextView.swift */,
@@ -349,11 +359,13 @@
 		D12D582DCAA1E2C8D532F459 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D35400000000000000000004 /* AITellEngine.swift */,
 				57AB853B50483904D5F5ABC1 /* BeneparLanguagePack.swift */,
 				4B2AA46D7A39C9BDA6DF421E /* BeneparService.swift */,
 				FDA7E5BF3F1A9BC1325B4B57 /* BetaReaderEngine.swift */,
 				CED3AE612CCEF6208E69CA7A /* CitationFormatter.swift */,
 				54DCAC428503B6BD251220B0 /* DismissedSuggestionStore.swift */,
+				D35200000000000000000002 /* DestinkService.swift */,
 				7F8B8342F93E2DC3C19B12B3 /* DocumentImportService.swift */,
 				7D96E7BE3A80C840A72C2EAA /* DocumentUndoCoordinator.swift */,
 				025B5B0D12D8DC7232CA6547 /* DOCXPublicationWriter.swift */,
@@ -503,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36400000000000000000004 /* AITellEngine.swift in Sources */,
 				9A92C1B55400F357A9185B20 /* AIRequestModels.swift in Sources */,
 				A7418D51CF49839BE2562961 /* AIRequestViews.swift in Sources */,
 				04117DE147DD731C84277980 /* AppSettings.swift in Sources */,
@@ -513,6 +526,9 @@
 				8C6893AFBE1F61525FE3D120 /* CitationFormatter.swift in Sources */,
 				1A2FF48E36F5AFD36989581B /* DOCXPublicationWriter.swift in Sources */,
 				E65E18ACF1C9367268940A0C /* DismissedSuggestionStore.swift in Sources */,
+				D36100000000000000000001 /* DestinkModels.swift in Sources */,
+				D36200000000000000000002 /* DestinkService.swift in Sources */,
+				D36300000000000000000003 /* DestinkView.swift in Sources */,
 				85E9283B36DB276D15167513 /* DocumentImportModels.swift in Sources */,
 				9D8C8897D71CD17395547353 /* DocumentImportService.swift in Sources */,
 				15BB2A9ED4B1D10B55B48B76 /* DocumentImportView.swift in Sources */,

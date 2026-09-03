@@ -96,6 +96,9 @@ private struct KistulentzSupportCommands: Commands {
             Button("View Kistulentz License") {
                 KistulentzLegal.openLicense()
             }
+            Button("View Third-party Notices") {
+                KistulentzLegal.openThirdPartyNotices()
+            }
             Button("Kistulentz Source Code") {
                 KistulentzLegal.openSourceCode()
             }
@@ -125,6 +128,20 @@ private enum KistulentzLegal {
             NSWorkspace.shared.open(developmentLicense)
         } else {
             NSWorkspace.shared.open(sourceCodeURL.appendingPathComponent("blob/main/LICENSE"))
+        }
+    }
+
+    static func openThirdPartyNotices() {
+        let bundled = Bundle.main.resourceURL?.appendingPathComponent("THIRD_PARTY_NOTICES.md")
+        let development = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+            .appendingPathComponent("THIRD_PARTY_NOTICES.md")
+
+        if let bundled, FileManager.default.fileExists(atPath: bundled.path) {
+            NSWorkspace.shared.open(bundled)
+        } else if FileManager.default.fileExists(atPath: development.path) {
+            NSWorkspace.shared.open(development)
+        } else {
+            NSWorkspace.shared.open(sourceCodeURL.appendingPathComponent("blob/main/THIRD_PARTY_NOTICES.md"))
         }
     }
 

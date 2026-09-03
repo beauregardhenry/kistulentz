@@ -18,7 +18,7 @@ Kistulentz contacts an external service only after an author chooses one of thes
 - An ISBN lookup sends the entered ISBN to Open Library.
 - Confirming **Install English Pack** downloads only an architecture-specific runtime and Benepar model from a Kistulentz GitHub release.
 
-Automatic local analysis, Benepar parsing, local OCR, project migration and recovery, EPUB/reference imports, systemic revision scans, and publication exports do not contact an AI provider. The installed English pack runs offline and receives text only through a local child process. Publication target checks, installed-validator detection, EPUBCheck execution when locally installed, checksums, and readiness-report generation also remain on the Mac. Kistulentz does not automatically upload complete EPUB files, complete projects, or complete reference libraries.
+Automatic local analysis, De-stink reviews, Benepar parsing, local OCR, project migration and recovery, EPUB/reference imports, systemic revision scans, and publication exports do not contact an AI provider. The installed English pack runs offline and receives text only through a local child process. Publication target checks, installed-validator detection, EPUBCheck execution when locally installed, checksums, and readiness-report generation also remain on the Mac. Kistulentz does not automatically upload complete EPUB files, complete projects, or complete reference libraries.
 
 Publication submission folders include a shareable Markdown report, PDF report, package manifest, and checksum list. These diagnostics intentionally omit manuscript prose and excerpts. External-validator output is summarized rather than copied into the shareable report because another tool could echo publication content.
 

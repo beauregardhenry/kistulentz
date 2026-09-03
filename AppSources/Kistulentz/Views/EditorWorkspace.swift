@@ -53,6 +53,7 @@ struct EditorWorkspace: View {
     @State private var showingStyleEditor = false
     @State private var showingRevisionHistory = false
     @State private var showingManuscriptInsights = false
+    @State private var showingDestinker = false
     @State private var showingProjectOrganization = false
     @State private var showingNamedSnapshot = false
     @State private var editorSelection = NSRange(location: 0, length: 0)
@@ -277,6 +278,17 @@ struct EditorWorkspace: View {
         .sheet(isPresented: $showingProjectPolish) {
             ProjectPolishView(store: projectStore)
                 .environmentObject(settings)
+        }
+        .sheet(isPresented: $showingDestinker) {
+            DestinkView(
+                currentDocument: destinkCurrentDocument,
+                selection: selectedPassage.map { DestinkSelection(text: $0.text, range: $0.range) },
+                manuscriptDocuments: projectStore.isOpen
+                    ? (try? projectStore.documents(for: .manuscript, selection: nil))
+                    : nil,
+                onNavigate: navigateToDestinkFinding
+            )
+            .environmentObject(beneparPack)
         }
         .sheet(isPresented: $showingPublishExport) {
             PublishExportView(store: projectStore)
@@ -531,6 +543,7 @@ struct EditorWorkspace: View {
                     Button("Create Snapshot…") { showingNamedSnapshot = true }
                     Button("Revision History…") { showingRevisionHistory = true }
                     Button("Manuscript Insights…") { showingManuscriptInsights = true }
+                    Button("De-stink Review…") { showingDestinker = true }
                     Button("Project Organization…") { showingProjectOrganization = true }
                     Button("Project Research…") { showingProjectResearch = true }
                     Button("Polish Project…") { showingProjectPolish = true }
@@ -634,6 +647,14 @@ struct EditorWorkspace: View {
             .fixedSize()
             .disabled(selectedPassage == nil || viewModel.isRewriting)
             .help(selectedPassage == nil ? "Select a passage to rewrite" : "Rewrite the selected passage")
+
+            Button {
+                showingDestinker = true
+            } label: {
+                Label("De-stink", systemImage: "doc.text.magnifyingglass")
+            }
+            .buttonStyle(.borderless)
+            .help("Check this prose locally for stock phrasing and structural writing tics")
 
             Menu {
                 ForEach([5, 6, 7, 8, 9, 10, 11, 12], id: \.self) { grade in
@@ -955,6 +976,29 @@ struct EditorWorkspace: View {
             guard !finding.excerpt.isEmpty else { return }
             let range = source.range(of: finding.excerpt)
             guard range.location != NSNotFound else { return }
+            editorSelection = range
+            viewModel.focus(on: range)
+        }
+    }
+
+    private var destinkCurrentDocument: ManuscriptDocument {
+        ManuscriptDocument(
+            relativePath: projectStore.selectedChapterPath ?? fileURL?.lastPathComponent ?? "Untitled.md",
+            title: projectStore.isOpen
+                ? projectStore.selectedChapterTitle
+                : (fileURL?.deletingPathExtension().lastPathComponent ?? "Untitled"),
+            text: activeText
+        )
+    }
+
+    private func navigateToDestinkFinding(_ path: String, range: NSRange) {
+        if projectStore.isOpen, path != projectStore.selectedChapterPath {
+            projectStore.selectChapter(path)
+        }
+        Task { @MainActor in
+            await Task.yield()
+            let source = activeText as NSString
+            guard range.location >= 0, NSMaxRange(range) <= source.length else { return }
             editorSelection = range
             viewModel.focus(on: range)
         }

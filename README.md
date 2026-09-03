@@ -38,6 +38,8 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Local, on-device detection of AI-sounding phrasing — correlative constructions ("isn't just X, it's Y"), stock rhetorical wind-ups and openers, stacked hedge words, filler "just"/"actually," and marketing staccato triads — surfaced as advisory highlights that are never applied automatically
 - A prominent first-run prompt for the optional English Benepar pack, which turns on automatically after its confirmed local installation
 - Orange advisory sentence-structure highlights that never trigger automatic prose replacement
+- A native De-stink Review for a selection, chapter, standalone document, or whole manuscript, with source-located stock-phrase, sentence-shape, formatting, rhythm, and repetition findings plus a deterministic weighted score
+- Markdown-aware De-stink scanning that ignores code, tables, link targets, HTML blocks, and admonition syntax while preserving exact editor offsets; the optional English pack adds a Benepar-backed structural pass
 - Actionable spelling and grammar cards from Apple’s built-in English writing services, with code, links, URLs, and HTML excluded
 - A target reading-grade setting
 - EPUB reference books for local style, vocabulary, tone, character, continuity, voice, and tempo analysis
@@ -132,7 +134,7 @@ The manual **Test 1.0 scale targets** workflow exercises the approved large-work
 
 ### Optional English structural-analysis pack
 
-The base app always keeps its native local analysis. On first launch, Kistulentz prominently offers a separately confirmed download of the large English pack; the same control remains available in **Kistulentz Settings**. Once installed, Benepar turns on automatically and augments live Markdown guidance, manuscript reports, and selected EPUB profiles. Analysis stays on the Mac; the pack is not an AI provider and it does not rewrite prose automatically.
+The base app always keeps its native local analysis. On first launch, Kistulentz prominently offers a separately confirmed download of the large English pack; the same control remains available in **Kistulentz Settings**. Once installed, Benepar turns on automatically and augments live Markdown guidance, De-stink reviews, manuscript reports, and selected EPUB profiles. Analysis stays on the Mac; the pack is not an AI provider and it does not rewrite prose automatically.
 
 Language packs are architecture-specific for Apple silicon and Intel. Maintainers can build the native pack with the pinned, checksum-verified standalone Python runtime:
 

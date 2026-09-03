@@ -86,6 +86,65 @@ actor BeneparService {
         return BeneparAnalysis(metrics: metrics, issues: issues)
     }
 
+    func destinkIfAvailable(
+        text: String,
+        maximumSentences: Int,
+        waitForAvailability: Bool = true
+    ) async -> BeneparDestinkAnalysis? {
+        guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+        if waitForAvailability {
+            let deadline = Date().addingTimeInterval(150)
+            while isAnalyzing, Date() < deadline {
+                guard !Task.isCancelled else { return nil }
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+        }
+        guard !isAnalyzing, !Task.isCancelled else { return nil }
+        isAnalyzing = true
+        defer { isAnalyzing = false }
+        do {
+            return try await destink(text: text, maximumSentences: maximumSentences)
+        } catch {
+            if error is BeneparLanguagePackError {
+                worker?.close()
+                worker = nil
+                installationPath = nil
+            }
+            return nil
+        }
+    }
+
+    func destink(text: String, maximumSentences: Int) async throws -> BeneparDestinkAnalysis {
+        guard let installation = try BeneparLanguagePackLocator.locate(at: rootURL) else {
+            throw BeneparLanguagePackError.invalidManifest("the pack is not installed")
+        }
+        let activeWorker = try makeWorkerIfNeeded(for: installation)
+        let request = BeneparWorkerRequest(
+            id: UUID().uuidString,
+            command: "destink",
+            text: text,
+            maximumSentences: max(1, min(maximumSentences, 400)),
+            includeIssues: false
+        )
+        let requestData = try JSONEncoder().encode(request)
+        let responseData: Data
+        do {
+            responseData = try await activeWorker.request(requestData, id: request.id, timeout: 180)
+        } catch {
+            activeWorker.close()
+            worker = nil
+            installationPath = nil
+            throw error
+        }
+        let response = try JSONDecoder().decode(BeneparWorkerResponse.self, from: responseData)
+        guard response.ok else {
+            throw BeneparLanguagePackError.workerRejected(response.error ?? "Unknown worker error")
+        }
+        return BeneparDestinkAnalysis(findings: (response.destinkFindings ?? []).compactMap {
+            $0.finding(in: text)
+        })
+    }
+
     func reset() {
         worker?.close()
         worker = nil
