@@ -17,6 +17,8 @@ Kistulentz requires macOS Sequoia 15 or later. Xcode 26 or newer is needed to ru
 swift test --disable-sandbox
 ```
 
+Pull requests and pushes to `main` run the same SwiftPM tests in CI, build and verify the universal application bundle, and run the bounded macOS UI regression suite.
+
 `swift test` reports `no such module 'XCTest'` when only the Command Line Tools are installed, because XCTest ships with Xcode.
 
 To build the Mac application:

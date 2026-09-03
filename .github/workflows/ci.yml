@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Swift tests and app bundle
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - name: Show toolchain versions
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: Run SwiftPM tests
+        run: swift test --disable-sandbox
+      - name: Build the universal application
+        run: ./scripts/build-app.sh
+      - name: Verify the application bundle
+        run: ./scripts/verify-release.sh dist/Kistulentz.app
+
+  ui-tests:
+    name: macOS UI regression tests
+    runs-on: macos-15
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run the checked-in Xcode UI test host
+        run: >-
+          xcodebuild -project Kistulentz.xcodeproj -scheme Kistulentz
+          -destination 'platform=macOS'
+          -test-timeouts-enabled YES
+          -default-test-execution-time-allowance 45
+          -maximum-test-execution-time-allowance 60
+          test
