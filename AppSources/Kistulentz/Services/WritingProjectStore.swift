@@ -3,6 +3,9 @@ import Foundation
 
 @MainActor
 final class WritingProjectStore: ObservableObject {
+
+    // MARK: - Published State
+
     @Published private(set) var rootURL: URL?
     @Published private(set) var manifest: WritingProjectManifest?
     @Published private(set) var chapters: [ProjectChapter] = []
@@ -31,6 +34,8 @@ final class WritingProjectStore: ObservableObject {
     @Published private(set) var preservesUndoAcrossFileRelocation = false
     @Published var errorMessage: String?
 
+    // MARK: - Private State
+
     private var isDirty = false
     private var hasCapturedEditingBaseline = false
     private var saveTask: Task<Void, Never>?
@@ -45,21 +50,32 @@ final class WritingProjectStore: ObservableObject {
     private var hasCapturedBibleEditingBaseline = false
     private weak var projectUndoManager: UndoManager?
 
+    // MARK: - Computed Properties
+
     var isOpen: Bool { rootURL != nil && manifest != nil }
+
     var projectName: String { manifest?.name ?? "Project" }
+
     var projectKind: WritingProjectKind? { manifest?.kind }
+
     var selectedFileURL: URL? {
         guard let rootURL, let selectedChapterPath else { return nil }
         return rootURL.appendingPathComponent(selectedChapterPath)
     }
+
     var selectedChapterTitle: String {
         chapters.first(where: { $0.relativePath == selectedChapterPath })?.title ?? "No chapter"
     }
+
     var combinedWordCount: Int { chapters.reduce(0) { $0 + $1.wordCount } }
+
     var hasUnsavedChapterChanges: Bool { isDirty }
 
     var reportFileURL: URL? { rootURL.map(ManuscriptProjectDisk.reportURL) }
+
     var bibleFileURL: URL? { rootURL.map(ManuscriptProjectDisk.bibleURL) }
+
+    // MARK: - Project Lifecycle
 
     func createProject(in parent: URL, name: String, kind: WritingProjectKind) throws {
         let root = try WritingProjectDisk.createProject(in: parent, name: name, kind: kind)
@@ -220,6 +236,12 @@ final class WritingProjectStore: ObservableObject {
         return true
     }
 
+    func attachUndoManager(_ undoManager: UndoManager?) {
+        projectUndoManager = undoManager
+    }
+
+    // MARK: - Chapters & Editing
+
     func updateText(_ newValue: String) {
         guard isOpen, newValue != text else { return }
         if !hasCapturedEditingBaseline {
@@ -302,6 +324,62 @@ final class WritingProjectStore: ObservableObject {
         persistChapterOrder()
     }
 
+    private func loadChapter(_ relativePath: String?) throws {
+        guard let relativePath,
+              chapters.contains(where: { $0.relativePath == relativePath }),
+              let rootURL else { throw WritingProjectError.noMarkdownFiles }
+        selectedChapterPath = relativePath
+        text = try WritingProjectDisk.readChapter(relativePath, at: rootURL)
+        isDirty = false
+        hasCapturedEditingBaseline = false
+        var updatedManifest = manifest
+        updatedManifest?.lastOpenedChapter = relativePath
+        if let updatedManifest {
+            try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
+            manifest = updatedManifest
+        }
+    }
+
+    private func updateSelectedChapterStatistics() {
+        guard let selectedChapterPath,
+              let index = chapters.firstIndex(where: { $0.relativePath == selectedChapterPath }) else { return }
+        let fallback = URL(fileURLWithPath: selectedChapterPath).deletingPathExtension().lastPathComponent
+        let title = text.components(separatedBy: .newlines)
+            .first(where: { $0.trimmingCharacters(in: .whitespaces).hasPrefix("# ") })?
+            .trimmingCharacters(in: .whitespaces)
+            .dropFirst(2)
+        chapters[index] = ProjectChapter(
+            relativePath: selectedChapterPath,
+            title: title.map(String.init).flatMap { $0.isEmpty ? nil : $0 } ?? fallback,
+            wordCount: WritingProjectDisk.wordCount(in: text)
+        )
+    }
+
+    private func persistChapterOrder() {
+        guard let rootURL else { return }
+        do {
+            var updatedManifest = manifest
+            updatedManifest?.chapterOrder = chapters.map(\.relativePath)
+            if let updatedManifest {
+                try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
+                manifest = updatedManifest
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func scheduleSave() {
+        saveTask?.cancel()
+        saveTask = Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(350))
+            guard !Task.isCancelled else { return }
+            self?.saveNow()
+        }
+    }
+
+    // MARK: - Style Learning
+
     func saveStyle(_ value: String) {
         guard let rootURL else { return }
         do {
@@ -312,9 +390,29 @@ final class WritingProjectStore: ObservableObject {
         }
     }
 
-    func attachUndoManager(_ undoManager: UndoManager?) {
-        projectUndoManager = undoManager
+    func recordStyleDecision(action: StyleDecisionAction, issue: WritingIssue) {
+        guard let rootURL else { return }
+        do {
+            try ProjectStyleManager.record(action: action, issue: issue, at: rootURL)
+            styleText = try ProjectStyleManager.loadStyle(at: rootURL)
+            styleDecisions = try ProjectStyleManager.loadDecisions(at: rootURL)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
     }
+
+    func clearLearnedStylePreferences() {
+        guard let rootURL else { return }
+        do {
+            try ProjectStyleManager.clearLearnedPreferences(at: rootURL)
+            styleText = try ProjectStyleManager.loadStyle(at: rootURL)
+            styleDecisions = try ProjectStyleManager.loadDecisions(at: rootURL)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    // MARK: - Research & Bibliography
 
     func addResearchSource(_ sourceID: UUID) {
         guard !projectBibliography.sourceIDs.contains(sourceID) else { return }
@@ -388,6 +486,17 @@ final class WritingProjectStore: ObservableObject {
         let ids = Set(projectBibliography.sourceIDs)
         return library.sources.filter { ids.contains($0.id) }
     }
+
+    private func saveProjectBibliography() {
+        guard let rootURL else { return }
+        do {
+            try ProjectResearchDisk.save(projectBibliography, at: rootURL)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    // MARK: - Systemic Revision
 
     func runLocalRevisionScan(targetGrade: Int, sources: [ResearchSource]) {
         guard let rootURL, let manifest else { return }
@@ -492,6 +601,127 @@ final class WritingProjectStore: ObservableObject {
         saveRevisionArchive()
     }
 
+    func makeRevisionChangeSet(findingIDs: Set<UUID>) throws -> RevisionChangeSet {
+        try RevisionChangePlanner.changes(from: revisionArchive.findings.filter { findingIDs.contains($0.id) })
+    }
+
+    func validateRevisionChangeSet(_ set: RevisionChangeSet) -> RevisionChangeSet {
+        do { return RevisionChangePlanner.validate(set, documents: try documentsByPath(for: Set(set.includedChanges.map(\.chapterPath)))) }
+        catch { errorMessage = error.localizedDescription; return set }
+    }
+
+    @discardableResult
+    func applyRevisionChangeSet(_ set: RevisionChangeSet) -> Bool {
+        guard let rootURL else { return false }
+        do {
+            saveNow()
+            let paths = Set(set.includedChanges.map(\.chapterPath))
+            let before = try documentsByPath(for: paths)
+            let checked = RevisionChangePlanner.validate(set, documents: before)
+            guard checked.hasChanges else { throw SystemicRevisionError.noConcreteChanges }
+            guard !checked.hasConflicts else { throw SystemicRevisionError.stalePassage(checked.includedChanges.first(where: { $0.conflict != nil })?.chapterPath ?? "the manuscript") }
+            let after = try RevisionChangePlanner.applying(checked, to: before)
+
+            for path in paths {
+                guard let content = before[path] else { continue }
+                if let snapshot = try WritingProjectDisk.createSnapshot(
+                    chapterPath: path,
+                    content: content,
+                    name: nil,
+                    reason: "Before systemic revision",
+                    at: rootURL
+                ) { snapshots.insert(snapshot, at: 0) }
+            }
+            do {
+                for path in paths.sorted() {
+                    guard let content = after[path] else { continue }
+                    try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL)
+                }
+            } catch {
+                for (path, content) in before { try? WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL) }
+                throw error
+            }
+            for id in checked.includedChanges.compactMap(\.findingID) {
+                if let index = revisionArchive.findings.firstIndex(where: { $0.id == id }) { revisionArchive.findings[index].status = .resolved }
+            }
+            saveRevisionArchive()
+            try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
+            registerRevisionUndo(expected: after, replacement: before, resolvedFindingIDs: checked.includedChanges.compactMap(\.findingID), undoing: true)
+            scheduleManuscriptAnalysis(immediately: true)
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+
+    private func documentsByPath(for paths: Set<String>) throws -> [String: String] {
+        guard let rootURL else { return [:] }
+        var values: [String: String] = [:]
+        let known = Set(chapters.map(\.relativePath))
+        for path in paths {
+            guard known.contains(path) else { throw SystemicRevisionError.stalePassage(path) }
+            values[path] = try WritingProjectDisk.readChapter(path, at: rootURL)
+        }
+        return values
+    }
+
+    private func refreshProjectAfterRevision(preferredSelection: String?) throws {
+        guard let rootURL, let manifest else { return }
+        chapters = try WritingProjectDisk.loadChapters(at: rootURL, manifest: manifest)
+        if let preferredSelection, chapters.contains(where: { $0.relativePath == preferredSelection }) {
+            try loadChapter(preferredSelection)
+        }
+        snapshots = try WritingProjectDisk.loadSnapshots(at: rootURL)
+    }
+
+    private func registerRevisionUndo(
+        expected: [String: String],
+        replacement: [String: String],
+        resolvedFindingIDs: [UUID],
+        undoing: Bool
+    ) {
+        projectUndoManager?.registerUndo(withTarget: self) { target in
+            target.performRevisionUndo(expected: expected, replacement: replacement, findingIDs: resolvedFindingIDs, undoing: undoing)
+        }
+        projectUndoManager?.setActionName(undoing ? "Apply Systemic Revision" : "Undo Systemic Revision")
+    }
+
+    private func performRevisionUndo(
+        expected: [String: String],
+        replacement: [String: String],
+        findingIDs: [UUID],
+        undoing: Bool
+    ) {
+        guard let rootURL else { return }
+        do {
+            saveNow()
+            for (path, content) in expected {
+                guard try WritingProjectDisk.readChapter(path, at: rootURL) == content else { throw SystemicRevisionError.filesChanged }
+            }
+            for (path, content) in replacement { try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL) }
+            for id in findingIDs {
+                if let index = revisionArchive.findings.firstIndex(where: { $0.id == id }) {
+                    revisionArchive.findings[index].status = undoing ? .open : .resolved
+                }
+            }
+            saveRevisionArchive()
+            try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
+            registerRevisionUndo(expected: replacement, replacement: expected, resolvedFindingIDs: findingIDs, undoing: !undoing)
+            scheduleManuscriptAnalysis(immediately: true)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func saveRevisionArchive() {
+        guard let rootURL else { return }
+        do { try SystemicRevisionDisk.save(revisionArchive, at: rootURL) }
+        catch { errorMessage = error.localizedDescription }
+    }
+
+    // MARK: - Publication
+
     func updatePublicationArchive(_ archive: PublicationArchive) {
         guard let rootURL else { return }
         do {
@@ -563,59 +793,7 @@ final class WritingProjectStore: ObservableObject {
         updatePublicationArchive(archive)
     }
 
-    func makeRevisionChangeSet(findingIDs: Set<UUID>) throws -> RevisionChangeSet {
-        try RevisionChangePlanner.changes(from: revisionArchive.findings.filter { findingIDs.contains($0.id) })
-    }
-
-    func validateRevisionChangeSet(_ set: RevisionChangeSet) -> RevisionChangeSet {
-        do { return RevisionChangePlanner.validate(set, documents: try documentsByPath(for: Set(set.includedChanges.map(\.chapterPath)))) }
-        catch { errorMessage = error.localizedDescription; return set }
-    }
-
-    @discardableResult
-    func applyRevisionChangeSet(_ set: RevisionChangeSet) -> Bool {
-        guard let rootURL else { return false }
-        do {
-            saveNow()
-            let paths = Set(set.includedChanges.map(\.chapterPath))
-            let before = try documentsByPath(for: paths)
-            let checked = RevisionChangePlanner.validate(set, documents: before)
-            guard checked.hasChanges else { throw SystemicRevisionError.noConcreteChanges }
-            guard !checked.hasConflicts else { throw SystemicRevisionError.stalePassage(checked.includedChanges.first(where: { $0.conflict != nil })?.chapterPath ?? "the manuscript") }
-            let after = try RevisionChangePlanner.applying(checked, to: before)
-
-            for path in paths {
-                guard let content = before[path] else { continue }
-                if let snapshot = try WritingProjectDisk.createSnapshot(
-                    chapterPath: path,
-                    content: content,
-                    name: nil,
-                    reason: "Before systemic revision",
-                    at: rootURL
-                ) { snapshots.insert(snapshot, at: 0) }
-            }
-            do {
-                for path in paths.sorted() {
-                    guard let content = after[path] else { continue }
-                    try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL)
-                }
-            } catch {
-                for (path, content) in before { try? WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL) }
-                throw error
-            }
-            for id in checked.includedChanges.compactMap(\.findingID) {
-                if let index = revisionArchive.findings.firstIndex(where: { $0.id == id }) { revisionArchive.findings[index].status = .resolved }
-            }
-            saveRevisionArchive()
-            try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
-            registerRevisionUndo(expected: after, replacement: before, resolvedFindingIDs: checked.includedChanges.compactMap(\.findingID), undoing: true)
-            scheduleManuscriptAnalysis(immediately: true)
-            return true
-        } catch {
-            errorMessage = error.localizedDescription
-            return false
-        }
-    }
+    // MARK: - Project Polish Inputs
 
     func projectPolishInputs() throws -> (
         documents: [ManuscriptDocument],
@@ -637,79 +815,7 @@ final class WritingProjectStore: ObservableObject {
         )
     }
 
-    private func documentsByPath(for paths: Set<String>) throws -> [String: String] {
-        guard let rootURL else { return [:] }
-        var values: [String: String] = [:]
-        let known = Set(chapters.map(\.relativePath))
-        for path in paths {
-            guard known.contains(path) else { throw SystemicRevisionError.stalePassage(path) }
-            values[path] = try WritingProjectDisk.readChapter(path, at: rootURL)
-        }
-        return values
-    }
-
-    private func refreshProjectAfterRevision(preferredSelection: String?) throws {
-        guard let rootURL, let manifest else { return }
-        chapters = try WritingProjectDisk.loadChapters(at: rootURL, manifest: manifest)
-        if let preferredSelection, chapters.contains(where: { $0.relativePath == preferredSelection }) {
-            try loadChapter(preferredSelection)
-        }
-        snapshots = try WritingProjectDisk.loadSnapshots(at: rootURL)
-    }
-
-    private func registerRevisionUndo(
-        expected: [String: String],
-        replacement: [String: String],
-        resolvedFindingIDs: [UUID],
-        undoing: Bool
-    ) {
-        projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.performRevisionUndo(expected: expected, replacement: replacement, findingIDs: resolvedFindingIDs, undoing: undoing)
-        }
-        projectUndoManager?.setActionName(undoing ? "Apply Systemic Revision" : "Undo Systemic Revision")
-    }
-
-    private func performRevisionUndo(
-        expected: [String: String],
-        replacement: [String: String],
-        findingIDs: [UUID],
-        undoing: Bool
-    ) {
-        guard let rootURL else { return }
-        do {
-            saveNow()
-            for (path, content) in expected {
-                guard try WritingProjectDisk.readChapter(path, at: rootURL) == content else { throw SystemicRevisionError.filesChanged }
-            }
-            for (path, content) in replacement { try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL) }
-            for id in findingIDs {
-                if let index = revisionArchive.findings.firstIndex(where: { $0.id == id }) {
-                    revisionArchive.findings[index].status = undoing ? .open : .resolved
-                }
-            }
-            saveRevisionArchive()
-            try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
-            registerRevisionUndo(expected: replacement, replacement: expected, resolvedFindingIDs: findingIDs, undoing: !undoing)
-            scheduleManuscriptAnalysis(immediately: true)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    private func saveRevisionArchive() {
-        guard let rootURL else { return }
-        do { try SystemicRevisionDisk.save(revisionArchive, at: rootURL) }
-        catch { errorMessage = error.localizedDescription }
-    }
-
-    private func saveProjectBibliography() {
-        guard let rootURL else { return }
-        do {
-            try ProjectResearchDisk.save(projectBibliography, at: rootURL)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
+    // MARK: - Outline
 
     var outlineRows: [OutlineFlatRow] { OutlineTree.flattened(outlineNodes) }
 
@@ -1045,245 +1151,6 @@ final class WritingProjectStore: ObservableObject {
         }
     }
 
-    func updateBibleText(_ value: String) {
-        guard isOpen, value != bibleText else { return }
-        if !hasCapturedBibleEditingBaseline {
-            createBibleSnapshot(content: bibleText, reason: "Before editing Bible")
-            hasCapturedBibleEditingBaseline = true
-        }
-        bibleText = value
-        scheduleBibleSave()
-    }
-
-    func saveBibleNow() {
-        bibleSaveTask?.cancel()
-        guard let rootURL else { return }
-        do {
-            try ManuscriptProjectDisk.saveBible(bibleText, at: rootURL)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func addCustomBetaReader(name: String, focus: String, audience: BetaReaderAudience) {
-        let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let cleanFocus = focus.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !cleanName.isEmpty, !cleanFocus.isEmpty else { return }
-        customBetaReaders.append(BetaReaderProfile(name: cleanName, focus: cleanFocus, audience: audience))
-        saveCustomBetaReaders()
-    }
-
-    func updateCustomBetaReader(_ reader: BetaReaderProfile) {
-        guard !reader.isBuiltIn,
-              let index = customBetaReaders.firstIndex(where: { $0.id == reader.id }) else { return }
-        customBetaReaders[index] = reader
-        saveCustomBetaReaders()
-    }
-
-    func removeCustomBetaReader(_ reader: BetaReaderProfile) {
-        guard !reader.isBuiltIn else { return }
-        customBetaReaders.removeAll { $0.id == reader.id }
-        saveCustomBetaReaders()
-    }
-
-    func documents(for scope: BetaReaderScope, selection: String?) throws -> [ManuscriptDocument] {
-        switch scope {
-        case .selection:
-            guard let selection,
-                  !selection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-                throw WritingAIError.emptySelection
-            }
-            return [ManuscriptDocument(relativePath: selectedChapterPath ?? "Selection", title: "Selection", text: selection)]
-        case .chapter:
-            return [ManuscriptDocument(
-                relativePath: selectedChapterPath ?? "Chapter",
-                title: selectedChapterTitle,
-                text: text
-            )]
-        case .manuscript:
-            return try manuscriptDocuments()
-        }
-    }
-
-    func manuscriptAIContext() throws -> String {
-        ManuscriptAnalyzer.context(
-            documents: try manuscriptDocuments(),
-            report: manuscriptReportText,
-            bible: bibleText
-        )
-    }
-
-    func applyAIReport(_ response: AIManuscriptMarkdownResponse, provider: AIProvider, model: String) {
-        guard let rootURL, let manifest else { return }
-        do {
-            let ai = """
-            ## AI-Deepened Editorial Notes
-
-            > Generated on request with \(provider.title) · \(model). \(response.summary)
-
-            \(response.markdown.trimmingCharacters(in: .whitespacesAndNewlines))
-            """
-            manuscriptCache.aiReportMarkdown = ai
-            try ManuscriptProjectDisk.saveCache(manuscriptCache, at: rootURL)
-            let current = (try? ManuscriptProjectDisk.loadReport(at: rootURL)) ?? manuscriptReportText
-            let local = manuscriptAnalysis?.reportMarkdown ?? "## Local Analysis\n\nWaiting for the next local analysis."
-            manuscriptReportText = ManuscriptReportManager.compose(
-                current: current,
-                localReport: local,
-                aiMarkdown: ai,
-                projectName: manifest.name,
-                kind: manifest.kind
-            )
-            try ManuscriptProjectDisk.saveReport(manuscriptReportText, at: rootURL)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func applyAIBible(_ response: AIManuscriptMarkdownResponse, provider: AIProvider, model: String) {
-        let updated = ManuscriptBibleManager.addingAIDeepening(
-            response.markdown,
-            to: bibleText,
-            provider: provider.title,
-            model: model
-        )
-        applyBibleUpdate(updated, reason: "Before AI Bible deepening", summary: response.summary, forceSnapshot: true)
-    }
-
-    func recordStyleDecision(action: StyleDecisionAction, issue: WritingIssue) {
-        guard let rootURL else { return }
-        do {
-            try ProjectStyleManager.record(action: action, issue: issue, at: rootURL)
-            styleText = try ProjectStyleManager.loadStyle(at: rootURL)
-            styleDecisions = try ProjectStyleManager.loadDecisions(at: rootURL)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func clearLearnedStylePreferences() {
-        guard let rootURL else { return }
-        do {
-            try ProjectStyleManager.clearLearnedPreferences(at: rootURL)
-            styleText = try ProjectStyleManager.loadStyle(at: rootURL)
-            styleDecisions = try ProjectStyleManager.loadDecisions(at: rootURL)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func createSnapshot(name: String?, reason: String) {
-        guard let rootURL, let selectedChapterPath else { return }
-        do {
-            if let snapshot = try WritingProjectDisk.createSnapshot(
-                chapterPath: selectedChapterPath,
-                content: text,
-                name: name,
-                reason: reason,
-                at: rootURL
-            ) {
-                snapshots.insert(snapshot, at: 0)
-            }
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func prepareForProgrammaticEdit(reason: String) {
-        createSnapshot(name: nil, reason: reason)
-        hasCapturedEditingBaseline = true
-    }
-
-    func content(for snapshot: ProjectSnapshot) throws -> String {
-        guard let rootURL else { return "" }
-        return try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
-    }
-
-    func currentContent(for chapterPath: String) throws -> String {
-        if chapterPath == ManuscriptProjectDisk.bibleFileName { return bibleText }
-        if chapterPath == ManuscriptProjectDisk.reportFileName { return manuscriptReportText }
-        if chapterPath == selectedChapterPath { return text }
-        guard let rootURL else { return "" }
-        return try WritingProjectDisk.readChapter(chapterPath, at: rootURL)
-    }
-
-    func restore(_ snapshot: ProjectSnapshot) {
-        guard let rootURL else { return }
-        do {
-            if snapshot.chapterPath == ManuscriptProjectDisk.bibleFileName {
-                let restored = try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
-                applyBibleUpdate(
-                    restored,
-                    reason: "Before restoring \(snapshot.name)",
-                    summary: "Restored Bible snapshot “\(snapshot.name)”.",
-                    forceSnapshot: true
-                )
-                return
-            }
-            if selectedChapterPath != snapshot.chapterPath {
-                saveNow()
-                try loadChapter(snapshot.chapterPath)
-            }
-            createSnapshot(name: nil, reason: "Before restoring \(snapshot.name)")
-            let restored = try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
-            text = restored
-            isDirty = true
-            hasCapturedEditingBaseline = true
-            updateSelectedChapterStatistics()
-            saveNow()
-            scheduleManuscriptAnalysis(immediately: true)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func search(_ query: String) {
-        searchTask?.cancel()
-        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty, let rootURL else {
-            searchResults = []
-            isSearching = false
-            return
-        }
-        saveNow()
-        let chapterSnapshot = chapters
-        isSearching = true
-        searchTask = Task { [weak self] in
-            try? await Task.sleep(for: .milliseconds(180))
-            guard !Task.isCancelled else { return }
-            do {
-                let results = try await Task.detached(priority: .userInitiated) {
-                    try WritingProjectDisk.search(trimmed, chapters: chapterSnapshot, at: rootURL)
-                }.value
-                guard !Task.isCancelled else { return }
-                self?.searchResults = results
-                self?.isSearching = false
-            } catch {
-                self?.searchResults = []
-                self?.isSearching = false
-                self?.errorMessage = error.localizedDescription
-            }
-        }
-    }
-
-    private func scheduleSave() {
-        saveTask?.cancel()
-        saveTask = Task { [weak self] in
-            try? await Task.sleep(for: .milliseconds(350))
-            guard !Task.isCancelled else { return }
-            self?.saveNow()
-        }
-    }
-
-    private func scheduleBibleSave() {
-        bibleSaveTask?.cancel()
-        bibleSaveTask = Task { [weak self] in
-            try? await Task.sleep(for: .milliseconds(450))
-            guard !Task.isCancelled else { return }
-            self?.saveBibleNow()
-        }
-    }
-
     private func scheduleOutlineSave() {
         outlineSaveTask?.cancel()
         outlineSaveTask = Task { [weak self] in
@@ -1505,6 +1372,205 @@ final class WritingProjectStore: ObservableObject {
         }
     }
 
+    // MARK: - Bible
+
+    func updateBibleText(_ value: String) {
+        guard isOpen, value != bibleText else { return }
+        if !hasCapturedBibleEditingBaseline {
+            createBibleSnapshot(content: bibleText, reason: "Before editing Bible")
+            hasCapturedBibleEditingBaseline = true
+        }
+        bibleText = value
+        scheduleBibleSave()
+    }
+
+    func saveBibleNow() {
+        bibleSaveTask?.cancel()
+        guard let rootURL else { return }
+        do {
+            try ManuscriptProjectDisk.saveBible(bibleText, at: rootURL)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func applyBibleUpdate(
+        _ updated: String,
+        reason: String,
+        summary: String,
+        forceSnapshot: Bool
+    ) {
+        guard updated != bibleText else { return }
+        let previous = bibleText
+        if forceSnapshot { createBibleSnapshot(content: previous, reason: reason) }
+        registerBibleUndo(previous: previous, updated: updated, actionName: "Update Project Bible")
+        bibleText = updated
+        saveBibleNow()
+        lastBibleUpdate = BibleUpdateNotice(
+            createdAt: Date(),
+            summary: summary,
+            previousText: previous,
+            updatedText: updated,
+            diff: RevisionDiff.compare(old: previous, new: updated)
+        )
+    }
+
+    private func registerBibleUndo(previous: String, updated: String, actionName: String) {
+        projectUndoManager?.registerUndo(withTarget: self) { target in
+            target.restoreBibleForUndo(previous, inverse: updated, actionName: actionName)
+        }
+        projectUndoManager?.setActionName(actionName)
+    }
+
+    private func restoreBibleForUndo(_ value: String, inverse: String, actionName: String) {
+        projectUndoManager?.registerUndo(withTarget: self) { target in
+            target.restoreBibleForUndo(inverse, inverse: value, actionName: actionName)
+        }
+        projectUndoManager?.setActionName(actionName)
+        let previous = bibleText
+        bibleText = value
+        saveBibleNow()
+        lastBibleUpdate = BibleUpdateNotice(
+            createdAt: Date(),
+            summary: "Restored the previous Bible text with Undo.",
+            previousText: previous,
+            updatedText: value,
+            diff: RevisionDiff.compare(old: previous, new: value)
+        )
+    }
+
+    private func createBibleSnapshot(content: String, reason: String) {
+        guard let rootURL else { return }
+        do {
+            if let snapshot = try WritingProjectDisk.createSnapshot(
+                chapterPath: ManuscriptProjectDisk.bibleFileName,
+                content: content,
+                name: nil,
+                reason: reason,
+                at: rootURL
+            ) {
+                snapshots.insert(snapshot, at: 0)
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func bibleChangeSummary(old: String, new: String) -> String {
+        let diff = RevisionDiff.compare(old: old, new: new)
+        let added = diff.filter { $0.kind == .added }.count
+        let removed = diff.filter { $0.kind == .removed }.count
+        if removed == 0 { return "Added \(added) locally tracked Bible \(added == 1 ? "line" : "lines")." }
+        return "Updated the local Bible: \(added) added and \(removed) removed \(added + removed == 1 ? "line" : "lines")."
+    }
+
+    private func scheduleBibleSave() {
+        bibleSaveTask?.cancel()
+        bibleSaveTask = Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(450))
+            guard !Task.isCancelled else { return }
+            self?.saveBibleNow()
+        }
+    }
+
+    // MARK: - Beta Readers
+
+    func addCustomBetaReader(name: String, focus: String, audience: BetaReaderAudience) {
+        let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanFocus = focus.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !cleanName.isEmpty, !cleanFocus.isEmpty else { return }
+        customBetaReaders.append(BetaReaderProfile(name: cleanName, focus: cleanFocus, audience: audience))
+        saveCustomBetaReaders()
+    }
+
+    func updateCustomBetaReader(_ reader: BetaReaderProfile) {
+        guard !reader.isBuiltIn,
+              let index = customBetaReaders.firstIndex(where: { $0.id == reader.id }) else { return }
+        customBetaReaders[index] = reader
+        saveCustomBetaReaders()
+    }
+
+    func removeCustomBetaReader(_ reader: BetaReaderProfile) {
+        guard !reader.isBuiltIn else { return }
+        customBetaReaders.removeAll { $0.id == reader.id }
+        saveCustomBetaReaders()
+    }
+
+    func documents(for scope: BetaReaderScope, selection: String?) throws -> [ManuscriptDocument] {
+        switch scope {
+        case .selection:
+            guard let selection,
+                  !selection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                throw WritingAIError.emptySelection
+            }
+            return [ManuscriptDocument(relativePath: selectedChapterPath ?? "Selection", title: "Selection", text: selection)]
+        case .chapter:
+            return [ManuscriptDocument(
+                relativePath: selectedChapterPath ?? "Chapter",
+                title: selectedChapterTitle,
+                text: text
+            )]
+        case .manuscript:
+            return try manuscriptDocuments()
+        }
+    }
+
+    private func saveCustomBetaReaders() {
+        guard let rootURL else { return }
+        do {
+            try ManuscriptProjectDisk.saveCustomBetaReaders(customBetaReaders, at: rootURL)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    // MARK: - Manuscript AI & Report
+
+    func manuscriptAIContext() throws -> String {
+        ManuscriptAnalyzer.context(
+            documents: try manuscriptDocuments(),
+            report: manuscriptReportText,
+            bible: bibleText
+        )
+    }
+
+    func applyAIReport(_ response: AIManuscriptMarkdownResponse, provider: AIProvider, model: String) {
+        guard let rootURL, let manifest else { return }
+        do {
+            let ai = """
+            ## AI-Deepened Editorial Notes
+
+            > Generated on request with \(provider.title) · \(model). \(response.summary)
+
+            \(response.markdown.trimmingCharacters(in: .whitespacesAndNewlines))
+            """
+            manuscriptCache.aiReportMarkdown = ai
+            try ManuscriptProjectDisk.saveCache(manuscriptCache, at: rootURL)
+            let current = (try? ManuscriptProjectDisk.loadReport(at: rootURL)) ?? manuscriptReportText
+            let local = manuscriptAnalysis?.reportMarkdown ?? "## Local Analysis\n\nWaiting for the next local analysis."
+            manuscriptReportText = ManuscriptReportManager.compose(
+                current: current,
+                localReport: local,
+                aiMarkdown: ai,
+                projectName: manifest.name,
+                kind: manifest.kind
+            )
+            try ManuscriptProjectDisk.saveReport(manuscriptReportText, at: rootURL)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func applyAIBible(_ response: AIManuscriptMarkdownResponse, provider: AIProvider, model: String) {
+        let updated = ManuscriptBibleManager.addingAIDeepening(
+            response.markdown,
+            to: bibleText,
+            provider: provider.title,
+            model: model
+        )
+        applyBibleUpdate(updated, reason: "Before AI Bible deepening", summary: response.summary, forceSnapshot: true)
+    }
+
     private func scheduleManuscriptAnalysis(immediately: Bool = false) {
         manuscriptAnalysisTask?.cancel()
         guard let rootURL, let manifest else { return }
@@ -1647,58 +1713,15 @@ final class WritingProjectStore: ObservableObject {
         }
     }
 
-    private func applyBibleUpdate(
-        _ updated: String,
-        reason: String,
-        summary: String,
-        forceSnapshot: Bool
-    ) {
-        guard updated != bibleText else { return }
-        let previous = bibleText
-        if forceSnapshot { createBibleSnapshot(content: previous, reason: reason) }
-        registerBibleUndo(previous: previous, updated: updated, actionName: "Update Project Bible")
-        bibleText = updated
-        saveBibleNow()
-        lastBibleUpdate = BibleUpdateNotice(
-            createdAt: Date(),
-            summary: summary,
-            previousText: previous,
-            updatedText: updated,
-            diff: RevisionDiff.compare(old: previous, new: updated)
-        )
-    }
+    // MARK: - Snapshots
 
-    private func registerBibleUndo(previous: String, updated: String, actionName: String) {
-        projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.restoreBibleForUndo(previous, inverse: updated, actionName: actionName)
-        }
-        projectUndoManager?.setActionName(actionName)
-    }
-
-    private func restoreBibleForUndo(_ value: String, inverse: String, actionName: String) {
-        projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.restoreBibleForUndo(inverse, inverse: value, actionName: actionName)
-        }
-        projectUndoManager?.setActionName(actionName)
-        let previous = bibleText
-        bibleText = value
-        saveBibleNow()
-        lastBibleUpdate = BibleUpdateNotice(
-            createdAt: Date(),
-            summary: "Restored the previous Bible text with Undo.",
-            previousText: previous,
-            updatedText: value,
-            diff: RevisionDiff.compare(old: previous, new: value)
-        )
-    }
-
-    private func createBibleSnapshot(content: String, reason: String) {
-        guard let rootURL else { return }
+    func createSnapshot(name: String?, reason: String) {
+        guard let rootURL, let selectedChapterPath else { return }
         do {
             if let snapshot = try WritingProjectDisk.createSnapshot(
-                chapterPath: ManuscriptProjectDisk.bibleFileName,
-                content: content,
-                name: nil,
+                chapterPath: selectedChapterPath,
+                content: text,
+                name: name,
                 reason: reason,
                 at: rootURL
             ) {
@@ -1709,65 +1732,82 @@ final class WritingProjectStore: ObservableObject {
         }
     }
 
-    private func bibleChangeSummary(old: String, new: String) -> String {
-        let diff = RevisionDiff.compare(old: old, new: new)
-        let added = diff.filter { $0.kind == .added }.count
-        let removed = diff.filter { $0.kind == .removed }.count
-        if removed == 0 { return "Added \(added) locally tracked Bible \(added == 1 ? "line" : "lines")." }
-        return "Updated the local Bible: \(added) added and \(removed) removed \(added + removed == 1 ? "line" : "lines")."
+    func prepareForProgrammaticEdit(reason: String) {
+        createSnapshot(name: nil, reason: reason)
+        hasCapturedEditingBaseline = true
     }
 
-    private func saveCustomBetaReaders() {
+    func content(for snapshot: ProjectSnapshot) throws -> String {
+        guard let rootURL else { return "" }
+        return try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
+    }
+
+    func currentContent(for chapterPath: String) throws -> String {
+        if chapterPath == ManuscriptProjectDisk.bibleFileName { return bibleText }
+        if chapterPath == ManuscriptProjectDisk.reportFileName { return manuscriptReportText }
+        if chapterPath == selectedChapterPath { return text }
+        guard let rootURL else { return "" }
+        return try WritingProjectDisk.readChapter(chapterPath, at: rootURL)
+    }
+
+    func restore(_ snapshot: ProjectSnapshot) {
         guard let rootURL else { return }
         do {
-            try ManuscriptProjectDisk.saveCustomBetaReaders(customBetaReaders, at: rootURL)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    private func loadChapter(_ relativePath: String?) throws {
-        guard let relativePath,
-              chapters.contains(where: { $0.relativePath == relativePath }),
-              let rootURL else { throw WritingProjectError.noMarkdownFiles }
-        selectedChapterPath = relativePath
-        text = try WritingProjectDisk.readChapter(relativePath, at: rootURL)
-        isDirty = false
-        hasCapturedEditingBaseline = false
-        var updatedManifest = manifest
-        updatedManifest?.lastOpenedChapter = relativePath
-        if let updatedManifest {
-            try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
-            manifest = updatedManifest
-        }
-    }
-
-    private func updateSelectedChapterStatistics() {
-        guard let selectedChapterPath,
-              let index = chapters.firstIndex(where: { $0.relativePath == selectedChapterPath }) else { return }
-        let fallback = URL(fileURLWithPath: selectedChapterPath).deletingPathExtension().lastPathComponent
-        let title = text.components(separatedBy: .newlines)
-            .first(where: { $0.trimmingCharacters(in: .whitespaces).hasPrefix("# ") })?
-            .trimmingCharacters(in: .whitespaces)
-            .dropFirst(2)
-        chapters[index] = ProjectChapter(
-            relativePath: selectedChapterPath,
-            title: title.map(String.init).flatMap { $0.isEmpty ? nil : $0 } ?? fallback,
-            wordCount: WritingProjectDisk.wordCount(in: text)
-        )
-    }
-
-    private func persistChapterOrder() {
-        guard let rootURL else { return }
-        do {
-            var updatedManifest = manifest
-            updatedManifest?.chapterOrder = chapters.map(\.relativePath)
-            if let updatedManifest {
-                try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
-                manifest = updatedManifest
+            if snapshot.chapterPath == ManuscriptProjectDisk.bibleFileName {
+                let restored = try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
+                applyBibleUpdate(
+                    restored,
+                    reason: "Before restoring \(snapshot.name)",
+                    summary: "Restored Bible snapshot “\(snapshot.name)”.",
+                    forceSnapshot: true
+                )
+                return
             }
+            if selectedChapterPath != snapshot.chapterPath {
+                saveNow()
+                try loadChapter(snapshot.chapterPath)
+            }
+            createSnapshot(name: nil, reason: "Before restoring \(snapshot.name)")
+            let restored = try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
+            text = restored
+            isDirty = true
+            hasCapturedEditingBaseline = true
+            updateSelectedChapterStatistics()
+            saveNow()
+            scheduleManuscriptAnalysis(immediately: true)
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    // MARK: - Search
+
+    func search(_ query: String) {
+        searchTask?.cancel()
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, let rootURL else {
+            searchResults = []
+            isSearching = false
+            return
+        }
+        saveNow()
+        let chapterSnapshot = chapters
+        isSearching = true
+        searchTask = Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(180))
+            guard !Task.isCancelled else { return }
+            do {
+                let results = try await Task.detached(priority: .userInitiated) {
+                    try WritingProjectDisk.search(trimmed, chapters: chapterSnapshot, at: rootURL)
+                }.value
+                guard !Task.isCancelled else { return }
+                self?.searchResults = results
+                self?.isSearching = false
+            } catch {
+                self?.searchResults = []
+                self?.isSearching = false
+                self?.errorMessage = error.localizedDescription
+            }
         }
     }
 }
