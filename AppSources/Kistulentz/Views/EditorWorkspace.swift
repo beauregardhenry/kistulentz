@@ -148,13 +148,18 @@ struct EditorWorkspace: View {
         }
     }
 
-    private var lifecycleConfiguredView: some View {
+    // Split from `lifecycleConfiguredView` so neither half chains too many modifiers onto
+    // `editorLayout` for the type checker to resolve as one expression. Splitting a chain like
+    // this into separate `some View` stages doesn't change what any modifier does or when it
+    // fires relative to the others — only how the compiler resolves the type of the expression.
+    private var textReactiveConfiguredView: some View {
         editorLayout
         .background(Color(nsColor: .windowBackgroundColor))
         .navigationTitle(projectStore.isOpen ? projectStore.projectName : (fileURL?.lastPathComponent ?? "Untitled.md"))
         .onAppear {
             projectStore.attachUndoManager(undoManager)
             viewModel.configureDocument(url: activeFileURL, text: activeText)
+            viewModel.updateStyleDecisions(projectStore.styleDecisions)
             configureDraftRecovery()
             viewModel.scheduleAnalysis(
                 text: activeText,
@@ -162,6 +167,9 @@ struct EditorWorkspace: View {
                 immediately: true
             )
             presentStartupIfNeeded()
+        }
+        .onChange(of: projectStore.styleDecisions) { _, newValue in
+            viewModel.updateStyleDecisions(newValue)
         }
         .onChange(of: document.text) { _, newValue in
             if !projectStore.isOpen {
@@ -175,6 +183,10 @@ struct EditorWorkspace: View {
                 draftRecoveryCoordinator.schedule(text: newValue)
             }
         }
+    }
+
+    private var lifecycleConfiguredView: some View {
+        textReactiveConfiguredView
         .onChange(of: projectStore.selectedFileURL) { _, newValue in
             guard projectStore.isOpen else { return }
             editorSelection = NSRange(location: 0, length: 0)

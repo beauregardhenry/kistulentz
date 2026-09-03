@@ -24,6 +24,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Previewed level-two-heading splitting into Scene or Section Markdown files, with snapshots and normal macOS Undo
 - Previewed physical file organization that retains filenames by default, allows destination edits, blocks conflicts, snapshots affected files, and supports Undo
 - A project-local, editable `Kistulentz Style.md` that learns from accepted and declined suggestions and safely informs later Local Polish reviews
+- Advisory-only flags (AI-tell phrasing, adverbs, passive voice, and similar) that stop appearing in that project, live and in Local Polish, once the same rule has been declined there a couple of times — recorded in `Kistulentz Style.md` under "No longer flagged in this project," and reversible with **Clear Learned Preferences**
 - An automatically updated, local `Kistulentz Manuscript Report.md` covering structure, pacing, continuity, people and characters, evidence, readability, repetition, voice, and priorities
 - An editable `Kistulentz Bible.md` that tracks names, places, organizations, terminology, timeline markers, and chapter facts while preserving author corrections and manual notes
 - Bible change summaries, normal macOS Undo, and persistent pre-update snapshots in Revision History

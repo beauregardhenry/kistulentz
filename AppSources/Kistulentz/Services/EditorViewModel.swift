@@ -17,6 +17,7 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var isRewriting = false
     @Published var rewritePresentation: SelectionRewritePresentation?
     @Published private(set) var dismissedSuggestions: [DismissedSuggestion] = []
+    @Published private(set) var styleDecisions: [ProjectStyleDecision] = []
     @Published var errorMessage: String?
     @Published var focusRequest: FocusRequest?
 
@@ -45,9 +46,12 @@ final class EditorViewModel: ObservableObject {
     }
 
     var allIssues: [WritingIssue] {
-        (analysis.issues + systemIssues + referenceAlignment.issues + aiIssues)
-            .filter { !isDismissed($0) }
-            .sorted {
+        ProjectStyleManager.filteringLearnedSuppressions(
+            analysis.issues + systemIssues + referenceAlignment.issues + aiIssues,
+            decisions: styleDecisions
+        )
+        .filter { !isDismissed($0) }
+        .sorted {
             if $0.range.location == $1.range.location {
                 return $0.range.length > $1.range.length
             }
@@ -56,7 +60,18 @@ final class EditorViewModel: ObservableObject {
     }
 
     var visibleLocalIssues: [WritingIssue] {
-        (analysis.issues + systemIssues).filter { !isDismissed($0) }
+        ProjectStyleManager.filteringLearnedSuppressions(
+            analysis.issues + systemIssues,
+            decisions: styleDecisions
+        ).filter { !isDismissed($0) }
+    }
+
+    /// Keeps the live editor's advisory suppression in sync with the project's learned decisions.
+    /// Called whenever a project opens and whenever `WritingProjectStore.styleDecisions` changes
+    /// (immediately after each accept/decline), so a threshold crossed by the decline that just
+    /// happened hides the rest of that pattern in this document right away, not on the next edit.
+    func updateStyleDecisions(_ decisions: [ProjectStyleDecision]) {
+        styleDecisions = decisions
     }
 
     func configureDocument(url: URL?, text: String) {

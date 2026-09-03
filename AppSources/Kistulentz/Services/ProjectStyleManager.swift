@@ -1,9 +1,29 @@
 import Foundation
 
+/// Identifies one advisory *rule*, not one flagged instance: a check's category plus its fixed
+/// message text (e.g. `.aiTell` + "actually is appearing more often than..."). Two different
+/// sentences flagged by the same check share this key even though their excerpts differ, which is
+/// what lets a project learn "stop flagging this kind of thing here" from repeated declines
+/// instead of only ever recognizing one exact sentence again.
+///
+/// This only makes sense for checks whose `message` is a fixed string per rule, not one built from
+/// the flagged text (a hard-coded word count, for instance). Every advisory check in `AITellEngine`
+/// and `ReadabilityEngine`'s adverb/passive-voice checks already satisfy that; the two sentence-
+/// length checks do not, so they simply never accumulate enough matching decisions to be
+/// suppressed this way — the existing per-instance dismissal still applies to those.
+struct AdvisoryPattern: Hashable {
+    let category: IssueCategory
+    let message: String
+}
+
 enum ProjectStyleManager {
     private static let decisionsFileName = "style-decisions.json"
     private static let startMarker = "<!-- KISTULENTZ LEARNED PREFERENCES START -->"
     private static let endMarker = "<!-- KISTULENTZ LEARNED PREFERENCES END -->"
+
+    /// Declining the same advisory rule this many times in one project reads as a standing
+    /// preference for that manuscript, not a one-off judgment call about a single sentence.
+    static let advisorySuppressionThreshold = 2
 
     static func prepare(at root: URL, projectName: String, kind: WritingProjectKind) throws {
         let url = WritingProjectDisk.styleURL(at: root)
@@ -64,6 +84,7 @@ enum ProjectStyleManager {
         }) {
             archive.decisions[index].count += 1
             archive.decisions[index].lastUsedAt = now
+            archive.decisions[index].message = issue.message
         } else {
             archive.decisions.append(ProjectStyleDecision(
                 action: action,
@@ -71,7 +92,8 @@ enum ProjectStyleManager {
                 excerpt: issue.excerpt,
                 replacement: issue.replacement,
                 count: 1,
-                lastUsedAt: now
+                lastUsedAt: now,
+                message: issue.message
             ))
         }
         try saveArchive(archive, at: root)
@@ -85,6 +107,41 @@ enum ProjectStyleManager {
 
     static func loadDecisions(at root: URL) throws -> [ProjectStyleDecision] {
         try loadArchive(at: root).decisions
+    }
+
+    /// The advisory rules this project has learned to stop flagging: every `(category, message)`
+    /// pair whose declined-count sums to at least `threshold` across this project's history.
+    /// Accepted decisions never contribute here — an advisory issue (no `replacement`) can only
+    /// ever be declined or left alone, never "accepted" the way a concrete replacement can.
+    static func suppressedAdvisoryPatterns(
+        in decisions: [ProjectStyleDecision],
+        threshold: Int = advisorySuppressionThreshold
+    ) -> Set<AdvisoryPattern> {
+        var counts: [AdvisoryPattern: Int] = [:]
+        for decision in decisions where decision.action == .declined && decision.replacement == nil {
+            guard let message = decision.message else { continue }
+            let pattern = AdvisoryPattern(category: decision.category, message: message)
+            counts[pattern, default: 0] += decision.count
+        }
+        return Set(counts.filter { $0.value >= threshold }.keys)
+    }
+
+    /// Removes advisory issues (no `replacement`) whose rule this project has learned to
+    /// suppress, from locally-sourced issues only. Concrete-replacement issues are untouched here —
+    /// those already have their own, finer-grained excerpt-level learning in `LocalPolishService`.
+    /// AI-sourced issues are untouched too: an AI review's phrasing varies run to run, so it has no
+    /// fixed `message` to match against a learned rule.
+    static func filteringLearnedSuppressions(
+        _ issues: [WritingIssue],
+        decisions: [ProjectStyleDecision]
+    ) -> [WritingIssue] {
+        guard !decisions.isEmpty else { return issues }
+        let suppressed = suppressedAdvisoryPatterns(in: decisions)
+        guard !suppressed.isEmpty else { return issues }
+        return issues.filter { issue in
+            guard issue.source == .local, issue.replacement == nil else { return true }
+            return !suppressed.contains(AdvisoryPattern(category: issue.category, message: issue.message))
+        }
     }
 
     private static func render(_ archive: ProjectStyleDecisionArchive, at root: URL) throws {
@@ -128,6 +185,14 @@ enum ProjectStyleManager {
                 lines.append("- Allow `\(excerpt)` despite the \(decision.category.title.lowercased()) flag (declined \(count)).")
             case (.accepted, .none):
                 break
+            }
+        }
+
+        let suppressed = suppressedAdvisoryPatterns(in: archive.decisions)
+        if !suppressed.isEmpty {
+            lines += ["", "### No longer flagged in this project", ""]
+            for pattern in suppressed.sorted(by: { $0.message < $1.message }) {
+                lines.append("- \(pattern.category.title): \(inline(pattern.message))")
             }
         }
         return lines.joined(separator: "\n")

@@ -96,6 +96,11 @@ struct ProjectStyleDecision: Codable, Equatable {
     let replacement: String?
     var count: Int
     var lastUsedAt: Date
+    /// The flagging issue's fixed rule text at the time of this decision (e.g. an `AITellEngine`
+    /// check's constant `message`), not anything derived from the flagged excerpt itself. Optional
+    /// so archives written before this field existed still decode: `nil` simply means this decision
+    /// predates pattern-level learning and only counts toward the older excerpt-exact matching.
+    var message: String? = nil
 }
 
 struct ProjectStyleDecisionArchive: Codable, Equatable {
