@@ -23,7 +23,7 @@ Pull requests and pushes to `main` run the same SwiftPM tests in CI, check the c
 
 ## Test coverage
 
-Line coverage over `Models/` and `Services/` only moves up. CI measures it after the tests and fails when it drops below the floor in [coverage-baseline.txt](coverage-baseline.txt), so a change that adds untested logic has to account for it rather than quietly diluting the suite. `Views/` is excluded: SwiftUI view bodies are about a third of the source and are exercised by the separate macOS UI regression job, which never reaches this profile.
+Line coverage over the app sources only moves up. CI measures it after the tests and fails when it drops below the floor in [coverage-baseline.txt](coverage-baseline.txt), so a change that adds untested logic has to account for it rather than quietly diluting the suite. `Views/` is excluded: SwiftUI view bodies are about a third of the source and are exercised by the separate macOS UI regression job, which never reaches this profile.
 
 ```sh
 swift test --enable-code-coverage --disable-sandbox

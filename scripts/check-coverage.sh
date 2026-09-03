@@ -1,13 +1,15 @@
 #!/bin/zsh
 set -euo pipefail
 
-# Test coverage only ratchets one way. This measures line coverage over the logic targets and
-# fails when it slips below the number recorded in coverage-baseline.txt, so a change that adds
-# untested code has to say so out loud instead of quietly diluting the suite.
+# Test coverage only ratchets one way. This measures line coverage over the app sources and fails
+# when it slips below the number recorded in coverage-baseline.txt, so a change that adds untested
+# code has to say so out loud instead of quietly diluting the suite.
 #
 # Views/ is excluded on purpose: SwiftUI view bodies are ~a third of the source and are exercised
 # by the Xcode UI tests, which run in a separate job and never reach this profile. Counting them
 # here would swamp the signal from Models/ and Services/ with code this suite cannot touch.
+# App/ stays in even though the @main entry point is untestable the same way; at ~180 lines it is
+# a constant drag on the number, not a growing one, and excluding it invites excluding more.
 #
 #   ./scripts/check-coverage.sh            measure and enforce the baseline
 #   ./scripts/check-coverage.sh --update   measure and rewrite the baseline (commit the result)
@@ -80,7 +82,7 @@ percent="$(print -r -- "$measured" | head -1 | cut -d" " -f1)"
 covered="$(print -r -- "$measured" | head -1 | cut -d" " -f2)"
 total_lines="$(print -r -- "$measured" | head -1 | cut -d" " -f3)"
 
-print "Line coverage (Models + Services): ${percent}% (${covered}/${total_lines} lines)"
+print "Line coverage (app sources outside Views/): ${percent}% (${covered}/${total_lines} lines)"
 print "Least-covered files:"
 print -r -- "$measured" | tail -n +2 | while IFS=$'\t' read -r file pct count; do
     printf "  %5s%%  %5s lines  %s\n" "$pct" "$count" "${file#$PROJECT_ROOT/}"
@@ -88,7 +90,7 @@ done
 
 if (( update_baseline )); then
     cat > "$BASELINE_FILE" <<BASELINE
-# Line coverage floor for Models/ and Services/, enforced by scripts/check-coverage.sh.
+# Line coverage floor for the app sources outside Views/, enforced by scripts/check-coverage.sh.
 # Raise it when coverage climbs; lower it only deliberately, with a reason in the commit.
 $percent
 BASELINE

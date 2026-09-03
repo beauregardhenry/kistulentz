@@ -1,7 +1,3 @@
-# Line coverage floor for Models/ and Services/, enforced by scripts/check-coverage.sh.
+# Line coverage floor for the app sources outside Views/, enforced by scripts/check-coverage.sh.
 # Raise it when coverage climbs; lower it only deliberately, with a reason in the commit.
-#
-# No number recorded yet: the first CI run reports the measured coverage without enforcing it.
-# Read it from the "Check the coverage ratchet" step, or run
-#   ./scripts/check-coverage.sh --update
-# locally, and commit the result to arm the ratchet.
+71.16
