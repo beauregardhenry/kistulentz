@@ -85,7 +85,8 @@ final class KistulentzUITests: XCTestCase {
 
         let title = app.staticTexts["De-stink Review"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["weighted findings / 1,000 words"].waitForExistence(timeout: 5))
+        let score = app.descendants(matching: .any)["DestinkScoreSummary"].firstMatch
+        XCTAssertTrue(score.waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Review only: this screen never changes your prose."].exists)
 
         app.buttons["Done"].click()

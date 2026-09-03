@@ -145,6 +145,9 @@ struct DestinkView: View {
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("De-stink score \(report.score.formatted(.number.precision(.fractionLength(1)))) weighted findings per one thousand words")
+            // Combining the children hides the two Texts from the accessibility tree, so the UI
+            // test has to find the score through this identifier rather than the visible strings.
+            .accessibilityIdentifier("DestinkScoreSummary")
 
             Divider().frame(height: 46)
 
