@@ -42,4 +42,4 @@ Use this checklist for every staged release. Do not publish when a data-loss, ac
 - Export and inspect the privacy-safe diagnostic report
 - Validate EPUB with EPUBCheck when installed and perform the documented external/manual checks
 - Verify release notes describe limitations, ad-hoc signing, Sequoia requirement, and lack of automatic updates
-- Create the annotated version tag from the verified commit, upload DMG, ZIP, and checksums, then verify the public release assets
+- Create and push the annotated version tag from the verified commit, confirm the release workflow publishes the DMG, ZIP, and checksums, then download and verify the public release assets
