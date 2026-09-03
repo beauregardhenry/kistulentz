@@ -18,7 +18,10 @@ enum LocalPolishService {
             guard decision.action == .declined, let replacement = decision.replacement else { return nil }
             return StyleReplacement(excerpt: decision.excerpt, replacement: replacement)
         })
-        let baseIssues = suppliedIssues ?? ReadabilityEngine.analyze(text, targetGrade: targetGrade).issues
+        let baseIssues = ProjectStyleManager.filteringLearnedSuppressions(
+            suppliedIssues ?? ReadabilityEngine.analyze(text, targetGrade: targetGrade).issues,
+            decisions: styleDecisions
+        )
         let issues = baseIssues.filter { issue in
             guard let replacement = issue.replacement else { return true }
             return !declinedPairs.contains(StyleReplacement(excerpt: issue.excerpt, replacement: replacement))

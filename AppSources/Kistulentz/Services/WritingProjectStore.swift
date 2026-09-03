@@ -9,6 +9,7 @@ final class WritingProjectStore: ObservableObject {
     @Published private(set) var selectedChapterPath: String?
     @Published private(set) var text = ""
     @Published private(set) var styleText = ""
+    @Published private(set) var styleDecisions: [ProjectStyleDecision] = []
     @Published private(set) var snapshots: [ProjectSnapshot] = []
     @Published private(set) var searchResults: [ProjectSearchResult] = []
     @Published private(set) var isSearching = false
@@ -119,6 +120,7 @@ final class WritingProjectStore: ObservableObject {
             outlineNodes = loadedOutline.nodes
             try ProjectOutlineDisk.save(loadedOutline, at: root)
             styleText = try ProjectStyleManager.loadStyle(at: root)
+            styleDecisions = try ProjectStyleManager.loadDecisions(at: root)
             snapshots = try WritingProjectDisk.loadSnapshots(at: root)
             manuscriptReportText = try ManuscriptProjectDisk.loadReport(at: root)
             bibleText = try ManuscriptProjectDisk.loadBible(at: root)
@@ -184,6 +186,7 @@ final class WritingProjectStore: ObservableObject {
         selectedChapterPath = nil
         text = ""
         styleText = ""
+        styleDecisions = []
         snapshots = []
         searchResults = []
         manuscriptAnalysis = nil
@@ -1152,6 +1155,7 @@ final class WritingProjectStore: ObservableObject {
         do {
             try ProjectStyleManager.record(action: action, issue: issue, at: rootURL)
             styleText = try ProjectStyleManager.loadStyle(at: rootURL)
+            styleDecisions = try ProjectStyleManager.loadDecisions(at: rootURL)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -1162,6 +1166,7 @@ final class WritingProjectStore: ObservableObject {
         do {
             try ProjectStyleManager.clearLearnedPreferences(at: rootURL)
             styleText = try ProjectStyleManager.loadStyle(at: rootURL)
+            styleDecisions = try ProjectStyleManager.loadDecisions(at: rootURL)
         } catch {
             errorMessage = error.localizedDescription
         }
