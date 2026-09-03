@@ -38,6 +38,8 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v6
+      - name: Verify the checked-in project matches the sources
+        run: ./scripts/verify-xcode-project.sh
       - name: Run the checked-in Xcode UI test host
         run: >-
           xcodebuild -project Kistulentz.xcodeproj -scheme Kistulentz
