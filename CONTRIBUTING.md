@@ -17,9 +17,26 @@ Kistulentz requires macOS Sequoia 15 or later. Xcode 26 or newer is needed to ru
 swift test --disable-sandbox
 ```
 
-Pull requests and pushes to `main` run the same SwiftPM tests in CI, build and verify the universal application bundle, and run the bounded macOS UI regression suite.
+Pull requests and pushes to `main` run the same SwiftPM tests in CI, check the coverage ratchet, build and verify the universal application bundle, and run the bounded macOS UI regression suite.
 
 `swift test` reports `no such module 'XCTest'` when only the Command Line Tools are installed, because XCTest ships with Xcode.
+
+## Test coverage
+
+Line coverage over the app sources only moves up. CI measures it after the tests and fails when it drops below the floor in [coverage-baseline.txt](coverage-baseline.txt), so a change that adds untested logic has to account for it rather than quietly diluting the suite. `Views/` is excluded: SwiftUI view bodies are about a third of the source and are exercised by the separate macOS UI regression job, which never reaches this profile.
+
+```sh
+swift test --enable-code-coverage --disable-sandbox
+./scripts/check-coverage.sh
+```
+
+The check prints the current percentage and the five least-covered files. When coverage climbs, lock the gain in and commit the result:
+
+```sh
+./scripts/check-coverage.sh --update
+```
+
+Lowering the baseline is allowed but never incidental: do it in its own commit and say why.
 
 To build the Mac application:
 
