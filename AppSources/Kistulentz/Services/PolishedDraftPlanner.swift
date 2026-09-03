@@ -297,7 +297,7 @@ private extension IssueCategory {
     var isLocallyValidated: Bool {
         switch self {
         case .hardSentence, .veryHardSentence, .adverb, .passiveVoice,
-             .structuralComplexity, .complexPhrase, .spelling, .grammar:
+             .structuralComplexity, .complexPhrase, .aiTell, .spelling, .grammar:
             true
         case .aiSuggestion, .referenceVoice, .continuity:
             false

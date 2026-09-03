@@ -8,6 +8,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
     case passiveVoice
     case structuralComplexity
     case complexPhrase
+    case aiTell
     case spelling
     case grammar
     case aiSuggestion
@@ -24,6 +25,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .passiveVoice: "Passive voice"
         case .structuralComplexity: "Sentence structure"
         case .complexPhrase: "Simpler alternative"
+        case .aiTell: "AI-sounding phrasing"
         case .spelling: "Spelling"
         case .grammar: "Grammar"
         case .aiSuggestion: "AI suggestion"
@@ -40,6 +42,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .passiveVoice: "Passive"
         case .structuralComplexity: "Structure"
         case .complexPhrase: "Phrases"
+        case .aiTell: "AI tells"
         case .spelling: "Spelling"
         case .grammar: "Grammar"
         case .aiSuggestion: "AI"
@@ -56,6 +59,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .passiveVoice: Color(red: 0.34, green: 0.76, blue: 0.55)
         case .structuralComplexity: Color(red: 0.96, green: 0.50, blue: 0.22)
         case .complexPhrase: Color(red: 0.70, green: 0.48, blue: 0.91)
+        case .aiTell: Color(red: 0.46, green: 0.42, blue: 0.86)
         case .spelling: Color(red: 0.92, green: 0.27, blue: 0.32)
         case .grammar: Color(red: 0.25, green: 0.68, blue: 0.85)
         case .aiSuggestion: Color(red: 0.21, green: 0.63, blue: 0.58)

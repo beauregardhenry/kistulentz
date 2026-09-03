@@ -48,6 +48,7 @@ struct ReadabilityEngine {
         var issues = sentenceIssues(in: text, targetGrade: targetGrade)
         issues.append(contentsOf: regexIssues(in: text))
         issues.append(contentsOf: phraseIssues(in: text))
+        issues.append(contentsOf: AITellEngine.analyze(text))
         return AnalysisResult(stats: stats, issues: issues.sorted(by: issueSort))
     }
 
@@ -184,7 +185,9 @@ struct ReadabilityEngine {
         return replacementFirst.uppercased() + replacement.dropFirst()
     }
 
-    private static func wordMatches(in text: String) -> [String] {
+    /// Not private: `AITellEngine` reuses this so its sentence- and word-level checks stay
+    /// consistent with the rest of the readability analysis instead of re-implementing tokenization.
+    static func wordMatches(in text: String) -> [String] {
         guard let regex = try? NSRegularExpression(pattern: #"\b[A-Za-z]+(?:['’][A-Za-z]+)?\b"#) else {
             return []
         }
@@ -193,7 +196,9 @@ struct ReadabilityEngine {
         return regex.matches(in: text, range: range).map { source.substring(with: $0.range) }
     }
 
-    private static func sentenceRanges(in text: String) -> [NSRange] {
+    /// Not private: shared with `AITellEngine` so hedge-word stacking is checked against the
+    /// same sentence boundaries the rest of the engine already uses.
+    static func sentenceRanges(in text: String) -> [NSRange] {
         var ranges: [NSRange] = []
         text.enumerateSubstrings(in: text.startIndex..<text.endIndex, options: [.bySentences, .substringNotRequired]) {
             _, range, _, _ in

@@ -35,6 +35,7 @@ Kistulentz is a native, document-based Markdown editor for macOS Sequoia. It com
 - Live reading-grade estimate, word count, sentence count, and reading time
 - Background readability, reference comparison, and manuscript-wide analysis that keeps large-document work away from the interface thread
 - Color highlights for long sentences, very long sentences, adverbs, passive voice, and complex phrases
+- Local, on-device detection of AI-sounding phrasing — correlative constructions ("isn't just X, it's Y"), stock rhetorical wind-ups and openers, stacked hedge words, filler "just"/"actually," and marketing staccato triads — surfaced as advisory highlights that are never applied automatically
 - A prominent first-run prompt for the optional English Benepar pack, which turns on automatically after its confirmed local installation
 - Orange advisory sentence-structure highlights that never trigger automatic prose replacement
 - Actionable spelling and grammar cards from Apple’s built-in English writing services, with code, links, URLs, and HTML excluded
