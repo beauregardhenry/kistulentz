@@ -1,7 +1,10 @@
-name: Test release candidate
+name: Test or publish release
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "v*"
 
 permissions:
   contents: read
@@ -46,6 +49,28 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Validate the release tag and metadata
+        if: github.event_name == 'push'
+        run: |
+          if [[ "$(git cat-file -t "$GITHUB_REF_NAME")" != "tag" ]]; then
+            echo "Release tag '$GITHUB_REF_NAME' must be an annotated tag." >&2
+            exit 1
+          fi
+
+          version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' scripts/Info.plist)"
+          expected_tag="v${version}"
+          if [[ "$GITHUB_REF_NAME" != "$expected_tag" ]]; then
+            echo "Release tag '$GITHUB_REF_NAME' does not match application version '$expected_tag'." >&2
+            exit 1
+          fi
+
+          release_notes="DistributionAssets/RELEASE NOTES - Kistulentz ${version}.md"
+          if [[ ! -f "$release_notes" ]]; then
+            echo "Release notes are missing at '$release_notes'." >&2
+            exit 1
+          fi
       - name: Build ZIP, DMG, and checksums
         run: ./scripts/package-release.sh
       - name: Verify universal app and release assets
@@ -58,3 +83,31 @@ jobs:
             dist/releases/*.dmg
             dist/releases/SHA256SUMS.txt
           if-no-files-found: error
+
+  publish:
+    name: Publish GitHub release
+    if: github.event_name == 'push'
+    needs: universal-package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v8
+        with:
+          name: Kistulentz-release-candidate
+          path: dist/releases
+      - name: Create the versioned GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          release_notes="DistributionAssets/RELEASE NOTES - Kistulentz ${version}.md"
+          gh release create "$GITHUB_REF_NAME" \
+            dist/releases/*.zip \
+            dist/releases/*.dmg \
+            dist/releases/SHA256SUMS.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "Kistulentz ${version}" \
+            --notes-file "$release_notes"
