@@ -50,6 +50,21 @@ final class WritingProjectStore: ObservableObject {
     var hasCapturedBibleEditingBaseline = false
     weak var projectUndoManager: UndoManager?
 
+    // MARK: - Why the other six concerns stay combined
+    //
+    // ChaptersEditing, Outline, SystemicRevision, ManuscriptReport, Bible, and
+    // Snapshots are still part of this class, and that's deliberate, not
+    // leftover work. Unlike the 5 sub-stores below, these six are coupled by
+    // real production behavior, not just file layout: an edit cascades
+    // through manuscript analysis into an automatic Bible rewrite plus a
+    // snapshot; a file move or a revision-apply both snapshot; autosave
+    // triggers a snapshot. Splitting these into independent stores without
+    // first designing something that owns "an edit just landed" and fans it
+    // out to analysis/Bible/snapshot in the right order would just relocate
+    // the coupling, not remove it -- that coordinator design is the real next
+    // step here, not a mechanical file split. (The 5 below were split first
+    // specifically because they verified as NOT having this problem.)
+
     // MARK: - Sub-stores
     //
     // These 5 concerns were verified to be genuinely independent -- each
