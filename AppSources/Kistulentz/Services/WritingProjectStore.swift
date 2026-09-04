@@ -11,22 +11,14 @@ final class WritingProjectStore: ObservableObject {
     @Published var chapters: [ProjectChapter] = []
     @Published var selectedChapterPath: String?
     @Published var text = ""
-    @Published var styleText = ""
-    @Published var styleDecisions: [ProjectStyleDecision] = []
     @Published var snapshots: [ProjectSnapshot] = []
-    @Published var searchResults: [ProjectSearchResult] = []
-    @Published var isSearching = false
     @Published var manuscriptAnalysis: ManuscriptAnalysis?
     @Published var manuscriptReportText = ""
     @Published var bibleText = ""
     @Published var isAnalyzingManuscript = false
     @Published var lastBibleUpdate: BibleUpdateNotice?
-    @Published var customBetaReaders: [BetaReaderProfile] = []
     @Published var outlineNodes: [OutlineNode] = []
-    @Published var projectBibliography = ProjectBibliographyArchive()
-    @Published var researchNotesText = ""
     @Published var revisionArchive = SystemicRevisionArchive()
-    @Published var publicationArchive = PublicationArchive()
     @Published private(set) var lastMigrationResult: ProjectMigrationResult?
     @Published var recoveryRequest: ProjectRecoveryRequest?
     @Published var isScanningRevisions = false
@@ -40,15 +32,14 @@ final class WritingProjectStore: ObservableObject {
     // `openProject`/`closeProject` below load and reset every one of them, while
     // the section that owns each piece of day-to-day state
     // (WritingProjectStore+ChaptersEditing.swift, +Outline.swift, +Bible.swift,
-    // +ManuscriptReport.swift, +Snapshots.swift, +Search.swift) lives in its own
-    // file. Swift's `private` is file-scoped, so state used from more than one
-    // file must be at least `internal` -- still only ever touched by
-    // WritingProjectStore's own methods, nothing else in the module reaches in.
+    // +ManuscriptReport.swift, +Snapshots.swift) lives in its own file. Swift's
+    // `private` is file-scoped, so state used from more than one file must be
+    // at least `internal` -- still only ever touched by WritingProjectStore's
+    // own methods, nothing else in the module reaches in.
 
     var isDirty = false
     var hasCapturedEditingBaseline = false
     var saveTask: Task<Void, Never>?
-    var searchTask: Task<Void, Never>?
     var manuscriptAnalysisTask: Task<Void, Never>?
     var bibleSaveTask: Task<Void, Never>?
     var outlineSaveTask: Task<Void, Never>?
@@ -58,6 +49,31 @@ final class WritingProjectStore: ObservableObject {
     var hasCapturedBibleAutomaticBaseline = false
     var hasCapturedBibleEditingBaseline = false
     weak var projectUndoManager: UndoManager?
+
+    // MARK: - Sub-stores
+    //
+    // These 5 concerns were verified to be genuinely independent -- each
+    // touches nothing outside its own state beyond the project root -- and
+    // were extracted into their own ObservableObject types so views observing
+    // one of them don't re-render on unrelated store activity. Each holds a
+    // weak back-reference to this store (wired in `init()` below) for the
+    // handful of things it still legitimately needs: `rootURL`, occasionally
+    // `manifest`/`outlineNodes`, and the shared `errorMessage` sink.
+
+    let researchStore = ProjectResearchStore()
+    let publicationStore = PublicationStore()
+    let betaReadersStore = BetaReadersStore()
+    let styleLearningStore = StyleLearningStore()
+    let searchStore = SearchStore()
+
+    init() {
+        researchStore.core = self
+        publicationStore.core = self
+        publicationStore.research = researchStore
+        betaReadersStore.core = self
+        styleLearningStore.core = self
+        searchStore.core = self
+    }
 
     // MARK: - Computed Properties
 
@@ -144,19 +160,17 @@ final class WritingProjectStore: ObservableObject {
             chapters = loadedChapters
             outlineNodes = loadedOutline.nodes
             try ProjectOutlineDisk.save(loadedOutline, at: root)
-            styleText = try ProjectStyleManager.loadStyle(at: root)
-            styleDecisions = try ProjectStyleManager.loadDecisions(at: root)
+            try styleLearningStore.load(at: root)
             snapshots = try WritingProjectDisk.loadSnapshots(at: root)
             manuscriptReportText = try ManuscriptProjectDisk.loadReport(at: root)
             bibleText = try ManuscriptProjectDisk.loadBible(at: root)
             manuscriptCache = try ManuscriptProjectDisk.loadCache(at: root)
             lastStructuralAnalysisAt = nil
             lastStructuralAnalysisWordCount = 0
-            customBetaReaders = try ManuscriptProjectDisk.loadCustomBetaReaders(at: root)
-            projectBibliography = try ProjectResearchDisk.load(at: root)
-            researchNotesText = try String(contentsOf: ProjectResearchDisk.notesURL(at: root), encoding: .utf8)
+            try betaReadersStore.load(at: root)
+            try researchStore.load(at: root)
             revisionArchive = try SystemicRevisionDisk.load(at: root)
-            publicationArchive = try PublicationDisk.load(at: root)
+            try publicationStore.load(at: root)
             manuscriptAnalysis = nil
             lastBibleUpdate = nil
             hasCapturedBibleAutomaticBaseline = false
@@ -201,7 +215,7 @@ final class WritingProjectStore: ObservableObject {
         saveBibleNow()
         saveOutlineNow()
         saveTask?.cancel()
-        searchTask?.cancel()
+        searchStore.reset()
         manuscriptAnalysisTask?.cancel()
         bibleSaveTask?.cancel()
         outlineSaveTask?.cancel()
@@ -210,22 +224,19 @@ final class WritingProjectStore: ObservableObject {
         chapters = []
         selectedChapterPath = nil
         text = ""
-        styleText = ""
-        styleDecisions = []
+        styleLearningStore.reset()
         snapshots = []
-        searchResults = []
         manuscriptAnalysis = nil
         manuscriptReportText = ""
         bibleText = ""
         manuscriptCache = ManuscriptProjectCache()
         lastStructuralAnalysisAt = nil
         lastStructuralAnalysisWordCount = 0
-        customBetaReaders = []
+        betaReadersStore.reset()
         outlineNodes = []
-        projectBibliography = ProjectBibliographyArchive()
-        researchNotesText = ""
+        researchStore.reset()
         revisionArchive = SystemicRevisionArchive()
-        publicationArchive = PublicationArchive()
+        publicationStore.reset()
         lastMigrationResult = nil
         recoveryRequest = nil
         isScanningRevisions = false

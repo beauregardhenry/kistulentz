@@ -33,7 +33,8 @@ struct EditorWorkspace: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var viewModel = EditorViewModel()
     @StateObject private var undoCoordinator = DocumentUndoCoordinator()
-    @StateObject private var projectStore = WritingProjectStore()
+    @StateObject private var projectStore: WritingProjectStore
+    @ObservedObject private var styleLearningStore: StyleLearningStore
     @StateObject private var draftRecoveryCoordinator = DraftRecoveryCoordinator()
     @State private var polishedDraftPlan: PolishedDraftPlan?
     @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
@@ -70,6 +71,14 @@ struct EditorWorkspace: View {
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
+    init(document: Binding<MarkdownDocument>, fileURL: URL?) {
+        _document = document
+        self.fileURL = fileURL
+        let store = WritingProjectStore()
+        _projectStore = StateObject(wrappedValue: store)
+        _styleLearningStore = ObservedObject(wrappedValue: store.styleLearningStore)
+    }
+
     private var editorLayout: some View {
         VStack(spacing: 0) {
             topBar
@@ -90,6 +99,7 @@ struct EditorWorkspace: View {
                     if projectStore.isOpen {
                         ProjectSidebar(
                             store: projectStore,
+                            searchStore: projectStore.searchStore,
                             onSelectSearchResult: selectSearchResult,
                             onNewChapter: { showingNewChapter = true },
                             onEditStyle: { showingStyleEditor = true },
@@ -165,7 +175,7 @@ struct EditorWorkspace: View {
         .onAppear {
             projectStore.attachUndoManager(undoManager)
             viewModel.configureDocument(url: activeFileURL, text: activeText)
-            viewModel.updateStyleDecisions(projectStore.styleDecisions)
+            viewModel.updateStyleDecisions(styleLearningStore.styleDecisions)
             configureDraftRecovery()
             viewModel.scheduleAnalysis(
                 text: activeText,
@@ -174,7 +184,7 @@ struct EditorWorkspace: View {
             )
             presentStartupIfNeeded()
         }
-        .onChange(of: projectStore.styleDecisions) { _, newValue in
+        .onChange(of: styleLearningStore.styleDecisions) { _, newValue in
             viewModel.updateStyleDecisions(newValue)
         }
         .onChange(of: document.text) { _, newValue in
@@ -282,13 +292,14 @@ struct EditorWorkspace: View {
         .sheet(isPresented: $showingProjectResearch) {
             ProjectResearchView(
                 projectStore: projectStore,
+                researchStore: projectStore.researchStore,
                 selectionText: selectedPassage?.text,
                 onInsertCitation: insertCitation
             )
             .environmentObject(researchLibrary)
         }
         .sheet(isPresented: $showingRevisionCenter) {
-            SystemicRevisionCenterView(store: projectStore, onNavigate: navigateToRevisionFinding)
+            SystemicRevisionCenterView(store: projectStore, styleLearningStore: styleLearningStore, onNavigate: navigateToRevisionFinding)
                 .environmentObject(settings)
                 .environmentObject(researchLibrary)
         }
@@ -306,7 +317,7 @@ struct EditorWorkspace: View {
             .environmentObject(beneparPack)
         }
         .sheet(isPresented: $showingPublishExport) {
-            PublishExportView(store: projectStore)
+            PublishExportView(store: projectStore, publicationStore: projectStore.publicationStore)
                 .environmentObject(researchLibrary)
         }
     }
@@ -374,7 +385,7 @@ struct EditorWorkspace: View {
             NewChapterSheet { projectStore.createChapter(named: $0) }
         }
         .sheet(isPresented: $showingStyleEditor) {
-            ProjectStyleEditorView(store: projectStore)
+            ProjectStyleEditorView(store: styleLearningStore)
         }
         .sheet(isPresented: $showingRevisionHistory) {
             RevisionHistoryView(store: projectStore)
@@ -383,6 +394,8 @@ struct EditorWorkspace: View {
         .sheet(isPresented: $showingManuscriptInsights) {
             ManuscriptInsightsView(
                 store: projectStore,
+                betaReadersStore: projectStore.betaReadersStore,
+                styleLearningStore: styleLearningStore,
                 selectedPassage: selectedPassage?.text,
                 reference: viewModel.referenceBook,
                 onShowRevisionHistory: { showingRevisionHistory = true }
@@ -390,7 +403,7 @@ struct EditorWorkspace: View {
             .environmentObject(settings)
         }
         .sheet(isPresented: $showingProjectOrganization) {
-            ProjectOrganizationView(store: projectStore, reference: viewModel.referenceBook)
+            ProjectOrganizationView(store: projectStore, styleLearningStore: styleLearningStore, reference: viewModel.referenceBook)
                 .environmentObject(settings)
         }
         .sheet(isPresented: $showingNamedSnapshot) {
@@ -923,7 +936,7 @@ struct EditorWorkspace: View {
             runLocalPolish()
             return
         }
-        let style = projectStore.isOpen ? projectStore.styleText : nil
+        let style = projectStore.isOpen ? styleLearningStore.styleText : nil
         let reference = viewModel.referenceBook.map {
             WritingAIService.referenceContext($0, relevantTo: activeText)
         }
@@ -1010,7 +1023,7 @@ struct EditorWorkspace: View {
     /// sheet's builder — reading every chapter from disk is main-thread work.
     private func presentDestinker() {
         destinkManuscriptDocuments = projectStore.isOpen
-            ? (try? projectStore.documents(for: .manuscript, selection: nil))
+            ? (try? projectStore.betaReadersStore.documents(for: .manuscript, selection: nil))
             : nil
         showingDestinker = true
     }
@@ -1054,7 +1067,7 @@ struct EditorWorkspace: View {
             return
         }
 
-        let style = projectStore.isOpen ? projectStore.styleText : nil
+        let style = projectStore.isOpen ? styleLearningStore.styleText : nil
         let reference = viewModel.referenceBook.map {
             WritingAIService.referenceContext($0, relevantTo: selectedPassage.text, maxCharacters: 16_000)
         }
@@ -1280,13 +1293,13 @@ struct EditorWorkspace: View {
             undoManager: undoManager,
             actionName: "Accept Suggestion"
         )
-        projectStore.recordStyleDecision(action: .accepted, issue: issue)
+        styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
         viewModel.preserveAIReview(afterAccepting: issue, in: plan.resultText)
     }
 
     private func decline(_ issue: WritingIssue) {
         if viewModel.decline(issue, in: activeText) {
-            projectStore.recordStyleDecision(action: .declined, issue: issue)
+            styleLearningStore.recordStyleDecision(action: .declined, issue: issue)
         }
     }
 
@@ -1328,7 +1341,7 @@ struct EditorWorkspace: View {
             actionName: "Apply All Suggestions"
         )
         for issue in appliedIssues {
-            projectStore.recordStyleDecision(action: .accepted, issue: issue)
+            styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
         }
         viewModel.preserveAIReview(afterApplying: plan.resultText)
         pendingApplyAllPlan = nil

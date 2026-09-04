@@ -340,6 +340,7 @@ private struct ResearchMetadataLookupView: View {
 
 struct ProjectResearchView: View {
     @ObservedObject var projectStore: WritingProjectStore
+    @ObservedObject var researchStore: ProjectResearchStore
     @EnvironmentObject private var library: ResearchLibraryStore
     @Environment(\.dismiss) private var dismiss
     let selectionText: String?
@@ -357,8 +358,8 @@ struct ProjectResearchView: View {
                 Text("Project Research").font(.title2.bold())
                 Spacer()
                 Picker("Citation style", selection: Binding(
-                    get: { projectStore.projectBibliography.style },
-                    set: { projectStore.setBibliographyStyle($0) }
+                    get: { researchStore.projectBibliography.style },
+                    set: { researchStore.setBibliographyStyle($0) }
                 )) {
                     ForEach(BibliographyStyle.allCases) { Text($0.title).tag($0) }
                 }.frame(width: 245)
@@ -383,7 +384,7 @@ struct ProjectResearchView: View {
         .frame(minWidth: 880, minHeight: 620)
     }
 
-    private var projectSources: [ResearchSource] { projectStore.projectSources(in: library) }
+    private var projectSources: [ResearchSource] { researchStore.projectSources(in: library) }
 
     private var sourcesAndCitations: some View {
         HSplitView {
@@ -393,7 +394,7 @@ struct ProjectResearchView: View {
                     Section("In This Project") {
                         ForEach(projectSources) { source in
                             sourceRow(source).tag(source.id).contextMenu {
-                                Button("Remove from Project", role: .destructive) { projectStore.removeResearchSource(source.id) }
+                                Button("Remove from Project", role: .destructive) { researchStore.removeResearchSource(source.id) }
                             }
                         }
                     }
@@ -402,7 +403,7 @@ struct ProjectResearchView: View {
                             HStack {
                                 sourceRow(source)
                                 Spacer()
-                                Button("Add") { projectStore.addResearchSource(source.id) }.buttonStyle(.borderless)
+                                Button("Add") { researchStore.addResearchSource(source.id) }.buttonStyle(.borderless)
                             }
                         }
                     }
@@ -423,7 +424,7 @@ struct ProjectResearchView: View {
                 Divider()
                 Text("Bibliography Preview").font(.headline)
                 ScrollView {
-                    Text(CitationFormatter.bibliography(projectSources, style: projectStore.projectBibliography.style))
+                    Text(CitationFormatter.bibliography(projectSources, style: researchStore.projectBibliography.style))
                         .textSelection(.enabled).frame(maxWidth: .infinity, alignment: .leading)
                 }
             }.padding().frame(minWidth: 470)
@@ -441,26 +442,26 @@ struct ProjectResearchView: View {
                 TextField("Note", text: $note)
                 HStack {
                     Button("Save as Quotation") {
-                        if let id = selectedSourceID { projectStore.addQuotation(sourceID: id, text: quotation, locator: locator, note: note); quotation = ""; note = "" }
+                        if let id = selectedSourceID { researchStore.addQuotation(sourceID: id, text: quotation, locator: locator, note: note); quotation = ""; note = "" }
                     }
                     Button("Link Selected Manuscript Claim") {
                         if let id = selectedSourceID, let selectionText, let path = projectStore.selectedChapterPath {
-                            projectStore.addClaimLink(sourceID: id, chapterPath: path, excerpt: selectionText, locator: locator, note: note)
+                            researchStore.addClaimLink(sourceID: id, chapterPath: path, excerpt: selectionText, locator: locator, note: note)
                         }
                     }.disabled(selectionText == nil)
                 }
                 Divider()
                 List {
                     Section("Quotations") {
-                        ForEach(projectStore.projectBibliography.quotations) { item in
+                        ForEach(researchStore.projectBibliography.quotations) { item in
                             VStack(alignment: .leading) { Text("“\(item.text)”"); Text(item.locator).font(.caption).foregroundStyle(.secondary) }
-                                .contextMenu { Button("Remove", role: .destructive) { projectStore.removeQuotation(item.id) } }
+                                .contextMenu { Button("Remove", role: .destructive) { researchStore.removeQuotation(item.id) } }
                         }
                     }
                     Section("Claim Links") {
-                        ForEach(projectStore.projectBibliography.claimLinks) { item in
+                        ForEach(researchStore.projectBibliography.claimLinks) { item in
                             VStack(alignment: .leading) { Text(item.claimExcerpt); Text("\(item.chapterPath) · \(item.locator)").font(.caption).foregroundStyle(.secondary) }
-                                .contextMenu { Button("Remove", role: .destructive) { projectStore.removeClaimLink(item.id) } }
+                                .contextMenu { Button("Remove", role: .destructive) { researchStore.removeClaimLink(item.id) } }
                         }
                     }
                 }
@@ -473,16 +474,16 @@ struct ProjectResearchView: View {
             HStack {
                 Text("Kistulentz Research Notes.md").font(.headline)
                 Spacer()
-                Button("Show in Finder") { projectStore.revealResearchNotes() }
+                Button("Show in Finder") { researchStore.revealResearchNotes() }
             }
-            TextEditor(text: Binding(get: { projectStore.researchNotesText }, set: { projectStore.updateResearchNotes($0) }))
+            TextEditor(text: Binding(get: { researchStore.researchNotesText }, set: { researchStore.updateResearchNotes($0) }))
                 .font(.system(.body, design: .monospaced))
                 .overlay(RoundedRectangle(cornerRadius: 5).stroke(.separator))
         }.padding()
     }
 
     private var availableSources: [ResearchSource] {
-        let included = Set(projectStore.projectBibliography.sourceIDs)
+        let included = Set(researchStore.projectBibliography.sourceIDs)
         return library.sources.filter {
             !included.contains($0.id) && (search.isEmpty || [$0.title, $0.primaryCreatorName, $0.citeKey].joined(separator: " ").localizedCaseInsensitiveContains(search))
         }

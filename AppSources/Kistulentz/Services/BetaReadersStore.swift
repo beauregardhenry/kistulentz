@@ -1,8 +1,22 @@
 import Foundation
 
-extension WritingProjectStore {
+/// User-defined beta reader personas for the open project. Extracted out of
+/// `WritingProjectStore`. Needs the still-combined store for chapter/manuscript
+/// content when assembling documents for a beta reader packet.
+@MainActor
+final class BetaReadersStore: ObservableObject {
 
-    // MARK: - Beta Readers
+    @Published var customBetaReaders: [BetaReaderProfile] = []
+
+    weak var core: WritingProjectStore?
+
+    func load(at root: URL) throws {
+        customBetaReaders = try ManuscriptProjectDisk.loadCustomBetaReaders(at: root)
+    }
+
+    func reset() {
+        customBetaReaders = []
+    }
 
     func addCustomBetaReader(name: String, focus: String, audience: BetaReaderAudience) {
         let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -32,24 +46,24 @@ extension WritingProjectStore {
                   !selection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
                 throw WritingAIError.emptySelection
             }
-            return [ManuscriptDocument(relativePath: selectedChapterPath ?? "Selection", title: "Selection", text: selection)]
+            return [ManuscriptDocument(relativePath: core?.selectedChapterPath ?? "Selection", title: "Selection", text: selection)]
         case .chapter:
             return [ManuscriptDocument(
-                relativePath: selectedChapterPath ?? "Chapter",
-                title: selectedChapterTitle,
-                text: text
+                relativePath: core?.selectedChapterPath ?? "Chapter",
+                title: core?.selectedChapterTitle ?? "Chapter",
+                text: core?.text ?? ""
             )]
         case .manuscript:
-            return try manuscriptDocuments()
+            return try core?.manuscriptDocuments() ?? []
         }
     }
 
     private func saveCustomBetaReaders() {
-        guard let rootURL else { return }
+        guard let rootURL = core?.rootURL else { return }
         do {
             try ManuscriptProjectDisk.saveCustomBetaReaders(customBetaReaders, at: rootURL)
         } catch {
-            errorMessage = error.localizedDescription
+            core?.errorMessage = error.localizedDescription
         }
     }
 }

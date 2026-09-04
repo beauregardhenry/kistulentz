@@ -67,7 +67,7 @@ final class EditorViewModel: ObservableObject {
     }
 
     /// Keeps the live editor's advisory suppression in sync with the project's learned decisions.
-    /// Called whenever a project opens and whenever `WritingProjectStore.styleDecisions` changes
+    /// Called whenever a project opens and whenever `StyleLearningStore.styleDecisions` changes
     /// (immediately after each accept/decline), so a threshold crossed by the decline that just
     /// happened hides the rest of that pattern in this document right away, not on the next edit.
     func updateStyleDecisions(_ decisions: [ProjectStyleDecision]) {

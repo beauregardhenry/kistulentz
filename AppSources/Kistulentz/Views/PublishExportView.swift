@@ -25,6 +25,7 @@ private enum PublicationWorkspacePane: String, CaseIterable, Identifiable {
 
 struct PublishExportView: View {
     @ObservedObject var store: WritingProjectStore
+    @ObservedObject var publicationStore: PublicationStore
     @EnvironmentObject private var researchLibrary: ResearchLibraryStore
     @Environment(\.dismiss) private var dismiss
 
@@ -383,7 +384,7 @@ struct PublishExportView: View {
     }
 
     private func load() {
-        draft = store.publicationArchive
+        draft = publicationStore.publicationArchive
         selectedProfileID = draft.selectedProfileID
         authorsText = draft.metadata.authors.joined(separator: "\n")
         keywordsText = draft.metadata.keywords.joined(separator: ", ")
@@ -395,7 +396,7 @@ struct PublishExportView: View {
         draft.selectedProfileID = selectedProfileID
         draft.metadata.authors = authorsText.components(separatedBy: .newlines).map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
         draft.metadata.keywords = keywordsText.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        store.updatePublicationArchive(draft)
+        publicationStore.updatePublicationArchive(draft)
     }
 
     private func saveMetadata() {
@@ -403,7 +404,7 @@ struct PublishExportView: View {
         draft.metadata.keywords = keywordsText.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
         draft.matter = PublicationMatterGenerator.regenerating(draft.matter, metadata: draft.metadata)
         persistDraft()
-        draft = store.publicationArchive
+        draft = publicationStore.publicationArchive
         refreshPlan(preservingTemporaryPlan: true)
     }
 
@@ -418,7 +419,7 @@ struct PublishExportView: View {
     private func refreshPlan(preservingTemporaryPlan: Bool) {
         persistDraft()
         do {
-            var refreshed = try store.publicationPlan(sources: researchLibrary.sources, profileID: selectedProfileID, format: format)
+            var refreshed = try publicationStore.publicationPlan(sources: researchLibrary.sources, profileID: selectedProfileID, format: format)
             if preservingTemporaryPlan, let existing = plan {
                 let refreshedByID = Dictionary(uniqueKeysWithValues: refreshed.items.map { ($0.id, $0) })
                 var includedIDs: Set<String> = []
@@ -549,8 +550,8 @@ struct PublishExportView: View {
         panel.allowedContentTypes = [.png, .jpeg, .gif, .tiff, UTType(filenameExtension: "webp")].compactMap { $0 }
         panel.allowsMultipleSelection = false
         guard panel.runModal() == .OK, let url = panel.url else { return }
-        store.copyPublicationCover(from: url)
-        draft = store.publicationArchive
+        publicationStore.copyPublicationCover(from: url)
+        draft = publicationStore.publicationArchive
     }
 
     private func choosePrintCover() {
@@ -559,8 +560,8 @@ struct PublishExportView: View {
         panel.allowedContentTypes = [.pdf]
         panel.allowsMultipleSelection = false
         guard panel.runModal() == .OK, let url = panel.url else { return }
-        store.copyPrintCover(from: url)
-        draft = store.publicationArchive
+        publicationStore.copyPrintCover(from: url)
+        draft = publicationStore.publicationArchive
     }
 
     private func chooseOutputFolder() {
@@ -594,8 +595,8 @@ struct PublishExportView: View {
                 let result = try await Task.detached(priority: .userInitiated) {
                     try PublicationExporter.export(plan: plan, root: root, outputDirectory: outputDirectory, allowingWarnings: allowingWarnings)
                 }.value
-                store.recordPublicationExport(result, plan: plan)
-                draft = store.publicationArchive
+                publicationStore.recordPublicationExport(result, plan: plan)
+                draft = publicationStore.publicationArchive
                 lastExportURL = result.packageURL ?? result.outputURL
                 lastReportURL = result.reportPDFURL
                 preflight = result.preflight

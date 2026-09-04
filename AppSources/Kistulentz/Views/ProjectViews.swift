@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProjectSidebar: View {
     @ObservedObject var store: WritingProjectStore
+    @ObservedObject var searchStore: SearchStore
     let onSelectSearchResult: (ProjectSearchResult) -> Void
     let onNewChapter: () -> Void
     let onEditStyle: () -> Void
@@ -63,7 +64,7 @@ struct ProjectSidebar: View {
                         .foregroundStyle(.secondary)
                     TextField("Search manuscript", text: $searchText)
                         .textFieldStyle(.plain)
-                    if store.isSearching {
+                    if searchStore.isSearching {
                         ProgressView().controlSize(.mini)
                     } else if !searchText.isEmpty {
                         Button {
@@ -79,7 +80,7 @@ struct ProjectSidebar: View {
                 .padding(.horizontal, 9)
                 .frame(height: 28)
                 .background(.background.opacity(0.72), in: RoundedRectangle(cornerRadius: 7))
-                .onChange(of: searchText) { _, value in store.search(value) }
+                .onChange(of: searchText) { _, value in searchStore.search(value) }
             }
             .padding(12)
 
@@ -212,7 +213,7 @@ struct ProjectSidebar: View {
     private var searchResultList: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 4) {
-                ForEach(store.searchResults) { result in
+                ForEach(searchStore.searchResults) { result in
                     Button {
                         onSelectSearchResult(result)
                     } label: {
@@ -234,7 +235,7 @@ struct ProjectSidebar: View {
                     .background(.background.opacity(0.6), in: RoundedRectangle(cornerRadius: 7))
                 }
 
-                if !store.isSearching && store.searchResults.isEmpty {
+                if !searchStore.isSearching && searchStore.searchResults.isEmpty {
                     ContentUnavailableView.search(text: searchText)
                         .padding(.top, 24)
                 }
@@ -305,7 +306,7 @@ struct ProjectConfigurationSheet: View {
 }
 
 struct ProjectStyleEditorView: View {
-    @ObservedObject var store: WritingProjectStore
+    @ObservedObject var store: StyleLearningStore
     @Environment(\.dismiss) private var dismiss
     @State private var draft = ""
     @State private var showingClearConfirmation = false

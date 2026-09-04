@@ -1,16 +1,32 @@
 import Foundation
 
-extension WritingProjectStore {
+/// Export profiles, metadata, and publication history for the open project.
+/// Extracted out of `WritingProjectStore`. Needs the still-combined store for
+/// project identity/outline/save orchestration, and the research store for
+/// the bibliography it embeds in an export plan.
+@MainActor
+final class PublicationStore: ObservableObject {
 
-    // MARK: - Publication
+    @Published var publicationArchive = PublicationArchive()
+
+    weak var core: WritingProjectStore?
+    weak var research: ProjectResearchStore?
+
+    func load(at root: URL) throws {
+        publicationArchive = try PublicationDisk.load(at: root)
+    }
+
+    func reset() {
+        publicationArchive = PublicationArchive()
+    }
 
     func updatePublicationArchive(_ archive: PublicationArchive) {
-        guard let rootURL else { return }
+        guard let rootURL = core?.rootURL else { return }
         do {
             try PublicationDisk.save(archive, at: rootURL)
             publicationArchive = archive
         } catch {
-            errorMessage = error.localizedDescription
+            core?.errorMessage = error.localizedDescription
         }
     }
 
@@ -19,9 +35,11 @@ extension WritingProjectStore {
         profileID: UUID? = nil,
         format: PublicationExportFormat? = nil
     ) throws -> PublicationExportPlan {
-        guard let rootURL, let manifest else { throw PublicationExportError.missingProject }
-        saveNow()
-        saveOutlineNow()
+        guard let core, let rootURL = core.rootURL, let manifest = core.manifest else {
+            throw PublicationExportError.missingProject
+        }
+        core.saveNow()
+        core.saveOutlineNow()
         let selectedID = profileID ?? publicationArchive.selectedProfileID
         guard let profile = publicationArchive.profiles.first(where: { $0.id == selectedID }) else {
             throw PublicationExportError.missingProfile
@@ -29,9 +47,9 @@ extension WritingProjectStore {
         return PublicationPlanBuilder.build(
             projectName: manifest.name,
             root: rootURL,
-            outline: outlineNodes,
+            outline: core.outlineNodes,
             archive: publicationArchive,
-            bibliography: projectBibliography,
+            bibliography: research?.projectBibliography ?? ProjectBibliographyArchive(),
             librarySources: sources,
             profile: profile,
             format: format ?? profile.preferredFormat,
@@ -40,24 +58,24 @@ extension WritingProjectStore {
     }
 
     func copyPublicationCover(from url: URL) {
-        guard let rootURL else { return }
+        guard let rootURL = core?.rootURL else { return }
         do {
             var archive = publicationArchive
             archive.metadata.coverImageRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "cover", at: rootURL)
             updatePublicationArchive(archive)
         } catch {
-            errorMessage = error.localizedDescription
+            core?.errorMessage = error.localizedDescription
         }
     }
 
     func copyPrintCover(from url: URL) {
-        guard let rootURL else { return }
+        guard let rootURL = core?.rootURL else { return }
         do {
             var archive = publicationArchive
             archive.metadata.printCoverPDFRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "print-cover", at: rootURL)
             updatePublicationArchive(archive)
         } catch {
-            errorMessage = error.localizedDescription
+            core?.errorMessage = error.localizedDescription
         }
     }
 

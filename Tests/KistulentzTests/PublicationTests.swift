@@ -280,9 +280,9 @@ final class PublicationTests: XCTestCase {
         let original = try WritingProjectDisk.readChapter("Draft.md", at: root)
         let store = WritingProjectStore()
         try store.openProject(at: root)
-        var archive = store.publicationArchive
+        var archive = store.publicationStore.publicationArchive
         archive.metadata.authors = ["Beau Henry"]
-        store.updatePublicationArchive(archive)
+        store.publicationStore.updatePublicationArchive(archive)
         let profile = try XCTUnwrap(archive.profiles.first)
         let result = PublicationExportResult(
             outputURL: parent.appendingPathComponent("History Book.epub"),
@@ -290,13 +290,13 @@ final class PublicationTests: XCTestCase {
             byteCount: 125,
             preflight: PublicationPreflightReport(findings: [])
         )
-        let plan = try store.publicationPlan(sources: [], profileID: profile.id, format: .epub)
-        store.recordPublicationExport(result, plan: plan)
+        let plan = try store.publicationStore.publicationPlan(sources: [], profileID: profile.id, format: .epub)
+        store.publicationStore.recordPublicationExport(result, plan: plan)
         store.closeProject()
 
         let reopened = WritingProjectStore()
         try reopened.openProject(at: root)
-        XCTAssertEqual(reopened.publicationArchive.history.first?.sha256, String(repeating: "a", count: 64))
+        XCTAssertEqual(reopened.publicationStore.publicationArchive.history.first?.sha256, String(repeating: "a", count: 64))
         XCTAssertEqual(try WritingProjectDisk.readChapter("Draft.md", at: root), original)
     }
 
