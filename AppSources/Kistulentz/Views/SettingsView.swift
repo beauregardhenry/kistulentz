@@ -32,6 +32,15 @@ struct SettingsView: View {
         .filter { !$0.hasPrefix(".") }
         .sorted()
 
+    /// One dropdown entry per whole point size in `AppSettings.editorFontSizeRange`, for the Size
+    /// picker next to Grade and Font. Kept in step with that range rather than hardcoded so the
+    /// two can't drift apart.
+    private static let editorFontSizeOptions: [Double] = stride(
+        from: AppSettings.editorFontSizeRange.lowerBound,
+        through: AppSettings.editorFontSizeRange.upperBound,
+        by: 1
+    ).map { $0 }
+
     /// Best-effort preview of the chosen font, purely cosmetic. `Font.custom` (unlike
     /// `MarkdownEditorFont.resolve`, which the actual editor uses) isn't guaranteed to fall back
     /// from a family name to its regular face the same way `NSFontManager` does, so an unusual
@@ -45,27 +54,30 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section("Writing target") {
-                Picker("Default reading grade", selection: $settings.targetGrade) {
-                    ForEach(4...16, id: \.self) { grade in
-                        Text("Grade \(grade)").tag(grade)
+                HStack(spacing: 16) {
+                    Picker("Default reading grade", selection: $settings.targetGrade) {
+                        ForEach(4...16, id: \.self) { grade in
+                            Text("Grade \(grade)").tag(grade)
+                        }
+                    }
+
+                    Picker("Font", selection: $settings.editorFontName) {
+                        Text("System Default").tag("")
+                        ForEach(Self.availableFontFamilies, id: \.self) { family in
+                            Text(family).tag(family)
+                        }
+                    }
+
+                    Picker("Size", selection: $settings.editorFontSize) {
+                        ForEach(Self.editorFontSizeOptions, id: \.self) { size in
+                            Text("\(Int(size)) pt").tag(size)
+                        }
                     }
                 }
+
                 Text("Kistulentz adjusts sentence-length guidance and asks the selected AI provider to rewrite toward this level.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-            }
-
-            Section("Editor") {
-                Picker("Font", selection: $settings.editorFontName) {
-                    Text("System Default").tag("")
-                    ForEach(Self.availableFontFamilies, id: \.self) { family in
-                        Text(family).tag(family)
-                    }
-                }
-
-                Stepper(value: $settings.editorFontSize, in: AppSettings.editorFontSizeRange, step: 1) {
-                    Text("Size: \(Int(settings.editorFontSize)) pt")
-                }
 
                 Text("The quick brown fox jumps over the lazy dog.")
                     .font(editorFontPreview)
