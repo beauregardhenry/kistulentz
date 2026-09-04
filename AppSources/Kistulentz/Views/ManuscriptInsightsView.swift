@@ -11,6 +11,8 @@ private enum ManuscriptInsightsTab: String, CaseIterable, Identifiable {
 
 struct ManuscriptInsightsView: View {
     @ObservedObject var store: WritingProjectStore
+    @ObservedObject var betaReadersStore: BetaReadersStore
+    @ObservedObject var styleLearningStore: StyleLearningStore
     let selectedPassage: String?
     let reference: EPUBReference?
     let onShowRevisionHistory: () -> Void
@@ -32,7 +34,7 @@ struct ManuscriptInsightsView: View {
     @State private var errorMessage: String?
 
     private var allReaders: [BetaReaderProfile] {
-        BetaReaderProfile.builtIns + store.customBetaReaders
+        BetaReaderProfile.builtIns + betaReadersStore.customBetaReaders
     }
 
     private var selectedReader: BetaReaderProfile {
@@ -89,10 +91,10 @@ struct ManuscriptInsightsView: View {
         .sheet(isPresented: $showingCustomReaderEditor) {
             CustomBetaReaderEditor(reader: editingReader) { reader in
                 if editingReader == nil {
-                    store.addCustomBetaReader(name: reader.name, focus: reader.focus, audience: reader.audience)
-                    selectedReaderID = store.customBetaReaders.last?.id ?? selectedReaderID
+                    betaReadersStore.addCustomBetaReader(name: reader.name, focus: reader.focus, audience: reader.audience)
+                    selectedReaderID = betaReadersStore.customBetaReaders.last?.id ?? selectedReaderID
                 } else {
-                    store.updateCustomBetaReader(reader)
+                    betaReadersStore.updateCustomBetaReader(reader)
                     selectedReaderID = reader.id
                 }
             }
@@ -210,9 +212,9 @@ struct ManuscriptInsightsView: View {
                             readerLabel(reader).tag(reader.id)
                         }
                     }
-                    if !store.customBetaReaders.isEmpty {
+                    if !betaReadersStore.customBetaReaders.isEmpty {
                         Section("Custom") {
-                            ForEach(store.customBetaReaders) { reader in
+                            ForEach(betaReadersStore.customBetaReaders) { reader in
                                 readerLabel(reader).tag(reader.id)
                             }
                         }
@@ -240,7 +242,7 @@ struct ManuscriptInsightsView: View {
                         Button(role: .destructive) {
                             let reader = selectedReader
                             selectedReaderID = BetaReaderProfile.builtIns[0].id
-                            store.removeCustomBetaReader(reader)
+                            betaReadersStore.removeCustomBetaReader(reader)
                         } label: {
                             Image(systemName: "trash")
                         }
@@ -329,7 +331,7 @@ struct ManuscriptInsightsView: View {
 
     private func runLocalBeta() {
         do {
-            let documents = try store.documents(for: betaScope, selection: selectedPassage)
+            let documents = try betaReadersStore.documents(for: betaScope, selection: selectedPassage)
             let reader = selectedReader
             let scope = betaScope
             let projectName = store.projectName
@@ -384,7 +386,7 @@ struct ManuscriptInsightsView: View {
     private func prepareAIBeta() {
         guard validateProvider() else { return }
         do {
-            let documents = try store.documents(for: betaScope, selection: selectedPassage)
+            let documents = try betaReadersStore.documents(for: betaScope, selection: selectedPassage)
             let context = ManuscriptAnalyzer.context(
                 documents: documents,
                 report: store.manuscriptReportText,
@@ -417,8 +419,8 @@ struct ManuscriptInsightsView: View {
             model: settings.model(for: settings.provider),
             primaryLabel: label,
             primaryText: primary,
-            styleGuide: store.styleText,
-            includesStyleGuide: !store.styleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+            styleGuide: styleLearningStore.styleText,
+            includesStyleGuide: !styleLearningStore.styleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             referenceContext: referenceContext,
             includesReferenceContext: referenceContext != nil,
             sourceRange: nil,

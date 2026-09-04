@@ -10,7 +10,7 @@ extension WritingProjectStore {
             saveNow()
             let documents = try manuscriptDocuments()
             let manuscript = manuscriptAnalysis
-            let bibliography = projectBibliography
+            let bibliography = researchStore.projectBibliography
             isScanningRevisions = true
             Task { [weak self] in
                 let findings = await Task.detached(priority: .utility) {
@@ -66,14 +66,14 @@ extension WritingProjectStore {
 
     func revisionAIContext(sources: [ResearchSource]) throws -> String {
         let documents = try revisionDocuments()
-        let projectSources = sources.filter { projectBibliography.sourceIDs.contains($0.id) }
-        let bibliography = CitationFormatter.bibliography(projectSources, style: projectBibliography.style)
+        let projectSources = sources.filter { researchStore.projectBibliography.sourceIDs.contains($0.id) }
+        let bibliography = CitationFormatter.bibliography(projectSources, style: researchStore.projectBibliography.style)
         let manuscript = documents.map {
             "<chapter path=\"\($0.relativePath)\">\n\(String($0.text.prefix(18_000)))\n</chapter>"
         }.joined(separator: "\n\n")
         return """
         <project_research_notes>
-        \(String(researchNotesText.prefix(10_000)))
+        \(String(researchStore.researchNotesText.prefix(10_000)))
         </project_research_notes>
 
         <project_bibliography>

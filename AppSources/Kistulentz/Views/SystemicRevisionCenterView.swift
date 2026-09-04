@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SystemicRevisionCenterView: View {
     @ObservedObject var store: WritingProjectStore
+    @ObservedObject var styleLearningStore: StyleLearningStore
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var library: ResearchLibraryStore
     @Environment(\.dismiss) private var dismiss
@@ -248,8 +249,8 @@ struct SystemicRevisionCenterView: View {
                 model: settings.model(for: settings.provider),
                 primaryLabel: "Manuscript, bibliography, and research notes",
                 primaryText: context,
-                styleGuide: store.styleText,
-                includesStyleGuide: !store.styleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                styleGuide: styleLearningStore.styleText,
+                includesStyleGuide: !styleLearningStore.styleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 referenceContext: nil,
                 includesReferenceContext: false,
                 sourceRange: nil,

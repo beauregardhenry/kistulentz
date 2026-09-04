@@ -14,6 +14,7 @@ private struct PendingOutlineItem: Identifiable {
 
 struct ProjectOrganizationView: View {
     @ObservedObject var store: WritingProjectStore
+    @ObservedObject var styleLearningStore: StyleLearningStore
     let reference: EPUBReference?
 
     @EnvironmentObject private var settings: AppSettings
@@ -330,8 +331,8 @@ struct ProjectOrganizationView: View {
                 model: settings.model(for: settings.provider),
                 primaryLabel: "Outline item and project context",
                 primaryText: context,
-                styleGuide: store.styleText,
-                includesStyleGuide: !store.styleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                styleGuide: styleLearningStore.styleText,
+                includesStyleGuide: !styleLearningStore.styleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 referenceContext: referenceContext,
                 includesReferenceContext: referenceContext != nil,
                 sourceRange: nil,

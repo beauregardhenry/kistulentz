@@ -1,9 +1,31 @@
 import AppKit
 import Foundation
 
-extension WritingProjectStore {
+/// Research sources, quotations, claim links, and free-form research notes for
+/// the open project. Extracted out of `WritingProjectStore` because this
+/// concern touches nothing else in the app beyond the project root -- it was
+/// verified to have zero coupling with any other store's behavior.
+@MainActor
+final class ProjectResearchStore: ObservableObject {
 
-    // MARK: - Research & Bibliography
+    @Published var projectBibliography = ProjectBibliographyArchive()
+    @Published var researchNotesText = ""
+
+    /// Back-reference to the still-combined store, used only for `rootURL`
+    /// (every disk operation here needs the project root) and `errorMessage`
+    /// (this store has no error surface of its own -- it reports through the
+    /// app's single shared error banner).
+    weak var core: WritingProjectStore?
+
+    func load(at root: URL) throws {
+        projectBibliography = try ProjectResearchDisk.load(at: root)
+        researchNotesText = try String(contentsOf: ProjectResearchDisk.notesURL(at: root), encoding: .utf8)
+    }
+
+    func reset() {
+        projectBibliography = ProjectBibliographyArchive()
+        researchNotesText = ""
+    }
 
     func addResearchSource(_ sourceID: UUID) {
         guard !projectBibliography.sourceIDs.contains(sourceID) else { return }
@@ -59,17 +81,17 @@ extension WritingProjectStore {
     }
 
     func updateResearchNotes(_ value: String) {
-        guard let rootURL, value != researchNotesText else { return }
+        guard let rootURL = core?.rootURL, value != researchNotesText else { return }
         researchNotesText = value
         do {
             try value.write(to: ProjectResearchDisk.notesURL(at: rootURL), atomically: true, encoding: .utf8)
         } catch {
-            errorMessage = error.localizedDescription
+            core?.errorMessage = error.localizedDescription
         }
     }
 
     func revealResearchNotes() {
-        guard let rootURL else { return }
+        guard let rootURL = core?.rootURL else { return }
         NSWorkspace.shared.activateFileViewerSelecting([ProjectResearchDisk.notesURL(at: rootURL)])
     }
 
@@ -79,11 +101,11 @@ extension WritingProjectStore {
     }
 
     private func saveProjectBibliography() {
-        guard let rootURL else { return }
+        guard let rootURL = core?.rootURL else { return }
         do {
             try ProjectResearchDisk.save(projectBibliography, at: rootURL)
         } catch {
-            errorMessage = error.localizedDescription
+            core?.errorMessage = error.localizedDescription
         }
     }
 }
