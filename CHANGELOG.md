@@ -8,6 +8,8 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-09-04
+
 ### Added
 
 - **De-stink Review**: a native pass that flags AI-writing tells across four tiers — word
@@ -16,6 +18,19 @@ merged changes are recorded under [Unreleased].
   report weighting, and portions of the phrase catalog are adapted from the MIT-licensed
   `lex00/sentences` de-stink linter and reimplemented natively in Swift; see
   `THIRD_PARTY_NOTICES.md`. (#7)
+- Local, on-device detection of AI-sounding phrasing in the readability engine --
+  correlative constructions, stock rhetorical openers, stacked hedge words, filler
+  words, and marketing staccato triads -- surfaced as advisory highlights, never
+  applied automatically. (#2)
+- Project-local learning for advisory highlights: a flag stops appearing, live and
+  in Local Polish, once declined a couple of times in that project, recorded in
+  `Kistulentz Style.md` and reversible with Clear Learned Preferences. (#6)
+- Editor font and size are now user-configurable in Settings. (#14, #15)
+
+### Fixed
+
+- Footnote and endnote anchors inside italic or underscore emphasis were
+  sometimes swallowed by the emphasis regex during manuscript export. (#17)
 
 ### Changed
 
@@ -23,6 +38,12 @@ merged changes are recorded under [Unreleased].
   Lifecycle, Chapters & Editing, Style Learning, Research & Bibliography, Systemic Revision,
   Publication, Outline, Bible, Beta Readers, Manuscript AI & Report, Snapshots, Search, and
   others) to make the ~1,700-line store easier to navigate. No behavior change. (#9)
+- Decomposed `WritingProjectStore` further: Research & Bibliography, Publication,
+  Beta Readers, Style Learning, and Search are now independent `ObservableObject`
+  stores rather than extensions on the combined store. The remaining six concerns
+  (Chapters & Editing, Outline, Systemic Revision, Manuscript Report, Bible,
+  Snapshots) stay combined -- they're coupled by real production behavior that a
+  future pass will need to address deliberately. No behavior change. (#19, #20)
 
 ### Testing
 
@@ -42,3 +63,5 @@ merged changes are recorded under [Unreleased].
   verification in `SystemicRevisionAIService.deepen` that drops any proposed finding whose
   chapter path, revision pass, or excerpt doesn't check out against the real manuscript text.
   (#12)
+- Added direct unit tests for `PublicationRenderer` and `DestinkService.analyze`.
+  (#16, #18)

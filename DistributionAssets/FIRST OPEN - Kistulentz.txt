@@ -5,7 +5,21 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.14.1 FRIEND PREVIEW
+NEW IN 0.16.0 FRIEND PREVIEW
+- A native De-stink Review flags AI-writing tells -- word choice, sentence shape,
+  formatting, and rhythm/repetition -- for a selection, chapter, document, or the
+  whole manuscript, with an optional Benepar-backed structural pass for deeper
+  analysis.
+- Kistulentz Style.md now remembers declined advisory flags per project; a rule
+  stops appearing, live and in Local Polish, once it has been declined there a
+  couple of times, and Clear Learned Preferences reverses it.
+- The readability engine now flags AI-sounding phrasing on-device --
+  correlative constructions, stock rhetorical openers, stacked hedge words,
+  filler words, and marketing staccato triads.
+- The editor's font and size are now user-configurable in Settings.
+- Fixed a manuscript-export bug where certain footnote and endnote anchors
+  inside italic or underscore emphasis could be dropped during publication
+  rendering.
 - Pasting a long document no longer makes the editor wait for Apple spelling and
   grammar analysis on the interface thread.
 - Kistulentz avoids a duplicate live text-checking pass after a paste.
