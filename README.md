@@ -208,4 +208,4 @@ Copyright © 2026 Beau Henry.
 
 Kistulentz is free software licensed under the GNU General Public License, version 3 or any later version. See [LICENSE](LICENSE).
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [PRIVACY.md](PRIVACY.md), [SECURITY.md](SECURITY.md), and [SUPPORT.md](SUPPORT.md) for project policies and help.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [PRIVACY.md](PRIVACY.md), [SECURITY.md](SECURITY.md), and [SUPPORT.md](SUPPORT.md) for project policies and help. Notable changes are tracked in [CHANGELOG.md](CHANGELOG.md).
