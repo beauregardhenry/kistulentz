@@ -196,7 +196,10 @@ final class PublicationRendererTests: XCTestCase {
         let markdown = "# Title\n\nThe results were clear [@doe2024]."
         let book = render([makeManuscriptItem(markdown: markdown)], profile: profile, sources: [source])
 
-        let expected = CitationFormatter.entry(source, style: .chicagoNotes, number: 1)
+        // `appendNote` runs every note's text through `PublicationPlainText.inline`, which strips markdown
+        // emphasis markers rather than converting them -- so the Chicago entry's `*title*` asterisks must
+        // be stripped here too, or this compares against text the renderer never actually produces.
+        let expected = PublicationPlainText.inline(CitationFormatter.entry(source, style: .chicagoNotes, number: 1))
         XCTAssertEqual(book.notes.map(\.text), [expected])
         let html = book.sections[0].blocks[1].html
         XCTAssertTrue(html.contains("doc-noteref"))
@@ -211,8 +214,12 @@ final class PublicationRendererTests: XCTestCase {
         let markdown = "# Title\n\nBoth agree [@doe2024; @lee2023]."
         let book = render([makeManuscriptItem(markdown: markdown)], profile: profile, sources: [doe, lee])
 
-        let expected = CitationFormatter.entry(doe, style: .chicagoNotes, number: 1)
-            + "; " + CitationFormatter.entry(lee, style: .chicagoNotes, number: 2)
+        // Same stripped-markdown note text as above -- see the comment in
+        // testFootnoteCitationModeCreatesNoteWithFormattedEntryAndSuperscriptAnchor.
+        let expected = PublicationPlainText.inline(
+            CitationFormatter.entry(doe, style: .chicagoNotes, number: 1)
+                + "; " + CitationFormatter.entry(lee, style: .chicagoNotes, number: 2)
+        )
         XCTAssertEqual(book.notes.map(\.text), [expected])
     }
 

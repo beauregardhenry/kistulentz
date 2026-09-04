@@ -347,6 +347,12 @@ final class PublicationRenderer {
 
     private func inlineMarkdownToHTML(_ value: String) -> String {
         var html = PublicationXML.escape(value)
+        // Note-reference tokens (`{{KISTU_NOTE_1}}`) must be swapped for their anchor markup before any
+        // emphasis pattern runs: the token's own underscores (`KISTU_NOTE_1`) otherwise satisfy the
+        // single-underscore italic pattern below, which consumes them into an `<em>` and leaves nothing
+        // left for `noteTokenRegex` to match. The anchor replacement itself is markdown-syntax-free, so
+        // running it first is safe for every emphasis pattern that follows.
+        html = replaceNoteTokens(in: html)
         html = replace(pattern: #"`([^`]+)`"#, in: html, with: "<code>$1</code>")
         html = replace(pattern: #"\*\*([^*]+)\*\*"#, in: html, with: "<strong>$1</strong>")
         html = replace(pattern: #"__([^_]+)__"#, in: html, with: "<strong>$1</strong>")
@@ -354,6 +360,10 @@ final class PublicationRenderer {
         html = replace(pattern: #"(?<!_)_([^_]+)_(?!_)"#, in: html, with: "<em>$1</em>")
         html = replace(pattern: #"~~([^~]+)~~"#, in: html, with: "<del>$1</del>")
         html = replace(pattern: #"\[([^\]]+)\]\((https?://[^\s\)]+)\)"#, in: html, with: "<a href=\"$2\">$1</a>")
+        return html
+    }
+
+    private func replaceNoteTokens(in html: String) -> String {
         let source = html as NSString
         var result = html
         for match in Self.noteTokenRegex.matches(in: html, range: NSRange(location: 0, length: source.length)).reversed() {
