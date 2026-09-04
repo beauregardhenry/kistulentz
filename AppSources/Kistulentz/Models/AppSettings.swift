@@ -121,7 +121,13 @@ final class AppSettings: ObservableObject {
         static let hiddenHighlightCategories = "hiddenHighlightCategories"
         static let hasCompletedOnboarding = "hasCompletedOnboarding"
         static let hasAcknowledgedEnglishPackPrompt = "hasAcknowledgedEnglishPackPrompt"
+        static let editorFontName = "editorFontName"
+        static let editorFontSize = "editorFontSize"
     }
+
+    /// The lowest and highest editor font size a user can choose in Settings. Kept in one place
+    /// so the stored-value clamp in `init` and the Settings stepper's range can't drift apart.
+    static let editorFontSizeRange: ClosedRange<Double> = 12...32
 
     private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
 
@@ -154,6 +160,20 @@ final class AppSettings: ObservableObject {
         }
     }
 
+    /// The editor's font, by font family name (as offered by the Settings picker, sourced from
+    /// `NSFontManager.availableFontFamilies`). Empty means "use the system font" -- the same
+    /// appearance every user already had before this preference existed.
+    @Published var editorFontName: String {
+        didSet { defaults.set(editorFontName, forKey: DefaultsKey.editorFontName) }
+    }
+
+    /// The editor's font point size. The Settings stepper is bounded to `editorFontSizeRange`, so
+    /// values only fall outside it via a corrupted or hand-edited defaults file; `init` re-clamps
+    /// on load rather than this setter clamping on every assignment.
+    @Published var editorFontSize: Double {
+        didSet { defaults.set(editorFontSize, forKey: DefaultsKey.editorFontSize) }
+    }
+
     @Published private(set) var hasCompletedOnboarding: Bool
     @Published private(set) var hasAcknowledgedEnglishPackPrompt: Bool
 
@@ -182,6 +202,11 @@ final class AppSettings: ObservableObject {
             (defaults.stringArray(forKey: DefaultsKey.hiddenHighlightCategories) ?? [])
                 .compactMap(IssueCategory.init(rawValue:))
         )
+        editorFontName = defaults.string(forKey: DefaultsKey.editorFontName) ?? ""
+        let savedFontSize = defaults.double(forKey: DefaultsKey.editorFontSize)
+        editorFontSize = savedFontSize == 0
+            ? 17
+            : min(max(savedFontSize, Self.editorFontSizeRange.lowerBound), Self.editorFontSizeRange.upperBound)
         hasCompletedOnboarding = defaults.bool(forKey: DefaultsKey.hasCompletedOnboarding)
         hasAcknowledgedEnglishPackPrompt = defaults.bool(
             forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt

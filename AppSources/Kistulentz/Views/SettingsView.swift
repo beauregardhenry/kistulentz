@@ -23,6 +23,25 @@ struct SettingsView: View {
     @State private var testingProvider: AIProvider?
     @State private var providerTestResults: [AIProvider: ProviderTestDisplay] = [:]
 
+    /// Every installed font family, for the editor font picker. Names beginning with "." are
+    /// macOS's private system faces (`.AppleSystemUIFont` and similar) -- not meant to be chosen
+    /// by name, and "System Default" already covers that case. Computed once per process rather
+    /// than on every body re-render, since SwiftUI recomputes `body` far more often than the
+    /// installed font list could plausibly change while Settings is open.
+    private static let availableFontFamilies: [String] = NSFontManager.shared.availableFontFamilies
+        .filter { !$0.hasPrefix(".") }
+        .sorted()
+
+    /// Best-effort preview of the chosen font, purely cosmetic. `Font.custom` (unlike
+    /// `MarkdownEditorFont.resolve`, which the actual editor uses) isn't guaranteed to fall back
+    /// from a family name to its regular face the same way `NSFontManager` does, so an unusual
+    /// family could preview inaccurately here even though the editor itself renders it correctly.
+    private var editorFontPreview: Font {
+        let trimmedName = settings.editorFontName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let size = CGFloat(settings.editorFontSize)
+        return trimmedName.isEmpty ? .system(size: size) : .custom(trimmedName, size: size)
+    }
+
     var body: some View {
         Form {
             Section("Writing target") {
@@ -34,6 +53,26 @@ struct SettingsView: View {
                 Text("Kistulentz adjusts sentence-length guidance and asks the selected AI provider to rewrite toward this level.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+            }
+
+            Section("Editor") {
+                Picker("Font", selection: $settings.editorFontName) {
+                    Text("System Default").tag("")
+                    ForEach(Self.availableFontFamilies, id: \.self) { family in
+                        Text(family).tag(family)
+                    }
+                }
+
+                Stepper(value: $settings.editorFontSize, in: AppSettings.editorFontSizeRange, step: 1) {
+                    Text("Size: \(Int(settings.editorFontSize)) pt")
+                }
+
+                Text("The quick brown fox jumps over the lazy dog.")
+                    .font(editorFontPreview)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 2)
             }
 
             Section("System Check & Support") {
