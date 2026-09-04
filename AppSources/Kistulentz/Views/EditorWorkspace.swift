@@ -80,7 +80,9 @@ struct EditorWorkspace: View {
                     text: activeTextBinding,
                     selection: $editorSelection,
                     issues: [],
-                    focusRequest: viewModel.focusRequest
+                    focusRequest: viewModel.focusRequest,
+                    fontName: settings.editorFontName,
+                    fontSize: settings.editorFontSize
                 )
                 .frame(minWidth: 600)
             } else {
@@ -118,7 +120,9 @@ struct EditorWorkspace: View {
                         text: activeTextBinding,
                         selection: $editorSelection,
                         issues: visibleHighlightIssues,
-                        focusRequest: viewModel.focusRequest
+                        focusRequest: viewModel.focusRequest,
+                        fontName: settings.editorFontName,
+                        fontSize: settings.editorFontSize
                     )
                     .frame(minWidth: 450)
 

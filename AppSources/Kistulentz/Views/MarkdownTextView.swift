@@ -6,6 +6,8 @@ struct MarkdownTextView: NSViewRepresentable {
     @Binding var selection: NSRange
     let issues: [WritingIssue]
     let focusRequest: FocusRequest?
+    let fontName: String
+    let fontSize: Double
 
     func makeCoordinator() -> Coordinator {
         Coordinator(text: $text, selection: $selection)
@@ -36,7 +38,8 @@ struct MarkdownTextView: NSViewRepresentable {
             width: scrollView.contentSize.width,
             height: CGFloat.greatestFiniteMagnitude
         )
-        textView.font = .systemFont(ofSize: 17, weight: .regular)
+        let font = MarkdownEditorFont.resolve(name: fontName, size: fontSize)
+        textView.font = font
         textView.textColor = .labelColor
         textView.backgroundColor = .textBackgroundColor
         textView.insertionPointColor = .labelColor
@@ -57,7 +60,7 @@ struct MarkdownTextView: NSViewRepresentable {
         paragraph.paragraphSpacing = 8
         textView.defaultParagraphStyle = paragraph
         textView.typingAttributes = [
-            .font: NSFont.systemFont(ofSize: 17),
+            .font: font,
             .foregroundColor: NSColor.labelColor,
             .paragraphStyle: paragraph
         ]
@@ -72,6 +75,8 @@ struct MarkdownTextView: NSViewRepresentable {
         }
         applyHighlights(to: textView)
         context.coordinator.lastHighlightedIssues = issues
+        context.coordinator.lastFontName = fontName
+        context.coordinator.lastFontSize = fontSize
         textView.delegate = context.coordinator
         return scrollView
     }
@@ -92,9 +97,20 @@ struct MarkdownTextView: NSViewRepresentable {
             }
         }
 
-        if replacedText || context.coordinator.lastHighlightedIssues != issues {
+        let fontChanged = context.coordinator.lastFontName != fontName
+            || context.coordinator.lastFontSize != fontSize
+
+        if replacedText || context.coordinator.lastHighlightedIssues != issues || fontChanged {
             applyHighlights(to: textView)
             context.coordinator.lastHighlightedIssues = issues
+        }
+
+        if fontChanged {
+            let font = MarkdownEditorFont.resolve(name: fontName, size: fontSize)
+            textView.font = font
+            textView.typingAttributes[.font] = font
+            context.coordinator.lastFontName = fontName
+            context.coordinator.lastFontSize = fontSize
         }
 
         if let request = focusRequest, request.id != context.coordinator.lastFocusID {
@@ -124,7 +140,7 @@ struct MarkdownTextView: NSViewRepresentable {
             storage.beginEditing()
             storage.removeAttribute(.backgroundColor, range: fullRange)
             storage.addAttributes([
-                .font: NSFont.systemFont(ofSize: 17),
+                .font: MarkdownEditorFont.resolve(name: fontName, size: fontSize),
                 .foregroundColor: NSColor.labelColor,
                 .paragraphStyle: paragraph
             ], range: fullRange)
@@ -155,6 +171,8 @@ struct MarkdownTextView: NSViewRepresentable {
         weak var textView: NSTextView?
         var lastFocusID: UUID?
         var lastHighlightedIssues: [WritingIssue] = []
+        var lastFontName = ""
+        var lastFontSize: Double = 0
         var isApplyingSwiftUIUpdate = false
 
         init(text: Binding<String>, selection: Binding<NSRange>) {
@@ -188,6 +206,43 @@ enum UndoRegistrationGuard {
         undoManager.disableUndoRegistration()
         defer { undoManager.enableUndoRegistration() }
         action()
+    }
+}
+
+/// Resolves the editor's stored font preference (`AppSettings.editorFontName` /
+/// `.editorFontSize`) into an actual `NSFont`, with a safe fallback to the system font so a
+/// blank preference or a font that's no longer installed (removed since it was chosen, a synced
+/// defaults file from another Mac) never leaves the editor without a font.
+enum MarkdownEditorFont {
+    /// AppKit's font-weight scale runs 0 (lightest) to 15 (heaviest); 5 is the documented
+    /// standard/regular weight (9 is bold).
+    private static let regularWeight = 5
+
+    static func resolve(name: String, size: Double) -> NSFont {
+        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let pointSize = CGFloat(size)
+        guard !trimmedName.isEmpty else {
+            return .systemFont(ofSize: pointSize, weight: .regular)
+        }
+        // AppSettings.editorFontName stores a font FAMILY name (that's what the Settings picker
+        // offers, from NSFontManager.availableFontFamilies), so resolve through NSFontManager
+        // rather than NSFont(name:size:) -- the latter expects an exact PostScript name, and
+        // silently fails for a family whose regular face's PostScript name differs from its
+        // family name (Times New Roman's regular face, for example, is "TimesNewRomanPSMT").
+        if let font = NSFontManager.shared.font(
+            withFamily: trimmedName,
+            traits: [],
+            weight: regularWeight,
+            size: pointSize
+        ) {
+            return font
+        }
+        // Fall back to treating it as an exact PostScript name, in case one was ever supplied
+        // directly rather than through the family-name picker.
+        if let font = NSFont(name: trimmedName, size: pointSize) {
+            return font
+        }
+        return .systemFont(ofSize: pointSize, weight: .regular)
     }
 }
 
