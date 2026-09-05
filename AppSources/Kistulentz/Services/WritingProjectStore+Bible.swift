@@ -6,16 +6,11 @@ extension WritingProjectStore {
 
     func updateBibleText(_ value: String) {
         guard isOpen, value != bibleText else { return }
-        if !hasCapturedBibleEditingBaseline {
-            createBibleSnapshot(content: bibleText, reason: "Before editing Bible")
-            hasCapturedBibleEditingBaseline = true
-        }
         bibleText = value
-        scheduleBibleSave()
+        editCoordinator.editLanded(.bibleEditing)
     }
 
     func saveBibleNow() {
-        bibleSaveTask?.cancel()
         guard let rootURL else { return }
         do {
             try ManuscriptProjectDisk.saveBible(bibleText, at: rootURL)
@@ -69,7 +64,7 @@ extension WritingProjectStore {
         )
     }
 
-    private func createBibleSnapshot(content: String, reason: String) {
+    func createBibleSnapshot(content: String, reason: String) {
         guard let rootURL else { return }
         do {
             if let snapshot = try WritingProjectDisk.createSnapshot(
@@ -94,12 +89,4 @@ extension WritingProjectStore {
         return "Updated the local Bible: \(added) added and \(removed) removed \(added + removed == 1 ? "line" : "lines")."
     }
 
-    private func scheduleBibleSave() {
-        bibleSaveTask?.cancel()
-        bibleSaveTask = Task { [weak self] in
-            try? await Task.sleep(for: .milliseconds(450))
-            guard !Task.isCancelled else { return }
-            self?.saveBibleNow()
-        }
-    }
 }
