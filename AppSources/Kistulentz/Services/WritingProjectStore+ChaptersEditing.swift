@@ -6,19 +6,13 @@ extension WritingProjectStore {
 
     func updateText(_ newValue: String) {
         guard isOpen, newValue != text else { return }
-        if !hasCapturedEditingBaseline {
-            createSnapshot(name: nil, reason: "Before editing")
-            hasCapturedEditingBaseline = true
-        }
         text = newValue
         isDirty = true
         updateSelectedChapterStatistics()
-        scheduleSave()
-        scheduleManuscriptAnalysis()
+        editCoordinator.editLanded(.liveTyping)
     }
 
     func saveNow() {
-        saveTask?.cancel()
         guard isDirty,
               let rootURL,
               let selectedChapterPath else { return }
@@ -58,7 +52,7 @@ extension WritingProjectStore {
             _ = OutlineTree.append(node, to: nil, in: &outlineNodes)
             saveOutlineNow()
             try loadChapter(path)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -93,7 +87,7 @@ extension WritingProjectStore {
         selectedChapterPath = relativePath
         text = try WritingProjectDisk.readChapter(relativePath, at: rootURL)
         isDirty = false
-        hasCapturedEditingBaseline = false
+        editCoordinator.resetEditingBaseline()
         var updatedManifest = manifest
         updatedManifest?.lastOpenedChapter = relativePath
         if let updatedManifest {
@@ -131,12 +125,4 @@ extension WritingProjectStore {
         }
     }
 
-    private func scheduleSave() {
-        saveTask?.cancel()
-        saveTask = Task { [weak self] in
-            try? await Task.sleep(for: .milliseconds(350))
-            guard !Task.isCancelled else { return }
-            self?.saveNow()
-        }
-    }
 }

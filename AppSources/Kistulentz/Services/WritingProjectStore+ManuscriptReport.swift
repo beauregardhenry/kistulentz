@@ -49,83 +49,100 @@ extension WritingProjectStore {
         applyBibleUpdate(updated, reason: "Before AI Bible deepening", summary: response.summary, forceSnapshot: true)
     }
 
-    func scheduleManuscriptAnalysis(immediately: Bool = false) {
-        manuscriptAnalysisTask?.cancel()
-        guard let rootURL, let manifest else { return }
+    /// `ManuscriptEditPipelineHost` conformance. `ManuscriptEditCoordinator`
+    /// owns *when* this runs (debounced for live typing, immediate for a
+    /// discrete/external change) and the once-per-session
+    /// `forceBibleSnapshotIfChanged` bookkeeping; this method owns *how* the
+    /// analysis itself is computed and applied, including the two-phase
+    /// publish below.
+    @discardableResult
+    func runManuscriptAnalysis(forceBibleSnapshotIfChanged: Bool) async -> Bool {
+        guard let rootURL, let manifest else { return false }
         let chapterSnapshot = chapters
         let selectedPathSnapshot = selectedChapterPath
         let selectedTextSnapshot = text
         isAnalyzingManuscript = true
-        manuscriptAnalysisTask = Task { [weak self] in
-            if !immediately { try? await Task.sleep(for: .milliseconds(1_400)) }
-            guard let self, !Task.isCancelled, self.rootURL == rootURL else { return }
-            let loaded = await Task.detached(priority: .utility) {
-                Result {
-                    let documents = try Self.loadManuscriptDocuments(
-                        chapters: chapterSnapshot,
-                        selectedPath: selectedPathSnapshot,
-                        selectedText: selectedTextSnapshot,
-                        rootURL: rootURL
-                    )
-                    let analysis = ManuscriptAnalyzer.analyze(
-                        projectName: manifest.name,
-                        kind: manifest.kind,
-                        documents: documents
-                    )
-                    let wordCount = documents.reduce(0) {
-                        $0 + WritingProjectDisk.wordCount(in: $1.text)
-                    }
-                    return (
-                        analysis: analysis,
-                        wordCount: wordCount,
-                        structuralSample: ManuscriptStructuralSampler.text(from: documents)
-                    )
+        let loaded = await Task.detached(priority: .utility) {
+            Result {
+                let documents = try Self.loadManuscriptDocuments(
+                    chapters: chapterSnapshot,
+                    selectedPath: selectedPathSnapshot,
+                    selectedText: selectedTextSnapshot,
+                    rootURL: rootURL
+                )
+                let analysis = ManuscriptAnalyzer.analyze(
+                    projectName: manifest.name,
+                    kind: manifest.kind,
+                    documents: documents
+                )
+                let wordCount = documents.reduce(0) {
+                    $0 + WritingProjectDisk.wordCount(in: $1.text)
                 }
-            }.value
-            guard !Task.isCancelled, self.rootURL == rootURL else { return }
-            var analysis: ManuscriptAnalysis
-            let wordCount: Int
-            let structuralSample: String
-            switch loaded {
-            case .success(let work):
-                analysis = work.analysis
-                wordCount = work.wordCount
-                structuralSample = work.structuralSample
-            case .failure(let error):
-                self.isAnalyzingManuscript = false
-                self.errorMessage = error.localizedDescription
-                return
+                return (
+                    analysis: analysis,
+                    wordCount: wordCount,
+                    structuralSample: ManuscriptStructuralSampler.text(from: documents)
+                )
             }
-            // Publish the native result before waiting for an optional external
-            // language pack to start. A cold Benepar worker can take seconds,
-            // but it must never delay Kistulentz's built-in report and Bible.
-            self.applyLocalManuscriptAnalysis(analysis)
-            guard !Task.isCancelled, self.rootURL == rootURL else { return }
-            let shouldRefreshStructure = immediately
-                || self.manuscriptCache.structuralProfile == nil
-                || abs(wordCount - self.lastStructuralAnalysisWordCount) >= 100
-                || self.lastStructuralAnalysisAt.map { Date().timeIntervalSince($0) >= 60 } != false
-            if shouldRefreshStructure,
-               let structure = await BeneparService.shared.analyzeIfAvailable(
-                   text: structuralSample,
-                   maximumSentences: 160,
-                   includeIssues: false
-               ) {
-                guard !Task.isCancelled, self.rootURL == rootURL else { return }
-                self.manuscriptCache.structuralProfile = structure.metrics
-                self.lastStructuralAnalysisAt = Date()
-                self.lastStructuralAnalysisWordCount = wordCount
-            }
-            if let structure = self.manuscriptCache.structuralProfile {
-                analysis = ManuscriptAnalyzer.addingStructuralProfile(structure, to: analysis)
-                guard !Task.isCancelled, self.rootURL == rootURL else { return }
-                self.applyLocalManuscriptAnalysis(analysis)
-            }
+        }.value
+        guard !Task.isCancelled, self.rootURL == rootURL else { return false }
+        var analysis: ManuscriptAnalysis
+        let wordCount: Int
+        let structuralSample: String
+        switch loaded {
+        case .success(let work):
+            analysis = work.analysis
+            wordCount = work.wordCount
+            structuralSample = work.structuralSample
+        case .failure(let error):
+            isAnalyzingManuscript = false
+            errorMessage = error.localizedDescription
+            return false
         }
+        // Publish the native result before waiting for an optional external
+        // language pack to start. A cold Benepar worker can take seconds,
+        // but it must never delay Kistulentz's built-in report and Bible.
+        var bibleChanged = applyLocalManuscriptAnalysis(
+            analysis,
+            forceBibleSnapshotIfChanged: forceBibleSnapshotIfChanged
+        )
+        guard !Task.isCancelled, self.rootURL == rootURL else { return bibleChanged }
+        let shouldRefreshStructure = manuscriptCache.structuralProfile == nil
+            || abs(wordCount - lastStructuralAnalysisWordCount) >= 100
+            || lastStructuralAnalysisAt.map { Date().timeIntervalSince($0) >= 60 } != false
+        if shouldRefreshStructure,
+           let structure = await BeneparService.shared.analyzeIfAvailable(
+               text: structuralSample,
+               maximumSentences: 160,
+               includeIssues: false
+           ) {
+            guard !Task.isCancelled, self.rootURL == rootURL else { return bibleChanged }
+            manuscriptCache.structuralProfile = structure.metrics
+            lastStructuralAnalysisAt = Date()
+            lastStructuralAnalysisWordCount = wordCount
+        }
+        if let structure = manuscriptCache.structuralProfile {
+            analysis = ManuscriptAnalyzer.addingStructuralProfile(structure, to: analysis)
+            guard !Task.isCancelled, self.rootURL == rootURL else { return bibleChanged }
+            // A Bible update already applied on the first publish above still
+            // counts toward the session baseline, so don't force a second
+            // snapshot for the same edit's refined publish.
+            let refinedChanged = applyLocalManuscriptAnalysis(
+                analysis,
+                forceBibleSnapshotIfChanged: forceBibleSnapshotIfChanged && !bibleChanged
+            )
+            bibleChanged = bibleChanged || refinedChanged
+        }
+        return bibleChanged
     }
 
-    private func applyLocalManuscriptAnalysis(_ analysis: ManuscriptAnalysis) {
-        guard let rootURL, let manifest else { return }
+    @discardableResult
+    private func applyLocalManuscriptAnalysis(
+        _ analysis: ManuscriptAnalysis,
+        forceBibleSnapshotIfChanged: Bool
+    ) -> Bool {
+        guard let rootURL, let manifest else { return false }
+        var bibleChanged = false
         do {
             manuscriptAnalysis = analysis
             let currentReport = (try? ManuscriptProjectDisk.loadReport(at: rootURL)) ?? manuscriptReportText
@@ -150,9 +167,9 @@ extension WritingProjectStore {
                     updatedBible,
                     reason: "Before automatic Bible update",
                     summary: bibleChangeSummary(old: bibleText, new: updatedBible),
-                    forceSnapshot: !hasCapturedBibleAutomaticBaseline
+                    forceSnapshot: forceBibleSnapshotIfChanged
                 )
-                hasCapturedBibleAutomaticBaseline = true
+                bibleChanged = true
             }
             manuscriptCache.generatedBibleBlock = analysis.generatedBibleBlock
             try ManuscriptProjectDisk.saveCache(manuscriptCache, at: rootURL)
@@ -161,6 +178,7 @@ extension WritingProjectStore {
             isAnalyzingManuscript = false
             errorMessage = error.localizedDescription
         }
+        return bibleChanged
     }
 
     func manuscriptDocuments() throws -> [ManuscriptDocument] {

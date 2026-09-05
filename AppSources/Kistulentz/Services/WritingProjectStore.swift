@@ -38,16 +38,10 @@ final class WritingProjectStore: ObservableObject {
     // own methods, nothing else in the module reaches in.
 
     var isDirty = false
-    var hasCapturedEditingBaseline = false
-    var saveTask: Task<Void, Never>?
-    var manuscriptAnalysisTask: Task<Void, Never>?
-    var bibleSaveTask: Task<Void, Never>?
     var outlineSaveTask: Task<Void, Never>?
     var manuscriptCache = ManuscriptProjectCache()
     var lastStructuralAnalysisAt: Date?
     var lastStructuralAnalysisWordCount = 0
-    var hasCapturedBibleAutomaticBaseline = false
-    var hasCapturedBibleEditingBaseline = false
     weak var projectUndoManager: UndoManager?
 
     // MARK: - Why the other six concerns stay combined
@@ -58,12 +52,16 @@ final class WritingProjectStore: ObservableObject {
     // real production behavior, not just file layout: an edit cascades
     // through manuscript analysis into an automatic Bible rewrite plus a
     // snapshot; a file move or a revision-apply both snapshot; autosave
-    // triggers a snapshot. Splitting these into independent stores without
-    // first designing something that owns "an edit just landed" and fans it
-    // out to analysis/Bible/snapshot in the right order would just relocate
-    // the coupling, not remove it -- that coordinator design is the real next
-    // step here, not a mechanical file split. (The 5 below were split first
-    // specifically because they verified as NOT having this problem.)
+    // triggers a snapshot. That cascade's sequencing and debounce/baseline
+    // bookkeeping now lives in `editCoordinator` (ManuscriptEditCoordinator),
+    // which is what actually made this class's job smaller -- but the six
+    // extensions still all read and write the same @Published, MainActor
+    // state below (text, bibleText, chapters, snapshots, ...), which is the
+    // remaining reason they stay one class rather than independent stores.
+    // (The 5 below were split first specifically because they verified as
+    // NOT having this problem.)
+
+    let editCoordinator = ManuscriptEditCoordinator()
 
     // MARK: - Sub-stores
     //
@@ -88,6 +86,7 @@ final class WritingProjectStore: ObservableObject {
         betaReadersStore.core = self
         styleLearningStore.core = self
         searchStore.core = self
+        editCoordinator.host = self
     }
 
     // MARK: - Computed Properties
@@ -138,7 +137,7 @@ final class WritingProjectStore: ObservableObject {
         manifest = try WritingProjectDisk.loadManifest(at: rootURL)
         outlineNodes = try ProjectOutlineDisk.load(at: rootURL).nodes
         try syncChaptersWithOutline(preferredSelection: result.selectedPath)
-        scheduleManuscriptAnalysis(immediately: true)
+        editCoordinator.editLanded(.externalChange)
         return result
     }
 
@@ -152,8 +151,7 @@ final class WritingProjectStore: ObservableObject {
             saveNow()
             saveBibleNow()
             saveOutlineNow()
-            manuscriptAnalysisTask?.cancel()
-            bibleSaveTask?.cancel()
+            editCoordinator.reset()
             outlineSaveTask?.cancel()
             recoveryRequest = nil
             lastMigrationResult = try ProjectCompatibilityManager.prepareForOpen(at: root)
@@ -188,10 +186,8 @@ final class WritingProjectStore: ObservableObject {
             try publicationStore.load(at: root)
             manuscriptAnalysis = nil
             lastBibleUpdate = nil
-            hasCapturedBibleAutomaticBaseline = false
-            hasCapturedBibleEditingBaseline = false
             try syncChaptersWithOutline(preferredSelection: loadedManifest.lastOpenedChapter)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.projectOpened)
             do {
                 _ = try ProjectCompatibilityManager.captureKnownGoodSnapshot(at: root)
             } catch {
@@ -229,10 +225,8 @@ final class WritingProjectStore: ObservableObject {
         saveNow()
         saveBibleNow()
         saveOutlineNow()
-        saveTask?.cancel()
+        editCoordinator.reset()
         searchStore.reset()
-        manuscriptAnalysisTask?.cancel()
-        bibleSaveTask?.cancel()
         outlineSaveTask?.cancel()
         rootURL = nil
         manifest = nil
@@ -259,7 +253,6 @@ final class WritingProjectStore: ObservableObject {
         lastBibleUpdate = nil
         isAnalyzingManuscript = false
         isDirty = false
-        hasCapturedEditingBaseline = false
         preservesUndoAcrossFileRelocation = false
     }
 

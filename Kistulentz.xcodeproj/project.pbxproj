@@ -37,6 +37,7 @@
 		352A2E2A6131963067DEF7BA /* ManuscriptAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40D2FFC85F5E2ECC42D615 /* ManuscriptAnalyzer.swift */; };
 		3643EF4A1345405A0E89329E /* KistulentzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D73AC6FEE05ACF6CFCAF0F /* KistulentzUITests.swift */; };
 		3C6CD97FD0AD8FE89A0183BE /* PublicationReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F4A0B4362B6AD91D05AF74 /* PublicationReadiness.swift */; };
+		3F4878DF35773E3C1FA4EBD3 /* WritingProjectStore+EditPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69FD9ADB0EDB2F341438C3 /* WritingProjectStore+EditPipeline.swift */; };
 		4007D6AEC500CC5CB814FA0D /* ReadabilityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A62717ACE81A0E07A1894A /* ReadabilityEngine.swift */; };
 		41D8206DA3081534BAB3B126 /* ManuscriptProjectDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40912B39C188C95FEE4899C /* ManuscriptProjectDisk.swift */; };
 		44B75014B523E52B2CD73C0A /* EditorWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB77A0B027A0F419D7D4D5 /* EditorWorkspace.swift */; };
@@ -45,6 +46,7 @@
 		4B944C3FF9265FDC24E966BE /* SystemCheckModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F3C07ECD3F4AF85FCA46B8 /* SystemCheckModels.swift */; };
 		4DA560CFC8C2A16F548652E0 /* PublicationRendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C3552A307E75EDE45C5F42 /* PublicationRendering.swift */; };
 		50EF860DF7387F8DA9416C68 /* EPUBReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B167CE1322E5DC463653C /* EPUBReference.swift */; };
+		5534688E85313A90781AE89E /* ManuscriptEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0640CF4873932103C49FD204 /* ManuscriptEditCoordinator.swift */; };
 		55E5B777974FE30151997ADE /* WritingProjectDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8955A8F710EF73BEA998B /* WritingProjectDisk.swift */; };
 		5608145F81526E20BF85E8D3 /* ProjectOutlineDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A23F8AD7B8467DFADF39D6 /* ProjectOutlineDisk.swift */; };
 		58D42C7233EDD2775BA35549 /* ProjectImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218DC089BFAB80E07C273EF /* ProjectImportService.swift */; };
@@ -135,6 +137,7 @@
 		015B975EAF5795EFF284DBCC /* DestinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinkService.swift; sourceTree = "<group>"; };
 		01C3A2106CCC89E183BE9736 /* ReferenceLibraryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibraryModels.swift; sourceTree = "<group>"; };
 		025B5B0D12D8DC7232CA6547 /* DOCXPublicationWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOCXPublicationWriter.swift; sourceTree = "<group>"; };
+		0640CF4873932103C49FD204 /* ManuscriptEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptEditCoordinator.swift; sourceTree = "<group>"; };
 		0812680CCD130AE48B513313 /* PublicationExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationExporter.swift; sourceTree = "<group>"; };
 		08A62717ACE81A0E07A1894A /* ReadabilityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadabilityEngine.swift; sourceTree = "<group>"; };
 		0A994D61E58E05351FAD207E /* ResearchMetadataLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMetadataLookup.swift; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 		B40912B39C188C95FEE4899C /* ManuscriptProjectDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptProjectDisk.swift; sourceTree = "<group>"; };
 		B9574BEAADCBDB2E2FEC32D0 /* WritingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingModels.swift; sourceTree = "<group>"; };
 		BBE34B0450654CCF9FFF9FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BE69FD9ADB0EDB2F341438C3 /* WritingProjectStore+EditPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WritingProjectStore+EditPipeline.swift"; sourceTree = "<group>"; };
 		C4F4A0B4362B6AD91D05AF74 /* PublicationReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationReadiness.swift; sourceTree = "<group>"; };
 		C650B1A545CACE4B69EBE945 /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		C85B167CE1322E5DC463653C /* EPUBReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBReference.swift; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 				9153F2852C4C73843241ECF7 /* WritingAIService.swift */,
 				44A8955A8F710EF73BEA998B /* WritingProjectDisk.swift */,
 				429484D47BAC14AD1157350C /* WritingProjectStore.swift */,
+				0640CF4873932103C49FD204 /* ManuscriptEditCoordinator.swift */,
+				BE69FD9ADB0EDB2F341438C3 /* WritingProjectStore+EditPipeline.swift */,
 				390CE8B97AFCB31278787A9A /* WritingProjectStore+Bible.swift */,
 				2DE139835916E6597FF14B63 /* WritingProjectStore+ChaptersEditing.swift */,
 				9A76A44C3827341485A46ABC /* WritingProjectStore+ManuscriptReport.swift */,
@@ -510,7 +516,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					085D7B54919F7F159690859E = {
 						DevelopmentTeam = "";
@@ -654,6 +660,8 @@
 				F89607BC14E22B06B14390BE /* WritingProjectStore+Snapshots.swift in Sources */,
 				9EAB26C1023C38B3AB3D2D70 /* WritingProjectStore+SystemicRevision.swift in Sources */,
 				12F16B0B76F745A78AF2FFB6 /* WritingProjectStore.swift in Sources */,
+				5534688E85313A90781AE89E /* ManuscriptEditCoordinator.swift in Sources */,
+				3F4878DF35773E3C1FA4EBD3 /* WritingProjectStore+EditPipeline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +689,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -698,6 +707,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = scripts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -716,6 +726,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = scripts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -765,10 +776,12 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -782,6 +795,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -793,6 +807,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -841,10 +856,12 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -865,6 +882,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

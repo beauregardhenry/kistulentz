@@ -74,7 +74,7 @@ extension WritingProjectStore {
             }
             saveOutlineNow()
             try syncChaptersWithOutline(preferredSelection: relativePath ?? selectedChapterPath)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
             return node.id
         } catch {
             errorMessage = error.localizedDescription
@@ -92,7 +92,7 @@ extension WritingProjectStore {
         do {
             saveOutlineNow()
             try syncChaptersWithOutline(preferredSelection: selectedChapterPath)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -108,7 +108,7 @@ extension WritingProjectStore {
         do {
             saveOutlineNow()
             try syncChaptersWithOutline(preferredSelection: selectedChapterPath)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -209,7 +209,7 @@ extension WritingProjectStore {
                     selectionBefore: beforeSelection,
                     selectionAfter: selectedAfter
                 )
-                scheduleManuscriptAnalysis(immediately: true)
+                editCoordinator.editLanded(.externalChange)
             } catch {
                 try? ProjectFileOrganizer.undo(completed, at: rootURL)
                 let reverseMap = Dictionary(uniqueKeysWithValues: completed.map { ($0.destinationPath, $0.sourcePath) })
@@ -326,7 +326,7 @@ extension WritingProjectStore {
                     beforeNodes: beforeNodes,
                     afterNodes: afterNodes
                 )
-                scheduleManuscriptAnalysis(immediately: true)
+                editCoordinator.editLanded(.externalChange)
             } catch {
                 try? WritingProjectDisk.writeChapter(original, relativePath: plan.chapterPath, at: rootURL)
                 for path in createdPaths { try? FileManager.default.removeItem(at: rootURL.appendingPathComponent(path)) }
@@ -422,7 +422,7 @@ extension WritingProjectStore {
                 )
             }
             projectUndoManager?.setActionName("Organize Project Files")
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -453,7 +453,7 @@ extension WritingProjectStore {
                 selectionBefore: selectionBefore,
                 selectionAfter: selectionAfter
             )
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -519,7 +519,7 @@ extension WritingProjectStore {
                 )
             }
             projectUndoManager?.setActionName("Split Chapter Headings")
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -553,7 +553,7 @@ extension WritingProjectStore {
                 beforeNodes: beforeNodes,
                 afterNodes: afterNodes
             )
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }

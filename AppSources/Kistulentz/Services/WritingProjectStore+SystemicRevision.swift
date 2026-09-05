@@ -153,7 +153,7 @@ extension WritingProjectStore {
             saveRevisionArchive()
             try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
             registerRevisionUndo(expected: after, replacement: before, resolvedFindingIDs: checked.includedChanges.compactMap(\.findingID), undoing: true)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -214,7 +214,7 @@ extension WritingProjectStore {
             saveRevisionArchive()
             try refreshProjectAfterRevision(preferredSelection: selectedChapterPath)
             registerRevisionUndo(expected: replacement, replacement: expected, resolvedFindingIDs: findingIDs, undoing: !undoing)
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }

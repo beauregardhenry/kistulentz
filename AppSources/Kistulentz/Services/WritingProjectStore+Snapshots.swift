@@ -22,8 +22,7 @@ extension WritingProjectStore {
     }
 
     func prepareForProgrammaticEdit(reason: String) {
-        createSnapshot(name: nil, reason: reason)
-        hasCapturedEditingBaseline = true
+        editCoordinator.prepareForProgrammaticEdit(reason: reason)
     }
 
     func content(for snapshot: ProjectSnapshot) throws -> String {
@@ -56,14 +55,12 @@ extension WritingProjectStore {
                 saveNow()
                 try loadChapter(snapshot.chapterPath)
             }
-            createSnapshot(name: nil, reason: "Before restoring \(snapshot.name)")
+            editCoordinator.prepareForProgrammaticEdit(reason: "Before restoring \(snapshot.name)")
             let restored = try WritingProjectDisk.snapshotContent(snapshot, at: rootURL)
             text = restored
             isDirty = true
-            hasCapturedEditingBaseline = true
             updateSelectedChapterStatistics()
-            saveNow()
-            scheduleManuscriptAnalysis(immediately: true)
+            editCoordinator.editLanded(.externalChange)
         } catch {
             errorMessage = error.localizedDescription
         }
