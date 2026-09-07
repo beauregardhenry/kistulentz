@@ -167,7 +167,11 @@ extension WritingProjectStore {
                     updatedBible,
                     reason: "Before automatic Bible update",
                     summary: bibleChangeSummary(old: bibleText, new: updatedBible),
-                    forceSnapshot: forceBibleSnapshotIfChanged
+                    forceSnapshot: forceBibleSnapshotIfChanged,
+                    // This text is a derived analysis artifact. Keeping it off the
+                    // user's Undo stack ensures Command-Z reverses the edit or
+                    // systemic revision that caused the analysis, not the scan.
+                    registersUndo: false
                 )
                 bibleChanged = true
             }

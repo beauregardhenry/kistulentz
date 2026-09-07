@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProjectPolishView: View {
     @ObservedObject var store: WritingProjectStore
+    let onApply: (RevisionChangeSet) -> Void
     @EnvironmentObject private var settings: AppSettings
     @Environment(\.dismiss) private var dismiss
 
@@ -33,7 +34,9 @@ struct ProjectPolishView: View {
             titleVisibility: .visible
         ) {
             Button("Apply Included Changes") { applyPendingChanges() }
+                .accessibilityIdentifier("ConfirmProjectPolishApply")
             Button("Cancel", role: .cancel) { pendingChangeSet = nil }
+                .accessibilityIdentifier("CancelProjectPolishApply")
         } message: {
             Text("Kistulentz will recheck every exact passage, snapshot every affected file, and register one macOS Undo action. If any included passage is stale, ambiguous, or overlapping, no file will be changed.")
         }
@@ -55,6 +58,7 @@ struct ProjectPolishView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Polish Project")
                     .font(.title2.bold())
+                    .accessibilityIdentifier("ProjectPolishView")
                 Text("Review local corrections passage by passage and apply one or more stages across the whole project.")
                     .foregroundStyle(.secondary)
             }
@@ -311,12 +315,8 @@ struct ProjectPolishView: View {
 
     private func applyPendingChanges() {
         guard let pendingChangeSet else { return }
-        if store.applyRevisionChangeSet(pendingChangeSet) {
-            dismiss()
-        } else {
-            errorMessage = store.errorMessage ?? "Kistulentz left every file unchanged."
-        }
         self.pendingChangeSet = nil
+        onApply(pendingChangeSet)
     }
 
     private func emptyReportDescription(_ report: ProjectPolishReport) -> String {
@@ -355,6 +355,7 @@ private struct ProjectPolishChangeRow: View {
                 GroupBox("After — editable proposal") {
                     TextEditor(text: $change.replacementText)
                         .frame(minHeight: 84, maxHeight: 170)
+                        .accessibilityLabel("Proposed replacement for \(change.chapterTitle): \(change.originalText)")
                 }
             }
             Text(change.explanation)

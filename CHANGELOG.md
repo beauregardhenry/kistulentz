@@ -8,6 +8,31 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+### Added
+
+- Added an upgrade-aware What’s New screen, available again from the Help menu.
+- Diagnostic exports now include the app/build environment and privacy-safe prompts that help
+  friends describe the shortest reproduction steps without including manuscript text.
+- The opt-in Apple-silicon and Intel scale suite now records timings for large-project load,
+  search, import, reference filtering, Project Polish, and cancellation.
+
+### Fixed
+
+- The Project Import Assistant now compresses vertically so its destination controls and action
+  buttons remain reachable on smaller or scaled Mac displays.
+- Project Polish now applies after its review sheet closes and registers one document-level Undo
+  transaction; automatic Project Bible refreshes no longer hide that author-facing Undo action.
+- Preferences from the former `com.beauhenry.kistuletz` identity now carry forward editor font,
+  reference and research library locations, and persisted dismissed suggestions without replacing
+  a newer value.
+
+### Testing
+
+- Expanded macOS UI coverage from basic smoke checks to document edit/save/reopen/Undo/Redo,
+  crash recovery, stale-file refusal, real document imports, Project Import Assistant failure and
+  cancellation paths, Project Polish stages and stale passages, provider controls, keyboard
+  operation, and accessibility identifiers.
+
 ## [0.16.0] - 2026-09-04
 
 ### Added

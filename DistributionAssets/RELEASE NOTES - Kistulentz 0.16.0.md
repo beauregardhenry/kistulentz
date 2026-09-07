@@ -2,7 +2,8 @@
 
 Version 0.16.0 adds a native De-stink Review pass, on-device AI-tell phrasing
 detection in the readability engine, and per-project learning for declined
-advisory flags — plus editor font/size choice and a manuscript-export bug fix.
+advisory flags. It also strengthens Project Polish, document importing, crash
+recovery, upgrades, accessibility, and feedback collection before wider testing.
 
 ## Added
 
@@ -27,9 +28,31 @@ advisory flags — plus editor font/size choice and a manuscript-export bug fix.
 
 ## Fixed
 
+- The Project Import Assistant now keeps its destination controls and action
+  buttons reachable on smaller or scaled Mac displays.
 - Footnote and endnote anchors that fell inside italic or underscore emphasis
   were sometimes swallowed by the emphasis regex during manuscript export;
   they're now correctly preserved.
+- Project Polish now applies reviewed changes as one document-level Undo action.
+  Automatic Project Bible updates no longer replace that author-facing Undo.
+- Project Polish detects a passage changed after analysis and marks its proposal
+  stale instead of overwriting the newer writing.
+- Settings and project-library locations from the former Kistuletz application
+  identity are carried forward without replacing newer Kistulentz values.
+
+## Release-candidate hardening
+
+- Added end-to-end interface tests for editing, saving, reopening, Undo/Redo,
+  crash recovery, changed-file refusal, and saving a recovered copy.
+- Added Project Polish tests for staged review, edited proposals, stale passages,
+  cancellation, applying changes, and one-step Undo.
+- Added Project Import Assistant tests for combined and separate output,
+  reordering, real document formats, partial failure, retry, and cancellation.
+- Expanded keyboard, accessibility, provider-connection, upgrade, and
+  large-project performance coverage.
+- Added an upgrade-aware What's New screen that remains available from Help.
+- Diagnostic exports now include version information and privacy-safe prompts
+  that help friends provide useful reproduction steps without manuscript text.
 
 ## Under the hood
 

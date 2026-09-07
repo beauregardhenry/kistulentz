@@ -123,6 +123,7 @@ final class AppSettings: ObservableObject {
         static let hasAcknowledgedEnglishPackPrompt = "hasAcknowledgedEnglishPackPrompt"
         static let editorFontName = "editorFontName"
         static let editorFontSize = "editorFontSize"
+        static let lastSeenAppVersion = "lastSeenAppVersion"
     }
 
     /// The lowest and highest editor font size a user can choose in Settings. Kept in one place
@@ -176,6 +177,7 @@ final class AppSettings: ObservableObject {
 
     @Published private(set) var hasCompletedOnboarding: Bool
     @Published private(set) var hasAcknowledgedEnglishPackPrompt: Bool
+    @Published private(set) var lastSeenAppVersion: String?
 
     @Published private(set) var hasOpenAIKey = false
     @Published private(set) var hasAnthropicKey = false
@@ -211,27 +213,54 @@ final class AppSettings: ObservableObject {
         hasAcknowledgedEnglishPackPrompt = defaults.bool(
             forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt
         )
+        lastSeenAppVersion = defaults.string(forKey: DefaultsKey.lastSeenAppVersion)
 
         refreshKeyStatus()
     }
 
     private static func migrateLegacyDefaults(into defaults: UserDefaults) {
         guard let legacy = UserDefaults(suiteName: legacyBundleIdentifier) else { return }
-        let keys = [
-            DefaultsKey.provider,
-            DefaultsKey.targetGrade,
-            DefaultsKey.openAIModel,
-            DefaultsKey.anthropicModel,
-            DefaultsKey.ollamaModel,
-            DefaultsKey.hiddenHighlightCategories,
-            DefaultsKey.hasCompletedOnboarding,
-            DefaultsKey.hasAcknowledgedEnglishPackPrompt
+        migrateLegacyDefaults(into: defaults, from: legacy)
+    }
+
+    static func migrateLegacyDefaults(into defaults: UserDefaults, from legacy: UserDefaults) {
+        let keyMappings = [
+            (DefaultsKey.provider, DefaultsKey.provider),
+            (DefaultsKey.targetGrade, DefaultsKey.targetGrade),
+            (DefaultsKey.openAIModel, DefaultsKey.openAIModel),
+            (DefaultsKey.anthropicModel, DefaultsKey.anthropicModel),
+            (DefaultsKey.ollamaModel, DefaultsKey.ollamaModel),
+            (DefaultsKey.hiddenHighlightCategories, DefaultsKey.hiddenHighlightCategories),
+            (DefaultsKey.hasCompletedOnboarding, DefaultsKey.hasCompletedOnboarding),
+            (DefaultsKey.hasAcknowledgedEnglishPackPrompt, DefaultsKey.hasAcknowledgedEnglishPackPrompt),
+            (DefaultsKey.editorFontName, DefaultsKey.editorFontName),
+            (DefaultsKey.editorFontSize, DefaultsKey.editorFontSize),
+            ("referenceLibraryFolder", "referenceLibraryFolder"),
+            ("Kistulentz.researchLibraryLocation", "Kistulentz.researchLibraryLocation"),
+            (
+                "com.beauhenry.kistuletz.dismissedSuggestions.v1",
+                "com.beauhenry.kistulentz.dismissedSuggestions.v1"
+            )
         ]
-        for key in keys where defaults.object(forKey: key) == nil {
-            if let value = legacy.object(forKey: key) {
-                defaults.set(value, forKey: key)
+        for (sourceKey, destinationKey) in keyMappings
+        where defaults.object(forKey: destinationKey) == nil {
+            if let value = legacy.object(forKey: sourceKey) {
+                defaults.set(value, forKey: destinationKey)
             }
         }
+    }
+
+    static func appVersion(in bundle: Bundle = .main) -> String {
+        bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Development"
+    }
+
+    func shouldPresentWhatsNew(for appVersion: String) -> Bool {
+        hasCompletedOnboarding && lastSeenAppVersion != appVersion
+    }
+
+    func acknowledgeWhatsNew(for appVersion: String) {
+        lastSeenAppVersion = appVersion
+        defaults.set(appVersion, forKey: DefaultsKey.lastSeenAppVersion)
     }
 
     func model(for provider: AIProvider) -> String {

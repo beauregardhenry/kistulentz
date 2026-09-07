@@ -170,7 +170,7 @@ final class ManuscriptInsightsTests: XCTestCase {
     }
 
     @MainActor
-    func testProjectStoreAutomaticallyUpdatesReportAndBibleWithUndoAndHistory() async throws {
+    func testProjectStoreAutomaticallyUpdatesReportAndBibleWithHistoryWithoutMaskingUserUndo() async throws {
         let parent = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: parent) }
         let root = try WritingProjectDisk.createProject(in: parent, name: "Automatic", kind: .fiction)
@@ -189,14 +189,12 @@ final class ManuscriptInsightsTests: XCTestCase {
         XCTAssertTrue(store.manuscriptReportText.contains("## Structure"))
         XCTAssertTrue(store.bibleText.contains("Chapter & Section Map"))
         XCTAssertTrue(store.snapshots.contains { $0.chapterPath == ManuscriptProjectDisk.bibleFileName })
-        XCTAssertTrue(undoManager.canUndo)
-
-        undoManager.undo()
-        XCTAssertEqual(store.bibleText, originalBible)
+        XCTAssertFalse(undoManager.canUndo)
+        XCTAssertNotEqual(store.bibleText, originalBible)
         store.closeProject()
 
         let reopenedBible = try ManuscriptProjectDisk.loadBible(at: root)
-        XCTAssertEqual(reopenedBible, originalBible)
+        XCTAssertNotEqual(reopenedBible, originalBible)
     }
 
     private func temporaryDirectory() -> URL {

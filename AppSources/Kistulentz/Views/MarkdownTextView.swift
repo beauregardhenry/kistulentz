@@ -53,6 +53,7 @@ struct MarkdownTextView: NSViewRepresentable {
         textView.isAutomaticDashSubstitutionEnabled = false
         textView.string = text
         textView.setAccessibilityLabel("Markdown editor")
+        textView.setAccessibilityIdentifier("MarkdownEditor")
         textView.setAccessibilityHelp("Edit the current Markdown document. Kistulentz highlights writing suggestions in this text area.")
 
         let paragraph = NSMutableParagraphStyle()

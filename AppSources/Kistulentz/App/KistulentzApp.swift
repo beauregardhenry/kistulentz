@@ -10,14 +10,36 @@ struct KistulentzApp: App {
     @StateObject private var researchLibrary = ResearchLibraryStore()
     @StateObject private var draftRecovery = DraftRecoveryManager.shared
 #if UI_TEST_HOST
-    @State private var uiTestDocument = MarkdownDocument()
+    @State private var uiTestDocument: MarkdownDocument
+    @State private var uiTestUndoManager = UndoManager()
 #endif
+
+    init() {
+#if UI_TEST_HOST
+        let environment = ProcessInfo.processInfo.environment
+        let text: String
+        if let path = environment["KISTULENTZ_UI_TEST_DOCUMENT_PATH"],
+           let loaded = try? String(contentsOfFile: path, encoding: .utf8) {
+            text = loaded
+        } else if let supplied = environment["KISTULENTZ_UI_TEST_DOCUMENT_TEXT"] {
+            text = supplied
+        } else {
+            text = MarkdownDocument().text
+        }
+        _uiTestDocument = State(initialValue: MarkdownDocument(text: text))
+#endif
+    }
 
     @SceneBuilder
     var body: some Scene {
 #if UI_TEST_HOST
         WindowGroup("Kistulentz UI Test Workspace") {
-            EditorWorkspace(document: $uiTestDocument, fileURL: nil)
+            EditorWorkspace(
+                document: $uiTestDocument,
+                fileURL: ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_DOCUMENT_PATH"]
+                    .map { URL(fileURLWithPath: $0) },
+                suppliedUndoManager: uiTestUndoManager
+            )
                 .environmentObject(settings)
                 .environmentObject(beneparPack)
                 .environmentObject(referenceLibrary)
@@ -107,6 +129,9 @@ private struct KistulentzSupportCommands: Commands {
             Button("Welcome to Kistulentz…") {
                 NotificationCenter.default.post(name: .showKistulentzWelcome, object: nil)
             }
+            Button("What’s New in Kistulentz…") {
+                NotificationCenter.default.post(name: .showKistulentzWhatsNew, object: nil)
+            }
             Button("Draft Recovery…") {
                 NotificationCenter.default.post(name: .showDraftRecovery, object: nil)
             }
@@ -153,5 +178,6 @@ private enum KistulentzLegal {
 extension Notification.Name {
     static let runAIReview = Notification.Name("Kistulentz.runAIReview")
     static let showKistulentzWelcome = Notification.Name("Kistulentz.showWelcome")
+    static let showKistulentzWhatsNew = Notification.Name("Kistulentz.showWhatsNew")
     static let showDraftRecovery = Notification.Name("Kistulentz.showDraftRecovery")
 }
