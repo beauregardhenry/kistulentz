@@ -2,6 +2,12 @@ import Foundation
 
 enum DraftRecoveryDisk {
     static func defaultDirectoryURL() -> URL {
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RECOVERY_DIRECTORY"],
+           !path.isEmpty {
+            return URL(fileURLWithPath: path, isDirectory: true)
+        }
+#endif
         let applicationSupport = FileManager.default.urls(
             for: .applicationSupportDirectory,
             in: .userDomainMask

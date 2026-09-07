@@ -43,6 +43,8 @@ final class SystemCheckTests: XCTestCase {
         XCTAssertTrue(markdown.contains("1 item needs attention"))
         XCTAssertTrue(markdown.contains("## Needs attention"))
         XCTAssertTrue(markdown.contains("## Ready"))
+        XCTAssertTrue(markdown.contains("## Help us reproduce a problem"))
+        XCTAssertTrue(markdown.contains("What did you expect instead?"))
         XCTAssertTrue(markdown.contains("excludes document and manuscript text"))
         XCTAssertTrue(markdown.contains("did not contact OpenAI or Anthropic"))
     }

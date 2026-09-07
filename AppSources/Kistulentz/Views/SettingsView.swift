@@ -363,6 +363,7 @@ struct SettingsView: View {
             Button(testingProvider == provider ? "Testing…" : "Test Connection") {
                 testConnection(provider)
             }
+            .accessibilityIdentifier("TestConnection-\(provider.rawValue)")
             .disabled(testingProvider != nil || !settings.isProviderReady(provider))
 
             if testingProvider == provider {
@@ -533,6 +534,8 @@ private struct ProviderModelPicker: View {
             Text("Custom…").tag(Self.customChoice)
         }
         .pickerStyle(.menu)
+        .accessibilityIdentifier("ModelPicker-\(provider.rawValue)")
+        .accessibilityLabel("\(provider.title) model")
 
         if usesCustomModel {
             TextField("Custom model ID", text: $selection)

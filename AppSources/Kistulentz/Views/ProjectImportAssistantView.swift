@@ -32,6 +32,9 @@ struct ProjectImportAssistantView: View {
     @State private var currentSourceName = ""
     @State private var conversionTask: Task<Void, Never>?
     @State private var errorMessage: String?
+#if UI_TEST_HOST
+    @State private var didLoadUITestSources = false
+#endif
 
     var body: some View {
         VStack(spacing: 0) {
@@ -78,6 +81,9 @@ struct ProjectImportAssistantView: View {
                 onCancel()
             }
         }
+#if UI_TEST_HOST
+        .onAppear { loadUITestConfigurationIfNeeded() }
+#endif
     }
 
     private var header: some View {
@@ -85,6 +91,7 @@ struct ProjectImportAssistantView: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text("Project Import Assistant")
                     .font(.title2.bold())
+                    .accessibilityIdentifier("ProjectImportAssistantView")
                 Text("Preview and organize every document before Kistulentz writes anything.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
@@ -386,6 +393,7 @@ struct ProjectImportAssistantView: View {
                     }
                 }
                 .frame(width: 310)
+                .accessibilityIdentifier("ImportDestinationPicker")
 
                 destinationControls
             } else {
@@ -595,6 +603,13 @@ struct ProjectImportAssistantView: View {
             for source in targets {
                 guard !Task.isCancelled else { break }
                 currentSourceName = source.url.lastPathComponent
+#if UI_TEST_HOST
+                if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_IMPORT_DELAY_MS"],
+                   let delay = Int(rawDelay), delay > 0 {
+                    try? await Task.sleep(for: .milliseconds(delay))
+                    guard !Task.isCancelled else { break }
+                }
+#endif
                 let outcome: (ProjectImportConversion?, String?) = await Task.detached(priority: .userInitiated) {
                     do {
                         return (Optional(try ProjectImportConversionService.load(source)), nil)
@@ -658,6 +673,13 @@ struct ProjectImportAssistantView: View {
     }
 
     private func chooseCombinedMarkdownDestination() {
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_IMPORT_OUTPUT_PATH"],
+           !path.isEmpty {
+            writeCombinedMarkdown(to: URL(fileURLWithPath: path))
+            return
+        }
+#endif
         let panel = NSSavePanel()
         panel.title = "Save Combined Markdown"
         panel.message = "Choose a new filename. Kistulentz will not replace an existing document."
@@ -730,4 +752,22 @@ struct ProjectImportAssistantView: View {
         }
         isWriting = false
     }
+
+#if UI_TEST_HOST
+    private func loadUITestConfigurationIfNeeded() {
+        guard !didLoadUITestSources else { return }
+        didLoadUITestSources = true
+        let environment = ProcessInfo.processInfo.environment
+        if let parentPath = environment["KISTULENTZ_UI_TEST_IMPORT_PROJECT_PARENT"],
+           !parentPath.isEmpty {
+            projectParentURL = URL(fileURLWithPath: parentPath, isDirectory: true)
+        }
+        guard let rawPaths = environment["KISTULENTZ_UI_TEST_IMPORT_PATHS"] else { return }
+        let urls = rawPaths
+            .split(separator: "\n")
+            .map { URL(fileURLWithPath: String($0)) }
+        guard !urls.isEmpty else { return }
+        addSelections(.success(urls))
+    }
+#endif
 }

@@ -187,10 +187,16 @@ extension WritingProjectStore {
         resolvedFindingIDs: [UUID],
         undoing: Bool
     ) {
-        projectUndoManager?.registerUndo(withTarget: self) { target in
+        guard let projectUndoManager else { return }
+        let ownsGrouping = projectUndoManager.groupingLevel == 0
+            && !projectUndoManager.isUndoing
+            && !projectUndoManager.isRedoing
+        if ownsGrouping { projectUndoManager.beginUndoGrouping() }
+        projectUndoManager.registerUndo(withTarget: self) { target in
             target.performRevisionUndo(expected: expected, replacement: replacement, findingIDs: resolvedFindingIDs, undoing: undoing)
         }
-        projectUndoManager?.setActionName(undoing ? "Apply Systemic Revision" : "Undo Systemic Revision")
+        projectUndoManager.setActionName(undoing ? "Apply Systemic Revision" : "Undo Systemic Revision")
+        if ownsGrouping { projectUndoManager.endUndoGrouping() }
     }
 
     private func performRevisionUndo(

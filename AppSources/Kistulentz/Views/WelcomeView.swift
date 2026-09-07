@@ -1,5 +1,96 @@
 import SwiftUI
 
+struct WhatsNewView: View {
+    let version: String
+    let onDone: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 22) {
+            HStack(alignment: .top, spacing: 16) {
+                Image(systemName: "sparkles.rectangle.stack")
+                    .font(.system(size: 32, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: 62, height: 62)
+                    .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 15))
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("What’s New in Kistulentz (version)")
+                        .font(.largeTitle.bold())
+                        .accessibilityIdentifier("KistulentzWhatsNew")
+                    Text("A safer, better-tested preview for real writing projects.")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 16) {
+                whatsNewItem(
+                    "Safer Project Polish",
+                    detail: "Review stages and edited proposals, recheck passages before applying, cancel safely, and undo an applied project revision in one step.",
+                    systemImage: "wand.and.stars",
+                    identifier: "WhatsNewProjectPolish"
+                )
+                whatsNewItem(
+                    "Stronger import and recovery",
+                    detail: "Multi-document imports, partial failures, cancellation, stale recovery files, and recovered copies now have deeper interface coverage.",
+                    systemImage: "square.stack.3d.up",
+                    identifier: "WhatsNewImportRecovery"
+                )
+                whatsNewItem(
+                    "Easier troubleshooting",
+                    detail: "The private System Check report now pairs version details with a short problem-reproduction template for useful feedback.",
+                    systemImage: "stethoscope",
+                    identifier: "WhatsNewTroubleshooting"
+                )
+            }
+
+            Label(
+                "Kistulentz remains local-first. This update does not enable automatic updates or send writing to an AI provider without approval.",
+                systemImage: "lock.shield"
+            )
+            .font(.callout)
+            .foregroundStyle(.secondary)
+            .accessibilityElement(children: .combine)
+
+            HStack {
+                Text("You can reopen this screen from the Help menu.")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+                Spacer()
+                Button("Continue", action: onDone)
+                    .buttonStyle(.borderedProminent)
+                    .keyboardShortcut(.defaultAction)
+            }
+        }
+        .padding(28)
+        .frame(minWidth: 720, idealWidth: 760, minHeight: 560)
+    }
+
+    private func whatsNewItem(
+        _ title: String,
+        detail: String,
+        systemImage: String,
+        identifier: String
+    ) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: systemImage)
+                .font(.title2)
+                .frame(width: 30)
+                .foregroundStyle(Color.accentColor)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(title).font(.headline)
+                Text(detail)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier(identifier)
+    }
+}
+
 struct WelcomeView: View {
     let onCreateProject: () -> Void
     let onOpenDocument: () -> Void

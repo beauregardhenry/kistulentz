@@ -23,12 +23,15 @@ extension WritingProjectStore {
         _ updated: String,
         reason: String,
         summary: String,
-        forceSnapshot: Bool
+        forceSnapshot: Bool,
+        registersUndo: Bool = true
     ) {
         guard updated != bibleText else { return }
         let previous = bibleText
         if forceSnapshot { createBibleSnapshot(content: previous, reason: reason) }
-        registerBibleUndo(previous: previous, updated: updated, actionName: "Update Project Bible")
+        if registersUndo {
+            registerBibleUndo(previous: previous, updated: updated, actionName: "Update Project Bible")
+        }
         bibleText = updated
         saveBibleNow()
         lastBibleUpdate = BibleUpdateNotice(

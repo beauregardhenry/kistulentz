@@ -1,25 +1,6 @@
 import XCTest
 
-final class KistulentzUITests: XCTestCase {
-    private var app: XCUIApplication!
-
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        executionTimeAllowance = 45
-        app = XCUIApplication()
-        app.launchEnvironment["KISTULENTZ_UI_TESTING"] = "1"
-        app.launchEnvironment["CFFIXED_USER_HOME"] = FileManager.default.temporaryDirectory
-            .appendingPathComponent("Kistulentz-UI-\(UUID().uuidString)", isDirectory: true)
-            .path
-        app.launchArguments += ["-ApplePersistenceIgnoreState", "YES"]
-    }
-
-    override func tearDown() {
-        app?.terminate()
-        app = nil
-        super.tearDown()
-    }
+final class KistulentzUITests: KistulentzUITestCase {
 
     func testFirstLaunchEnglishPackPromptCanBeDeclined() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: false)
@@ -94,14 +75,22 @@ final class KistulentzUITests: XCTestCase {
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 
-    private func launch(completedOnboarding: Bool, acknowledgedEnglishPack: Bool) {
-        app.launchArguments += [
-            "-hasCompletedOnboarding", completedOnboarding ? "YES" : "NO",
-            "-hasAcknowledgedEnglishPackPrompt", acknowledgedEnglishPack ? "YES" : "NO"
-        ]
-        app.launch()
-        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
-        XCTAssertTrue(app.windows.firstMatch.waitForExistence(timeout: 8))
+    func testWhatsNewCanBeOpenedFromHelpAndClosed() {
+        launch(completedOnboarding: true, acknowledgedEnglishPack: true)
+
+        let helpMenu = app.menuBars.menuBarItems["Help"].firstMatch
+        XCTAssertTrue(helpMenu.waitForExistence(timeout: 3))
+        helpMenu.click()
+        let whatsNewItem = app.menuItems["What’s New in Kistulentz…"]
+        XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
+        whatsNewItem.click()
+
+        let title = app.descendants(matching: .any)["KistulentzWhatsNew"].firstMatch
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        let polishSummary = app.descendants(matching: .any)["WhatsNewProjectPolish"].firstMatch
+        XCTAssertTrue(polishSummary.exists)
+        app.buttons["Continue"].click()
+        XCTAssertFalse(title.waitForExistence(timeout: 2))
     }
 
     private var referenceControl: XCUIElement {

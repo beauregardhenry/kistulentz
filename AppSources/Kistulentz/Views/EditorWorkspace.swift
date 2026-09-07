@@ -22,6 +22,7 @@ private struct PendingProjectConfiguration: Identifiable {
 struct EditorWorkspace: View {
     @Binding var document: MarkdownDocument
     let fileURL: URL?
+    let suppliedUndoManager: UndoManager?
 
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
@@ -64,16 +65,28 @@ struct EditorWorkspace: View {
     @State private var pendingDocumentImport: DocumentImportDraft?
     @State private var isImportingDocument = false
     @State private var showingProjectImportAssistant = false
+    @State private var pendingProjectPolishApply: RevisionChangeSet?
     @State private var showingWelcome = false
+    @State private var showingWhatsNew = false
     @State private var showingEnglishPackPrompt = false
     @State private var showingDraftRecovery = false
     @State private var didPresentStartup = false
+#if UI_TEST_HOST
+    @State private var didConfigureUITestProject = false
+    @State private var lastUITestEditCommand = ""
+    @State private var uiTestEditUndoManager = UndoManager()
+#endif
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
-    init(document: Binding<MarkdownDocument>, fileURL: URL?) {
+    init(
+        document: Binding<MarkdownDocument>,
+        fileURL: URL?,
+        suppliedUndoManager: UndoManager? = nil
+    ) {
         _document = document
         self.fileURL = fileURL
+        self.suppliedUndoManager = suppliedUndoManager
         let store = WritingProjectStore()
         _projectStore = StateObject(wrappedValue: store)
         _styleLearningStore = ObservedObject(wrappedValue: store.styleLearningStore)
@@ -173,7 +186,12 @@ struct EditorWorkspace: View {
         .background(Color(nsColor: .windowBackgroundColor))
         .navigationTitle(projectStore.isOpen ? projectStore.projectName : (fileURL?.lastPathComponent ?? "Untitled.md"))
         .onAppear {
-            projectStore.attachUndoManager(undoManager)
+            projectStore.attachUndoManager(
+                suppliedUndoManager ?? undoManager ?? NSApp.keyWindow?.undoManager
+            )
+#if UI_TEST_HOST
+            configureUITestProjectIfNeeded()
+#endif
             viewModel.configureDocument(url: activeFileURL, text: activeText)
             viewModel.updateStyleDecisions(styleLearningStore.styleDecisions)
             configureDraftRecovery()
@@ -184,6 +202,11 @@ struct EditorWorkspace: View {
             )
             presentStartupIfNeeded()
         }
+#if UI_TEST_HOST
+        .task {
+            await monitorUITestEditCommand()
+        }
+#endif
         .onChange(of: styleLearningStore.styleDecisions) { _, newValue in
             viewModel.updateStyleDecisions(newValue)
         }
@@ -198,6 +221,10 @@ struct EditorWorkspace: View {
                 viewModel.scheduleAnalysis(text: newValue, targetGrade: settings.targetGrade)
                 draftRecoveryCoordinator.schedule(text: newValue)
             }
+        }
+        .onChange(of: showingProjectPolish) { _, isPresented in
+            guard !isPresented else { return }
+            applyPendingProjectPolishIfNeeded()
         }
     }
 
@@ -246,6 +273,9 @@ struct EditorWorkspace: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .showKistulentzWelcome)) { _ in
             showingWelcome = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .showKistulentzWhatsNew)) { _ in
+            showingWhatsNew = true
         }
         .onReceive(NotificationCenter.default.publisher(for: .showDraftRecovery)) { _ in
             draftRecovery.reloadPendingEntries()
@@ -304,7 +334,10 @@ struct EditorWorkspace: View {
                 .environmentObject(researchLibrary)
         }
         .sheet(isPresented: $showingProjectPolish) {
-            ProjectPolishView(store: projectStore)
+            ProjectPolishView(store: projectStore) { changeSet in
+                pendingProjectPolishApply = changeSet
+                showingProjectPolish = false
+            }
                 .environmentObject(settings)
         }
         .sheet(isPresented: $showingDestinker) {
@@ -348,6 +381,12 @@ struct EditorWorkspace: View {
                 onOpenSample: createSampleProject,
                 onContinue: completeWelcome
             )
+            .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $showingWhatsNew) {
+            WhatsNewView(version: AppSettings.appVersion()) {
+                finishWhatsNew()
+            }
             .interactiveDismissDisabled()
         }
         .sheet(isPresented: $showingEnglishPackPrompt) {
@@ -762,6 +801,127 @@ struct EditorWorkspace: View {
         )
     }
 
+    private func applyPendingProjectPolishIfNeeded() {
+        guard let changeSet = pendingProjectPolishApply else { return }
+        pendingProjectPolishApply = nil
+        Task { @MainActor in
+            // Let AppKit restore the Markdown editor as first responder before registering
+            // the transaction, so the standard Edit menu and Command-Z use this stack.
+            await Task.yield()
+            let documentUndoManager = suppliedUndoManager
+                ?? undoManager
+                ?? NSApp.keyWindow?.firstResponder?.undoManager
+                ?? NSApp.keyWindow?.undoManager
+            projectStore.attachUndoManager(documentUndoManager)
+            if !projectStore.applyRevisionChangeSet(changeSet) {
+                viewModel.errorMessage = projectStore.errorMessage
+                    ?? "Kistulentz left every file unchanged."
+            }
+        }
+    }
+
+#if UI_TEST_HOST
+    private func configureUITestProjectIfNeeded() {
+        guard !didConfigureUITestProject else { return }
+        didConfigureUITestProject = true
+        let environment = ProcessInfo.processInfo.environment
+        guard let path = environment["KISTULENTZ_UI_TEST_PROJECT_PATH"], !path.isEmpty else { return }
+
+        let root = URL(fileURLWithPath: path, isDirectory: true)
+        do {
+            if WritingProjectDisk.hasManifest(at: root) {
+                try projectStore.openProject(at: root)
+            } else {
+                let name = environment["KISTULENTZ_UI_TEST_PROJECT_NAME"]
+                    ?? root.lastPathComponent
+                let kind = WritingProjectKind(
+                    rawValue: environment["KISTULENTZ_UI_TEST_PROJECT_KIND"] ?? "fiction"
+                ) ?? .fiction
+                try projectStore.prepareAndOpenProject(at: root, name: name, kind: kind)
+            }
+        } catch {
+            projectStore.errorMessage = error.localizedDescription
+        }
+    }
+
+    /// XCTest's macOS keyboard driver can select text in the AppKit editor while silently
+    /// discarding replacement characters on headless runners. This file-backed command is
+    /// available only in the UI-test host and exercises the same binding, undo coordinator,
+    /// autosave, and recovery pipeline as a user edit without changing production launches.
+    @MainActor
+    private func monitorUITestEditCommand() async {
+        guard let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_EDIT_COMMAND_PATH"] else {
+            return
+        }
+        let url = URL(fileURLWithPath: path)
+        while !Task.isCancelled {
+            if let replacement = try? String(contentsOf: url, encoding: .utf8),
+               !replacement.isEmpty,
+               replacement != lastUITestEditCommand {
+                lastUITestEditCommand = replacement
+                if replacement == "__KISTULENTZ_UNDO__" {
+                    uiTestEditUndoManager.undo()
+                    continue
+                }
+                if replacement == "__KISTULENTZ_REDO__" {
+                    uiTestEditUndoManager.redo()
+                    continue
+                }
+                if replacement == "__KISTULENTZ_PROJECT_UNDO__" {
+                    let manager = suppliedUndoManager ?? projectStore.projectUndoManager
+                    manager?.undo()
+                    writeUITestProjectUndoStatus(manager: manager, operation: "undo")
+                    continue
+                }
+                if replacement == "__KISTULENTZ_PROJECT_REDO__" {
+                    let manager = suppliedUndoManager ?? projectStore.projectUndoManager
+                    manager?.redo()
+                    writeUITestProjectUndoStatus(manager: manager, operation: "redo")
+                    continue
+                }
+                if replacement == "__KISTULENTZ_PROJECT_UNDO_STATUS__" {
+                    let manager = suppliedUndoManager ?? projectStore.projectUndoManager
+                    writeUITestProjectUndoStatus(manager: manager, operation: "status")
+                    continue
+                }
+                if projectStore.isOpen {
+                    projectStore.prepareForProgrammaticEdit(reason: "Before UI test edit")
+                }
+                projectStore.attachUndoManager(uiTestEditUndoManager)
+                undoCoordinator.replaceText(
+                    with: replacement,
+                    binding: activeTextBinding,
+                    undoManager: uiTestEditUndoManager,
+                    actionName: "UI Test Edit"
+                )
+            }
+            try? await Task.sleep(for: .milliseconds(100))
+        }
+    }
+
+    private func writeUITestProjectUndoStatus(manager: UndoManager?, operation: String) {
+        guard let statusPath = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_STATUS_PATH"] else {
+            return
+        }
+        let status = [
+            "operation=\(operation)",
+            "manager=\(manager != nil)",
+            "canUndo=\(manager?.canUndo == true)",
+            "canRedo=\(manager?.canRedo == true)",
+            "undoName=\(manager?.undoActionName ?? "none")",
+            "redoName=\(manager?.redoActionName ?? "none")",
+            "grouping=\(manager?.groupingLevel ?? -1)",
+            "error=\(projectStore.errorMessage ?? "none")",
+            "text=\(projectStore.text.debugDescription)"
+        ].joined(separator: ",")
+        try? status.write(
+            to: URL(fileURLWithPath: statusPath),
+            atomically: true,
+            encoding: .utf8
+        )
+    }
+#endif
+
     private func presentStartupIfNeeded() {
         guard !didPresentStartup else { return }
         didPresentStartup = true
@@ -782,6 +942,8 @@ struct EditorWorkspace: View {
             showingEnglishPackPrompt = true
         } else if !settings.hasCompletedOnboarding {
             showingWelcome = true
+        } else if settings.shouldPresentWhatsNew(for: AppSettings.appVersion()) {
+            showingWhatsNew = true
         }
     }
 
@@ -790,13 +952,19 @@ struct EditorWorkspace: View {
         showingEnglishPackPrompt = false
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(180))
-            if !settings.hasCompletedOnboarding { showingWelcome = true }
+            presentNextStartupStep()
         }
     }
 
     private func completeWelcome() {
         settings.completeOnboarding()
+        settings.acknowledgeWhatsNew(for: AppSettings.appVersion())
         showingWelcome = false
+    }
+
+    private func finishWhatsNew() {
+        settings.acknowledgeWhatsNew(for: AppSettings.appVersion())
+        showingWhatsNew = false
     }
 
     private func beginProjectFromWelcome() {

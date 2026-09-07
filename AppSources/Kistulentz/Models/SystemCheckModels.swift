@@ -66,6 +66,17 @@ struct SystemCheckReport: Equatable {
         }
 
         text += """
+        ## Help us reproduce a problem
+
+        Please fill in only what you are comfortable sharing. Do not paste manuscript text, private filenames or paths, API keys, or account information.
+
+        - What were you trying to do?
+        - What happened?
+        - What did you expect instead?
+        - Can you make it happen again? If so, list the shortest steps.
+        - Did Kistulentz hang, close, overwrite anything, or leave a screen you could not exit?
+        - What was the last button or keyboard shortcut you used?
+
         ## Privacy
 
         This report was generated locally. It intentionally excludes document and manuscript text, EPUB excerpts, book and document titles, filenames and paths, API keys, account identifiers, and AI model names. Kistulentz did not contact OpenAI or Anthropic while running this check.

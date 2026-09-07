@@ -57,7 +57,7 @@ struct SystemCheckView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } else {
-                    Label("No writing, excerpts, keys, filenames, or paths are included", systemImage: "lock.shield")
+                    Label("Includes version details and reproduction prompts—never writing, keys, filenames, or paths", systemImage: "lock.shield")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

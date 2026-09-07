@@ -79,6 +79,7 @@ struct DraftRecoveryView: View {
                     pendingReplace = nil
                     replaceOriginal(entry)
                 }
+                .accessibilityIdentifier("ConfirmReplaceSavedFile")
             }
             Button("Cancel", role: .cancel) { pendingReplace = nil }
         } message: {
@@ -192,10 +193,12 @@ struct DraftRecoveryView: View {
             Button("Save Recovered Copy…") {
                 if let entry = selectedEntry { saveCopy(entry) }
             }
+            .accessibilityIdentifier("SaveRecoveredCopy")
             .disabled(selectedEntry == nil || isWorking)
             Button("Replace Saved File…") {
                 pendingReplace = selectedEntry
             }
+            .accessibilityIdentifier("RequestReplaceSavedFile")
             .buttonStyle(.borderedProminent)
             .disabled(!canReplaceSelected || isWorking || isLoadingSavedText)
         }
@@ -253,6 +256,13 @@ struct DraftRecoveryView: View {
     }
 
     private func saveCopy(_ entry: DraftRecoveryEntry) {
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RECOVERY_COPY_PATH"],
+           !path.isEmpty {
+            writeCopy(entry, to: URL(fileURLWithPath: path))
+            return
+        }
+#endif
         let panel = NSSavePanel()
         panel.title = "Save Recovered Draft"
         panel.message = "The original file will remain unchanged."
@@ -262,6 +272,10 @@ struct DraftRecoveryView: View {
         panel.canCreateDirectories = true
         guard panel.runModal() == .OK, let url = panel.url else { return }
 
+        writeCopy(entry, to: url)
+    }
+
+    private func writeCopy(_ entry: DraftRecoveryEntry, to url: URL) {
         isWorking = true
         Task { @MainActor in
             let result = await Task.detached(priority: .userInitiated) {
