@@ -28,6 +28,8 @@ recovery, upgrades, accessibility, and feedback collection before wider testing.
 
 ## Fixed
 
+- The Project Import Assistant now keeps its destination controls and action
+  buttons reachable on smaller or scaled Mac displays.
 - Footnote and endnote anchors that fell inside italic or underscore emphasis
   were sometimes swallowed by the emphasis regex during manuscript export;
   they're now correctly preserved.

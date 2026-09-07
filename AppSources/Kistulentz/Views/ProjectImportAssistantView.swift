@@ -49,7 +49,9 @@ struct ProjectImportAssistantView: View {
             Divider()
             footer
         }
-        .frame(minWidth: 1_020, minHeight: 720)
+        // Keep the footer reachable on smaller displays and scaled CI desktops.
+        // Both columns already scroll, so the assistant can safely compress vertically.
+        .frame(minWidth: 1_020, minHeight: 600, idealHeight: 720)
         .fileImporter(
             isPresented: $showingSourceChooser,
             allowedContentTypes: allowedSourceTypes,

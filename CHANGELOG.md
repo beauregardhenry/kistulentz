@@ -18,6 +18,8 @@ merged changes are recorded under [Unreleased].
 
 ### Fixed
 
+- The Project Import Assistant now compresses vertically so its destination controls and action
+  buttons remain reachable on smaller or scaled Mac displays.
 - Project Polish now applies after its review sheet closes and registers one document-level Undo
   transaction; automatic Project Bible refreshes no longer hide that author-facing Undo action.
 - Preferences from the former `com.beauhenry.kistuletz` identity now carry forward editor font,
