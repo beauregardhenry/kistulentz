@@ -13,25 +13,9 @@ struct ProjectImportAssistantView: View {
     let onComplete: (ProjectImportCompletion) -> Void
     let onCancel: () -> Void
 
-    @State private var sources: [ProjectImportSource] = []
-    @State private var skippedItems: [String] = []
-    @State private var conversions: [UUID: ProjectImportConversion] = [:]
-    @State private var failures: [UUID: ProjectImportFailure] = [:]
-    @State private var decisions: [UUID: DocumentTrackedChangeDecision] = [:]
-    @State private var selectedSourceID: UUID?
-    @State private var destination: ProjectImportDestination = .combinedMarkdown
-    @State private var projectName = "Imported Project"
-    @State private var projectKind: WritingProjectKind = .fiction
-    @State private var projectParentURL: URL?
+    @StateObject private var model = ProjectImportAssistantViewModel()
     @State private var showingSourceChooser = false
     @State private var showingProjectParentChooser = false
-    @State private var isDiscovering = false
-    @State private var isConverting = false
-    @State private var isWriting = false
-    @State private var completedCount = 0
-    @State private var currentSourceName = ""
-    @State private var conversionTask: Task<Void, Never>?
-    @State private var errorMessage: String?
 #if UI_TEST_HOST
     @State private var didLoadUITestSources = false
 #endif
@@ -56,7 +40,7 @@ struct ProjectImportAssistantView: View {
             isPresented: $showingSourceChooser,
             allowedContentTypes: allowedSourceTypes,
             allowsMultipleSelection: true,
-            onCompletion: addSelections
+            onCompletion: model.addSelections
         )
         .fileImporter(
             isPresented: $showingProjectParentChooser,
@@ -64,22 +48,22 @@ struct ProjectImportAssistantView: View {
             allowsMultipleSelection: false
         ) { result in
             switch result {
-            case .success(let urls): projectParentURL = urls.first
-            case .failure(let error): errorMessage = error.localizedDescription
+            case .success(let urls): model.projectParentURL = urls.first
+            case .failure(let error): model.errorMessage = error.localizedDescription
             }
         }
         .alert("Project Import Assistant", isPresented: Binding(
-            get: { errorMessage != nil },
-            set: { if !$0 { errorMessage = nil } }
+            get: { model.errorMessage != nil },
+            set: { if !$0 { model.errorMessage = nil } }
         )) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(errorMessage ?? "")
+            Text(model.errorMessage ?? "")
         }
         .onExitCommand {
-            if isConverting {
-                cancelConversion()
-            } else if !isWriting {
+            if model.isConverting {
+                model.cancelConversion()
+            } else if !model.isWriting {
                 onCancel()
             }
         }
@@ -99,13 +83,13 @@ struct ProjectImportAssistantView: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            if isConverting {
-                Button("Cancel Conversion", role: .cancel, action: cancelConversion)
+            if model.isConverting {
+                Button("Cancel Conversion", role: .cancel, action: model.cancelConversion)
                     .keyboardShortcut(.cancelAction)
             } else {
                 Button("Close", action: onCancel)
                     .keyboardShortcut(.cancelAction)
-                    .disabled(isWriting)
+                    .disabled(model.isWriting)
             }
         }
         .padding()
@@ -114,17 +98,17 @@ struct ProjectImportAssistantView: View {
     private var sourceColumn: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Label(hasResults ? "Import Results" : "Documents and Order", systemImage: "list.number")
+                Label(model.hasResults ? "Import Results" : "Documents and Order", systemImage: "list.number")
                     .font(.headline)
                 Spacer()
-                if hasResults && !isConverting {
-                    Button("Edit Plan") { resetResults() }
+                if model.hasResults && !model.isConverting {
+                    Button("Edit Plan") { model.resetResults() }
                 }
             }
             .padding(12)
             Divider()
 
-            if sources.isEmpty {
+            if model.sources.isEmpty {
                 ContentUnavailableView {
                     Label("No Documents Yet", systemImage: "doc.badge.plus")
                 } description: {
@@ -134,8 +118,8 @@ struct ProjectImportAssistantView: View {
                         .buttonStyle(.borderedProminent)
                 }
             } else {
-                List(selection: $selectedSourceID) {
-                    ForEach(Array(sources.enumerated()), id: \.element.id) { index, source in
+                List(selection: $model.selectedSourceID) {
+                    ForEach(Array(model.sources.enumerated()), id: \.element.id) { index, source in
                         sourceRow(source, index: index)
                             .tag(source.id)
                     }
@@ -145,43 +129,43 @@ struct ProjectImportAssistantView: View {
 
             Divider()
             VStack(alignment: .leading, spacing: 9) {
-                if isConverting {
+                if model.isConverting {
                     ProgressView(
-                        "Converting \(currentSourceName)…",
-                        value: Double(completedCount),
-                        total: Double(max(sources.count, 1))
+                        "Converting \(model.currentSourceName)…",
+                        value: Double(model.completedCount),
+                        total: Double(max(model.sources.count, 1))
                     )
-                    Text("\(completedCount) of \(sources.count) finished")
+                    Text("\(model.completedCount) of \(model.sources.count) finished")
                         .font(.caption)
                         .foregroundStyle(.secondary)
-                } else if !hasResults {
+                } else if !model.hasResults {
                     HStack {
                         Button("Add Files or Folders…") { showingSourceChooser = true }
-                            .disabled(isDiscovering)
-                        if isDiscovering { ProgressView().controlSize(.small) }
+                            .disabled(model.isDiscovering)
+                        if model.isDiscovering { ProgressView().controlSize(.small) }
                         Spacer()
-                        Button("Convert and Preview", action: startConversion)
+                        Button("Convert and Preview", action: model.startConversion)
                             .buttonStyle(.borderedProminent)
-                            .disabled(sources.isEmpty || isDiscovering)
+                            .disabled(model.sources.isEmpty || model.isDiscovering)
                     }
                     Text("Supported: Markdown, DOCX, RTF, RTFD, HTML, ODT, and TXT.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } else {
                     HStack {
-                        Label("\(orderedConversions.count) converted", systemImage: "checkmark.circle.fill")
+                        Label("\(model.orderedConversions.count) converted", systemImage: "checkmark.circle.fill")
                             .foregroundStyle(.green)
-                        if !failures.isEmpty {
-                            Label("\(failures.count) failed", systemImage: "exclamationmark.triangle.fill")
+                        if !model.failures.isEmpty {
+                            Label("\(model.failures.count) failed", systemImage: "exclamationmark.triangle.fill")
                                 .foregroundStyle(.orange)
                         }
                         Spacer()
-                        if !failures.isEmpty {
-                            Button("Retry Failed", action: retryFailures)
+                        if !model.failures.isEmpty {
+                            Button("Retry Failed", action: model.retryFailures)
                         }
                     }
-                    if !skippedItems.isEmpty {
-                        Text("\(skippedItems.count) unsupported or unreadable item\(skippedItems.count == 1 ? " was" : "s were") skipped during discovery.")
+                    if !model.skippedItems.isEmpty {
+                        Text("\(model.skippedItems.count) unsupported or unreadable item\(model.skippedItems.count == 1 ? " was" : "s were") skipped during discovery.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -195,9 +179,9 @@ struct ProjectImportAssistantView: View {
     private func sourceRow(_ source: ProjectImportSource, index: Int) -> some View {
         VStack(alignment: .leading, spacing: 7) {
             HStack(spacing: 9) {
-                Image(systemName: statusIcon(for: source.id))
+                Image(systemName: model.statusIcon(for: source.id))
                     .foregroundStyle(statusColor(for: source.id))
-                if hasResults {
+                if model.hasResults {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(source.title).fontWeight(.medium)
                         Text(source.kind.title + " · " + source.url.lastPathComponent)
@@ -219,12 +203,12 @@ struct ProjectImportAssistantView: View {
                 Spacer(minLength: 4)
             }
 
-            if let failure = failures[source.id] {
+            if let failure = model.failures[source.id] {
                 Text(failure.message)
                     .font(.caption)
                     .foregroundStyle(.red)
                     .fixedSize(horizontal: false, vertical: true)
-            } else if !hasResults {
+            } else if !model.hasResults {
                 HStack {
                     Text(source.url.path)
                         .font(.caption2)
@@ -232,21 +216,21 @@ struct ProjectImportAssistantView: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                     Spacer()
-                    Button { moveSource(from: index, by: -1) } label: {
+                    Button { model.moveSource(from: index, by: -1) } label: {
                         Image(systemName: "arrow.up")
                     }
                     .buttonStyle(.borderless)
                     .disabled(index == 0)
                     .help("Move earlier")
                     .accessibilityLabel("Move \(source.title) earlier")
-                    Button { moveSource(from: index, by: 1) } label: {
+                    Button { model.moveSource(from: index, by: 1) } label: {
                         Image(systemName: "arrow.down")
                     }
                     .buttonStyle(.borderless)
-                    .disabled(index == sources.count - 1)
+                    .disabled(index == model.sources.count - 1)
                     .help("Move later")
                     .accessibilityLabel("Move \(source.title) later")
-                    Button(role: .destructive) { removeSource(source.id) } label: {
+                    Button(role: .destructive) { model.removeSource(source.id) } label: {
                         Image(systemName: "trash")
                     }
                     .buttonStyle(.borderless)
@@ -264,7 +248,7 @@ struct ProjectImportAssistantView: View {
                 Label("Preview", systemImage: "doc.text.magnifyingglass")
                     .font(.headline)
                 Spacer()
-                if let selectedConversion {
+                if let selectedConversion = model.selectedConversion {
                     Text(selectedConversion.source.kind.title)
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -273,7 +257,7 @@ struct ProjectImportAssistantView: View {
             .padding(12)
             Divider()
 
-            if let conversion = selectedConversion {
+            if let conversion = model.selectedConversion {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 18) {
                         VStack(alignment: .leading, spacing: 4) {
@@ -294,15 +278,15 @@ struct ProjectImportAssistantView: View {
 
                         VStack(alignment: .leading, spacing: 8) {
                             HStack {
-                                Text(destination == .combinedMarkdown ? "Combined-file section" : "Imported Markdown")
+                                Text(model.destination == .combinedMarkdown ? "Combined-file section" : "Imported Markdown")
                                     .font(.headline)
                                 Spacer()
-                                Text("\(previewMarkdown(for: conversion).split(whereSeparator: \.isWhitespace).count) words")
+                                Text("\(model.previewMarkdown(for: conversion).split(whereSeparator: \.isWhitespace).count) words")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
                             ScrollView([.vertical, .horizontal]) {
-                                Text(previewMarkdown(for: conversion))
+                                Text(model.previewMarkdown(for: conversion))
                                     .font(.system(.callout, design: .monospaced))
                                     .textSelection(.enabled)
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -314,7 +298,7 @@ struct ProjectImportAssistantView: View {
                     }
                     .padding(16)
                 }
-            } else if let failure = selectedFailure {
+            } else if let failure = model.selectedFailure {
                 ContentUnavailableView(
                     "Conversion Failed",
                     systemImage: "exclamationmark.triangle",
@@ -337,10 +321,10 @@ struct ProjectImportAssistantView: View {
                 Spacer()
                 Menu("Decide All") {
                     Button("Accept All") {
-                        for card in conversion.reviewCards { decisions[card.id] = .accept }
+                        model.decideAll(.accept, in: conversion)
                     }
                     Button("Reject All") {
-                        for card in conversion.reviewCards { decisions[card.id] = .reject }
+                        model.decideAll(.reject, in: conversion)
                     }
                 }
             }
@@ -386,8 +370,8 @@ struct ProjectImportAssistantView: View {
 
     private var footer: some View {
         HStack(alignment: .center, spacing: 12) {
-            if hasResults {
-                Picker("Create", selection: $destination) {
+            if model.hasResults {
+                Picker("Create", selection: $model.destination) {
                     ForEach(ProjectImportDestination.allCases) { option in
                         Text(option.title)
                             .tag(option)
@@ -406,22 +390,22 @@ struct ProjectImportAssistantView: View {
 
             Spacer()
 
-            if hasResults {
-                if let hierarchyError {
+            if model.hasResults {
+                if let hierarchyError = model.hierarchyError {
                     Text(hierarchyError)
                         .font(.caption)
                         .foregroundStyle(.red)
                         .lineLimit(2)
                         .frame(maxWidth: 310, alignment: .trailing)
-                } else if !failures.isEmpty {
+                } else if !model.failures.isEmpty {
                     Text("Only the successfully converted documents will be written.")
                         .font(.caption)
                         .foregroundStyle(.orange)
                 }
-                Button(finishButtonTitle, action: finish)
+                Button(model.finishButtonTitle, action: finish)
                     .buttonStyle(.borderedProminent)
-                    .disabled(!canFinish || isWriting)
-                if isWriting { ProgressView().controlSize(.small) }
+                    .disabled(!model.canFinish(hasCurrentProjectImporter: addToCurrentProject != nil) || model.isWriting)
+                if model.isWriting { ProgressView().controlSize(.small) }
             }
         }
         .padding(12)
@@ -429,20 +413,20 @@ struct ProjectImportAssistantView: View {
 
     @ViewBuilder
     private var destinationControls: some View {
-        switch destination {
+        switch model.destination {
         case .combinedMarkdown:
             Text("Part = H1, Chapter = H2, Scene/Section = H3")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         case .newProject:
-            TextField("Project name", text: $projectName)
+            TextField("Project name", text: $model.projectName)
                 .frame(width: 160)
-            Picker("Kind", selection: $projectKind) {
+            Picker("Kind", selection: $model.projectKind) {
                 ForEach(WritingProjectKind.allCases) { kind in Text(kind.title).tag(kind) }
             }
             .labelsHidden()
             .frame(width: 110)
-            Button(projectParentURL?.lastPathComponent ?? "Choose Location…") {
+            Button(model.projectParentURL?.lastPathComponent ?? "Choose Location…") {
                 showingProjectParentChooser = true
             }
         case .currentProject:
@@ -457,71 +441,9 @@ struct ProjectImportAssistantView: View {
             .filter { seen.insert($0.identifier).inserted }
     }
 
-    private var hasResults: Bool {
-        !conversions.isEmpty || !failures.isEmpty || isConverting
-    }
-
-    private var orderedConversions: [ProjectImportConversion] {
-        sources.compactMap { conversions[$0.id] }
-    }
-
-    private var selectedConversion: ProjectImportConversion? {
-        if let selectedSourceID { return conversions[selectedSourceID] }
-        return orderedConversions.first
-    }
-
-    private var selectedFailure: ProjectImportFailure? {
-        selectedSourceID.flatMap { failures[$0] }
-    }
-
-    private var requiredTrackedChangeIDs: Set<UUID> {
-        Set(orderedConversions.flatMap(\.reviewCards).map(\.id))
-    }
-
-    private var hierarchyError: String? {
-        guard destination != .combinedMarkdown, !orderedConversions.isEmpty else { return nil }
-        do {
-            _ = try ProjectImportOutlineBuilder.build(
-                paths: orderedConversions.indices.map { "Imported \($0 + 1).md" },
-                sources: orderedConversions.map(\.source)
-            )
-            return nil
-        } catch {
-            return error.localizedDescription
-        }
-    }
-
-    private var canFinish: Bool {
-        guard !orderedConversions.isEmpty,
-              Set(decisions.keys).isSuperset(of: requiredTrackedChangeIDs),
-              hierarchyError == nil else { return false }
-        switch destination {
-        case .combinedMarkdown: return true
-        case .newProject:
-            return projectParentURL != nil
-                && !projectName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        case .currentProject: return addToCurrentProject != nil
-        }
-    }
-
-    private var finishButtonTitle: String {
-        switch destination {
-        case .combinedMarkdown: "Save Combined Markdown…"
-        case .newProject: "Create and Open Project"
-        case .currentProject: "Add to Current Project"
-        }
-    }
-
-    private func statusIcon(for id: UUID) -> String {
-        if conversions[id] != nil { return "checkmark.circle.fill" }
-        if failures[id] != nil { return "exclamationmark.triangle.fill" }
-        if isConverting { return "clock" }
-        return "doc"
-    }
-
     private func statusColor(for id: UUID) -> Color {
-        if conversions[id] != nil { return .green }
-        if failures[id] != nil { return .orange }
+        if model.conversions[id] != nil { return .green }
+        if model.failures[id] != nil { return .orange }
         return .secondary
     }
 
@@ -530,144 +452,21 @@ struct ProjectImportAssistantView: View {
         keyPath: WritableKeyPath<ProjectImportSource, Value>
     ) -> Binding<Value> {
         Binding(
-            get: { sources.first(where: { $0.id == id })![keyPath: keyPath] },
-            set: { value in
-                guard let index = sources.firstIndex(where: { $0.id == id }) else { return }
-                sources[index][keyPath: keyPath] = value
-            }
+            get: { model.sources.first(where: { $0.id == id })![keyPath: keyPath] },
+            set: { model.updateSource(id: id, keyPath: keyPath, value: $0) }
         )
     }
 
     private func trackedDecisionBinding(_ id: UUID) -> Binding<DocumentTrackedChangeDecision?> {
         Binding(
-            get: { decisions[id] },
-            set: { value in
-                if let value { decisions[id] = value } else { decisions.removeValue(forKey: id) }
-            }
+            get: { model.decisions[id] },
+            set: { model.setDecision($0, for: id) }
         )
     }
 
-    private func moveSource(from index: Int, by offset: Int) {
-        let target = index + offset
-        guard sources.indices.contains(index), sources.indices.contains(target) else { return }
-        sources.swapAt(index, target)
-    }
-
-    private func removeSource(_ id: UUID) {
-        sources.removeAll { $0.id == id }
-        if selectedSourceID == id { selectedSourceID = sources.first?.id }
-    }
-
-    private func addSelections(_ result: Result<[URL], Error>) {
-        switch result {
-        case .failure(let error): errorMessage = error.localizedDescription
-        case .success(let urls):
-            guard !urls.isEmpty else { return }
-            isDiscovering = true
-            Task { @MainActor in
-                do {
-                    let discovery = try await Task.detached(priority: .userInitiated) {
-                        try ProjectImportSourceDiscovery.discover(from: urls)
-                    }.value
-                    let existing = Set(sources.map { $0.url.standardizedFileURL.resolvingSymlinksInPath().path })
-                    let additions = discovery.sources.filter {
-                        !existing.contains($0.url.standardizedFileURL.resolvingSymlinksInPath().path)
-                    }
-                    sources.append(contentsOf: additions)
-                    skippedItems.append(contentsOf: discovery.skippedItems)
-                    selectedSourceID = selectedSourceID ?? additions.first?.id ?? sources.first?.id
-                } catch {
-                    errorMessage = error.localizedDescription
-                }
-                isDiscovering = false
-            }
-        }
-    }
-
-    private func startConversion() {
-        conversions.removeAll()
-        failures.removeAll()
-        decisions.removeAll()
-        convert(sources)
-    }
-
-    private func retryFailures() {
-        let retrySources = sources.filter { failures[$0.id] != nil }
-        for source in retrySources { failures.removeValue(forKey: source.id) }
-        convert(retrySources)
-    }
-
-    private func convert(_ targets: [ProjectImportSource]) {
-        guard !targets.isEmpty else { return }
-        isConverting = true
-        completedCount = sources.count - targets.count
-        conversionTask = Task { @MainActor in
-            for source in targets {
-                guard !Task.isCancelled else { break }
-                currentSourceName = source.url.lastPathComponent
-#if UI_TEST_HOST
-                if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_IMPORT_DELAY_MS"],
-                   let delay = Int(rawDelay), delay > 0 {
-                    try? await Task.sleep(for: .milliseconds(delay))
-                    guard !Task.isCancelled else { break }
-                }
-#endif
-                let outcome: (ProjectImportConversion?, String?) = await Task.detached(priority: .userInitiated) {
-                    do {
-                        return (Optional(try ProjectImportConversionService.load(source)), nil)
-                    } catch {
-                        return (nil, error.localizedDescription)
-                    }
-                }.value
-                guard !Task.isCancelled else { break }
-                if let conversion = outcome.0 {
-                    conversions[source.id] = conversion
-                    selectedSourceID = selectedSourceID ?? source.id
-                } else {
-                    failures[source.id] = ProjectImportFailure(
-                        source: source,
-                        message: outcome.1 ?? "The document could not be converted."
-                    )
-                }
-                completedCount += 1
-            }
-            isConverting = false
-            currentSourceName = ""
-            if selectedSourceID.flatMap({ conversions[$0] ?? nil }) == nil {
-                selectedSourceID = orderedConversions.first?.id ?? failures.values.first?.id
-            }
-        }
-    }
-
-    private func cancelConversion() {
-        conversionTask?.cancel()
-        conversionTask = nil
-        isConverting = false
-        currentSourceName = ""
-    }
-
-    private func resetResults() {
-        cancelConversion()
-        conversions.removeAll()
-        failures.removeAll()
-        decisions.removeAll()
-        completedCount = 0
-    }
-
-    private func previewMarkdown(for conversion: ProjectImportConversion) -> String {
-        let markdown = conversion.renderedMarkdown(decisions: decisions)
-        return destination == .combinedMarkdown
-            ? ProjectImportMarkdown.hierarchicalSection(
-                title: conversion.source.title,
-                kind: conversion.source.kind,
-                markdown: markdown
-            )
-            : markdown
-    }
-
     private func finish() {
-        guard canFinish else { return }
-        switch destination {
+        guard model.canFinish(hasCurrentProjectImporter: addToCurrentProject != nil) else { return }
+        switch model.destination {
         case .combinedMarkdown: chooseCombinedMarkdownDestination()
         case .newProject: createNewProject()
         case .currentProject: addDocumentsToCurrentProject()
@@ -697,62 +496,22 @@ struct ProjectImportAssistantView: View {
     }
 
     private func writeCombinedMarkdown(to url: URL) {
-        isWriting = true
-        let items = orderedConversions
-        let chosenDecisions = decisions
-        Task { @MainActor in
-            do {
-                let result = try await Task.detached(priority: .userInitiated) {
-                    try ProjectImportOutputService.writeCombinedMarkdown(
-                        items,
-                        decisions: chosenDecisions,
-                        to: url
-                    )
-                }.value
-                onComplete(.markdown(result.rootURL))
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-            isWriting = false
+        model.writeCombinedMarkdown(to: url) { resultURL in
+            onComplete(.markdown(resultURL))
         }
     }
 
     private func createNewProject() {
-        guard let parent = projectParentURL else { return }
-        isWriting = true
-        let items = orderedConversions
-        let chosenDecisions = decisions
-        let chosenName = projectName
-        let chosenKind = projectKind
-        Task { @MainActor in
-            do {
-                let result = try await Task.detached(priority: .userInitiated) {
-                    try ProjectImportOutputService.createProject(
-                        from: items,
-                        decisions: chosenDecisions,
-                        in: parent,
-                        name: chosenName,
-                        kind: chosenKind
-                    )
-                }.value
-                onComplete(.project(result.rootURL))
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-            isWriting = false
+        model.createNewProject { resultURL in
+            onComplete(.project(resultURL))
         }
     }
 
     private func addDocumentsToCurrentProject() {
         guard let addToCurrentProject else { return }
-        isWriting = true
-        do {
-            let result = try addToCurrentProject(orderedConversions, decisions)
-            onComplete(.project(result.rootURL))
-        } catch {
-            errorMessage = error.localizedDescription
+        model.addDocumentsToCurrentProject(using: addToCurrentProject) { resultURL in
+            onComplete(.project(resultURL))
         }
-        isWriting = false
     }
 
 #if UI_TEST_HOST
@@ -762,14 +521,14 @@ struct ProjectImportAssistantView: View {
         let environment = ProcessInfo.processInfo.environment
         if let parentPath = environment["KISTULENTZ_UI_TEST_IMPORT_PROJECT_PARENT"],
            !parentPath.isEmpty {
-            projectParentURL = URL(fileURLWithPath: parentPath, isDirectory: true)
+            model.projectParentURL = URL(fileURLWithPath: parentPath, isDirectory: true)
         }
         guard let rawPaths = environment["KISTULENTZ_UI_TEST_IMPORT_PATHS"] else { return }
         let urls = rawPaths
             .split(separator: "\n")
             .map { URL(fileURLWithPath: String($0)) }
         guard !urls.isEmpty else { return }
-        addSelections(.success(urls))
+        model.addSelections(.success(urls))
     }
 #endif
 }

@@ -8,6 +8,31 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.17.0] - 2026-09-08
+
+### Changed
+
+- Decomposed the main editor workspace into focused toolbar, readability, review, and
+  polished-draft components while preserving the existing interface and commands.
+- Split document importing into a small coordinator plus dedicated plain-text, attributed-text,
+  HTML, and DOCX implementations without changing supported formats or conversion behavior.
+- Moved Project Import Assistant state, ordering, tracked-change decisions, conversion,
+  cancellation, and output operations into a dedicated view model.
+- Split manuscript analysis into independent metrics, continuity/language, and Markdown-report
+  components while retaining the existing `ManuscriptAnalyzer` interface and generated output.
+
+### Testing
+
+- Added direct tests for Project Import Assistant discovery and deduplication, state transitions,
+  tracked-change decisions, reordering, removal, cancellation, partial-failure retry, and every
+  output destination.
+- Added component-wiring tests that ensure manuscript metrics, continuity results, and rendered
+  reports are assembled unchanged through the public analyzer facade.
+- Kept v0.17.0 under a strict behavior freeze: it contains no new writing workflow, file-format,
+  AI, storage, or privacy behavior.
+
+## [0.16.1] - 2026-09-08
+
 ### Added
 
 - Added frozen older-project upgrade fixtures that verify migration, backup creation,
