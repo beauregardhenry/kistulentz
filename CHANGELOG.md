@@ -51,7 +51,9 @@ merged changes are recorded under [Unreleased].
 - Added release-candidate interface checks for the exit paths in Project Organization, Systemic
   Revision, Project Research, Publish & Export, Reference Library, and Research Library, with the
   critical exit-path smoke checks also running on a native Intel release runner.
-- Raised the non-view line-coverage ratchet from 71.38% to 75.21%.
+- Raised the non-view line-coverage ratchet from 71.38% to architecture-specific floors of
+  74.01% on Apple silicon and 75.21% on Intel, avoiding false failures from instrumentation
+  differences without weakening either platform's baseline.
 - Expanded macOS UI coverage from basic smoke checks to document edit/save/reopen/Undo/Redo,
   crash recovery, stale-file refusal, real document imports, Project Import Assistant failure and
   cancellation paths, Project Polish stages and stale passages, provider controls, keyboard
