@@ -10,14 +10,30 @@ merged changes are recorded under [Unreleased].
 
 ### Added
 
+- Added frozen older-project upgrade fixtures that verify migration, backup creation,
+  clean reopening, and byte-for-byte preservation of manuscript Markdown.
+- Added deterministic System Check dependencies so its complete report can be tested
+  without contacting Ollama or launching the optional language-pack worker.
+- Added a nontechnical friend-testing guide covering safe installation, representative writing
+  workflows, optional recovery and AI checks, and privacy-safe problem reports.
 - Added an upgrade-aware What’s New screen, available again from the Help menu.
 - Diagnostic exports now include the app/build environment and privacy-safe prompts that help
   friends describe the shortest reproduction steps without including manuscript text.
 - The opt-in Apple-silicon and Intel scale suite now records timings for large-project load,
-  search, import, reference filtering, Project Polish, and cancellation.
+  search, import, reference filtering, Project Polish, and cancellation, and fails when an
+  explicit release budget is exceeded.
 
 ### Fixed
 
+- Research Library mutations now keep the persisted index, visible records, managed attachment
+  copies, and extracted-text indexes consistent when a save, copy, extraction, or cancellation
+  fails.
+- Manuscript search now cancels superseded work, ignores late results from older queries, clears
+  progress on reset, and reports search failures without leaving the interface busy.
+- Project Import now removes staged assets when its final combined output cannot be written.
+- DOCX and EPUB handling now reject oversized, malformed, traversal, symlink, and duplicate-section
+  cases without writing output or crashing.
+- The What’s New screen now displays the application version instead of placeholder text.
 - The Project Import Assistant now compresses vertically so its destination controls and action
   buttons remain reachable on smaller or scaled Mac displays.
 - Project Polish now applies after its review sheet closes and registers one document-level Undo
@@ -28,6 +44,14 @@ merged changes are recorded under [Unreleased].
 
 ### Testing
 
+- Added failure-injection and adversarial tests for Research Library persistence, managed-file
+  rollback, indexing cancellation, search races, failed import writes, and unsafe document archives.
+- The coverage gate now always creates a fresh profile before measuring, preventing a prior
+  non-coverage build from producing stale or unreadable results.
+- Added release-candidate interface checks for the exit paths in Project Organization, Systemic
+  Revision, Project Research, Publish & Export, Reference Library, and Research Library, with the
+  critical exit-path smoke checks also running on a native Intel release runner.
+- Raised the non-view line-coverage ratchet from 71.38% to 75.21%.
 - Expanded macOS UI coverage from basic smoke checks to document edit/save/reopen/Undo/Redo,
   crash recovery, stale-file refusal, real document imports, Project Import Assistant failure and
   cancellation paths, Project Polish stages and stale passages, provider controls, keyboard

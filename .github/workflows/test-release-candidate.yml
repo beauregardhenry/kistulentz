@@ -25,6 +25,23 @@ jobs:
           -maximum-test-execution-time-allowance 60
           test
 
+  intel-ui-smoke:
+    name: Intel UI exit-path smoke tests
+    runs-on: macos-15-intel
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify critical workspaces remain usable on Intel
+        run: >-
+          xcodebuild -project Kistulentz.xcodeproj -scheme Kistulentz
+          -destination 'platform=macOS'
+          -test-timeouts-enabled YES
+          -default-test-execution-time-allowance 45
+          -maximum-test-execution-time-allowance 60
+          -only-testing:KistulentzUITests/KistulentzUITests/testMajorProjectWorkspacesKeepTheirExitControlsUsableAtTheMinimumWindowSize
+          -only-testing:KistulentzUITests/KistulentzUITests/testReferenceLibraryWelcomeAlwaysOffersACancelPath
+          test
+
   native-tests:
     name: Native tests · ${{ matrix.architecture }}
     strategy:
@@ -45,7 +62,7 @@ jobs:
 
   universal-package:
     name: Universal package and integrity checks
-    needs: [native-tests, macos-ui-tests]
+    needs: [native-tests, macos-ui-tests, intel-ui-smoke]
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6

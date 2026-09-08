@@ -75,6 +75,7 @@ struct ResearchLibraryView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 650)
+        .accessibilityIdentifier("ResearchLibraryView")
         .onExitCommand { dismiss() }
         .fileImporter(isPresented: $showingRecordImporter, allowedContentTypes: [.data], allowsMultipleSelection: true) { result in
             do {
@@ -382,6 +383,7 @@ struct ProjectResearchView: View {
             }
         }
         .frame(minWidth: 880, minHeight: 620)
+        .accessibilityIdentifier("ProjectResearchView")
     }
 
     private var projectSources: [ResearchSource] { researchStore.projectSources(in: library) }

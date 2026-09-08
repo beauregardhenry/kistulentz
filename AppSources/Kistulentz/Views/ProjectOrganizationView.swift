@@ -58,6 +58,7 @@ struct ProjectOrganizationView: View {
             }
         }
         .frame(minWidth: 1_080, minHeight: 720)
+        .accessibilityIdentifier("ProjectOrganizationView")
         .onAppear {
             store.attachUndoManager(undoManager)
             selectedNodeID = store.outlineRows.first?.id

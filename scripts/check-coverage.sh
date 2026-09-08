@@ -37,10 +37,8 @@ fi
 BIN_PATH="$(swift build --show-bin-path)"
 PROFDATA="$BIN_PATH/codecov/default.profdata"
 
-if [[ ! -f "$PROFDATA" ]]; then
-    print "No coverage profile at $PROFDATA; running the test suite."
-    swift test --enable-code-coverage --disable-sandbox
-fi
+print "Running the test suite with a fresh coverage profile."
+swift test --enable-code-coverage --disable-sandbox
 
 if [[ ! -f "$PROFDATA" ]]; then
     print -u2 "Coverage check failed: $PROFDATA was not produced."

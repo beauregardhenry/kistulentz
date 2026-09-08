@@ -75,6 +75,59 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 
+    func testMajorProjectWorkspacesKeepTheirExitControlsUsableAtTheMinimumWindowSize() throws {
+        let project = try makeProject(
+            name: "Workspace Exit Fixture",
+            documents: [("Draft.md", "# Draft\n\nA stable project passage.\n")],
+            kind: "nonfiction"
+        )
+        launch(environment: project.environment)
+
+        openProjectCommand("Project Organization…")
+        XCTAssertTrue(app.descendants(matching: .any)["ProjectOrganizationView"].waitForExistence(timeout: 5))
+        let organizationDone = app.buttons["Done"]
+        XCTAssertTrue(organizationDone.isHittable)
+        organizationDone.click()
+
+        openProjectCommand("Systemic Revision Center…")
+        XCTAssertTrue(app.descendants(matching: .any)["SystemicRevisionCenterView"].waitForExistence(timeout: 5))
+        let revisionDone = app.buttons["Done"]
+        XCTAssertTrue(revisionDone.isHittable)
+        revisionDone.click()
+
+        openProjectCommand("Project Research…")
+        XCTAssertTrue(app.descendants(matching: .any)["ProjectResearchView"].waitForExistence(timeout: 5))
+        let researchDone = app.buttons["Done"]
+        XCTAssertTrue(researchDone.isHittable)
+        researchDone.click()
+
+        openProjectCommand("Publish & Export…")
+        let publicationClose = app.buttons["Close"]
+        XCTAssertTrue(publicationClose.waitForExistence(timeout: 8))
+        XCTAssertTrue(publicationClose.isHittable)
+        publicationClose.click()
+
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.windows.firstMatch.exists)
+    }
+
+    func testReferenceLibraryWelcomeAlwaysOffersACancelPath() {
+        launch(completedOnboarding: true, acknowledgedEnglishPack: true)
+
+        let referenceMenu = referenceControl
+        XCTAssertTrue(referenceMenu.waitForExistence(timeout: 8))
+        referenceMenu.click()
+        let libraryItem = app.menuItems["Reference Library…"]
+        XCTAssertTrue(libraryItem.waitForExistence(timeout: 3))
+        libraryItem.click()
+
+        XCTAssertTrue(app.descendants(matching: .any)["ReferenceLibraryView"].waitForExistence(timeout: 5))
+        let cancel = app.buttons["Cancel"]
+        XCTAssertTrue(cancel.isHittable)
+        cancel.click()
+        XCTAssertTrue(app.windows.firstMatch.exists)
+    }
+
     func testWhatsNewCanBeOpenedFromHelpAndClosed() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
@@ -85,10 +138,10 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
         whatsNewItem.click()
 
-        let title = app.descendants(matching: .any)["KistulentzWhatsNew"].firstMatch
+        let title = app.staticTexts["What’s New in Kistulentz 0.16.1"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let polishSummary = app.descendants(matching: .any)["WhatsNewProjectPolish"].firstMatch
-        XCTAssertTrue(polishSummary.exists)
+        let safetySummary = app.descendants(matching: .any)["WhatsNewStorageSafety"].firstMatch
+        XCTAssertTrue(safetySummary.exists)
         app.buttons["Continue"].click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
     }

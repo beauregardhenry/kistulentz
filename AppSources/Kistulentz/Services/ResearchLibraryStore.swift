@@ -1,6 +1,42 @@
 import AppKit
 import Foundation
 
+struct ResearchLibraryPersistence {
+    var load: (URL) throws -> ResearchLibraryArchive
+    var save: (ResearchLibraryArchive, URL) throws -> Void
+    var addAttachment: (URL, UUID, ResearchAttachmentStorage, URL) throws -> ResearchAttachment
+    var removeManagedAttachment: (ResearchAttachment, URL) throws -> Void
+    var saveExtractedText: (String, UUID, URL) throws -> String
+    var removeExtractedText: (String, URL) throws -> Void
+    var loadExtractedText: (ResearchAttachment, URL) -> String?
+    var attachmentURL: (ResearchAttachment, URL) -> URL
+    var extractText: (URL, ResearchAttachmentKind) async throws -> String
+
+    static let live = ResearchLibraryPersistence(
+        load: ResearchLibraryDisk.load,
+        save: ResearchLibraryDisk.save,
+        addAttachment: { try ResearchLibraryDisk.addAttachment(from: $0, to: $1, storage: $2, at: $3) },
+        removeManagedAttachment: { try ResearchLibraryDisk.removeManagedAttachment($0, at: $1) },
+        saveExtractedText: { try ResearchLibraryDisk.saveExtractedText($0, for: $1, at: $2) },
+        removeExtractedText: { try ResearchLibraryDisk.removeExtractedText(relativePath: $0, at: $1) },
+        loadExtractedText: { ResearchLibraryDisk.loadExtractedText(for: $0, at: $1) },
+        attachmentURL: { ResearchLibraryDisk.attachmentURL($0, at: $1) },
+        extractText: { url, kind in
+            let task = Task.detached(priority: .utility) {
+                try Task.checkCancellation()
+                let text = try ResearchTextExtractor.extract(from: url, kind: kind)
+                try Task.checkCancellation()
+                return text
+            }
+            return try await withTaskCancellationHandler {
+                try await task.value
+            } onCancel: {
+                task.cancel()
+            }
+        }
+    )
+}
+
 @MainActor
 final class ResearchLibraryStore: ObservableObject {
     @Published private(set) var rootURL: URL?
@@ -10,12 +46,20 @@ final class ResearchLibraryStore: ObservableObject {
     @Published var searchText = ""
     @Published var errorMessage: String?
 
-    private let locationKey = "Kistulentz.researchLibraryLocation"
+    private static let locationKey = "Kistulentz.researchLibraryLocation"
     private let metadataLookup: ResearchMetadataLookupService
+    private let persistence: ResearchLibraryPersistence
+    private let defaults: UserDefaults
 
-    init(metadataLookup: ResearchMetadataLookupService = ResearchMetadataLookupService()) {
+    init(
+        metadataLookup: ResearchMetadataLookupService = ResearchMetadataLookupService(),
+        persistence: ResearchLibraryPersistence = .live,
+        defaults: UserDefaults = .standard
+    ) {
         self.metadataLookup = metadataLookup
-        if let path = UserDefaults.standard.string(forKey: locationKey), !path.isEmpty {
+        self.persistence = persistence
+        self.defaults = defaults
+        if let path = defaults.string(forKey: Self.locationKey), !path.isEmpty {
             try? open(at: URL(fileURLWithPath: path, isDirectory: true), remember: false)
         }
     }
@@ -36,17 +80,17 @@ final class ResearchLibraryStore: ObservableObject {
             if metadata.localizedCaseInsensitiveContains(query) { return true }
             guard let rootURL else { return false }
             return source.attachments.contains {
-                ResearchLibraryDisk.loadExtractedText(for: $0, at: rootURL)?.localizedCaseInsensitiveContains(query) == true
+                persistence.loadExtractedText($0, rootURL)?.localizedCaseInsensitiveContains(query) == true
             }
         }
     }
 
     func open(at root: URL, remember: Bool = true) throws {
         let standardized = root.standardizedFileURL
-        let archive = try ResearchLibraryDisk.load(from: standardized)
+        let archive = try persistence.load(standardized)
         rootURL = standardized
         sources = archive.sources
-        if remember { UserDefaults.standard.set(standardized.path, forKey: locationKey) }
+        if remember { defaults.set(standardized.path, forKey: Self.locationKey) }
     }
 
     @discardableResult
@@ -58,8 +102,9 @@ final class ResearchLibraryStore: ObservableObject {
             source.citeKey = ResearchExchange.suggestedCitationKey(for: source, existing: Set(sources.map(\.citeKey)))
         }
         try validate(source)
-        sources.append(source)
-        try save()
+        var updatedSources = sources
+        updatedSources.append(source)
+        try persist(updatedSources)
         return source.id
     }
 
@@ -69,36 +114,42 @@ final class ResearchLibraryStore: ObservableObject {
         updated.citeKey = ResearchExchange.normalizedCitationKey(updated.citeKey)
         updated.modifiedAt = Date()
         try validate(updated)
-        sources[index] = updated
-        try save()
+        var updatedSources = sources
+        updatedSources[index] = updated
+        try persist(updatedSources)
     }
 
     func removeSource(_ id: UUID) throws {
         guard let rootURL, let index = sources.firstIndex(where: { $0.id == id }) else { throw ResearchLibraryError.missingSource }
-        for attachment in sources[index].attachments { try ResearchLibraryDisk.removeManagedAttachment(attachment, at: rootURL) }
-        sources.remove(at: index)
-        try save()
+        let removed = sources[index]
+        var updatedSources = sources
+        updatedSources.remove(at: index)
+        try persist(updatedSources)
+        for attachment in removed.attachments {
+            try persistence.removeManagedAttachment(attachment, rootURL)
+        }
     }
 
     @discardableResult
     func importSources(from url: URL) throws -> Int {
         let imported = try ResearchExchange.importSources(from: url)
+        var updatedSources = sources
         var added = 0
         for var source in imported {
-            if let duplicate = ResearchExchange.duplicate(of: source, in: sources),
-               let index = sources.firstIndex(where: { $0.id == duplicate.id }) {
+            if let duplicate = ResearchExchange.duplicate(of: source, in: updatedSources),
+               let index = updatedSources.firstIndex(where: { $0.id == duplicate.id }) {
                 source.id = duplicate.id
                 source.citeKey = duplicate.citeKey
-                sources[index] = ResearchExchange.merged(existing: duplicate, incoming: source)
+                updatedSources[index] = ResearchExchange.merged(existing: duplicate, incoming: source)
             } else {
-                if source.citeKey.isEmpty || sources.contains(where: { $0.citeKey.caseInsensitiveCompare(source.citeKey) == .orderedSame }) {
-                    source.citeKey = ResearchExchange.suggestedCitationKey(for: source, existing: Set(sources.map(\.citeKey)))
+                if source.citeKey.isEmpty || updatedSources.contains(where: { $0.citeKey.caseInsensitiveCompare(source.citeKey) == .orderedSame }) {
+                    source.citeKey = ResearchExchange.suggestedCitationKey(for: source, existing: Set(updatedSources.map(\.citeKey)))
                 }
-                sources.append(source)
+                updatedSources.append(source)
                 added += 1
             }
         }
-        try save()
+        try persist(updatedSources)
         return added
     }
 
@@ -116,28 +167,46 @@ final class ResearchLibraryStore: ObservableObject {
             return
         }
         do {
-            var attachment = try ResearchLibraryDisk.addAttachment(from: url, to: sourceID, storage: storage, at: rootURL)
-            sources[index].attachments.append(attachment)
-            try save()
-            indexingAttachmentIDs.insert(attachment.id)
-            let attachmentURL = ResearchLibraryDisk.attachmentURL(attachment, at: rootURL)
+            var attachment = try persistence.addAttachment(url, sourceID, storage, rootURL)
+            var updatedSources = sources
+            updatedSources[index].attachments.append(attachment)
             do {
-                let text = try await Task.detached(priority: .utility) {
-                    try ResearchTextExtractor.extract(from: attachmentURL, kind: attachment.kind)
-                }.value
-                attachment.extractedTextRelativePath = try ResearchLibraryDisk.saveExtractedText(text, for: attachment.id, at: rootURL)
+                try persist(updatedSources)
+            } catch {
+                try? persistence.removeManagedAttachment(attachment, rootURL)
+                throw error
+            }
+            indexingAttachmentIDs.insert(attachment.id)
+            defer { indexingAttachmentIDs.remove(attachment.id) }
+            let attachmentURL = persistence.attachmentURL(attachment, rootURL)
+            var extractedTextPath: String?
+            do {
+                try Task.checkCancellation()
+                let text = try await persistence.extractText(attachmentURL, attachment.kind)
+                try Task.checkCancellation()
+                let path = try persistence.saveExtractedText(text, attachment.id, rootURL)
+                extractedTextPath = path
+                attachment.extractedTextRelativePath = path
                 attachment.extractionStatus = .extracted
                 attachment.extractionMessage = "Indexed \(text.count.formatted()) characters locally."
+            } catch is CancellationError {
+                if let extractedTextPath { try? persistence.removeExtractedText(extractedTextPath, rootURL) }
+                return
             } catch {
                 attachment.extractionStatus = .noReadableText
                 attachment.extractionMessage = error.localizedDescription
             }
             if let sourceIndex = sources.firstIndex(where: { $0.id == sourceID }),
                let attachmentIndex = sources[sourceIndex].attachments.firstIndex(where: { $0.id == attachment.id }) {
-                sources[sourceIndex].attachments[attachmentIndex] = attachment
-                try save()
+                var indexedSources = sources
+                indexedSources[sourceIndex].attachments[attachmentIndex] = attachment
+                do {
+                    try persist(indexedSources)
+                } catch {
+                    if let extractedTextPath { try? persistence.removeExtractedText(extractedTextPath, rootURL) }
+                    throw error
+                }
             }
-            indexingAttachmentIDs.remove(attachment.id)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -149,9 +218,10 @@ final class ResearchLibraryStore: ObservableObject {
               let attachmentIndex = sources[sourceIndex].attachments.firstIndex(where: { $0.id == attachmentID }) else {
             throw ResearchLibraryError.missingSource
         }
-        let attachment = sources[sourceIndex].attachments.remove(at: attachmentIndex)
-        try ResearchLibraryDisk.removeManagedAttachment(attachment, at: rootURL)
-        try save()
+        var updatedSources = sources
+        let attachment = updatedSources[sourceIndex].attachments.remove(at: attachmentIndex)
+        try persist(updatedSources)
+        try persistence.removeManagedAttachment(attachment, rootURL)
     }
 
     func lookupDOI(_ value: String) async throws -> ResearchSource {
@@ -176,7 +246,7 @@ final class ResearchLibraryStore: ObservableObject {
     }
 
     func attachmentURL(_ attachment: ResearchAttachment) -> URL? {
-        rootURL.map { ResearchLibraryDisk.attachmentURL(attachment, at: $0) }
+        rootURL.map { persistence.attachmentURL(attachment, $0) }
     }
 
     private func validate(_ source: ResearchSource) throws {
@@ -189,8 +259,9 @@ final class ResearchLibraryStore: ObservableObject {
         }
     }
 
-    private func save() throws {
+    private func persist(_ updatedSources: [ResearchSource]) throws {
         guard let rootURL else { throw ResearchLibraryError.missingLocation }
-        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: sources), to: rootURL)
+        try persistence.save(ResearchLibraryArchive(sources: updatedSources), rootURL)
+        sources = updatedSources
     }
 }

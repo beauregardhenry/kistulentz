@@ -115,6 +115,38 @@ final class ProjectImportTests: XCTestCase {
         XCTAssertTrue(combined == (try String(contentsOf: output, encoding: .utf8)))
     }
 
+    func testCombinedOutputRemovesStagedAssetsWhenFinalWriteFails() throws {
+        let root = try makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let sourceURL = root.appendingPathComponent("Draft.txt")
+        try "Draft".write(to: sourceURL, atomically: true, encoding: .utf8)
+        let asset = DocumentImportAsset(
+            suggestedFilename: "image.png",
+            altText: "Map",
+            data: Data([1, 2, 3])
+        )
+        let conversion = ProjectImportConversion(
+            source: ProjectImportSource(url: sourceURL, title: "Draft", kind: .chapter),
+            templateMarkdown: "Text\n\n\(DocumentImportDraft.assetToken(asset.id))",
+            assets: [asset]
+        )
+        let invalidOutput = root.appendingPathComponent("Cannot Replace.md", isDirectory: true)
+        try FileManager.default.createDirectory(at: invalidOutput, withIntermediateDirectories: false)
+
+        XCTAssertThrowsError(try ProjectImportOutputService.writeCombinedMarkdown(
+            [conversion],
+            decisions: [:],
+            to: invalidOutput,
+            replacingExisting: true
+        ))
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: invalidOutput.path))
+        XCTAssertFalse(FileManager.default.fileExists(
+            atPath: root.appendingPathComponent("Cannot Replace-assets").path
+        ))
+        XCTAssertEqual(try String(contentsOf: sourceURL, encoding: .utf8), "Draft")
+    }
+
     func testCreatesNewProjectWithoutStarterAndPreservesImportedHierarchy() throws {
         let parent = try makeTemporaryDirectory()
         let inputs = try conversions(

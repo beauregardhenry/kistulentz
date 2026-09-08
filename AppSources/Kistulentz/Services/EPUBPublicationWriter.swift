@@ -41,12 +41,22 @@ enum EPUBPublicationWriter {
             try cover.write(to: text.appendingPathComponent("cover.xhtml"), atomically: true, encoding: .utf8)
         }
 
+        let sectionIDs = book.sections.map(\.id)
+        guard Set(sectionIDs).count == sectionIDs.count else {
+            throw PublicationExportError.outputCreationFailed(
+                "The publication plan contains duplicate section identifiers."
+            )
+        }
         let sectionFiles = Dictionary(uniqueKeysWithValues: book.sections.enumerated().map { index, section in
             (section.id, "section-\(String(format: "%03d", index + 1)).xhtml")
         })
         var visibleTOC: [(title: String, href: String, depth: Int)] = []
-        for (index, section) in book.sections.enumerated() {
-            let fileName = sectionFiles[section.id]!
+        for section in book.sections {
+            guard let fileName = sectionFiles[section.id] else {
+                throw PublicationExportError.outputCreationFailed(
+                    "Kistulentz could not map a publication section to its EPUB file."
+                )
+            }
             var body = section.bodyHTML
             if section.id == "matter-tableOfContents" {
                 body = visibleTableOfContents(book.sections, files: sectionFiles)
@@ -67,7 +77,6 @@ enum EPUBPublicationWriter {
             if section.kind == .part || section.kind == .manuscript {
                 visibleTOC.append((section.title, "text/\(fileName)", section.kind == .part ? 0 : 1))
             }
-            _ = index
         }
 
         try navigationXHTML(book: book, entries: visibleTOC).write(to: epub.appendingPathComponent("nav.xhtml"), atomically: true, encoding: .utf8)

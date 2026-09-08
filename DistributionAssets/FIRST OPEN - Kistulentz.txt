@@ -5,27 +5,22 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.16.0 FRIEND PREVIEW
-- A native De-stink Review flags AI-writing tells -- word choice, sentence shape,
-  formatting, and rhythm/repetition -- for a selection, chapter, document, or the
-  whole manuscript, with an optional Benepar-backed structural pass for deeper
-  analysis.
-- Kistulentz Style.md now remembers declined advisory flags per project; a rule
-  stops appearing, live and in Local Polish, once it has been declined there a
-  couple of times, and Clear Learned Preferences reverses it.
-- The readability engine now flags AI-sounding phrasing on-device --
-  correlative constructions, stock rhetorical openers, stacked hedge words,
-  filler words, and marketing staccato triads.
-- The editor's font and size are now user-configurable in Settings.
-- Fixed a manuscript-export bug where certain footnote and endnote anchors
-  inside italic or underscore emphasis could be dropped during publication
-  rendering.
-- Pasting a long document no longer makes the editor wait for Apple spelling and
-  grammar analysis on the interface thread.
-- Kistulentz avoids a duplicate live text-checking pass after a paste.
-- Highlights are repainted only when the document or its findings change,
-  preventing unnecessary full-document work while typing and pasting.
-- Large-paste responsiveness is now covered by an automated regression test.
+NEW IN 0.16.1 FRIEND PREVIEW
+- Research Library changes are transaction-safe: a failed save no longer leaves
+  the visible library and its managed attachments disagreeing about what exists.
+- Cancelled attachment indexing leaves a safe, retryable unindexed record and
+  cleans up incomplete extracted text.
+- Manuscript search cancels superseded work and refuses to display stale results
+  from an older query.
+- DOCX and EPUB handling rejects oversized, malformed, traversal, symlink, and
+  duplicate-section cases without writing an output file.
+- Project Import cleans up staged assets when its final output cannot be written.
+- Frozen older-project fixtures now verify migration, backup creation, reopening,
+  and byte-for-byte preservation of manuscript Markdown.
+- Large-project checks now enforce explicit performance and cancellation budgets
+  on both Apple silicon and Intel test runners.
+- Project Organization, Systemic Revision, Project Research, Publish & Export,
+  Reference Library, and Research Library have automated exit-path checks.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

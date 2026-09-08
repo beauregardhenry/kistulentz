@@ -68,6 +68,23 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources.count, 1)
     }
 
+    func testResearchLibraryDiskDoesNotCommitIndexWhenGeneratedMarkdownCannotBeWritten() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let original = ResearchSource(citeKey: "persisted", title: "Persisted Source")
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [original]), to: root)
+        let knowledgeBase = root.appendingPathComponent(ResearchLibraryDisk.knowledgeBaseFileName)
+        try FileManager.default.removeItem(at: knowledgeBase)
+        try FileManager.default.createDirectory(at: knowledgeBase, withIntermediateDirectories: false)
+
+        let replacement = ResearchSource(citeKey: "uncommitted", title: "Uncommitted Source")
+        XCTAssertThrowsError(
+            try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [replacement]), to: root)
+        )
+
+        XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources.map(\.id), [original.id])
+    }
+
     func testManagedAttachmentIsCopiedAndLinkedAttachmentIsNot() throws {
         let root = temporaryDirectory()
         let outside = temporaryDirectory()
@@ -88,6 +105,186 @@ final class ResearchAndRevisionTests: XCTestCase {
         let url = root.appendingPathComponent("evidence.txt")
         try "The harbor record is readable.".write(to: url, atomically: true, encoding: .utf8)
         XCTAssertEqual(try ResearchTextExtractor.extract(from: url, kind: .text), "The harbor record is readable.")
+    }
+
+    @MainActor
+    func testResearchStoreDoesNotDeleteSourceOrManagedAttachmentWhenIndexSaveFails() throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreFailure.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Evidence".write(to: original, atomically: true, encoding: .utf8)
+        var source = sampleSource()
+        let attachment = try ResearchLibraryDisk.addAttachment(
+            from: original,
+            to: source.id,
+            storage: .managedCopy,
+            at: root
+        )
+        source.attachments = [attachment]
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+        let managedURL = ResearchLibraryDisk.attachmentURL(attachment, at: root)
+
+        var persistence = ResearchLibraryPersistence.live
+        var deletionWasAttempted = false
+        persistence.save = { _, _ in throw ExpectedResearchStoreError.writeFailed }
+        persistence.removeManagedAttachment = { _, _ in deletionWasAttempted = true }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        XCTAssertThrowsError(try store.removeSource(source.id))
+        XCTAssertEqual(store.sources.map(\.id), [source.id])
+        XCTAssertEqual(store.sources.first?.attachments.map(\.id), [attachment.id])
+        let onDisk = try ResearchLibraryDisk.load(from: root)
+        XCTAssertEqual(onDisk.sources.map(\.id), [source.id])
+        XCTAssertEqual(onDisk.sources.first?.attachments.map(\.id), [attachment.id])
+        XCTAssertTrue(FileManager.default.fileExists(atPath: managedURL.path))
+        XCTAssertFalse(deletionWasAttempted)
+    }
+
+    @MainActor
+    func testResearchStorePersistsRemovalBeforeDeletingManagedAttachment() throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreRemoval.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Evidence".write(to: original, atomically: true, encoding: .utf8)
+        var source = sampleSource()
+        let attachment = try ResearchLibraryDisk.addAttachment(
+            from: original,
+            to: source.id,
+            storage: .managedCopy,
+            at: root
+        )
+        source.attachments = [attachment]
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+
+        var persistence = ResearchLibraryPersistence.live
+        let liveRemoval = persistence.removeManagedAttachment
+        var deletionObservedPersistedRemoval = false
+        persistence.removeManagedAttachment = { attachment, root in
+            deletionObservedPersistedRemoval = try ResearchLibraryDisk.load(from: root).sources.isEmpty
+            try liveRemoval(attachment, root)
+        }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        try store.removeSource(source.id)
+
+        XCTAssertTrue(deletionObservedPersistedRemoval)
+        XCTAssertTrue(store.sources.isEmpty)
+        XCTAssertTrue(try ResearchLibraryDisk.load(from: root).sources.isEmpty)
+        XCTAssertFalse(FileManager.default.fileExists(
+            atPath: ResearchLibraryDisk.attachmentURL(attachment, at: root).path
+        ))
+    }
+
+    @MainActor
+    func testResearchStoreRollsBackManagedCopyWhenAttachmentIndexSaveFails() async throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreAttachmentRollback.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Evidence".write(to: original, atomically: true, encoding: .utf8)
+        let source = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+
+        var persistence = ResearchLibraryPersistence.live
+        let liveSave = persistence.save
+        var shouldFail = false
+        var copiedURL: URL?
+        let liveAdd = persistence.addAttachment
+        persistence.addAttachment = { url, id, storage, root in
+            let attachment = try liveAdd(url, id, storage, root)
+            copiedURL = ResearchLibraryDisk.attachmentURL(attachment, at: root)
+            return attachment
+        }
+        persistence.save = { archive, root in
+            if shouldFail { throw ExpectedResearchStoreError.writeFailed }
+            try liveSave(archive, root)
+        }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+        shouldFail = true
+
+        await store.addAttachment(from: original, sourceID: source.id, storage: .managedCopy)
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(store.sources.first?.attachments, [])
+        XCTAssertFalse(copiedURL.map { FileManager.default.fileExists(atPath: $0.path) } ?? true)
+        XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources.first?.attachments, [])
+    }
+
+    @MainActor
+    func testCancellingResearchAttachmentIndexingLeavesARecoverableUnindexedAttachment() async throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreAttachmentCancel.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Evidence".write(to: original, atomically: true, encoding: .utf8)
+        let source = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+
+        var persistence = ResearchLibraryPersistence.live
+        persistence.extractText = { _, _ in
+            try await Task.sleep(for: .seconds(5))
+            return "Never committed"
+        }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        let task = Task {
+            await store.addAttachment(from: original, sourceID: source.id, storage: .managedCopy)
+        }
+        var attempts = 0
+        while store.indexingAttachmentIDs.isEmpty, attempts < 100 {
+            try await Task.sleep(for: .milliseconds(5))
+            attempts += 1
+        }
+        XCTAssertEqual(store.indexingAttachmentIDs.count, 1)
+
+        task.cancel()
+        await task.value
+
+        XCTAssertTrue(store.indexingAttachmentIDs.isEmpty)
+        XCTAssertNil(store.errorMessage)
+        let attachment = try XCTUnwrap(store.sources.first?.attachments.first)
+        XCTAssertEqual(attachment.extractionStatus, .notStarted)
+        XCTAssertNil(attachment.extractedTextRelativePath)
+        let onDiskAttachment = try XCTUnwrap(
+            ResearchLibraryDisk.load(from: root).sources.first?.attachments.first
+        )
+        XCTAssertEqual(onDiskAttachment.id, attachment.id)
+        XCTAssertEqual(onDiskAttachment.extractionStatus, .notStarted)
+        XCTAssertNil(onDiskAttachment.extractedTextRelativePath)
     }
 
     func testDOIMetadataLookupMapsCrossrefRecord() async throws {
@@ -260,4 +457,8 @@ final class ResearchAndRevisionTests: XCTestCase {
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
     }
+}
+
+private enum ExpectedResearchStoreError: Error {
+    case writeFailed
 }

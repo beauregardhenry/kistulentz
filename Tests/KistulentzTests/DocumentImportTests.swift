@@ -174,6 +174,76 @@ final class DocumentImportTests: XCTestCase {
         }
     }
 
+    func testDOCXRejectsOversizedArchiveBeforeExtraction() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let source = root.appendingPathComponent("Oversized.docx")
+        XCTAssertTrue(FileManager.default.createFile(atPath: source.path, contents: Data()))
+        let handle = try FileHandle(forWritingTo: source)
+        try handle.truncate(atOffset: 250_000_001)
+        try handle.close()
+
+        XCTAssertThrowsError(try DocumentImportService.load(from: source)) { error in
+            XCTAssertEqual(error as? DocumentImportError, .documentTooLarge)
+        }
+    }
+
+    func testDOCXRejectsArchiveEntryThatEscapesItsPackage() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let package = root.appendingPathComponent("package", isDirectory: true)
+        let word = package.appendingPathComponent("xx/word", isDirectory: true)
+        try FileManager.default.createDirectory(at: word, withIntermediateDirectories: true)
+        try "<document/>".write(
+            to: word.appendingPathComponent("document.xml"),
+            atomically: true,
+            encoding: .utf8
+        )
+        let source = root.appendingPathComponent("Traversal.docx")
+        try runZip(arguments: ["-Xqr", source.path, "xx"], in: package)
+
+        // Keep the ZIP directory records valid while replacing a same-length safe
+        // prefix with a parent traversal in both the local and central headers.
+        var archive = try Data(contentsOf: source)
+        let safePrefix = Data("xx/".utf8)
+        let unsafePrefix = Data("../".utf8)
+        var searchStart = archive.startIndex
+        var replacementCount = 0
+        while let range = archive.range(of: safePrefix, in: searchStart..<archive.endIndex) {
+            archive.replaceSubrange(range, with: unsafePrefix)
+            searchStart = range.lowerBound + unsafePrefix.count
+            replacementCount += 1
+        }
+        XCTAssertGreaterThan(replacementCount, 0)
+        try archive.write(to: source, options: .atomic)
+
+        XCTAssertThrowsError(try DocumentImportService.load(from: source)) { error in
+            XCTAssertEqual(error as? DocumentImportError, .unsafeArchive)
+        }
+    }
+
+    func testDOCXRejectsMalformedDocumentXMLWithoutWritingAnything() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let package = root.appendingPathComponent("malformed-package", isDirectory: true)
+        let word = package.appendingPathComponent("word", isDirectory: true)
+        try FileManager.default.createDirectory(at: word, withIntermediateDirectories: true)
+        try "<w:document><w:body>".write(
+            to: word.appendingPathComponent("document.xml"),
+            atomically: true,
+            encoding: .utf8
+        )
+        let source = root.appendingPathComponent("Malformed.docx")
+        try runZip(arguments: ["-Xqr", source.path, "word"], in: package)
+
+        XCTAssertThrowsError(try DocumentImportService.load(from: source)) { error in
+            XCTAssertEqual(error as? DocumentImportError, .unreadableDocument)
+        }
+        XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: root.path).sorted(), [
+            "Malformed.docx", "malformed-package"
+        ])
+    }
+
     private func makeDOCX(in root: URL) throws -> URL {
         let package = root.appendingPathComponent("docx-package", isDirectory: true)
         let word = package.appendingPathComponent("word", isDirectory: true)

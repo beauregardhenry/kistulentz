@@ -26,6 +26,7 @@ struct ReferenceLibraryView: View {
             }
         }
         .frame(minWidth: 880, minHeight: 610)
+        .accessibilityIdentifier("ReferenceLibraryView")
         .alert("Reference Library", isPresented: Binding(
             get: { library.errorMessage != nil },
             set: { if !$0 { library.errorMessage = nil } }

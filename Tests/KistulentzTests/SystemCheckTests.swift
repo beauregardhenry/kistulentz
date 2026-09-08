@@ -3,6 +3,51 @@ import XCTest
 @testable import Kistulentz
 
 final class SystemCheckTests: XCTestCase {
+    @MainActor
+    func testFullSystemCheckCanExerciseEveryLocalBranchWithoutContactingServices() async throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-System-Check-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let suite = "KistulentzSystemCheckTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let settings = AppSettings(defaults: defaults)
+        let languagePack = BeneparLanguagePackManager(rootURL: root.appendingPathComponent("Pack"))
+        let referenceLibrary = ReferenceLibraryStore(defaults: defaults)
+        let expectedLanguage = SystemCheckItem(
+            id: "english-language-pack",
+            title: "Injected language pack",
+            detail: "No worker launched.",
+            status: .information
+        )
+        let expectedOllama = SystemCheckItem(
+            id: "ollama",
+            title: "Injected Ollama",
+            detail: "No local service contacted.",
+            status: .information
+        )
+
+        let report = await SystemCheckService.run(
+            settings: settings,
+            beneparPack: languagePack,
+            referenceLibrary: referenceLibrary,
+            languagePackEvaluator: { state in
+                XCTAssertEqual(state, .notInstalled)
+                return expectedLanguage
+            },
+            ollamaEvaluator: { expectedOllama }
+        )
+
+        XCTAssertEqual(report.items.first?.id, "native-analysis")
+        XCTAssertTrue(report.items.contains { $0.id == "markdown-documents" })
+        XCTAssertTrue(report.items.contains { $0.id == "ai-providers" })
+        XCTAssertTrue(report.items.contains { $0.id == "reference-library" })
+        XCTAssertTrue(report.items.contains { $0.id == "publishing-tools" })
+        XCTAssertTrue(report.items.contains(expectedLanguage))
+        XCTAssertTrue(report.items.contains(expectedOllama))
+    }
+
     func testRecognizesCompleteMarkdownDocumentDeclaration() {
         let info: [String: Any] = [
             "CFBundleDocumentTypes": [

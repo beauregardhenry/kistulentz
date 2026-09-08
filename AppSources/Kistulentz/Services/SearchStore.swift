@@ -6,25 +6,42 @@ import Foundation
 @MainActor
 final class SearchStore: ObservableObject {
 
+    typealias Searcher = (String, [ProjectChapter], URL) async throws -> [ProjectSearchResult]
+
     @Published var searchResults: [ProjectSearchResult] = []
     @Published var isSearching = false
 
     weak var core: WritingProjectStore?
 
     private var searchTask: Task<Void, Never>?
+    private var activeSearchID: UUID?
+    private let debounceDuration: Duration
+    private let searcher: Searcher
 
-    /// Matches `WritingProjectStore.closeProject()`'s original behavior exactly:
-    /// only `searchResults` is reset here, `isSearching` is left untouched.
-    /// A pre-existing asymmetry, preserved rather than "fixed" in this pass.
+    init(
+        debounceDuration: Duration = .milliseconds(180),
+        searcher: @escaping Searcher = SearchStore.searchDisk
+    ) {
+        self.debounceDuration = debounceDuration
+        self.searcher = searcher
+    }
+
     func reset() {
         searchTask?.cancel()
+        searchTask = nil
+        activeSearchID = nil
         searchResults = []
+        isSearching = false
     }
 
     func search(_ query: String) {
         searchTask?.cancel()
+        let searchID = UUID()
+        activeSearchID = searchID
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, let core, let rootURL = core.rootURL else {
+            searchTask = nil
+            activeSearchID = nil
             searchResults = []
             isSearching = false
             return
@@ -33,20 +50,48 @@ final class SearchStore: ObservableObject {
         let chapterSnapshot = core.chapters
         isSearching = true
         searchTask = Task { [weak self] in
-            try? await Task.sleep(for: .milliseconds(180))
-            guard !Task.isCancelled else { return }
             do {
-                let results = try await Task.detached(priority: .userInitiated) {
-                    try WritingProjectDisk.search(trimmed, chapters: chapterSnapshot, at: rootURL)
-                }.value
-                guard !Task.isCancelled else { return }
-                self?.searchResults = results
-                self?.isSearching = false
+                guard let self else { return }
+                try await Task.sleep(for: debounceDuration)
+                try Task.checkCancellation()
+                let results = try await searcher(trimmed, chapterSnapshot, rootURL)
+                try Task.checkCancellation()
+                guard activeSearchID == searchID else { return }
+                searchResults = results
+                finish(searchID)
+            } catch is CancellationError {
+                self?.finish(searchID)
             } catch {
-                self?.searchResults = []
-                self?.isSearching = false
-                self?.core?.errorMessage = error.localizedDescription
+                guard let self, activeSearchID == searchID else { return }
+                searchResults = []
+                core.errorMessage = error.localizedDescription
+                finish(searchID)
             }
+        }
+    }
+
+    private func finish(_ searchID: UUID) {
+        guard activeSearchID == searchID else { return }
+        activeSearchID = nil
+        searchTask = nil
+        isSearching = false
+    }
+
+    private nonisolated static func searchDisk(
+        _ query: String,
+        _ chapters: [ProjectChapter],
+        _ rootURL: URL
+    ) async throws -> [ProjectSearchResult] {
+        let task = Task.detached(priority: .userInitiated) {
+            try Task.checkCancellation()
+            let results = try WritingProjectDisk.search(query, chapters: chapters, at: rootURL)
+            try Task.checkCancellation()
+            return results
+        }
+        return try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
         }
     }
 }

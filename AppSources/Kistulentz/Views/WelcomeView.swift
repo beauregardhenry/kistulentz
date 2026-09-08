@@ -14,7 +14,7 @@ struct WhatsNewView: View {
                     .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 15))
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("What’s New in Kistulentz (version)")
+                    Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
                     Text("A safer, better-tested preview for real writing projects.")
@@ -25,22 +25,22 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Safer Project Polish",
-                    detail: "Review stages and edited proposals, recheck passages before applying, cancel safely, and undo an applied project revision in one step.",
-                    systemImage: "wand.and.stars",
-                    identifier: "WhatsNewProjectPolish"
+                    "Safer local libraries",
+                    detail: "Research Library records and managed attachments now stay consistent when a save, copy, extraction, or cancellation fails.",
+                    systemImage: "externaldrive.badge.checkmark",
+                    identifier: "WhatsNewStorageSafety"
                 )
                 whatsNewItem(
-                    "Stronger import and recovery",
-                    detail: "Multi-document imports, partial failures, cancellation, stale recovery files, and recovered copies now have deeper interface coverage.",
-                    systemImage: "square.stack.3d.up",
-                    identifier: "WhatsNewImportRecovery"
+                    "Responsive search and indexing",
+                    detail: "A cancelled or replaced search can no longer publish stale results, and cancelled attachment indexing remains safe to retry.",
+                    systemImage: "magnifyingglass",
+                    identifier: "WhatsNewCancellation"
                 )
                 whatsNewItem(
-                    "Easier troubleshooting",
-                    detail: "The private System Check report now pairs version details with a short problem-reproduction template for useful feedback.",
-                    systemImage: "stethoscope",
-                    identifier: "WhatsNewTroubleshooting"
+                    "Stronger release safeguards",
+                    detail: "Malicious and malformed document archives, failed import writes, older projects, large manuscripts, and critical workspace exit paths now have explicit regression checks.",
+                    systemImage: "checkmark.shield",
+                    identifier: "WhatsNewRegressionSafety"
                 )
             }
 
