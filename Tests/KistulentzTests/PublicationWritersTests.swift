@@ -492,6 +492,33 @@ final class PublicationWritersTests: XCTestCase {
         XCTAssertTrue(chapter.contains("Source, 2024."))
     }
 
+    func testEPUBRejectsDuplicateSectionIdentifiersWithoutCrashing() throws {
+        let root = temporaryDirectory()
+        let outputDir = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outputDir)
+        }
+        let output = outputDir.appendingPathComponent("Book.epub")
+        let plan = makePlan(format: .epub, profile: makeProfile(), metadata: makeMetadata())
+        let book = PublicationRenderedBook(
+            plan: plan,
+            sections: [
+                makeSection(id: "duplicate", title: "One"),
+                makeSection(id: "duplicate", title: "Two")
+            ],
+            notes: []
+        )
+
+        XCTAssertThrowsError(try EPUBPublicationWriter.write(book, to: output, root: root)) { error in
+            guard case .outputCreationFailed(let message) = error as? PublicationExportError else {
+                return XCTFail("Expected a safe publication structure error, got \(error)")
+            }
+            XCTAssertTrue(message.contains("duplicate section identifiers"))
+        }
+        XCTAssertFalse(FileManager.default.fileExists(atPath: output.path))
+    }
+
     // MARK: - PDFPublicationWriter
 
     func testWriterProducesAValidPDFContainingTheSectionText() throws {

@@ -49,15 +49,15 @@ final class UpgradePreferenceTests: XCTestCase {
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
         defer { defaults.removePersistentDomain(forName: suite) }
         defaults.set(true, forKey: "hasCompletedOnboarding")
-        defaults.set("0.15.0", forKey: "lastSeenAppVersion")
+        defaults.set("0.16.0", forKey: "lastSeenAppVersion")
 
         let settings = AppSettings(defaults: defaults)
-        XCTAssertTrue(settings.shouldPresentWhatsNew(for: "0.16.0"))
+        XCTAssertTrue(settings.shouldPresentWhatsNew(for: "0.16.1"))
 
-        settings.acknowledgeWhatsNew(for: "0.16.0")
+        settings.acknowledgeWhatsNew(for: "0.16.1")
 
-        XCTAssertFalse(settings.shouldPresentWhatsNew(for: "0.16.0"))
-        XCTAssertEqual(AppSettings(defaults: defaults).lastSeenAppVersion, "0.16.0")
+        XCTAssertFalse(settings.shouldPresentWhatsNew(for: "0.16.1"))
+        XCTAssertEqual(AppSettings(defaults: defaults).lastSeenAppVersion, "0.16.1")
     }
 
     @MainActor
@@ -68,6 +68,6 @@ final class UpgradePreferenceTests: XCTestCase {
 
         let settings = AppSettings(defaults: defaults)
 
-        XCTAssertFalse(settings.shouldPresentWhatsNew(for: "0.16.0"))
+        XCTAssertFalse(settings.shouldPresentWhatsNew(for: "0.16.1"))
     }
 }

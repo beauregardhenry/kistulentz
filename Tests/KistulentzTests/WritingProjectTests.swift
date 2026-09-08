@@ -130,6 +130,82 @@ final class WritingProjectTests: XCTestCase {
         XCTAssertEqual(results.first?.range, NSRange(location: 13, length: 10))
     }
 
+    @MainActor
+    func testSearchStoreKeepsOnlyTheNewestQueryResult() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
+        let core = WritingProjectStore()
+        try core.openProject(at: root)
+        let search = SearchStore(debounceDuration: .zero) { query, _, _ in
+            if query == "slow" {
+                try? await Task.sleep(for: .milliseconds(120))
+            } else {
+                try await Task.sleep(for: .milliseconds(5))
+            }
+            return [ProjectSearchResult(
+                chapterPath: "Draft.md",
+                chapterTitle: "Draft",
+                line: 1,
+                preview: query,
+                range: NSRange(location: 0, length: query.utf16.count)
+            )]
+        }
+        search.core = core
+
+        search.search("slow")
+        try await Task.sleep(for: .milliseconds(10))
+        search.search("newest")
+        try await waitUntil { !search.isSearching }
+
+        XCTAssertEqual(search.searchResults.map(\.preview), ["newest"])
+        XCTAssertNil(core.errorMessage)
+    }
+
+    @MainActor
+    func testSearchStoreResetCancelsWorkAndClearsProgress() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
+        let core = WritingProjectStore()
+        try core.openProject(at: root)
+        let search = SearchStore(debounceDuration: .zero) { _, _, _ in
+            try await Task.sleep(for: .seconds(5))
+            return []
+        }
+        search.core = core
+
+        search.search("unfinished")
+        await Task.yield()
+        XCTAssertTrue(search.isSearching)
+
+        search.reset()
+
+        XCTAssertFalse(search.isSearching)
+        XCTAssertTrue(search.searchResults.isEmpty)
+        try await Task.sleep(for: .milliseconds(20))
+        XCTAssertFalse(search.isSearching)
+    }
+
+    @MainActor
+    func testSearchStoreReportsFailureAndStopsProgress() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
+        let core = WritingProjectStore()
+        try core.openProject(at: root)
+        let search = SearchStore(debounceDuration: .zero) { _, _, _ in
+            throw ExpectedSearchError.failed
+        }
+        search.core = core
+
+        search.search("failure")
+        try await waitUntil { !search.isSearching }
+
+        XCTAssertTrue(search.searchResults.isEmpty)
+        XCTAssertEqual(core.errorMessage, ExpectedSearchError.failed.localizedDescription)
+    }
+
     func testStyleGuideLearnsAcceptedAndDeclinedChoicesWithoutOverwritingManualRules() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
@@ -204,5 +280,30 @@ final class WritingProjectTests: XCTestCase {
             .appendingPathComponent("Kistulentz-Project-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
+    }
+
+    @MainActor
+    private func waitUntil(
+        timeout: Duration = .seconds(1),
+        condition: @escaping @MainActor () -> Bool
+    ) async throws {
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: timeout)
+        while !condition() {
+            if clock.now >= deadline { throw ExpectedSearchError.timedOut }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+    }
+}
+
+private enum ExpectedSearchError: LocalizedError {
+    case failed
+    case timedOut
+
+    var errorDescription: String? {
+        switch self {
+        case .failed: "Expected search failure."
+        case .timedOut: "The test timed out waiting for search state."
+        }
     }
 }

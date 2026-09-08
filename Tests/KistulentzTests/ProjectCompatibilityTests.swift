@@ -3,6 +3,41 @@ import XCTest
 @testable import Kistulentz
 
 final class ProjectCompatibilityTests: XCTestCase {
+    @MainActor
+    func testFrozenV09ProjectFixtureUpgradesAndReopensWithoutChangingMarkdown() throws {
+        let fixture = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Fixtures/UpgradeProjects/v0.9", isDirectory: true)
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try FileManager.default.removeItem(at: root)
+        try FileManager.default.copyItem(at: fixture, to: root)
+        let openingURL = root.appendingPathComponent("Opening.md")
+        let originalMarkdown = try Data(contentsOf: openingURL)
+
+        let firstStore = WritingProjectStore()
+        try firstStore.openProject(at: root)
+
+        XCTAssertTrue(firstStore.lastMigrationResult?.didMigrate == true)
+        XCTAssertEqual(firstStore.manifest?.formatVersion, KistulentzProjectFormat.currentVersion)
+        XCTAssertEqual(firstStore.selectedChapterPath, "Opening.md")
+        XCTAssertEqual(try Data(contentsOf: openingURL), originalMarkdown)
+        XCTAssertNotNil(
+            try ProjectCompatibilityManager.availableBackups(at: root)
+                .first { $0.reason == .preMigration && $0.formatVersion == 1 }
+        )
+
+        firstStore.closeProject()
+        let reopenedStore = WritingProjectStore()
+        try reopenedStore.openProject(at: root)
+
+        XCTAssertTrue(reopenedStore.isOpen)
+        XCTAssertFalse(reopenedStore.lastMigrationResult?.didMigrate == true)
+        XCTAssertEqual(reopenedStore.text, String(decoding: originalMarkdown, as: UTF8.self))
+        XCTAssertEqual(try Data(contentsOf: openingURL), originalMarkdown)
+    }
+
     func testMigratesV09MetadataAfterCreatingAPreMigrationSnapshot() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }

@@ -36,12 +36,14 @@ enum ResearchLibraryDisk {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         encoder.dateEncodingStrategy = .iso8601
-        try encoder.encode(archive).write(to: indexURL(at: root), options: .atomic)
+        // The JSON index is the source of truth. Write the generated Markdown first so a
+        // failure cannot commit a new index that the in-memory store never published.
         try renderKnowledgeBase(archive).write(
             to: root.appendingPathComponent(knowledgeBaseFileName),
             atomically: true,
             encoding: .utf8
         )
+        try encoder.encode(archive).write(to: indexURL(at: root), options: .atomic)
     }
 
     static func addAttachment(
@@ -105,6 +107,13 @@ enum ResearchLibraryDisk {
         if let extracted = attachment.extractedTextRelativePath {
             let url = root.appendingPathComponent(extracted)
             if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }
+        }
+    }
+
+    static func removeExtractedText(relativePath: String, at root: URL) throws {
+        let url = root.appendingPathComponent(relativePath)
+        if FileManager.default.fileExists(atPath: url.path) {
+            try FileManager.default.removeItem(at: url)
         }
     }
 
@@ -174,6 +183,7 @@ enum ResearchTextExtractor {
     private static let maximumCharacters = 2_000_000
 
     static func extract(from url: URL, kind: ResearchAttachmentKind) throws -> String {
+        try Task.checkCancellation()
         let text: String
         switch kind {
         case .pdf:
@@ -198,6 +208,7 @@ enum ResearchTextExtractor {
         let normalized = text
             .replacingOccurrences(of: "\0", with: "")
             .trimmingCharacters(in: .whitespacesAndNewlines)
+        try Task.checkCancellation()
         guard !normalized.isEmpty else { throw ResearchLibraryError.unreadableAttachment(url.lastPathComponent) }
         return String(normalized.prefix(maximumCharacters))
     }
@@ -211,6 +222,7 @@ enum ResearchTextExtractor {
 
         var pages: [String] = []
         for pageIndex in 0..<min(document.pageCount, 400) {
+            try Task.checkCancellation()
             guard let page = document.page(at: pageIndex) else { continue }
             let thumbnail = page.thumbnail(of: NSSize(width: 1800, height: 2400), for: .mediaBox)
             var proposed = CGRect(origin: .zero, size: thumbnail.size)

@@ -61,6 +61,36 @@ final class EPUBReferenceTests: XCTestCase {
         XCTAssertTrue(result.notes.contains { $0.title == "Narrative voice" })
     }
 
+    func testEPUBRejectsArchivedSymbolicLinksBeforeExtraction() throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-EPUB-Symlink-Test-\(UUID().uuidString)", isDirectory: true)
+        let package = root.appendingPathComponent("package", isDirectory: true)
+        let meta = package.appendingPathComponent("META-INF", isDirectory: true)
+        try FileManager.default.createDirectory(at: meta, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+
+        let outside = root.appendingPathComponent("outside.xml")
+        try "<container/>".write(to: outside, atomically: true, encoding: .utf8)
+        try FileManager.default.createSymbolicLink(
+            at: meta.appendingPathComponent("container.xml"),
+            withDestinationURL: outside
+        )
+        let output = root.appendingPathComponent("unsafe.epub")
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/zip")
+        process.currentDirectoryURL = package
+        process.arguments = ["-X", "-q", "-y", "-r", output.path, "."]
+        try process.run()
+        process.waitUntilExit()
+        XCTAssertEqual(process.terminationStatus, 0)
+
+        XCTAssertThrowsError(try EPUBProcessor.load(url: output)) { error in
+            guard case EPUBError.unsafeArchive = error else {
+                return XCTFail("Expected an unsafe archive error, got \(error)")
+            }
+        }
+    }
+
     private func makeFixtureEPUB() throws -> URL {
         let testsDirectory = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent()

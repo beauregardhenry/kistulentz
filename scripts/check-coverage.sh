@@ -18,6 +18,16 @@ PROJECT_ROOT="${0:A:h:h}"
 BASELINE_FILE="$PROJECT_ROOT/coverage-baseline.txt"
 IGNORE_REGEX='(^|/)(\.build|Tests|AppSources/Kistulentz/Views)/'
 
+architecture="${COVERAGE_ARCHITECTURE:-$(uname -m)}"
+case "$architecture" in
+    arm64|arm64e) architecture="arm64" ;;
+    x86_64) ;;
+    *)
+        print -u2 "Coverage check failed: unsupported architecture '$architecture'."
+        exit 1
+        ;;
+esac
+
 # How far coverage may drift below the baseline before the build fails. Small enough to catch a
 # deleted test, loose enough to absorb rounding when unrelated files move around.
 TOLERANCE="${COVERAGE_TOLERANCE:-0.25}"
@@ -37,10 +47,8 @@ fi
 BIN_PATH="$(swift build --show-bin-path)"
 PROFDATA="$BIN_PATH/codecov/default.profdata"
 
-if [[ ! -f "$PROFDATA" ]]; then
-    print "No coverage profile at $PROFDATA; running the test suite."
-    swift test --enable-code-coverage --disable-sandbox
-fi
+print "Running the test suite with a fresh coverage profile."
+swift test --enable-code-coverage --disable-sandbox
 
 if [[ ! -f "$PROFDATA" ]]; then
     print -u2 "Coverage check failed: $PROFDATA was not produced."
@@ -89,16 +97,31 @@ print -r -- "$measured" | tail -n +2 | while IFS=$'\t' read -r file pct count; d
 done
 
 if (( update_baseline )); then
+    arm64_baseline="$(sed -n 's/^arm64=//p' "$BASELINE_FILE" 2>/dev/null | tail -1 | tr -d '[:space:]' || true)"
+    intel_baseline="$(sed -n 's/^x86_64=//p' "$BASELINE_FILE" 2>/dev/null | tail -1 | tr -d '[:space:]' || true)"
+    if [[ "$architecture" == "arm64" ]]; then
+        arm64_baseline="$percent"
+    else
+        intel_baseline="$percent"
+    fi
     cat > "$BASELINE_FILE" <<BASELINE
-# Line coverage floor for the app sources outside Views/, enforced by scripts/check-coverage.sh.
-# Raise it when coverage climbs; lower it only deliberately, with a reason in the commit.
-$percent
+# Architecture-specific line coverage floors for app sources outside Views/.
+# Coverage instrumentation differs between Apple silicon and Intel builds. Raise each floor when
+# that architecture climbs; lower one only deliberately, with a reason in the commit.
+arm64=${arm64_baseline:-$percent}
+x86_64=${intel_baseline:-$percent}
 BASELINE
-    print "Baseline updated to ${percent}%. Commit coverage-baseline.txt."
+    print "${architecture} baseline updated to ${percent}%. Commit coverage-baseline.txt."
     exit 0
 fi
 
-baseline="$(grep -v '^[[:space:]]*#' "$BASELINE_FILE" 2>/dev/null | tr -d '[:space:]' || true)"
+baseline="$(sed -n "s/^${architecture}=//p" "$BASELINE_FILE" 2>/dev/null | tail -1 | tr -d '[:space:]' || true)"
+
+# Accept the original single-number format while older branches transition to per-architecture
+# floors. New updates always write the architecture-specific form above.
+if [[ -z "$baseline" ]]; then
+    baseline="$(grep -v '^[[:space:]]*#' "$BASELINE_FILE" 2>/dev/null | head -1 | tr -d '[:space:]' || true)"
+fi
 
 if [[ -z "$baseline" ]]; then
     print
@@ -118,15 +141,15 @@ verdict="$(/usr/bin/python3 -c "print('below' if $percent < $floor else ('above'
 print
 case "$verdict" in
     below)
-        print -u2 "Coverage check failed: ${percent}% is below the ${baseline}% baseline (floor ${floor}%)."
+        print -u2 "Coverage check failed: ${percent}% is below the ${architecture} ${baseline}% baseline (floor ${floor}%)."
         print -u2 "Add tests for the new code, or lower coverage-baseline.txt deliberately and say why in the commit."
         exit 1
         ;;
     above)
-        print "Coverage rose to ${percent}% from a ${baseline}% baseline."
+        print "Coverage rose to ${percent}% from the ${architecture} ${baseline}% baseline."
         print "Lock it in: './scripts/check-coverage.sh --update' and commit coverage-baseline.txt."
         ;;
     held)
-        print "Coverage holds at ${percent}% against the ${baseline}% baseline."
+        print "Coverage holds at ${percent}% against the ${architecture} ${baseline}% baseline."
         ;;
 esac

@@ -80,6 +80,7 @@ struct PublishExportView: View {
             }
         }
         .frame(minWidth: 1040, minHeight: 720)
+        .accessibilityIdentifier("PublishExportView")
         .onAppear(perform: load)
         .onDisappear(perform: persistDraft)
         .alert("Kistulentz", isPresented: Binding(

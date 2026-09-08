@@ -33,7 +33,12 @@ final class ScaleTargetTests: XCTestCase {
         let manifest = try WritingProjectDisk.loadManifest(at: root)
         let loadStarted = ContinuousClock.now
         let chapters = try WritingProjectDisk.loadChapters(at: root, manifest: manifest)
-        Self.record("project-load-2m-words", since: loadStarted)
+        Self.assertWithinBudget(
+            "project-load-2m-words",
+            since: loadStarted,
+            environmentKey: "KISTULENTZ_BUDGET_PROJECT_LOAD_SECONDS",
+            defaultSeconds: 15
+        )
         let reopened = try WritingProjectDisk.loadChapters(at: root, manifest: manifest)
 
         let searchStarted = ContinuousClock.now
@@ -42,7 +47,12 @@ final class ScaleTargetTests: XCTestCase {
             chapters: chapters,
             at: root
         )
-        Self.record("project-search-2m-words-no-match", since: searchStarted)
+        Self.assertWithinBudget(
+            "project-search-2m-words-no-match",
+            since: searchStarted,
+            environmentKey: "KISTULENTZ_BUDGET_PROJECT_SEARCH_SECONDS",
+            defaultSeconds: 5
+        )
 
         XCTAssertEqual(chapters.count, KistulentzScaleTargets.projectDocuments)
         XCTAssertEqual(reopened.reduce(0) { $0 + $1.wordCount }, KistulentzScaleTargets.manuscriptWords)
@@ -64,7 +74,12 @@ final class ScaleTargetTests: XCTestCase {
         let importStarted = ContinuousClock.now
         let discovery = try ProjectImportSourceDiscovery.discover(from: [root])
         let converted = try discovery.sources.map(ProjectImportConversionService.load)
-        Self.record("project-import-1000-txt", since: importStarted)
+        Self.assertWithinBudget(
+            "project-import-1000-txt",
+            since: importStarted,
+            environmentKey: "KISTULENTZ_BUDGET_PROJECT_IMPORT_SECONDS",
+            defaultSeconds: 10
+        )
 
         XCTAssertEqual(discovery.sources.count, KistulentzScaleTargets.projectImportFiles)
         XCTAssertEqual(converted.count, KistulentzScaleTargets.projectImportFiles)
@@ -111,7 +126,12 @@ final class ScaleTargetTests: XCTestCase {
         let roundTripStarted = ContinuousClock.now
         try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: books), to: root)
         let reopened = try ReferenceLibraryDisk.load(from: root)
-        Self.record("reference-round-trip-5000-books", since: roundTripStarted)
+        Self.assertWithinBudget(
+            "reference-round-trip-5000-books",
+            since: roundTripStarted,
+            environmentKey: "KISTULENTZ_BUDGET_REFERENCE_ROUND_TRIP_SECONDS",
+            defaultSeconds: 10
+        )
 
         XCTAssertEqual(reopened.books.count, KistulentzScaleTargets.referenceBooks)
         XCTAssertEqual(Set(reopened.books.map(\.author)).count, 500)
@@ -123,7 +143,12 @@ final class ScaleTargetTests: XCTestCase {
         let store = ReferenceLibraryStore(defaults: defaults)
         let filterStarted = ContinuousClock.now
         let matches = store.choices(kind: .book, search: "Book 4999")
-        Self.record("reference-filter-5000-books", since: filterStarted)
+        Self.assertWithinBudget(
+            "reference-filter-5000-books",
+            since: filterStarted,
+            environmentKey: "KISTULENTZ_BUDGET_REFERENCE_FILTER_SECONDS",
+            defaultSeconds: 2
+        )
         XCTAssertEqual(matches.map(\.title), ["Book 4999"])
     }
 
@@ -143,7 +168,12 @@ final class ScaleTargetTests: XCTestCase {
             targetGrade: 8,
             styleDecisions: []
         )
-        Self.record("project-polish-200-documents", since: polishStarted)
+        Self.assertWithinBudget(
+            "project-polish-200-documents",
+            since: polishStarted,
+            environmentKey: "KISTULENTZ_BUDGET_PROJECT_POLISH_SECONDS",
+            defaultSeconds: 60
+        )
         XCTAssertEqual(polishReport.completedDocumentCount, measuredDocuments.count)
 
         let cancellationDocuments = (0..<KistulentzScaleTargets.projectDocuments).map {
@@ -164,7 +194,12 @@ final class ScaleTargetTests: XCTestCase {
         let cancellationStarted = ContinuousClock.now
         task.cancel()
         let cancelledReport = await task.value
-        Self.record("project-polish-cancel-2000-documents", since: cancellationStarted)
+        Self.assertWithinBudget(
+            "project-polish-cancel-2000-documents",
+            since: cancellationStarted,
+            environmentKey: "KISTULENTZ_BUDGET_PROJECT_POLISH_CANCEL_SECONDS",
+            defaultSeconds: 2
+        )
         XCTAssertTrue(cancelledReport.wasCancelled)
         XCTAssertLessThan(cancelledReport.completedDocumentCount, cancellationDocuments.count)
     }
@@ -176,8 +211,26 @@ final class ScaleTargetTests: XCTestCase {
         return url
     }
 
-    private static func record(_ name: String, since started: ContinuousClock.Instant) {
+    private static func assertWithinBudget(
+        _ name: String,
+        since started: ContinuousClock.Instant,
+        environmentKey: String,
+        defaultSeconds: Double,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         let elapsed = started.duration(to: .now)
-        print("KISTULENTZ_PERFORMANCE \(name)=\(elapsed)")
+        let components = elapsed.components
+        let seconds = Double(components.seconds) + Double(components.attoseconds) / 1e18
+        let configured = ProcessInfo.processInfo.environment[environmentKey].flatMap(Double.init)
+        let budget = configured ?? defaultSeconds
+        print("KISTULENTZ_PERFORMANCE \(name)=\(seconds)s budget=\(budget)s")
+        XCTAssertLessThanOrEqual(
+            seconds,
+            budget,
+            "\(name) exceeded its \(budget)-second budget. Override with \(environmentKey) only when intentionally recalibrating the approved target.",
+            file: file,
+            line: line
+        )
     }
 }

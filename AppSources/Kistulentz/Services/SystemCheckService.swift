@@ -8,7 +8,9 @@ enum SystemCheckService {
         referenceLibrary: ReferenceLibraryStore,
         bundle: Bundle = .main,
         fileManager: FileManager = .default,
-        processInfo: ProcessInfo = .processInfo
+        processInfo: ProcessInfo = .processInfo,
+        languagePackEvaluator: ((BeneparLanguagePackState) async -> SystemCheckItem)? = nil,
+        ollamaEvaluator: (() async -> SystemCheckItem)? = nil
     ) async -> SystemCheckReport {
         beneparPack.refresh()
         var items: [SystemCheckItem] = [
@@ -24,8 +26,16 @@ enum SystemCheckService {
             publishingToolCheck(fileManager: fileManager)
         ]
 
-        items.append(await languagePackCheck(state: beneparPack.state))
-        items.append(await ollamaCheck())
+        if let languagePackEvaluator {
+            items.append(await languagePackEvaluator(beneparPack.state))
+        } else {
+            items.append(await languagePackCheck(state: beneparPack.state))
+        }
+        if let ollamaEvaluator {
+            items.append(await ollamaEvaluator())
+        } else {
+            items.append(await ollamaCheck())
+        }
 
         return SystemCheckReport(
             generatedAt: Date(),

@@ -30,6 +30,7 @@ struct SystemicRevisionCenterView: View {
             }
         }
         .frame(minWidth: 1_020, minHeight: 680)
+        .accessibilityIdentifier("SystemicRevisionCenterView")
         .sheet(item: $pendingChangeSet) { set in
             RevisionChangeSetPreviewView(store: store, originalSet: set)
         }
