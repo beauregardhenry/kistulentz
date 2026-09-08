@@ -5,22 +5,17 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.16.1 FRIEND PREVIEW
-- Research Library changes are transaction-safe: a failed save no longer leaves
-  the visible library and its managed attachments disagreeing about what exists.
-- Cancelled attachment indexing leaves a safe, retryable unindexed record and
-  cleans up incomplete extracted text.
-- Manuscript search cancels superseded work and refuses to display stale results
-  from an older query.
-- DOCX and EPUB handling rejects oversized, malformed, traversal, symlink, and
-  duplicate-section cases without writing an output file.
-- Project Import cleans up staged assets when its final output cannot be written.
-- Frozen older-project fixtures now verify migration, backup creation, reopening,
-  and byte-for-byte preservation of manuscript Markdown.
-- Large-project checks now enforce explicit performance and cancellation budgets
-  on both Apple silicon and Intel test runners.
-- Project Organization, Systemic Revision, Project Research, Publish & Export,
-  Reference Library, and Research Library have automated exit-path checks.
+NEW IN 0.17.0 FRIEND PREVIEW
+- This is a behavior-frozen refactor release: existing writing workflows, file
+  formats, storage, AI choices, and privacy behavior are intentionally unchanged.
+- The main editor is now divided into focused toolbar, readability, review, and
+  polished-draft components.
+- DOCX, RTF/RTFD/ODT, HTML, and plain-text imports now use dedicated format
+  implementations behind the same safe import coordinator.
+- Project Import Assistant state, ordering, conversion, cancellation, and output
+  decisions now live in an independently tested view model.
+- Manuscript metrics, continuity checks, and report generation are separated and
+  protected by component-wiring regression tests.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

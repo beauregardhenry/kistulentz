@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("A safer, better-tested preview for real writing projects.")
+                    Text("The same writing workflows, on a cleaner and safer foundation.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,20 +25,20 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Safer local libraries",
-                    detail: "Research Library records and managed attachments now stay consistent when a save, copy, extraction, or cancellation fails.",
-                    systemImage: "externaldrive.badge.checkmark",
+                    "A more focused editor",
+                    detail: "The editor’s toolbar, readability guidance, review cards, and polished-draft review now have clearer internal boundaries without changing how you use them.",
+                    systemImage: "pencil.and.outline",
                     identifier: "WhatsNewStorageSafety"
                 )
                 whatsNewItem(
-                    "Responsive search and indexing",
-                    detail: "A cancelled or replaced search can no longer publish stale results, and cancelled attachment indexing remains safe to retry.",
-                    systemImage: "magnifyingglass",
+                    "Stronger import foundations",
+                    detail: "Document formats and the Project Import Assistant now use focused, independently tested components while preserving the same conversion and safety rules.",
+                    systemImage: "square.and.arrow.down",
                     identifier: "WhatsNewCancellation"
                 )
                 whatsNewItem(
-                    "Stronger release safeguards",
-                    detail: "Malicious and malformed document archives, failed import writes, older projects, large manuscripts, and critical workspace exit paths now have explicit regression checks.",
+                    "Analysis with explicit safeguards",
+                    detail: "Manuscript metrics, continuity checks, and report writing are now independently testable, with new regressions protecting their combined results.",
                     systemImage: "checkmark.shield",
                     identifier: "WhatsNewRegressionSafety"
                 )
