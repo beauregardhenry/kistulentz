@@ -8,6 +8,37 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.17.1] - 2026-09-09
+
+### Changed
+
+- Project opening now constructs and validates a complete project snapshot before replacing the
+  project currently on screen, and refuses to switch away from unsaved document changes.
+- Project research, beta readers, style learning, search, and publication stores now persist
+  through explicit injected operations rather than retaining weak links back to the project store.
+- Editor sheet and document-import coordination now use explicit, independently tested state
+  objects that reject obsolete dismissals and late results from superseded operations.
+- Publish & Export state, plan reconciliation, preflight, history, and asynchronous export work now
+  live in a dedicated view model instead of the SwiftUI view.
+- Kistulentz now builds in Swift 6 language mode with complete concurrency checking.
+
+### Fixed
+
+- A project that fails during a late loading phase no longer partially replaces the open project.
+- Cancelled or failed publication exports no longer record stale success results or leave incomplete
+  submission-package folders behind.
+- Removing or replacing a publication cover now refreshes the export plan and invalidates stale
+  preflight results immediately.
+- Apple spell-check callbacks and network-backed test doubles now cross concurrency boundaries
+  without unsafe shared mutable state.
+
+### Testing
+
+- Added failure-injection coverage for transactional project loading and project sub-store saves.
+- Added race and cancellation coverage for editor presentation, single-document imports, and
+  publication export coordination.
+- The complete native suite now runs under Swift 6 concurrency rules.
+
 ## [0.17.0] - 2026-09-08
 
 ### Changed

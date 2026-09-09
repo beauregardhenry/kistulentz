@@ -77,7 +77,7 @@ struct ReferenceDeepeningService {
         return result
     }
 
-    private static let schema: [String: Any] = [
+    private static var schema: [String: Any] { [
         "type": "object",
         "properties": [
             "summary": ["type": "string"],
@@ -95,5 +95,5 @@ struct ReferenceDeepeningService {
             "characterContinuity", "tempo", "techniques", "suggestedGenres"
         ],
         "additionalProperties": false
-    ]
+    ] }
 }

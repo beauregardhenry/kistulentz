@@ -2,4 +2,4 @@
 # Coverage instrumentation differs between Apple silicon and Intel builds. Raise each floor when
 # that architecture climbs; lower one only deliberately, with a reason in the commit.
 arm64=74.01
-x86_64=76.06
+x86_64=77.14

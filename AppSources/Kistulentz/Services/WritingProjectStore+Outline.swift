@@ -383,13 +383,15 @@ extension WritingProjectStore {
         selectionAfter: String?
     ) {
         projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.undoFileOrganization(
-                moves: moves,
-                beforeNodes: beforeNodes,
-                afterNodes: afterNodes,
-                selectionBefore: selectionBefore,
-                selectionAfter: selectionAfter
-            )
+            MainActor.assumeIsolated {
+                target.undoFileOrganization(
+                    moves: moves,
+                    beforeNodes: beforeNodes,
+                    afterNodes: afterNodes,
+                    selectionBefore: selectionBefore,
+                    selectionAfter: selectionAfter
+                )
+            }
         }
         projectUndoManager?.setActionName("Organize Project Files")
     }
@@ -413,13 +415,15 @@ extension WritingProjectStore {
             try syncChaptersWithOutline(preferredSelection: selectionBefore)
             snapshots = try WritingProjectDisk.loadSnapshots(at: rootURL)
             projectUndoManager?.registerUndo(withTarget: self) { target in
-                target.redoFileOrganization(
-                    moves: moves,
-                    beforeNodes: beforeNodes,
-                    afterNodes: afterNodes,
-                    selectionBefore: selectionBefore,
-                    selectionAfter: selectionAfter
-                )
+                MainActor.assumeIsolated {
+                    target.redoFileOrganization(
+                        moves: moves,
+                        beforeNodes: beforeNodes,
+                        afterNodes: afterNodes,
+                        selectionBefore: selectionBefore,
+                        selectionAfter: selectionAfter
+                    )
+                }
             }
             projectUndoManager?.setActionName("Organize Project Files")
             editCoordinator.editLanded(.externalChange)
@@ -475,13 +479,15 @@ extension WritingProjectStore {
         afterNodes: [OutlineNode]
     ) {
         projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.undoHeadingSplit(
-                plan: plan,
-                originalMarkdown: originalMarkdown,
-                createdPaths: createdPaths,
-                beforeNodes: beforeNodes,
-                afterNodes: afterNodes
-            )
+            MainActor.assumeIsolated {
+                target.undoHeadingSplit(
+                    plan: plan,
+                    originalMarkdown: originalMarkdown,
+                    createdPaths: createdPaths,
+                    beforeNodes: beforeNodes,
+                    afterNodes: afterNodes
+                )
+            }
         }
         projectUndoManager?.setActionName("Split Chapter Headings")
     }
@@ -510,13 +516,15 @@ extension WritingProjectStore {
             try ProjectOutlineDisk.save(ProjectOutlineArchive(nodes: beforeNodes), at: rootURL)
             try syncChaptersWithOutline(preferredSelection: plan.chapterPath)
             projectUndoManager?.registerUndo(withTarget: self) { target in
-                target.redoHeadingSplit(
-                    plan: plan,
-                    originalMarkdown: originalMarkdown,
-                    createdPaths: createdPaths,
-                    beforeNodes: beforeNodes,
-                    afterNodes: afterNodes
-                )
+                MainActor.assumeIsolated {
+                    target.redoHeadingSplit(
+                        plan: plan,
+                        originalMarkdown: originalMarkdown,
+                        createdPaths: createdPaths,
+                        beforeNodes: beforeNodes,
+                        afterNodes: afterNodes
+                    )
+                }
             }
             projectUndoManager?.setActionName("Split Chapter Headings")
             editCoordinator.editLanded(.externalChange)

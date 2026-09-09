@@ -199,7 +199,7 @@ struct MarkdownTextView: NSViewRepresentable {
 }
 
 enum UndoRegistrationGuard {
-    static func perform(on undoManager: UndoManager?, _ action: () -> Void) {
+    @MainActor static func perform(on undoManager: UndoManager?, _ action: () -> Void) {
         guard let undoManager, undoManager.isUndoRegistrationEnabled else {
             action()
             return

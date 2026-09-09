@@ -9,11 +9,38 @@ final class PublicationStore: ObservableObject {
 
     @Published var publicationArchive = PublicationArchive()
 
-    weak var core: WritingProjectStore?
-    weak var research: ProjectResearchStore?
+    private let projectRoot: () -> URL?
+    private let projectManifest: () -> WritingProjectManifest?
+    private let projectOutline: () -> [OutlineNode]
+    private let bibliography: () -> ProjectBibliographyArchive
+    private let saveCurrentDocument: () -> Void
+    private let saveProjectOutline: () -> Void
+    private let reportError: (Error) -> Void
+
+    init(
+        projectRoot: @escaping () -> URL?,
+        projectManifest: @escaping () -> WritingProjectManifest?,
+        projectOutline: @escaping () -> [OutlineNode],
+        bibliography: @escaping () -> ProjectBibliographyArchive,
+        saveCurrentDocument: @escaping () -> Void,
+        saveProjectOutline: @escaping () -> Void,
+        reportError: @escaping (Error) -> Void
+    ) {
+        self.projectRoot = projectRoot
+        self.projectManifest = projectManifest
+        self.projectOutline = projectOutline
+        self.bibliography = bibliography
+        self.saveCurrentDocument = saveCurrentDocument
+        self.saveProjectOutline = saveProjectOutline
+        self.reportError = reportError
+    }
 
     func load(at root: URL) throws {
         publicationArchive = try PublicationDisk.load(at: root)
+    }
+
+    func replaceContents(_ archive: PublicationArchive) {
+        publicationArchive = archive
     }
 
     func reset() {
@@ -21,12 +48,12 @@ final class PublicationStore: ObservableObject {
     }
 
     func updatePublicationArchive(_ archive: PublicationArchive) {
-        guard let rootURL = core?.rootURL else { return }
+        guard let rootURL = projectRoot() else { return }
         do {
             try PublicationDisk.save(archive, at: rootURL)
             publicationArchive = archive
         } catch {
-            core?.errorMessage = error.localizedDescription
+            reportError(error)
         }
     }
 
@@ -35,11 +62,11 @@ final class PublicationStore: ObservableObject {
         profileID: UUID? = nil,
         format: PublicationExportFormat? = nil
     ) throws -> PublicationExportPlan {
-        guard let core, let rootURL = core.rootURL, let manifest = core.manifest else {
+        guard let rootURL = projectRoot(), let manifest = projectManifest() else {
             throw PublicationExportError.missingProject
         }
-        core.saveNow()
-        core.saveOutlineNow()
+        saveCurrentDocument()
+        saveProjectOutline()
         let selectedID = profileID ?? publicationArchive.selectedProfileID
         guard let profile = publicationArchive.profiles.first(where: { $0.id == selectedID }) else {
             throw PublicationExportError.missingProfile
@@ -47,9 +74,9 @@ final class PublicationStore: ObservableObject {
         return PublicationPlanBuilder.build(
             projectName: manifest.name,
             root: rootURL,
-            outline: core.outlineNodes,
+            outline: projectOutline(),
             archive: publicationArchive,
-            bibliography: research?.projectBibliography ?? ProjectBibliographyArchive(),
+            bibliography: bibliography(),
             librarySources: sources,
             profile: profile,
             format: format ?? profile.preferredFormat,
@@ -58,24 +85,24 @@ final class PublicationStore: ObservableObject {
     }
 
     func copyPublicationCover(from url: URL) {
-        guard let rootURL = core?.rootURL else { return }
+        guard let rootURL = projectRoot() else { return }
         do {
             var archive = publicationArchive
             archive.metadata.coverImageRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "cover", at: rootURL)
             updatePublicationArchive(archive)
         } catch {
-            core?.errorMessage = error.localizedDescription
+            reportError(error)
         }
     }
 
     func copyPrintCover(from url: URL) {
-        guard let rootURL = core?.rootURL else { return }
+        guard let rootURL = projectRoot() else { return }
         do {
             var archive = publicationArchive
             archive.metadata.printCoverPDFRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "print-cover", at: rootURL)
             updatePublicationArchive(archive)
         } catch {
-            core?.errorMessage = error.localizedDescription
+            reportError(error)
         }
     }
 

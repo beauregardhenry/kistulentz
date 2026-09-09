@@ -1,6 +1,7 @@
 import Foundation
 import XCTest
 
+@MainActor
 final class ProjectImportAssistantUITests: KistulentzUITestCase {
     func testMixedRealDocumentsReorderContinuePastFailureRetryAndWriteCombinedMarkdown() throws {
         let first = testRoot.appendingPathComponent("A-first.txt")

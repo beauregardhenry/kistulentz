@@ -6,12 +6,38 @@ import Foundation
 @MainActor
 final class BetaReadersStore: ObservableObject {
 
+    typealias CurrentChapter = () -> (path: String?, title: String, text: String)?
+    typealias ManuscriptProvider = () throws -> [ManuscriptDocument]
+    typealias ReadersSaver = ([BetaReaderProfile], URL) throws -> Void
+
     @Published var customBetaReaders: [BetaReaderProfile] = []
 
-    weak var core: WritingProjectStore?
+    private let projectRoot: () -> URL?
+    private let currentChapter: CurrentChapter
+    private let manuscriptProvider: ManuscriptProvider
+    private let reportError: (Error) -> Void
+    private let saveReaders: ReadersSaver
+
+    init(
+        projectRoot: @escaping () -> URL?,
+        currentChapter: @escaping CurrentChapter,
+        manuscriptProvider: @escaping ManuscriptProvider,
+        reportError: @escaping (Error) -> Void,
+        saveReaders: @escaping ReadersSaver = ManuscriptProjectDisk.saveCustomBetaReaders
+    ) {
+        self.projectRoot = projectRoot
+        self.currentChapter = currentChapter
+        self.manuscriptProvider = manuscriptProvider
+        self.reportError = reportError
+        self.saveReaders = saveReaders
+    }
 
     func load(at root: URL) throws {
         customBetaReaders = try ManuscriptProjectDisk.loadCustomBetaReaders(at: root)
+    }
+
+    func replaceContents(_ readers: [BetaReaderProfile]) {
+        customBetaReaders = readers
     }
 
     func reset() {
@@ -22,21 +48,24 @@ final class BetaReadersStore: ObservableObject {
         let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanFocus = focus.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !cleanName.isEmpty, !cleanFocus.isEmpty else { return }
-        customBetaReaders.append(BetaReaderProfile(name: cleanName, focus: cleanFocus, audience: audience))
-        saveCustomBetaReaders()
+        var updated = customBetaReaders
+        updated.append(BetaReaderProfile(name: cleanName, focus: cleanFocus, audience: audience))
+        persist(updated)
     }
 
     func updateCustomBetaReader(_ reader: BetaReaderProfile) {
         guard !reader.isBuiltIn,
               let index = customBetaReaders.firstIndex(where: { $0.id == reader.id }) else { return }
-        customBetaReaders[index] = reader
-        saveCustomBetaReaders()
+        var updated = customBetaReaders
+        updated[index] = reader
+        persist(updated)
     }
 
     func removeCustomBetaReader(_ reader: BetaReaderProfile) {
         guard !reader.isBuiltIn else { return }
-        customBetaReaders.removeAll { $0.id == reader.id }
-        saveCustomBetaReaders()
+        var updated = customBetaReaders
+        updated.removeAll { $0.id == reader.id }
+        persist(updated)
     }
 
     func documents(for scope: BetaReaderScope, selection: String?) throws -> [ManuscriptDocument] {
@@ -46,24 +75,30 @@ final class BetaReadersStore: ObservableObject {
                   !selection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
                 throw WritingAIError.emptySelection
             }
-            return [ManuscriptDocument(relativePath: core?.selectedChapterPath ?? "Selection", title: "Selection", text: selection)]
-        case .chapter:
             return [ManuscriptDocument(
-                relativePath: core?.selectedChapterPath ?? "Chapter",
-                title: core?.selectedChapterTitle ?? "Chapter",
-                text: core?.text ?? ""
+                relativePath: currentChapter()?.path ?? "Selection",
+                title: "Selection",
+                text: selection
+            )]
+        case .chapter:
+            let chapter = currentChapter()
+            return [ManuscriptDocument(
+                relativePath: chapter?.path ?? "Chapter",
+                title: chapter?.title ?? "Chapter",
+                text: chapter?.text ?? ""
             )]
         case .manuscript:
-            return try core?.manuscriptDocuments() ?? []
+            return try manuscriptProvider()
         }
     }
 
-    private func saveCustomBetaReaders() {
-        guard let rootURL = core?.rootURL else { return }
+    private func persist(_ updated: [BetaReaderProfile]) {
+        guard updated != customBetaReaders, let rootURL = projectRoot() else { return }
         do {
-            try ManuscriptProjectDisk.saveCustomBetaReaders(customBetaReaders, at: rootURL)
+            try saveReaders(updated, rootURL)
+            customBetaReaders = updated
         } catch {
-            core?.errorMessage = error.localizedDescription
+            reportError(error)
         }
     }
 }

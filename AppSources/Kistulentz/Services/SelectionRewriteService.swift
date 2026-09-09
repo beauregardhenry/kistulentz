@@ -44,7 +44,7 @@ struct SelectionRewriteService {
         return result
     }
 
-    private static let schema: [String: Any] = [
+    private static var schema: [String: Any] { [
         "type": "object",
         "properties": [
             "alternatives": [
@@ -65,5 +65,5 @@ struct SelectionRewriteService {
         ],
         "required": ["alternatives"],
         "additionalProperties": false
-    ]
+    ] }
 }

@@ -110,6 +110,76 @@ final class WritingProjectTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(reopened.snapshots.count, 2)
     }
 
+    @MainActor
+    func testFailedLateProjectLoadLeavesAFreshStoreClosed() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(
+            in: parent,
+            name: "Corrupt Target",
+            kind: .fiction
+        )
+        try Data("not valid JSON".utf8).write(
+            to: WritingProjectDisk.metadataURL(at: root)
+                .appendingPathComponent("beta-readers.json"),
+            options: .atomic
+        )
+        let store = WritingProjectStore()
+
+        XCTAssertThrowsError(try store.openProject(at: root))
+
+        XCTAssertFalse(store.isOpen)
+        XCTAssertNil(store.rootURL)
+        XCTAssertNil(store.manifest)
+        XCTAssertTrue(store.chapters.isEmpty)
+        XCTAssertNil(store.selectedChapterPath)
+        XCTAssertEqual(store.text, "")
+        XCTAssertTrue(store.betaReadersStore.customBetaReaders.isEmpty)
+    }
+
+    @MainActor
+    func testFailedLateProjectLoadPreservesTheCurrentProjectAndSavesItsDraft() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let currentRoot = try WritingProjectDisk.createProject(
+            in: parent,
+            name: "Current Project",
+            kind: .nonfiction
+        )
+        let corruptRoot = try WritingProjectDisk.createProject(
+            in: parent,
+            name: "Corrupt Project",
+            kind: .fiction
+        )
+        try Data("not valid JSON".utf8).write(
+            to: WritingProjectDisk.metadataURL(at: corruptRoot)
+                .appendingPathComponent("beta-readers.json"),
+            options: .atomic
+        )
+
+        let store = WritingProjectStore()
+        try store.openProject(at: currentRoot)
+        let updatedText = "# Draft\n\nThe current project must survive.\n"
+        store.updateText(updatedText)
+        let originalStyle = store.styleLearningStore.styleText
+        let originalMigration = store.lastMigrationResult
+
+        XCTAssertThrowsError(try store.openProject(at: corruptRoot))
+
+        XCTAssertTrue(store.isOpen)
+        XCTAssertEqual(store.rootURL, currentRoot.standardizedFileURL)
+        XCTAssertEqual(store.projectName, "Current Project")
+        XCTAssertEqual(store.selectedChapterPath, "Draft.md")
+        XCTAssertEqual(store.text, updatedText)
+        XCTAssertEqual(store.styleLearningStore.styleText, originalStyle)
+        XCTAssertEqual(store.lastMigrationResult, originalMigration)
+        XCTAssertFalse(store.hasUnsavedChapterChanges)
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Draft.md", at: currentRoot),
+            updatedText
+        )
+    }
+
     func testSearchFindsTextAcrossChaptersWithLocations() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
@@ -137,7 +207,7 @@ final class WritingProjectTests: XCTestCase {
         try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
         let core = WritingProjectStore()
         try core.openProject(at: root)
-        let search = SearchStore(debounceDuration: .zero) { query, _, _ in
+        let search = makeSearchStore(core: core) { query, _, _ in
             if query == "slow" {
                 try? await Task.sleep(for: .milliseconds(120))
             } else {
@@ -151,8 +221,6 @@ final class WritingProjectTests: XCTestCase {
                 range: NSRange(location: 0, length: query.utf16.count)
             )]
         }
-        search.core = core
-
         search.search("slow")
         try await Task.sleep(for: .milliseconds(10))
         search.search("newest")
@@ -169,12 +237,10 @@ final class WritingProjectTests: XCTestCase {
         try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
         let core = WritingProjectStore()
         try core.openProject(at: root)
-        let search = SearchStore(debounceDuration: .zero) { _, _, _ in
+        let search = makeSearchStore(core: core) { _, _, _ in
             try await Task.sleep(for: .seconds(5))
             return []
         }
-        search.core = core
-
         search.search("unfinished")
         await Task.yield()
         XCTAssertTrue(search.isSearching)
@@ -194,16 +260,32 @@ final class WritingProjectTests: XCTestCase {
         try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
         let core = WritingProjectStore()
         try core.openProject(at: root)
-        let search = SearchStore(debounceDuration: .zero) { _, _, _ in
+        let search = makeSearchStore(core: core) { _, _, _ in
             throw ExpectedSearchError.failed
         }
-        search.core = core
 
         search.search("failure")
         try await waitUntil { !search.isSearching }
 
         XCTAssertTrue(search.searchResults.isEmpty)
         XCTAssertEqual(core.errorMessage, ExpectedSearchError.failed.localizedDescription)
+    }
+
+    @MainActor
+    private func makeSearchStore(
+        core: WritingProjectStore,
+        searcher: @escaping SearchStore.Searcher
+    ) -> SearchStore {
+        SearchStore(
+            debounceDuration: .zero,
+            projectRoot: { [weak core] in core?.rootURL },
+            chapters: { [weak core] in core?.chapters ?? [] },
+            saveCurrentDocument: { [weak core] in core?.saveNow() },
+            reportError: { [weak core] error in
+                core?.errorMessage = error.localizedDescription
+            },
+            searcher: searcher
+        )
     }
 
     func testStyleGuideLearnsAcceptedAndDeclinedChoicesWithoutOverwritingManualRules() throws {

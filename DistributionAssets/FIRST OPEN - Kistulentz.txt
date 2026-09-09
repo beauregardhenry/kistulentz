@@ -5,17 +5,16 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.17.0 FRIEND PREVIEW
-- This is a behavior-frozen refactor release: existing writing workflows, file
-  formats, storage, AI choices, and privacy behavior are intentionally unchanged.
-- The main editor is now divided into focused toolbar, readability, review, and
-  polished-draft components.
-- DOCX, RTF/RTFD/ODT, HTML, and plain-text imports now use dedicated format
-  implementations behind the same safe import coordinator.
-- Project Import Assistant state, ordering, conversion, cancellation, and output
-  decisions now live in an independently tested view model.
-- Manuscript metrics, continuity checks, and report generation are separated and
-  protected by component-wiring regression tests.
+NEW IN 0.17.1 FRIEND PREVIEW
+- Project opening now completes and validates a full project snapshot before
+  replacing the project currently on screen.
+- The editor and document importer reject stale sheet dismissals and late results
+  from superseded operations.
+- Publish & Export now has explicit cancellation, ignores obsolete results, and
+  removes incomplete submission packages after cancellation or failure.
+- Project feature stores use explicit, testable persistence boundaries.
+- Kistulentz and its complete native test suite now build in Swift 6 mode with
+  stronger checks around asynchronous work.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

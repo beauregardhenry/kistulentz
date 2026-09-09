@@ -1,6 +1,6 @@
 import Foundation
 
-enum OutlineNodeKind: String, Codable, CaseIterable, Identifiable {
+enum OutlineNodeKind: String, Codable, CaseIterable, Identifiable, Sendable {
     case part
     case chapter
     case scene
@@ -20,7 +20,7 @@ enum OutlineNodeKind: String, Codable, CaseIterable, Identifiable {
     var isContainer: Bool { self == .part || self == .chapter }
 }
 
-enum OutlineDraftStatus: String, Codable, CaseIterable, Identifiable {
+enum OutlineDraftStatus: String, Codable, CaseIterable, Identifiable, Sendable {
     case planned
     case drafting
     case revised
@@ -38,7 +38,7 @@ enum OutlineDraftStatus: String, Codable, CaseIterable, Identifiable {
     }
 }
 
-struct OutlineNodeMetadata: Codable, Equatable {
+struct OutlineNodeMetadata: Codable, Equatable, Sendable {
     var synopsis = ""
     var suggestedSynopsis = ""
     var purpose = ""
@@ -70,7 +70,7 @@ struct OutlineNodeMetadata: Codable, Equatable {
     var modifiedAt = Date()
 }
 
-struct OutlineNode: Codable, Identifiable, Equatable {
+struct OutlineNode: Codable, Identifiable, Equatable, Sendable {
     let id: UUID
     var title: String
     var kind: OutlineNodeKind
@@ -95,19 +95,19 @@ struct OutlineNode: Codable, Identifiable, Equatable {
     }
 }
 
-struct ProjectOutlineArchive: Codable, Equatable {
+struct ProjectOutlineArchive: Codable, Equatable, Sendable {
     var formatVersion = KistulentzProjectFormat.currentVersion
     var nodes: [OutlineNode] = []
 }
 
-struct OutlineFlatRow: Identifiable, Equatable {
+struct OutlineFlatRow: Identifiable, Equatable, Sendable {
     var id: UUID { node.id }
     let node: OutlineNode
     let depth: Int
     let parentID: UUID?
 }
 
-struct OutlineFileMove: Identifiable, Equatable {
+struct OutlineFileMove: Identifiable, Equatable, Sendable {
     let id: UUID
     let nodeID: UUID
     let sourcePath: String
@@ -132,7 +132,7 @@ struct OutlineFileMove: Identifiable, Equatable {
     }
 }
 
-struct OutlineFileOrganizationPlan: Equatable {
+struct OutlineFileOrganizationPlan: Equatable, Sendable {
     var moves: [OutlineFileMove]
 
     var includedMoves: [OutlineFileMove] { moves.filter(\.isIncluded) }
@@ -140,7 +140,7 @@ struct OutlineFileOrganizationPlan: Equatable {
     var hasChanges: Bool { includedMoves.contains { $0.sourcePath != $0.destinationPath } }
 }
 
-struct HeadingSplitSection: Identifiable, Equatable {
+struct HeadingSplitSection: Identifiable, Equatable, Sendable {
     let id: UUID
     let title: String
     let markdown: String
@@ -162,7 +162,7 @@ struct HeadingSplitSection: Identifiable, Equatable {
     }
 }
 
-struct HeadingSplitPlan: Equatable {
+struct HeadingSplitPlan: Equatable, Sendable {
     let nodeID: UUID
     let chapterPath: String
     let remainingMarkdown: String
@@ -179,12 +179,12 @@ struct HeadingSplitPlan: Equatable {
     }
 }
 
-struct AIOutlineSynopsisResponse: Decodable, Equatable {
+struct AIOutlineSynopsisResponse: Decodable, Equatable, Sendable {
     let summary: String
     let synopsis: String
 }
 
-enum ProjectOutlineError: LocalizedError, Equatable {
+enum ProjectOutlineError: LocalizedError, Equatable, Sendable {
     case missingNode
     case invalidHierarchy
     case nodeHasNoFile

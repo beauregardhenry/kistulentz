@@ -13,6 +13,7 @@ enum PublicationExporter {
         outputDirectory: URL,
         allowingWarnings: Bool
     ) throws -> PublicationExportResult {
+        try Task.checkCancellation()
         let preflight = PublicationPreflight.run(plan: plan, root: root)
         guard preflight.errors.isEmpty else { throw PublicationExportError.preflightFailed }
         guard allowingWarnings || preflight.warnings.isEmpty else { throw PublicationExportError.warningConfirmationRequired }
@@ -20,9 +21,17 @@ enum PublicationExporter {
         try FileManager.default.createDirectory(at: outputDirectory, withIntermediateDirectories: true)
         let packageURL = uniquePackageURL(plan: plan, directory: outputDirectory)
         try FileManager.default.createDirectory(at: packageURL, withIntermediateDirectories: false)
+        var completed = false
+        defer {
+            if !completed {
+                try? FileManager.default.removeItem(at: packageURL)
+            }
+        }
         let outputURL = uniqueOutputURL(plan: plan, directory: packageURL)
+        try Task.checkCancellation()
         let rendered = preview(plan: plan, root: root)
         do {
+            try Task.checkCancellation()
             switch plan.format {
             case .epub:
                 try EPUBPublicationWriter.write(rendered, to: outputURL, root: root)
@@ -31,11 +40,13 @@ enum PublicationExporter {
             case .docx:
                 try DOCXPublicationWriter.write(rendered, to: outputURL, root: root)
             }
+            try Task.checkCancellation()
         } catch {
             try? FileManager.default.removeItem(at: packageURL)
             throw error
         }
         let values = try outputValues(at: outputURL)
+        try Task.checkCancellation()
         let validatorRuns = PublicationExternalValidation.evaluate(plan: plan, outputURL: outputURL)
         let completedPreflight = postflight(
             preflight,
@@ -46,6 +57,7 @@ enum PublicationExporter {
         )
         let package: PublicationPackageURLs
         do {
+            try Task.checkCancellation()
             package = try PublicationPackageWriter.finish(
                 packageURL: packageURL,
                 primaryURL: outputURL,
@@ -56,11 +68,12 @@ enum PublicationExporter {
                 report: completedPreflight,
                 validatorRuns: validatorRuns
             )
+            try Task.checkCancellation()
         } catch {
             try? FileManager.default.removeItem(at: packageURL)
             throw error
         }
-        return PublicationExportResult(
+        let result = PublicationExportResult(
             outputURL: outputURL,
             sha256: values.sha256,
             byteCount: values.byteCount,
@@ -70,6 +83,8 @@ enum PublicationExporter {
             reportPDFURL: package.reportPDF,
             validatorRuns: validatorRuns
         )
+        completed = true
+        return result
     }
 
     static func outputValues(at url: URL) throws -> (sha256: String, byteCount: Int64) {

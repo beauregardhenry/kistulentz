@@ -13,12 +13,14 @@ final class DocumentUndoCoordinator: ObservableObject {
         guard oldText != newText else { return }
 
         undoManager?.registerUndo(withTarget: self) { coordinator in
-            coordinator.replaceText(
-                with: oldText,
-                binding: binding,
-                undoManager: undoManager,
-                actionName: actionName
-            )
+            MainActor.assumeIsolated {
+                coordinator.replaceText(
+                    with: oldText,
+                    binding: binding,
+                    undoManager: undoManager,
+                    actionName: actionName
+                )
+            }
         }
         undoManager?.setActionName(actionName)
         binding.wrappedValue = newText

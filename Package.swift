@@ -28,5 +28,5 @@ let package = Package(
             path: "Tests/KistulentzTests"
         )
     ],
-    swiftLanguageModes: [.v5]
+    swiftLanguageModes: [.v6]
 )

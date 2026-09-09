@@ -77,7 +77,7 @@ struct ManuscriptAIService {
         return value
     }
 
-    private static let markdownSchema: [String: Any] = [
+    private static var markdownSchema: [String: Any] { [
         "type": "object",
         "properties": [
             "summary": ["type": "string"],
@@ -85,9 +85,9 @@ struct ManuscriptAIService {
         ],
         "required": ["summary", "markdown"],
         "additionalProperties": false
-    ]
+    ] }
 
-    private static let betaSchema: [String: Any] = [
+    private static var betaSchema: [String: Any] { [
         "type": "object",
         "properties": [
             "summary": ["type": "string"],
@@ -98,7 +98,7 @@ struct ManuscriptAIService {
         ],
         "required": ["summary", "reaction", "strengths", "concerns", "questions"],
         "additionalProperties": false
-    ]
+    ] }
 }
 
 private extension AIRequestPurpose {

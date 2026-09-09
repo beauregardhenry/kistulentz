@@ -193,7 +193,14 @@ extension WritingProjectStore {
             && !projectUndoManager.isRedoing
         if ownsGrouping { projectUndoManager.beginUndoGrouping() }
         projectUndoManager.registerUndo(withTarget: self) { target in
-            target.performRevisionUndo(expected: expected, replacement: replacement, findingIDs: resolvedFindingIDs, undoing: undoing)
+            MainActor.assumeIsolated {
+                target.performRevisionUndo(
+                    expected: expected,
+                    replacement: replacement,
+                    findingIDs: resolvedFindingIDs,
+                    undoing: undoing
+                )
+            }
         }
         projectUndoManager.setActionName(undoing ? "Apply Systemic Revision" : "Undo Systemic Revision")
         if ownsGrouping { projectUndoManager.endUndoGrouping() }

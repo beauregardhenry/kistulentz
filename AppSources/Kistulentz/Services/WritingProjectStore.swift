@@ -65,27 +65,46 @@ final class WritingProjectStore: ObservableObject {
 
     // MARK: - Sub-stores
     //
-    // These 5 concerns were verified to be genuinely independent -- each
-    // touches nothing outside its own state beyond the project root -- and
-    // were extracted into their own ObservableObject types so views observing
-    // one of them don't re-render on unrelated store activity. Each holds a
-    // weak back-reference to this store (wired in `init()` below) for the
-    // handful of things it still legitimately needs: `rootURL`, occasionally
-    // `manifest`/`outlineNodes`, and the shared `errorMessage` sink.
+    // These 5 concerns receive only the project capabilities they require.
+    // Explicit dependencies avoid hidden parent-store coupling and allow each
+    // failure path to be tested without constructing the entire editor.
 
-    let researchStore = ProjectResearchStore()
-    let publicationStore = PublicationStore()
-    let betaReadersStore = BetaReadersStore()
-    let styleLearningStore = StyleLearningStore()
-    let searchStore = SearchStore()
+    lazy var researchStore = ProjectResearchStore(
+        projectRoot: { [weak self] in self?.rootURL },
+        reportError: { [weak self] error in self?.errorMessage = error.localizedDescription }
+    )
+    lazy var publicationStore = PublicationStore(
+        projectRoot: { [weak self] in self?.rootURL },
+        projectManifest: { [weak self] in self?.manifest },
+        projectOutline: { [weak self] in self?.outlineNodes ?? [] },
+        bibliography: { [weak self] in
+            self?.researchStore.projectBibliography ?? ProjectBibliographyArchive()
+        },
+        saveCurrentDocument: { [weak self] in self?.saveNow() },
+        saveProjectOutline: { [weak self] in self?.saveOutlineNow() },
+        reportError: { [weak self] error in self?.errorMessage = error.localizedDescription }
+    )
+    lazy var betaReadersStore = BetaReadersStore(
+        projectRoot: { [weak self] in self?.rootURL },
+        currentChapter: { [weak self] in
+            guard let self else { return nil }
+            return (self.selectedChapterPath, self.selectedChapterTitle, self.text)
+        },
+        manuscriptProvider: { [weak self] in try self?.manuscriptDocuments() ?? [] },
+        reportError: { [weak self] error in self?.errorMessage = error.localizedDescription }
+    )
+    lazy var styleLearningStore = StyleLearningStore(
+        projectRoot: { [weak self] in self?.rootURL },
+        reportError: { [weak self] error in self?.errorMessage = error.localizedDescription }
+    )
+    lazy var searchStore = SearchStore(
+        projectRoot: { [weak self] in self?.rootURL },
+        chapters: { [weak self] in self?.chapters ?? [] },
+        saveCurrentDocument: { [weak self] in self?.saveNow() },
+        reportError: { [weak self] error in self?.errorMessage = error.localizedDescription }
+    )
 
     init() {
-        researchStore.core = self
-        publicationStore.core = self
-        publicationStore.research = researchStore
-        betaReadersStore.core = self
-        styleLearningStore.core = self
-        searchStore.core = self
         editCoordinator.host = self
     }
 
@@ -147,49 +166,15 @@ final class WritingProjectStore: ObservableObject {
     }
 
     func openProject(at root: URL) throws {
+        saveNow()
+        guard !isDirty else { throw WritingProjectError.unsavedCurrentProject }
+        saveBibleNow()
+        saveOutlineNow()
         do {
-            saveNow()
-            saveBibleNow()
-            saveOutlineNow()
-            editCoordinator.reset()
-            outlineSaveTask?.cancel()
-            recoveryRequest = nil
-            lastMigrationResult = try ProjectCompatibilityManager.prepareForOpen(at: root)
-            let loadedManifest = try WritingProjectDisk.loadManifest(at: root)
-            try ManuscriptProjectDisk.prepare(at: root, projectName: loadedManifest.name, kind: loadedManifest.kind)
-            try ProjectOutlineDisk.prepare(at: root, manifest: loadedManifest)
-            try ProjectResearchDisk.prepare(at: root, projectName: loadedManifest.name)
-            try SystemicRevisionDisk.prepare(at: root)
-            try PublicationDisk.prepare(at: root, projectName: loadedManifest.name, projectKind: loadedManifest.kind)
-            let loadedChapters = try WritingProjectDisk.loadChapters(at: root, manifest: loadedManifest)
-            let loadedOutline = ProjectOutlineDisk.reconcile(
-                try ProjectOutlineDisk.load(at: root),
-                chapterPaths: loadedChapters.map(\.relativePath),
-                projectKind: loadedManifest.kind,
-                root: root
-            )
-            rootURL = root.standardizedFileURL
-            manifest = loadedManifest
-            chapters = loadedChapters
-            outlineNodes = loadedOutline.nodes
-            try ProjectOutlineDisk.save(loadedOutline, at: root)
-            try styleLearningStore.load(at: root)
-            snapshots = try WritingProjectDisk.loadSnapshots(at: root)
-            manuscriptReportText = try ManuscriptProjectDisk.loadReport(at: root)
-            bibleText = try ManuscriptProjectDisk.loadBible(at: root)
-            manuscriptCache = try ManuscriptProjectDisk.loadCache(at: root)
-            lastStructuralAnalysisAt = nil
-            lastStructuralAnalysisWordCount = 0
-            try betaReadersStore.load(at: root)
-            try researchStore.load(at: root)
-            revisionArchive = try SystemicRevisionDisk.load(at: root)
-            try publicationStore.load(at: root)
-            manuscriptAnalysis = nil
-            lastBibleUpdate = nil
-            try syncChaptersWithOutline(preferredSelection: loadedManifest.lastOpenedChapter)
-            editCoordinator.editLanded(.projectOpened)
+            let loaded = try WritingProjectLoader.load(at: root)
+            install(loaded)
             do {
-                _ = try ProjectCompatibilityManager.captureKnownGoodSnapshot(at: root)
+                _ = try ProjectCompatibilityManager.captureKnownGoodSnapshot(at: loaded.rootURL)
             } catch {
                 errorMessage = "The project opened, but Kistulentz could not update its recovery snapshot: \(error.localizedDescription)"
             }
@@ -206,6 +191,48 @@ final class WritingProjectStore: ObservableObject {
             }
             throw error
         }
+    }
+
+    private func install(_ loaded: LoadedWritingProject) {
+        editCoordinator.reset()
+        outlineSaveTask?.cancel()
+        recoveryRequest = nil
+        searchStore.reset()
+
+        rootURL = loaded.rootURL
+        lastMigrationResult = loaded.migrationResult
+        manifest = loaded.manifest
+        chapters = loaded.chapters
+        selectedChapterPath = loaded.selectedChapterPath
+        text = loaded.text
+        outlineNodes = loaded.outlineNodes
+        styleLearningStore.replaceContents(
+            styleText: loaded.styleText,
+            decisions: loaded.styleDecisions
+        )
+        snapshots = loaded.snapshots
+        manuscriptReportText = loaded.manuscriptReportText
+        bibleText = loaded.bibleText
+        manuscriptCache = loaded.manuscriptCache
+        betaReadersStore.replaceContents(loaded.customBetaReaders)
+        researchStore.replaceContents(
+            bibliography: loaded.projectBibliography,
+            notesText: loaded.researchNotesText
+        )
+        revisionArchive = loaded.revisionArchive
+        publicationStore.replaceContents(loaded.publicationArchive)
+
+        lastStructuralAnalysisAt = nil
+        lastStructuralAnalysisWordCount = 0
+        manuscriptAnalysis = nil
+        lastBibleUpdate = nil
+        isScanningRevisions = false
+        revisionAISummary = ""
+        isAnalyzingManuscript = false
+        isDirty = false
+        preservesUndoAcrossFileRelocation = false
+        errorMessage = nil
+        editCoordinator.editLanded(.projectOpened)
     }
 
     func restoreProject(from backup: ProjectMetadataBackup) throws {
