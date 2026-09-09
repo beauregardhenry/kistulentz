@@ -22,7 +22,10 @@ class KistulentzUITestCase: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        app?.terminate()
+        let application = app
+        MainActor.assumeIsolated {
+            application?.terminate()
+        }
         app = nil
         editCommandURL = nil
         statusURL = nil
@@ -33,6 +36,7 @@ class KistulentzUITestCase: XCTestCase {
     }
 
     @discardableResult
+    @MainActor
     func launch(
         completedOnboarding: Bool = true,
         acknowledgedEnglishPack: Bool = true,
@@ -52,6 +56,7 @@ class KistulentzUITestCase: XCTestCase {
     }
 
     @discardableResult
+    @MainActor
     func relaunch(
         completedOnboarding: Bool = true,
         acknowledgedEnglishPack: Bool = true
@@ -66,11 +71,11 @@ class KistulentzUITestCase: XCTestCase {
         return app
     }
 
-    var editor: XCUIElement {
+    @MainActor var editor: XCUIElement {
         app.descendants(matching: .any)["MarkdownEditor"].firstMatch
     }
 
-    func openProjectCommand(_ title: String) {
+    @MainActor func openProjectCommand(_ title: String) {
         let control = app.descendants(matching: .any)
             .matching(NSPredicate(format: "label BEGINSWITH 'Project:'"))
             .firstMatch
@@ -81,7 +86,7 @@ class KistulentzUITestCase: XCTestCase {
         item.click()
     }
 
-    func openProjectImportAssistant() {
+    @MainActor func openProjectImportAssistant() {
         let projects = app.descendants(matching: .any)
             .matching(NSPredicate(format: "label == 'Projects'"))
             .firstMatch
@@ -158,11 +163,11 @@ class KistulentzUITestCase: XCTestCase {
         XCTAssertEqual(result, .completed, description)
     }
 
-    func value(of element: XCUIElement) -> String {
+    @MainActor func value(of element: XCUIElement) -> String {
         (element.value as? String) ?? ""
     }
 
-    func replaceText(in element: XCUIElement, with text: String) {
+    @MainActor func replaceText(in element: XCUIElement, with text: String) {
         element.click()
         element.typeKey("a", modifierFlags: .command)
         element.typeText(text)
@@ -171,7 +176,7 @@ class KistulentzUITestCase: XCTestCase {
         }
     }
 
-    func replaceEditorText(with text: String) throws {
+    @MainActor func replaceEditorText(with text: String) throws {
         try text.write(to: editCommandURL, atomically: true, encoding: .utf8)
         waitUntil(description: "Kistulentz should apply the test edit through its document pipeline") {
             self.value(of: self.editor) == text
@@ -179,7 +184,7 @@ class KistulentzUITestCase: XCTestCase {
         try "".write(to: editCommandURL, atomically: true, encoding: .utf8)
     }
 
-    func undoEditorText(expecting text: String) throws {
+    @MainActor func undoEditorText(expecting text: String) throws {
         try "__KISTULENTZ_UNDO__".write(to: editCommandURL, atomically: true, encoding: .utf8)
         waitUntil(description: "Undo should restore the complete previous passage") {
             self.value(of: self.editor) == text
@@ -187,7 +192,7 @@ class KistulentzUITestCase: XCTestCase {
         try "".write(to: editCommandURL, atomically: true, encoding: .utf8)
     }
 
-    func redoEditorText(expecting text: String) throws {
+    @MainActor func redoEditorText(expecting text: String) throws {
         try "__KISTULENTZ_REDO__".write(to: editCommandURL, atomically: true, encoding: .utf8)
         waitUntil(description: "Redo should restore the revised passage") {
             self.value(of: self.editor) == text
@@ -196,6 +201,7 @@ class KistulentzUITestCase: XCTestCase {
     }
 
     @discardableResult
+    @MainActor
     func undoProjectChange(expecting text: String) throws -> String {
         try? FileManager.default.removeItem(at: statusURL)
         try "__KISTULENTZ_PROJECT_UNDO__".write(to: editCommandURL, atomically: true, encoding: .utf8)
@@ -226,6 +232,7 @@ class KistulentzUITestCase: XCTestCase {
     }
 
     @discardableResult
+    @MainActor
     func redoProjectChange(expecting text: String) throws -> String {
         try? FileManager.default.removeItem(at: statusURL)
         try "__KISTULENTZ_PROJECT_REDO__".write(to: editCommandURL, atomically: true, encoding: .utf8)
@@ -248,7 +255,7 @@ class KistulentzUITestCase: XCTestCase {
             .appendingPathComponent(relativePath)
     }
 
-    private func makeApplication(
+    @MainActor private func makeApplication(
         completedOnboarding: Bool,
         acknowledgedEnglishPack: Bool
     ) -> XCUIApplication {
