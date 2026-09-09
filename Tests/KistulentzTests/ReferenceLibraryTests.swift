@@ -162,6 +162,175 @@ final class ReferenceLibraryTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: libraryRoot.appendingPathComponent("Kistulentz Library.md").path))
     }
 
+    @MainActor
+    func testImportRequiresALocationAndReportsAnEmptySelection() async throws {
+        let suiteName = "ReferenceLibraryGuardTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        store.importEPUBs(from: [])
+        XCTAssertEqual(
+            store.errorMessage,
+            "Choose a Reference Library folder before importing EPUBs."
+        )
+        XCTAssertFalse(store.isImporting)
+
+        let libraryRoot = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: libraryRoot) }
+        store.setLocation(libraryRoot)
+        await waitUntil { !store.isSaving }
+        store.importEPUBs(from: [])
+        await waitUntil { !store.isImporting }
+
+        XCTAssertEqual(store.errorMessage, "No EPUB files were found in that selection.")
+        XCTAssertEqual(store.importTotal, 0)
+        XCTAssertEqual(store.importCompleted, 0)
+    }
+
+    @MainActor
+    func testFolderImportContinuesPastBrokenEPUBAndPersistsCompletedBook() async throws {
+        let sourceRoot = temporaryDirectory()
+        let libraryRoot = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: sourceRoot)
+            try? FileManager.default.removeItem(at: libraryRoot)
+        }
+        _ = try makeFixtureEPUB(in: sourceRoot)
+        try Data("not an epub archive".utf8).write(
+            to: sourceRoot.appendingPathComponent("Broken.epub"),
+            options: .atomic
+        )
+        let suiteName = "ReferenceLibraryPartialImportTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+        store.setLocation(libraryRoot)
+        await waitUntil { !store.isSaving }
+
+        store.importEPUBs(from: [sourceRoot])
+        await waitUntil(timeoutIterations: 400) { !store.isImporting && !store.isSaving }
+
+        XCTAssertEqual(store.importTotal, 2)
+        XCTAssertEqual(store.importCompleted, 2)
+        XCTAssertEqual(store.importFailures.count, 1)
+        XCTAssertTrue(store.importFailures[0].contains("Broken.epub"))
+        XCTAssertEqual(store.books.map(\.title), ["The Lantern Road"])
+        let reopened = try ReferenceLibraryDisk.load(from: libraryRoot)
+        XCTAssertEqual(reopened.books.map(\.title), ["The Lantern Road"])
+    }
+
+    @MainActor
+    func testReimportingAnUnchangedEPUBKeepsOneStableBook() async throws {
+        let sourceRoot = temporaryDirectory()
+        let libraryRoot = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: sourceRoot)
+            try? FileManager.default.removeItem(at: libraryRoot)
+        }
+        let epub = try makeFixtureEPUB(in: sourceRoot)
+        let suiteName = "ReferenceLibraryReimportTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+        store.setLocation(libraryRoot)
+        await waitUntil { !store.isSaving }
+
+        store.importEPUBs(from: [epub])
+        await waitUntil(timeoutIterations: 400) { !store.isImporting && !store.isSaving }
+        let first = try XCTUnwrap(store.books.first)
+
+        store.importEPUBs(from: [epub])
+        await waitUntil(timeoutIterations: 400) { !store.isImporting && !store.isSaving }
+
+        XCTAssertEqual(store.books.count, 1)
+        XCTAssertEqual(store.books.first?.id, first.id)
+        XCTAssertEqual(store.books.first?.importedAt, first.importedAt)
+        XCTAssertEqual(store.books.first?.updatedAt, first.updatedAt)
+        XCTAssertEqual(store.importCompleted, 1)
+        XCTAssertTrue(store.importFailures.isEmpty)
+    }
+
+    @MainActor
+    func testCancellingImportImmediatelyLeavesAUsablePersistedLibrary() async throws {
+        let sourceRoot = temporaryDirectory()
+        let libraryRoot = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: sourceRoot)
+            try? FileManager.default.removeItem(at: libraryRoot)
+        }
+        _ = try makeFixtureEPUB(in: sourceRoot)
+        let suiteName = "ReferenceLibraryCancellationTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+        store.setLocation(libraryRoot)
+        await waitUntil { !store.isSaving }
+
+        store.importEPUBs(from: [sourceRoot])
+        XCTAssertTrue(store.isImporting)
+        store.cancelImport()
+        await waitUntil { !store.isSaving }
+
+        XCTAssertFalse(store.isImporting)
+        XCTAssertEqual(store.currentImportName, "")
+        XCTAssertNoThrow(try ReferenceLibraryDisk.load(from: libraryRoot))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: libraryRoot.appendingPathComponent("Kistulentz Library.md").path
+        ))
+    }
+
+    @MainActor
+    func testManualMetadataCorrectionNormalizesDeduplicatesAndPersists() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let original = book(title: "Original Title", author: "Writer", genres: ["Fiction"])
+        try ReferenceLibraryDisk.regenerateKnowledgeBase(
+            ReferenceLibraryIndex(books: [original], insights: []),
+            at: root
+        )
+        let suiteName = "ReferenceLibraryCorrectionTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        store.updateBook(
+            id: original.id,
+            title: "   ",
+            author: "   ",
+            genres: [" Mystery ", "mystery", "", "  Thriller  "]
+        )
+        await waitUntil { !store.isSaving }
+
+        let corrected = try XCTUnwrap(store.book(id: original.id))
+        XCTAssertEqual(corrected.title, "Original Title")
+        XCTAssertEqual(corrected.author, "Unknown Author")
+        XCTAssertEqual(corrected.genres, ["Mystery", "Thriller"])
+        let reopened = try ReferenceLibraryDisk.load(from: root)
+        XCTAssertEqual(reopened.books.first?.title, corrected.title)
+        XCTAssertEqual(reopened.books.first?.author, corrected.author)
+        XCTAssertEqual(reopened.books.first?.genres, corrected.genres)
+    }
+
+    @MainActor
+    func testAnalysisAndDeepeningRequireASelectionWithoutStartingWork() throws {
+        let suiteName = "ReferenceLibrarySelectionGuardTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+        let settings = AppSettings(defaults: defaults)
+
+        store.analyzeStructure(choiceIDs: [])
+        XCTAssertEqual(store.errorMessage, "Select at least one book, author, or genre to analyze.")
+        XCTAssertFalse(store.isAnalyzingStructure)
+
+        store.errorMessage = nil
+        store.deepen(choiceIDs: [], settings: settings)
+        XCTAssertEqual(store.errorMessage, "Select at least one book, author, or genre to deepen.")
+        XCTAssertFalse(store.isDeepening)
+    }
+
     func testLibraryBookBuildsAReferenceWithoutInventingAnEmptyAuthor() {
         let id = UUID()
         let source = LibraryBook(
@@ -338,5 +507,17 @@ final class ReferenceLibraryTests: XCTestCase {
         process.waitUntilExit()
         guard process.terminationStatus == 0 else { throw CocoaError(.fileWriteUnknown) }
         return outputURL
+    }
+
+    @MainActor
+    private func waitUntil(
+        timeoutIterations: Int = 200,
+        condition: @escaping @MainActor () -> Bool
+    ) async {
+        for _ in 0..<timeoutIterations {
+            if condition() { return }
+            try? await Task.sleep(for: .milliseconds(25))
+        }
+        XCTFail("Timed out waiting for the reference-library operation to finish")
     }
 }
