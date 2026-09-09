@@ -425,7 +425,11 @@ final class AIRequestTests: XCTestCase {
 }
 
 private final class AIRequestMockURLProtocol: URLProtocol {
-    static var handler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
+    private static let handlerStorage = LockedTestValue<((URLRequest) throws -> (HTTPURLResponse, Data))?>(nil)
+    static var handler: ((URLRequest) throws -> (HTTPURLResponse, Data))? {
+        get { handlerStorage.value }
+        set { handlerStorage.value = newValue }
+    }
 
     override class func canInit(with request: URLRequest) -> Bool { true }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
@@ -449,20 +453,15 @@ private final class AIRequestMockURLProtocol: URLProtocol {
 }
 
 private final class DelayedOllamaURLProtocol: URLProtocol {
-    private static let lock = NSLock()
-    private static var stopped = false
+    private static let stoppedStorage = LockedTestValue(false)
     private var workItem: DispatchWorkItem?
 
     static var wasStopped: Bool {
-        lock.lock()
-        defer { lock.unlock() }
-        return stopped
+        stoppedStorage.value
     }
 
     static func reset() {
-        lock.lock()
-        stopped = false
-        lock.unlock()
+        stoppedStorage.value = false
     }
 
     override class func canInit(with request: URLRequest) -> Bool { true }
@@ -487,9 +486,7 @@ private final class DelayedOllamaURLProtocol: URLProtocol {
 
     override func stopLoading() {
         workItem?.cancel()
-        Self.lock.lock()
-        Self.stopped = true
-        Self.lock.unlock()
+        Self.stoppedStorage.value = true
     }
 }
 

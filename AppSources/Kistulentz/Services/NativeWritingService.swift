@@ -1,6 +1,24 @@
 import AppKit
 import Foundation
 
+private enum NativeCheckKind: Sendable {
+    case spelling
+    case grammar
+    case unsupported
+}
+
+private struct NativeGrammarDetail: Sendable {
+    var range: NSRange?
+    var corrections: [String]
+    var message: String?
+}
+
+private struct NativeCheckResult: Sendable {
+    var kind: NativeCheckKind
+    var range: NSRange
+    var grammarDetails: [NativeGrammarDetail]
+}
+
 /// Adapts the spelling and grammar services built into macOS into Kistulentz
 /// correction cards. This service never sends text off the Mac.
 @MainActor
@@ -26,20 +44,36 @@ enum NativeWritingService {
             dominantScript: "Latn",
             languageMap: ["Latn": [language]]
         )
-        let results: [NSTextCheckingResult] = await withCheckedContinuation { continuation in
+        let results: [NativeCheckResult] = await withCheckedContinuation { continuation in
             checker.requestChecking(
                 of: text,
                 range: fullRange,
                 types: checkingTypes,
                 options: [.orthography: orthography],
                 inSpellDocumentWithTag: tag
-            ) { _, results, _, _ in
-                continuation.resume(returning: results)
+            ) { @Sendable _, results, _, _ in
+                let values = results.map { result in
+                    let kind: NativeCheckKind
+                    switch result.resultType {
+                    case .spelling: kind = .spelling
+                    case .grammar: kind = .grammar
+                    default: kind = .unsupported
+                    }
+                    let details = (result.grammarDetails ?? []).map { detail in
+                        NativeGrammarDetail(
+                            range: (detail[NSGrammarRange] as? NSValue)?.rangeValue,
+                            corrections: detail[NSGrammarCorrections] as? [String] ?? [],
+                            message: detail[NSGrammarUserDescription] as? String
+                        )
+                    }
+                    return NativeCheckResult(kind: kind, range: result.range, grammarDetails: details)
+                }
+                continuation.resume(returning: values)
             }
         }
         guard !Task.isCancelled else { return [] }
 
-        let spellingResults = results.filter { $0.resultType == .spelling }
+        let spellingResults = results.filter { $0.kind == .spelling }
         for result in spellingResults where issues.count < maximumIssues {
             let range = result.range
             guard isValid(range, in: source), !intersectsProtected(range, protectedRanges) else { continue }
@@ -61,12 +95,12 @@ enum NativeWritingService {
             ))
         }
 
-        let grammarResults = results.filter { $0.resultType == .grammar }
+        let grammarResults = results.filter { $0.kind == .grammar }
         for result in grammarResults where issues.count < maximumIssues {
             let sentenceRange = result.range
             guard isValid(sentenceRange, in: source) else { continue }
-            for detail in result.grammarDetails ?? [] where issues.count < maximumIssues {
-                let relativeRange = (detail[NSGrammarRange] as? NSValue)?.rangeValue
+            for detail in result.grammarDetails where issues.count < maximumIssues {
+                let relativeRange = detail.range
                     ?? NSRange(location: 0, length: sentenceRange.length)
                 let range = NSRange(
                     location: sentenceRange.location + relativeRange.location,
@@ -74,9 +108,8 @@ enum NativeWritingService {
                 )
                 guard isValid(range, in: source), !intersectsProtected(range, protectedRanges) else { continue }
                 let excerpt = source.substring(with: range)
-                let corrections = detail[NSGrammarCorrections] as? [String] ?? []
-                let replacement = corrections.first { !$0.isEmpty && $0 != excerpt }
-                let message = (detail[NSGrammarUserDescription] as? String)
+                let replacement = detail.corrections.first { !$0.isEmpty && $0 != excerpt }
+                let message = detail.message
                     ?? "macOS found a possible grammar problem."
                 issues.append(WritingIssue(
                     category: .grammar,

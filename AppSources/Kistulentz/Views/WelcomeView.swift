@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("The same writing workflows, on a cleaner and safer foundation.")
+                    Text("Safer project transitions, publishing, and background work.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,20 +25,20 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "A more focused editor",
-                    detail: "The editor’s toolbar, readability guidance, review cards, and polished-draft review now have clearer internal boundaries without changing how you use them.",
-                    systemImage: "pencil.and.outline",
+                    "Projects open as one complete change",
+                    detail: "Kistulentz now finishes validating a project before replacing the one on screen, so a late loading error cannot leave two projects mixed together.",
+                    systemImage: "folder.badge.gearshape",
                     identifier: "WhatsNewStorageSafety"
                 )
                 whatsNewItem(
-                    "Stronger import foundations",
-                    detail: "Document formats and the Project Import Assistant now use focused, independently tested components while preserving the same conversion and safety rules.",
-                    systemImage: "square.and.arrow.down",
+                    "Publishing can be cancelled safely",
+                    detail: "Publish & Export now keeps its work in a dedicated coordinator, ignores obsolete results, and removes incomplete export packages after cancellation or failure.",
+                    systemImage: "shippingbox.and.arrow.backward",
                     identifier: "WhatsNewCancellation"
                 )
                 whatsNewItem(
-                    "Analysis with explicit safeguards",
-                    detail: "Manuscript metrics, continuity checks, and report writing are now independently testable, with new regressions protecting their combined results.",
+                    "Modern concurrency safeguards",
+                    detail: "The app and complete test suite now build in Swift 6 mode, with stronger checks around asynchronous imports, analysis, and system callbacks.",
                     systemImage: "checkmark.shield",
                     identifier: "WhatsNewRegressionSafety"
                 )

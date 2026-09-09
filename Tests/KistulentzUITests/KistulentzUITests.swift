@@ -138,7 +138,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
         whatsNewItem.click()
 
-        let title = app.staticTexts["What’s New in Kistulentz 0.17.0"]
+        let title = app.staticTexts["What’s New in Kistulentz 0.17.1"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
         let safetySummary = app.descendants(matching: .any)["WhatsNewStorageSafety"].firstMatch
         XCTAssertTrue(safetySummary.exists)

@@ -4,6 +4,53 @@ import XCTest
 @testable import Kistulentz
 
 final class PublicationTests: XCTestCase {
+    func testCancelledExportLeavesNoSubmissionPackage() async throws {
+        let root = temporaryDirectory()
+        let output = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: output)
+        }
+        try "# Opening\n\nA short chapter.\n".write(
+            to: root.appendingPathComponent("Opening.md"),
+            atomically: true,
+            encoding: .utf8
+        )
+        var archive = PublicationArchive(projectName: "Cancelled Book", projectKind: .fiction)
+        archive.metadata.authors = ["Author"]
+        var profile = try XCTUnwrap(archive.profiles.first(where: { $0.kind == .fictionBook }))
+        profile.includeCover = false
+        profile.includeBibliography = false
+        let plan = PublicationPlanBuilder.build(
+            projectName: "Cancelled Book",
+            root: root,
+            outline: [OutlineNode(title: "Opening", kind: .chapter, relativePath: "Opening.md")],
+            archive: archive,
+            bibliography: ProjectBibliographyArchive(),
+            librarySources: [],
+            profile: profile,
+            format: .epub
+        )
+
+        let task = Task.detached {
+            withUnsafeCurrentTask { $0?.cancel() }
+            return try PublicationExporter.export(
+                plan: plan,
+                root: root,
+                outputDirectory: output,
+                allowingWarnings: true
+            )
+        }
+        do {
+            _ = try await task.value
+            XCTFail("A cancelled export unexpectedly completed.")
+        } catch is CancellationError {
+            // Expected: cancellation is checked before output is created.
+        }
+
+        XCTAssertTrue(try FileManager.default.contentsOfDirectory(atPath: output.path).isEmpty)
+    }
+
     func testSubmissionPackageContainsPrivateReadinessReportsAndChecksums() throws {
         let root = temporaryDirectory()
         let output = temporaryDirectory()

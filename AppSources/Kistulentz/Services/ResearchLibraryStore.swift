@@ -12,7 +12,7 @@ struct ResearchLibraryPersistence {
     var attachmentURL: (ResearchAttachment, URL) -> URL
     var extractText: (URL, ResearchAttachmentKind) async throws -> String
 
-    static let live = ResearchLibraryPersistence(
+    static var live: ResearchLibraryPersistence { ResearchLibraryPersistence(
         load: ResearchLibraryDisk.load,
         save: ResearchLibraryDisk.save,
         addAttachment: { try ResearchLibraryDisk.addAttachment(from: $0, to: $1, storage: $2, at: $3) },
@@ -34,7 +34,7 @@ struct ResearchLibraryPersistence {
                 task.cancel()
             }
         }
-    )
+    ) }
 }
 
 @MainActor

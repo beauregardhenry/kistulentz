@@ -11,18 +11,28 @@ final class SearchStore: ObservableObject {
     @Published var searchResults: [ProjectSearchResult] = []
     @Published var isSearching = false
 
-    weak var core: WritingProjectStore?
-
     private var searchTask: Task<Void, Never>?
     private var activeSearchID: UUID?
     private let debounceDuration: Duration
     private let searcher: Searcher
+    private let projectRoot: () -> URL?
+    private let chapters: () -> [ProjectChapter]
+    private let saveCurrentDocument: () -> Void
+    private let reportError: (Error) -> Void
 
     init(
         debounceDuration: Duration = .milliseconds(180),
+        projectRoot: @escaping () -> URL?,
+        chapters: @escaping () -> [ProjectChapter],
+        saveCurrentDocument: @escaping () -> Void,
+        reportError: @escaping (Error) -> Void,
         searcher: @escaping Searcher = SearchStore.searchDisk
     ) {
         self.debounceDuration = debounceDuration
+        self.projectRoot = projectRoot
+        self.chapters = chapters
+        self.saveCurrentDocument = saveCurrentDocument
+        self.reportError = reportError
         self.searcher = searcher
     }
 
@@ -39,15 +49,15 @@ final class SearchStore: ObservableObject {
         let searchID = UUID()
         activeSearchID = searchID
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty, let core, let rootURL = core.rootURL else {
+        guard !trimmed.isEmpty, let rootURL = projectRoot() else {
             searchTask = nil
             activeSearchID = nil
             searchResults = []
             isSearching = false
             return
         }
-        core.saveNow()
-        let chapterSnapshot = core.chapters
+        saveCurrentDocument()
+        let chapterSnapshot = chapters()
         isSearching = true
         searchTask = Task { [weak self] in
             do {
@@ -63,8 +73,8 @@ final class SearchStore: ObservableObject {
                 self?.finish(searchID)
             } catch {
                 guard let self, activeSearchID == searchID else { return }
+                reportError(error)
                 searchResults = []
-                core.errorMessage = error.localizedDescription
                 finish(searchID)
             }
         }

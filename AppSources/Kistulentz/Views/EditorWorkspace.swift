@@ -37,39 +37,20 @@ struct EditorWorkspace: View {
     @StateObject private var projectStore: WritingProjectStore
     @ObservedObject private var styleLearningStore: StyleLearningStore
     @StateObject private var draftRecoveryCoordinator = DraftRecoveryCoordinator()
+    @StateObject private var presentation = EditorWorkspacePresentation()
+    @StateObject private var documentImport = DocumentImportCoordinator()
     @State private var polishedDraftPlan: PolishedDraftPlan?
     @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
-    @State private var showingReferenceLibrary = false
-    @State private var showingResearchLibrary = false
-    @State private var showingProjectResearch = false
-    @State private var showingRevisionCenter = false
-    @State private var showingProjectPolish = false
-    @State private var showingPublishExport = false
     @State private var selectedLibraryReferences: Set<String> = []
     @State private var isWriteMode = false
     @State private var showingProjectFolderImporter = false
     @State private var projectFolderAction: ProjectFolderAction = .openExisting
     @State private var pendingProjectConfiguration: PendingProjectConfiguration?
-    @State private var showingNewChapter = false
-    @State private var showingStyleEditor = false
-    @State private var showingRevisionHistory = false
-    @State private var showingManuscriptInsights = false
-    @State private var showingDestinker = false
     @State private var destinkManuscriptDocuments: [ManuscriptDocument]?
-    @State private var showingProjectOrganization = false
-    @State private var showingNamedSnapshot = false
     @State private var editorSelection = NSRange(location: 0, length: 0)
     @State private var pendingAIRequest: AIRequestPreview?
-    @State private var showingToneRequest = false
-    @State private var pendingDocumentImport: DocumentImportDraft?
-    @State private var isImportingDocument = false
-    @State private var showingProjectImportAssistant = false
     @State private var pendingProjectPolishApply: RevisionChangeSet?
-    @State private var showingWelcome = false
-    @State private var showingWhatsNew = false
-    @State private var showingEnglishPackPrompt = false
-    @State private var showingDraftRecovery = false
     @State private var didPresentStartup = false
 #if UI_TEST_HOST
     @State private var didConfigureUITestProject = false
@@ -114,16 +95,16 @@ struct EditorWorkspace: View {
                             store: projectStore,
                             searchStore: projectStore.searchStore,
                             onSelectSearchResult: selectSearchResult,
-                            onNewChapter: { showingNewChapter = true },
-                            onEditStyle: { showingStyleEditor = true },
-                            onShowHistory: { showingRevisionHistory = true },
-                            onCreateSnapshot: { showingNamedSnapshot = true },
-                            onShowManuscriptInsights: { showingManuscriptInsights = true },
-                            onShowOrganization: { showingProjectOrganization = true },
-                            onShowResearch: { showingProjectResearch = true },
-                            onShowProjectPolish: { showingProjectPolish = true },
-                            onShowRevisionCenter: { showingRevisionCenter = true },
-                            onShowPublish: { showingPublishExport = true },
+                            onNewChapter: { presentation.present(.newChapter) },
+                            onEditStyle: { presentation.present(.styleEditor) },
+                            onShowHistory: { presentation.present(.revisionHistory) },
+                            onCreateSnapshot: { presentation.present(.namedSnapshot) },
+                            onShowManuscriptInsights: { presentation.present(.manuscriptInsights) },
+                            onShowOrganization: { presentation.present(.projectOrganization) },
+                            onShowResearch: { presentation.present(.projectResearch) },
+                            onShowProjectPolish: { presentation.present(.projectPolish) },
+                            onShowRevisionCenter: { presentation.present(.revisionCenter) },
+                            onShowPublish: { presentation.present(.publishExport) },
                             onCloseProject: closeProject
                         )
                         .frame(minWidth: 205, idealWidth: 225, maxWidth: 275)
@@ -162,7 +143,7 @@ struct EditorWorkspace: View {
                         isLoadingReference: viewModel.isLoadingReference,
                         onRunReview: runReview,
                         onOpenSettings: { openSettings() },
-                        onChooseReference: { showingReferenceLibrary = true },
+                        onChooseReference: { presentation.present(.referenceLibrary) },
                         onRemoveReference: viewModel.clearReference,
                         onSelect: viewModel.focus,
                         onApply: apply,
@@ -222,8 +203,8 @@ struct EditorWorkspace: View {
                 draftRecoveryCoordinator.schedule(text: newValue)
             }
         }
-        .onChange(of: showingProjectPolish) { _, isPresented in
-            guard !isPresented else { return }
+        .onChange(of: presentation.activeSheet) { previous, current in
+            guard previous == .projectPolish, current != .projectPolish else { return }
             applyPendingProjectPolishIfNeeded()
         }
     }
@@ -272,17 +253,18 @@ struct EditorWorkspace: View {
             runReview()
         }
         .onReceive(NotificationCenter.default.publisher(for: .showKistulentzWelcome)) { _ in
-            showingWelcome = true
+            presentation.present(.welcome)
         }
         .onReceive(NotificationCenter.default.publisher(for: .showKistulentzWhatsNew)) { _ in
-            showingWhatsNew = true
+            presentation.present(.whatsNew)
         }
         .onReceive(NotificationCenter.default.publisher(for: .showDraftRecovery)) { _ in
             draftRecovery.reloadPendingEntries()
-            showingDraftRecovery = true
+            presentation.present(.draftRecovery)
         }
         .onDisappear {
             draftRecoveryCoordinator.flush()
+            documentImport.cancel()
             if projectStore.isOpen {
                 projectStore.saveNow()
                 if !projectStore.hasUnsavedChapterChanges {
@@ -308,18 +290,18 @@ struct EditorWorkspace: View {
                 viewModel.errorMessage = error.localizedDescription
             }
         }
-        .sheet(isPresented: $showingReferenceLibrary) {
+        .sheet(isPresented: presentation.binding(for: .referenceLibrary)) {
             ReferenceLibraryView(selectedChoiceIDs: $selectedLibraryReferences) { reference in
                 viewModel.useReference(reference, draft: activeText)
             }
             .environmentObject(referenceLibrary)
             .environmentObject(settings)
         }
-        .sheet(isPresented: $showingResearchLibrary) {
+        .sheet(isPresented: presentation.binding(for: .researchLibrary)) {
             ResearchLibraryView()
                 .environmentObject(researchLibrary)
         }
-        .sheet(isPresented: $showingProjectResearch) {
+        .sheet(isPresented: presentation.binding(for: .projectResearch)) {
             ProjectResearchView(
                 projectStore: projectStore,
                 researchStore: projectStore.researchStore,
@@ -328,19 +310,19 @@ struct EditorWorkspace: View {
             )
             .environmentObject(researchLibrary)
         }
-        .sheet(isPresented: $showingRevisionCenter) {
+        .sheet(isPresented: presentation.binding(for: .revisionCenter)) {
             SystemicRevisionCenterView(store: projectStore, styleLearningStore: styleLearningStore, onNavigate: navigateToRevisionFinding)
                 .environmentObject(settings)
                 .environmentObject(researchLibrary)
         }
-        .sheet(isPresented: $showingProjectPolish) {
+        .sheet(isPresented: presentation.binding(for: .projectPolish)) {
             ProjectPolishView(store: projectStore) { changeSet in
                 pendingProjectPolishApply = changeSet
-                showingProjectPolish = false
+                presentation.dismiss(.projectPolish)
             }
                 .environmentObject(settings)
         }
-        .sheet(isPresented: $showingDestinker) {
+        .sheet(isPresented: presentation.binding(for: .destinker)) {
             DestinkView(
                 currentDocument: destinkCurrentDocument,
                 selection: selectedPassage.map { DestinkSelection(text: $0.text, range: $0.range) },
@@ -349,31 +331,31 @@ struct EditorWorkspace: View {
             )
             .environmentObject(beneparPack)
         }
-        .sheet(isPresented: $showingPublishExport) {
+        .sheet(isPresented: presentation.binding(for: .publishExport)) {
             PublishExportView(store: projectStore, publicationStore: projectStore.publicationStore)
                 .environmentObject(researchLibrary)
         }
     }
 
     private var importConfiguredView: some View {
-        libraryConfiguredView.sheet(item: $pendingDocumentImport) { draft in
+        libraryConfiguredView.sheet(item: $documentImport.draft) { draft in
             DocumentImportPreviewView(
                 draft: draft,
-                onCancel: { pendingDocumentImport = nil },
+                onCancel: documentImport.clearDraft,
                 onSave: { decisions in saveImportedDocument(draft, decisions: decisions) }
             )
         }
-        .sheet(isPresented: $showingProjectImportAssistant) {
+        .sheet(isPresented: presentation.binding(for: .projectImportAssistant)) {
             ProjectImportAssistantView(
                 currentProjectName: projectStore.isOpen ? projectStore.projectName : nil,
                 addToCurrentProject: projectStore.isOpen ? { conversions, decisions in
                     try projectStore.importProjectDocuments(conversions, decisions: decisions)
                 } : nil,
                 onComplete: completeProjectImport,
-                onCancel: { showingProjectImportAssistant = false }
+                onCancel: { presentation.dismiss(.projectImportAssistant) }
             )
         }
-        .sheet(isPresented: $showingWelcome) {
+        .sheet(isPresented: presentation.binding(for: .welcome)) {
             WelcomeView(
                 onCreateProject: beginProjectFromWelcome,
                 onOpenDocument: openDocumentFromWelcome,
@@ -383,22 +365,25 @@ struct EditorWorkspace: View {
             )
             .interactiveDismissDisabled()
         }
-        .sheet(isPresented: $showingWhatsNew) {
+        .sheet(isPresented: presentation.binding(for: .whatsNew)) {
             WhatsNewView(version: AppSettings.appVersion()) {
                 finishWhatsNew()
             }
             .interactiveDismissDisabled()
         }
-        .sheet(isPresented: $showingEnglishPackPrompt) {
+        .sheet(isPresented: presentation.binding(for: .englishPackPrompt)) {
             EnglishPackPromptView(
                 onNotNow: finishEnglishPackPrompt,
                 onInstalled: finishEnglishPackPrompt
             )
             .environmentObject(beneparPack)
         }
-        .sheet(isPresented: $showingDraftRecovery, onDismiss: presentWelcomeAfterRecovery) {
+        .sheet(
+            isPresented: presentation.binding(for: .draftRecovery),
+            onDismiss: presentWelcomeAfterRecovery
+        ) {
             DraftRecoveryView(manager: draftRecovery) {
-                showingDraftRecovery = false
+                presentation.dismiss(.draftRecovery)
             }
         }
         .fileImporter(
@@ -420,32 +405,32 @@ struct EditorWorkspace: View {
     }
 
     private var projectConfiguredView: some View {
-        importConfiguredView.sheet(isPresented: $showingNewChapter) {
+        importConfiguredView.sheet(isPresented: presentation.binding(for: .newChapter)) {
             NewChapterSheet { projectStore.createChapter(named: $0) }
         }
-        .sheet(isPresented: $showingStyleEditor) {
+        .sheet(isPresented: presentation.binding(for: .styleEditor)) {
             ProjectStyleEditorView(store: styleLearningStore)
         }
-        .sheet(isPresented: $showingRevisionHistory) {
+        .sheet(isPresented: presentation.binding(for: .revisionHistory)) {
             RevisionHistoryView(store: projectStore)
                 .onDisappear { undoManager?.removeAllActions() }
         }
-        .sheet(isPresented: $showingManuscriptInsights) {
+        .sheet(isPresented: presentation.binding(for: .manuscriptInsights)) {
             ManuscriptInsightsView(
                 store: projectStore,
                 betaReadersStore: projectStore.betaReadersStore,
                 styleLearningStore: styleLearningStore,
                 selectedPassage: selectedPassage?.text,
                 reference: viewModel.referenceBook,
-                onShowRevisionHistory: { showingRevisionHistory = true }
+                onShowRevisionHistory: { presentation.present(.revisionHistory) }
             )
             .environmentObject(settings)
         }
-        .sheet(isPresented: $showingProjectOrganization) {
+        .sheet(isPresented: presentation.binding(for: .projectOrganization)) {
             ProjectOrganizationView(store: projectStore, styleLearningStore: styleLearningStore, reference: viewModel.referenceBook)
                 .environmentObject(settings)
         }
-        .sheet(isPresented: $showingNamedSnapshot) {
+        .sheet(isPresented: presentation.binding(for: .namedSnapshot)) {
             NamedSnapshotSheet(chapterTitle: projectStore.selectedChapterTitle) { name in
                 projectStore.createSnapshot(name: name, reason: "Named snapshot")
             }
@@ -456,9 +441,9 @@ struct EditorWorkspace: View {
                 executeAIRequest(confirmed)
             }
         }
-        .sheet(isPresented: $showingToneRequest) {
+        .sheet(isPresented: presentation.binding(for: .toneRequest)) {
             ToneRequestView { tone in
-                showingToneRequest = false
+                presentation.dismiss(.toneRequest)
                 Task { @MainActor in
                     await Task.yield()
                     prepareRewrite(SelectionRewriteGoal(kind: .adjustTone, requestedTone: tone))
@@ -495,17 +480,27 @@ struct EditorWorkspace: View {
 
     var body: some View {
         projectConfiguredView.alert("Kistulentz", isPresented: Binding(
-            get: { viewModel.errorMessage != nil || projectStore.errorMessage != nil },
+            get: {
+                viewModel.errorMessage != nil
+                    || projectStore.errorMessage != nil
+                    || documentImport.errorMessage != nil
+            },
             set: {
                 if !$0 {
                     viewModel.errorMessage = nil
                     projectStore.errorMessage = nil
+                    documentImport.errorMessage = nil
                 }
             }
         )) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(viewModel.errorMessage ?? projectStore.errorMessage ?? "")
+            Text(
+                viewModel.errorMessage
+                    ?? projectStore.errorMessage
+                    ?? documentImport.errorMessage
+                    ?? ""
+            )
         }
         .confirmationDialog(
             "Apply all safe suggestions?",
@@ -563,11 +558,11 @@ struct EditorWorkspace: View {
             viewModel: viewModel,
             isWriteMode: $isWriteMode,
             activeFileURL: activeFileURL,
-            isImportingDocument: isImportingDocument,
+            isImportingDocument: documentImport.isRunning,
             hasSelectedPassage: selectedPassage != nil,
             actions: EditorToolbarActions(
                 chooseDocumentForImport: chooseDocumentForImport,
-                showProjectImportAssistant: { showingProjectImportAssistant = true },
+                showProjectImportAssistant: { presentation.present(.projectImportAssistant) },
                 createProject: {
                     projectFolderAction = .createInParent
                     showingProjectFolderImporter = true
@@ -576,22 +571,22 @@ struct EditorWorkspace: View {
                     projectFolderAction = .openExisting
                     showingProjectFolderImporter = true
                 },
-                showNewChapter: { showingNewChapter = true },
-                showStyleEditor: { showingStyleEditor = true },
-                showNamedSnapshot: { showingNamedSnapshot = true },
-                showRevisionHistory: { showingRevisionHistory = true },
-                showManuscriptInsights: { showingManuscriptInsights = true },
+                showNewChapter: { presentation.present(.newChapter) },
+                showStyleEditor: { presentation.present(.styleEditor) },
+                showNamedSnapshot: { presentation.present(.namedSnapshot) },
+                showRevisionHistory: { presentation.present(.revisionHistory) },
+                showManuscriptInsights: { presentation.present(.manuscriptInsights) },
                 presentDestinker: presentDestinker,
-                showProjectOrganization: { showingProjectOrganization = true },
-                showProjectResearch: { showingProjectResearch = true },
-                showProjectPolish: { showingProjectPolish = true },
-                showRevisionCenter: { showingRevisionCenter = true },
-                showPublishExport: { showingPublishExport = true },
+                showProjectOrganization: { presentation.present(.projectOrganization) },
+                showProjectResearch: { presentation.present(.projectResearch) },
+                showProjectPolish: { presentation.present(.projectPolish) },
+                showRevisionCenter: { presentation.present(.revisionCenter) },
+                showPublishExport: { presentation.present(.publishExport) },
                 closeProject: closeProject,
-                showToneRequest: { showingToneRequest = true },
+                showToneRequest: { presentation.present(.toneRequest) },
                 prepareRewrite: prepareRewrite,
-                showResearchLibrary: { showingResearchLibrary = true },
-                showReferenceLibrary: { showingReferenceLibrary = true },
+                showResearchLibrary: { presentation.present(.researchLibrary) },
+                showReferenceLibrary: { presentation.present(.referenceLibrary) },
                 showReferenceImporter: { showingReferenceImporter = true },
                 runReview: runReview
             )
@@ -732,7 +727,7 @@ struct EditorWorkspace: View {
         guard !didPresentStartup else { return }
         didPresentStartup = true
         if !draftRecovery.pendingEntries.isEmpty {
-            showingDraftRecovery = true
+            presentation.present(.draftRecovery)
         } else {
             presentNextStartupStep()
         }
@@ -745,17 +740,17 @@ struct EditorWorkspace: View {
     private func presentNextStartupStep() {
         beneparPack.refresh()
         if !beneparPack.isInstalled, settings.claimEnglishPackPrompt() {
-            showingEnglishPackPrompt = true
+            presentation.present(.englishPackPrompt)
         } else if !settings.hasCompletedOnboarding {
-            showingWelcome = true
+            presentation.present(.welcome)
         } else if settings.shouldPresentWhatsNew(for: AppSettings.appVersion()) {
-            showingWhatsNew = true
+            presentation.present(.whatsNew)
         }
     }
 
     private func finishEnglishPackPrompt() {
         settings.acknowledgeEnglishPackPrompt()
-        showingEnglishPackPrompt = false
+        presentation.dismiss(.englishPackPrompt)
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(180))
             presentNextStartupStep()
@@ -765,12 +760,12 @@ struct EditorWorkspace: View {
     private func completeWelcome() {
         settings.completeOnboarding()
         settings.acknowledgeWhatsNew(for: AppSettings.appVersion())
-        showingWelcome = false
+        presentation.dismiss(.welcome)
     }
 
     private func finishWhatsNew() {
         settings.acknowledgeWhatsNew(for: AppSettings.appVersion())
-        showingWhatsNew = false
+        presentation.dismiss(.whatsNew)
     }
 
     private func beginProjectFromWelcome() {
@@ -794,7 +789,7 @@ struct EditorWorkspace: View {
 
     private func beginImportFromWelcome() {
         completeWelcome()
-        showingProjectImportAssistant = true
+        presentation.present(.projectImportAssistant)
     }
 
     private func createSampleProject(_ kind: WritingProjectKind) {
@@ -830,25 +825,14 @@ struct EditorWorkspace: View {
         panel.allowsMultipleSelection = false
 
         guard panel.runModal() == .OK, let url = panel.url else { return }
-        isImportingDocument = true
-        Task { @MainActor in
-            do {
-                let draft = try await Task.detached(priority: .userInitiated) {
-                    try DocumentImportService.load(from: url)
-                }.value
-                pendingDocumentImport = draft
-            } catch {
-                viewModel.errorMessage = error.localizedDescription
-            }
-            isImportingDocument = false
-        }
+        documentImport.load(from: url)
     }
 
     private func saveImportedDocument(
         _ draft: DocumentImportDraft,
         decisions: [UUID: DocumentTrackedChangeDecision]
     ) {
-        pendingDocumentImport = nil
+        documentImport.clearDraft()
         Task { @MainActor in
             await Task.yield()
             let panel = NSSavePanel()
@@ -861,16 +845,9 @@ struct EditorWorkspace: View {
             panel.isExtensionHidden = false
 
             guard panel.runModal() == .OK, let outputURL = panel.url else { return }
-            isImportingDocument = true
-            do {
-                let result = try await Task.detached(priority: .userInitiated) {
-                    try DocumentImportService.save(draft, decisions: decisions, to: outputURL)
-                }.value
+            documentImport.save(draft, decisions: decisions, to: outputURL) { result in
                 openImportedMarkdown(result.markdownURL)
-            } catch {
-                viewModel.errorMessage = error.localizedDescription
             }
-            isImportingDocument = false
         }
     }
 
@@ -889,7 +866,7 @@ struct EditorWorkspace: View {
     }
 
     private func completeProjectImport(_ completion: ProjectImportCompletion) {
-        showingProjectImportAssistant = false
+        presentation.dismiss(.projectImportAssistant)
         switch completion {
         case .markdown(let url):
             openImportedMarkdown(url)
@@ -999,7 +976,7 @@ struct EditorWorkspace: View {
         destinkManuscriptDocuments = projectStore.isOpen
             ? (try? projectStore.betaReadersStore.documents(for: .manuscript, selection: nil))
             : nil
-        showingDestinker = true
+        presentation.present(.destinker)
     }
 
     private func navigateToDestinkFinding(_ path: String, range: NSRange) {

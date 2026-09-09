@@ -3,14 +3,6 @@ import XCTest
 
 @MainActor
 final class ProjectImportAssistantViewModelTests: XCTestCase {
-    private var temporaryRoots: [URL] = []
-
-    override func tearDown() {
-        for root in temporaryRoots { try? FileManager.default.removeItem(at: root) }
-        temporaryRoots.removeAll()
-        super.tearDown()
-    }
-
     func testSourceEditingReorderingAndRemovalStayInModel() {
         let model = ProjectImportAssistantViewModel()
         let first = source("First")
@@ -271,7 +263,7 @@ final class ProjectImportAssistantViewModelTests: XCTestCase {
         let root = FileManager.default.temporaryDirectory
             .appendingPathComponent("Kistulentz-ImportViewModelTests-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
-        temporaryRoots.append(root)
+        addTeardownBlock { try? FileManager.default.removeItem(at: root) }
         return root
     }
 

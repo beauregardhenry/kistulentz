@@ -30,7 +30,7 @@ struct OutlineAIService {
         return response
     }
 
-    private static let schema: [String: Any] = [
+    private static var schema: [String: Any] { [
         "type": "object",
         "properties": [
             "summary": ["type": "string"],
@@ -38,5 +38,5 @@ struct OutlineAIService {
         ],
         "required": ["summary", "synopsis"],
         "additionalProperties": false
-    ]
+    ] }
 }

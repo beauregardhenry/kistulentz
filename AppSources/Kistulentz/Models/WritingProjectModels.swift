@@ -114,6 +114,7 @@ enum WritingProjectError: LocalizedError, Equatable {
     case noMarkdownFiles
     case chapterAlreadyExists
     case invalidChapterName
+    case unsavedCurrentProject
 
     var errorDescription: String? {
         switch self {
@@ -123,6 +124,7 @@ enum WritingProjectError: LocalizedError, Equatable {
         case .noMarkdownFiles: "This project does not contain a Markdown document."
         case .chapterAlreadyExists: "A Markdown file with that name already exists in this project."
         case .invalidChapterName: "Enter a chapter name that does not contain a slash or colon."
+        case .unsavedCurrentProject: "Kistulentz could not save the current document, so it did not open another project."
         }
     }
 }

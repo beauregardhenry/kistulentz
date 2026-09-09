@@ -1,7 +1,7 @@
 import Foundation
 
-struct ResearchMetadataLookupService {
-    var dataLoader: (URLRequest) async throws -> (Data, URLResponse) = { request in
+struct ResearchMetadataLookupService: Sendable {
+    var dataLoader: @Sendable (URLRequest) async throws -> (Data, URLResponse) = { request in
         try await URLSession.shared.data(for: request)
     }
 
@@ -82,7 +82,7 @@ struct ResearchMetadataLookupService {
 
     private func load(_ url: URL) async throws -> Data {
         var request = URLRequest(url: url)
-        request.setValue("Kistulentz/0.17.0 (https://github.com/beauregardhenry/kistulentz)", forHTTPHeaderField: "User-Agent")
+        request.setValue("Kistulentz/0.17.1 (https://github.com/beauregardhenry/kistulentz)", forHTTPHeaderField: "User-Agent")
         request.timeoutInterval = 20
         let (data, response) = try await dataLoader(request)
         guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {

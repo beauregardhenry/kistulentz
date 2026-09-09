@@ -66,7 +66,7 @@ struct WritingAIService {
         return review
     }
 
-    private static let reviewSchema: [String: Any] = [
+    private static var reviewSchema: [String: Any] { [
         "type": "object",
         "properties": [
             "summary": ["type": "string"],
@@ -92,7 +92,7 @@ struct WritingAIService {
         ],
         "required": ["summary", "gradeEstimate", "polishedText", "suggestions"],
         "additionalProperties": false
-    ]
+    ] }
 }
 
 enum WritingAIError: LocalizedError {

@@ -73,7 +73,7 @@ struct SystemicRevisionAIService {
         return String(hash, radix: 16)
     }
 
-    private static let schema: [String: Any] = [
+    private static var schema: [String: Any] { [
         "type": "object",
         "properties": [
             "summary": ["type": "string"],
@@ -97,5 +97,5 @@ struct SystemicRevisionAIService {
         ],
         "required": ["summary", "findings"],
         "additionalProperties": false
-    ]
+    ] }
 }

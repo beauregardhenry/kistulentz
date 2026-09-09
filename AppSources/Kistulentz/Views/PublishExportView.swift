@@ -2,62 +2,36 @@ import AppKit
 import SwiftUI
 import UniformTypeIdentifiers
 
-private enum PublicationWorkspacePane: String, CaseIterable, Identifiable {
-    case plan = "Export Plan"
-    case setup = "Publication Setup"
-    case matter = "Generated Matter"
-    case profile = "Export Profile"
-    case preflight = "Preflight & Export"
-    case history = "History"
-
-    var id: String { rawValue }
-    var icon: String {
-        switch self {
-        case .plan: "list.bullet.rectangle"
-        case .setup: "book.pages"
-        case .matter: "doc.badge.gearshape"
-        case .profile: "slider.horizontal.3"
-        case .preflight: "checkmark.seal"
-        case .history: "clock.arrow.circlepath"
-        }
-    }
-}
-
 struct PublishExportView: View {
     @ObservedObject var store: WritingProjectStore
     @ObservedObject var publicationStore: PublicationStore
     @EnvironmentObject private var researchLibrary: ResearchLibraryStore
     @Environment(\.dismiss) private var dismiss
 
-    @State private var pane: PublicationWorkspacePane? = .plan
-    @State private var draft = PublicationArchive()
-    @State private var selectedProfileID = UUID()
-    @State private var format: PublicationExportFormat = .epub
-    @State private var plan: PublicationExportPlan?
-    @State private var previewText = ""
-    @State private var preflight: PublicationPreflightReport?
-    @State private var outputDirectory: URL?
-    @State private var isExporting = false
-    @State private var lastExportURL: URL?
-    @State private var lastReportURL: URL?
-    @State private var errorMessage: String?
-    @State private var showingWarningConfirmation = false
-    @State private var authorsText = ""
-    @State private var keywordsText = ""
+    @StateObject private var model: PublishExportViewModel
+
+    init(store: WritingProjectStore, publicationStore: PublicationStore) {
+        _store = ObservedObject(wrappedValue: store)
+        _publicationStore = ObservedObject(wrappedValue: publicationStore)
+        _model = StateObject(wrappedValue: PublishExportViewModel(
+            store: store,
+            publicationStore: publicationStore
+        ))
+    }
 
     var body: some View {
         NavigationSplitView {
-            List(PublicationWorkspacePane.allCases, selection: $pane) { item in
+            List(PublicationWorkspacePane.allCases, selection: $model.pane) { item in
                 Label(item.rawValue, systemImage: item.icon).tag(item)
             }
             .navigationTitle("Publish")
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .leading, spacing: 4) {
                     Divider()
-                    Text(draft.metadata.title.isEmpty ? store.projectName : draft.metadata.title)
+                    Text(model.draft.metadata.title.isEmpty ? store.projectName : model.draft.metadata.title)
                         .font(.caption.weight(.semibold))
                         .lineLimit(2)
-                    Text(format.title)
+                    Text(model.format.title)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -65,7 +39,7 @@ struct PublishExportView: View {
             }
         } detail: {
             Group {
-                switch pane ?? .plan {
+                switch model.pane ?? .plan {
                 case .plan: planPane
                 case .setup: setupPane
                 case .matter: matterPane
@@ -74,29 +48,35 @@ struct PublishExportView: View {
                 case .history: historyPane
                 }
             }
-            .navigationTitle(pane?.rawValue ?? "Publish")
+            .navigationTitle(model.pane?.rawValue ?? "Publish")
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Close") { persistDraft(); dismiss() } }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") { model.persistDraft(); dismiss() }
+                }
             }
         }
         .frame(minWidth: 1040, minHeight: 720)
         .accessibilityIdentifier("PublishExportView")
-        .onAppear(perform: load)
-        .onDisappear(perform: persistDraft)
+        .onAppear { model.load(sources: researchLibrary.sources) }
+        .onChange(of: researchLibrary.sources) { _, sources in model.updateSources(sources) }
+        .onDisappear {
+            model.persistDraft()
+            model.cancelExport()
+        }
         .alert("Kistulentz", isPresented: Binding(
-            get: { errorMessage != nil },
-            set: { if !$0 { errorMessage = nil } }
+            get: { model.errorMessage != nil },
+            set: { if !$0 { model.errorMessage = nil } }
         )) {
-            Button("OK") { errorMessage = nil }
+            Button("OK") { model.errorMessage = nil }
         } message: {
-            Text(errorMessage ?? "")
+            Text(model.errorMessage ?? "")
         }
         .confirmationDialog(
             "Export with preflight warnings?",
-            isPresented: $showingWarningConfirmation,
+            isPresented: $model.showingWarningConfirmation,
             titleVisibility: .visible
         ) {
-            Button("Export Anyway") { performExport(allowingWarnings: true) }
+            Button("Export Anyway") { model.performExport(allowingWarnings: true) }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("Blocking errors are resolved. The remaining warnings will be recorded in export history.")
@@ -107,14 +87,14 @@ struct PublishExportView: View {
         HSplitView {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Picker("Profile", selection: $selectedProfileID) {
-                        ForEach(draft.profiles) { Text($0.name).tag($0.id) }
+                    Picker("Profile", selection: $model.selectedProfileID) {
+                        ForEach(model.draft.profiles) { Text($0.name).tag($0.id) }
                     }
-                    .onChange(of: selectedProfileID) { _, newValue in selectProfile(newValue) }
-                    Picker("Format", selection: $format) {
+                    .onChange(of: model.selectedProfileID) { _, newValue in model.selectProfile(newValue) }
+                    Picker("Format", selection: $model.format) {
                         ForEach(PublicationExportFormat.allCases) { Text($0.title).tag($0) }
                     }
-                    .onChange(of: format) { _, _ in refreshPlan(preservingTemporaryPlan: true) }
+                    .onChange(of: model.format) { _, _ in model.refreshPlan(preservingTemporaryPlan: true) }
                 }
                 VStack(alignment: .leading, spacing: 7) {
                     Text("Publication destinations").font(.subheadline.weight(.semibold))
@@ -133,7 +113,7 @@ struct PublishExportView: View {
                     .foregroundStyle(.secondary)
 
                 List {
-                    if let plan {
+                    if let plan = model.plan {
                         ForEach(plan.items) { item in
                             HStack(spacing: 10) {
                                 Image(systemName: icon(for: item.kind)).foregroundStyle(.secondary)
@@ -149,16 +129,16 @@ struct PublishExportView: View {
                                 .disabled(item.exclusionReason == "The Markdown file is missing.")
                             }
                         }
-                        .onMove(perform: movePlanItems)
+                        .onMove(perform: model.movePlanItems)
                     }
                 }
                 .listStyle(.inset)
 
                 HStack {
-                    Button("Reset Temporary Plan") { refreshPlan(preservingTemporaryPlan: false) }
-                    Button("Save Inclusions to Project Organization") { savePlanInclusions() }
+                    Button("Reset Temporary Plan") { model.refreshPlan(preservingTemporaryPlan: false) }
+                    Button("Save Inclusions to Project Organization") { model.savePlanInclusions() }
                     Spacer()
-                    Text("\(plan?.includedItems.count ?? 0) included")
+                    Text("\(model.plan?.includedItems.count ?? 0) included")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -172,7 +152,7 @@ struct PublishExportView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 ScrollView {
-                    Text(previewText.isEmpty ? "Nothing is included yet." : previewText)
+                    Text(model.previewText.isEmpty ? "Nothing is included yet." : model.previewText)
                         .font(.system(size: 12, design: .monospaced))
                         .textSelection(.enabled)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -188,32 +168,38 @@ struct PublishExportView: View {
     private var setupPane: some View {
         Form {
             Section("Book Identity") {
-                TextField("Title", text: $draft.metadata.title)
-                TextField("Subtitle", text: $draft.metadata.subtitle)
-                TextField("Authors (one per line)", text: $authorsText, axis: .vertical).lineLimit(2...5)
-                TextField("Language", text: $draft.metadata.language)
-                TextField("ISBN or identifier", text: $draft.metadata.identifier)
-                TextField("Publisher", text: $draft.metadata.publisher)
-                TextField("Publication date", text: $draft.metadata.publicationDate)
-                TextField("Edition", text: $draft.metadata.edition)
-                TextField("Rights", text: $draft.metadata.rights, axis: .vertical).lineLimit(2...4)
-                TextField("Description", text: $draft.metadata.description, axis: .vertical).lineLimit(3...8)
-                TextField("Keywords (comma separated)", text: $keywordsText)
+                TextField("Title", text: $model.draft.metadata.title)
+                TextField("Subtitle", text: $model.draft.metadata.subtitle)
+                TextField("Authors (one per line)", text: $model.authorsText, axis: .vertical).lineLimit(2...5)
+                TextField("Language", text: $model.draft.metadata.language)
+                TextField("ISBN or identifier", text: $model.draft.metadata.identifier)
+                TextField("Publisher", text: $model.draft.metadata.publisher)
+                TextField("Publication date", text: $model.draft.metadata.publicationDate)
+                TextField("Edition", text: $model.draft.metadata.edition)
+                TextField("Rights", text: $model.draft.metadata.rights, axis: .vertical).lineLimit(2...4)
+                TextField("Description", text: $model.draft.metadata.description, axis: .vertical).lineLimit(3...8)
+                TextField("Keywords (comma separated)", text: $model.keywordsText)
             }
             Section("Cover") {
-                LabeledContent("Digital cover") { Text(draft.metadata.coverImageRelativePath ?? "Not selected").foregroundStyle(.secondary) }
-                TextField("Cover alternative text", text: $draft.metadata.coverAltText)
+                LabeledContent("Digital cover") { Text(model.draft.metadata.coverImageRelativePath ?? "Not selected").foregroundStyle(.secondary) }
+                TextField("Cover alternative text", text: $model.draft.metadata.coverAltText)
                 HStack {
                     Button("Choose Cover Image…", action: chooseCover)
-                    if draft.metadata.coverImageRelativePath != nil {
-                        Button("Remove") { draft.metadata.coverImageRelativePath = nil }
+                    if model.draft.metadata.coverImageRelativePath != nil {
+                        Button("Remove") {
+                            model.draft.metadata.coverImageRelativePath = nil
+                            model.saveMatter()
+                        }
                     }
                 }
-                LabeledContent("Separate print-cover PDF") { Text(draft.metadata.printCoverPDFRelativePath ?? "Optional").foregroundStyle(.secondary) }
+                LabeledContent("Separate print-cover PDF") { Text(model.draft.metadata.printCoverPDFRelativePath ?? "Optional").foregroundStyle(.secondary) }
                 HStack {
                     Button("Choose Print-Cover PDF…", action: choosePrintCover)
-                    if draft.metadata.printCoverPDFRelativePath != nil {
-                        Button("Remove") { draft.metadata.printCoverPDFRelativePath = nil }
+                    if model.draft.metadata.printCoverPDFRelativePath != nil {
+                        Button("Remove") {
+                            model.draft.metadata.printCoverPDFRelativePath = nil
+                            model.saveMatter()
+                        }
                     }
                 }
                 Text("Kistulentz generates the print interior. It keeps a supplied print-cover PDF alongside the project without calculating a vendor-specific spine or wrap.")
@@ -222,7 +208,7 @@ struct PublishExportView: View {
             Section {
                 HStack {
                     Spacer()
-                    Button("Save Publication Setup") { saveMetadata() }.buttonStyle(.borderedProminent)
+                    Button("Save Publication Setup") { model.saveMetadata() }.buttonStyle(.borderedProminent)
                 }
             }
         }
@@ -237,15 +223,13 @@ struct PublishExportView: View {
                     Text("Regeneration skips every locked or author-edited page.").font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
-                Button("Regenerate Safe Pages") {
-                    draft.matter = PublicationMatterGenerator.regenerating(draft.matter, metadata: draft.metadata)
-                }
-                Button("Save Matter") { persistDraft(); refreshPlan(preservingTemporaryPlan: true) }
+                Button("Regenerate Safe Pages") { model.regenerateSafeMatter() }
+                Button("Save Matter") { model.saveMatter() }
                     .buttonStyle(.borderedProminent)
             }
             ScrollView {
                 LazyVStack(spacing: 12) {
-                    ForEach($draft.matter) { $item in
+                    ForEach($model.draft.matter) { $item in
                         DisclosureGroup {
                             TextEditor(text: $item.markdown)
                                 .font(.system(size: 13, design: .monospaced))
@@ -274,14 +258,16 @@ struct PublishExportView: View {
     }
 
     @ViewBuilder private var profilePane: some View {
-        if let index = draft.profiles.firstIndex(where: { $0.id == selectedProfileID }) {
+        if let index = model.draft.profiles.firstIndex(where: { $0.id == model.selectedProfileID }) {
             ExportProfileEditor(
-                profile: $draft.profiles[index],
-                destinations: draft.selectedDestinations,
-                onApplyDestinationPreset: applyDestinationPreset,
-                onSave: { persistDraft(); refreshPlan(preservingTemporaryPlan: true) },
-                onDuplicate: duplicateSelectedProfile,
-                onDelete: draft.profiles[index].kind == .custom ? deleteSelectedProfile : nil
+                profile: profileBinding(at: index),
+                destinations: model.draft.selectedDestinations,
+                onApplyDestinationPreset: { model.applyDestinationPreset() },
+                onSave: { model.saveMatter() },
+                onDuplicate: { model.duplicateSelectedProfile() },
+                onDelete: model.draft.profiles[index].kind == .custom
+                    ? { model.deleteSelectedProfile() }
+                    : nil
             )
         } else {
             ContentUnavailableView("Choose an export profile", systemImage: "slider.horizontal.3")
@@ -296,9 +282,9 @@ struct PublishExportView: View {
                     Text("Hard errors block export. Warnings require explicit approval.").font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
-                Button("Run Preflight") { runPreflight() }
+                Button("Run Preflight") { model.runPreflight() }
             }
-            if let preflight {
+            if let preflight = model.preflight {
                 HStack(spacing: 14) {
                     Label("\(preflight.errors.count) errors", systemImage: "xmark.octagon.fill").foregroundStyle(preflight.errors.isEmpty ? Color.secondary : Color.red)
                     Label("\(preflight.warnings.count) warnings", systemImage: "exclamationmark.triangle.fill").foregroundStyle(preflight.warnings.isEmpty ? Color.secondary : Color.orange)
@@ -332,26 +318,37 @@ struct PublishExportView: View {
             Divider()
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(outputDirectory?.path ?? "Choose where finished files should go")
+                    Text(model.outputDirectory?.path ?? "Choose where finished files should go")
                         .lineLimit(1).truncationMode(.middle)
-                    if let lastExportURL { Text("Last export: \(lastExportURL.lastPathComponent)").font(.caption).foregroundStyle(.secondary) }
+                    if let lastExportURL = model.lastExportURL {
+                        Text("Last export: \(lastExportURL.lastPathComponent)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 Spacer()
                 Button("Choose Output Folder…", action: chooseOutputFolder)
-                if let lastExportURL { Button("Reveal Last Export") { NSWorkspace.shared.activateFileViewerSelecting([lastExportURL]) } }
-                if let lastReportURL { Button("Open Readiness Report") { NSWorkspace.shared.open(lastReportURL) } }
-                Button(isExporting ? "Exporting…" : "Export \(format.title)") { requestExport() }
+                if let lastExportURL = model.lastExportURL {
+                    Button("Reveal Last Export") { NSWorkspace.shared.activateFileViewerSelecting([lastExportURL]) }
+                }
+                if let lastReportURL = model.lastReportURL {
+                    Button("Open Readiness Report") { NSWorkspace.shared.open(lastReportURL) }
+                }
+                if model.isExporting {
+                    Button("Cancel Export", role: .cancel) { model.cancelExport() }
+                }
+                Button(model.isExporting ? "Exporting…" : "Export \(model.format.title)") { model.requestExport() }
                     .buttonStyle(.borderedProminent)
-                    .disabled(isExporting || outputDirectory == nil || preflight?.canExport != true)
+                    .disabled(model.isExporting || model.outputDirectory == nil || model.preflight?.canExport != true)
             }
-            if isExporting { ProgressView().progressViewStyle(.linear) }
+            if model.isExporting { ProgressView().progressViewStyle(.linear) }
         }
         .padding(18)
     }
 
     private var historyPane: some View {
         List {
-            ForEach(draft.history) { record in
+            ForEach(model.draft.history) { record in
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
                         Label(record.format.title, systemImage: record.format.systemImage).font(.headline)
@@ -380,189 +377,53 @@ struct PublishExportView: View {
             }
         }
         .overlay {
-            if draft.history.isEmpty { ContentUnavailableView("No exports yet", systemImage: "shippingbox") }
+            if model.draft.history.isEmpty { ContentUnavailableView("No exports yet", systemImage: "shippingbox") }
         }
-    }
-
-    private func load() {
-        draft = publicationStore.publicationArchive
-        selectedProfileID = draft.selectedProfileID
-        authorsText = draft.metadata.authors.joined(separator: "\n")
-        keywordsText = draft.metadata.keywords.joined(separator: ", ")
-        format = draft.profiles.first(where: { $0.id == selectedProfileID })?.preferredFormat ?? .epub
-        refreshPlan(preservingTemporaryPlan: false)
-    }
-
-    private func persistDraft() {
-        draft.selectedProfileID = selectedProfileID
-        draft.metadata.authors = authorsText.components(separatedBy: .newlines).map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        draft.metadata.keywords = keywordsText.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        publicationStore.updatePublicationArchive(draft)
-    }
-
-    private func saveMetadata() {
-        draft.metadata.authors = authorsText.components(separatedBy: .newlines).map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        draft.metadata.keywords = keywordsText.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        draft.matter = PublicationMatterGenerator.regenerating(draft.matter, metadata: draft.metadata)
-        persistDraft()
-        draft = publicationStore.publicationArchive
-        refreshPlan(preservingTemporaryPlan: true)
-    }
-
-    private func selectProfile(_ id: UUID) {
-        guard let profile = draft.profiles.first(where: { $0.id == id }) else { return }
-        draft.selectedProfileID = id
-        format = profile.preferredFormat
-        persistDraft()
-        refreshPlan(preservingTemporaryPlan: true)
-    }
-
-    private func refreshPlan(preservingTemporaryPlan: Bool) {
-        persistDraft()
-        do {
-            var refreshed = try publicationStore.publicationPlan(sources: researchLibrary.sources, profileID: selectedProfileID, format: format)
-            if preservingTemporaryPlan, let existing = plan {
-                let refreshedByID = Dictionary(uniqueKeysWithValues: refreshed.items.map { ($0.id, $0) })
-                var includedIDs: Set<String> = []
-                let ordered = existing.items.compactMap { previous -> ExportPlanItem? in
-                    guard var item = refreshedByID[previous.id] else { return nil }
-                    item.isIncluded = previous.isIncluded && item.exclusionReason != "The Markdown file is missing."
-                    includedIDs.insert(item.id)
-                    return item
-                }
-                refreshed.items = ordered + refreshed.items.filter { !includedIDs.contains($0.id) }
-            }
-            plan = refreshed
-            updatePreview()
-            preflight = nil
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    private func updatePreview() {
-        guard let plan, let root = store.rootURL else { previewText = ""; return }
-        let rendered = PublicationExporter.preview(plan: plan, root: root)
-        previewText = rendered.sections.map { section in
-            "# \(section.title)\n\n" + section.blocks.map { block in
-                block.kind == .image ? "[Image: \(block.altText.isEmpty ? block.imageURL?.lastPathComponent ?? "image" : block.altText)]" : block.text
-            }.filter { !$0.isEmpty }.joined(separator: "\n\n")
-        }.joined(separator: "\n\n––––––––––––––––––––\n\n")
     }
 
     private func inclusionBinding(_ id: String) -> Binding<Bool> {
         Binding {
-            plan?.items.first(where: { $0.id == id })?.isIncluded ?? false
+            model.plan?.items.first(where: { $0.id == id })?.isIncluded ?? false
         } set: { value in
-            guard var current = plan, let index = current.items.firstIndex(where: { $0.id == id }) else { return }
-            current.items[index].isIncluded = value
-            plan = current
-            updatePreview()
-            preflight = nil
+            model.setInclusion(value, for: id)
+        }
+    }
+
+    private func profileBinding(at index: Int) -> Binding<ExportProfile> {
+        Binding {
+            model.draft.profiles[index]
+        } set: { profile in
+            guard model.draft.profiles.indices.contains(index) else { return }
+            model.draft.profiles[index] = profile
         }
     }
 
     private func destinationBinding(_ destination: PublicationDestination) -> Binding<Bool> {
         Binding {
-            draft.selectedDestinations.contains(destination)
+            model.draft.selectedDestinations.contains(destination)
         } set: { selected in
-            if selected {
-                if !draft.selectedDestinations.contains(destination) {
-                    draft.selectedDestinations.append(destination)
-                }
-            } else {
-                draft.selectedDestinations.removeAll { $0 == destination }
-            }
-            draft.selectedDestinations = PublicationDestination.allCases.filter { draft.selectedDestinations.contains($0) }
-            persistDraft()
-            refreshPlan(preservingTemporaryPlan: true)
+            model.setDestination(destination, isSelected: selected)
         }
-    }
-
-    private func movePlanItems(from offsets: IndexSet, to destination: Int) {
-        guard var current = plan else { return }
-        current.items.move(fromOffsets: offsets, toOffset: destination)
-        plan = current
-        updatePreview()
-        preflight = nil
-    }
-
-    private func savePlanInclusions() {
-        guard let plan else { return }
-        for item in plan.items {
-            guard let id = item.outlineNodeID, var node = store.outlineNode(id: id) else { continue }
-            node.metadata.includedInExport = item.isIncluded
-            store.updateOutlineNode(node)
-        }
-        refreshPlan(preservingTemporaryPlan: false)
-    }
-
-    private func duplicateSelectedProfile() {
-        guard var profile = draft.profiles.first(where: { $0.id == selectedProfileID }) else { return }
-        profile.id = UUID()
-        profile.kind = .custom
-        profile.name += " Copy"
-        profile.modifiedAt = Date()
-        draft.profiles.append(profile)
-        selectedProfileID = profile.id
-        persistDraft()
-        refreshPlan(preservingTemporaryPlan: true)
-    }
-
-    private func applyDestinationPreset() {
-        guard let index = draft.profiles.firstIndex(where: { $0.id == selectedProfileID }) else { return }
-        let formats = Set(draft.selectedDestinations.flatMap(\.compatibleFormats))
-        guard formats.count == 1, let recommendedFormat = formats.first else {
-            errorMessage = draft.selectedDestinations.isEmpty
-                ? "Choose at least one publication destination before applying a preset."
-                : "The selected digital and print destinations require separate exports and separate profiles."
-            return
-        }
-        var profile = draft.profiles[index]
-        profile.preferredFormat = recommendedFormat
-        format = recommendedFormat
-        if recommendedFormat == .epub {
-            profile.includeCover = true
-            profile.includeTableOfContents = true
-        } else if recommendedFormat == .printPDF {
-            let minimumOuter = profile.printBleed == .outside ? 27.0 : 18.0
-            profile.layout.bodyFontSize = max(profile.layout.bodyFontSize, 7)
-            profile.layout.topMargin = max(profile.layout.topMargin, minimumOuter)
-            profile.layout.bottomMargin = max(profile.layout.bottomMargin, minimumOuter)
-            profile.layout.outsideMargin = max(profile.layout.outsideMargin, minimumOuter)
-            profile.layout.insideMargin = max(profile.layout.insideMargin, 27)
-        }
-        profile.modifiedAt = Date()
-        draft.profiles[index] = profile
-        persistDraft()
-        refreshPlan(preservingTemporaryPlan: true)
-    }
-
-    private func deleteSelectedProfile() {
-        draft.profiles.removeAll { $0.id == selectedProfileID && $0.kind == .custom }
-        selectedProfileID = draft.profiles.first?.id ?? UUID()
-        persistDraft()
-        refreshPlan(preservingTemporaryPlan: false)
     }
 
     private func chooseCover() {
-        persistDraft()
+        model.persistDraft()
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.png, .jpeg, .gif, .tiff, UTType(filenameExtension: "webp")].compactMap { $0 }
         panel.allowsMultipleSelection = false
         guard panel.runModal() == .OK, let url = panel.url else { return }
         publicationStore.copyPublicationCover(from: url)
-        draft = publicationStore.publicationArchive
+        model.publicationAssetDidChange()
     }
 
     private func choosePrintCover() {
-        persistDraft()
+        model.persistDraft()
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.pdf]
         panel.allowsMultipleSelection = false
         guard panel.runModal() == .OK, let url = panel.url else { return }
         publicationStore.copyPrintCover(from: url)
-        draft = publicationStore.publicationArchive
+        model.publicationAssetDidChange()
     }
 
     private func chooseOutputFolder() {
@@ -572,41 +433,7 @@ struct PublishExportView: View {
         panel.canCreateDirectories = true
         panel.allowsMultipleSelection = false
         guard panel.runModal() == .OK else { return }
-        outputDirectory = panel.url
-    }
-
-    private func runPreflight() {
-        refreshPlan(preservingTemporaryPlan: true)
-        guard let plan, let root = store.rootURL else { return }
-        preflight = PublicationPreflight.run(plan: plan, root: root)
-    }
-
-    private func requestExport() {
-        runPreflight()
-        guard let preflight, preflight.canExport else { return }
-        if !preflight.warnings.isEmpty { showingWarningConfirmation = true }
-        else { performExport(allowingWarnings: false) }
-    }
-
-    private func performExport(allowingWarnings: Bool) {
-        guard let plan, let root = store.rootURL, let outputDirectory else { return }
-        isExporting = true
-        Task {
-            do {
-                let result = try await Task.detached(priority: .userInitiated) {
-                    try PublicationExporter.export(plan: plan, root: root, outputDirectory: outputDirectory, allowingWarnings: allowingWarnings)
-                }.value
-                publicationStore.recordPublicationExport(result, plan: plan)
-                draft = publicationStore.publicationArchive
-                lastExportURL = result.packageURL ?? result.outputURL
-                lastReportURL = result.reportPDFURL
-                preflight = result.preflight
-                pane = .history
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-            isExporting = false
-        }
+        model.outputDirectory = panel.url
     }
 
     private func icon(for kind: ExportPlanItemKind) -> String {

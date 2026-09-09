@@ -8,18 +8,46 @@ import Foundation
 @MainActor
 final class ProjectResearchStore: ObservableObject {
 
+    typealias BibliographySaver = (ProjectBibliographyArchive, URL) throws -> Void
+    typealias NotesSaver = (String, URL) throws -> Void
+
     @Published var projectBibliography = ProjectBibliographyArchive()
     @Published var researchNotesText = ""
 
-    /// Back-reference to the still-combined store, used only for `rootURL`
-    /// (every disk operation here needs the project root) and `errorMessage`
-    /// (this store has no error surface of its own -- it reports through the
-    /// app's single shared error banner).
-    weak var core: WritingProjectStore?
+    private let projectRoot: () -> URL?
+    private let reportError: (Error) -> Void
+    private let saveBibliography: BibliographySaver
+    private let saveNotes: NotesSaver
+
+    init(
+        projectRoot: @escaping () -> URL?,
+        reportError: @escaping (Error) -> Void,
+        saveBibliography: @escaping BibliographySaver = ProjectResearchDisk.save,
+        saveNotes: @escaping NotesSaver = { text, root in
+            try text.write(
+                to: ProjectResearchDisk.notesURL(at: root),
+                atomically: true,
+                encoding: .utf8
+            )
+        }
+    ) {
+        self.projectRoot = projectRoot
+        self.reportError = reportError
+        self.saveBibliography = saveBibliography
+        self.saveNotes = saveNotes
+    }
 
     func load(at root: URL) throws {
         projectBibliography = try ProjectResearchDisk.load(at: root)
         researchNotesText = try String(contentsOf: ProjectResearchDisk.notesURL(at: root), encoding: .utf8)
+    }
+
+    func replaceContents(
+        bibliography: ProjectBibliographyArchive,
+        notesText: String
+    ) {
+        projectBibliography = bibliography
+        researchNotesText = notesText
     }
 
     func reset() {
@@ -29,69 +57,76 @@ final class ProjectResearchStore: ObservableObject {
 
     func addResearchSource(_ sourceID: UUID) {
         guard !projectBibliography.sourceIDs.contains(sourceID) else { return }
-        projectBibliography.sourceIDs.append(sourceID)
-        saveProjectBibliography()
+        var updated = projectBibliography
+        updated.sourceIDs.append(sourceID)
+        persist(updated)
     }
 
     func removeResearchSource(_ sourceID: UUID) {
-        projectBibliography.sourceIDs.removeAll { $0 == sourceID }
-        projectBibliography.quotations.removeAll { $0.sourceID == sourceID }
-        projectBibliography.claimLinks.removeAll { $0.sourceID == sourceID }
-        saveProjectBibliography()
+        var updated = projectBibliography
+        updated.sourceIDs.removeAll { $0 == sourceID }
+        updated.quotations.removeAll { $0.sourceID == sourceID }
+        updated.claimLinks.removeAll { $0.sourceID == sourceID }
+        persist(updated)
     }
 
     func setBibliographyStyle(_ style: BibliographyStyle) {
-        projectBibliography.style = style
-        saveProjectBibliography()
+        var updated = projectBibliography
+        updated.style = style
+        persist(updated)
     }
 
     func addQuotation(sourceID: UUID, text: String, locator: String, note: String) {
         let clean = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !clean.isEmpty else { return }
-        projectBibliography.quotations.append(ProjectResearchQuotation(
+        var updated = projectBibliography
+        updated.quotations.append(ProjectResearchQuotation(
             sourceID: sourceID,
             text: clean,
             locator: locator.trimmingCharacters(in: .whitespacesAndNewlines),
             note: note.trimmingCharacters(in: .whitespacesAndNewlines)
         ))
-        saveProjectBibliography()
+        persist(updated)
     }
 
     func removeQuotation(_ id: UUID) {
-        projectBibliography.quotations.removeAll { $0.id == id }
-        saveProjectBibliography()
+        var updated = projectBibliography
+        updated.quotations.removeAll { $0.id == id }
+        persist(updated)
     }
 
     func addClaimLink(sourceID: UUID, chapterPath: String, excerpt: String, locator: String, note: String) {
         let clean = excerpt.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !clean.isEmpty else { return }
-        projectBibliography.claimLinks.append(ProjectClaimSourceLink(
+        var updated = projectBibliography
+        updated.claimLinks.append(ProjectClaimSourceLink(
             sourceID: sourceID,
             chapterPath: chapterPath,
             claimExcerpt: clean,
             locator: locator.trimmingCharacters(in: .whitespacesAndNewlines),
             note: note.trimmingCharacters(in: .whitespacesAndNewlines)
         ))
-        saveProjectBibliography()
+        persist(updated)
     }
 
     func removeClaimLink(_ id: UUID) {
-        projectBibliography.claimLinks.removeAll { $0.id == id }
-        saveProjectBibliography()
+        var updated = projectBibliography
+        updated.claimLinks.removeAll { $0.id == id }
+        persist(updated)
     }
 
     func updateResearchNotes(_ value: String) {
-        guard let rootURL = core?.rootURL, value != researchNotesText else { return }
-        researchNotesText = value
+        guard let rootURL = projectRoot(), value != researchNotesText else { return }
         do {
-            try value.write(to: ProjectResearchDisk.notesURL(at: rootURL), atomically: true, encoding: .utf8)
+            try saveNotes(value, rootURL)
+            researchNotesText = value
         } catch {
-            core?.errorMessage = error.localizedDescription
+            reportError(error)
         }
     }
 
     func revealResearchNotes() {
-        guard let rootURL = core?.rootURL else { return }
+        guard let rootURL = projectRoot() else { return }
         NSWorkspace.shared.activateFileViewerSelecting([ProjectResearchDisk.notesURL(at: rootURL)])
     }
 
@@ -100,12 +135,13 @@ final class ProjectResearchStore: ObservableObject {
         return library.sources.filter { ids.contains($0.id) }
     }
 
-    private func saveProjectBibliography() {
-        guard let rootURL = core?.rootURL else { return }
+    private func persist(_ updated: ProjectBibliographyArchive) {
+        guard updated != projectBibliography, let rootURL = projectRoot() else { return }
         do {
-            try ProjectResearchDisk.save(projectBibliography, at: rootURL)
+            try saveBibliography(updated, rootURL)
+            projectBibliography = updated
         } catch {
-            core?.errorMessage = error.localizedDescription
+            reportError(error)
         }
     }
 }
