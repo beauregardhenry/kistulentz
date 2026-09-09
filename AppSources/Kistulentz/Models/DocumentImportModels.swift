@@ -1,7 +1,7 @@
 import Foundation
 import UniformTypeIdentifiers
 
-enum DocumentImportFormat: String, CaseIterable, Identifiable, Equatable {
+enum DocumentImportFormat: String, CaseIterable, Identifiable, Equatable, Sendable {
     case plainText
     case docx
     case rtf
@@ -55,12 +55,12 @@ enum DocumentImportFormat: String, CaseIterable, Identifiable, Equatable {
     }
 }
 
-enum DocumentImportNoticeSeverity: String, Equatable {
+enum DocumentImportNoticeSeverity: String, Equatable, Sendable {
     case information
     case warning
 }
 
-struct DocumentImportNotice: Identifiable, Equatable {
+struct DocumentImportNotice: Identifiable, Equatable, Sendable {
     let id: UUID
     let severity: DocumentImportNoticeSeverity
     let title: String
@@ -79,7 +79,7 @@ struct DocumentImportNotice: Identifiable, Equatable {
     }
 }
 
-enum DocumentTrackedChangeKind: String, Equatable {
+enum DocumentTrackedChangeKind: String, Equatable, Sendable {
     case insertion
     case deletion
 
@@ -91,7 +91,7 @@ enum DocumentTrackedChangeKind: String, Equatable {
     }
 }
 
-enum DocumentTrackedChangeDecision: String, CaseIterable, Identifiable, Equatable {
+enum DocumentTrackedChangeDecision: String, CaseIterable, Identifiable, Equatable, Sendable {
     case accept
     case reject
 
@@ -99,7 +99,7 @@ enum DocumentTrackedChangeDecision: String, CaseIterable, Identifiable, Equatabl
     var title: String { rawValue.capitalized }
 }
 
-struct DocumentImportReviewCard: Identifiable, Equatable {
+struct DocumentImportReviewCard: Identifiable, Equatable, Sendable {
     let id: UUID
     let kind: DocumentTrackedChangeKind
     let author: String?
@@ -129,7 +129,7 @@ struct DocumentImportReviewCard: Identifiable, Equatable {
     }
 }
 
-struct DocumentImportAsset: Identifiable, Equatable {
+struct DocumentImportAsset: Identifiable, Equatable, Sendable {
     let id: UUID
     let suggestedFilename: String
     let altText: String
@@ -148,7 +148,7 @@ struct DocumentImportAsset: Identifiable, Equatable {
     }
 }
 
-struct DocumentImportDraft: Identifiable, Equatable {
+struct DocumentImportDraft: Identifiable, Equatable, Sendable {
     let id: UUID
     let sourceURL: URL
     let format: DocumentImportFormat
@@ -224,7 +224,7 @@ struct DocumentImportDraft: Identifiable, Equatable {
     }
 }
 
-struct DocumentImportSaveResult: Equatable {
+struct DocumentImportSaveResult: Equatable, Sendable {
     let markdownURL: URL
     let assetFolderURL: URL?
 }

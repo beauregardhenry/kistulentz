@@ -82,7 +82,7 @@ final class DocumentImportCoordinator: ObservableObject {
         isRunning = false
     }
 
-    private func begin<Value>(
+    private func begin<Value: Sendable>(
         operation: @escaping () async throws -> Value,
         completion: @escaping (Value) -> Void
     ) {

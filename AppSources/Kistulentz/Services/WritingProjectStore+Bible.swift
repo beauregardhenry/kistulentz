@@ -45,14 +45,18 @@ extension WritingProjectStore {
 
     private func registerBibleUndo(previous: String, updated: String, actionName: String) {
         projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.restoreBibleForUndo(previous, inverse: updated, actionName: actionName)
+            MainActor.assumeIsolated {
+                target.restoreBibleForUndo(previous, inverse: updated, actionName: actionName)
+            }
         }
         projectUndoManager?.setActionName(actionName)
     }
 
     private func restoreBibleForUndo(_ value: String, inverse: String, actionName: String) {
         projectUndoManager?.registerUndo(withTarget: self) { target in
-            target.restoreBibleForUndo(inverse, inverse: value, actionName: actionName)
+            MainActor.assumeIsolated {
+                target.restoreBibleForUndo(inverse, inverse: value, actionName: actionName)
+            }
         }
         projectUndoManager?.setActionName(actionName)
         let previous = bibleText
