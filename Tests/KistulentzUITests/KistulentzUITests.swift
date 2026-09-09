@@ -123,14 +123,14 @@ final class KistulentzUITests: KistulentzUITestCase {
 
         app.staticTexts["Harbor Study"].firstMatch.rightClick()
         app.menuItems["Remove"].click()
-        let cancelRemoval = app.buttons["Cancel"].firstMatch
+        let cancelRemoval = app.descendants(matching: .any)["CancelResearchSourceRemoval"].firstMatch
         XCTAssertTrue(cancelRemoval.waitForExistence(timeout: 3))
         cancelRemoval.click()
         XCTAssertTrue(app.staticTexts["Harbor Study"].firstMatch.exists)
 
         app.staticTexts["Harbor Study"].firstMatch.rightClick()
         app.menuItems["Remove"].click()
-        let confirmRemoval = app.buttons["Remove"].firstMatch
+        let confirmRemoval = app.descendants(matching: .any)["ConfirmResearchSourceRemoval"].firstMatch
         XCTAssertTrue(confirmRemoval.waitForExistence(timeout: 3))
         confirmRemoval.click()
         XCTAssertFalse(app.staticTexts["Harbor Study"].firstMatch.waitForExistence(timeout: 3))

@@ -852,6 +852,11 @@ struct EditorWorkspace: View {
     }
 
     private func openImportedMarkdown(_ url: URL) {
+#if UI_TEST_HOST
+        if ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_DISABLE_AUTO_OPEN"] == "1" {
+            return
+        }
+#endif
         let configuration = NSWorkspace.OpenConfiguration()
         configuration.activates = true
         NSWorkspace.shared.open(

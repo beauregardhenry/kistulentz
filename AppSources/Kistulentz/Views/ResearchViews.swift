@@ -110,7 +110,9 @@ struct ResearchLibraryView: View {
                 catch { store.errorMessage = error.localizedDescription }
                 pendingDeletion = nil
             }
+            .accessibilityIdentifier("ConfirmResearchSourceRemoval")
             Button("Cancel", role: .cancel) { pendingDeletion = nil }
+                .accessibilityIdentifier("CancelResearchSourceRemoval")
         } message: {
             Text("Managed attachment copies and their local indexes will also be removed. Linked originals will not be deleted.")
         }
