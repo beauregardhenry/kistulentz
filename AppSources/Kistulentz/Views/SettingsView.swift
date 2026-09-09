@@ -22,6 +22,9 @@ struct SettingsView: View {
     @State private var providerTestTask: Task<Void, Never>?
     @State private var testingProvider: AIProvider?
     @State private var providerTestResults: [AIProvider: ProviderTestDisplay] = [:]
+#if UI_TEST_HOST
+    @State private var uiProviderTestAttempt = 0
+#endif
 
     /// Every installed font family, for the editor font picker. Names beginning with "." are
     /// macOS's private system faces (`.AppleSystemUIFont` and similar) -- not meant to be chosen
@@ -364,7 +367,7 @@ struct SettingsView: View {
                 testConnection(provider)
             }
             .accessibilityIdentifier("TestConnection-\(provider.rawValue)")
-            .disabled(testingProvider != nil || !settings.isProviderReady(provider))
+            .disabled(testingProvider != nil || !isProviderReadyForConnectionTest(provider))
 
             if testingProvider == provider {
                 ProgressView().controlSize(.small)
@@ -397,7 +400,7 @@ struct SettingsView: View {
                 providerTestTask = nil
             }
             do {
-                let result = try await ProviderConnectionTester().test(
+                let result = try await runProviderConnectionTest(
                     provider: provider,
                     model: model,
                     apiKey: apiKey
@@ -416,6 +419,57 @@ struct SettingsView: View {
                 )
             }
         }
+    }
+
+    private func isProviderReadyForConnectionTest(_ provider: AIProvider) -> Bool {
+#if UI_TEST_HOST
+        let environment = ProcessInfo.processInfo.environment
+        if environment["KISTULENTZ_UI_TEST_PROVIDER"] == provider.rawValue,
+           environment["KISTULENTZ_UI_TEST_PROVIDER_SEQUENCE"] != nil {
+            return true
+        }
+#endif
+        return settings.isProviderReady(provider)
+    }
+
+    @MainActor
+    private func runProviderConnectionTest(
+        provider: AIProvider,
+        model: String,
+        apiKey: String?
+    ) async throws -> ProviderConnectionResult {
+#if UI_TEST_HOST
+        let environment = ProcessInfo.processInfo.environment
+        if environment["KISTULENTZ_UI_TEST_PROVIDER"] == provider.rawValue,
+           let rawSequence = environment["KISTULENTZ_UI_TEST_PROVIDER_SEQUENCE"] {
+            let outcomes = rawSequence.split(separator: ",").map(String.init)
+            let attempt = uiProviderTestAttempt
+            uiProviderTestAttempt += 1
+            if let rawDelay = environment["KISTULENTZ_UI_TEST_PROVIDER_DELAY_MS"],
+               let delay = UInt64(rawDelay) {
+                try await Task.sleep(for: .milliseconds(delay))
+            }
+            try Task.checkCancellation()
+            let outcome = outcomes.isEmpty ? "success" : outcomes[min(attempt, outcomes.count - 1)]
+            switch outcome {
+            case "rejected":
+                throw ProviderConnectionError.rejected(provider: provider.title, status: 401)
+            case "unreachable":
+                throw ProviderConnectionError.unreachable(provider.title)
+            default:
+                return ProviderConnectionResult(
+                    provider: provider,
+                    model: model,
+                    message: "\(provider.title) test connection succeeded."
+                )
+            }
+        }
+#endif
+        return try await ProviderConnectionTester().test(
+            provider: provider,
+            model: model,
+            apiKey: apiKey
+        )
     }
 
     @MainActor

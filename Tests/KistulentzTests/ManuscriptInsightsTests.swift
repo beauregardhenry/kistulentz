@@ -147,6 +147,169 @@ final class ManuscriptInsightsTests: XCTestCase {
         }
     }
 
+    func testManuscriptModelIdentitiesRemainStableAcrossCaseAndLocationChanges() {
+        let entity = ManuscriptEntity(
+            name: "North Harbor",
+            kind: .place,
+            count: 3,
+            chapters: ["One.md", "Two.md"]
+        )
+        let differentlyCased = ManuscriptEntity(
+            name: "NORTH HARBOR",
+            kind: .place,
+            count: 9,
+            chapters: ["Three.md"]
+        )
+        let frequency = ManuscriptFrequency(value: "Harbor Policy", count: 4)
+
+        XCTAssertEqual(entity.id, "place:north harbor")
+        XCTAssertEqual(entity.id, differentlyCased.id)
+        XCTAssertEqual(frequency.id, "harbor policy")
+        XCTAssertEqual(ManuscriptDocument(relativePath: "One.md", title: "One", text: "Text").relativePath, "One.md")
+        XCTAssertEqual(
+            ManuscriptChapterMetrics(
+                relativePath: "One.md",
+                title: "One",
+                wordCount: 1,
+                sentenceCount: 1,
+                gradeLevel: 1,
+                averageSentenceWords: 1,
+                averageParagraphWords: 1,
+                dialogueRatio: 0,
+                headingCount: 1,
+                adverbCount: 0,
+                passiveVoiceCount: 0,
+                citationCount: 0
+            ).id,
+            "One.md"
+        )
+    }
+
+    func testManuscriptEntityScopeAndAudienceLabelsCoverEveryCase() {
+        XCTAssertEqual(
+            ManuscriptEntityKind.allCases.map(\.title),
+            ["Characters & People", "Places & Settings", "Organizations & Groups", "Other Named Entities"]
+        )
+        XCTAssertEqual(ManuscriptEntityKind.allCases.map(\.id), ["person", "place", "organization", "other"])
+        XCTAssertEqual(BetaReaderScope.allCases.map(\.title), ["Selection", "Chapter", "Whole Manuscript"])
+        XCTAssertEqual(BetaReaderScope.allCases.map(\.id), ["selection", "chapter", "manuscript"])
+        XCTAssertEqual(BetaReaderAudience.allCases.map(\.title), ["Fiction", "Nonfiction", "Both"])
+        XCTAssertEqual(BetaReaderAudience.allCases.map(\.id), ["fiction", "nonfiction", "general"])
+    }
+
+    func testEmptyManuscriptAnalysisUsesTheRequestedProjectIdentityAndZeroMetrics() {
+        for kind in WritingProjectKind.allCases {
+            let analysis = ManuscriptAnalysis.empty(projectName: "Untouched", kind: kind)
+
+            XCTAssertEqual(analysis.projectName, "Untouched")
+            XCTAssertEqual(analysis.kind, kind)
+            XCTAssertTrue(analysis.chapters.isEmpty)
+            XCTAssertTrue(analysis.entities.isEmpty)
+            XCTAssertTrue(analysis.keyTerms.isEmpty)
+            XCTAssertTrue(analysis.repeatedPhrases.isEmpty)
+            XCTAssertTrue(analysis.timelineMarkers.isEmpty)
+            XCTAssertTrue(analysis.claimChecks.isEmpty)
+            XCTAssertTrue(analysis.continuityChecks.isEmpty)
+            XCTAssertEqual(analysis.totalWords, 0)
+            XCTAssertEqual(analysis.totalSentences, 0)
+            XCTAssertEqual(analysis.overallGrade, 0)
+            XCTAssertEqual(analysis.averageSentenceWords, 0)
+            XCTAssertEqual(analysis.averageParagraphWords, 0)
+            XCTAssertEqual(analysis.dialogueRatio, 0)
+            XCTAssertEqual(analysis.citationCount, 0)
+            XCTAssertEqual(analysis.adverbCount, 0)
+            XCTAssertEqual(analysis.passiveVoiceCount, 0)
+            XCTAssertNil(analysis.structuralProfile)
+            XCTAssertEqual(analysis.reportMarkdown, "")
+            XCTAssertEqual(analysis.generatedBibleBlock, "")
+        }
+    }
+
+    func testBuiltInBetaReadersHaveStableUniqueIdentitiesAndBalancedCoverage() {
+        let readers = BetaReaderProfile.builtIns
+
+        XCTAssertEqual(readers.count, 6)
+        XCTAssertEqual(Set(readers.map(\.id)).count, readers.count)
+        XCTAssertTrue(readers.allSatisfy(\.isBuiltIn))
+        XCTAssertTrue(readers.allSatisfy { !$0.name.isEmpty && !$0.focus.isEmpty })
+        XCTAssertTrue(readers.contains { $0.audience == .fiction })
+        XCTAssertTrue(readers.contains { $0.audience == .nonfiction })
+        XCTAssertTrue(readers.contains { $0.audience == .general })
+        XCTAssertEqual(readers.first?.id.uuidString, "00000000-0000-0000-0000-000000000101")
+        XCTAssertEqual(readers.last?.id.uuidString, "00000000-0000-0000-0000-000000000106")
+    }
+
+    func testBetaReaderFeedbackDistinguishesLocalAndProviderSources() {
+        let reader = BetaReaderProfile.builtIns[0]
+        let local = BetaReaderFeedback(
+            reader: reader,
+            scope: .chapter,
+            source: .local,
+            summary: "Clear overall.",
+            reaction: "The middle slows.",
+            strengths: ["Opening"],
+            concerns: ["Pacing"],
+            questions: ["What changes?"]
+        )
+        let aiSource = BetaFeedbackSource.ai(provider: "Anthropic", model: "claude-test")
+
+        XCTAssertEqual(local.source.title, "Local analysis")
+        XCTAssertEqual(aiSource.title, "Anthropic · claude-test")
+        XCTAssertEqual(local.reader, reader)
+        XCTAssertEqual(local.scope, .chapter)
+        XCTAssertEqual(local.strengths, ["Opening"])
+        XCTAssertEqual(local.concerns, ["Pacing"])
+        XCTAssertEqual(local.questions, ["What changes?"])
+    }
+
+    func testBetaReaderArchiveAndManuscriptCacheRoundTripWithoutLosingDefaults() throws {
+        let reader = BetaReaderProfile(
+            name: "Custom",
+            focus: "Continuity",
+            audience: .general
+        )
+        let archive = BetaReaderArchive(readers: [reader])
+        let cache = ManuscriptProjectCache(
+            generatedBibleBlock: "## Generated",
+            aiReportMarkdown: "## AI report",
+            structuralProfile: nil
+        )
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
+
+        XCTAssertEqual(
+            try decoder.decode(BetaReaderArchive.self, from: encoder.encode(archive)),
+            archive
+        )
+        XCTAssertEqual(
+            try decoder.decode(ManuscriptProjectCache.self, from: encoder.encode(cache)),
+            cache
+        )
+        XCTAssertEqual(ManuscriptProjectCache(), ManuscriptProjectCache())
+        XCTAssertTrue(BetaReaderArchive().readers.isEmpty)
+    }
+
+    func testBibleUpdateNoticeEqualityTracksNoticeIdentityRatherThanMatchingText() {
+        let first = BibleUpdateNotice(
+            createdAt: Date(timeIntervalSince1970: 1),
+            summary: "Updated",
+            previousText: "Before",
+            updatedText: "After",
+            diff: [RevisionDiffLine(id: 0, kind: .added, text: "After")]
+        )
+        let copied = first
+        let separate = BibleUpdateNotice(
+            createdAt: first.createdAt,
+            summary: first.summary,
+            previousText: first.previousText,
+            updatedText: first.updatedText,
+            diff: first.diff
+        )
+
+        XCTAssertEqual(first, copied)
+        XCTAssertNotEqual(first, separate)
+    }
+
     func testManuscriptAIRequestIncludesVisibleProjectContextAndSafetyInstructions() {
         let preview = AIRequestPreview(
             purpose: .manuscriptReport(kind: .nonfiction),

@@ -46,4 +46,50 @@ final class AccessibilityProviderUITests: KistulentzUITestCase {
             self.value(of: self.editor) == original
         }
     }
+
+    func testProviderConnectionFailureCanBeRetriedSuccessfully() {
+        launch(environment: [
+            "KISTULENTZ_UI_TEST_PROVIDER": "openAI",
+            "KISTULENTZ_UI_TEST_PROVIDER_SEQUENCE": "rejected,success"
+        ])
+        app.typeKey(",", modifierFlags: .command)
+        XCTAssertTrue(app.staticTexts["Kistulentz Settings"].waitForExistence(timeout: 8))
+
+        let connection = app.descendants(matching: .any)["TestConnection-openAI"].firstMatch
+        XCTAssertTrue(connection.waitForExistence(timeout: 5))
+        XCTAssertTrue(connection.isEnabled)
+        connection.click()
+        let rejected = app.staticTexts[
+            "OpenAI rejected the connection test (HTTP 401). Check the key, account access, and selected model."
+        ].firstMatch
+        XCTAssertTrue(rejected.waitForExistence(timeout: 5))
+        XCTAssertTrue(connection.isEnabled)
+
+        connection.click()
+        XCTAssertTrue(app.staticTexts["OpenAI test connection succeeded."].waitForExistence(timeout: 5))
+        XCTAssertTrue(connection.isEnabled)
+    }
+
+    func testClosingSettingsCancelsAnInterruptedProviderConnectionTest() {
+        launch(environment: [
+            "KISTULENTZ_UI_TEST_PROVIDER": "openAI",
+            "KISTULENTZ_UI_TEST_PROVIDER_SEQUENCE": "success",
+            "KISTULENTZ_UI_TEST_PROVIDER_DELAY_MS": "2000"
+        ])
+        app.typeKey(",", modifierFlags: .command)
+        let settingsTitle = app.staticTexts["Kistulentz Settings"]
+        XCTAssertTrue(settingsTitle.waitForExistence(timeout: 8))
+
+        let connection = app.descendants(matching: .any)["TestConnection-openAI"].firstMatch
+        XCTAssertTrue(connection.waitForExistence(timeout: 5))
+        connection.click()
+        XCTAssertTrue(app.buttons["Testing…"].waitForExistence(timeout: 3))
+        app.typeKey("w", modifierFlags: .command)
+
+        XCTAssertFalse(settingsTitle.waitForExistence(timeout: 3))
+        Thread.sleep(forTimeInterval: 2.5)
+        XCTAssertFalse(app.staticTexts["OpenAI test connection succeeded."].exists)
+        XCTAssertTrue(editor.exists)
+        XCTAssertTrue(app.windows.firstMatch.exists)
+    }
 }

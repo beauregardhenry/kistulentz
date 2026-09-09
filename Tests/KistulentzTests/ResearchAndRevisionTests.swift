@@ -623,6 +623,242 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 2.md", at: root).contains("commence walking"))
     }
 
+    @MainActor
+    func testRevisionStatusesAndGoalsPersistAcrossProjectReopen() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Revision State", kind: .fiction)
+        let finding = revisionFinding(signature: "persistent", title: "Persistent finding")
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.revisionArchive.findings = [finding]
+
+        store.setRevisionFindingStatus(finding.id, status: .dismissed)
+        store.setRevisionFindingStatus(UUID(), status: .resolved)
+        store.addRevisionGoal(title: "   ", notes: "Ignored", pass: .structure)
+        store.addRevisionGoal(title: "  Repair the middle  ", notes: "Restore momentum", pass: .pacing)
+        let goalID = try XCTUnwrap(store.revisionArchive.goals.first?.id)
+        store.toggleRevisionGoal(UUID())
+        store.toggleRevisionGoal(goalID)
+
+        let reopened = WritingProjectStore()
+        try reopened.openProject(at: root)
+
+        XCTAssertEqual(reopened.revisionArchive.findings.first?.status, .dismissed)
+        XCTAssertEqual(reopened.revisionArchive.goals.count, 1)
+        XCTAssertEqual(reopened.revisionArchive.goals.first?.title, "Repair the middle")
+        XCTAssertEqual(reopened.revisionArchive.goals.first?.notes, "Restore momentum")
+        XCTAssertEqual(reopened.revisionArchive.goals.first?.revisionPass, .pacing)
+        XCTAssertTrue(reopened.revisionArchive.goals.first?.isComplete == true)
+
+        reopened.removeRevisionGoal(UUID())
+        XCTAssertEqual(reopened.revisionArchive.goals.count, 1)
+        reopened.removeRevisionGoal(goalID)
+        XCTAssertTrue(reopened.revisionArchive.goals.isEmpty)
+        XCTAssertTrue(try SystemicRevisionDisk.load(at: root).goals.isEmpty)
+    }
+
+    @MainActor
+    func testAddingAIRevisionFindingsPreservesDecisionsAndSortsNewResults() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "AI Revision", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let originalID = UUID()
+        let originalDate = Date(timeIntervalSince1970: 100)
+        store.revisionArchive.findings = [
+            revisionFinding(
+                id: originalID,
+                signature: "shared",
+                classification: .probableProblem,
+                status: .dismissed,
+                title: "Old wording",
+                detail: "Old detail",
+                createdAt: originalDate
+            ),
+            revisionFinding(signature: "retained", classification: .opportunity, title: "Retained")
+        ]
+        let refreshed = revisionFinding(
+            signature: "shared",
+            classification: .confirmedProblem,
+            title: "Updated wording",
+            detail: "Updated detail",
+            origin: .ai
+        )
+        let question = revisionFinding(
+            signature: "question",
+            classification: .authorQuestion,
+            title: "A question",
+            origin: .ai
+        )
+
+        store.addAIRevisionFindings([question, refreshed], summary: "AI synthesis")
+
+        let shared = try XCTUnwrap(store.revisionArchive.findings.first { $0.signature == "shared" })
+        XCTAssertEqual(shared.id, originalID)
+        XCTAssertEqual(shared.status, .dismissed)
+        XCTAssertEqual(shared.createdAt, originalDate)
+        XCTAssertEqual(shared.title, "Updated wording")
+        XCTAssertEqual(shared.detail, "Updated detail")
+        XCTAssertEqual(store.revisionArchive.findings.map(\.classification), [.confirmedProblem, .authorQuestion, .opportunity])
+        XCTAssertEqual(store.revisionAISummary, "AI synthesis")
+        let persisted = try SystemicRevisionDisk.load(at: root).findings
+        XCTAssertEqual(persisted.map(\.id), store.revisionArchive.findings.map(\.id))
+        XCTAssertEqual(persisted.map(\.signature), store.revisionArchive.findings.map(\.signature))
+        XCTAssertEqual(persisted.map(\.status), store.revisionArchive.findings.map(\.status))
+        XCTAssertEqual(persisted.map(\.title), store.revisionArchive.findings.map(\.title))
+    }
+
+    @MainActor
+    func testRevisionAIContextIncludesOnlyProjectSourcesNotesAndSavedManuscript() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Revision Context", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nA saved context passage.\n")
+        let included = sampleSource()
+        var excluded = sampleSource()
+        excluded.id = UUID()
+        excluded.citeKey = "excluded2026"
+        excluded.title = "Excluded Source"
+        store.researchStore.addResearchSource(included.id)
+        store.researchStore.updateResearchNotes("Verify the harbor dates.")
+
+        let context = try store.revisionAIContext(sources: [included, excluded])
+
+        XCTAssertTrue(context.contains("<project_research_notes>"))
+        XCTAssertTrue(context.contains("Verify the harbor dates."))
+        XCTAssertTrue(context.contains("Harbor Methods"))
+        XCTAssertFalse(context.contains("Excluded Source"))
+        XCTAssertTrue(context.contains("<chapter path=\"\(try XCTUnwrap(store.selectedChapterPath))\">"))
+        XCTAssertTrue(context.contains("A saved context passage."))
+    }
+
+    @MainActor
+    func testLocalRevisionScanPublishesAndPersistsResults() async throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Local Scan", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nWe utilize tools and commence work.\n")
+
+        store.runLocalRevisionScan(targetGrade: 8, sources: [])
+        for _ in 0..<200 where store.isScanningRevisions {
+            try await Task.sleep(for: .milliseconds(10))
+        }
+
+        XCTAssertFalse(store.isScanningRevisions)
+        XCTAssertFalse(store.revisionArchive.findings.isEmpty)
+        XCTAssertNotNil(store.revisionArchive.lastLocalScanAt)
+        let persisted = try SystemicRevisionDisk.load(at: root)
+        XCTAssertEqual(persisted.findings.map(\.id), store.revisionArchive.findings.map(\.id))
+        XCTAssertEqual(persisted.findings.map(\.signature), store.revisionArchive.findings.map(\.signature))
+        XCTAssertEqual(persisted.findings.map(\.status), store.revisionArchive.findings.map(\.status))
+        XCTAssertEqual(
+            try XCTUnwrap(persisted.lastLocalScanAt).timeIntervalSince1970,
+            try XCTUnwrap(store.revisionArchive.lastLocalScanAt).timeIntervalSince1970,
+            accuracy: 1
+        )
+    }
+
+    @MainActor
+    func testRevisionValidationAndApplicationRefuseUnknownStaleAndEmptyChanges() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Revision Safety", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let original = try WritingProjectDisk.readChapter("Chapter 1.md", at: root)
+        let unknown = RevisionChangeSet(title: "Unknown", summary: "", changes: [
+            RevisionChange(chapterPath: "Missing.md", originalText: "passage", replacementText: "replacement", explanation: "")
+        ])
+        let empty = RevisionChangeSet(title: "Empty", summary: "", changes: [
+            RevisionChange(chapterPath: "Chapter 1.md", originalText: "same", replacementText: "same", explanation: "")
+        ])
+        let stale = RevisionChangeSet(title: "Stale", summary: "", changes: [
+            RevisionChange(chapterPath: "Chapter 1.md", originalText: "not in the file", replacementText: "replacement", explanation: "")
+        ])
+
+        XCTAssertEqual(store.validateRevisionChangeSet(unknown), unknown)
+        XCTAssertTrue(store.errorMessage?.contains("no longer matches Missing.md") == true)
+        store.errorMessage = nil
+        XCTAssertFalse(store.applyRevisionChangeSet(empty))
+        XCTAssertEqual(store.errorMessage, SystemicRevisionError.noConcreteChanges.localizedDescription)
+        store.errorMessage = nil
+        XCTAssertFalse(store.applyRevisionChangeSet(stale))
+        XCTAssertTrue(store.errorMessage?.contains("no longer matches Chapter 1.md") == true)
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Chapter 1.md", at: root), original)
+    }
+
+    @MainActor
+    func testSystemicRevisionUndoRefusesToOverwriteAnExternalEdit() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Revision Undo Safety", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nWe utilize ropes.\n")
+        store.saveNow()
+        let finding = revisionFinding(
+            signature: "undo-safety",
+            title: "Prefer use",
+            excerpt: "utilize",
+            replacement: "use"
+        )
+        store.revisionArchive.findings = [finding]
+        let undo = UndoManager()
+        store.attachUndoManager(undo)
+        let set = try store.makeRevisionChangeSet(findingIDs: [finding.id])
+        XCTAssertTrue(store.applyRevisionChangeSet(set))
+        XCTAssertEqual(store.revisionArchive.findings.first?.status, .resolved)
+        try WritingProjectDisk.writeChapter(
+            "# Chapter 1\n\nAn external editor changed this file.\n",
+            relativePath: "Chapter 1.md",
+            at: root
+        )
+
+        undo.undo()
+
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Chapter 1.md", at: root),
+            "# Chapter 1\n\nAn external editor changed this file.\n"
+        )
+        XCTAssertEqual(store.revisionArchive.findings.first?.status, .resolved)
+        XCTAssertEqual(store.errorMessage, SystemicRevisionError.filesChanged.localizedDescription)
+    }
+
+    @MainActor
+    func testProjectPolishInputsUseSavedDocumentsAndStyleDecisions() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Polish Inputs", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nShe moved quickly.\n")
+        store.saveNow()
+        let issue = WritingIssue(
+            category: .adverb,
+            range: NSRange(location: 23, length: 7),
+            excerpt: "quickly",
+            message: "Prefer a stronger verb.",
+            replacement: "hurried"
+        )
+        try ProjectStyleManager.record(action: .accepted, issue: issue, at: root)
+
+        let inputs = try store.projectPolishInputs()
+
+        XCTAssertEqual(inputs.documents.map(\.relativePath), ["Chapter 1.md"])
+        XCTAssertEqual(inputs.documents.first?.text, "# Chapter 1\n\nShe moved quickly.\n")
+        XCTAssertEqual(inputs.styleDecisions.count, 1)
+        XCTAssertEqual(inputs.styleDecisions.first?.excerpt, "quickly")
+        XCTAssertThrowsError(try WritingProjectStore().projectPolishInputs()) { error in
+            XCTAssertEqual(error as? SystemicRevisionError, .filesChanged)
+        }
+    }
+
     func testSystemicAIRequestIsExplicitAndDoesNotClaimToApplyChanges() {
         let request = AIRequestPreview(
             purpose: .systemicRevision(kind: .fiction, passes: [.continuity, .pacing]),
@@ -645,6 +881,37 @@ final class ResearchAndRevisionTests: XCTestCase {
             publisher: "Example Press",
             DOI: "10.1234/harbor",
             ISBN: "9780000000002"
+        )
+    }
+
+    private func revisionFinding(
+        id: UUID = UUID(),
+        signature: String,
+        classification: RevisionFindingClassification = .confirmedProblem,
+        status: RevisionFindingStatus = .open,
+        title: String,
+        detail: String = "Review this passage.",
+        excerpt: String = "utilize",
+        replacement: String? = "use",
+        origin: RevisionFindingOrigin = .local,
+        createdAt: Date = Date()
+    ) -> SystemicRevisionFinding {
+        SystemicRevisionFinding(
+            id: id,
+            signature: signature,
+            revisionPass: .lineEditing,
+            classification: classification,
+            status: status,
+            title: title,
+            detail: detail,
+            chapterPath: "Chapter 1.md",
+            excerpt: excerpt,
+            replacement: replacement,
+            origin: origin,
+            provider: origin == .ai ? "Test Provider" : nil,
+            model: origin == .ai ? "test-model" : nil,
+            createdAt: createdAt,
+            lastSeenAt: createdAt
         )
     }
 
