@@ -54,6 +54,126 @@ final class ProjectSubstoreTests: XCTestCase {
     }
 
     @MainActor
+    func testResearchStorePersistsEveryBibliographyEditAndCascadesSourceRemoval() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let sourceID = UUID()
+        var persisted: [ProjectBibliographyArchive] = []
+        var savedNotes: [String] = []
+        let store = ProjectResearchStore(
+            projectRoot: { root },
+            reportError: { XCTFail("Unexpected error: \($0)") },
+            saveBibliography: { archive, _ in persisted.append(archive) },
+            saveNotes: { value, _ in savedNotes.append(value) }
+        )
+
+        store.addResearchSource(sourceID)
+        store.addResearchSource(sourceID)
+        store.setBibliographyStyle(.chicagoNotes)
+        store.addQuotation(sourceID: sourceID, text: "   ", locator: "p. 1", note: "Ignored")
+        store.addQuotation(sourceID: sourceID, text: "  Evidence  ", locator: " p. 2 ", note: " note ")
+        let firstQuotation = try XCTUnwrap(store.projectBibliography.quotations.first)
+        store.removeQuotation(firstQuotation.id)
+        store.addQuotation(sourceID: sourceID, text: "Evidence", locator: "p. 3", note: "")
+        store.addClaimLink(sourceID: sourceID, chapterPath: "Chapter.md", excerpt: "  ", locator: "", note: "")
+        store.addClaimLink(
+            sourceID: sourceID,
+            chapterPath: "Chapter.md",
+            excerpt: "  Supported claim  ",
+            locator: " p. 4 ",
+            note: " context "
+        )
+        let firstClaim = try XCTUnwrap(store.projectBibliography.claimLinks.first)
+        store.removeClaimLink(firstClaim.id)
+        store.addClaimLink(
+            sourceID: sourceID,
+            chapterPath: "Chapter.md",
+            excerpt: "Supported claim",
+            locator: "p. 5",
+            note: ""
+        )
+        store.updateResearchNotes("New research notes")
+        store.updateResearchNotes("New research notes")
+
+        XCTAssertEqual(store.projectBibliography.style, .chicagoNotes)
+        XCTAssertEqual(store.projectBibliography.quotations.first?.text, "Evidence")
+        XCTAssertEqual(store.projectBibliography.claimLinks.first?.claimExcerpt, "Supported claim")
+        XCTAssertEqual(store.researchNotesText, "New research notes")
+        XCTAssertEqual(savedNotes, ["New research notes"])
+        XCTAssertEqual(persisted.last, store.projectBibliography)
+
+        store.removeResearchSource(sourceID)
+
+        XCTAssertTrue(store.projectBibliography.sourceIDs.isEmpty)
+        XCTAssertTrue(store.projectBibliography.quotations.isEmpty)
+        XCTAssertTrue(store.projectBibliography.claimLinks.isEmpty)
+        XCTAssertEqual(persisted.last, store.projectBibliography)
+    }
+
+    @MainActor
+    func testStyleLearningStoreLoadsSavesRecordsAndClearsProjectPreferences() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try ProjectStyleManager.prepare(at: root, projectName: "Style Test", kind: .nonfiction)
+        var errors: [Error] = []
+        let store = StyleLearningStore(
+            projectRoot: { root },
+            reportError: { errors.append($0) }
+        )
+
+        try store.load(at: root)
+        XCTAssertTrue(store.styleText.contains("Style Test"))
+
+        store.saveStyle("Prefer direct sentences.")
+        XCTAssertEqual(store.styleText, "Prefer direct sentences.")
+
+        store.recordStyleDecision(
+            action: .accepted,
+            issue: WritingIssue(
+                category: .complexPhrase,
+                range: NSRange(location: 0, length: 7),
+                excerpt: "utilize",
+                message: "Use a simpler alternative.",
+                replacement: "use"
+            )
+        )
+
+        XCTAssertEqual(store.styleDecisions.count, 1)
+        XCTAssertTrue(store.styleText.contains("Prefer `use` to `utilize`"))
+
+        store.clearLearnedStylePreferences()
+
+        XCTAssertTrue(store.styleDecisions.isEmpty)
+        XCTAssertTrue(store.styleText.contains("No editing preferences have been learned yet."))
+        XCTAssertTrue(errors.isEmpty)
+    }
+
+    @MainActor
+    func testStyleLearningStoreWithoutAProjectDoesNotMutateOrReportAnError() {
+        var errors: [Error] = []
+        let store = StyleLearningStore(
+            projectRoot: { nil },
+            reportError: { errors.append($0) }
+        )
+
+        store.saveStyle("Unattached style")
+        store.recordStyleDecision(
+            action: .declined,
+            issue: WritingIssue(
+                category: .adverb,
+                range: NSRange(location: 0, length: 7),
+                excerpt: "quickly",
+                message: "Consider a stronger verb."
+            )
+        )
+        store.clearLearnedStylePreferences()
+
+        XCTAssertEqual(store.styleText, "")
+        XCTAssertTrue(store.styleDecisions.isEmpty)
+        XCTAssertTrue(errors.isEmpty)
+    }
+
+    @MainActor
     func testBetaReaderStoreCommitsEditsOnlyAfterPersistenceSucceeds() {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }

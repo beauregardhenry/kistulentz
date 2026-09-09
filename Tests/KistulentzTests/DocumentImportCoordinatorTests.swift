@@ -3,6 +3,36 @@ import XCTest
 
 final class DocumentImportCoordinatorTests: XCTestCase {
     @MainActor
+    func testDefaultCoordinatorLoadsClearsAndSavesARealPlainTextDocument() async throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("KistulentzDocumentImportCoordinatorTests-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let source = root.appendingPathComponent("source.txt")
+        let output = root.appendingPathComponent("imported.md")
+        try "Imported plain text".write(to: source, atomically: true, encoding: .utf8)
+        let coordinator = DocumentImportCoordinator()
+
+        coordinator.load(from: source)
+        try await waitUntil { !coordinator.isRunning }
+        let draft = try XCTUnwrap(coordinator.draft)
+        XCTAssertEqual(draft.templateMarkdown, "Imported plain text")
+
+        coordinator.clearDraft()
+        XCTAssertNil(coordinator.draft)
+
+        var saveResult: DocumentImportSaveResult?
+        coordinator.save(draft, decisions: [:], to: output) { result in
+            saveResult = result
+        }
+        try await waitUntil { !coordinator.isRunning }
+
+        XCTAssertEqual(saveResult?.markdownURL, output)
+        XCTAssertEqual(try String(contentsOf: output, encoding: .utf8), "Imported plain text\n")
+        XCTAssertNil(coordinator.errorMessage)
+    }
+
+    @MainActor
     func testNewLoadSupersedesASlowerPreviousLoad() async throws {
         let slow = URL(fileURLWithPath: "/tmp/slow.txt")
         let newest = URL(fileURLWithPath: "/tmp/newest.txt")

@@ -44,6 +44,107 @@ final class PublishExportViewModelTests: XCTestCase {
     }
 
     @MainActor
+    func testMetadataAndMatterEditsAreNormalizedPersistedAndPreviewed() {
+        let harness = Harness()
+        let model = PublishExportViewModel(dependencies: harness.dependencies())
+        model.load(sources: [])
+        model.authorsText = "  Beau Henry  \n\n Editor Name "
+        model.keywordsText = " writing,  local-first, ,macOS "
+        model.draft.metadata.title = "Revised Book"
+
+        model.saveMetadata()
+
+        XCTAssertEqual(harness.archive.metadata.authors, ["Beau Henry", "Editor Name"])
+        XCTAssertEqual(harness.archive.metadata.keywords, ["writing", "local-first", "macOS"])
+        XCTAssertTrue(model.previewText.contains("# chapter"))
+
+        model.draft.matter[0].markdown = "Author-edited matter"
+        model.regenerateSafeMatter()
+        model.saveMatter()
+
+        XCTAssertEqual(
+            harness.archive.matter.first(where: { $0.id == model.draft.matter[0].id })?.markdown,
+            model.draft.matter[0].markdown
+        )
+    }
+
+    @MainActor
+    func testProfileAndDestinationCommandsPersistSafeDigitalAndPrintPresets() throws {
+        let harness = Harness()
+        let model = PublishExportViewModel(dependencies: harness.dependencies())
+        model.load(sources: [])
+
+        let nonfiction = try XCTUnwrap(model.draft.profiles.first(where: { $0.kind == .nonfictionBook }))
+        model.selectProfile(nonfiction.id)
+        XCTAssertEqual(model.format, .printPDF)
+
+        model.duplicateSelectedProfile()
+        let copy = try XCTUnwrap(model.draft.profiles.first(where: { $0.id == model.selectedProfileID }))
+        XCTAssertEqual(copy.kind, .custom)
+        XCTAssertTrue(copy.name.hasSuffix(" Copy"))
+        model.deleteSelectedProfile()
+        XCTAssertFalse(model.draft.profiles.contains(where: { $0.id == copy.id }))
+
+        let fiction = try XCTUnwrap(model.draft.profiles.first(where: { $0.kind == .fictionBook }))
+        model.selectProfile(fiction.id)
+        model.setDestination(.genericEPUB, isSelected: false)
+        model.setDestination(.appleBooks, isSelected: true)
+        model.applyDestinationPreset()
+        XCTAssertEqual(model.format, .epub)
+        XCTAssertTrue(try XCTUnwrap(model.draft.profiles.first(where: { $0.id == fiction.id })).includeCover)
+
+        model.selectProfile(nonfiction.id)
+        model.draft.selectedDestinations = [.kdpPrint]
+        model.applyDestinationPreset()
+        let printProfile = try XCTUnwrap(model.draft.profiles.first(where: { $0.id == nonfiction.id }))
+        XCTAssertEqual(model.format, .printPDF)
+        XCTAssertGreaterThanOrEqual(printProfile.layout.insideMargin, 27)
+    }
+
+    @MainActor
+    func testPlanEditingPersistsOutlineChoicesAndWarningPreflightRequiresConfirmation() throws {
+        let firstID = UUID()
+        let secondID = UUID()
+        let harness = Harness()
+        harness.planItems = [
+            Self.item(id: "first", included: true, outlineNodeID: firstID),
+            Self.item(id: "second", included: true, outlineNodeID: secondID),
+        ]
+        harness.preflightReport = PublicationPreflightReport(findings: [
+            PublicationPreflightFinding(
+                id: "warning",
+                severity: .warning,
+                title: "Review recommended",
+                detail: "Confirm the generated metadata.",
+                sourcePath: nil
+            )
+        ])
+        let model = PublishExportViewModel(dependencies: harness.dependencies())
+        model.load(sources: [])
+        model.outputDirectory = URL(fileURLWithPath: "/tmp")
+
+        model.setInclusion(false, for: "first")
+        model.movePlanItems(from: IndexSet(integer: 1), to: 0)
+
+        XCTAssertEqual(model.plan?.items.map(\.id), ["second", "first"])
+        XCTAssertFalse(try XCTUnwrap(model.plan?.items.first(where: { $0.id == "first" })).isIncluded)
+        XCTAssertFalse(model.previewText.contains("# first"))
+
+        model.savePlanInclusions()
+        XCTAssertEqual(harness.outlineUpdates.count, 2)
+        XCTAssertEqual(harness.outlineUpdates.first?.0, secondID)
+        XCTAssertEqual(harness.outlineUpdates.first?.1, true)
+        XCTAssertEqual(harness.outlineUpdates.last?.0, firstID)
+        XCTAssertEqual(harness.outlineUpdates.last?.1, false)
+
+        model.requestExport()
+
+        XCTAssertTrue(model.showingWarningConfirmation)
+        XCTAssertFalse(model.isExporting)
+        XCTAssertEqual(model.preflight?.warnings.count, 1)
+    }
+
+    @MainActor
     func testExportFailureClearsProgressAndReportsError() async throws {
         let harness = Harness(exporter: { _, _, _, _ in
             throw ExpectedPublishError.failed
@@ -106,7 +207,8 @@ final class PublishExportViewModelTests: XCTestCase {
     private static func item(
         id: String,
         included: Bool,
-        exclusion: String? = nil
+        exclusion: String? = nil,
+        outlineNodeID: UUID? = nil
     ) -> ExportPlanItem {
         ExportPlanItem(
             id: id,
@@ -114,7 +216,7 @@ final class PublishExportViewModelTests: XCTestCase {
             title: id,
             markdown: "# \(id)\n",
             sourcePath: "\(id).md",
-            outlineNodeID: nil,
+            outlineNodeID: outlineNodeID,
             depth: 0,
             isIncluded: included,
             exclusionReason: exclusion,
@@ -168,6 +270,9 @@ final class PublishExportViewModelTests: XCTestCase {
 private final class Harness {
     var archive = PublicationArchive(projectName: "Book", projectKind: .fiction)
     var recordedExports = 0
+    var outlineUpdates: [(UUID, Bool)] = []
+    var planItems: [ExportPlanItem]?
+    var preflightReport = PublicationPreflightReport(findings: [])
     let exporter: PublishExportViewModel.Exporter
 
     init(
@@ -190,18 +295,39 @@ private final class Harness {
             makePlan: { [weak self] _, profileID, format in
                 let archive = self?.archive ?? PublicationArchive()
                 let profile = archive.profiles.first(where: { $0.id == profileID }) ?? archive.profiles[0]
-                var plan = PublishExportViewModelTests.plan(profile: profile)
+                var plan = PublishExportViewModelTests.plan(profile: profile, items: self?.planItems)
                 plan.format = format
                 plan.destinations = archive.selectedDestinations
                 return plan
             },
             rootURL: { URL(fileURLWithPath: "/tmp") },
-            updateOutlineInclusion: { _, _ in },
+            updateOutlineInclusion: { [weak self] id, isIncluded in
+                self?.outlineUpdates.append((id, isIncluded))
+            },
             recordExport: { [weak self] _, _ in self?.recordedExports += 1 },
             preview: { plan, _ in
-                PublicationRenderedBook(plan: plan, sections: [], notes: [])
+                let sections = plan.includedItems.map { item in
+                    PublicationRenderedSection(
+                        id: item.id,
+                        title: item.title,
+                        kind: item.kind,
+                        blocks: [PublicationBlock(
+                            kind: .paragraph,
+                            text: item.markdown,
+                            html: "",
+                            imageURL: nil,
+                            altText: ""
+                        )],
+                        bodyHTML: "",
+                        sourcePath: item.sourcePath,
+                        noteIDs: []
+                    )
+                }
+                return PublicationRenderedBook(plan: plan, sections: sections, notes: [])
             },
-            preflight: { _, _ in PublicationPreflightReport(findings: []) },
+            preflight: { [weak self] _, _ in
+                self?.preflightReport ?? PublicationPreflightReport(findings: [])
+            },
             export: exporter
         )
     }
