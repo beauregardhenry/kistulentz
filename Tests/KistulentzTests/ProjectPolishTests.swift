@@ -63,6 +63,91 @@ final class ProjectPolishTests: XCTestCase {
     }
 
     @MainActor
+    func testDefaultAnalyzerBuildsAReviewableLocalChangeWithDocumentMetadata() async throws {
+        var progress: [(Int, Int, String)] = []
+        let document = ManuscriptDocument(
+            relativePath: "Part One/Opening.md",
+            title: "Opening",
+            text: "# Opening\n\nWe utilize tools.\n"
+        )
+
+        let report = await ProjectPolishService().scan(
+            documents: [document],
+            targetGrade: 8,
+            styleDecisions: [],
+            onProgress: { progress.append(($0, $1, $2)) }
+        )
+        let change = try XCTUnwrap(report.changes.first)
+        XCTAssertTrue(change.originalText.contains("utilize"))
+        XCTAssertTrue(change.replacementText.contains("use"))
+        XCTAssertFalse(change.replacementText.contains("utilize"))
+        XCTAssertEqual(change.chapterPath, document.relativePath)
+        XCTAssertEqual(change.chapterTitle, document.title)
+        XCTAssertEqual(change.stage, .readability)
+        XCTAssertFalse(change.categoryTitle.isEmpty)
+        XCTAssertFalse(change.explanation.isEmpty)
+        XCTAssertEqual(report.completedDocumentCount, 1)
+        XCTAssertEqual(report.totalDocumentCount, 1)
+        XCTAssertTrue(report.failures.isEmpty)
+        XCTAssertFalse(report.wasCancelled)
+        XCTAssertEqual(progress.first?.0, 0)
+        XCTAssertEqual(progress.first?.1, 1)
+        XCTAssertEqual(progress.first?.2, "Opening")
+        XCTAssertEqual(progress.last?.0, 1)
+        XCTAssertEqual(progress.last?.1, 1)
+        XCTAssertEqual(progress.last?.2, "")
+    }
+
+    @MainActor
+    func testCancellationThrownByAnalyzerStopsBeforeCountingTheDocumentComplete() async {
+        let service = ProjectPolishService(documentAnalyzer: { _, _, _ in
+            throw CancellationError()
+        })
+
+        let report = await service.scan(
+            documents: [ManuscriptDocument(relativePath: "Draft.md", title: "Draft", text: "Text")],
+            targetGrade: 8,
+            styleDecisions: []
+        )
+
+        XCTAssertTrue(report.wasCancelled)
+        XCTAssertEqual(report.completedDocumentCount, 0)
+        XCTAssertTrue(report.changes.isEmpty)
+        XCTAssertTrue(report.failures.isEmpty)
+    }
+
+    func testValidationConflictsMergeByStableChangeIdentifier() {
+        let first = Self.change(path: "One.md", title: "One")
+        let second = Self.change(path: "Two.md", title: "Two")
+        var report = ProjectPolishReport(
+            changes: [first, second],
+            failures: [],
+            completedDocumentCount: 2,
+            totalDocumentCount: 2,
+            advisoryCount: 0,
+            skippedCount: 0,
+            wasCancelled: false
+        )
+        let validated = RevisionChangeSet(
+            title: "Validated",
+            summary: "",
+            changes: [RevisionChange(
+                id: first.id,
+                chapterPath: first.chapterPath,
+                originalText: first.originalText,
+                replacementText: first.replacementText,
+                explanation: first.explanation,
+                conflict: "The passage changed on disk."
+            )]
+        )
+
+        report.mergeValidation(validated)
+
+        XCTAssertEqual(report.changes[0].conflict, "The passage changed on disk.")
+        XCTAssertNil(report.changes[1].conflict)
+    }
+
+    @MainActor
     func testStagesUseCorrectnessThenReadabilityThenStyle() {
         XCTAssertEqual(ProjectPolishService.stage(for: [.spelling, .adverb]), .correctness)
         XCTAssertEqual(ProjectPolishService.stage(for: [.veryHardSentence, .passiveVoice]), .readability)
