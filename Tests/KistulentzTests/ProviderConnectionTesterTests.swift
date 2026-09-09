@@ -75,6 +75,103 @@ final class ProviderConnectionTesterTests: XCTestCase {
         }
     }
 
+    func testConnectionValidationRejectsMissingModelBeforeStartingNetworkWork() async {
+        ProviderTestURLProtocol.handler = { _ in
+            XCTFail("Missing model validation must not start a request")
+            throw URLError(.badURL)
+        }
+
+        do {
+            _ = try await ProviderConnectionTester(session: makeSession()).test(
+                provider: .openAI,
+                model: "   ",
+                apiKey: "secret"
+            )
+            XCTFail("Expected a missing-model error")
+        } catch let error as ProviderConnectionError {
+            XCTAssertEqual(error, .missingModel)
+        } catch {
+            XCTFail("Unexpected error: \(error)")
+        }
+    }
+
+    func testRemoteProvidersRejectMissingKeyBeforeStartingNetworkWork() async {
+        ProviderTestURLProtocol.handler = { _ in
+            XCTFail("Missing key validation must not start a request")
+            throw URLError(.badURL)
+        }
+
+        for provider in [AIProvider.openAI, .anthropic] {
+            do {
+                _ = try await ProviderConnectionTester(session: makeSession()).test(
+                    provider: provider,
+                    model: "test-model",
+                    apiKey: " \n "
+                )
+                XCTFail("Expected a missing-key error for \(provider)")
+            } catch let error as ProviderConnectionError {
+                XCTAssertEqual(error, .missingAPIKey(provider.title))
+            } catch {
+                XCTFail("Unexpected error: \(error)")
+            }
+        }
+    }
+
+    func testSuccessfulHTTPResponseWithoutModelIdentityIsRejected() async {
+        ProviderTestURLProtocol.handler = { request in
+            try Self.response(request, status: 200, json: ["object": "model"])
+        }
+
+        do {
+            _ = try await ProviderConnectionTester(session: makeSession()).test(
+                provider: .anthropic,
+                model: "claude-test",
+                apiKey: "secret"
+            )
+            XCTFail("Expected an invalid-response error")
+        } catch let error as ProviderConnectionError {
+            XCTAssertEqual(error, .invalidResponse("Anthropic"))
+        } catch {
+            XCTFail("Unexpected error: \(error)")
+        }
+    }
+
+    func testProviderReportingAnotherModelDoesNotVerifyTheSelection() async {
+        ProviderTestURLProtocol.handler = { request in
+            try Self.response(request, status: 200, json: ["id": "another-model"])
+        }
+
+        do {
+            _ = try await ProviderConnectionTester(session: makeSession()).test(
+                provider: .openAI,
+                model: "wanted-model",
+                apiKey: "secret"
+            )
+            XCTFail("Expected an unavailable-model error")
+        } catch let error as ProviderConnectionError {
+            XCTAssertEqual(error, .modelUnavailable("wanted-model"))
+        } catch {
+            XCTFail("Unexpected error: \(error)")
+        }
+    }
+
+    func testTransportFailureBecomesAnActionableUnreachableError() async {
+        ProviderTestURLProtocol.handler = { _ in throw URLError(.cannotConnectToHost) }
+
+        do {
+            _ = try await ProviderConnectionTester(session: makeSession()).test(
+                provider: .openAI,
+                model: "gpt-test",
+                apiKey: "secret"
+            )
+            XCTFail("Expected an unreachable-provider error")
+        } catch let error as ProviderConnectionError {
+            XCTAssertEqual(error, .unreachable("OpenAI"))
+        } catch {
+            XCTFail("Unexpected error: \(error)")
+        }
+    }
+
     private func makeSession() -> URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [ProviderTestURLProtocol.self]

@@ -24,7 +24,8 @@ final class ProjectImportAssistantUITests: KistulentzUITestCase {
 
         launch(environment: [
             "KISTULENTZ_UI_TEST_IMPORT_PATHS": sources.map(\.path).joined(separator: "\n"),
-            "KISTULENTZ_UI_TEST_IMPORT_OUTPUT_PATH": output.path
+            "KISTULENTZ_UI_TEST_IMPORT_OUTPUT_PATH": output.path,
+            "KISTULENTZ_UI_TEST_DISABLE_AUTO_OPEN": "1"
         ])
         openProjectImportAssistant()
         let moveFirstLater = app.buttons["Move A-first later"]

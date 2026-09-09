@@ -162,6 +162,119 @@ final class ReferenceLibraryTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: libraryRoot.appendingPathComponent("Kistulentz Library.md").path))
     }
 
+    func testLibraryBookBuildsAReferenceWithoutInventingAnEmptyAuthor() {
+        let id = UUID()
+        let source = LibraryBook(
+            id: id,
+            sourcePath: "/Books/Harbor.epub",
+            sourceFileSize: 42,
+            sourceModifiedAt: nil,
+            title: "Harbor",
+            author: "   ",
+            genres: ["Literary Fiction"],
+            profile: profile(),
+            excerpts: [
+                LibraryExcerpt(section: "Chapter 2", purpose: "Dialogue", text: "A representative exchange."),
+                LibraryExcerpt(section: "Chapter 7", purpose: "Tempo", text: "A faster representative passage.")
+            ],
+            importedAt: Date(timeIntervalSince1970: 10),
+            updatedAt: Date(timeIntervalSince1970: 20)
+        )
+
+        let reference = source.reference
+
+        XCTAssertEqual(reference.id, id)
+        XCTAssertEqual(reference.fileName, "Harbor.epub")
+        XCTAssertNil(reference.author)
+        XCTAssertEqual(reference.subjects, ["Literary Fiction"])
+        XCTAssertEqual(reference.chapters.map(\.id), [0, 1])
+        XCTAssertEqual(reference.chapters.map(\.title), ["Chapter 2 — Dialogue", "Chapter 7 — Tempo"])
+        XCTAssertEqual(reference.chapters.map(\.text), source.excerpts.map(\.text))
+        XCTAssertEqual(reference.profile.wordCount, source.profile.wordCount)
+        XCTAssertEqual(reference.profile.averageSentenceWords, source.profile.averageSentenceWords)
+        XCTAssertEqual(reference.profile.voice, source.profile.voice)
+    }
+
+    func testReferenceLibraryKindsExposeStableLabelsAndSymbols() {
+        XCTAssertEqual(LibraryReferenceKind.allCases.map(\.id), ["book", "author", "genre"])
+        XCTAssertEqual(LibraryReferenceKind.allCases.map(\.title), ["Books", "Authors", "Genres"])
+        XCTAssertEqual(
+            LibraryReferenceKind.allCases.map(\.systemImage),
+            ["book.closed", "person.2", "tag"]
+        )
+    }
+
+    func testReferenceDeepeningMarkdownRendersEverySectionAndOptionalList() {
+        let deepening = ReferenceDeepening(
+            summary: "The collection favors direct openings.",
+            style: "Concrete and economical.",
+            voice: "Close third person.",
+            tone: "Reflective.",
+            vocabulary: "Plain words with nautical precision.",
+            characterContinuity: "Names and motivations remain stable.",
+            tempo: "Measured with short action bursts.",
+            techniques: ["Open scenes late", "End chapters on decisions"],
+            suggestedGenres: ["Literary Fiction", "Historical Fiction"]
+        )
+
+        let markdown = deepening.markdown
+
+        for heading in [
+            "## Editorial synthesis", "### Style", "### Voice", "### Tone",
+            "### Vocabulary", "### Characters and continuity", "### Tempo",
+            "### Techniques", "### Suggested genres"
+        ] {
+            XCTAssertTrue(markdown.contains(heading), "Missing \(heading)")
+        }
+        XCTAssertTrue(markdown.contains("- Open scenes late"))
+        XCTAssertTrue(markdown.contains("- Historical Fiction"))
+        XCTAssertFalse(markdown.hasSuffix("\n"))
+    }
+
+    func testReferenceDeepeningMarkdownOmitsEmptyOptionalSections() {
+        let markdown = ReferenceDeepening(
+            summary: "Summary",
+            style: "Style",
+            voice: "Voice",
+            tone: "Tone",
+            vocabulary: "Vocabulary",
+            characterContinuity: "Continuity",
+            tempo: "Tempo",
+            techniques: [],
+            suggestedGenres: []
+        ).markdown
+
+        XCTAssertFalse(markdown.contains("### Techniques"))
+        XCTAssertFalse(markdown.contains("### Suggested genres"))
+    }
+
+    func testReferenceLibraryIndexRoundTripPreservesBooksInsightsAndExcerpts() throws {
+        let source = book(title: "First Light", author: "Beau Henry", genres: ["Fantasy"])
+        let insight = LibraryAIInsight(
+            id: UUID(),
+            title: "Combined voice",
+            bookIDs: [source.id],
+            provider: "Ollama",
+            model: "writer:latest",
+            markdown: "## Voice\n\nMeasured.",
+            createdAt: Date(timeIntervalSince1970: 500)
+        )
+        let index = ReferenceLibraryIndex(schemaVersion: 1, books: [source], insights: [insight])
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        let reopened = try decoder.decode(ReferenceLibraryIndex.self, from: encoder.encode(index))
+
+        XCTAssertEqual(reopened.schemaVersion, 1)
+        XCTAssertEqual(reopened.books.first?.id, source.id)
+        XCTAssertEqual(reopened.books.first?.excerpts, source.excerpts)
+        XCTAssertEqual(reopened.insights.first?.id, insight.id)
+        XCTAssertEqual(reopened.insights.first?.bookIDs, [source.id])
+        XCTAssertEqual(reopened.insights.first?.markdown, insight.markdown)
+    }
+
     private func profile(
         wordCount: Int = 500,
         sentenceWords: Double = 14,

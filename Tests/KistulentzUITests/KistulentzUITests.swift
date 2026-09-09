@@ -3,6 +3,20 @@ import XCTest
 @MainActor
 final class KistulentzUITests: KistulentzUITestCase {
 
+    func testLaunchLoadsTheRequestedDocumentInsteadOfFallbackText() throws {
+        let documentURL = testRoot.appendingPathComponent("Requested Draft.md")
+        let requestedText = "# Requested Draft\n\nLoaded from disk.\n"
+        try requestedText.write(to: documentURL, atomically: true, encoding: .utf8)
+
+        launch(environment: [
+            "KISTULENTZ_UI_TEST_DOCUMENT_PATH": documentURL.path,
+            "KISTULENTZ_UI_TEST_DOCUMENT_TEXT": "This fallback must not appear."
+        ])
+
+        XCTAssertTrue(editor.waitForExistence(timeout: 8))
+        XCTAssertEqual(value(of: editor), requestedText)
+    }
+
     func testFirstLaunchEnglishPackPromptCanBeDeclined() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: false)
 
@@ -60,6 +74,68 @@ final class KistulentzUITests: KistulentzUITestCase {
             atPath: library.appendingPathComponent(".kistulentz", isDirectory: true).path
         ))
         XCTAssertTrue(title.exists)
+    }
+
+    func testResearchLibraryCanCreateEditSearchAndSafelyRemoveAManualSource() throws {
+        let library = testRoot.appendingPathComponent("Research CRUD Library", isDirectory: true)
+        launch(
+            completedOnboarding: true,
+            acknowledgedEnglishPack: true,
+            environment: ["KISTULENTZ_UI_TEST_RESEARCH_LIBRARY_PATH": library.path]
+        )
+
+        XCTAssertTrue(referenceControl.waitForExistence(timeout: 8))
+        referenceControl.click()
+        let researchLibraryItem = app.menuItems["Research Library…"]
+        XCTAssertTrue(researchLibraryItem.waitForExistence(timeout: 3))
+        researchLibraryItem.click()
+        XCTAssertTrue(app.staticTexts["Research Library"].waitForExistence(timeout: 5))
+        app.buttons["Choose Folder…"].firstMatch.click()
+        XCTAssertTrue(app.buttons["Show Markdown"].waitForExistence(timeout: 5))
+
+        let sourceActions = app.descendants(matching: .any)["ResearchSourceActions"].firstMatch
+        XCTAssertTrue(sourceActions.waitForExistence(timeout: 3))
+        sourceActions.click()
+        let manualSource = app.menuItems["Manual Source"]
+        XCTAssertTrue(manualSource.waitForExistence(timeout: 3))
+        manualSource.click()
+
+        let titleField = app.descendants(matching: .any)["ResearchSourceTitle"].firstMatch
+        let citeKeyField = app.descendants(matching: .any)["ResearchSourceCiteKey"].firstMatch
+        XCTAssertTrue(titleField.waitForExistence(timeout: 5))
+        XCTAssertTrue(citeKeyField.exists)
+        replaceText(in: titleField, with: "Harbor Study")
+        replaceText(in: citeKeyField, with: "henry2026harbor")
+        app.descendants(matching: .any)["SaveResearchSource"].firstMatch.click()
+
+        let sourceTitle = app.staticTexts["Harbor Study"].firstMatch
+        XCTAssertTrue(sourceTitle.waitForExistence(timeout: 5))
+        let indexURL = library.appendingPathComponent(".kistulentz/research-library.json")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: indexURL.path))
+        XCTAssertTrue(try String(contentsOf: indexURL, encoding: .utf8).contains("Harbor Study"))
+
+        let search = app.descendants(matching: .any)["ResearchSourceSearch"].firstMatch
+        XCTAssertTrue(search.exists)
+        replaceText(in: search, with: "no matching source")
+        XCTAssertFalse(sourceTitle.waitForExistence(timeout: 2))
+        replaceText(in: search, with: "harbor")
+        XCTAssertTrue(app.staticTexts["Harbor Study"].firstMatch.waitForExistence(timeout: 3))
+
+        app.staticTexts["Harbor Study"].firstMatch.rightClick()
+        app.menuItems["Remove"].click()
+        let cancelRemoval = app.descendants(matching: .any)["CancelResearchSourceRemoval"].firstMatch
+        XCTAssertTrue(cancelRemoval.waitForExistence(timeout: 3))
+        cancelRemoval.click()
+        XCTAssertTrue(app.staticTexts["Harbor Study"].firstMatch.exists)
+
+        app.staticTexts["Harbor Study"].firstMatch.rightClick()
+        app.menuItems["Remove"].click()
+        let confirmRemoval = app.descendants(matching: .any)["ConfirmResearchSourceRemoval"].firstMatch
+        XCTAssertTrue(confirmRemoval.waitForExistence(timeout: 3))
+        confirmRemoval.click()
+        XCTAssertFalse(app.staticTexts["Harbor Study"].firstMatch.waitForExistence(timeout: 3))
+        XCTAssertFalse(try String(contentsOf: indexURL, encoding: .utf8).contains("Harbor Study"))
+        XCTAssertTrue(app.staticTexts["Research Library"].exists)
     }
 
     func testDiagnosticExportPanelCanBeCancelled() {

@@ -110,7 +110,9 @@ struct ResearchLibraryView: View {
                 catch { store.errorMessage = error.localizedDescription }
                 pendingDeletion = nil
             }
+            .accessibilityIdentifier("ConfirmResearchSourceRemoval")
             Button("Cancel", role: .cancel) { pendingDeletion = nil }
+                .accessibilityIdentifier("CancelResearchSourceRemoval")
         } message: {
             Text("Managed attachment copies and their local indexes will also be removed. Linked originals will not be deleted.")
         }
@@ -135,6 +137,7 @@ struct ResearchLibraryView: View {
             HStack {
                 TextField("Search sources and indexed text", text: $store.searchText)
                     .textFieldStyle(.roundedBorder)
+                    .accessibilityIdentifier("ResearchSourceSearch")
                 Menu {
                     Button("Manual Source") { addManualSource() }
                     Button("Look Up DOI or ISBN…") { showingLookup = true }
@@ -146,6 +149,7 @@ struct ResearchLibraryView: View {
                 } label: { Image(systemName: "plus") }
                 .menuStyle(.borderlessButton).fixedSize()
                 .accessibilityLabel("Add, look up, import, or export research sources")
+                .accessibilityIdentifier("ResearchSourceActions")
             }
             .padding(10)
             List(selection: $selectedSourceID) {
@@ -206,17 +210,21 @@ private struct ResearchSourceEditor: View {
             HStack {
                 Text("Source Record").font(.headline)
                 Spacer()
-                Button("Save Changes", action: onSave).buttonStyle(.borderedProminent)
+                Button("Save Changes", action: onSave)
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("SaveResearchSource")
             }.padding()
             Divider()
             Form {
                 Section("Identity") {
                     TextField("Title", text: $source.title)
+                        .accessibilityIdentifier("ResearchSourceTitle")
                     TextField("Subtitle", text: $source.subtitle)
                     Picker("Type", selection: $source.type) {
                         ForEach(ResearchSourceType.allCases) { Text($0.title).tag($0) }
                     }
                     TextField("Citation key", text: $source.citeKey)
+                        .accessibilityIdentifier("ResearchSourceCiteKey")
                 }
                 Section("Creators") {
                     ForEach($source.creators) { $creator in
