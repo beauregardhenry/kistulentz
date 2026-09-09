@@ -417,6 +417,194 @@ final class AIRequestTests: XCTestCase {
         XCTAssertNil(viewModel.aiReview)
     }
 
+    @MainActor
+    func testSelectionRewritePublishesThreeAlternativesAndClearsBusyState() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            let result = #"{"alternatives":[{"text":"We ran.","explanation":"Direct.","gradeEstimate":2},{"text":"We hurried.","explanation":"Specific.","gradeEstimate":3},{"text":"We moved fast.","explanation":"Natural.","gradeEstimate":3.5}]}"#
+            let body: [String: Any] = ["message": ["role": "assistant", "content": result]]
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                try JSONSerialization.data(withJSONObject: body)
+            )
+        }
+        let (settings, suite) = try ollamaSettings()
+        defer { UserDefaults(suiteName: suite)?.removePersistentDomain(forName: suite) }
+        let source = "We moved very quickly."
+        let range = (source as NSString).range(of: source)
+        let request = rewriteRequest(source: source, range: range)
+        let viewModel = EditorViewModel(rewriteService: SelectionRewriteService(session: session))
+
+        viewModel.runSelectionRewrite(request: request, settings: settings)
+        await waitUntil { !viewModel.isRewriting }
+
+        let presentation = try XCTUnwrap(viewModel.rewritePresentation)
+        XCTAssertEqual(presentation.sourceRange, range)
+        XCTAssertEqual(presentation.sourceText, source)
+        XCTAssertEqual(presentation.alternatives.map(\.text), ["We ran.", "We hurried.", "We moved fast."])
+        XCTAssertNil(viewModel.errorMessage)
+    }
+
+    @MainActor
+    func testSelectionRewriteFailureClearsBusyStateAndReportsAnActionableError() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            let body: [String: Any] = ["message": ["role": "assistant", "content": "not valid JSON"]]
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                try JSONSerialization.data(withJSONObject: body)
+            )
+        }
+        let (settings, suite) = try ollamaSettings()
+        defer { UserDefaults(suiteName: suite)?.removePersistentDomain(forName: suite) }
+        let source = "A passage."
+        let viewModel = EditorViewModel(rewriteService: SelectionRewriteService(session: session))
+
+        viewModel.runSelectionRewrite(
+            request: rewriteRequest(source: source, range: (source as NSString).range(of: source)),
+            settings: settings
+        )
+        await waitUntil { !viewModel.isRewriting }
+
+        XCTAssertNil(viewModel.rewritePresentation)
+        XCTAssertEqual(viewModel.errorMessage, WritingAIError.invalidResponse.localizedDescription)
+    }
+
+    @MainActor
+    func testEditingWhileAIReviewIsRunningCancelsItAndIgnoresItsStaleResponse() async throws {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [DelayedOllamaURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+        let (settings, suite) = try ollamaSettings()
+        defer { UserDefaults(suiteName: suite)?.removePersistentDomain(forName: suite) }
+        let original = "The original draft."
+        let request = AIRequestPreview(
+            purpose: .polish(targetGrade: 8), provider: .ollama, model: "local-model",
+            primaryLabel: "Draft", primaryText: original, styleGuide: nil,
+            includesStyleGuide: false, referenceContext: nil, includesReferenceContext: false,
+            sourceRange: nil, sourceText: original
+        )
+        let viewModel = EditorViewModel(service: WritingAIService(session: session))
+        viewModel.configureDocument(url: nil, text: original)
+
+        viewModel.runAIReview(request: request, matching: original, settings: settings)
+        XCTAssertTrue(viewModel.isReviewing)
+        viewModel.scheduleAnalysis(text: "The author changed the draft.", targetGrade: 8, immediately: true)
+        await waitUntil { DelayedOllamaURLProtocol.wasStopped }
+
+        XCTAssertFalse(viewModel.isReviewing)
+        XCTAssertNil(viewModel.aiReview)
+        XCTAssertTrue(viewModel.aiIssues.isEmpty)
+        XCTAssertNil(viewModel.errorMessage)
+    }
+
+    @MainActor
+    func testEditingWhileSelectionRewriteIsRunningCancelsItAndKeepsNoStalePresentation() async throws {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [DelayedOllamaURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+        let (settings, suite) = try ollamaSettings()
+        defer { UserDefaults(suiteName: suite)?.removePersistentDomain(forName: suite) }
+        let source = "The selected passage."
+        let viewModel = EditorViewModel(rewriteService: SelectionRewriteService(session: session))
+
+        viewModel.runSelectionRewrite(
+            request: rewriteRequest(source: source, range: (source as NSString).range(of: source)),
+            settings: settings
+        )
+        XCTAssertTrue(viewModel.isRewriting)
+        viewModel.scheduleAnalysis(text: "A changed document.", targetGrade: 8, immediately: true)
+        await waitUntil { DelayedOllamaURLProtocol.wasStopped }
+
+        XCTAssertFalse(viewModel.isRewriting)
+        XCTAssertNil(viewModel.rewritePresentation)
+        XCTAssertNil(viewModel.errorMessage)
+    }
+
+    @MainActor
+    func testReferenceAndFocusStateCanBeAppliedReplacedAndCleared() {
+        let reference = EPUBReference(
+            fileName: "reference.epub", title: "Reference", author: "Author",
+            chapters: [ReferenceChapter(id: 1, title: "Opening", text: "A measured opening line.")],
+            profile: ReferenceProfile(
+                wordCount: 5, chapterCount: 1, gradeLevel: 6, averageSentenceWords: 5,
+                sentenceVariation: 0, averageParagraphWords: 5, dialogueRatio: 0,
+                firstPersonRatio: 0, thirdPersonRatio: 0, tempo: "measured", voice: "direct",
+                tone: ["calm"], vocabulary: [], characters: []
+            )
+        )
+        let viewModel = EditorViewModel()
+
+        viewModel.useReference(reference, draft: "A measured draft line.")
+        XCTAssertEqual(viewModel.referenceBook?.id, reference.id)
+        viewModel.focus(on: NSRange(location: 2, length: 4))
+        XCTAssertEqual(viewModel.focusRequest?.range, NSRange(location: 2, length: 4))
+
+        viewModel.clearReference()
+        XCTAssertNil(viewModel.referenceBook)
+        XCTAssertEqual(viewModel.referenceAlignment.score, 0)
+        XCTAssertTrue(viewModel.referenceAlignment.issues.isEmpty)
+        XCTAssertFalse(viewModel.isLoadingReference)
+    }
+
+    @MainActor
+    func testLearnedAdvisoryDecisionImmediatelyFiltersVisibleLocalIssue() async {
+        let text = "We moved quickly toward the door."
+        let viewModel = EditorViewModel()
+        viewModel.configureDocument(url: nil, text: text)
+        viewModel.scheduleAnalysis(text: text, targetGrade: 8, immediately: true)
+        await waitUntil { viewModel.analysis.stats.words > 0 }
+        guard let issue = viewModel.visibleLocalIssues.first(where: { $0.category == .adverb }) else {
+            return XCTFail("Expected the local adverb rule to flag 'quickly'.")
+        }
+        let decision = ProjectStyleDecision(
+            action: .declined, category: issue.category, excerpt: issue.excerpt,
+            replacement: nil, count: ProjectStyleManager.advisorySuppressionThreshold,
+            lastUsedAt: Date(), message: issue.message
+        )
+
+        viewModel.updateStyleDecisions([decision])
+
+        XCTAssertFalse(viewModel.visibleLocalIssues.contains { $0.id == issue.id })
+        XCTAssertFalse(viewModel.allIssues.contains { $0.id == issue.id })
+    }
+
+    @MainActor
+    private func waitUntil(
+        timeout: Duration = .seconds(3),
+        condition: @MainActor @escaping () -> Bool
+    ) async {
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: timeout)
+        while !condition() && clock.now < deadline {
+            try? await Task.sleep(for: .milliseconds(10))
+        }
+        XCTAssertTrue(condition(), "Timed out waiting for editor state to settle.")
+    }
+
+    @MainActor
+    private func ollamaSettings() throws -> (AppSettings, String) {
+        let suite = "EditorViewModelTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        let settings = AppSettings(defaults: defaults)
+        settings.provider = .ollama
+        settings.ollamaModel = "local-model"
+        return (settings, suite)
+    }
+
+    private func rewriteRequest(source: String, range: NSRange) -> AIRequestPreview {
+        AIRequestPreview(
+            purpose: .selectionRewrite(
+                goal: SelectionRewriteGoal(kind: .shorten, requestedTone: nil),
+                targetGrade: 8
+            ),
+            provider: .ollama, model: "local-model", primaryLabel: "Selection",
+            primaryText: source, styleGuide: nil, includesStyleGuide: false,
+            referenceContext: nil, includesReferenceContext: false,
+            sourceRange: range, sourceText: source
+        )
+    }
+
     private func mockSession() -> URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [AIRequestMockURLProtocol.self]

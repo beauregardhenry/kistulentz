@@ -34,6 +34,12 @@ enum MacFilePanel {
         configuration: OpenPanelConfiguration = .researchLibraryFolder,
         startingAt directoryURL: URL? = nil
     ) async -> URL? {
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RESEARCH_LIBRARY_PATH"],
+           !path.isEmpty {
+            return URL(fileURLWithPath: path, isDirectory: true)
+        }
+#endif
         let panel = NSOpenPanel()
         panel.title = configuration.title
         panel.message = configuration.message

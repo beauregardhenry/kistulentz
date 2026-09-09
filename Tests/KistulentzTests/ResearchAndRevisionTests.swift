@@ -287,6 +287,203 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertNil(onDiskAttachment.extractedTextRelativePath)
     }
 
+    @MainActor
+    func testResearchStoreRemembersLibraryAndPersistsAddAndUpdate() throws {
+        let root = temporaryDirectory()
+        let suiteName = "ResearchStoreRemember.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+        }
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(), to: root)
+        let store = ResearchLibraryStore(defaults: defaults)
+        try store.open(at: root)
+
+        var draft = ResearchSource(title: "   ")
+        draft.creators = [ResearchCreator(givenName: "Ada", familyName: "Lovelace")]
+        draft.issuedYear = 1843
+        let id = try store.addSource(draft)
+
+        var added = try XCTUnwrap(store.sources.first { $0.id == id })
+        XCTAssertEqual(added.title, "Untitled Source")
+        XCTAssertFalse(added.citeKey.isEmpty)
+        added.title = "Notes on the Analytical Engine"
+        added.citeKey = "Lovelace 1843 Notes!"
+        try store.updateSource(added)
+        XCTAssertEqual(store.sources.first?.citeKey, "Lovelace1843Notes")
+
+        let reopened = ResearchLibraryStore(defaults: defaults)
+        XCTAssertEqual(reopened.rootURL, root.standardizedFileURL)
+        XCTAssertEqual(reopened.sources.first?.title, "Notes on the Analytical Engine")
+        XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources, reopened.sources)
+    }
+
+    @MainActor
+    func testResearchStoreRejectsMissingLocationAndDuplicateCitationKeysWithoutMutation() throws {
+        let suiteName = "ResearchStoreValidation.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ResearchLibraryStore(defaults: defaults)
+
+        XCTAssertThrowsError(try store.addSource(sampleSource()))
+
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [sampleSource()]), to: root)
+        try store.open(at: root)
+        let before = store.sources
+        var duplicate = ResearchSource(citeKey: "HENRY2026HARBOR", title: "Duplicate")
+        duplicate.id = UUID()
+        XCTAssertThrowsError(try store.addSource(duplicate))
+        XCTAssertEqual(store.sources, before)
+        XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources, before)
+    }
+
+    @MainActor
+    func testResearchStoreSearchesMetadataAndLocallyIndexedAttachmentText() throws {
+        let root = temporaryDirectory()
+        let suiteName = "ResearchStoreSearch.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+        }
+        let attachment = ResearchAttachment(
+            displayName: "notes.txt", kind: .text, storage: .linkedOriginal,
+            originalPath: "/tmp/notes.txt", extractedTextRelativePath: "Indexes/notes.txt",
+            extractionStatus: .extracted
+        )
+        var harbor = sampleSource()
+        harbor.attachments = [attachment]
+        let astronomy = ResearchSource(
+            citeKey: "herschel1846", title: "Astronomical Observations",
+            creators: [ResearchCreator(givenName: "Caroline", familyName: "Herschel")]
+        )
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [harbor, astronomy]), to: root)
+        var persistence = ResearchLibraryPersistence.live
+        persistence.loadExtractedText = { attachment, _ in
+            attachment.id == harbor.attachments[0].id ? "A concealed lighthouse observation." : nil
+        }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        XCTAssertEqual(store.filteredSources.map(\.id), [harbor.id, astronomy.id])
+        store.searchText = "herschel"
+        XCTAssertEqual(store.filteredSources.map(\.id), [astronomy.id])
+        store.searchText = "lighthouse"
+        XCTAssertEqual(store.filteredSources.map(\.id), [harbor.id])
+        store.searchText = "not present"
+        XCTAssertTrue(store.filteredSources.isEmpty)
+    }
+
+    @MainActor
+    func testResearchStoreImportsMergesAndExportsEverySupportedFormat() throws {
+        let root = temporaryDirectory()
+        let exchange = temporaryDirectory()
+        let suiteName = "ResearchStoreExchange.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: exchange)
+        }
+        let existing = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [existing]), to: root)
+        let incomingURL = exchange.appendingPathComponent("incoming.json")
+        var duplicate = existing
+        duplicate.abstract = "Merged abstract"
+        let newSource = ResearchSource(citeKey: existing.citeKey, title: "A New Source")
+        try ResearchExchange.exportCSLJSON([duplicate, newSource], to: incomingURL)
+        let store = ResearchLibraryStore(defaults: defaults)
+        try store.open(at: root)
+
+        XCTAssertEqual(try store.importSources(from: incomingURL), 1)
+        XCTAssertEqual(store.sources.count, 2)
+        XCTAssertEqual(store.sources.first { $0.id == existing.id }?.abstract, "Merged abstract")
+        XCTAssertEqual(Set(store.sources.map(\.citeKey)).count, 2)
+
+        for (format, name) in [("bibtex", "export.bib"), ("ris", "export.ris"), ("json", "export.json")] {
+            let url = exchange.appendingPathComponent(name)
+            try store.export(store.sources, format: format, to: url)
+            XCTAssertEqual(try ResearchExchange.importSources(from: url).count, 2, format)
+        }
+    }
+
+    @MainActor
+    func testResearchAttachmentHappyPathIndexesPersistsAndRemovesAllManagedFiles() async throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreAttachmentSuccess.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+        let source = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Locally indexed evidence.".write(to: original, atomically: true, encoding: .utf8)
+        let store = ResearchLibraryStore(defaults: defaults)
+        try store.open(at: root)
+
+        await store.addAttachment(from: original, sourceID: source.id, storage: .managedCopy)
+
+        XCTAssertNil(store.errorMessage)
+        XCTAssertTrue(store.indexingAttachmentIDs.isEmpty)
+        let attachment = try XCTUnwrap(store.sources.first?.attachments.first)
+        XCTAssertEqual(attachment.extractionStatus, .extracted)
+        XCTAssertNotNil(attachment.extractedTextRelativePath)
+        let managedURL = try XCTUnwrap(store.attachmentURL(attachment))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: managedURL.path))
+        XCTAssertEqual(ResearchLibraryDisk.loadExtractedText(for: attachment, at: root), "Locally indexed evidence.")
+        let persisted = try XCTUnwrap(ResearchLibraryDisk.load(from: root).sources.first?.attachments.first)
+        XCTAssertEqual(persisted.id, attachment.id)
+        XCTAssertEqual(persisted.extractionStatus, attachment.extractionStatus)
+        XCTAssertEqual(persisted.extractedTextRelativePath, attachment.extractedTextRelativePath)
+        XCTAssertEqual(persisted.extractionMessage, attachment.extractionMessage)
+
+        try store.removeAttachment(attachment.id, sourceID: source.id)
+        XCTAssertTrue(store.sources.first?.attachments.isEmpty == true)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: managedURL.path))
+        XCTAssertNil(ResearchLibraryDisk.loadExtractedText(for: attachment, at: root))
+    }
+
+    @MainActor
+    func testResearchAttachmentExtractionFailureRemainsVisibleAndRecoverable() async throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreAttachmentExtractionFailure.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+        let source = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+        let original = outside.appendingPathComponent("opaque.bin")
+        try Data([0, 1, 2]).write(to: original)
+        var persistence = ResearchLibraryPersistence.live
+        persistence.extractText = { _, _ in throw ExpectedResearchStoreError.extractionFailed }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        await store.addAttachment(from: original, sourceID: source.id, storage: .linkedOriginal)
+
+        XCTAssertNil(store.errorMessage)
+        let attachment = try XCTUnwrap(store.sources.first?.attachments.first)
+        XCTAssertEqual(attachment.extractionStatus, .noReadableText)
+        XCTAssertFalse(attachment.extractionMessage.isEmpty)
+        XCTAssertNil(attachment.extractedTextRelativePath)
+        let persisted = try XCTUnwrap(ResearchLibraryDisk.load(from: root).sources.first?.attachments.first)
+        XCTAssertEqual(persisted.id, attachment.id)
+        XCTAssertEqual(persisted.extractionStatus, attachment.extractionStatus)
+        XCTAssertEqual(persisted.extractionMessage, attachment.extractionMessage)
+        XCTAssertEqual(store.attachmentURL(attachment), original.standardizedFileURL)
+    }
+
     func testDOIMetadataLookupMapsCrossrefRecord() async throws {
         let service = ResearchMetadataLookupService { request in
             XCTAssertTrue(request.url?.absoluteString.contains("api.crossref.org/works/10.1234%2Fharbor") == true)
@@ -461,4 +658,5 @@ final class ResearchAndRevisionTests: XCTestCase {
 
 private enum ExpectedResearchStoreError: Error {
     case writeFailed
+    case extractionFailed
 }
