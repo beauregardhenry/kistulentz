@@ -1,5 +1,6 @@
 import XCTest
 
+@MainActor
 final class AccessibilityProviderUITests: KistulentzUITestCase {
     func testProviderModelMenusAndPrivacySafeConnectionControlsAreDiscoverable() {
         launch()

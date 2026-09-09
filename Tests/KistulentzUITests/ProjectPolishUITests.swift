@@ -1,6 +1,7 @@
 import Foundation
 import XCTest
 
+@MainActor
 final class ProjectPolishUITests: KistulentzUITestCase {
     func testProjectPolishSupportsStagesEditedProposalCancelApplyAndOneStepUndo() throws {
         let original = "# Draft\n\nWe utilize tools.\n"

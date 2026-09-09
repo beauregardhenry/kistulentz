@@ -3,6 +3,7 @@ import Darwin
 import Foundation
 import XCTest
 
+@MainActor
 final class EditingRecoveryUITests: KistulentzUITestCase {
     func testProjectEditPersistsAcrossRelaunchAndUndoRedo() throws {
         let original = "We utilize tools."
