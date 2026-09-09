@@ -172,6 +172,10 @@ struct StructuredAIClient {
                 throw WritingAIError.api(status: http.statusCode, message: Self.apiErrorMessage(from: data))
             }
             return data
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch let error as URLError where error.code == .cancelled && Task.isCancelled {
+            throw CancellationError()
         } catch let error as WritingAIError {
             throw error
         } catch {

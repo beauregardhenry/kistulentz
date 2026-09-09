@@ -37,6 +37,31 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 
+    func testResearchLibraryFolderChooserOpensTheApprovedFolder() throws {
+        let library = testRoot.appendingPathComponent("Chosen Research Library", isDirectory: true)
+        launch(
+            completedOnboarding: true,
+            acknowledgedEnglishPack: true,
+            environment: ["KISTULENTZ_UI_TEST_RESEARCH_LIBRARY_PATH": library.path]
+        )
+
+        XCTAssertTrue(referenceControl.waitForExistence(timeout: 8))
+        referenceControl.click()
+        let researchLibraryItem = app.menuItems["Research Library…"]
+        XCTAssertTrue(researchLibraryItem.waitForExistence(timeout: 3))
+        researchLibraryItem.click()
+
+        let title = app.staticTexts["Research Library"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        app.buttons["Choose Folder…"].firstMatch.click()
+
+        XCTAssertTrue(app.buttons["Show Markdown"].waitForExistence(timeout: 5))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: library.appendingPathComponent(".kistulentz", isDirectory: true).path
+        ))
+        XCTAssertTrue(title.exists)
+    }
+
     func testDiagnosticExportPanelCanBeCancelled() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 

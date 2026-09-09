@@ -19,21 +19,30 @@ struct MarkdownDocument: FileDocument {
         guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
-
-        if let decoded = String(data: data, encoding: .utf8) {
-            text = decoded
-        } else if let decoded = String(data: data, encoding: .isoLatin1) {
-            text = decoded
-        } else {
-            throw CocoaError(.fileReadInapplicableStringEncoding)
-        }
+        text = try Self.decode(data)
     }
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: try Self.encode(text))
+    }
+
+    /// Kept separate from SwiftUI's configuration types so document encoding can be
+    /// regression-tested without presenting a document window.
+    static func decode(_ data: Data) throws -> String {
+        if let decoded = String(data: data, encoding: .utf8) {
+            return decoded
+        }
+        if let decoded = String(data: data, encoding: .isoLatin1) {
+            return decoded
+        }
+        throw CocoaError(.fileReadInapplicableStringEncoding)
+    }
+
+    static func encode(_ text: String) throws -> Data {
         guard let data = text.data(using: .utf8) else {
             throw CocoaError(.fileWriteInapplicableStringEncoding)
         }
-        return FileWrapper(regularFileWithContents: data)
+        return data
     }
 
     private static let starterText = """

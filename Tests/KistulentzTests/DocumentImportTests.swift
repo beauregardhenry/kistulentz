@@ -3,6 +3,30 @@ import XCTest
 @testable import Kistulentz
 
 final class DocumentImportTests: XCTestCase {
+    func testMarkdownDocumentUTF8RoundTripPreservesUnicodeAndMarkdownExactly() throws {
+        let original = "# Tide 🌊\n\n**Café** — [harbor](https://example.com).\n"
+
+        let encoded = try MarkdownDocument.encode(original)
+        let decoded = try MarkdownDocument.decode(encoded)
+
+        XCTAssertEqual(decoded, original)
+        XCTAssertEqual(encoded, Data(original.utf8))
+    }
+
+    func testMarkdownDocumentReadsLegacyLatin1WithoutReplacementCharacters() throws {
+        let bytes = Data([0x43, 0x61, 0x66, 0xE9, 0x0A])
+
+        XCTAssertEqual(try MarkdownDocument.decode(bytes), "Café\n")
+    }
+
+    func testNewMarkdownDocumentProvidesAnEditableLocalFirstStartingDraft() {
+        let document = MarkdownDocument()
+
+        XCTAssertTrue(document.text.contains("# A clearer first draft"))
+        XCTAssertTrue(document.text.contains("Local Polish"))
+        XCTAssertFalse(document.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+    }
+
     func testStaticMacOSSavedDocumentsImportWithoutChangingTheirBytes() throws {
         let fixtureRoot = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent()

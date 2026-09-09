@@ -125,6 +125,84 @@ final class DraftRecoveryTests: XCTestCase {
     }
 
     @MainActor
+    func testCoordinatorDebouncesRapidEditsAndRecordsOnlyTheLatestText() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let manager = DraftRecoveryManager(directoryURL: root, sessionID: UUID())
+        let coordinator = DraftRecoveryCoordinator(manager: manager)
+        coordinator.configure(title: "Draft.md", fileURL: nil, projectRootURL: nil, text: "Initial")
+
+        coordinator.schedule(text: "First edit")
+        coordinator.schedule(text: "Second edit")
+        coordinator.schedule(text: "Latest edit")
+
+        try await waitUntil { DraftRecoveryDisk.loadAll(from: root).first?.recoveredText == "Latest edit" }
+        let entries = DraftRecoveryDisk.loadAll(from: root)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries.first?.title, "Draft.md")
+    }
+
+    @MainActor
+    func testCoordinatorFlushesImmediatelyAndCloseRemovesItsJournal() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let manager = DraftRecoveryManager(directoryURL: root, sessionID: UUID())
+        let coordinator = DraftRecoveryCoordinator(manager: manager)
+        coordinator.configure(title: "Draft.md", fileURL: nil, projectRootURL: nil, text: "Initial")
+
+        coordinator.schedule(text: "Unsaved")
+        coordinator.flush()
+        try await waitUntil { DraftRecoveryDisk.loadAll(from: root).count == 1 }
+
+        coordinator.close()
+        try await waitUntil { DraftRecoveryDisk.loadAll(from: root).isEmpty }
+    }
+
+    @MainActor
+    func testSavingUntitledDraftRemovesTheObsoleteUntitledJournal() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let manager = DraftRecoveryManager(directoryURL: root, sessionID: UUID())
+        let coordinator = DraftRecoveryCoordinator(manager: manager)
+        coordinator.configure(title: "Untitled.md", fileURL: nil, projectRootURL: nil, text: "Initial")
+        coordinator.schedule(text: "Saved text")
+        coordinator.flush()
+        try await waitUntil { DraftRecoveryDisk.loadAll(from: root).count == 1 }
+
+        let savedURL = root.appendingPathComponent("Saved.md")
+        try "Saved text".write(to: savedURL, atomically: true, encoding: .utf8)
+        coordinator.configure(title: "Saved.md", fileURL: savedURL, projectRootURL: root, text: "Saved text")
+
+        try await waitUntil { DraftRecoveryDisk.loadAll(from: root).isEmpty }
+    }
+
+    @MainActor
+    func testManagerReloadResolveAndSessionRemovalKeepOtherDraftsIntact() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let oldSession = UUID()
+        let first = DraftRecoveryEntry(
+            id: UUID(), sessionID: oldSession, title: "One.md", originalFilePath: nil,
+            projectRootPath: nil, recoveredText: "One"
+        )
+        let second = DraftRecoveryEntry(
+            id: UUID(), sessionID: UUID(), title: "Two.md", originalFilePath: nil,
+            projectRootPath: nil, recoveredText: "Two"
+        )
+        try DraftRecoveryDisk.save(first, in: root)
+        try DraftRecoveryDisk.save(second, in: root)
+        let manager = DraftRecoveryManager(directoryURL: root, sessionID: UUID())
+
+        manager.resolve(first)
+        try await waitUntil { DraftRecoveryDisk.loadAll(from: root).map(\.id) == [second.id] }
+        XCTAssertEqual(manager.pendingEntries.map(\.id), [second.id])
+
+        DraftRecoveryDisk.remove(sessionID: second.sessionID, from: root)
+        manager.reloadPendingEntries()
+        XCTAssertTrue(manager.pendingEntries.isEmpty)
+    }
+
+    @MainActor
     func testOnboardingChoicePersists() throws {
         let suite = "Kistulentz-Onboarding-\(UUID().uuidString)"
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
@@ -186,5 +264,21 @@ final class DraftRecoveryTests: XCTestCase {
             .appendingPathComponent("Kistulentz-Recovery-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
+    }
+
+    @MainActor
+    private func waitUntil(
+        timeout: Duration = .seconds(2),
+        condition: @MainActor @escaping () -> Bool
+    ) async throws {
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: timeout)
+        while !condition() {
+            if clock.now >= deadline {
+                XCTFail("Timed out waiting for draft recovery I/O.")
+                return
+            }
+            try await Task.sleep(for: .milliseconds(10))
+        }
     }
 }

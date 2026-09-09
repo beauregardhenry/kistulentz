@@ -191,7 +191,8 @@ enum ResearchExchange {
         var records: [[String: [String]]] = []
         var current: [String: [String]] = [:]
         for line in text.components(separatedBy: .newlines) {
-            guard line.count >= 6 else { continue }
+            // RIS end markers are valid as the five-character line `ER  -`.
+            guard line.count >= 5 else { continue }
             let key = String(line.prefix(2))
             guard line.dropFirst(2).hasPrefix("  -") else { continue }
             let value = String(line.dropFirst(6)).trimmingCharacters(in: .whitespacesAndNewlines)
