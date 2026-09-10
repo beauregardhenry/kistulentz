@@ -56,6 +56,8 @@ struct SystemCheckView: View {
                     Text(message)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                        .accessibilityLabel(message)
+                        .accessibilityIdentifier("SystemCheckMessage")
                 } else {
                     Label("Includes version details and reproduction prompts—never writing, keys, filenames, or paths", systemImage: "lock.shield")
                         .font(.caption)
@@ -71,6 +73,7 @@ struct SystemCheckView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(report == nil || isRunning)
+                .accessibilityIdentifier("ExportDiagnosticReport")
             }
             .padding(16)
         }

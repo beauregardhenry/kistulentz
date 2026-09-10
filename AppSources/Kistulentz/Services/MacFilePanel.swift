@@ -53,6 +53,12 @@ enum MacFilePanel {
     }
 
     static func chooseSaveDestination(configuration: SavePanelConfiguration) async -> URL? {
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_SAVE_DESTINATION_PATH"],
+           !path.isEmpty {
+            return URL(fileURLWithPath: path)
+        }
+#endif
         let panel = NSSavePanel()
         panel.title = configuration.title
         panel.nameFieldStringValue = configuration.suggestedFilename

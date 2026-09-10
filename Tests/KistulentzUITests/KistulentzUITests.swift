@@ -159,6 +159,57 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(export.waitForExistence(timeout: 2))
     }
 
+    func testDiagnosticReportExportsPrivacySafeVersionedReproductionGuide() throws {
+        let destination = testRoot.appendingPathComponent("Kistulentz Diagnostics.md")
+        launch(
+            completedOnboarding: true,
+            acknowledgedEnglishPack: true,
+            environment: ["KISTULENTZ_UI_TEST_SAVE_DESTINATION_PATH": destination.path]
+        )
+        openSystemCheck()
+
+        let export = app.buttons["ExportDiagnosticReport"]
+        XCTAssertTrue(export.waitForExistence(timeout: 10))
+        export.click()
+
+        let confirmation = app.staticTexts["SystemCheckMessage"]
+        XCTAssertTrue(confirmation.waitForExistence(timeout: 5))
+        XCTAssertEqual(value(of: confirmation), "Diagnostic report exported.")
+        waitUntil(description: "Diagnostic report should be written to the selected destination") {
+            FileManager.default.fileExists(atPath: destination.path)
+        }
+        let markdown = try String(contentsOf: destination, encoding: .utf8)
+        XCTAssertTrue(markdown.contains("# Kistulentz System Check"))
+        XCTAssertTrue(markdown.contains("- Kistulentz:"))
+        XCTAssertTrue(markdown.contains("## Help us reproduce a problem"))
+        XCTAssertTrue(markdown.contains("excludes document and manuscript text"))
+        XCTAssertFalse(markdown.contains(testRoot.path))
+    }
+
+    func testDiagnosticExportWriteFailureStaysUsableAndReportsTheError() throws {
+        let unwritableDestination = testRoot.appendingPathComponent("Existing Folder", isDirectory: true)
+        try FileManager.default.createDirectory(at: unwritableDestination, withIntermediateDirectories: true)
+        launch(
+            completedOnboarding: true,
+            acknowledgedEnglishPack: true,
+            environment: ["KISTULENTZ_UI_TEST_SAVE_DESTINATION_PATH": unwritableDestination.path]
+        )
+        openSystemCheck()
+
+        let export = app.buttons["ExportDiagnosticReport"]
+        XCTAssertTrue(export.waitForExistence(timeout: 10))
+        export.click()
+
+        let alert = app.staticTexts["Couldn’t export the report"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 5))
+        let confirmation = app.sheets.firstMatch.buttons["OK"]
+        XCTAssertTrue(confirmation.waitForExistence(timeout: 3))
+        confirmation.click()
+        XCTAssertTrue(export.waitForExistence(timeout: 3))
+        XCTAssertTrue(export.isEnabled)
+        XCTAssertTrue(app.windows.firstMatch.exists)
+    }
+
     func testDestinkReviewOpensRunsLocallyAndCloses() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
@@ -417,5 +468,15 @@ final class KistulentzUITests: KistulentzUITestCase {
 
     private var referenceControl: XCUIElement {
         app.descendants(matching: .any)["ReferenceMenu"].firstMatch
+    }
+
+    private func openSystemCheck() {
+        let applicationMenu = app.menuBars.menuBarItems["Kistulentz"].firstMatch
+        XCTAssertTrue(applicationMenu.waitForExistence(timeout: 3))
+        applicationMenu.click()
+        let systemCheckItem = app.menuItems["Kistulentz System Check…"]
+        XCTAssertTrue(systemCheckItem.waitForExistence(timeout: 3))
+        systemCheckItem.click()
+        XCTAssertTrue(app.staticTexts["Kistulentz System Check"].waitForExistence(timeout: 10))
     }
 }
