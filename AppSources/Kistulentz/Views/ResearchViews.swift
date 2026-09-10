@@ -441,15 +441,22 @@ struct ProjectResearchView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Project Research").font(.title2.bold())
+                Text("Project Research")
+                    .font(.title2.bold())
+                    .accessibilityIdentifier("ProjectResearchView")
                 Spacer()
                 Picker("Citation style", selection: Binding(
                     get: { researchStore.projectBibliography.style },
                     set: { researchStore.setBibliographyStyle($0) }
                 )) {
                     ForEach(BibliographyStyle.allCases) { Text($0.title).tag($0) }
-                }.frame(width: 245)
-                Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
+                }
+                .frame(width: 245)
+                .pickerStyle(.menu)
+                .accessibilityIdentifier("ProjectResearchCitationStyle")
+                .accessibilityLabel("Project Research Citation Style")
+                Button("Done") { dismiss() }
+                    .accessibilityIdentifier("CloseProjectResearch")
             }.padding()
             Divider()
             if library.rootURL == nil {
@@ -459,7 +466,10 @@ struct ProjectResearchView: View {
                     Text("Sources & Citations").tag(0)
                     Text("Quotations & Claims").tag(1)
                     Text("Research Notes").tag(2)
-                }.pickerStyle(.segmented).padding()
+                }
+                .pickerStyle(.segmented)
+                .padding()
+                .accessibilityIdentifier("ProjectResearchSection")
                 switch tab {
                 case 0: sourcesAndCitations
                 case 1: quotationsAndClaims
@@ -468,7 +478,6 @@ struct ProjectResearchView: View {
             }
         }
         .frame(minWidth: 880, minHeight: 620)
-        .accessibilityIdentifier("ProjectResearchView")
     }
 
     private var projectSources: [ResearchSource] { researchStore.projectSources(in: library) }
@@ -476,7 +485,10 @@ struct ProjectResearchView: View {
     private var sourcesAndCitations: some View {
         HSplitView {
             VStack(spacing: 8) {
-                TextField("Search shared library", text: $search).textFieldStyle(.roundedBorder).padding([.horizontal, .top])
+                TextField("Search shared library", text: $search)
+                    .textFieldStyle(.roundedBorder)
+                    .padding([.horizontal, .top])
+                    .accessibilityIdentifier("ProjectResearchSourceSearch")
                 List(selection: $selectedSourceID) {
                     Section("In This Project") {
                         ForEach(projectSources) { source in
@@ -490,7 +502,10 @@ struct ProjectResearchView: View {
                             HStack {
                                 sourceRow(source)
                                 Spacer()
-                                Button("Add") { researchStore.addResearchSource(source.id) }.buttonStyle(.borderless)
+                                Button("Add") { researchStore.addResearchSource(source.id) }
+                                    .buttonStyle(.borderless)
+                                    .accessibilityLabel("Add \(source.title) to Project")
+                                    .accessibilityIdentifier("AddProjectResearchSource-\(source.id.uuidString)")
                             }
                         }
                     }
@@ -501,10 +516,12 @@ struct ProjectResearchView: View {
                     Text(source.title).font(.title3.bold())
                     Text(source.primaryCreatorName).foregroundStyle(.secondary)
                     TextField("Locator, such as p. 31", text: $locator)
+                        .accessibilityIdentifier("ProjectResearchCitationLocator")
                     Text(CitationFormatter.markdownCitation(for: source, locator: locator))
                         .font(.system(.body, design: .monospaced)).textSelection(.enabled)
                     Button("Insert Citation at Cursor") { onInsertCitation(source, locator); dismiss() }
                         .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("InsertProjectResearchCitation")
                 } else {
                     Text("Select a project source to insert its Markdown citation.").foregroundStyle(.secondary)
                 }
@@ -524,18 +541,26 @@ struct ProjectResearchView: View {
                 .frame(minWidth: 260)
             VStack(alignment: .leading, spacing: 12) {
                 Text("Project-specific evidence").font(.headline)
-                TextEditor(text: $quotation).frame(minHeight: 90).overlay(RoundedRectangle(cornerRadius: 5).stroke(.separator))
+                TextEditor(text: $quotation)
+                    .frame(minHeight: 90)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(.separator))
+                    .accessibilityIdentifier("ProjectResearchQuotation")
                 TextField("Locator", text: $locator)
+                    .accessibilityIdentifier("ProjectResearchEvidenceLocator")
                 TextField("Note", text: $note)
+                    .accessibilityIdentifier("ProjectResearchEvidenceNote")
                 HStack {
                     Button("Save as Quotation") {
                         if let id = selectedSourceID { researchStore.addQuotation(sourceID: id, text: quotation, locator: locator, note: note); quotation = ""; note = "" }
                     }
+                    .accessibilityIdentifier("SaveProjectResearchQuotation")
                     Button("Link Selected Manuscript Claim") {
                         if let id = selectedSourceID, let selectionText, let path = projectStore.selectedChapterPath {
                             researchStore.addClaimLink(sourceID: id, chapterPath: path, excerpt: selectionText, locator: locator, note: note)
                         }
-                    }.disabled(selectionText == nil)
+                    }
+                    .disabled(selectionText == nil)
+                    .accessibilityIdentifier("LinkProjectResearchClaim")
                 }
                 Divider()
                 List {
@@ -543,12 +568,14 @@ struct ProjectResearchView: View {
                         ForEach(researchStore.projectBibliography.quotations) { item in
                             VStack(alignment: .leading) { Text("“\(item.text)”"); Text(item.locator).font(.caption).foregroundStyle(.secondary) }
                                 .contextMenu { Button("Remove", role: .destructive) { researchStore.removeQuotation(item.id) } }
+                                .accessibilityIdentifier("ProjectResearchQuotationItem-\(item.id.uuidString)")
                         }
                     }
                     Section("Claim Links") {
                         ForEach(researchStore.projectBibliography.claimLinks) { item in
                             VStack(alignment: .leading) { Text(item.claimExcerpt); Text("\(item.chapterPath) · \(item.locator)").font(.caption).foregroundStyle(.secondary) }
                                 .contextMenu { Button("Remove", role: .destructive) { researchStore.removeClaimLink(item.id) } }
+                                .accessibilityIdentifier("ProjectResearchClaimItem-\(item.id.uuidString)")
                         }
                     }
                 }
@@ -566,6 +593,8 @@ struct ProjectResearchView: View {
             TextEditor(text: Binding(get: { researchStore.researchNotesText }, set: { researchStore.updateResearchNotes($0) }))
                 .font(.system(.body, design: .monospaced))
                 .overlay(RoundedRectangle(cornerRadius: 5).stroke(.separator))
+                .accessibilityIdentifier("ProjectResearchNotes")
+                .accessibilityLabel("Project Research Notes")
         }.padding()
     }
 

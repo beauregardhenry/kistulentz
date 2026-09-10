@@ -67,6 +67,13 @@ final class ResearchLibraryStore: ObservableObject {
         self.metadataLookup = metadataLookup
         self.persistence = persistence
         self.defaults = defaults
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PREOPEN_RESEARCH_LIBRARY_PATH"],
+           !path.isEmpty {
+            try? open(at: URL(fileURLWithPath: path, isDirectory: true), remember: false)
+            return
+        }
+#endif
         if let path = defaults.string(forKey: Self.locationKey), !path.isEmpty {
             try? open(at: URL(fileURLWithPath: path, isDirectory: true), remember: false)
         }

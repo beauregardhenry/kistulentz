@@ -20,6 +20,7 @@
 		0B4839F19F3B622EFEFE42C8 /* EPUBPublicationWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221959931CAF37D35550433F /* EPUBPublicationWriter.swift */; };
 		0B7F824D24EC0702E62282C9 /* ProjectOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE7CC18AE3B138252D31D1 /* ProjectOrganizationView.swift */; };
 		0E4E7725948A31C9823C5E6D /* ManuscriptAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC0ACFD66F71700B1C6E43 /* ManuscriptAIService.swift */; };
+		0F5205B57E74E2588F7A049E /* ProjectResearchWorkflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3450E164DD144F0A08E7B /* ProjectResearchWorkflowUITests.swift */; };
 		12F16B0B76F745A78AF2FFB6 /* WritingProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429484D47BAC14AD1157350C /* WritingProjectStore.swift */; };
 		14DBE68C4A8D706DDC9742B6 /* PublishExportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70091B9F2DC5C09B6DCA53 /* PublishExportViewModel.swift */; };
 		15BB2A9ED4B1D10B55B48B76 /* DocumentImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2C72FD1C54454E86BB2D3 /* DocumentImportView.swift */; };
@@ -164,6 +165,7 @@
 		0812680CCD130AE48B513313 /* PublicationExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationExporter.swift; sourceTree = "<group>"; };
 		08A62717ACE81A0E07A1894A /* ReadabilityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadabilityEngine.swift; sourceTree = "<group>"; };
 		0A994D61E58E05351FAD207E /* ResearchMetadataLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMetadataLookup.swift; sourceTree = "<group>"; };
+		0BC3450E164DD144F0A08E7B /* ProjectResearchWorkflowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectResearchWorkflowUITests.swift; sourceTree = "<group>"; };
 		0BE9C60286EDA37AA18C72E0 /* ProjectResearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectResearchStore.swift; sourceTree = "<group>"; };
 		0D554AF0F31A0A56A00160E4 /* DestinkModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinkModels.swift; sourceTree = "<group>"; };
 		110FDF6E4D12C6CD265D1C5F /* OutlineAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineAIService.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				DE3649DC5ED3EF02CD25E47D /* ProjectImportAssistantUITests.swift */,
 				48DB393CDF0A3B98091B9CE1 /* ProjectOrganizationUITests.swift */,
 				959F2F91AF54DBD01DA7AB0D /* ProjectPolishUITests.swift */,
+				0BC3450E164DD144F0A08E7B /* ProjectResearchWorkflowUITests.swift */,
 				D8578D0CED65BEEF7C3415F0 /* ReferenceLibraryUITests.swift */,
 				69306D8A1E3CBABD46A8143E /* ResearchLibraryWorkflowUITests.swift */,
 			);
@@ -764,6 +767,7 @@
 				994B1B87CDADE3077AEE2BE6 /* ProjectImportAssistantUITests.swift in Sources */,
 				29F12E3386851BFEB801C0C9 /* ProjectOrganizationUITests.swift in Sources */,
 				C415544E31566731D4A37F26 /* ProjectPolishUITests.swift in Sources */,
+				0F5205B57E74E2588F7A049E /* ProjectResearchWorkflowUITests.swift in Sources */,
 				B25FA76C64EC094F2F85BDC2 /* ReferenceLibraryUITests.swift in Sources */,
 				4F110798601563EA748950E7 /* ResearchLibraryWorkflowUITests.swift in Sources */,
 			);
