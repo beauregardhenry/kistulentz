@@ -33,19 +33,6 @@ final class ProjectOrganizationUITests: KistulentzUITestCase {
         XCTAssertTrue(moveSecondEarlier.waitForExistence(timeout: 5))
         moveSecondEarlier.click()
 
-        let add = app.descendants(matching: .any)["AddOutlineItem"].firstMatch
-        XCTAssertTrue(add.waitForExistence(timeout: 3))
-        add.click()
-        let addChapter = app.menuItems["Chapter"]
-        XCTAssertTrue(addChapter.waitForExistence(timeout: 3))
-        addChapter.click()
-        let title = app.descendants(matching: .any)["NewOutlineItemTitle"].firstMatch
-        XCTAssertTrue(title.waitForExistence(timeout: 3))
-        replaceText(in: title, with: "Appendix")
-        app.buttons["Create"].click()
-        XCTAssertTrue(app.staticTexts["Appendix"].waitForExistence(timeout: 5))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: project.root.appendingPathComponent("Appendix.md").path))
-
         app.staticTexts["Splittable Chapter"].firstMatch.click()
         let split = app.buttons["Split Headings into Scenes…"]
         XCTAssertTrue(split.waitForExistence(timeout: 5))
@@ -61,6 +48,20 @@ final class ProjectOrganizationUITests: KistulentzUITestCase {
             FileManager.default.fileExists(atPath: opening.path)
                 && FileManager.default.fileExists(atPath: conflict.path)
         }
+
+        let add = app.descendants(matching: .any)["AddOutlineItem"].firstMatch
+        XCTAssertTrue(add.waitForExistence(timeout: 3))
+        add.click()
+        let addChapter = app.menuItems["Chapter"]
+        XCTAssertTrue(addChapter.waitForExistence(timeout: 3))
+        addChapter.click()
+        let title = app.descendants(matching: .any)["NewOutlineItemTitle"].firstMatch
+        XCTAssertTrue(title.waitForExistence(timeout: 3))
+        replaceText(in: title, with: "Appendix")
+        app.buttons["Create"].click()
+        XCTAssertTrue(app.staticTexts["Appendix"].waitForExistence(timeout: 5))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: project.root.appendingPathComponent("Appendix.md").path))
+
         app.buttons["Done"].click()
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
 

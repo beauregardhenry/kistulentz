@@ -99,7 +99,7 @@ final class ProjectPolishUITests: KistulentzUITestCase {
             kind: "nonfiction"
         )
         var environment = project.environment
-        environment["KISTULENTZ_UI_TEST_PROJECT_POLISH_DELAY_MS"] = "1500"
+        environment["KISTULENTZ_UI_TEST_PROJECT_POLISH_DELAY_MS"] = "5000"
 
         launch(environment: environment)
         openProjectCommand("Polish Project…")

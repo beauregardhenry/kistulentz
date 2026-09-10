@@ -440,7 +440,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         let output = testRoot.appendingPathComponent("Cancelled Publication Output", isDirectory: true)
         var environment = project.environment
         environment["KISTULENTZ_UI_TEST_PUBLICATION_OUTPUT_PATH"] = output.path
-        environment["KISTULENTZ_UI_TEST_PUBLICATION_EXPORT_DELAY_MS"] = "1500"
+        environment["KISTULENTZ_UI_TEST_PUBLICATION_EXPORT_DELAY_MS"] = "5000"
 
         launch(environment: environment)
         openProjectCommand("Publish & Export…")
