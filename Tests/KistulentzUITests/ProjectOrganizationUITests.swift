@@ -34,8 +34,9 @@ final class ProjectOrganizationUITests: KistulentzUITestCase {
         moveSecondEarlier.click()
 
         app.staticTexts["Splittable Chapter"].firstMatch.click()
-        let split = app.buttons["Split Headings into Scenes…"]
+        let split = app.buttons["SplitOutlineChapterHeadings"]
         XCTAssertTrue(split.waitForExistence(timeout: 5))
+        XCTAssertTrue(split.isHittable)
         split.click()
         XCTAssertTrue(app.staticTexts["Split Chapter Headings"].waitForExistence(timeout: 5))
         let createScenes = app.buttons["Create 2 Files"]

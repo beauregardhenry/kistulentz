@@ -567,6 +567,20 @@ private struct OutlineNodeInspector: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
+                if node.kind == .chapter, node.relativePath != nil {
+                    GroupBox("Chapter Structure") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Preview level-two headings and create separate \(projectKind == .fiction ? "Scene" : "Section") Markdown files. The chapter is snapshotted first.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Button("Split Headings into \(projectKind == .fiction ? "Scenes" : "Sections")…", action: onSplitHeadings)
+                                .accessibilityIdentifier("SplitOutlineChapterHeadings")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 4)
+                    }
+                }
+
                 GroupBox("Synopsis") {
                     VStack(alignment: .leading, spacing: 8) {
                         TextEditor(text: $node.metadata.synopsis)
@@ -628,18 +642,6 @@ private struct OutlineNodeInspector: View {
                     nonfictionFields
                 }
 
-                if node.kind == .chapter, node.relativePath != nil {
-                    GroupBox("Chapter Structure") {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Preview level-two headings and create separate \(projectKind == .fiction ? "Scene" : "Section") Markdown files. The chapter is snapshotted first.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Button("Split Headings into \(projectKind == .fiction ? "Scenes" : "Sections")…", action: onSplitHeadings)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 4)
-                    }
-                }
             }
             .padding(16)
         }
