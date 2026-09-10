@@ -156,6 +156,13 @@ struct ProjectPolishService {
             }
             onProgress(index, documents.count, document.title)
             do {
+#if UI_TEST_HOST
+                if let value = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PROJECT_POLISH_DELAY_MS"],
+                   let milliseconds = Int(value),
+                   milliseconds > 0 {
+                    try await Task.sleep(for: .milliseconds(milliseconds))
+                }
+#endif
                 let analysis = try await documentAnalyzer(document, targetGrade, styleDecisions)
                 changes.append(contentsOf: analysis.changes)
                 advisoryCount += analysis.advisoryCount

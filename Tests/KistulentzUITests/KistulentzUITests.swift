@@ -431,6 +431,45 @@ final class KistulentzUITests: KistulentzUITestCase {
         ).contains("Publish Journey-submission"))
     }
 
+    func testActivePublicationExportCanBeCancelledAndClosingStopsARetry() throws {
+        let project = try makeProject(
+            name: "Cancelled Publish Journey",
+            documents: [("Draft.md", "# Draft\n\nA complete publication passage.\n")],
+            kind: "fiction"
+        )
+        let output = testRoot.appendingPathComponent("Cancelled Publication Output", isDirectory: true)
+        var environment = project.environment
+        environment["KISTULENTZ_UI_TEST_PUBLICATION_OUTPUT_PATH"] = output.path
+        environment["KISTULENTZ_UI_TEST_PUBLICATION_EXPORT_DELAY_MS"] = "1500"
+
+        launch(environment: environment)
+        openProjectCommand("Publish & Export…")
+        XCTAssertTrue(app.buttons["Close"].waitForExistence(timeout: 8))
+        app.staticTexts["Preflight & Export"].firstMatch.click()
+        app.buttons["Run Preflight"].click()
+        XCTAssertTrue(app.staticTexts["0 errors"].waitForExistence(timeout: 5))
+        app.buttons["Choose Output Folder…"].click()
+
+        beginPublicationExport()
+        let cancel = app.buttons["CancelActivePublicationExport"]
+        XCTAssertTrue(cancel.waitForExistence(timeout: 3))
+        cancel.click()
+        let export = app.buttons["Export EPUB 3"]
+        XCTAssertTrue(export.waitForExistence(timeout: 3))
+        XCTAssertTrue(export.isEnabled)
+        assertNoPublicationPackageAppears(in: output, timeout: 2.0)
+
+        beginPublicationExport()
+        XCTAssertTrue(app.buttons["CancelActivePublicationExport"].waitForExistence(timeout: 3))
+        app.buttons["Close"].click()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        assertNoPublicationPackageAppears(in: output, timeout: 2.0)
+        XCTAssertFalse(try String(
+            contentsOf: project.root.appendingPathComponent(".kistulentz/publication.json"),
+            encoding: .utf8
+        ).contains("Cancelled Publish Journey-submission"))
+    }
+
     func testReferenceLibraryWelcomeAlwaysOffersACancelPath() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
@@ -468,6 +507,31 @@ final class KistulentzUITests: KistulentzUITestCase {
 
     private var referenceControl: XCUIElement {
         app.descendants(matching: .any)["ReferenceMenu"].firstMatch
+    }
+
+    private func beginPublicationExport() {
+        let export = app.buttons["Export EPUB 3"]
+        XCTAssertTrue(export.waitForExistence(timeout: 3))
+        XCTAssertTrue(export.isEnabled)
+        export.click()
+        let confirm = app.buttons["ConfirmPublicationExport"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 3))
+        confirm.click()
+    }
+
+    private func assertNoPublicationPackageAppears(in output: URL, timeout: TimeInterval) {
+        let package = output.appendingPathComponent(
+            "Cancelled Publish Journey-submission",
+            isDirectory: true
+        )
+        let appearance = XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in
+                FileManager.default.fileExists(atPath: package.path)
+            },
+            object: nil
+        )
+        appearance.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [appearance], timeout: timeout), .completed)
     }
 
     private func openSystemCheck() {

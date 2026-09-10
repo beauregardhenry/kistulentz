@@ -345,6 +345,7 @@ struct PublishExportView: View {
                 }
                 if model.isExporting {
                     Button("Cancel Export", role: .cancel) { model.cancelExport() }
+                        .accessibilityIdentifier("CancelActivePublicationExport")
                 }
                 Button(model.isExporting ? "Exporting…" : "Export \(model.format.title)") { model.requestExport() }
                     .buttonStyle(.borderedProminent)

@@ -89,4 +89,48 @@ final class ProjectPolishUITests: KistulentzUITestCase {
         XCTAssertTrue(staleWarning.waitForExistence(timeout: 5))
         XCTAssertEqual(try String(contentsOf: chapter, encoding: .utf8), externallyChanged)
     }
+
+    func testProjectPolishScanCanBeCancelledAndClosedWithoutChangingFiles() throws {
+        let first = "# First\n\nWe utilize tools.\n"
+        let second = "# Second\n\nWe utilize records.\n"
+        let project = try makeProject(
+            name: "Slow Polish Fixture",
+            documents: [("First.md", first), ("Second.md", second)],
+            kind: "nonfiction"
+        )
+        var environment = project.environment
+        environment["KISTULENTZ_UI_TEST_PROJECT_POLISH_DELAY_MS"] = "1500"
+
+        launch(environment: environment)
+        openProjectCommand("Polish Project…")
+        let cancelScan = app.buttons["Cancel Scan"]
+        XCTAssertTrue(cancelScan.waitForExistence(timeout: 5))
+        cancelScan.click()
+        XCTAssertTrue(app.staticTexts["Scan cancelled"].waitForExistence(timeout: 5))
+        app.buttons["Close"].click()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+
+        try assertProject(project.root, stillContains: [
+            ("First.md", first),
+            ("Second.md", second)
+        ])
+
+        openProjectCommand("Polish Project…")
+        XCTAssertTrue(app.buttons["Cancel Scan"].waitForExistence(timeout: 5))
+        app.buttons["Close"].click()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        try assertProject(project.root, stillContains: [
+            ("First.md", first),
+            ("Second.md", second)
+        ])
+    }
+
+    private func assertProject(_ root: URL, stillContains documents: [(String, String)]) throws {
+        for (path, expected) in documents {
+            XCTAssertEqual(
+                try String(contentsOf: root.appendingPathComponent(path), encoding: .utf8),
+                expected
+            )
+        }
+    }
 }
