@@ -255,6 +255,32 @@ class KistulentzUITestCase: XCTestCase {
             .appendingPathComponent(relativePath)
     }
 
+    func makeFixtureEPUB(
+        named filename: String,
+        title: String = "The Lantern Road",
+        author: String = "Beau Henry"
+    ) throws -> URL {
+        let source = fixture("EPUBSource")
+        let staging = testRoot.appendingPathComponent("EPUB-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.copyItem(at: source, to: staging)
+        let metadataURL = staging.appendingPathComponent("OEBPS/content.opf")
+        var metadata = try String(contentsOf: metadataURL, encoding: .utf8)
+        metadata = metadata
+            .replacingOccurrences(of: "The Lantern Road", with: title)
+            .replacingOccurrences(of: "Beau Henry", with: author)
+        try metadata.write(to: metadataURL, atomically: true, encoding: .utf8)
+
+        let output = testRoot.appendingPathComponent(filename)
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/zip")
+        process.currentDirectoryURL = staging
+        process.arguments = ["-X", "-q", "-r", output.path, "."]
+        try process.run()
+        process.waitUntilExit()
+        guard process.terminationStatus == 0 else { throw CocoaError(.fileWriteUnknown) }
+        return output
+    }
+
     @MainActor private func makeApplication(
         completedOnboarding: Bool,
         acknowledgedEnglishPack: Bool

@@ -27,4 +27,23 @@ final class FilePanelConfigurationTests: XCTestCase {
             $0.identifier == "net.daringfireball.markdown" || $0.conforms(to: .plainText)
         })
     }
+
+    func testReferenceLibraryPanelConfigurationsKeepFolderAndEPUBSelectionDistinct() {
+        let folder = OpenPanelConfiguration.referenceLibraryFolder
+        XCTAssertFalse(folder.canChooseFiles)
+        XCTAssertTrue(folder.canChooseDirectories)
+        XCTAssertTrue(folder.canCreateDirectories)
+        XCTAssertFalse(folder.allowsMultipleSelection)
+
+        let files = OpenPanelConfiguration.referenceEPUBFiles
+        XCTAssertTrue(files.canChooseFiles)
+        XCTAssertFalse(files.canChooseDirectories)
+        XCTAssertTrue(files.allowsMultipleSelection)
+        XCTAssertEqual(files.allowedContentTypes?.count, 1)
+
+        let folders = OpenPanelConfiguration.referenceEPUBFolders
+        XCTAssertFalse(folders.canChooseFiles)
+        XCTAssertTrue(folders.canChooseDirectories)
+        XCTAssertTrue(folders.allowsMultipleSelection)
+    }
 }

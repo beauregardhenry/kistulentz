@@ -441,7 +441,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(libraryItem.waitForExistence(timeout: 3))
         libraryItem.click()
 
-        XCTAssertTrue(app.descendants(matching: .any)["ReferenceLibraryView"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Create a Reference Library"].waitForExistence(timeout: 5))
         let cancel = app.buttons["Cancel"]
         XCTAssertTrue(cancel.isHittable)
         cancel.click()

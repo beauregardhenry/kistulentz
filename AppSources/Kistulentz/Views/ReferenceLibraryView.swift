@@ -26,7 +26,6 @@ struct ReferenceLibraryView: View {
             }
         }
         .frame(minWidth: 880, minHeight: 610)
-        .accessibilityIdentifier("ReferenceLibraryView")
         .alert("Reference Library", isPresented: Binding(
             get: { library.errorMessage != nil },
             set: { if !$0 { library.errorMessage = nil } }
@@ -65,7 +64,9 @@ struct ReferenceLibraryView: View {
         } description: {
             Text("Choose a folder for Kistulentz’s Markdown knowledge base. EPUB analysis remains local unless you explicitly choose Deepen w/ AI.")
         } actions: {
-            Button("Choose Library Folder", action: chooseLibraryFolder)
+            Button("Choose Library Folder") {
+                Task { await chooseLibraryFolder() }
+            }
                 .buttonStyle(.borderedProminent)
             Button("Cancel") { dismiss() }
         }
@@ -109,14 +110,15 @@ struct ReferenceLibraryView: View {
             }
 
             Menu {
-                Button("Add EPUB Files…", action: addEPUBFiles)
-                Button("Add EPUB Folder…", action: addEPUBFolder)
+                Button("Add EPUB Files…") { Task { await addEPUBFiles() } }
+                Button("Add EPUB Folder…") { Task { await addEPUBFolder() } }
                 Divider()
-                Button("Choose Different Library Folder…", action: chooseLibraryFolder)
+                Button("Choose Different Library Folder…") { Task { await chooseLibraryFolder() } }
             } label: {
                 Label("Import", systemImage: "plus")
             }
             .menuStyle(.borderlessButton)
+            .accessibilityIdentifier("ReferenceLibraryImport")
 
             Button("Done") { dismiss() }
                 .keyboardShortcut(.cancelAction)
@@ -335,6 +337,7 @@ struct ReferenceLibraryView: View {
                     }
                     .buttonStyle(.bordered)
                     .disabled(selectedChoiceIDs.isEmpty || !beneparPack.isInstalled)
+                    .accessibilityIdentifier("ReferenceStructureAnalysis")
                 }
             }
 
@@ -362,6 +365,7 @@ struct ReferenceLibraryView: View {
                 }
                 .buttonStyle(.bordered)
                 .disabled(selectedChoiceIDs.isEmpty || library.isDeepening)
+                .accessibilityIdentifier("DeepenReferenceLibrary")
 
                 Button("Open Markdown", action: library.openKnowledgeBase)
                     .buttonStyle(.bordered)
@@ -412,42 +416,31 @@ struct ReferenceLibraryView: View {
         )
     }
 
-    private func chooseLibraryFolder() {
-        let panel = NSOpenPanel()
-        panel.title = "Choose a Reference Library Folder"
-        panel.prompt = "Use Folder"
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.canCreateDirectories = true
-        panel.allowsMultipleSelection = false
-        if panel.runModal() == .OK, let url = panel.url {
-            library.setLocation(url)
-        }
+    @MainActor
+    private func chooseLibraryFolder() async {
+        guard let url = await MacFilePanel.chooseFolder(
+            configuration: .referenceLibraryFolder,
+            uiTestEnvironmentKey: "KISTULENTZ_UI_TEST_REFERENCE_LIBRARY_PATH"
+        ) else { return }
+        library.setLocation(url)
     }
 
-    private func addEPUBFiles() {
-        let panel = NSOpenPanel()
-        panel.title = "Add EPUB Files"
-        panel.prompt = "Import"
-        panel.allowedContentTypes = [UTType(importedAs: "org.idpf.epub-container")]
-        panel.canChooseFiles = true
-        panel.canChooseDirectories = false
-        panel.allowsMultipleSelection = true
-        if panel.runModal() == .OK {
-            library.importEPUBs(from: panel.urls)
-        }
+    @MainActor
+    private func addEPUBFiles() async {
+        guard let urls = await MacFilePanel.chooseItems(
+            configuration: .referenceEPUBFiles,
+            uiTestEnvironmentKey: "KISTULENTZ_UI_TEST_REFERENCE_EPUB_PATHS"
+        ) else { return }
+        library.importEPUBs(from: urls)
     }
 
-    private func addEPUBFolder() {
-        let panel = NSOpenPanel()
-        panel.title = "Add a Folder of EPUB Files"
-        panel.prompt = "Scan Folder"
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.allowsMultipleSelection = true
-        if panel.runModal() == .OK {
-            library.importEPUBs(from: panel.urls)
-        }
+    @MainActor
+    private func addEPUBFolder() async {
+        guard let urls = await MacFilePanel.chooseItems(
+            configuration: .referenceEPUBFolders,
+            uiTestEnvironmentKey: "KISTULENTZ_UI_TEST_REFERENCE_EPUB_PATHS"
+        ) else { return }
+        library.importEPUBs(from: urls)
     }
 }
 

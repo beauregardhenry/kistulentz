@@ -251,6 +251,7 @@ struct EditorToolbar: View {
             .frame(maxWidth: 170)
             .help("Choose one or more writing references")
             .accessibilityIdentifier("ReferenceMenu")
+            .accessibilityValue(viewModel.referenceBook?.title ?? "No reference selected")
 
             Button(action: actions.runReview) {
                 if viewModel.isReviewing {
