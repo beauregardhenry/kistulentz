@@ -312,6 +312,118 @@ final class BeneparIntegrationTests: XCTestCase {
         XCTAssertNotNil(manager.errorMessage)
     }
 
+    @MainActor
+    func testLanguagePackManagerDownloadsInstallsAndActivatesMatchingPack() async throws {
+        let temporary = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: temporary) }
+        let fixture = try makePackArchive(in: temporary, version: "2.0.0")
+        let root = temporary.appendingPathComponent("installed/English", isDirectory: true)
+        let catalogURL = URL(string: "https://example.invalid/catalog.json")!
+        BeneparMockURLProtocol.handler = { request in
+            if request.url == catalogURL {
+                return (try Self.httpResponse(for: request), try Self.catalogData(for: fixture.entry))
+            }
+            XCTAssertEqual(request.url, fixture.entry.downloadURL)
+            return (try Self.httpResponse(for: request), try Data(contentsOf: fixture.archive))
+        }
+        let manager = BeneparLanguagePackManager(
+            rootURL: root,
+            catalogURL: catalogURL,
+            session: mockSession()
+        )
+
+        await manager.install()
+
+        XCTAssertTrue(manager.isInstalled)
+        XCTAssertEqual(manager.state, .installed(version: "2.0.0", installedBytes: 1_000))
+        XCTAssertNil(manager.errorMessage)
+        XCTAssertEqual(manager.activityMessage, "English structural analysis is ready.")
+        XCTAssertNotNil(try BeneparLanguagePackLocator.locate(at: root))
+        XCTAssertTrue(try FileManager.default.contentsOfDirectory(
+            at: root.deletingLastPathComponent(),
+            includingPropertiesForKeys: nil
+        ).allSatisfy { !$0.lastPathComponent.hasPrefix(".English-") })
+    }
+
+    @MainActor
+    func testInterruptedLanguagePackDownloadPreservesWorkingInstallation() async throws {
+        let temporary = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: temporary) }
+        let root = temporary.appendingPathComponent("installed/English", isDirectory: true)
+        try writePack(at: root, version: "1.0.0")
+        let fixture = try makePackArchive(in: temporary, version: "2.0.0")
+        let catalogURL = URL(string: "https://example.invalid/catalog.json")!
+        BeneparMockURLProtocol.handler = { request in
+            if request.url == catalogURL {
+                return (try Self.httpResponse(for: request), try Self.catalogData(for: fixture.entry))
+            }
+            throw URLError(.cancelled)
+        }
+        let manager = BeneparLanguagePackManager(
+            rootURL: root,
+            catalogURL: catalogURL,
+            session: mockSession()
+        )
+
+        await manager.install()
+
+        XCTAssertEqual(manager.state, .installed(version: "1.0.0", installedBytes: 1_000))
+        XCTAssertNil(manager.errorMessage)
+        XCTAssertEqual(manager.activityMessage, "English language-pack installation cancelled.")
+        XCTAssertEqual(try BeneparLanguagePackLocator.locate(at: root)?.manifest.version, "1.0.0")
+    }
+
+    @MainActor
+    func testChecksumFailurePreservesWorkingLanguagePack() async throws {
+        let temporary = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: temporary) }
+        let root = temporary.appendingPathComponent("installed/English", isDirectory: true)
+        try writePack(at: root, version: "1.0.0")
+        let fixture = try makePackArchive(in: temporary, version: "2.0.0")
+        let invalidEntry = BeneparLanguagePackCatalogEntry(
+            architecture: fixture.entry.architecture,
+            version: fixture.entry.version,
+            downloadURL: fixture.entry.downloadURL,
+            sha256: String(repeating: "0", count: 64),
+            downloadBytes: fixture.entry.downloadBytes,
+            installedBytes: fixture.entry.installedBytes
+        )
+        let catalogURL = URL(string: "https://example.invalid/catalog.json")!
+        BeneparMockURLProtocol.handler = { request in
+            if request.url == catalogURL {
+                return (try Self.httpResponse(for: request), try Self.catalogData(for: invalidEntry))
+            }
+            return (try Self.httpResponse(for: request), try Data(contentsOf: fixture.archive))
+        }
+        let manager = BeneparLanguagePackManager(
+            rootURL: root,
+            catalogURL: catalogURL,
+            session: mockSession()
+        )
+
+        await manager.install()
+
+        XCTAssertEqual(manager.state, .installed(version: "1.0.0", installedBytes: 1_000))
+        XCTAssertTrue(manager.errorMessage?.contains("SHA-256") == true)
+        XCTAssertEqual(try BeneparLanguagePackLocator.locate(at: root)?.manifest.version, "1.0.0")
+    }
+
+    @MainActor
+    func testLanguagePackRemovalLeavesNativeAnalysisAvailable() async throws {
+        let temporary = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: temporary) }
+        let root = temporary.appendingPathComponent("installed/English", isDirectory: true)
+        try writePack(at: root, version: "1.0.0")
+        let manager = BeneparLanguagePackManager(rootURL: root)
+        XCTAssertTrue(manager.isInstalled)
+
+        await manager.remove()
+
+        XCTAssertEqual(manager.state, .notInstalled)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.path))
+        XCTAssertEqual(manager.activityMessage, "English language pack removed. Native analysis remains active.")
+    }
+
     func testCorruptArchiveCannotReplaceAnExistingPack() throws {
         let temporary = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: temporary) }
@@ -382,6 +494,78 @@ final class BeneparIntegrationTests: XCTestCase {
             .appendingPathComponent("Kistulentz-Benepar-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
+    }
+
+    private func mockSession() -> URLSession {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [BeneparMockURLProtocol.self]
+        return URLSession(configuration: configuration)
+    }
+
+    private func makePackArchive(
+        in temporary: URL,
+        version: String
+    ) throws -> (archive: URL, entry: BeneparLanguagePackCatalogEntry) {
+        let source = temporary.appendingPathComponent("source-\(UUID().uuidString)/English", isDirectory: true)
+        try writePack(at: source, version: version)
+        let archive = temporary.appendingPathComponent("pack-\(UUID().uuidString).zip")
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
+        process.arguments = ["-c", "-k", "--norsrc", "--keepParent", source.path, archive.path]
+        try process.run()
+        process.waitUntilExit()
+        guard process.terminationStatus == 0 else { throw BeneparLanguagePackError.invalidArchive }
+        let bytes = Int64(try archive.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0)
+        return (archive, BeneparLanguagePackCatalogEntry(
+            architecture: BeneparLanguagePackLocator.architecture,
+            version: version,
+            downloadURL: URL(string: "https://example.invalid/pack-\(UUID().uuidString).zip")!,
+            sha256: try BeneparLanguagePackManager.sha256(of: archive),
+            downloadBytes: bytes,
+            installedBytes: 1_000
+        ))
+    }
+
+    private func writePack(at root: URL, version: String) throws {
+        let python = root.appendingPathComponent("python/bin/python3")
+        let model = root.appendingPathComponent("nltk_data/models/benepar_en3", isDirectory: true)
+        try FileManager.default.createDirectory(at: python.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: model, withIntermediateDirectories: true)
+        try Data("#!/bin/sh\n".utf8).write(to: python)
+        try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: python.path)
+        let manifest = BeneparLanguagePackManifest(
+            schemaVersion: 1,
+            identifier: "english-benepar",
+            version: version,
+            architecture: BeneparLanguagePackLocator.architecture,
+            pythonRelativePath: "python/bin/python3",
+            modelRelativePath: "nltk_data/models/benepar_en3",
+            installedBytes: 1_000
+        )
+        try JSONEncoder().encode(manifest).write(to: root.appendingPathComponent("manifest.json"))
+    }
+
+    private static func catalogData(for entry: BeneparLanguagePackCatalogEntry) throws -> Data {
+        try JSONSerialization.data(withJSONObject: [
+            "schemaVersion": 1,
+            "packs": [[
+                "architecture": entry.architecture,
+                "version": entry.version,
+                "downloadURL": entry.downloadURL.absoluteString,
+                "sha256": entry.sha256,
+                "downloadBytes": entry.downloadBytes,
+                "installedBytes": entry.installedBytes
+            ]]
+        ])
+    }
+
+    private static func httpResponse(for request: URLRequest, status: Int = 200) throws -> HTTPURLResponse {
+        try XCTUnwrap(HTTPURLResponse(
+            url: try XCTUnwrap(request.url),
+            statusCode: status,
+            httpVersion: nil,
+            headerFields: nil
+        ))
     }
 }
 
