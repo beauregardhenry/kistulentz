@@ -16,10 +16,10 @@ struct ProjectOrganizationView: View {
     @ObservedObject var store: WritingProjectStore
     @ObservedObject var styleLearningStore: StyleLearningStore
     let reference: EPUBReference?
+    let projectUndoManager: UndoManager?
 
     @EnvironmentObject private var settings: AppSettings
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.undoManager) private var undoManager
     @State private var mode: OrganizationViewMode = .corkboard
     @State private var focusedContainerID: UUID?
     @State private var selectedNodeID: UUID?
@@ -58,9 +58,8 @@ struct ProjectOrganizationView: View {
             }
         }
         .frame(minWidth: 1_080, minHeight: 720)
-        .accessibilityIdentifier("ProjectOrganizationView")
         .onAppear {
-            store.attachUndoManager(undoManager)
+            store.attachUndoManager(projectUndoManager)
             selectedNodeID = store.outlineRows.first?.id
         }
         .sheet(item: $pendingNewItem) { pending in
@@ -130,6 +129,7 @@ struct ProjectOrganizationView: View {
                 } label: {
                     Label("Add", systemImage: "plus")
                 }
+                .accessibilityIdentifier("AddOutlineItem")
                 Button("Organize Files…") {
                     filePlan = store.fileOrganizationPlan()
                 }
@@ -256,6 +256,8 @@ struct ProjectOrganizationView: View {
                                     dismiss()
                                 }
                             },
+                            onMoveEarlier: { store.moveOutlineNodeEarlier(row.id) },
+                            onMoveLater: { store.moveOutlineNodeLater(row.id) },
                             onDropNode: { movingID in store.moveOutlineNode(movingID, onto: row.id) }
                         )
                     }
@@ -475,6 +477,8 @@ private struct OutlineRow: View {
     let isSelected: Bool
     let onSelect: () -> Void
     let onOpen: () -> Void
+    let onMoveEarlier: () -> Void
+    let onMoveLater: () -> Void
     let onDropNode: (UUID) -> Void
 
     var body: some View {
@@ -504,6 +508,12 @@ private struct OutlineRow: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .frame(width: 68, alignment: .leading)
+            Button(action: onMoveEarlier) { Image(systemName: "arrow.up") }
+                .buttonStyle(.borderless)
+                .accessibilityLabel("Move \(row.node.title) earlier")
+            Button(action: onMoveLater) { Image(systemName: "arrow.down") }
+                .buttonStyle(.borderless)
+                .accessibilityLabel("Move \(row.node.title) later")
             Button(action: onOpen) { Image(systemName: row.node.kind.isContainer ? "rectangle.stack" : "pencil") }
                 .buttonStyle(.borderless)
                 .accessibilityLabel(row.node.kind.isContainer ? "Open \(row.node.title)" : "Edit \(row.node.title)")
@@ -556,6 +566,20 @@ private struct OutlineNodeInspector: View {
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
+
+                if node.kind == .chapter, node.relativePath != nil {
+                    GroupBox("Chapter Structure") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Preview level-two headings and create separate \(projectKind == .fiction ? "Scene" : "Section") Markdown files. The chapter is snapshotted first.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Button("Split Headings into \(projectKind == .fiction ? "Scenes" : "Sections")…", action: onSplitHeadings)
+                                .accessibilityIdentifier("SplitOutlineChapterHeadings")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 4)
+                    }
+                }
 
                 GroupBox("Synopsis") {
                     VStack(alignment: .leading, spacing: 8) {
@@ -618,18 +642,6 @@ private struct OutlineNodeInspector: View {
                     nonfictionFields
                 }
 
-                if node.kind == .chapter, node.relativePath != nil {
-                    GroupBox("Chapter Structure") {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Preview level-two headings and create separate \(projectKind == .fiction ? "Scene" : "Section") Markdown files. The chapter is snapshotted first.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Button("Split Headings into \(projectKind == .fiction ? "Scenes" : "Sections")…", action: onSplitHeadings)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 4)
-                    }
-                }
             }
             .padding(16)
         }
@@ -690,6 +702,7 @@ private struct NewOutlineItemSheet: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("New \(kind.title)").font(.headline)
             TextField("Title", text: $title).textFieldStyle(.roundedBorder)
+                .accessibilityIdentifier("NewOutlineItemTitle")
             Text(kind == .part
                 ? "Parts organize the outline without creating a file."
                 : "Kistulentz creates a normal Markdown file and adds it to the outline.")

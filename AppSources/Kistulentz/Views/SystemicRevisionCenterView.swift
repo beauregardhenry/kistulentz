@@ -65,6 +65,7 @@ struct SystemicRevisionCenterView: View {
                 else { Label("Scan Locally", systemImage: "checklist") }
             }
             .disabled(store.isScanningRevisions)
+            .accessibilityIdentifier("RunSystemicRevisionScan")
             Button("Deepen w/ AI…") { prepareAI() }.disabled(isRunningAI || store.isScanningRevisions)
             Button("Preview Selected Changes…") { prepareChanges() }
                 .buttonStyle(.borderedProminent)
@@ -142,6 +143,8 @@ struct SystemicRevisionCenterView: View {
                         .labelsHidden()
                         .toggleStyle(.checkbox)
                         .disabled(finding.replacement == nil || finding.excerpt.isEmpty || finding.chapterPath == nil)
+                        .accessibilityLabel("Select change: \(finding.title)")
+                        .accessibilityIdentifier("SystemicRevisionFindingToggle-\(finding.signature)")
                         VStack(alignment: .leading, spacing: 3) {
                             Text(finding.title).fontWeight(.medium).lineLimit(2)
                             Text(finding.classification.title).font(.caption).foregroundStyle(classificationColor(finding.classification))
@@ -321,10 +324,13 @@ private struct RevisionChangeSetPreviewView: View {
                 }
                 Spacer()
                 Button("Recheck") { revalidate() }
+                    .accessibilityIdentifier("RecheckSystemicRevisionChanges")
                 Button("Cancel") { dismiss() }
+                    .accessibilityIdentifier("CancelSystemicRevisionPreview")
                 Button("Apply Included Changes…") { showingConfirmation = true }
                     .buttonStyle(.borderedProminent)
                     .disabled(!set.hasChanges || set.hasConflicts)
+                    .accessibilityIdentifier("ApplySystemicRevisionChanges")
             }.padding()
             Divider()
             List {
@@ -338,7 +344,10 @@ private struct RevisionChangeSetPreviewView: View {
                                 Text(change.originalText).frame(maxWidth: .infinity, alignment: .leading).textSelection(.enabled)
                             }
                             GroupBox("After — editable proposal") {
-                                TextEditor(text: $change.replacementText).frame(minHeight: 70)
+                                TextEditor(text: $change.replacementText)
+                                    .frame(minHeight: 70)
+                                    .accessibilityLabel("Proposed systemic replacement for \(change.chapterPath): \(change.originalText)")
+                                    .accessibilityIdentifier("SystemicRevisionReplacement-\(change.id.uuidString)")
                             }
                         }
                         if let conflict = change.conflict { Label(conflict, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red) }
@@ -347,6 +356,7 @@ private struct RevisionChangeSetPreviewView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 620)
+        .accessibilityIdentifier("SystemicRevisionChangePreview")
         .onAppear { revalidate() }
         .onChange(of: set.changes) { _, _ in revalidate() }
         .confirmationDialog("Apply these coordinated changes?", isPresented: $showingConfirmation, titleVisibility: .visible) {
@@ -354,7 +364,9 @@ private struct RevisionChangeSetPreviewView: View {
                 store.applyRevisionChangeSet(set)
                 dismiss()
             }
+            .accessibilityIdentifier("ConfirmSystemicRevisionApply")
             Button("Cancel", role: .cancel) {}
+                .accessibilityIdentifier("CancelSystemicRevisionApply")
         } message: {
             Text("Kistulentz will recheck every passage, snapshot every affected file, and stop without writing if any proposal is stale, ambiguous, or overlapping.")
         }

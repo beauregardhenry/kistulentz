@@ -80,6 +80,13 @@ final class PublishExportViewModel: ObservableObject {
                 preview: { PublicationExporter.preview(plan: $0, root: $1) },
                 preflight: { PublicationPreflight.run(plan: $0, root: $1) },
                 export: { plan, root, outputDirectory, allowingWarnings in
+#if UI_TEST_HOST
+                    if let value = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PUBLICATION_EXPORT_DELAY_MS"],
+                       let milliseconds = Int(value),
+                       milliseconds > 0 {
+                        try await Task.sleep(for: .milliseconds(milliseconds))
+                    }
+#endif
                     let worker = Task.detached(priority: .userInitiated) {
                         try PublicationExporter.export(
                             plan: plan,

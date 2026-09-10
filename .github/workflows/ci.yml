@@ -37,7 +37,7 @@ jobs:
   ui-tests:
     name: macOS UI regression tests
     runs-on: macos-15
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
       - name: Verify the checked-in project matches the sources

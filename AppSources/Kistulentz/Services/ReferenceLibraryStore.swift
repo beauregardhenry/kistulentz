@@ -147,6 +147,13 @@ final class ReferenceLibraryStore: ObservableObject {
             for url in discovered {
                 guard !Task.isCancelled, self.importOperationID == operationID else { return }
                 self.currentImportName = url.lastPathComponent
+#if UI_TEST_HOST
+                if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_REFERENCE_IMPORT_DELAY_MS"],
+                   let delay = UInt64(rawDelay), delay > 0 {
+                    try? await Task.sleep(for: .milliseconds(delay))
+                    guard !Task.isCancelled, self.importOperationID == operationID else { return }
+                }
+#endif
                 let standardizedPath = url.standardizedFileURL.path
                 let existing = self.books.first(where: { $0.sourcePath == standardizedPath })
                 let attributes = try? FileManager.default.attributesOfItem(atPath: standardizedPath)

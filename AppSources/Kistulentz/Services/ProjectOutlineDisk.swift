@@ -223,6 +223,22 @@ enum OutlineTree {
         return true
     }
 
+    static func moveSibling(nodeID: UUID, offset: Int, in nodes: inout [OutlineNode]) -> Bool {
+        guard offset == -1 || offset == 1 else { return false }
+        if let index = nodes.firstIndex(where: { $0.id == nodeID }) {
+            let destination = index + offset
+            guard nodes.indices.contains(destination) else { return false }
+            nodes.swapAt(index, destination)
+            return true
+        }
+        for index in nodes.indices {
+            if moveSibling(nodeID: nodeID, offset: offset, in: &nodes[index].children) {
+                return true
+            }
+        }
+        return false
+    }
+
     static func canPlace(_ child: OutlineNodeKind, under parent: OutlineNodeKind?) -> Bool {
         switch parent {
         case nil: child == .part || child == .chapter

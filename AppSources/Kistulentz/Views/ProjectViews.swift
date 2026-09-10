@@ -280,6 +280,7 @@ struct ProjectConfigurationSheet: View {
             Form {
                 TextField("Project name", text: $name)
                     .disabled(!allowsNameEditing)
+                    .accessibilityIdentifier("ProjectConfigurationName")
                 Picker("Writing type", selection: $kind) {
                     ForEach(WritingProjectKind.allCases) { kind in
                         Text(kind.title).tag(kind)

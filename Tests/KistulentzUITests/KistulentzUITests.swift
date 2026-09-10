@@ -159,6 +159,57 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(export.waitForExistence(timeout: 2))
     }
 
+    func testDiagnosticReportExportsPrivacySafeVersionedReproductionGuide() throws {
+        let destination = testRoot.appendingPathComponent("Kistulentz Diagnostics.md")
+        launch(
+            completedOnboarding: true,
+            acknowledgedEnglishPack: true,
+            environment: ["KISTULENTZ_UI_TEST_SAVE_DESTINATION_PATH": destination.path]
+        )
+        openSystemCheck()
+
+        let export = app.buttons["ExportDiagnosticReport"]
+        XCTAssertTrue(export.waitForExistence(timeout: 10))
+        export.click()
+
+        let confirmation = app.staticTexts["SystemCheckMessage"]
+        XCTAssertTrue(confirmation.waitForExistence(timeout: 5))
+        XCTAssertEqual(value(of: confirmation), "Diagnostic report exported.")
+        waitUntil(description: "Diagnostic report should be written to the selected destination") {
+            FileManager.default.fileExists(atPath: destination.path)
+        }
+        let markdown = try String(contentsOf: destination, encoding: .utf8)
+        XCTAssertTrue(markdown.contains("# Kistulentz System Check"))
+        XCTAssertTrue(markdown.contains("- Kistulentz:"))
+        XCTAssertTrue(markdown.contains("## Help us reproduce a problem"))
+        XCTAssertTrue(markdown.contains("excludes document and manuscript text"))
+        XCTAssertFalse(markdown.contains(testRoot.path))
+    }
+
+    func testDiagnosticExportWriteFailureStaysUsableAndReportsTheError() throws {
+        let unwritableDestination = testRoot.appendingPathComponent("Existing Folder", isDirectory: true)
+        try FileManager.default.createDirectory(at: unwritableDestination, withIntermediateDirectories: true)
+        launch(
+            completedOnboarding: true,
+            acknowledgedEnglishPack: true,
+            environment: ["KISTULENTZ_UI_TEST_SAVE_DESTINATION_PATH": unwritableDestination.path]
+        )
+        openSystemCheck()
+
+        let export = app.buttons["ExportDiagnosticReport"]
+        XCTAssertTrue(export.waitForExistence(timeout: 10))
+        export.click()
+
+        let alert = app.staticTexts["Couldn’t export the report"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 5))
+        let confirmation = app.sheets.firstMatch.buttons["OK"]
+        XCTAssertTrue(confirmation.waitForExistence(timeout: 3))
+        confirmation.click()
+        XCTAssertTrue(export.waitForExistence(timeout: 3))
+        XCTAssertTrue(export.isEnabled)
+        XCTAssertTrue(app.windows.firstMatch.exists)
+    }
+
     func testDestinkReviewOpensRunsLocallyAndCloses() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
@@ -186,7 +237,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         launch(environment: project.environment)
 
         openProjectCommand("Project Organization…")
-        XCTAssertTrue(app.descendants(matching: .any)["ProjectOrganizationView"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Project Organization"].waitForExistence(timeout: 5))
         let organizationDone = app.buttons["Done"]
         XCTAssertTrue(organizationDone.isHittable)
         organizationDone.click()
@@ -213,6 +264,212 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 
+    func testSystemicRevisionSupportsEditedProposalCancelApplyAndOneStepUndo() throws {
+        let original = "# Draft\n\nWe utilize tools.\n"
+        let edited = "# Draft\n\nWe employ tools.\n"
+        let project = try makeProject(
+            name: "Systemic Revision Journey",
+            documents: [("Draft.md", original)],
+            kind: "nonfiction"
+        )
+        let chapter = project.root.appendingPathComponent("Draft.md")
+
+        launch(environment: project.environment)
+        openProjectCommand("Systemic Revision Center…")
+        XCTAssertTrue(
+            app.descendants(matching: .any)["SystemicRevisionCenterView"]
+                .waitForExistence(timeout: 5)
+        )
+        let scan = app.buttons["Scan Locally"]
+        XCTAssertTrue(scan.waitForExistence(timeout: 5))
+        scan.click()
+        let lineEditing = app.staticTexts["Line Editing"].firstMatch
+        XCTAssertTrue(lineEditing.waitForExistence(timeout: 5))
+        lineEditing.click()
+
+        let selectChange = app.checkBoxes["Select change: Simpler alternative"].firstMatch
+        XCTAssertTrue(selectChange.waitForExistence(timeout: 12))
+        selectChange.click()
+        let previewButton = app.buttons["Preview Selected Changes…"]
+        XCTAssertTrue(previewButton.isEnabled)
+        previewButton.click()
+
+        let previewTitle = app.staticTexts["Preview Coordinated Changes"]
+        XCTAssertTrue(previewTitle.waitForExistence(timeout: 5))
+        let proposal = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label BEGINSWITH 'Proposed systemic replacement for Draft.md:'"))
+            .firstMatch
+        XCTAssertTrue(proposal.waitForExistence(timeout: 5))
+        replaceText(in: proposal, with: "employ")
+
+        app.buttons["Apply Included Changes…"].click()
+        let cancelApply = app.buttons["CancelSystemicRevisionApply"]
+        XCTAssertTrue(cancelApply.waitForExistence(timeout: 3))
+        cancelApply.click()
+        XCTAssertTrue(previewTitle.exists)
+        XCTAssertEqual(try String(contentsOf: chapter, encoding: .utf8), original)
+
+        app.buttons["Apply Included Changes…"].click()
+        let confirmApply = app.buttons["ConfirmSystemicRevisionApply"]
+        XCTAssertTrue(confirmApply.waitForExistence(timeout: 3))
+        confirmApply.click()
+        XCTAssertFalse(previewTitle.waitForExistence(timeout: 2))
+        waitUntil(description: "Systemic Revision should persist the edited proposal") {
+            (try? String(contentsOf: chapter, encoding: .utf8)) == edited
+        }
+
+        app.buttons["Done"].click()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertEqual(value(of: editor), edited)
+        let undoOutcome = try undoProjectChange(expecting: original)
+        XCTAssertTrue(undoOutcome.contains("error=none"), undoOutcome)
+        let redoOutcome = try redoProjectChange(expecting: edited)
+        XCTAssertTrue(redoOutcome.contains("error=none"), redoOutcome)
+    }
+
+    func testSystemicRevisionRecheckBlocksAnExternallyChangedPassage() throws {
+        let original = "# Draft\n\nWe utilize tools.\n"
+        let external = "# Draft\n\nAn external editor changed this passage.\n"
+        let project = try makeProject(
+            name: "Stale Systemic Revision Journey",
+            documents: [("Draft.md", original)],
+            kind: "nonfiction"
+        )
+        let chapter = project.root.appendingPathComponent("Draft.md")
+
+        launch(environment: project.environment)
+        openProjectCommand("Systemic Revision Center…")
+        XCTAssertTrue(app.descendants(matching: .any)["SystemicRevisionCenterView"].waitForExistence(timeout: 5))
+        let scan = app.buttons["Scan Locally"]
+        XCTAssertTrue(scan.waitForExistence(timeout: 5))
+        scan.click()
+        let lineEditing = app.staticTexts["Line Editing"].firstMatch
+        XCTAssertTrue(lineEditing.waitForExistence(timeout: 5))
+        lineEditing.click()
+        let selectChange = app.checkBoxes["Select change: Simpler alternative"].firstMatch
+        XCTAssertTrue(selectChange.waitForExistence(timeout: 12))
+        selectChange.click()
+        app.buttons["Preview Selected Changes…"].click()
+        let previewTitle = app.staticTexts["Preview Coordinated Changes"]
+        XCTAssertTrue(previewTitle.waitForExistence(timeout: 5))
+
+        try external.write(to: chapter, atomically: true, encoding: .utf8)
+        app.buttons["Recheck"].click()
+
+        XCTAssertTrue(
+            app.staticTexts["The original passage changed after this suggestion was created."]
+                .waitForExistence(timeout: 5)
+        )
+        XCTAssertFalse(app.buttons["Apply Included Changes…"].isEnabled)
+        app.buttons["Cancel"].click()
+        app.buttons["Done"].click()
+        XCTAssertEqual(try String(contentsOf: chapter, encoding: .utf8), external)
+    }
+
+    func testPublishExportPreflightCancelAndSuccessfulPackageJourney() throws {
+        let project = try makeProject(
+            name: "Publish Journey",
+            documents: [("Draft.md", "# Draft\n\nA short, complete publication passage.\n")],
+            kind: "fiction"
+        )
+        let output = testRoot.appendingPathComponent("Publication Output", isDirectory: true)
+        var environment = project.environment
+        environment["KISTULENTZ_UI_TEST_PUBLICATION_OUTPUT_PATH"] = output.path
+
+        launch(environment: environment)
+        openProjectCommand("Publish & Export…")
+        XCTAssertTrue(app.buttons["Close"].waitForExistence(timeout: 8))
+        let preflightPane = app.staticTexts["Preflight & Export"].firstMatch
+        XCTAssertTrue(preflightPane.waitForExistence(timeout: 5))
+        preflightPane.click()
+
+        app.buttons["Run Preflight"].click()
+        let errorCount = app.staticTexts["0 errors"]
+        XCTAssertTrue(errorCount.waitForExistence(timeout: 5))
+        app.buttons["Choose Output Folder…"].click()
+        let outputLabel = app.staticTexts["PublicationOutputDirectory"]
+        XCTAssertTrue(outputLabel.waitForExistence(timeout: 3))
+
+        let export = app.buttons["Export EPUB 3"]
+        XCTAssertTrue(export.isEnabled)
+        export.click()
+        let cancelExport = app.buttons["CancelPublicationExport"]
+        XCTAssertTrue(cancelExport.waitForExistence(timeout: 3))
+        cancelExport.click()
+        XCTAssertFalse(FileManager.default.fileExists(
+            atPath: output.appendingPathComponent("Publish Journey-submission").path
+        ))
+
+        export.click()
+        let confirmExport = app.buttons["ConfirmPublicationExport"]
+        XCTAssertTrue(confirmExport.waitForExistence(timeout: 3))
+        confirmExport.click()
+
+        let package = output.appendingPathComponent("Publish Journey-submission", isDirectory: true)
+        let publication = package.appendingPathComponent("Publish Journey.epub")
+        waitUntil(timeout: 20, description: "Publication export should finish") {
+            FileManager.default.fileExists(atPath: publication.path)
+        }
+        let historyPane = app.staticTexts["History"].firstMatch
+        XCTAssertTrue(historyPane.waitForExistence(timeout: 3))
+        historyPane.click()
+        XCTAssertTrue(app.buttons["Copy Checksum"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["EPUB 3"].firstMatch.exists)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: publication.path))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: package.appendingPathComponent("Submission Readiness Report.md").path
+        ))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: package.appendingPathComponent("Submission Readiness Report.pdf").path
+        ))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: package.appendingPathComponent("SHA256SUMS.txt").path
+        ))
+        XCTAssertTrue(try String(
+            contentsOf: project.root.appendingPathComponent(".kistulentz/publication.json"),
+            encoding: .utf8
+        ).contains("Publish Journey-submission"))
+    }
+
+    func testActivePublicationExportCanBeCancelledAndClosingStopsARetry() throws {
+        let project = try makeProject(
+            name: "Cancelled Publish Journey",
+            documents: [("Draft.md", "# Draft\n\nA complete publication passage.\n")],
+            kind: "fiction"
+        )
+        let output = testRoot.appendingPathComponent("Cancelled Publication Output", isDirectory: true)
+        var environment = project.environment
+        environment["KISTULENTZ_UI_TEST_PUBLICATION_OUTPUT_PATH"] = output.path
+        environment["KISTULENTZ_UI_TEST_PUBLICATION_EXPORT_DELAY_MS"] = "5000"
+
+        launch(environment: environment)
+        openProjectCommand("Publish & Export…")
+        XCTAssertTrue(app.buttons["Close"].waitForExistence(timeout: 8))
+        app.staticTexts["Preflight & Export"].firstMatch.click()
+        app.buttons["Run Preflight"].click()
+        XCTAssertTrue(app.staticTexts["0 errors"].waitForExistence(timeout: 5))
+        app.buttons["Choose Output Folder…"].click()
+
+        beginPublicationExport()
+        let cancel = app.buttons["CancelActivePublicationExport"]
+        XCTAssertTrue(cancel.waitForExistence(timeout: 3))
+        cancel.click()
+        let export = app.buttons["Export EPUB 3"]
+        XCTAssertTrue(export.waitForExistence(timeout: 3))
+        XCTAssertTrue(export.isEnabled)
+        assertNoPublicationPackageAppears(in: output, timeout: 2.0)
+
+        beginPublicationExport()
+        XCTAssertTrue(app.buttons["CancelActivePublicationExport"].waitForExistence(timeout: 3))
+        app.buttons["Close"].click()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        assertNoPublicationPackageAppears(in: output, timeout: 2.0)
+        XCTAssertFalse(try String(
+            contentsOf: project.root.appendingPathComponent(".kistulentz/publication.json"),
+            encoding: .utf8
+        ).contains("Cancelled Publish Journey-submission"))
+    }
+
     func testReferenceLibraryWelcomeAlwaysOffersACancelPath() {
         launch(completedOnboarding: true, acknowledgedEnglishPack: true)
 
@@ -223,7 +480,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(libraryItem.waitForExistence(timeout: 3))
         libraryItem.click()
 
-        XCTAssertTrue(app.descendants(matching: .any)["ReferenceLibraryView"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Create a Reference Library"].waitForExistence(timeout: 5))
         let cancel = app.buttons["Cancel"]
         XCTAssertTrue(cancel.isHittable)
         cancel.click()
@@ -250,5 +507,40 @@ final class KistulentzUITests: KistulentzUITestCase {
 
     private var referenceControl: XCUIElement {
         app.descendants(matching: .any)["ReferenceMenu"].firstMatch
+    }
+
+    private func beginPublicationExport() {
+        let export = app.buttons["Export EPUB 3"]
+        XCTAssertTrue(export.waitForExistence(timeout: 3))
+        XCTAssertTrue(export.isEnabled)
+        export.click()
+        let confirm = app.buttons["ConfirmPublicationExport"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 3))
+        confirm.click()
+    }
+
+    private func assertNoPublicationPackageAppears(in output: URL, timeout: TimeInterval) {
+        let package = output.appendingPathComponent(
+            "Cancelled Publish Journey-submission",
+            isDirectory: true
+        )
+        let appearance = XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in
+                FileManager.default.fileExists(atPath: package.path)
+            },
+            object: nil
+        )
+        appearance.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [appearance], timeout: timeout), .completed)
+    }
+
+    private func openSystemCheck() {
+        let applicationMenu = app.menuBars.menuBarItems["Kistulentz"].firstMatch
+        XCTAssertTrue(applicationMenu.waitForExistence(timeout: 3))
+        applicationMenu.click()
+        let systemCheckItem = app.menuItems["Kistulentz System Check…"]
+        XCTAssertTrue(systemCheckItem.waitForExistence(timeout: 3))
+        systemCheckItem.click()
+        XCTAssertTrue(app.staticTexts["Kistulentz System Check"].waitForExistence(timeout: 10))
     }
 }

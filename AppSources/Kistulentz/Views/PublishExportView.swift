@@ -22,7 +22,9 @@ struct PublishExportView: View {
     var body: some View {
         NavigationSplitView {
             List(PublicationWorkspacePane.allCases, selection: $model.pane) { item in
-                Label(item.rawValue, systemImage: item.icon).tag(item)
+                Label(item.rawValue, systemImage: item.icon)
+                    .tag(item)
+                    .accessibilityIdentifier("PublicationPane-\(item.rawValue)")
             }
             .navigationTitle("Publish")
             .safeAreaInset(edge: .bottom) {
@@ -77,7 +79,9 @@ struct PublishExportView: View {
             titleVisibility: .visible
         ) {
             Button("Export Anyway") { model.performExport(allowingWarnings: true) }
+                .accessibilityIdentifier("ConfirmPublicationExport")
             Button("Cancel", role: .cancel) {}
+                .accessibilityIdentifier("CancelPublicationExport")
         } message: {
             Text("Blocking errors are resolved. The remaining warnings will be recorded in export history.")
         }
@@ -283,11 +287,14 @@ struct PublishExportView: View {
                 }
                 Spacer()
                 Button("Run Preflight") { model.runPreflight() }
+                    .accessibilityIdentifier("RunPublicationPreflight")
             }
             if let preflight = model.preflight {
                 HStack(spacing: 14) {
                     Label("\(preflight.errors.count) errors", systemImage: "xmark.octagon.fill").foregroundStyle(preflight.errors.isEmpty ? Color.secondary : Color.red)
+                        .accessibilityIdentifier("PublicationPreflightErrorCount")
                     Label("\(preflight.warnings.count) warnings", systemImage: "exclamationmark.triangle.fill").foregroundStyle(preflight.warnings.isEmpty ? Color.secondary : Color.orange)
+                        .accessibilityIdentifier("PublicationPreflightWarningCount")
                     Label("\(preflight.information.count) notes", systemImage: "info.circle.fill").foregroundStyle(.secondary)
                 }
                 List(preflight.findings) { finding in
@@ -320,6 +327,7 @@ struct PublishExportView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(model.outputDirectory?.path ?? "Choose where finished files should go")
                         .lineLimit(1).truncationMode(.middle)
+                        .accessibilityIdentifier("PublicationOutputDirectory")
                     if let lastExportURL = model.lastExportURL {
                         Text("Last export: \(lastExportURL.lastPathComponent)")
                             .font(.caption)
@@ -328,6 +336,7 @@ struct PublishExportView: View {
                 }
                 Spacer()
                 Button("Choose Output Folder…", action: chooseOutputFolder)
+                    .accessibilityIdentifier("ChoosePublicationOutputFolder")
                 if let lastExportURL = model.lastExportURL {
                     Button("Reveal Last Export") { NSWorkspace.shared.activateFileViewerSelecting([lastExportURL]) }
                 }
@@ -336,10 +345,12 @@ struct PublishExportView: View {
                 }
                 if model.isExporting {
                     Button("Cancel Export", role: .cancel) { model.cancelExport() }
+                        .accessibilityIdentifier("CancelActivePublicationExport")
                 }
                 Button(model.isExporting ? "Exporting…" : "Export \(model.format.title)") { model.requestExport() }
                     .buttonStyle(.borderedProminent)
                     .disabled(model.isExporting || model.outputDirectory == nil || model.preflight?.canExport != true)
+                    .accessibilityIdentifier("ExportPublication")
             }
             if model.isExporting { ProgressView().progressViewStyle(.linear) }
         }
@@ -427,6 +438,19 @@ struct PublishExportView: View {
     }
 
     private func chooseOutputFolder() {
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PUBLICATION_OUTPUT_PATH"],
+           !path.isEmpty {
+            let url = URL(fileURLWithPath: path, isDirectory: true)
+            do {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+                model.outputDirectory = url
+            } catch {
+                model.errorMessage = error.localizedDescription
+            }
+            return
+        }
+#endif
         let panel = NSOpenPanel()
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
@@ -523,9 +547,10 @@ private struct ExportProfileEditor: View {
                     if let onDelete { Button("Delete Custom Profile", role: .destructive, action: onDelete) }
                     Spacer()
                     Button("Save Profile", action: onSave).buttonStyle(.borderedProminent)
-                }
             }
         }
+        .accessibilityIdentifier("PublicationExportHistory")
+    }
         .formStyle(.grouped)
     }
 }

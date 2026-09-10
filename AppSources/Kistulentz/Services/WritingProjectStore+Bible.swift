@@ -10,12 +10,15 @@ extension WritingProjectStore {
         editCoordinator.editLanded(.bibleEditing)
     }
 
-    func saveBibleNow() {
-        guard let rootURL else { return }
+    @discardableResult
+    func saveBibleNow() -> Bool {
+        guard let rootURL else { return false }
         do {
             try ManuscriptProjectDisk.saveBible(bibleText, at: rootURL)
+            return true
         } catch {
             errorMessage = error.localizedDescription
+            return false
         }
     }
 
@@ -29,11 +32,14 @@ extension WritingProjectStore {
         guard updated != bibleText else { return }
         let previous = bibleText
         if forceSnapshot { createBibleSnapshot(content: previous, reason: reason) }
+        bibleText = updated
+        guard saveBibleNow() else {
+            bibleText = previous
+            return
+        }
         if registersUndo {
             registerBibleUndo(previous: previous, updated: updated, actionName: "Update Project Bible")
         }
-        bibleText = updated
-        saveBibleNow()
         lastBibleUpdate = BibleUpdateNotice(
             createdAt: Date(),
             summary: summary,
@@ -53,15 +59,18 @@ extension WritingProjectStore {
     }
 
     private func restoreBibleForUndo(_ value: String, inverse: String, actionName: String) {
+        let previous = bibleText
+        bibleText = value
+        guard saveBibleNow() else {
+            bibleText = previous
+            return
+        }
         projectUndoManager?.registerUndo(withTarget: self) { target in
             MainActor.assumeIsolated {
                 target.restoreBibleForUndo(inverse, inverse: value, actionName: actionName)
             }
         }
         projectUndoManager?.setActionName(actionName)
-        let previous = bibleText
-        bibleText = value
-        saveBibleNow()
         lastBibleUpdate = BibleUpdateNotice(
             createdAt: Date(),
             summary: "Restored the previous Bible text with Undo.",

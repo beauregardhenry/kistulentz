@@ -2,6 +2,23 @@ import XCTest
 @testable import Kistulentz
 
 final class ProjectOrganizationTests: XCTestCase {
+    func testSiblingReorderingStaysInsideItsParentAndRejectsBoundaries() {
+        let first = OutlineNode(title: "First", kind: .chapter)
+        let second = OutlineNode(title: "Second", kind: .chapter)
+        let childOne = OutlineNode(title: "Scene One", kind: .scene)
+        let childTwo = OutlineNode(title: "Scene Two", kind: .scene)
+        let third = OutlineNode(title: "Third", kind: .chapter, children: [childOne, childTwo])
+        var nodes = [first, second, third]
+
+        XCTAssertTrue(OutlineTree.moveSibling(nodeID: second.id, offset: -1, in: &nodes))
+        XCTAssertEqual(nodes.map(\.title), ["Second", "First", "Third"])
+        XCTAssertTrue(OutlineTree.moveSibling(nodeID: childTwo.id, offset: -1, in: &nodes))
+        XCTAssertEqual(nodes[2].children.map(\.title), ["Scene Two", "Scene One"])
+        XCTAssertFalse(OutlineTree.moveSibling(nodeID: second.id, offset: -1, in: &nodes))
+        XCTAssertFalse(OutlineTree.moveSibling(nodeID: childOne.id, offset: 1, in: &nodes))
+        XCTAssertFalse(OutlineTree.moveSibling(nodeID: first.id, offset: 2, in: &nodes))
+    }
+
     func testExistingFoldersImportAsPartsChaptersAndFictionScenes() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
@@ -136,6 +153,61 @@ final class ProjectOrganizationTests: XCTestCase {
         XCTAssertTrue(duplicateChecked.moves.allSatisfy { $0.conflict != nil })
     }
 
+    func testFileOrganizationRollsBackCompletedMovesWhenALaterMoveFails() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try createMarkdown("# One\n", at: "One.md", root: root)
+        let firstDestination = "Part One/One.md"
+        let plan = OutlineFileOrganizationPlan(moves: [
+            OutlineFileMove(
+                nodeID: UUID(),
+                sourcePath: "One.md",
+                destinationPath: firstDestination
+            ),
+            OutlineFileMove(
+                nodeID: UUID(),
+                sourcePath: "Missing.md",
+                destinationPath: "Part One/Missing.md"
+            )
+        ])
+
+        XCTAssertThrowsError(try ProjectFileOrganizer.execute(plan, at: root))
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("One.md").path))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent(firstDestination).path))
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("One.md", at: root),
+            "# One\n"
+        )
+    }
+
+    func testFileOrganizationUndoRefusesToOverwriteANewFileAtTheOriginalPath() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try createMarkdown("# Original\n", at: "One.md", root: root)
+        let move = OutlineFileMove(
+            nodeID: UUID(),
+            sourcePath: "One.md",
+            destinationPath: "Part One/One.md"
+        )
+        let completed = try ProjectFileOrganizer.execute(
+            OutlineFileOrganizationPlan(moves: [move]),
+            at: root
+        )
+        try createMarkdown("# External replacement\n", at: "One.md", root: root)
+
+        XCTAssertThrowsError(try ProjectFileOrganizer.undo(completed, at: root))
+
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("One.md", at: root),
+            "# External replacement\n"
+        )
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Part One/One.md", at: root),
+            "# Original\n"
+        )
+    }
+
     func testHeadingSplitIgnoresFencedCodeAndRetainsUncheckedSections() throws {
         let node = OutlineNode(title: "Chapter", kind: .chapter, relativePath: "Chapter.md")
         let markdown = """
@@ -190,6 +262,50 @@ final class ProjectOrganizationTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Chapter 1.md").path))
         XCTAssertEqual(store.selectedChapterPath, "Chapter 1.md")
         XCTAssertTrue(store.snapshots.contains { $0.chapterPath == "Chapter 1.md" })
+
+        undoManager.redo()
+        XCTAssertNil(store.errorMessage)
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: root.appendingPathComponent("Part One/Chapter 1/Chapter 1.md").path
+        ))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Chapter 1.md").path))
+        XCTAssertEqual(store.selectedChapterPath, "Part One/Chapter 1/Chapter 1.md")
+        XCTAssertTrue(undoManager.canUndo)
+    }
+
+    @MainActor
+    func testStoreOrganizationUndoRefusesToOverwriteExternalReplacement() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(
+            in: parent,
+            name: "Organization Conflict",
+            kind: .fiction
+        )
+        let store = WritingProjectStore()
+        let undoManager = UndoManager()
+        try store.openProject(at: root)
+        store.attachUndoManager(undoManager)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        store.moveOutlineNode(chapterID, toParent: partID)
+        store.organizeFiles(try XCTUnwrap(store.fileOrganizationPlan()))
+        let movedPath = "Part One/Chapter 1/Chapter 1.md"
+        try "# External replacement\n".write(
+            to: root.appendingPathComponent("Chapter 1.md"),
+            atomically: true,
+            encoding: .utf8
+        )
+
+        undoManager.undo()
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Chapter 1.md", at: root),
+            "# External replacement\n"
+        )
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent(movedPath).path))
+        XCTAssertEqual(store.selectedChapterPath, movedPath)
     }
 
     @MainActor
@@ -220,6 +336,54 @@ final class ProjectOrganizationTests: XCTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Dock.md").path))
         XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Office.md").path))
         XCTAssertEqual(store.outlineNode(id: chapterID)?.children, [])
+
+        undoManager.redo()
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Chapter 1.md", at: root),
+            plan.resultingChapterMarkdown
+        )
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Dock.md").path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Office.md").path))
+        XCTAssertEqual(store.outlineNode(id: chapterID)?.children.map(\.kind), [.scene, .scene])
+        XCTAssertTrue(undoManager.canUndo)
+    }
+
+    @MainActor
+    func testHeadingSplitUndoRefusesToOverwriteExternallyChangedScene() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(
+            in: parent,
+            name: "Split Conflict",
+            kind: .fiction
+        )
+        let store = WritingProjectStore()
+        let undoManager = UndoManager()
+        try store.openProject(at: root)
+        store.attachUndoManager(undoManager)
+        let original = "# Chapter 1\n\nOpening.\n\n## Dock\n\nMara arrives.\n"
+        store.updateText(original)
+        store.saveNow()
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let plan = try store.headingSplitPlan(for: chapterID)
+        store.applyHeadingSplit(plan)
+        let external = "## Dock\n\nChanged by another editor.\n"
+        try external.write(
+            to: root.appendingPathComponent("Dock.md"),
+            atomically: true,
+            encoding: .utf8
+        )
+
+        undoManager.undo()
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Dock.md", at: root), external)
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Chapter 1.md", at: root),
+            plan.resultingChapterMarkdown
+        )
+        XCTAssertEqual(store.outlineNode(id: chapterID)?.children.map(\.kind), [.scene])
     }
 
     func testOutlineSynopsisAIRequestIsExplicitAndTreatsContextAsUntrusted() {

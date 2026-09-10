@@ -22,6 +22,14 @@ struct ResearchLibraryPersistence {
         loadExtractedText: { ResearchLibraryDisk.loadExtractedText(for: $0, at: $1) },
         attachmentURL: { ResearchLibraryDisk.attachmentURL($0, at: $1) },
         extractText: { url, kind in
+#if UI_TEST_HOST
+            if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RESEARCH_INDEX_DELAY_MS"],
+               let delayMilliseconds = UInt64(rawDelay),
+               delayMilliseconds > 0 {
+                try await Task.sleep(for: .milliseconds(delayMilliseconds))
+                try Task.checkCancellation()
+            }
+#endif
             let task = Task.detached(priority: .utility) {
                 try Task.checkCancellation()
                 let text = try ResearchTextExtractor.extract(from: url, kind: kind)
@@ -59,6 +67,13 @@ final class ResearchLibraryStore: ObservableObject {
         self.metadataLookup = metadataLookup
         self.persistence = persistence
         self.defaults = defaults
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PREOPEN_RESEARCH_LIBRARY_PATH"],
+           !path.isEmpty {
+            try? open(at: URL(fileURLWithPath: path, isDirectory: true), remember: false)
+            return
+        }
+#endif
         if let path = defaults.string(forKey: Self.locationKey), !path.isEmpty {
             try? open(at: URL(fileURLWithPath: path, isDirectory: true), remember: false)
         }

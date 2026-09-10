@@ -117,6 +117,66 @@ final class AIRequestTests: XCTestCase {
         XCTAssertEqual(models, ["gemma3:latest", "llama3.2:latest"])
     }
 
+    func testOllamaModelDiscoveryHandlesEmptyAndDuplicateModelLists() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            let body: [String: Any] = [
+                "models": [
+                    ["name": "writer:latest", "model": "writer:latest"],
+                    ["name": "writer:latest", "model": "writer:latest"],
+                    ["name": "", "model": ""]
+                ]
+            ]
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                try JSONSerialization.data(withJSONObject: body)
+            )
+        }
+        let deduplicated = try await OllamaService(session: session).installedModels()
+        XCTAssertEqual(deduplicated, ["writer:latest"])
+
+        AIRequestMockURLProtocol.handler = { request in
+            (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data(#"{"models":[]}"#.utf8)
+            )
+        }
+        let empty = try await OllamaService(session: session).installedModels()
+        XCTAssertEqual(empty, [])
+    }
+
+    func testOllamaModelDiscoveryMapsMalformedAndUnavailableResponsesToUnavailable() async {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data("not-json".utf8)
+            )
+        }
+        do {
+            _ = try await OllamaService(session: session).installedModels()
+            XCTFail("Malformed model discovery must fail.")
+        } catch let error as WritingAIError {
+            guard case .ollamaUnavailable = error else {
+                return XCTFail("Expected ollamaUnavailable, received \(error).")
+            }
+        } catch {
+            XCTFail("Expected WritingAIError, received \(error).")
+        }
+
+        AIRequestMockURLProtocol.handler = { _ in throw URLError(.cannotConnectToHost) }
+        do {
+            _ = try await OllamaService(session: session).installedModels()
+            XCTFail("An unavailable Ollama service must fail.")
+        } catch let error as WritingAIError {
+            guard case .ollamaUnavailable = error else {
+                return XCTFail("Expected ollamaUnavailable, received \(error).")
+            }
+        } catch {
+            XCTFail("Expected WritingAIError, received \(error).")
+        }
+    }
+
     @MainActor
     func testDownloadsRecommendedOllamaModelWithStreamingProgress() async throws {
         let session = mockSession()
@@ -245,6 +305,49 @@ final class AIRequestTests: XCTestCase {
             XCTAssertEqual(status, 503)
             XCTAssertTrue(message.contains("test:4b"))
         }
+    }
+
+    @MainActor
+    func testOllamaModelDownloadSurfacesStreamingServerError() async throws {
+        let session = mockSession()
+        AIRequestMockURLProtocol.handler = { request in
+            (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                Data(#"{"error":"model manifest not found"}"#.utf8)
+            )
+        }
+
+        do {
+            try await OllamaService(session: session).pullModel("missing:4b") { _ in }
+            XCTFail("A server-reported pull error must not be treated as success.")
+        } catch let error as WritingAIError {
+            guard case let .api(status, message) = error else {
+                return XCTFail("Expected an API error, received \(error).")
+            }
+            XCTAssertEqual(status, 200)
+            XCTAssertEqual(message, "model manifest not found")
+        }
+    }
+
+    func testOllamaProgressFractionIsClampedAndHandlesMissingTotals() {
+        XCTAssertEqual(
+            OllamaPullProgress(status: "downloading", completedBytes: 150, totalBytes: 100)
+                .fractionCompleted,
+            1
+        )
+        XCTAssertEqual(
+            OllamaPullProgress(status: "downloading", completedBytes: -10, totalBytes: 100)
+                .fractionCompleted,
+            0
+        )
+        XCTAssertNil(
+            OllamaPullProgress(status: "downloading", completedBytes: 10, totalBytes: 0)
+                .fractionCompleted
+        )
+        XCTAssertNil(
+            OllamaPullProgress(status: "downloading", completedBytes: nil, totalBytes: nil)
+                .fractionCompleted
+        )
     }
 
     func testOllamaIsSelectedOnlyAfterTheDownloadedModelIsDetected() throws {
