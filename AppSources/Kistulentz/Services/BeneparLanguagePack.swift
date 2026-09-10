@@ -143,6 +143,21 @@ final class BeneparLanguagePackManager: ObservableObject {
         isInstalling = true
         errorMessage = nil
         activityMessage = "Checking the English language pack…"
+#if UI_TEST_HOST
+        if let delayValue = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_BENEPAR_INSTALL_DELAY_MS"],
+           let delayMilliseconds = UInt64(delayValue) {
+            do {
+                try await Task.sleep(for: .milliseconds(delayMilliseconds))
+                if Task.isCancelled { throw CancellationError() }
+                errorMessage = "The simulated English language-pack download did not install anything."
+                activityMessage = ""
+            } catch {
+                activityMessage = "English language-pack installation cancelled."
+            }
+            isInstalling = false
+            return
+        }
+#endif
         do {
             let (catalogData, response) = try await session.data(from: catalogURL)
             guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {

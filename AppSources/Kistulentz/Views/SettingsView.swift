@@ -180,6 +180,7 @@ struct SettingsView: View {
                         }
                         Text(ollamaDetectionMessage)
                             .foregroundStyle(isOllamaReachable ? Color.green : Color.secondary)
+                            .accessibilityIdentifier("OllamaDetectionStatus")
                     }
                 }
 
@@ -209,6 +210,7 @@ struct SettingsView: View {
                                 .tag(model)
                         }
                     }
+                    .accessibilityIdentifier("OllamaModelPicker")
 
                     HStack {
                         Button("Use Ollama for Polish and Rewrite") {
@@ -217,6 +219,7 @@ struct SettingsView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .disabled(!ollamaModels.contains(settings.ollamaModel))
+                        .accessibilityIdentifier("UseOllamaProvider")
 
                         if !ollamaModels.contains(OllamaService.recommendedWritingModel) {
                             Button("Get Recommended Model…") {
@@ -476,26 +479,53 @@ struct SettingsView: View {
     private func detectOllama() async {
         guard !isDetectingOllama else { return }
         isDetectingOllama = true
+#if UI_TEST_HOST
+        if let configuredModels = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_OLLAMA_MODELS"] {
+            let delay = UInt64(
+                ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_OLLAMA_DELAY_MS"] ?? "0"
+            ) ?? 0
+            if delay > 0 { try? await Task.sleep(for: .milliseconds(delay)) }
+            guard !Task.isCancelled else {
+                isDetectingOllama = false
+                return
+            }
+            if configuredModels == "__UNAVAILABLE__" {
+                isOllamaReachable = false
+                ollamaModels = []
+                ollamaDetectionMessage = "Ollama not running"
+            } else {
+                applyDetectedOllamaModels(
+                    configuredModels.split(separator: ",").map { String($0) }
+                )
+            }
+            isDetectingOllama = false
+            return
+        }
+#endif
         do {
             let models = try await OllamaService().installedModels()
-            isOllamaReachable = true
-            ollamaModels = models
-            if models.isEmpty {
-                ollamaDetectionMessage = "Ollama found · no models installed"
-            } else {
-                ollamaDetectionMessage = "\(models.count) model\(models.count == 1 ? "" : "s") found"
-                if settings.ollamaModel.isEmpty || !models.contains(settings.ollamaModel) {
-                    settings.ollamaModel = models.contains(OllamaService.recommendedWritingModel)
-                        ? OllamaService.recommendedWritingModel
-                        : models[0]
-                }
-            }
+            applyDetectedOllamaModels(models)
         } catch {
             isOllamaReachable = false
             ollamaModels = []
             ollamaDetectionMessage = "Ollama not running"
         }
         isDetectingOllama = false
+    }
+
+    private func applyDetectedOllamaModels(_ models: [String]) {
+        isOllamaReachable = true
+        ollamaModels = models
+        if models.isEmpty {
+            ollamaDetectionMessage = "Ollama found · no models installed"
+        } else {
+            ollamaDetectionMessage = "\(models.count) model\(models.count == 1 ? "" : "s") found"
+            if settings.ollamaModel.isEmpty || !models.contains(settings.ollamaModel) {
+                settings.ollamaModel = models.contains(OllamaService.recommendedWritingModel)
+                    ? OllamaService.recommendedWritingModel
+                    : models[0]
+            }
+        }
     }
 
     @MainActor

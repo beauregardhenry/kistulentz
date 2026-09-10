@@ -568,14 +568,8 @@ struct EditorWorkspace: View {
             actions: EditorToolbarActions(
                 chooseDocumentForImport: chooseDocumentForImport,
                 showProjectImportAssistant: { presentation.present(.projectImportAssistant) },
-                createProject: {
-                    projectFolderAction = .createInParent
-                    showingProjectFolderImporter = true
-                },
-                openProject: {
-                    projectFolderAction = .openExisting
-                    showingProjectFolderImporter = true
-                },
+                createProject: { requestProjectFolder(.createInParent) },
+                openProject: { requestProjectFolder(.openExisting) },
                 showNewChapter: { presentation.present(.newChapter) },
                 showStyleEditor: { presentation.present(.styleEditor) },
                 showNamedSnapshot: { presentation.present(.namedSnapshot) },
@@ -775,7 +769,18 @@ struct EditorWorkspace: View {
 
     private func beginProjectFromWelcome() {
         completeWelcome()
-        projectFolderAction = .createInParent
+        requestProjectFolder(.createInParent)
+    }
+
+    private func requestProjectFolder(_ action: ProjectFolderAction) {
+        projectFolderAction = action
+#if UI_TEST_HOST
+        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PROJECT_FOLDER_PATH"],
+           !path.isEmpty {
+            handleProjectFolderResult(.success([URL(fileURLWithPath: path, isDirectory: true)]))
+            return
+        }
+#endif
         showingProjectFolderImporter = true
     }
 
