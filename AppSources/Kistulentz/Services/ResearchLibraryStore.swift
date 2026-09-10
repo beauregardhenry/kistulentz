@@ -22,6 +22,14 @@ struct ResearchLibraryPersistence {
         loadExtractedText: { ResearchLibraryDisk.loadExtractedText(for: $0, at: $1) },
         attachmentURL: { ResearchLibraryDisk.attachmentURL($0, at: $1) },
         extractText: { url, kind in
+#if UI_TEST_HOST
+            if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RESEARCH_INDEX_DELAY_MS"],
+               let delayMilliseconds = UInt64(rawDelay),
+               delayMilliseconds > 0 {
+                try await Task.sleep(for: .milliseconds(delayMilliseconds))
+                try Task.checkCancellation()
+            }
+#endif
             let task = Task.detached(priority: .utility) {
                 try Task.checkCancellation()
                 let text = try ResearchTextExtractor.extract(from: url, kind: kind)

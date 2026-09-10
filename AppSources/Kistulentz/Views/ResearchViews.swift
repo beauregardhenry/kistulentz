@@ -12,6 +12,7 @@ struct ResearchLibraryView: View {
     @State private var showingLookup = false
     @State private var attachmentStorage = ResearchAttachmentStorage.managedCopy
     @State private var pendingDeletion: ResearchSource?
+    @State private var attachmentImportTask: Task<Void, Never>?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,7 +27,7 @@ struct ResearchLibraryView: View {
                 if store.rootURL != nil {
                     Button("Show Markdown") { store.revealKnowledgeBase() }
                 }
-                Button("Close") { dismiss() }
+                Button("Close") { closeLibrary() }
                     .keyboardShortcut(.cancelAction)
                     .accessibilityLabel("Close Research Library")
                     .help("Close the Research Library without changing its folder")
@@ -42,7 +43,7 @@ struct ResearchLibraryView: View {
                 } actions: {
                     Button("Choose Folder…") { Task { await chooseLibraryFolder() } }
                         .buttonStyle(.borderedProminent)
-                    Button("Close") { dismiss() }
+                    Button("Close") { closeLibrary() }
                         .buttonStyle(.bordered)
                 }
             } else {
@@ -54,8 +55,10 @@ struct ResearchLibraryView: View {
                             source: Binding(get: { source }, set: { draft = $0 }),
                             attachmentStorage: $attachmentStorage,
                             isIndexing: { store.indexingAttachmentIDs.contains($0) },
+                            isImportingAttachment: attachmentImportTask != nil,
                             onSave: saveDraft,
-                            onAddAttachment: { showingAttachmentImporter = true },
+                            onAddAttachment: requestAttachmentImport,
+                            onCancelIndexing: cancelAttachmentImport,
                             onRemoveAttachment: { attachment in
                                 do {
                                     try store.removeAttachment(attachment.id, sourceID: source.id)
@@ -76,20 +79,23 @@ struct ResearchLibraryView: View {
         }
         .frame(minWidth: 900, minHeight: 650)
         .accessibilityIdentifier("ResearchLibraryView")
-        .onExitCommand { dismiss() }
+        .onExitCommand { closeLibrary() }
+        .onDisappear { cancelAttachmentImport() }
+        .onChange(of: store.sources) { _, sources in
+            guard let selectedSourceID,
+                  var currentDraft = draft,
+                  let persisted = sources.first(where: { $0.id == selectedSourceID }) else { return }
+            // Keep asynchronous attachment/index status visible without replacing metadata edits
+            // the user has not saved yet.
+            currentDraft.attachments = persisted.attachments
+            draft = currentDraft
+        }
         .fileImporter(isPresented: $showingRecordImporter, allowedContentTypes: [.data], allowsMultipleSelection: true) { result in
-            do {
-                for url in try result.get() { _ = try store.importSources(from: url) }
-                if selectedSourceID == nil { select(store.sources.first?.id) }
-            } catch { store.errorMessage = error.localizedDescription }
+            importRecords(result)
         }
         .fileImporter(isPresented: $showingAttachmentImporter, allowedContentTypes: [.data, .image, .pdf, .plainText], allowsMultipleSelection: true) { result in
-            guard let sourceID = selectedSourceID else { return }
-            do {
-                for url in try result.get() {
-                    Task { await store.addAttachment(from: url, sourceID: sourceID, storage: attachmentStorage); select(sourceID) }
-                }
-            } catch { store.errorMessage = error.localizedDescription }
+            do { startAttachmentImport(try result.get()) }
+            catch { store.errorMessage = error.localizedDescription }
         }
         .sheet(isPresented: $showingLookup) {
             ResearchMetadataLookupView { source in
@@ -141,11 +147,11 @@ struct ResearchLibraryView: View {
                 Menu {
                     Button("Manual Source") { addManualSource() }
                     Button("Look Up DOI or ISBN…") { showingLookup = true }
-                    Button("Import BibTeX, RIS, or CSL-JSON…") { showingRecordImporter = true }
+                    Button("Import BibTeX, RIS, or CSL-JSON…") { requestRecordImport() }
                     Divider()
-                    Button("Export All as BibTeX…") { export(format: "bib") }
-                    Button("Export All as RIS…") { export(format: "ris") }
-                    Button("Export All as CSL-JSON…") { export(format: "json") }
+                    Button("Export All as BibTeX…") { Task { await export(format: "bib") } }
+                    Button("Export All as RIS…") { Task { await export(format: "ris") } }
+                    Button("Export All as CSL-JSON…") { Task { await export(format: "json") } }
                 } label: { Image(systemName: "plus") }
                 .menuStyle(.borderlessButton).fixedSize()
                 .accessibilityLabel("Add, look up, import, or export research sources")
@@ -187,10 +193,71 @@ struct ResearchLibraryView: View {
         catch { store.errorMessage = error.localizedDescription }
     }
 
-    private func export(format: String) {
-        let panel = NSSavePanel()
-        panel.nameFieldStringValue = "Kistulentz Research Library.\(format)"
-        guard panel.runModal() == .OK, let url = panel.url else { return }
+    @MainActor
+    private func requestRecordImport() {
+#if UI_TEST_HOST
+        if let paths = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RESEARCH_RECORD_PATHS"] {
+            let urls = paths.split(separator: "\n").map { URL(fileURLWithPath: String($0)) }
+            if !urls.isEmpty {
+                importRecords(.success(urls))
+                return
+            }
+        }
+#endif
+        showingRecordImporter = true
+    }
+
+    @MainActor
+    private func requestAttachmentImport() {
+#if UI_TEST_HOST
+        if let paths = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_RESEARCH_ATTACHMENT_PATHS"] {
+            let urls = paths.split(separator: "\n").map { URL(fileURLWithPath: String($0)) }
+            if !urls.isEmpty {
+                startAttachmentImport(urls)
+                return
+            }
+        }
+#endif
+        showingAttachmentImporter = true
+    }
+
+    private func importRecords(_ result: Result<[URL], Error>) {
+        do {
+            for url in try result.get() { _ = try store.importSources(from: url) }
+            if selectedSourceID == nil { select(store.sources.first?.id) }
+        } catch { store.errorMessage = error.localizedDescription }
+    }
+
+    private func startAttachmentImport(_ urls: [URL]) {
+        guard attachmentImportTask == nil, let sourceID = selectedSourceID, !urls.isEmpty else { return }
+        attachmentImportTask = Task {
+            for url in urls {
+                guard !Task.isCancelled else { break }
+                await store.addAttachment(from: url, sourceID: sourceID, storage: attachmentStorage)
+            }
+            attachmentImportTask = nil
+            select(sourceID)
+        }
+    }
+
+    private func cancelAttachmentImport() {
+        attachmentImportTask?.cancel()
+    }
+
+    private func closeLibrary() {
+        cancelAttachmentImport()
+        dismiss()
+    }
+
+    @MainActor
+    private func export(format: String) async {
+        let configuration = SavePanelConfiguration(
+            title: "Export Research Library",
+            suggestedFilename: "Kistulentz Research Library.\(format)",
+            allowedContentTypes: [UTType(filenameExtension: format) ?? .data],
+            canCreateDirectories: true
+        )
+        guard let url = await MacFilePanel.chooseSaveDestination(configuration: configuration) else { return }
         do { try store.export(store.sources, format: format, to: url) }
         catch { store.errorMessage = error.localizedDescription }
     }
@@ -200,8 +267,10 @@ private struct ResearchSourceEditor: View {
     @Binding var source: ResearchSource
     @Binding var attachmentStorage: ResearchAttachmentStorage
     let isIndexing: (UUID) -> Bool
+    let isImportingAttachment: Bool
     let onSave: () -> Void
     let onAddAttachment: () -> Void
+    let onCancelIndexing: () -> Void
     let onRemoveAttachment: (ResearchAttachment) -> Void
     let onOpenAttachment: (ResearchAttachment) -> Void
 
@@ -274,6 +343,11 @@ private struct ResearchSourceEditor: View {
                     Picker("When adding files", selection: $attachmentStorage) {
                         ForEach(ResearchAttachmentStorage.allCases) { Text($0.title).tag($0) }
                     }
+                    .accessibilityIdentifier("ResearchAttachmentStorage")
+                    if source.attachments.contains(where: { isIndexing($0.id) }) {
+                        Button("Cancel Attachment Indexing", role: .cancel, action: onCancelIndexing)
+                            .accessibilityIdentifier("CancelResearchAttachmentIndexing")
+                    }
                     ForEach(source.attachments) { attachment in
                         HStack {
                             Image(systemName: "paperclip")
@@ -281,6 +355,7 @@ private struct ResearchSourceEditor: View {
                                 Text(attachment.displayName)
                                 Text(isIndexing(attachment.id) ? "Indexing locally…" : attachment.extractionStatus.title)
                                     .font(.caption).foregroundStyle(.secondary)
+                                    .accessibilityIdentifier("ResearchAttachmentStatus-\(attachment.id.uuidString)")
                             }
                             Spacer()
                             Button("Open") { onOpenAttachment(attachment) }
@@ -289,6 +364,8 @@ private struct ResearchSourceEditor: View {
                         }
                     }
                     Button("Add PDF, EPUB, Web Archive, Image, or Text…", action: onAddAttachment)
+                        .accessibilityIdentifier("AddResearchAttachment")
+                        .disabled(isImportingAttachment)
                 }
             }
             .formStyle(.grouped)

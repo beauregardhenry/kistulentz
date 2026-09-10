@@ -51,6 +51,28 @@ struct OpenPanelConfiguration: Equatable {
         canCreateDirectories: false,
         allowsMultipleSelection: true
     )
+
+    static let researchRecords = OpenPanelConfiguration(
+        title: "Import Research Sources",
+        message: "Choose BibTeX, RIS, or CSL-JSON files to add to the Research Library.",
+        prompt: "Import",
+        canChooseFiles: true,
+        canChooseDirectories: false,
+        canCreateDirectories: false,
+        allowsMultipleSelection: true,
+        allowedContentTypes: [.data]
+    )
+
+    static let researchAttachments = OpenPanelConfiguration(
+        title: "Add Research Attachments",
+        message: "Choose files to copy or link and index locally.",
+        prompt: "Add",
+        canChooseFiles: true,
+        canChooseDirectories: false,
+        canCreateDirectories: false,
+        allowsMultipleSelection: true,
+        allowedContentTypes: [.data, .image, .pdf, .plainText]
+    )
 }
 
 struct SavePanelConfiguration: Equatable {
