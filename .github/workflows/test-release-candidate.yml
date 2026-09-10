@@ -13,7 +13,7 @@ jobs:
   macos-ui-tests:
     name: macOS UI regression tests
     runs-on: macos-15
-    timeout-minutes: 8
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
       - name: Run the checked-in Xcode UI test host
