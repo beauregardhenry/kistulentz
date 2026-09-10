@@ -114,6 +114,29 @@ extension WritingProjectStore {
         }
     }
 
+    func moveOutlineNodeEarlier(_ nodeID: UUID) {
+        moveOutlineNodeWithinSiblings(nodeID, offset: -1)
+    }
+
+    func moveOutlineNodeLater(_ nodeID: UUID) {
+        moveOutlineNodeWithinSiblings(nodeID, offset: 1)
+    }
+
+    private func moveOutlineNodeWithinSiblings(_ nodeID: UUID, offset: Int) {
+        var updated = outlineNodes
+        guard OutlineTree.moveSibling(nodeID: nodeID, offset: offset, in: &updated) else { return }
+        let previous = outlineNodes
+        outlineNodes = updated
+        do {
+            saveOutlineNow()
+            try syncChaptersWithOutline(preferredSelection: selectedChapterPath)
+            editCoordinator.editLanded(.externalChange)
+        } catch {
+            outlineNodes = previous
+            errorMessage = error.localizedDescription
+        }
+    }
+
     func suggestSynopsisLocally(for nodeID: UUID) {
         do {
             guard var node = outlineNode(id: nodeID) else { throw ProjectOutlineError.missingNode }

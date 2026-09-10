@@ -427,7 +427,12 @@ struct EditorWorkspace: View {
             .environmentObject(settings)
         }
         .sheet(isPresented: presentation.binding(for: .projectOrganization)) {
-            ProjectOrganizationView(store: projectStore, styleLearningStore: styleLearningStore, reference: viewModel.referenceBook)
+            ProjectOrganizationView(
+                store: projectStore,
+                styleLearningStore: styleLearningStore,
+                reference: viewModel.referenceBook,
+                projectUndoManager: suppliedUndoManager ?? undoManager ?? NSApp.keyWindow?.undoManager
+            )
                 .environmentObject(settings)
         }
         .sheet(isPresented: presentation.binding(for: .namedSnapshot)) {

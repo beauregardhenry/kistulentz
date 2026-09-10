@@ -237,7 +237,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         launch(environment: project.environment)
 
         openProjectCommand("Project Organization…")
-        XCTAssertTrue(app.descendants(matching: .any)["ProjectOrganizationView"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Project Organization"].waitForExistence(timeout: 5))
         let organizationDone = app.buttons["Done"]
         XCTAssertTrue(organizationDone.isHittable)
         organizationDone.click()

@@ -2,6 +2,23 @@ import XCTest
 @testable import Kistulentz
 
 final class ProjectOrganizationTests: XCTestCase {
+    func testSiblingReorderingStaysInsideItsParentAndRejectsBoundaries() {
+        let first = OutlineNode(title: "First", kind: .chapter)
+        let second = OutlineNode(title: "Second", kind: .chapter)
+        let childOne = OutlineNode(title: "Scene One", kind: .scene)
+        let childTwo = OutlineNode(title: "Scene Two", kind: .scene)
+        let third = OutlineNode(title: "Third", kind: .chapter, children: [childOne, childTwo])
+        var nodes = [first, second, third]
+
+        XCTAssertTrue(OutlineTree.moveSibling(nodeID: second.id, offset: -1, in: &nodes))
+        XCTAssertEqual(nodes.map(\.title), ["Second", "First", "Third"])
+        XCTAssertTrue(OutlineTree.moveSibling(nodeID: childTwo.id, offset: -1, in: &nodes))
+        XCTAssertEqual(nodes[2].children.map(\.title), ["Scene Two", "Scene One"])
+        XCTAssertFalse(OutlineTree.moveSibling(nodeID: second.id, offset: -1, in: &nodes))
+        XCTAssertFalse(OutlineTree.moveSibling(nodeID: childOne.id, offset: 1, in: &nodes))
+        XCTAssertFalse(OutlineTree.moveSibling(nodeID: first.id, offset: 2, in: &nodes))
+    }
+
     func testExistingFoldersImportAsPartsChaptersAndFictionScenes() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
