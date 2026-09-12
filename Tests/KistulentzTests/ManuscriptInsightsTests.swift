@@ -147,6 +147,59 @@ final class ManuscriptInsightsTests: XCTestCase {
         }
     }
 
+    func testEveryBuiltInBetaReaderProducesWellFormedFocusedFeedback() {
+        // Each built-in persona's name + focus text routes it to a different signal block in
+        // BetaReaderEngine (structure, character, continuity, claims, clarity). The single
+        // general-purpose document above only ever exercised the structure and clarity blocks;
+        // this fixture (shared with ManuscriptAnalyzerComponentTests) also carries a
+        // name-similarity pair, an uncited claim, and dialogue, so every persona's own block
+        // actually has something to react to instead of immediately falling through to its
+        // "nothing found" message.
+        let documents = [
+            ManuscriptDocument(
+                relativePath: "Opening.md",
+                title: "Opening",
+                text: """
+                # Opening
+
+                Alice met Alicia in Chicago on Monday. Alice carefully reviewed the evidence.
+                Research proves the change caused a 25% improvement in 2025.
+                The repeated silver signal appeared. The repeated silver signal appeared.
+                "We should verify it," Alice said.
+                """
+            ),
+            ManuscriptDocument(
+                relativePath: "Closing.md",
+                title: "Closing",
+                text: """
+                # Closing
+
+                Alicia returned to Chicago on Tuesday. The repeated silver signal appeared.
+                According to the report, the result remained stable (Henry, 2025).
+                "That is enough," Alicia said.
+                """
+            )
+        ]
+
+        for profile in BetaReaderProfile.builtIns {
+            let result = BetaReaderEngine.read(
+                profile: profile,
+                scope: .manuscript,
+                projectName: "Signals",
+                kind: .nonfiction,
+                documents: documents,
+                targetGrade: 8
+            )
+
+            XCTAssertEqual(result.reader.id, profile.id)
+            XCTAssertEqual(result.source, .local)
+            XCTAssertFalse(result.questions.isEmpty, "\(profile.name) must always leave the author at least one question")
+            XCTAssertLessThanOrEqual(result.strengths.count, 6)
+            XCTAssertLessThanOrEqual(result.concerns.count, 6)
+            XCTAssertLessThanOrEqual(result.questions.count, 6)
+        }
+    }
+
     func testManuscriptModelIdentitiesRemainStableAcrossCaseAndLocationChanges() {
         let entity = ManuscriptEntity(
             name: "North Harbor",
