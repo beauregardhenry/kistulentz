@@ -281,10 +281,14 @@ enum ReferenceTextTools {
         "while", "would", "your", "said", "says", "looked", "turned", "asked"
     ]
 
+    // Compiled once: dialogueWordCount below calls words(in:) once per quoted passage, and both
+    // run on every debounced keystroke whenever a reference book is active, so this was
+    // recompiling the same fixed pattern on every call.
+    private static let wordPattern = try! NSRegularExpression(pattern: #"\b[A-Za-z]+(?:['’][A-Za-z]+)?\b"#)
+
     static func words(in text: String) -> [String] {
-        guard let regex = try? NSRegularExpression(pattern: #"\b[A-Za-z]+(?:['’][A-Za-z]+)?\b"#) else { return [] }
         let source = text as NSString
-        return regex.matches(in: text, range: NSRange(location: 0, length: source.length))
+        return wordPattern.matches(in: text, range: NSRange(location: 0, length: source.length))
             .map { source.substring(with: $0.range) }
     }
 

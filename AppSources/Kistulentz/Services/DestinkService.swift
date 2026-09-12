@@ -76,23 +76,25 @@ enum DestinkEngine {
 
     // MARK: Markdown
 
+    // Compiled once rather than inside markdownProse: these 7 patterns are fixed, so there is no
+    // reason to recompile them on every call.
+    private static let markdownProseRegexes = [
+        #"(?ms)^\s*(```|~~~).*?^\s*\1[^\n]*$"#,
+        #"(?m)^\s*\|.*\|\s*$"#,
+        #"(?m)^\s*:::+[^\n]*$"#,
+        #"(?s)<!--.*?-->"#,
+        #"(?m)^\s*</?[A-Za-z][^>]*>\s*$"#,
+        #"`+[^`\n]*`+"#,
+        #"(?<=\])\([^\n)]*\)"#
+    ].map { try! NSRegularExpression(pattern: $0) }
+
     /// Removes Markdown syntax that is commonly mistaken for prose without moving offsets.
     /// Every replacement has exactly the same UTF-16 length as the source range.
     static func markdownProse(_ text: String) -> String {
         let masked = NSMutableString(string: text)
         let full = NSRange(location: 0, length: masked.length)
-        let patterns = [
-            #"(?ms)^\s*(```|~~~).*?^\s*\1[^\n]*$"#,
-            #"(?m)^\s*\|.*\|\s*$"#,
-            #"(?m)^\s*:::+[^\n]*$"#,
-            #"(?s)<!--.*?-->"#,
-            #"(?m)^\s*</?[A-Za-z][^>]*>\s*$"#,
-            #"`+[^`\n]*`+"#,
-            #"(?<=\])\([^\n)]*\)"#
-        ]
         var ranges: [NSRange] = []
-        for pattern in patterns {
-            guard let regex = try? NSRegularExpression(pattern: pattern) else { continue }
+        for regex in markdownProseRegexes {
             ranges += regex.matches(in: text, range: full).map(\.range)
         }
         for range in ranges.sorted(by: { $0.location > $1.location }) {

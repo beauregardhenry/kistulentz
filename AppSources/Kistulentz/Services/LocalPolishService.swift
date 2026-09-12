@@ -144,7 +144,9 @@ private struct StyleReplacement: Hashable {
 }
 
 enum MarkdownProtectedRangeFinder {
-    private static let patterns = [
+    // Compiled once: ranges(in:) runs on every debounced keystroke via NativeWritingService, so
+    // recompiling these 7 fixed patterns on every call was real, avoidable per-edit cost.
+    private static let expressions = [
         #"```[\s\S]*?```"#,
         #"~~~[\s\S]*?~~~"#,
         #"`[^`\n]*`"#,
@@ -152,13 +154,12 @@ enum MarkdownProtectedRangeFinder {
         #"<https?://[^>]+>"#,
         #"https?://[^\s)]+"#,
         #"<[^>\n]+>"#
-    ]
+    ].map { try! NSRegularExpression(pattern: $0) }
 
     static func ranges(in text: String) -> [NSRange] {
         let fullRange = NSRange(location: 0, length: (text as NSString).length)
-        return patterns.flatMap { pattern -> [NSRange] in
-            guard let expression = try? NSRegularExpression(pattern: pattern) else { return [] }
-            return expression.matches(in: text, range: fullRange).map(\.range)
+        return expressions.flatMap { expression in
+            expression.matches(in: text, range: fullRange).map(\.range)
         }
     }
 }

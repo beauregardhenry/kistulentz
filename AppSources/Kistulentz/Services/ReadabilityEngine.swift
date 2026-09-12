@@ -11,16 +11,19 @@ struct ReadabilityEngine {
         options: [.caseInsensitive]
     )
 
-    private static let markdownPatterns = [
+    // Compiled once, here, rather than inside strippingMarkdown/phraseIssues: analyze(_:targetGrade:)
+    // runs on every debounced keystroke, and NSRegularExpression compilation is expensive enough
+    // that recompiling these same fixed patterns on every pass was real, avoidable per-edit cost.
+    private static let markdownRegexes = [
         #"```[\s\S]*?```"#,
         #"`([^`]*)`"#,
         #"!\[[^\]]*\]\([^\)]*\)"#,
         #"\[([^\]]+)\]\([^\)]*\)"#,
         #"^\s{0,3}#{1,6}\s+"#,
         #"[*_~>]"#
-    ]
+    ].map { try! NSRegularExpression(pattern: $0, options: [.anchorsMatchLines]) }
 
-    private static let simplerPhrases: [(String, String)] = [
+    private static let simplerPhrasePatterns: [(regex: NSRegularExpression, replacement: String)] = [
         ("due to the fact that", "because"),
         ("at this point in time", "now"),
         ("has the ability to", "can"),
@@ -35,7 +38,10 @@ struct ReadabilityEngine {
         ("terminate", "end"),
         ("regarding", "about"),
         ("demonstrate", "show")
-    ]
+    ].map { phrase, replacement in
+        let pattern = #"\b"# + NSRegularExpression.escapedPattern(for: phrase) + #"\b"#
+        return (try! NSRegularExpression(pattern: pattern, options: [.caseInsensitive]), replacement)
+    }
 
     private static let adverbExceptions: Set<String> = [
         "daily", "early", "family", "friendly", "likely", "lively", "lonely",
@@ -152,11 +158,7 @@ struct ReadabilityEngine {
         let fullRange = NSRange(location: 0, length: source.length)
         var issues: [WritingIssue] = []
 
-        for (phrase, replacement) in simplerPhrases {
-            let pattern = #"\b"# + NSRegularExpression.escapedPattern(for: phrase) + #"\b"#
-            guard let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) else {
-                continue
-            }
+        for (regex, replacement) in simplerPhrasePatterns {
             for match in regex.matches(in: text, range: fullRange) {
                 let excerpt = source.substring(with: match.range)
                 issues.append(WritingIssue(
@@ -185,15 +187,16 @@ struct ReadabilityEngine {
         return replacementFirst.uppercased() + replacement.dropFirst()
     }
 
+    // wordMatches runs once per sentence inside sentenceIssues, on every debounced keystroke, so
+    // this pattern is compiled once here rather than inside the function on every call.
+    private static let wordPattern = try! NSRegularExpression(pattern: #"\b[A-Za-z]+(?:['’][A-Za-z]+)?\b"#)
+
     /// Not private: `AITellEngine` reuses this so its sentence- and word-level checks stay
     /// consistent with the rest of the readability analysis instead of re-implementing tokenization.
     static func wordMatches(in text: String) -> [String] {
-        guard let regex = try? NSRegularExpression(pattern: #"\b[A-Za-z]+(?:['’][A-Za-z]+)?\b"#) else {
-            return []
-        }
         let source = text as NSString
         let range = NSRange(location: 0, length: source.length)
-        return regex.matches(in: text, range: range).map { source.substring(with: $0.range) }
+        return wordPattern.matches(in: text, range: range).map { source.substring(with: $0.range) }
     }
 
     /// Not private: shared with `AITellEngine` so hedge-word stacking is checked against the
@@ -209,10 +212,7 @@ struct ReadabilityEngine {
 
     private static func strippingMarkdown(from text: String) -> String {
         var result = text
-        for pattern in markdownPatterns {
-            guard let regex = try? NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines]) else {
-                continue
-            }
+        for regex in markdownRegexes {
             let range = NSRange(result.startIndex..<result.endIndex, in: result)
             result = regex.stringByReplacingMatches(in: result, range: range, withTemplate: "$1")
         }

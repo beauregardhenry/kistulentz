@@ -89,10 +89,6 @@ final class ManuscriptEditCoordinator {
         hasCapturedEditingBaseline = false
     }
 
-    func resetBibleEditingBaseline() {
-        hasCapturedBibleEditingBaseline = false
-    }
-
     /// Cancels in-flight work and clears all baseline bookkeeping. Called
     /// from `closeProject`, and internally at the start of `.projectOpened`.
     func reset() {
