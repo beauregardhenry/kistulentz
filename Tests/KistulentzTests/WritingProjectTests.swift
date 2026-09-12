@@ -111,6 +111,24 @@ final class WritingProjectTests: XCTestCase {
     }
 
     @MainActor
+    func testCreateChapterDoesNothingRatherThanCrashingWithoutAManifest() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "No Manifest", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        // rootURL and manifest are always set together by openProject/install, so this state is
+        // artificial -- but createChapter used to force-unwrap manifest assuming that invariant
+        // always held. Breaking it here is the only way to prove the guard actually protects it.
+        store.manifest = nil
+
+        store.createChapter(named: "Chapter 2")
+
+        XCTAssertEqual(store.chapters.map(\.relativePath), ["Chapter 1.md"])
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Chapter 2.md").path))
+    }
+
+    @MainActor
     func testComputedPropertiesReflectWhetherAProjectIsOpen() throws {
         let store = WritingProjectStore()
         XCTAssertFalse(store.isOpen)
