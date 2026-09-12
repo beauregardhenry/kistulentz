@@ -5,7 +5,10 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.17.1 FRIEND PREVIEW
+NEW IN 0.17.2 FRIEND PREVIEW
+- This is an internal quality release: expanded automated test coverage and CI
+  tooling. It introduces no new writing workflow, file format, AI behavior, or
+  privacy change.
 - Project opening now completes and validates a full project snapshot before
   replacing the project currently on screen.
 - The editor and document importer reject stale sheet dismissals and late results
