@@ -438,6 +438,130 @@ final class ReferenceLibraryTests: XCTestCase {
         XCTAssertFalse(store.isDeepening)
     }
 
+    // MARK: - analyzeStructure / deepen with the async pipeline injected
+
+    @MainActor
+    func testAnalyzeStructureFailsWhenTheLanguagePackIsNotAvailable() throws {
+        let (store, choiceID, parent) = try openedStoreWithOneBook(languagePackAvailable: { false })
+        defer { try? FileManager.default.removeItem(at: parent) }
+
+        store.analyzeStructure(choiceIDs: [choiceID])
+
+        XCTAssertEqual(store.errorMessage, "Install the English structural-analysis pack in Settings first.")
+        XCTAssertFalse(store.isAnalyzingStructure)
+    }
+
+    @MainActor
+    func testAnalyzeStructureSurfacesAnErrorWhenLocatingTheLanguagePackThrows() throws {
+        let (store, choiceID, parent) = try openedStoreWithOneBook(languagePackAvailable: {
+            throw SimulatedFailure(message: "Simulated locate failure.")
+        })
+        defer { try? FileManager.default.removeItem(at: parent) }
+
+        store.analyzeStructure(choiceIDs: [choiceID])
+
+        XCTAssertEqual(store.errorMessage, "Simulated locate failure.")
+        XCTAssertFalse(store.isAnalyzingStructure)
+    }
+
+    @MainActor
+    func testAnalyzeStructureSucceedsAndPersistsTheUpdatedProfile() async throws {
+        let expectedProfile = StructuralProfile(
+            sentencesAnalyzed: 10, sentencesAvailable: 10, averageTreeDepth: 4, maximumTreeDepth: 6,
+            averageClausesPerSentence: 1.5, subordinateSentenceRatio: 0.2, averageLongestNounPhraseWords: 3,
+            longNounPhraseRatio: 0.1, coordinationRatio: 0.1, passiveCandidateRatio: 0.05, fragmentRatio: 0
+        )
+        let (store, choiceID, parent) = try openedStoreWithOneBook(
+            languagePackAvailable: { true },
+            structuralAnalyzer: { _, _, _, _ in BeneparAnalysis(metrics: expectedProfile, issues: []) }
+        )
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let bookID = try XCTUnwrap(store.books.first?.id)
+
+        store.analyzeStructure(choiceIDs: [choiceID])
+        await waitUntil { !store.isAnalyzingStructure }
+
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.structuralAnalysisCompleted, 1)
+        XCTAssertEqual(store.book(id: bookID)?.profile.structuralProfile, expectedProfile)
+        let rootURL = try XCTUnwrap(store.rootURL)
+        XCTAssertEqual(try ReferenceLibraryDisk.load(from: rootURL).books.first?.profile.structuralProfile, expectedProfile)
+    }
+
+    @MainActor
+    func testAnalyzeStructureStopsTheBatchAndReportsAnErrorWhenTheAnalyzerFails() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let books = [
+            book(title: "First", author: "Author", genres: ["Fiction"]),
+            book(title: "Second", author: "Author", genres: ["Fiction"])
+        ]
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: books, insights: []), to: root)
+        let suiteName = "ReferenceLibraryAnalyzeFailureTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let callCount = LockedTestValue<Int>(0)
+        let store = ReferenceLibraryStore(
+            defaults: defaults,
+            languagePackAvailable: { true },
+            structuralAnalyzer: { _, _, _, _ in
+                callCount.value += 1
+                return nil
+            }
+        )
+        let choiceIDs = Set(store.choices(kind: .book).map(\.id))
+
+        store.analyzeStructure(choiceIDs: choiceIDs)
+        await waitUntil { !store.isAnalyzingStructure }
+
+        XCTAssertTrue(store.errorMessage?.contains("Benepar could not finish") ?? false)
+        XCTAssertEqual(callCount.value, 1, "a book the analyzer could not finish must stop the batch instead of moving on to the next one")
+    }
+
+    @MainActor
+    func testDeepenSucceedsAndAppendsAPersistedInsight() async throws {
+        let (store, choiceID, parent, settings) = try openedStoreWithOneBookForDeepening()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        MockDeepeningURLProtocol.handler = { request in
+            let payload = """
+            {"summary":"Clear summary","style":"Direct","voice":"Third person","tone":"Measured","vocabulary":"Concrete","characterContinuity":"Consistent","tempo":"Steady","techniques":["Varied sentences"],"suggestedGenres":["Fantasy"]}
+            """
+            let body: [String: Any] = ["message": ["role": "assistant", "content": payload]]
+            return (
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
+                try JSONSerialization.data(withJSONObject: body)
+            )
+        }
+        defer { MockDeepeningURLProtocol.handler = nil }
+
+        store.deepen(choiceIDs: [choiceID], settings: settings)
+        await waitUntil { !store.isDeepening }
+
+        XCTAssertNil(store.errorMessage)
+        let insight = try XCTUnwrap(store.insights.first)
+        XCTAssertEqual(insight.markdown.contains("Clear summary"), true)
+        XCTAssertEqual(insight.provider, AIProvider.ollama.title)
+        let rootURL = try XCTUnwrap(store.rootURL)
+        XCTAssertEqual(try ReferenceLibraryDisk.load(from: rootURL).insights.first?.id, insight.id)
+    }
+
+    @MainActor
+    func testDeepenReportsAnErrorAndDoesNotAppendAnInsightWhenTheProviderCallFails() async throws {
+        let (store, choiceID, parent, settings) = try openedStoreWithOneBookForDeepening()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        MockDeepeningURLProtocol.handler = { request in
+            (HTTPURLResponse(url: request.url!, statusCode: 500, httpVersion: nil, headerFields: nil)!, Data())
+        }
+        defer { MockDeepeningURLProtocol.handler = nil }
+
+        store.deepen(choiceIDs: [choiceID], settings: settings)
+        await waitUntil { !store.isDeepening }
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertTrue(store.insights.isEmpty)
+    }
+
     @MainActor
     func testLibraryNameAuthorsCountAndGenresCountReflectTheLoadedLibrary() throws {
         let root = temporaryDirectory()
@@ -825,4 +949,86 @@ final class ReferenceLibraryTests: XCTestCase {
         }
         XCTFail("Timed out waiting for the reference-library operation to finish")
     }
+
+    /// A store with one saved book, ready to call `analyzeStructure` against, with the Benepar
+    /// seam(s) under test injected and the rest defaulted.
+    @MainActor
+    private func openedStoreWithOneBook(
+        languagePackAvailable: (() throws -> Bool)? = nil,
+        structuralAnalyzer: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)? = nil
+    ) throws -> (store: ReferenceLibraryStore, choiceID: String, parent: URL) {
+        let root = temporaryDirectory()
+        let source = book(title: "Some Title", author: "Some Author", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [source], insights: []), to: root)
+        let suiteName = "ReferenceLibraryAnalyzeTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        addTeardownBlock { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(
+            defaults: defaults,
+            languagePackAvailable: languagePackAvailable,
+            structuralAnalyzer: structuralAnalyzer
+        )
+        let choiceID = try XCTUnwrap(store.choices(kind: .book).first?.id)
+        return (store, choiceID, root)
+    }
+
+    /// A store with one saved book and an Ollama-ready `AppSettings` (no API key needed), wired to
+    /// a `ReferenceDeepeningService` whose session routes through `MockDeepeningURLProtocol`.
+    @MainActor
+    private func openedStoreWithOneBookForDeepening() throws -> (
+        store: ReferenceLibraryStore, choiceID: String, parent: URL, settings: AppSettings
+    ) {
+        let root = temporaryDirectory()
+        let source = book(title: "Some Title", author: "Some Author", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [source], insights: []), to: root)
+        let suiteName = "ReferenceLibraryDeepenTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        addTeardownBlock { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockDeepeningURLProtocol.self]
+        let store = ReferenceLibraryStore(
+            defaults: defaults,
+            deepeningService: ReferenceDeepeningService(session: URLSession(configuration: configuration))
+        )
+        let choiceID = try XCTUnwrap(store.choices(kind: .book).first?.id)
+        let settings = AppSettings(defaults: defaults)
+        settings.provider = .ollama
+        settings.ollamaModel = "test-model"
+        return (store, choiceID, root, settings)
+    }
+}
+
+private struct SimulatedFailure: LocalizedError {
+    let message: String
+    var errorDescription: String? { message }
+}
+
+private final class MockDeepeningURLProtocol: URLProtocol {
+    private static let handlerStorage = LockedTestValue<((URLRequest) throws -> (HTTPURLResponse, Data))?>(nil)
+    static var handler: ((URLRequest) throws -> (HTTPURLResponse, Data))? {
+        get { handlerStorage.value }
+        set { handlerStorage.value = newValue }
+    }
+
+    override class func canInit(with request: URLRequest) -> Bool { true }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+
+    override func startLoading() {
+        guard let handler = Self.handler else {
+            client?.urlProtocol(self, didFailWithError: URLError(.badServerResponse))
+            return
+        }
+        do {
+            let (response, data) = try handler(request)
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: data)
+            client?.urlProtocolDidFinishLoading(self)
+        } catch {
+            client?.urlProtocol(self, didFailWithError: error)
+        }
+    }
+
+    override func stopLoading() {}
 }
