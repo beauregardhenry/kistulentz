@@ -204,6 +204,52 @@ final class PublishExportViewModelTests: XCTestCase {
         XCTAssertNil(model.errorMessage)
     }
 
+    @MainActor
+    func testApplyDestinationPresetRequiresAtLeastOneDestination() {
+        let harness = Harness()
+        let model = PublishExportViewModel(dependencies: harness.dependencies())
+        model.load(sources: [])
+        model.draft.selectedDestinations = []
+
+        model.applyDestinationPreset()
+
+        XCTAssertEqual(model.errorMessage, "Choose at least one publication destination before applying a preset.")
+    }
+
+    /// Every other test in this file injects a fake `Dependencies`. `Dependencies.live` --
+    /// the real wiring used in production, including the actual cancellable, `Task.detached`-
+    /// wrapped export call -- had never run at all.
+    @MainActor
+    func testRealDependenciesExportAnActualProjectEndToEnd() async throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let outputDirectory = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: outputDirectory) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Live Export", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        var archive = store.publicationStore.publicationArchive
+        archive.metadata.authors = ["Author"]
+        archive.selectedDestinations = [.genericEPUB]
+        if let index = archive.profiles.firstIndex(where: { $0.id == archive.selectedProfileID }) {
+            archive.profiles[index].includeCover = false
+        }
+        store.publicationStore.updatePublicationArchive(archive)
+
+        let model = PublishExportViewModel(store: store, publicationStore: store.publicationStore)
+        model.load(sources: [])
+        model.outputDirectory = outputDirectory
+
+        model.performExport(allowingWarnings: true)
+        try await waitUntil { !model.isExporting }
+
+        XCTAssertNil(model.errorMessage)
+        let exportedURL = try XCTUnwrap(model.lastExportURL)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: exportedURL.path))
+        XCTAssertEqual(store.publicationStore.publicationArchive.history.count, 1)
+        XCTAssertEqual(model.pane, .history)
+    }
+
     private static func item(
         id: String,
         included: Bool,
@@ -263,6 +309,13 @@ final class PublishExportViewModelTests: XCTestCase {
             guard clock.now < deadline else { throw ExpectedPublishError.timedOut }
             try await Task.sleep(for: .milliseconds(5))
         }
+    }
+
+    private func temporaryDirectory() -> URL {
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-PublishExportViewModelTests-\(UUID().uuidString)", isDirectory: true)
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        return url
     }
 }
 

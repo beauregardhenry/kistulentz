@@ -48,6 +48,77 @@ final class SystemCheckTests: XCTestCase {
         XCTAssertTrue(report.items.contains(expectedOllama))
     }
 
+    /// Every test above (and every other caller in this file) injects `languagePackEvaluator`
+    /// to avoid the real Benepar worker. The real, default `languagePackCheck` -- reached only
+    /// when that parameter is nil, as it always is in production -- had never run at all.
+    @MainActor
+    func testSystemCheckDefaultLanguagePackEvaluatorReportsNotInstalled() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let suite = "KistulentzSystemCheckDefaultLanguagePackTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let languagePack = BeneparLanguagePackManager(rootURL: root.appendingPathComponent("Pack"))
+
+        let report = await SystemCheckService.run(
+            settings: AppSettings(defaults: defaults),
+            beneparPack: languagePack,
+            referenceLibrary: ReferenceLibraryStore(defaults: defaults),
+            ollamaEvaluator: { noOpItem(id: "ollama") }
+        )
+
+        let item = try XCTUnwrap(report.items.first { $0.id == "english-language-pack" })
+        XCTAssertEqual(item.status, .information)
+        XCTAssertTrue(item.detail.contains("is not installed"))
+    }
+
+    @MainActor
+    func testSystemCheckDefaultLanguagePackEvaluatorReportsAnInvalidPack() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let suite = "KistulentzSystemCheckInvalidLanguagePackTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let packRoot = root.appendingPathComponent("Pack")
+        try FileManager.default.createDirectory(at: packRoot, withIntermediateDirectories: true)
+        try Data("not valid JSON".utf8).write(to: packRoot.appendingPathComponent("manifest.json"))
+        let languagePack = BeneparLanguagePackManager(rootURL: packRoot)
+
+        let report = await SystemCheckService.run(
+            settings: AppSettings(defaults: defaults),
+            beneparPack: languagePack,
+            referenceLibrary: ReferenceLibraryStore(defaults: defaults),
+            ollamaEvaluator: { noOpItem(id: "ollama") }
+        )
+
+        let item = try XCTUnwrap(report.items.first { $0.id == "english-language-pack" })
+        XCTAssertEqual(item.status, .attention)
+        XCTAssertTrue(item.detail.contains("needs repair"))
+    }
+
+    @MainActor
+    func testSystemCheckDetectsInstalledKindlePreviewer() async throws {
+        let suite = "KistulentzSystemCheckKindleTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let fakeFileManager = FakeToolFileManager()
+        fakeFileManager.existingPaths.insert("/Applications/Kindle Previewer 3.app")
+
+        let report = await SystemCheckService.run(
+            settings: AppSettings(defaults: defaults),
+            beneparPack: BeneparLanguagePackManager(rootURL: root.appendingPathComponent("Pack")),
+            referenceLibrary: ReferenceLibraryStore(defaults: defaults),
+            fileManager: fakeFileManager,
+            languagePackEvaluator: { _ in noOpItem(id: "english-language-pack") },
+            ollamaEvaluator: { noOpItem(id: "ollama") }
+        )
+
+        let tools = try XCTUnwrap(report.items.first { $0.id == "publishing-tools" })
+        XCTAssertTrue(tools.detail.contains("Kindle Previewer"))
+    }
+
     @MainActor
     func testSystemCheckListsAConfiguredProvider() async throws {
         let suite = "KistulentzSystemCheckTests.\(UUID().uuidString)"
