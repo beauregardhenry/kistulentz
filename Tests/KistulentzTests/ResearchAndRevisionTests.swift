@@ -229,6 +229,208 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 2.md", at: root).contains("commence walking"))
     }
 
+    @MainActor
+    func testAppliedRevisionCanBeUndoneAndRedoneRepeatedly() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Redo", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nWe utilize ropes.\n")
+        store.saveNow()
+        let undo = UndoManager()
+        store.attachUndoManager(undo)
+        let set = RevisionChangeSet(title: "Test", summary: "", changes: [
+            RevisionChange(chapterPath: "Chapter 1.md", originalText: "utilize", replacementText: "use", explanation: "")
+        ])
+
+        store.applyRevisionChangeSet(set)
+        XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 1.md", at: root).contains("use ropes"))
+
+        undo.undo()
+        XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 1.md", at: root).contains("utilize ropes"))
+        XCTAssertTrue(undo.canRedo, "undoing an applied revision must register a redo action")
+
+        undo.redo()
+        XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 1.md", at: root).contains("use ropes"))
+        XCTAssertTrue(undo.canUndo, "redoing must in turn register another undo")
+
+        undo.undo()
+        XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 1.md", at: root).contains("utilize ropes"))
+    }
+
+    @MainActor
+    func testApplyRevisionChangeSetFailsAndTouchesNothingWhenPassageIsAmbiguous() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Conflict", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nWe utilize ropes and utilize knots.\n")
+        store.saveNow()
+        let before = try WritingProjectDisk.readChapter("Chapter 1.md", at: root)
+        let snapshotCountBefore = store.snapshots.count
+        let set = RevisionChangeSet(title: "Test", summary: "", changes: [
+            RevisionChange(chapterPath: "Chapter 1.md", originalText: "utilize", replacementText: "use", explanation: "")
+        ])
+
+        let result = store.applyRevisionChangeSet(set)
+
+        XCTAssertFalse(result)
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Chapter 1.md", at: root), before, "an ambiguous passage must leave the chapter untouched")
+        XCTAssertEqual(store.snapshots.count, snapshotCountBefore, "no new snapshot should be created for a change that was never applied")
+    }
+
+    @MainActor
+    func testApplyRevisionChangeSetFailsWhenTheSetContainsNoConcreteChanges() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "NoOp", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nWe utilize ropes.\n")
+        store.saveNow()
+        let before = try WritingProjectDisk.readChapter("Chapter 1.md", at: root)
+        let snapshotCountBefore = store.snapshots.count
+        let set = RevisionChangeSet(title: "Test", summary: "", changes: [
+            RevisionChange(chapterPath: "Chapter 1.md", originalText: "utilize", replacementText: "utilize", explanation: "")
+        ])
+
+        let result = store.applyRevisionChangeSet(set)
+
+        XCTAssertFalse(result)
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Chapter 1.md", at: root), before)
+        XCTAssertEqual(store.snapshots.count, snapshotCountBefore)
+    }
+
+    @MainActor
+    func testApplyRevisionChangeSetRollsBackAnEarlierWriteWhenALaterFileCannotBeWritten() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Rollback", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nWe utilize ropes.\n")
+        store.saveNow()
+        store.createChapter(named: "Chapter 2")
+        store.updateText("# Chapter 2\n\nWe commence walking.\n")
+        store.saveNow()
+
+        // Make the second file's write fail after the first one has already landed, so the
+        // catch block in `applyRevisionChangeSet` has to restore what it already wrote.
+        let chapterTwoURL = root.appendingPathComponent("Chapter 2.md")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: chapterTwoURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: chapterTwoURL.path) }
+
+        let set = RevisionChangeSet(title: "Test", summary: "", changes: [
+            RevisionChange(chapterPath: "Chapter 1.md", originalText: "utilize", replacementText: "use", explanation: ""),
+            RevisionChange(chapterPath: "Chapter 2.md", originalText: "commence", replacementText: "start", explanation: "")
+        ])
+
+        let result = store.applyRevisionChangeSet(set)
+
+        XCTAssertFalse(result)
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertTrue(
+            try WritingProjectDisk.readChapter("Chapter 1.md", at: root).contains("utilize ropes"),
+            "the file that was already written must be rolled back once the second file's write fails"
+        )
+        XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 2.md", at: root).contains("commence walking"))
+    }
+
+    @MainActor
+    func testAddAIRevisionFindingsMergesBySignaturePreservingIdentityAndStatus() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "AIFindings", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+
+        let existing = SystemicRevisionFinding(
+            signature: "sig-a", revisionPass: .continuity, classification: .probableProblem,
+            status: .resolved, title: "Alpha", detail: "old detail", createdAt: Date(timeIntervalSince1970: 0)
+        )
+        store.revisionArchive.findings = [existing]
+
+        let refreshedAlpha = SystemicRevisionFinding(
+            signature: "sig-a", revisionPass: .continuity, classification: .probableProblem,
+            status: .open, title: "Alpha", detail: "new detail from AI"
+        )
+        let brandNewBeta = SystemicRevisionFinding(
+            signature: "sig-b", revisionPass: .argumentAndEvidence, classification: .confirmedProblem,
+            title: "Beta", detail: "brand new"
+        )
+
+        store.addAIRevisionFindings([refreshedAlpha, brandNewBeta], summary: "AI pass complete")
+
+        XCTAssertEqual(store.revisionArchive.findings.count, 2)
+        let alpha = try XCTUnwrap(store.revisionArchive.findings.first { $0.signature == "sig-a" })
+        XCTAssertEqual(alpha.id, existing.id, "a repeated signature keeps its original identity")
+        XCTAssertEqual(alpha.status, .resolved, "a repeated signature keeps the user's prior status rather than resetting it")
+        XCTAssertEqual(alpha.createdAt, existing.createdAt)
+        XCTAssertEqual(alpha.detail, "new detail from AI", "the finding's content still refreshes from the new AI pass")
+        XCTAssertEqual(store.revisionAISummary, "AI pass complete")
+        XCTAssertEqual(
+            store.revisionArchive.findings.map(\.signature), ["sig-b", "sig-a"],
+            "confirmedProblem must sort ahead of probableProblem"
+        )
+    }
+
+    @MainActor
+    func testRevisionAIContextIncludesNotesAndOnlyProjectBibliographySources() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Context", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Draft\n\nBody text with a claim.\n")
+        store.saveNow()
+
+        let included = sampleSource()
+        let excluded = ResearchSource(citeKey: "other2020other", title: "Unrelated Work")
+        store.researchStore.addResearchSource(included.id)
+        store.researchStore.updateResearchNotes("Key background note.")
+
+        let context = try store.revisionAIContext(sources: [included, excluded])
+
+        XCTAssertTrue(context.contains("Key background note."))
+        XCTAssertTrue(context.contains("Draft.md"))
+        XCTAssertTrue(context.contains("Body text with a claim."))
+        XCTAssertTrue(context.contains("Harbor Methods"))
+        XCTAssertFalse(context.contains("Unrelated Work"), "a source not attached to this project must not leak into the bibliography context")
+    }
+
+    @MainActor
+    func testProjectPolishInputsFailsWhenTheDraftCannotBeSaved() throws {
+        // `projectPolishInputs()` calls `saveNow()` itself before checking `isDirty` -- a normal
+        // pending edit gets flushed right there, so the only way `isDirty` survives that call
+        // (and the guard actually fires) is a save that fails outright.
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Polish", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nOriginal draft.\n")
+
+        let chapterURL = root.appendingPathComponent("Chapter 1.md")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: chapterURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: chapterURL.path) }
+
+        XCTAssertThrowsError(try store.projectPolishInputs()) { error in
+            XCTAssertEqual(error as? SystemicRevisionError, .filesChanged)
+        }
+        XCTAssertTrue(store.isDirty, "a save that failed to land must leave the draft marked dirty")
+
+        try FileManager.default.setAttributes([.immutable: false], ofItemAtPath: chapterURL.path)
+        store.saveNow()
+        let (documents, decisions) = try store.projectPolishInputs()
+        XCTAssertEqual(documents.count, 1)
+        XCTAssertTrue(documents.first?.text.contains("Original draft.") ?? false)
+        XCTAssertTrue(decisions.isEmpty)
+    }
+
     func testSystemicAIRequestIsExplicitAndDoesNotClaimToApplyChanges() {
         let request = AIRequestPreview(
             purpose: .systemicRevision(kind: .fiction, passes: [.continuity, .pacing]),
