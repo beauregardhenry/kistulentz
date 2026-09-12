@@ -8,6 +8,34 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.17.2] - 2026-09-12
+
+An internal quality release: no new writing workflow, file-format, AI, storage, or privacy
+behavior.
+
+### Changed
+
+- `ReferenceLibraryStore.analyzeStructure` and `.deepen` now take injectable seams for the
+  Benepar language-pack check, the structural analyzer, and the AI deepening service (mirroring
+  `SystemCheckService`'s existing evaluator hooks), so their async pipelines can be tested without
+  contacting the real language pack or the network. No behavior change. (#35)
+
+### Testing
+
+- Closed the two largest remaining coverage gaps by absolute line count: `ReferenceLibraryStore`
+  (67.6% → 95.6% including the dependency-injection change above) and `PublicationPlanning`
+  (68.4% → 89.9%) — citation-key validation, structural-analysis and AI-deepening guards and async
+  pipelines, and the destination-specific EPUB/print preflight checks (Apple Books, Kindle,
+  IngramSpark) among them. (#30, #32, #33, #35)
+- Added direct coverage for `RevisionDiff`'s long-manuscript diff path, `WritingAIService`'s guard
+  clauses, `SystemCheckService`'s branch logic, `BetaReaderEngine`'s persona routing, `SearchStore`'s
+  real (non-test-double) search implementation, `ManuscriptEditCoordinator`'s Bible-editing path,
+  and `WritingProjectStore`'s snapshot-restore and publication branches. (#30, #31)
+- `coverage-baseline.txt` is now raised automatically by a post-merge CI workflow instead of by
+  each pull request, so two PRs open at once no longer conflict with each other over the same
+  baseline number. (#34)
+- 466 → 533 tests. Line coverage (app sources outside `Views/`) rose from 83.61% to 86.71%.
+
 ## [0.17.1] - 2026-09-09
 
 ### Changed
