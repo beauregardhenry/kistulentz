@@ -35,17 +35,18 @@ extension WritingProjectStore {
     }
 
     func createChapter(named name: String) {
-        guard let rootURL else { return }
+        // `manifest` is guarded alongside `rootURL` here (not just `rootURL` alone) so the
+        // load below never needs to force-unwrap it: `rootURL` and `manifest` are always set and
+        // cleared together by `install`/`closeProject`, but nothing in the type system enforces
+        // that invariant, so a future change to either could otherwise turn this into a crash.
+        guard let rootURL, var updatedManifest = manifest else { return }
         do {
             saveNow()
             let path = try WritingProjectDisk.createChapter(named: name, at: rootURL)
-            var updatedManifest = manifest
-            updatedManifest?.chapterOrder.append(path)
-            if let updatedManifest {
-                try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
-                manifest = updatedManifest
-            }
-            chapters = try WritingProjectDisk.loadChapters(at: rootURL, manifest: manifest!)
+            updatedManifest.chapterOrder.append(path)
+            try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
+            manifest = updatedManifest
+            chapters = try WritingProjectDisk.loadChapters(at: rootURL, manifest: updatedManifest)
             let nodeTitle = chapters.first(where: { $0.relativePath == path })?.title
                 ?? URL(fileURLWithPath: path).deletingPathExtension().lastPathComponent
             let node = OutlineNode(title: nodeTitle, kind: .chapter, relativePath: path)
