@@ -1,3 +1,4 @@
+import AppKit
 import Foundation
 import XCTest
 @testable import Kistulentz
@@ -105,6 +106,187 @@ final class ResearchAndRevisionTests: XCTestCase {
         let url = root.appendingPathComponent("evidence.txt")
         try "The harbor record is readable.".write(to: url, atomically: true, encoding: .utf8)
         XCTAssertEqual(try ResearchTextExtractor.extract(from: url, kind: .text), "The harbor record is readable.")
+    }
+
+    func testResearchLibraryDiskLoadReturnsAnEmptyArchiveWhenNoIndexExistsYet() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        // Nothing has been saved to `root` yet, so there is no index file on disk.
+        XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources, [])
+    }
+
+    func testAddAttachmentThrowsWhenTheSourceFileDoesNotExist() throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root); try? FileManager.default.removeItem(at: outside) }
+        let missing = outside.appendingPathComponent("does-not-exist.txt")
+        XCTAssertThrowsError(
+            try ResearchLibraryDisk.addAttachment(from: missing, to: UUID(), storage: .managedCopy, at: root)
+        ) { error in
+            guard case ResearchLibraryError.unreadableAttachment("does-not-exist.txt") = error else {
+                return XCTFail("Expected an unreadable-attachment error, got \(error)")
+            }
+        }
+    }
+
+    func testManagedAttachmentsWithDuplicateFilenamesOnTheSameSourceGetUniqueDestinations() throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root); try? FileManager.default.removeItem(at: outside) }
+        let first = outside.appendingPathComponent("evidence.txt")
+        try "first copy".write(to: first, atomically: true, encoding: .utf8)
+        let second = outside.appendingPathComponent("evidence 2").appendingPathComponent("evidence.txt")
+        try FileManager.default.createDirectory(at: second.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try "second copy".write(to: second, atomically: true, encoding: .utf8)
+        let third = outside.appendingPathComponent("evidence 3").appendingPathComponent("evidence.txt")
+        try FileManager.default.createDirectory(at: third.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try "third copy".write(to: third, atomically: true, encoding: .utf8)
+        let sourceID = UUID()
+
+        let firstAttachment = try ResearchLibraryDisk.addAttachment(from: first, to: sourceID, storage: .managedCopy, at: root)
+        let secondAttachment = try ResearchLibraryDisk.addAttachment(from: second, to: sourceID, storage: .managedCopy, at: root)
+        let thirdAttachment = try ResearchLibraryDisk.addAttachment(from: third, to: sourceID, storage: .managedCopy, at: root)
+
+        // Three attachments named "evidence.txt" landing on the same source should each keep a
+        // distinct destination ("evidence.txt", "evidence 2.txt", "evidence 3.txt", ...).
+        XCTAssertEqual(
+            Set([firstAttachment, secondAttachment, thirdAttachment].map(\.storedRelativePath)).count,
+            3
+        )
+        XCTAssertEqual(
+            try String(contentsOf: ResearchLibraryDisk.attachmentURL(firstAttachment, at: root), encoding: .utf8),
+            "first copy"
+        )
+        XCTAssertEqual(
+            try String(contentsOf: ResearchLibraryDisk.attachmentURL(secondAttachment, at: root), encoding: .utf8),
+            "second copy"
+        )
+        XCTAssertEqual(
+            try String(contentsOf: ResearchLibraryDisk.attachmentURL(thirdAttachment, at: root), encoding: .utf8),
+            "third copy"
+        )
+    }
+
+    func testRemoveExtractedTextDeletesTheFileAndIsANoOpWhenAlreadyMissing() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let relativePath = try ResearchLibraryDisk.saveExtractedText("indexed evidence", for: UUID(), at: root)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent(relativePath).path))
+
+        try ResearchLibraryDisk.removeExtractedText(relativePath: relativePath, at: root)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent(relativePath).path))
+
+        // Removing an already-missing file is a no-op rather than an error.
+        XCTAssertNoThrow(try ResearchLibraryDisk.removeExtractedText(relativePath: relativePath, at: root))
+    }
+
+    func testKnowledgeBaseSortsSourcesByCreatorThenByTitleAndIncludesOptionalFields() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let creator = [ResearchCreator(givenName: "Beau", familyName: "Henry")]
+        let zebra = ResearchSource(citeKey: "zebra", title: "Zebra Notes", creators: creator)
+        let alpha = ResearchSource(
+            citeKey: "alpha",
+            title: "Alpha Notes",
+            creators: creator,
+            URLString: "https://example.com/alpha",
+            keywords: ["tide", "harbor"],
+            libraryNotes: "Cross-check the second edition before citing."
+        )
+
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [zebra, alpha]), to: root)
+        let markdown = try String(contentsOf: root.appendingPathComponent(ResearchLibraryDisk.knowledgeBaseFileName), encoding: .utf8)
+
+        // Both sources share a creator, so the tie is broken by title: "Alpha" sorts before "Zebra".
+        let alphaRange = try XCTUnwrap(markdown.range(of: "Alpha Notes"))
+        let zebraRange = try XCTUnwrap(markdown.range(of: "Zebra Notes"))
+        XCTAssertLessThan(alphaRange.lowerBound, zebraRange.lowerBound)
+        XCTAssertTrue(markdown.contains("- URL: https://example.com/alpha"))
+        XCTAssertTrue(markdown.contains("- Keywords: tide, harbor"))
+        XCTAssertTrue(markdown.contains("Cross-check the second edition before citing."))
+    }
+
+    func testHTMLAttachmentExtractsPlainTextFromMarkup() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let url = root.appendingPathComponent("page.html")
+        try "<html><body><h1>Harbor Notes</h1><p>Plain markup becomes plain text.</p></body></html>"
+            .write(to: url, atomically: true, encoding: .utf8)
+
+        let extracted = try ResearchTextExtractor.extract(from: url, kind: .webArchive)
+
+        XCTAssertTrue(extracted.contains("Harbor Notes"))
+        XCTAssertTrue(extracted.contains("Plain markup becomes plain text."))
+    }
+
+    func testWebArchiveAttachmentExtractsTextFromTheMainResource() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let html = "<html><body><h1>Harbor Notes</h1><p>The archive holds our notes.</p></body></html>"
+        let plist: [String: Any] = [
+            "WebMainResource": [
+                "WebResourceData": Data(html.utf8),
+                "WebResourceURL": "https://example.com/",
+                "WebResourceMIMEType": "text/html"
+            ]
+        ]
+        let data = try PropertyListSerialization.data(fromPropertyList: plist, format: .binary, options: 0)
+        let url = root.appendingPathComponent("notes.webarchive")
+        try data.write(to: url)
+
+        let extracted = try ResearchTextExtractor.extract(from: url, kind: .webArchive)
+
+        XCTAssertTrue(extracted.contains("Harbor Notes"))
+        XCTAssertTrue(extracted.contains("The archive holds our notes."))
+    }
+
+    func testOtherKindAttachmentExtractsUTF8TextWhenReadable() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let url = root.appendingPathComponent("notes.xyz")
+        try "Unusual extension, still plain UTF-8 text.".write(to: url, atomically: true, encoding: .utf8)
+
+        XCTAssertEqual(
+            try ResearchTextExtractor.extract(from: url, kind: .other),
+            "Unusual extension, still plain UTF-8 text."
+        )
+    }
+
+    func testOtherKindAttachmentThrowsWhenTheFileIsNotReadableText() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let url = root.appendingPathComponent("notes.bin")
+        try Data([0xFF, 0xFE, 0x00, 0xD8, 0x00, 0xFF]).write(to: url)
+
+        XCTAssertThrowsError(try ResearchTextExtractor.extract(from: url, kind: .other)) { error in
+            guard case ResearchLibraryError.unreadableAttachment("notes.bin") = error else {
+                return XCTFail("Expected an unreadable-attachment error, got \(error)")
+            }
+        }
+    }
+
+    func testEPUBAttachmentExtractsChapterHeadingsAndBodyText() throws {
+        let epubURL = try makeFixtureEPUB()
+        defer { try? FileManager.default.removeItem(at: epubURL.deletingLastPathComponent()) }
+
+        let extracted = try ResearchTextExtractor.extract(from: epubURL, kind: .epub)
+
+        XCTAssertTrue(extracted.contains("# First Light"))
+        XCTAssertTrue(extracted.contains("Elara crossed the wet courtyard"))
+        XCTAssertTrue(extracted.contains("# The River Road"))
+    }
+
+    func testPDFAttachmentExtractsEmbeddedTextDirectlyWithoutRunningOCR() throws {
+        // A long run of a single repeated word survives PDF line-wrapping intact, unlike a
+        // sentence, so the assertion below stays robust regardless of how the text is laid out.
+        let text = Array(repeating: "Harbor", count: 20).joined(separator: " ")
+        let url = try makeTextPDF(text)
+        defer { try? FileManager.default.removeItem(at: url) }
+
+        let extracted = try ResearchTextExtractor.extract(from: url, kind: .pdf)
+
+        XCTAssertGreaterThanOrEqual(extracted.count, 80)
+        XCTAssertTrue(extracted.contains("Harbor"))
     }
 
     @MainActor
@@ -919,6 +1101,51 @@ final class ResearchAndRevisionTests: XCTestCase {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent("Kistulentz-Research-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        return url
+    }
+
+    private func makeFixtureEPUB() throws -> URL {
+        let testsDirectory = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+        let fixtureDirectory = testsDirectory
+            .appendingPathComponent("Fixtures", isDirectory: true)
+            .appendingPathComponent("EPUBSource", isDirectory: true)
+        let temporaryDirectory = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-EPUB-Test-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: temporaryDirectory, withIntermediateDirectories: true)
+        let outputURL = temporaryDirectory.appendingPathComponent("fixture.epub")
+
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/zip")
+        process.currentDirectoryURL = fixtureDirectory
+        process.arguments = ["-X", "-q", "-r", outputURL.path, "."]
+        try process.run()
+        process.waitUntilExit()
+        guard process.terminationStatus == 0 else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        return outputURL
+    }
+
+    /// Builds a real, vector-text PDF (no rasterized image, no OCR involved) so tests can exercise
+    /// `ResearchTextExtractor`'s direct-text-extraction path deterministically.
+    private func makeTextPDF(_ text: String) throws -> URL {
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-PDF-Test-\(UUID().uuidString).pdf")
+        var mediaBox = CGRect(x: 0, y: 0, width: 612, height: 792)
+        guard let consumer = CGDataConsumer(url: url as CFURL),
+              let context = CGContext(consumer: consumer, mediaBox: &mediaBox, nil) else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        context.beginPDFPage(nil)
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = NSGraphicsContext(cgContext: context, flipped: false)
+        let attributed = NSAttributedString(string: text, attributes: [.font: NSFont.systemFont(ofSize: 18)])
+        attributed.draw(with: CGRect(x: 40, y: 40, width: 500, height: 700), options: [.usesLineFragmentOrigin])
+        NSGraphicsContext.restoreGraphicsState()
+        context.endPDFPage()
+        context.closePDF()
         return url
     }
 }
