@@ -83,6 +83,11 @@ final class DraftRecoveryManager: ObservableObject {
     static let shared = DraftRecoveryManager()
 
     @Published private(set) var pendingEntries: [DraftRecoveryEntry]
+    /// Set once when a crash-recovery snapshot fails to save, and cleared the next time one
+    /// succeeds. `record(...)` runs on every debounced edit, so this only ever *sets* the message
+    /// while it's still nil -- a disk-full or permissions problem would otherwise fail on every
+    /// keystroke and spam an alert on each one instead of surfacing it a single time.
+    @Published var errorMessage: String?
 
     let sessionID: UUID
     private let directoryURL: URL
@@ -124,11 +129,34 @@ final class DraftRecoveryManager: ObservableObject {
             recoveredText: text
         )
         let directoryURL = self.directoryURL
-        ioQueue.async {
+        ioQueue.async { [weak self] in
             if let saved = DraftRecoveryDisk.savedText(for: entry), saved == entry.recoveredText {
                 DraftRecoveryDisk.remove(entry.id, from: directoryURL)
+                self?.reportSaveOutcome(succeeded: true, title: title)
             } else {
-                try? DraftRecoveryDisk.save(entry, in: directoryURL)
+                do {
+                    try DraftRecoveryDisk.save(entry, in: directoryURL)
+                    self?.reportSaveOutcome(succeeded: true, title: title)
+                } catch {
+                    self?.reportSaveOutcome(succeeded: false, title: title, reason: error.localizedDescription)
+                }
+            }
+        }
+    }
+
+    // nonisolated: called from the background ioQueue closure in record(); it only ever hops to
+    // the main actor internally, so the call site itself shouldn't have to await it.
+    nonisolated private func reportSaveOutcome(succeeded: Bool, title: String, reason: String? = nil) {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            if succeeded {
+                self.errorMessage = nil
+            } else if self.errorMessage == nil {
+                self.errorMessage = """
+                Kistulentz could not save a crash-recovery snapshot for “\(title)”\
+                \(reason.map { ": \($0)." } ?? "."). If Kistulentz quits unexpectedly before this \
+                is resolved, this document's most recent unsaved changes may not be recoverable.
+                """
             }
         }
     }

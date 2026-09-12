@@ -194,6 +194,35 @@ final class ProjectImportTests: XCTestCase {
         XCTAssertEqual(outline.nodes.last?.children.first?.title, "Sources")
     }
 
+    func testAddToProjectEscalatesTheErrorWhenTheOutlineWriteFailsAndItsOwnRollbackFailsToo() throws {
+        let parent = try makeTemporaryDirectory()
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Rollback Book", kind: .nonfiction)
+        let originalManifest = try WritingProjectDisk.loadManifest(at: root)
+        let originalOutline = try ProjectOutlineDisk.load(at: root)
+        let inputs = try conversions(in: parent, entries: [("Appendix", .chapter)])
+        let outlineURL = ProjectOutlineDisk.outlineURL(at: root)
+        // outline.json is the write that fails in the primary attempt AND the file the rollback
+        // tries to restore -- locking it makes both fail the same way, deterministically.
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: outlineURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: outlineURL.path) }
+
+        XCTAssertThrowsError(
+            try ProjectImportOutputService.addToProject(inputs, decisions: [:], root: root)
+        ) { error in
+            guard case ProjectImportError.importFailedAndRollbackIncomplete(_, let details) = error else {
+                return XCTFail("Expected importFailedAndRollbackIncomplete, got \(error)")
+            }
+            XCTAssertTrue(details.contains("outline"))
+        }
+
+        // The manifest rollback succeeded (only outline.json was locked), so the chapter list is
+        // back to its original state even though the outline write's own rollback could not run.
+        XCTAssertEqual(try WritingProjectDisk.loadManifest(at: root).chapterOrder, originalManifest.chapterOrder)
+        try FileManager.default.setAttributes([.immutable: false], ofItemAtPath: outlineURL.path)
+        XCTAssertEqual(try ProjectOutlineDisk.load(at: root), originalOutline)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Appendix.md").path))
+    }
+
     func testTrackedChangesMustBeDecidedBeforeAnyOutputIsWritten() throws {
         let root = try makeTemporaryDirectory()
         let sourceURL = root.appendingPathComponent("Tracked.docx")

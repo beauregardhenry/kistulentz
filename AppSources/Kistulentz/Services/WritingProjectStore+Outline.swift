@@ -234,10 +234,32 @@ extension WritingProjectStore {
                 )
                 editCoordinator.editLanded(.externalChange)
             } catch {
-                try? ProjectFileOrganizer.undo(completed, at: rootURL)
+                var rollbackFailures: [String] = []
+                do {
+                    try ProjectFileOrganizer.undo(completed, at: rootURL)
+                } catch let rollbackError {
+                    rollbackFailures.append("moving files back: \(rollbackError.localizedDescription)")
+                }
                 let reverseMap = Dictionary(uniqueKeysWithValues: completed.map { ($0.destinationPath, $0.sourcePath) })
-                try? WritingProjectDisk.rewriteSnapshotPaths(reverseMap, at: rootURL)
+                do {
+                    try WritingProjectDisk.rewriteSnapshotPaths(reverseMap, at: rootURL)
+                } catch let rollbackError {
+                    rollbackFailures.append("snapshot history: \(rollbackError.localizedDescription)")
+                }
                 outlineNodes = beforeNodes
+                // Only the ORIGINAL error matters when the rollback itself succeeds -- that's the
+                // existing, well-tested behavior (handled by the outer catch below). But if a
+                // rollback step also failed, some files may still be at their new locations while
+                // the outline reverted to the old paths, so this needs a distinctly more severe
+                // message rather than one that implies the whole operation was cleanly undone.
+                guard rollbackFailures.isEmpty else {
+                    errorMessage = """
+                    Organizing files failed (\(error.localizedDescription)), and Kistulentz could \
+                    not fully undo the partial change (\(rollbackFailures.joined(separator: "; "))). \
+                    Check Project Organization and your project's chapter list before continuing.
+                    """
+                    return
+                }
                 throw error
             }
         } catch {

@@ -416,9 +416,34 @@ enum ProjectImportOutputService {
                 selectedPath: paths.first
             )
         } catch {
-            try? WritingProjectDisk.saveManifest(originalManifest, at: root)
-            try? ProjectOutlineDisk.save(originalOutline, at: root)
-            for url in createdURLs.reversed() { try? FileManager.default.removeItem(at: url) }
+            var rollbackFailures: [String] = []
+            do {
+                try WritingProjectDisk.saveManifest(originalManifest, at: root)
+            } catch let rollbackError {
+                rollbackFailures.append("chapter list: \(rollbackError.localizedDescription)")
+            }
+            do {
+                try ProjectOutlineDisk.save(originalOutline, at: root)
+            } catch let rollbackError {
+                rollbackFailures.append("outline: \(rollbackError.localizedDescription)")
+            }
+            for url in createdURLs.reversed() {
+                do {
+                    try FileManager.default.removeItem(at: url)
+                } catch let rollbackError {
+                    rollbackFailures.append("\(url.lastPathComponent): \(rollbackError.localizedDescription)")
+                }
+            }
+            // Only the ORIGINAL error matters when the rollback itself succeeds -- that's the
+            // existing, well-tested behavior. But if any rollback step also failed, manifest.json
+            // and outline.json (or the newly-created files) can now disagree, so the caller needs
+            // a distinctly more severe message rather than one that implies nothing changed.
+            guard rollbackFailures.isEmpty else {
+                throw ProjectImportError.importFailedAndRollbackIncomplete(
+                    originalReason: error.localizedDescription,
+                    details: rollbackFailures.joined(separator: "; ")
+                )
+            }
             throw error
         }
     }

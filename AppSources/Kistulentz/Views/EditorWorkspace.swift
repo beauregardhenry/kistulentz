@@ -489,12 +489,14 @@ struct EditorWorkspace: View {
                 viewModel.errorMessage != nil
                     || projectStore.errorMessage != nil
                     || documentImport.errorMessage != nil
+                    || draftRecovery.errorMessage != nil
             },
             set: {
                 if !$0 {
                     viewModel.errorMessage = nil
                     projectStore.errorMessage = nil
                     documentImport.errorMessage = nil
+                    draftRecovery.errorMessage = nil
                 }
             }
         )) {
@@ -504,6 +506,7 @@ struct EditorWorkspace: View {
                 viewModel.errorMessage
                     ?? projectStore.errorMessage
                     ?? documentImport.errorMessage
+                    ?? draftRecovery.errorMessage
                     ?? ""
             )
         }

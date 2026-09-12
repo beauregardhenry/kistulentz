@@ -238,6 +238,7 @@ enum BeneparLanguagePackError: LocalizedError {
     case invalidChecksum
     case invalidArchive
     case invalidManifest(String)
+    case installFailedAndPreviousPackLost(installReason: String, restoreReason: String)
     case workerUnavailable
     case workerStopped(String)
     case workerTimedOut
@@ -261,6 +262,8 @@ enum BeneparLanguagePackError: LocalizedError {
             "The downloaded language pack could not be unpacked safely."
         case .invalidManifest(let reason):
             "The English language pack is incomplete or incompatible: \(reason)"
+        case .installFailedAndPreviousPackLost(let installReason, let restoreReason):
+            "The English language pack could not be installed (\(installReason)), and Kistulentz could not restore the previous copy either (\(restoreReason)). No language pack is installed; native analysis remains active. Try installing it again."
         case .workerUnavailable:
             "Kistulentz could not find its local Benepar analysis worker."
         case .workerStopped(let detail):

@@ -309,7 +309,19 @@ final class BeneparLanguagePackManager: ObservableObject {
             try fileManager.moveItem(at: candidate, to: rootURL)
         } catch {
             if fileManager.fileExists(atPath: backup.path), !fileManager.fileExists(atPath: rootURL.path) {
-                try? fileManager.moveItem(at: backup, to: rootURL)
+                do {
+                    try fileManager.moveItem(at: backup, to: rootURL)
+                } catch let restoreError {
+                    // The new pack failed to install AND the previous copy could not be moved
+                    // back -- the user is left with no language pack at all, not "unchanged".
+                    // That is a more severe, differently-worded situation than a plain install
+                    // failure, so it gets its own error rather than silently swallowing this and
+                    // rethrowing the original (now misleading) one.
+                    throw BeneparLanguagePackError.installFailedAndPreviousPackLost(
+                        installReason: error.localizedDescription,
+                        restoreReason: restoreError.localizedDescription
+                    )
+                }
             }
             throw error
         }
