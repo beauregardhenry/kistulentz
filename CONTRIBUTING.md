@@ -30,13 +30,9 @@ swift test --enable-code-coverage --disable-sandbox
 ./scripts/check-coverage.sh
 ```
 
-The check prints the current percentage and the five least-covered files. When coverage climbs, lock the gain in and commit the result:
+The check prints the current percentage and the five least-covered files. Don't run `--update` and commit the result yourself: a `coverage-ratchet` GitHub Actions job re-measures on every push to `main` and commits the raised baseline itself, so two PRs open at the same time never both edit `coverage-baseline.txt` and conflict with each other. Your PR only needs the plain form above to pass.
 
-```sh
-./scripts/check-coverage.sh --update
-```
-
-Lowering the baseline is allowed but never incidental: do it in its own commit and say why.
+Lowering the baseline is allowed but never incidental: do it in its own commit with `./scripts/check-coverage.sh --update` and say why.
 
 To build the Mac application:
 
