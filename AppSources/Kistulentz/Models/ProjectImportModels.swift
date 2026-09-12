@@ -119,6 +119,7 @@ enum ProjectImportError: LocalizedError, Equatable {
     case noCurrentProject
     case currentProjectSaveFailed
     case cancelled
+    case importFailedAndRollbackIncomplete(originalReason: String, details: String)
 
     var errorDescription: String? {
         switch self {
@@ -140,6 +141,8 @@ enum ProjectImportError: LocalizedError, Equatable {
             "Kistulentz could not save the current project before importing. The new documents were not added."
         case .cancelled:
             "The project import was cancelled. No documents were added."
+        case .importFailedAndRollbackIncomplete(let originalReason, let details):
+            "The import failed (\(originalReason)), and Kistulentz could not fully undo the partial change (\(details)). Check your project's chapter list and Project Organization before continuing."
         }
     }
 }

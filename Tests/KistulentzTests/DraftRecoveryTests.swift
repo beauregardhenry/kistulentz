@@ -103,6 +103,34 @@ final class DraftRecoveryTests: XCTestCase {
         XCTAssertEqual(try String(contentsOf: original, encoding: .utf8), "Last saved text")
     }
 
+    @MainActor
+    func testRecordSurfacesAnErrorOnceWhenTheSnapshotCannotBeSavedAndClearsItOnTheNextSuccess() async throws {
+        let root = temporaryDirectory()
+        defer {
+            try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: root.path)
+            try? FileManager.default.removeItem(at: root)
+        }
+        let manager = DraftRecoveryManager(directoryURL: root, sessionID: UUID())
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: root.path)
+
+        manager.record(id: UUID(), title: "Draft.md", fileURL: nil, projectRootURL: nil, text: "Unsaved text")
+
+        try await waitUntil { manager.errorMessage != nil }
+        XCTAssertTrue(manager.errorMessage?.contains("Draft.md") ?? false)
+
+        // A second failed attempt (the debounced-typing case) must not replace or duplicate the
+        // message -- it should still read exactly the same.
+        let firstMessage = manager.errorMessage
+        manager.record(id: UUID(), title: "Draft.md", fileURL: nil, projectRootURL: nil, text: "More unsaved text")
+        try await Task.sleep(for: .milliseconds(50))
+        XCTAssertEqual(manager.errorMessage, firstMessage)
+
+        try FileManager.default.setAttributes([.immutable: false], ofItemAtPath: root.path)
+        manager.record(id: UUID(), title: "Draft.md", fileURL: nil, projectRootURL: nil, text: "Saved once unlocked")
+
+        try await waitUntil { manager.errorMessage == nil }
+    }
+
     func testSavingRecoveredCopyDoesNotReplaceOriginal() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }

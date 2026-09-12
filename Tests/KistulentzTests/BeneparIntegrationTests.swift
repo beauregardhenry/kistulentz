@@ -450,6 +450,22 @@ final class BeneparIntegrationTests: XCTestCase {
         XCTAssertEqual(try String(contentsOf: marker, encoding: .utf8), "keep me")
     }
 
+    func testInstallFailedAndPreviousPackLostDescribesBothFailuresDistinctly() throws {
+        // This error case fires only when a fresh-install failure's own rollback (restoring the
+        // backed-up previous pack) also fails -- a double filesystem fault that isn't practical to
+        // reproduce end to end through installArchive without an injectable FileManager. Covering
+        // the message text directly still protects against it silently losing either reason or
+        // reverting to the old, misleadingly-mild wording.
+        let error = BeneparLanguagePackError.installFailedAndPreviousPackLost(
+            installReason: "the disk is full",
+            restoreReason: "permission was denied"
+        )
+        let description = try XCTUnwrap(error.errorDescription)
+        XCTAssertTrue(description.contains("the disk is full"))
+        XCTAssertTrue(description.contains("permission was denied"))
+        XCTAssertTrue(description.contains("No language pack is installed"))
+    }
+
     func testLanguagePackLocatorRejectsPathsThatEscapeThePackFolder() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
