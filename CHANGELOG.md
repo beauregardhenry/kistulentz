@@ -10,8 +10,26 @@ merged changes are recorded under [Unreleased].
 
 ## [0.17.2] - 2026-09-12
 
-An internal quality release: no new writing workflow, file-format, AI, storage, or privacy
-behavior.
+Primarily an internal quality release — most of it is test coverage, dead-code removal, and
+hot-path efficiency work with no behavior change — plus a handful of real fixes below.
+
+### Fixed
+
+- EPUB chapter titles were silently discarded on import: `<title>` always lives inside `<head>`,
+  which is itself skipped when collecting body text, and the code that captured the title text
+  was mistakenly skipped along with it — so every chapter's title silently fell back to
+  "Section N" instead of its real title. This affected both the Reference Library's EPUB
+  comparison feature and Research Library attachment extraction. (#40)
+- `WritingProjectStore.createChapter` could crash if called while a project's manifest was
+  unexpectedly absent; it now declines safely instead. (#44)
+- Installing a new English language pack, importing documents into a project, and reorganizing
+  project files could each understate a failure when their own automatic rollback also failed —
+  potentially leaving `manifest.json`/`outline.json` or on-disk chapter files out of sync with no
+  clear warning. All three now report a distinctly more severe message naming what could not be
+  undone, instead of a message that implies the rollback was clean. (#47)
+- The crash-recovery auto-save could fail (disk full, permissions) with no indication anywhere,
+  silently disabling crash recovery for as long as the failure lasted. A failed save now surfaces
+  once instead of doing nothing indefinitely. (#47)
 
 ### Changed
 
@@ -19,6 +37,15 @@ behavior.
   Benepar language-pack check, the structural analyzer, and the AI deepening service (mirroring
   `SystemCheckService`'s existing evaluator hooks), so their async pipelines can be tested without
   contacting the real language pack or the network. No behavior change. (#35)
+- `EditorViewModel`'s structural-analysis pipeline now takes the same kind of injectable Benepar
+  seam, for the same reason. No behavior change. (#38)
+- Removed one confirmed-dead method (`ManuscriptEditCoordinator.resetBibleEditingBaseline`, never
+  called from anywhere) and stopped several regex patterns on the live per-keystroke analysis path
+  (word/sentence tokenization, Markdown stripping, protected-range detection) from recompiling on
+  every call instead of once. No behavior change. (#46)
+- `coverage-baseline.txt` is now raised automatically by a post-merge CI workflow instead of by
+  each pull request, so two PRs open at once no longer conflict with each other over the same
+  baseline number. (#34)
 
 ### Testing
 
@@ -31,10 +58,16 @@ behavior.
   clauses, `SystemCheckService`'s branch logic, `BetaReaderEngine`'s persona routing, `SearchStore`'s
   real (non-test-double) search implementation, `ManuscriptEditCoordinator`'s Bible-editing path,
   and `WritingProjectStore`'s snapshot-restore and publication branches. (#30, #31)
-- `coverage-baseline.txt` is now raised automatically by a post-merge CI workflow instead of by
-  each pull request, so two PRs open at once no longer conflict with each other over the same
-  baseline number. (#34)
-- 466 → 533 tests. Line coverage (app sources outside `Views/`) rose from 83.61% to 86.71%.
+- Closed further real coverage gaps: the real (non-injected) `PublishExportViewModel`/
+  `SystemCheckService` paths, `ManuscriptAnalyzer.context`'s truncation/sampling logic,
+  `ResearchLibraryDisk`/`ResearchTextExtractor`, `AIRequestModels`' display and prompt-assembly
+  logic, and `WritingProjectStore`'s lifecycle entry points, computed properties, and sub-store
+  closure wiring. (#37, #39, #40, #41, #42, #43)
+- Added a UI test covering the Manuscript Insights beta-reader flow end to end — the one
+  remaining gap in the UI suite. (#45)
+- Audited every `try!`/`as!`/force-unwrap outside `Views/`; all but one (the `createChapter` fix
+  above) were already safe by construction. (#44)
+- 466 → 599 tests. Line coverage (app sources outside `Views/`) rose from 83.61% to 88.64%.
 
 ## [0.17.1] - 2026-09-09
 
