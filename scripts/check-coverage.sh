@@ -11,8 +11,18 @@ set -euo pipefail
 # App/ stays in even though the @main entry point is untestable the same way; at ~180 lines it is
 # a constant drag on the number, not a growing one, and excluding it invites excluding more.
 #
-#   ./scripts/check-coverage.sh            measure and enforce the baseline
-#   ./scripts/check-coverage.sh --update   measure and rewrite the baseline (commit the result)
+# Do NOT bump coverage-baseline.txt from a feature branch. A .github/workflows/coverage-ratchet.yml
+# job re-measures on every push to main and commits the raised number itself, so two PRs in flight
+# at once never both edit the same line and conflict with each other on merge. A feature branch
+# only needs the plain (no-flag) form below to pass; leave the file alone.
+#
+#   ./scripts/check-coverage.sh                 measure and enforce the baseline (what a PR runs)
+#   ./scripts/check-coverage.sh --update-if-higher
+#       measure and raise the baseline only if it climbed past the ratchet slack; never lowers it.
+#       This is what the post-merge workflow runs on main -- not meant for a feature branch.
+#   ./scripts/check-coverage.sh --update        measure and unconditionally rewrite the baseline.
+#       For deliberately lowering it (with a reason in the commit) or fixing up the file by hand;
+#       not the normal way coverage climbs.
 
 PROJECT_ROOT="${0:A:h:h}"
 BASELINE_FILE="$PROJECT_ROOT/coverage-baseline.txt"
@@ -36,13 +46,16 @@ RATCHET_SLACK="${COVERAGE_RATCHET_SLACK:-0.5}"
 
 cd "$PROJECT_ROOT"
 
-update_baseline=0
-if [[ "${1:-}" == "--update" ]]; then
-    update_baseline=1
-elif [[ $# -gt 0 ]]; then
-    print -u2 "Usage: ${0:t} [--update]"
-    exit 2
-fi
+mode=check
+case "${1:-}" in
+    --update) mode=update ;;
+    --update-if-higher) mode=update-if-higher ;;
+    "") ;;
+    *)
+        print -u2 "Usage: ${0:t} [--update|--update-if-higher]"
+        exit 2
+        ;;
+esac
 
 BIN_PATH="$(swift build --show-bin-path)"
 PROFDATA="$BIN_PATH/codecov/default.profdata"
@@ -96,24 +109,25 @@ print -r -- "$measured" | tail -n +2 | while IFS=$'\t' read -r file pct count; d
     printf "  %5s%%  %5s lines  %s\n" "$pct" "$count" "${file#$PROJECT_ROOT/}"
 done
 
-if (( update_baseline )); then
+write_baseline() {
+    local written_percent="$1"
+    local arm64_baseline intel_baseline
     arm64_baseline="$(sed -n 's/^arm64=//p' "$BASELINE_FILE" 2>/dev/null | tail -1 | tr -d '[:space:]' || true)"
     intel_baseline="$(sed -n 's/^x86_64=//p' "$BASELINE_FILE" 2>/dev/null | tail -1 | tr -d '[:space:]' || true)"
     if [[ "$architecture" == "arm64" ]]; then
-        arm64_baseline="$percent"
+        arm64_baseline="$written_percent"
     else
-        intel_baseline="$percent"
+        intel_baseline="$written_percent"
     fi
     cat > "$BASELINE_FILE" <<BASELINE
 # Architecture-specific line coverage floors for app sources outside Views/.
-# Coverage instrumentation differs between Apple silicon and Intel builds. Raise each floor when
-# that architecture climbs; lower one only deliberately, with a reason in the commit.
-arm64=${arm64_baseline:-$percent}
-x86_64=${intel_baseline:-$percent}
+# Coverage instrumentation differs between Apple silicon and Intel builds. Raised automatically by
+# .github/workflows/coverage-ratchet.yml on every push to main; don't bump it from a feature
+# branch (see the header of this script). Lower one only deliberately, with a reason in the commit.
+arm64=${arm64_baseline:-$written_percent}
+x86_64=${intel_baseline:-$written_percent}
 BASELINE
-    print "${architecture} baseline updated to ${percent}%. Commit coverage-baseline.txt."
-    exit 0
-fi
+}
 
 baseline="$(sed -n "s/^${architecture}=//p" "$BASELINE_FILE" 2>/dev/null | tail -1 | tr -d '[:space:]' || true)"
 
@@ -123,10 +137,21 @@ if [[ -z "$baseline" ]]; then
     baseline="$(grep -v '^[[:space:]]*#' "$BASELINE_FILE" 2>/dev/null | head -1 | tr -d '[:space:]' || true)"
 fi
 
+if [[ "$mode" == "update" ]]; then
+    write_baseline "$percent"
+    print "${architecture} baseline updated to ${percent}%. Commit coverage-baseline.txt."
+    exit 0
+fi
+
 if [[ -z "$baseline" ]]; then
+    if [[ "$mode" == "update-if-higher" ]]; then
+        write_baseline "$percent"
+        print "No ${architecture} baseline recorded yet; seeded it at ${percent}%."
+        exit 0
+    fi
     print
     print "No coverage baseline recorded yet, so nothing to enforce."
-    print "Record this run with './scripts/check-coverage.sh --update' and commit coverage-baseline.txt."
+    print "This is normally seeded by the post-merge coverage-ratchet workflow, not by hand."
     exit 0
 fi
 
@@ -139,6 +164,28 @@ floor="$(/usr/bin/python3 -c "print('%.2f' % max(0.0, $baseline - $TOLERANCE))")
 verdict="$(/usr/bin/python3 -c "print('below' if $percent < $floor else ('above' if $percent > $baseline + $RATCHET_SLACK else 'held'))")"
 
 print
+
+if [[ "$mode" == "update-if-higher" ]]; then
+    # Runs post-merge on main, never in a PR: only ever raises the floor, and a regression here
+    # means something merged despite the PR-time check below failing or being skipped, so it's
+    # surfaced loudly rather than silently lowering the bar.
+    case "$verdict" in
+        below)
+            print -u2 "Coverage check failed: ${percent}% is below the ${architecture} ${baseline}% baseline (floor ${floor}%) on main."
+            print -u2 "The baseline was left untouched; investigate how a regression reached main."
+            exit 1
+            ;;
+        above)
+            write_baseline "$percent"
+            print "${architecture} baseline raised from ${baseline}% to ${percent}%. Committing coverage-baseline.txt."
+            ;;
+        held)
+            print "Coverage holds at ${percent}% against the ${architecture} ${baseline}% baseline; nothing to update."
+            ;;
+    esac
+    exit 0
+fi
+
 case "$verdict" in
     below)
         print -u2 "Coverage check failed: ${percent}% is below the ${architecture} ${baseline}% baseline (floor ${floor}%)."
@@ -147,7 +194,7 @@ case "$verdict" in
         ;;
     above)
         print "Coverage rose to ${percent}% from the ${architecture} ${baseline}% baseline."
-        print "Lock it in: './scripts/check-coverage.sh --update' and commit coverage-baseline.txt."
+        print "No action needed: the post-merge coverage-ratchet workflow will raise the baseline on main automatically."
         ;;
     held)
         print "Coverage holds at ${percent}% against the ${architecture} ${baseline}% baseline."
