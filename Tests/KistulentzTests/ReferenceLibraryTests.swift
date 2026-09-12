@@ -252,6 +252,47 @@ final class ReferenceLibraryTests: XCTestCase {
     }
 
     @MainActor
+    func testReimportingAModifiedEPUBUpdatesTheExistingBookInPlace() async throws {
+        let sourceRoot = temporaryDirectory()
+        let libraryRoot = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: sourceRoot)
+            try? FileManager.default.removeItem(at: libraryRoot)
+        }
+        let epub = try makeFixtureEPUB(in: sourceRoot)
+        let suiteName = "ReferenceLibraryReimportModifiedTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+        store.setLocation(libraryRoot)
+        await waitUntil { !store.isSaving }
+
+        store.importEPUBs(from: [epub])
+        await waitUntil(timeoutIterations: 400) { !store.isImporting && !store.isSaving }
+        let first = try XCTUnwrap(store.books.first)
+
+        // Rebuild the fixture at the same path and push its modification date forward, so the
+        // "unchanged, skip" shortcut can't apply -- this must update the existing book in place
+        // rather than skipping it or creating a duplicate.
+        try FileManager.default.removeItem(at: epub)
+        _ = try makeFixtureEPUB(in: sourceRoot)
+        try FileManager.default.setAttributes(
+            [.modificationDate: Date().addingTimeInterval(5)],
+            ofItemAtPath: epub.path
+        )
+
+        store.importEPUBs(from: [epub])
+        await waitUntil(timeoutIterations: 400) { !store.isImporting && !store.isSaving }
+
+        XCTAssertEqual(store.books.count, 1)
+        XCTAssertEqual(store.books.first?.id, first.id, "the same source path must update the existing book's identity, not create a new one")
+        let updatedAt = try XCTUnwrap(store.books.first?.updatedAt)
+        XCTAssertGreaterThan(updatedAt, first.updatedAt)
+        XCTAssertEqual(store.importCompleted, 1)
+        XCTAssertTrue(store.importFailures.isEmpty)
+    }
+
+    @MainActor
     func testCancellingImportImmediatelyLeavesAUsablePersistedLibrary() async throws {
         let sourceRoot = temporaryDirectory()
         let libraryRoot = temporaryDirectory()
@@ -329,6 +370,268 @@ final class ReferenceLibraryTests: XCTestCase {
         store.deepen(choiceIDs: [], settings: settings)
         XCTAssertEqual(store.errorMessage, "Select at least one book, author, or genre to deepen.")
         XCTAssertFalse(store.isDeepening)
+    }
+
+    @MainActor
+    func testAnalyzeStructureSkipsBooksWithACachedProfileUnlessRefreshing() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        var analyzed = book(title: "Already Analyzed", author: "Author", genres: ["Fiction"])
+        analyzed.profile = profile(structuralProfile: .empty)
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [analyzed], insights: []), to: root)
+        let suiteName = "ReferenceLibraryCachedProfileTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+        let choiceID = try XCTUnwrap(store.choices(kind: .book).first?.id)
+
+        store.analyzeStructure(choiceIDs: [choiceID])
+
+        XCTAssertEqual(
+            store.errorMessage,
+            "Every selected reference already has a cached Benepar profile. Choose Refresh All Profiles if you want to rebuild them."
+        )
+        XCTAssertFalse(store.isAnalyzingStructure)
+
+        // `refreshExisting: true` must not stop at the same message -- whatever happens next
+        // (installing/using the language pack) is environment-dependent, so this only asserts
+        // that the cache filter itself was bypassed.
+        store.errorMessage = nil
+        store.analyzeStructure(choiceIDs: [choiceID], refreshExisting: true)
+        XCTAssertNotEqual(
+            store.errorMessage,
+            "Every selected reference already has a cached Benepar profile. Choose Refresh All Profiles if you want to rebuild them."
+        )
+    }
+
+    @MainActor
+    func testDeepenRequiresAReadyProviderBeforeStartingWork() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let source = book(title: "Some Title", author: "Some Author", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [source], insights: []), to: root)
+        let suiteName = "ReferenceLibraryDeepenGuardTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+        let choiceID = try XCTUnwrap(store.choices(kind: .book).first?.id)
+        let settings = AppSettings(defaults: defaults)
+
+        settings.provider = .openAI
+        store.deepen(choiceIDs: [choiceID], settings: settings)
+        XCTAssertEqual(
+            store.errorMessage,
+            "Add your OpenAI API key and choose a model in Settings before using Deepen with AI."
+        )
+        XCTAssertFalse(store.isDeepening)
+
+        store.errorMessage = nil
+        settings.provider = .ollama
+        settings.ollamaModel = ""
+        store.deepen(choiceIDs: [choiceID], settings: settings)
+        XCTAssertEqual(
+            store.errorMessage,
+            "Detect and choose an installed Ollama model in Settings before using Deepen with AI."
+        )
+        XCTAssertFalse(store.isDeepening)
+    }
+
+    @MainActor
+    func testLibraryNameAuthorsCountAndGenresCountReflectTheLoadedLibrary() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let books = [
+            book(title: "First", author: "Ada Lovelace", genres: ["Fiction"]),
+            book(title: "Second", author: "ADA LOVELACE", genres: ["fiction"]),
+            book(title: "Third", author: "Grace Hopper", genres: ["Nonfiction"])
+        ]
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: books, insights: []), to: root)
+        let suiteName = "ReferenceLibraryCountsTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+
+        let unopened = ReferenceLibraryStore(defaults: defaults)
+        XCTAssertEqual(unopened.libraryName, "No library selected")
+        XCTAssertEqual(unopened.authorsCount, 0)
+        XCTAssertEqual(unopened.genresCount, 0)
+
+        unopened.setLocation(root)
+
+        XCTAssertEqual(unopened.libraryName, root.lastPathComponent)
+        XCTAssertEqual(unopened.authorsCount, 2, "author names differing only by case must count as one author")
+        XCTAssertEqual(unopened.genresCount, 2, "genre names differing only by case must count as one genre")
+    }
+
+    @MainActor
+    func testInitReportsAnErrorWhenTheRememberedLocationCannotBeReopened() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        // A directory where the index file is expected makes `ReferenceLibraryDisk.load` throw.
+        try FileManager.default.createDirectory(
+            at: root.appendingPathComponent(".kistulentz", isDirectory: true).appendingPathComponent("library.json"),
+            withIntermediateDirectories: true
+        )
+        let suiteName = "ReferenceLibraryInitFailureTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertTrue(store.errorMessage?.contains("could not reopen the reference library") ?? false)
+        XCTAssertNil(store.rootURL)
+        XCTAssertTrue(store.books.isEmpty)
+    }
+
+    @MainActor
+    func testSetLocationReportsAnErrorWhenTheFolderCannotBeUsed() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        // A regular file where a directory is expected makes `ReferenceLibraryDisk.load` throw
+        // when it tries to create the library's metadata subdirectories there.
+        let blockedPath = parent.appendingPathComponent("blocked")
+        try Data().write(to: blockedPath)
+        let suiteName = "ReferenceLibrarySetLocationFailureTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        store.setLocation(blockedPath)
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertTrue(store.errorMessage?.contains("could not use that folder") ?? false)
+        XCTAssertNil(store.rootURL, "a folder that could not be opened must not become the active location")
+    }
+
+    @MainActor
+    func testUpdateBookOnAnUnknownIDIsANoOp() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let existing = book(title: "Existing", author: "Author", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [existing], insights: []), to: root)
+        let suiteName = "ReferenceLibraryUnknownUpdateTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        store.updateBook(id: UUID(), title: "New Title", author: "New Author", genres: ["New"])
+
+        XCTAssertEqual(store.books.count, 1)
+        XCTAssertEqual(store.books.first?.id, existing.id)
+        XCTAssertEqual(store.books.first?.title, existing.title)
+        XCTAssertEqual(store.books.first?.author, existing.author)
+        XCTAssertEqual(store.books.first?.genres, existing.genres)
+    }
+
+    @MainActor
+    func testReferenceForMultipleBooksCombinesTitlesAuthorsAndOnlyMatchingInsights() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let sameAuthorFirst = book(title: "Voice One", author: "Shared Author", genres: ["Fiction"])
+        let sameAuthorSecond = book(title: "Voice Two", author: "Shared Author", genres: ["Fiction"])
+        let differentAuthor = book(title: "Voice Three", author: "Other Author", genres: ["Fiction"])
+        let matchingInsight = LibraryAIInsight(
+            id: UUID(), title: "Combined take", bookIDs: [sameAuthorFirst.id, sameAuthorSecond.id],
+            provider: "Ollama", model: "writer:latest", markdown: "Matches.", createdAt: Date()
+        )
+        let nonMatchingInsight = LibraryAIInsight(
+            id: UUID(), title: "Unrelated", bookIDs: [differentAuthor.id],
+            provider: "Ollama", model: "writer:latest", markdown: "Does not match.", createdAt: Date()
+        )
+        try ReferenceLibraryDisk.saveIndex(
+            ReferenceLibraryIndex(books: [sameAuthorFirst, sameAuthorSecond, differentAuthor], insights: [matchingInsight, nonMatchingInsight]),
+            to: root
+        )
+        let suiteName = "ReferenceLibraryCombinedReferenceTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+        let choices = store.choices(kind: .book)
+        let sameAuthorChoiceIDs = Set(choices.filter { $0.bookIDs.contains(sameAuthorFirst.id) || $0.bookIDs.contains(sameAuthorSecond.id) }.map(\.id))
+        let allChoiceIDs = Set(choices.map(\.id))
+
+        let sameAuthorReference = try XCTUnwrap(store.reference(for: sameAuthorChoiceIDs))
+        XCTAssertEqual(sameAuthorReference.sourceCount, 2)
+        XCTAssertEqual(sameAuthorReference.title, "2 combined references")
+        XCTAssertEqual(sameAuthorReference.author, "Shared Author", "a single shared author across every selected book must be preserved")
+        XCTAssertEqual(sameAuthorReference.learnedInsights, "# Combined take\nMatches.")
+
+        let allReference = try XCTUnwrap(store.reference(for: allChoiceIDs))
+        XCTAssertNil(allReference.author, "differing authors across the selection must not invent a single author")
+        XCTAssertNil(store.reference(for: []), "an empty selection must not produce a reference")
+    }
+
+    @MainActor
+    func testCleanedGenresFallsBackToUnclassifiedWhenEveryValueIsBlank() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let existing = book(title: "Existing", author: "Author", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [existing], insights: []), to: root)
+        let suiteName = "ReferenceLibraryBlankGenresTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        store.updateBook(id: existing.id, title: existing.title, author: existing.author, genres: ["  ", ""])
+
+        XCTAssertEqual(store.book(id: existing.id)?.genres, ["Unclassified"])
+    }
+
+    @MainActor
+    func testGroupedChoicesUseSingularAndPluralBookCounts() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let books = [
+            book(title: "Solo", author: "Solo Author", genres: ["Solo Genre"]),
+            book(title: "First", author: "Shared Author", genres: ["Shared Genre"]),
+            book(title: "Second", author: "Shared Author", genres: ["Shared Genre"])
+        ]
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: books, insights: []), to: root)
+        let suiteName = "ReferenceLibraryGroupedChoicesTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+
+        let authorChoices = store.choices(kind: .author)
+        XCTAssertEqual(authorChoices.first { $0.title == "Solo Author" }?.subtitle, "1 book")
+        XCTAssertEqual(authorChoices.first { $0.title == "Shared Author" }?.subtitle, "2 books")
+
+        let genreChoices = store.choices(kind: .genre)
+        XCTAssertEqual(genreChoices.first { $0.title == "Solo Genre" }?.subtitle, "1 book")
+        XCTAssertEqual(genreChoices.first { $0.title == "Shared Genre" }?.subtitle, "2 books")
+    }
+
+    @MainActor
+    func testPersistReportsAnErrorWhenTheIndexCannotBeSaved() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let existing = book(title: "Existing", author: "Author", genres: ["Fiction"])
+        try ReferenceLibraryDisk.saveIndex(ReferenceLibraryIndex(books: [existing], insights: []), to: root)
+        let suiteName = "ReferenceLibraryPersistFailureTests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(root.path, forKey: "referenceLibraryFolder")
+        let store = ReferenceLibraryStore(defaults: defaults)
+        let indexURL = root.appendingPathComponent(".kistulentz").appendingPathComponent("library.json")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: indexURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: indexURL.path) }
+
+        store.updateBook(id: existing.id, title: "New Title", author: existing.author, genres: existing.genres)
+        await waitUntil { !store.isSaving }
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertTrue(store.errorMessage?.contains("could not be saved") ?? false)
+        XCTAssertEqual(
+            store.book(id: existing.id)?.title, "New Title",
+            "the in-memory edit is not rolled back just because the write failed"
+        )
     }
 
     func testLibraryBookBuildsAReferenceWithoutInventingAnEmptyAuthor() {
@@ -448,7 +751,8 @@ final class ReferenceLibraryTests: XCTestCase {
         wordCount: Int = 500,
         sentenceWords: Double = 14,
         firstPerson: Double = 0.2,
-        thirdPerson: Double = 0.8
+        thirdPerson: Double = 0.8,
+        structuralProfile: StructuralProfile? = nil
     ) -> ReferenceProfile {
         ReferenceProfile(
             wordCount: wordCount,
@@ -464,7 +768,8 @@ final class ReferenceLibraryTests: XCTestCase {
             voice: firstPerson > thirdPerson ? "intimate first-person" : "observational third-person",
             tone: ["balanced"],
             vocabulary: ["lantern", "courtyard"],
-            characters: ["Elara", "Tomas"]
+            characters: ["Elara", "Tomas"],
+            structuralProfile: structuralProfile
         )
     }
 
