@@ -27,11 +27,30 @@ final class ReferenceLibraryStore: ObservableObject {
     private var deepeningTask: Task<Void, Never>?
     private var structuralAnalysisTask: Task<Void, Never>?
     private var structuralAnalysisOperationID: UUID?
-    private let deepeningService = ReferenceDeepeningService()
+    private let deepeningService: ReferenceDeepeningService
     private let persistence = ReferenceLibraryPersistence()
+    private let languagePackAvailableOverride: (() throws -> Bool)?
+    private let structuralAnalyzerOverride: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)?
 
-    init(defaults: UserDefaults = .standard) {
+    /// `languagePackAvailableOverride` and `structuralAnalyzerOverride` are nil in production, in
+    /// which case `languagePackAvailable()`/`structuralAnalyzer(...)` below call straight through
+    /// to the real, shared Benepar singleton and the on-disk language-pack locator -- neither of
+    /// which can be swapped once `.shared`/`.locate()` is called directly, so a default *value*
+    /// pointing at them (rather than a branch taken in a method body) hits Swift's actor-isolation
+    /// check on a `@MainActor` type's default arguments. Tests inject fakes here the same way
+    /// `SystemCheckService.run` takes `languagePackEvaluator`/`ollamaEvaluator`. `deepeningService`
+    /// was already independently mockable (it takes a `URLSession`); this just stops the store
+    /// from constructing its own default and hiding that seam.
+    init(
+        defaults: UserDefaults = .standard,
+        deepeningService: ReferenceDeepeningService = ReferenceDeepeningService(),
+        languagePackAvailable: (() throws -> Bool)? = nil,
+        structuralAnalyzer: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)? = nil
+    ) {
         self.defaults = defaults
+        self.deepeningService = deepeningService
+        self.languagePackAvailableOverride = languagePackAvailable
+        self.structuralAnalyzerOverride = structuralAnalyzer
         if let path = defaults.string(forKey: Self.locationKey), !path.isEmpty {
             let url = URL(fileURLWithPath: path, isDirectory: true)
             do {
@@ -243,7 +262,7 @@ final class ReferenceLibraryStore: ObservableObject {
             return
         }
         do {
-            guard try BeneparLanguagePackLocator.locate() != nil else {
+            guard try isLanguagePackAvailable() else {
                 errorMessage = "Install the English structural-analysis pack in Settings first."
                 return
             }
@@ -268,7 +287,7 @@ final class ReferenceLibraryStore: ObservableObject {
                       self.structuralAnalysisOperationID == operationID else { return }
                 guard let book = self.books.first(where: { $0.id == id }) else { continue }
                 self.currentStructuralAnalysisName = book.title
-                let analysis = await BeneparService.shared.analyzeIfAvailable(
+                let analysis = await self.runStructuralAnalyzer(
                     text: ReferenceStructuralSampler.text(from: book.excerpts),
                     maximumSentences: 60,
                     includeIssues: false,
@@ -354,6 +373,28 @@ final class ReferenceLibraryStore: ObservableObject {
             profile: profile,
             learnedInsights: relevantInsights.isEmpty ? nil : relevantInsights,
             sourceCount: selectedBooks.count
+        )
+    }
+
+    private func isLanguagePackAvailable() throws -> Bool {
+        if let languagePackAvailableOverride { return try languagePackAvailableOverride() }
+        return try BeneparLanguagePackLocator.locate() != nil
+    }
+
+    private func runStructuralAnalyzer(
+        text: String,
+        maximumSentences: Int,
+        includeIssues: Bool,
+        waitForAvailability: Bool
+    ) async -> BeneparAnalysis? {
+        if let structuralAnalyzerOverride {
+            return await structuralAnalyzerOverride(text, maximumSentences, includeIssues, waitForAvailability)
+        }
+        return await BeneparService.shared.analyzeIfAvailable(
+            text: text,
+            maximumSentences: maximumSentences,
+            includeIssues: includeIssues,
+            waitForAvailability: waitForAvailability
         )
     }
 
