@@ -111,6 +111,177 @@ final class WritingProjectTests: XCTestCase {
     }
 
     @MainActor
+    func testComputedPropertiesReflectWhetherAProjectIsOpen() throws {
+        let store = WritingProjectStore()
+        XCTAssertFalse(store.isOpen)
+        XCTAssertEqual(store.projectName, "Project")
+        XCTAssertNil(store.projectKind)
+        XCTAssertNil(store.selectedFileURL)
+        XCTAssertEqual(store.selectedChapterTitle, "No chapter")
+        XCTAssertEqual(store.combinedWordCount, 0)
+        XCTAssertNil(store.reportFileURL)
+        XCTAssertNil(store.bibleFileURL)
+
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Computed Properties", kind: .fiction)
+        try store.openProject(at: root)
+
+        XCTAssertTrue(store.isOpen)
+        XCTAssertEqual(store.projectName, "Computed Properties")
+        XCTAssertEqual(store.projectKind, .fiction)
+        XCTAssertEqual(store.selectedFileURL, root.appendingPathComponent("Chapter 1.md"))
+        XCTAssertEqual(store.selectedChapterTitle, "Chapter 1")
+        XCTAssertGreaterThan(store.combinedWordCount, 0)
+        XCTAssertEqual(store.reportFileURL, ManuscriptProjectDisk.reportURL(at: root))
+        XCTAssertEqual(store.bibleFileURL, ManuscriptProjectDisk.bibleURL(at: root))
+    }
+
+    @MainActor
+    func testCreateProjectThroughTheStoreWritesToDiskAndOpensTheResult() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let store = WritingProjectStore()
+
+        try store.createProject(in: parent, name: "Store-Created Book", kind: .fiction)
+
+        XCTAssertTrue(store.isOpen)
+        XCTAssertEqual(store.projectName, "Store-Created Book")
+        XCTAssertEqual(store.projectKind, .fiction)
+        XCTAssertEqual(store.chapters.map(\.relativePath), ["Chapter 1.md"])
+        let root = try XCTUnwrap(store.rootURL)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent(".kistulentz/project.json").path))
+    }
+
+    @MainActor
+    func testPrepareAndOpenProjectThroughTheStorePreparesAnExistingFolderWithoutChangingMarkdownAndOpensIt() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try "# Notes\n\nExisting prose stays untouched.\n".write(
+            to: root.appendingPathComponent("Notes.md"),
+            atomically: true,
+            encoding: .utf8
+        )
+        let store = WritingProjectStore()
+
+        try store.prepareAndOpenProject(at: root, name: "Existing Draft", kind: .nonfiction)
+
+        XCTAssertTrue(store.isOpen)
+        XCTAssertEqual(store.projectName, "Existing Draft")
+        XCTAssertEqual(store.projectKind, .nonfiction)
+        XCTAssertEqual(store.chapters.map(\.relativePath), ["Notes.md"])
+        XCTAssertEqual(
+            try String(contentsOf: root.appendingPathComponent("Notes.md"), encoding: .utf8),
+            "# Notes\n\nExisting prose stays untouched.\n"
+        )
+    }
+
+    @MainActor
+    func testImportProjectDocumentsThrowsWhenThereIsNoCurrentProject() {
+        let store = WritingProjectStore()
+        XCTAssertThrowsError(try store.importProjectDocuments([], decisions: [:])) { error in
+            XCTAssertEqual(error as? ProjectImportError, .noCurrentProject)
+        }
+    }
+
+    @MainActor
+    func testImportProjectDocumentsThrowsWhenTheCurrentProjectFailsToSave() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Locked", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nA change that cannot be saved.\n")
+        let chapterURL = root.appendingPathComponent("Chapter 1.md")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: chapterURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: chapterURL.path) }
+
+        XCTAssertThrowsError(try store.importProjectDocuments([], decisions: [:])) { error in
+            XCTAssertEqual(error as? ProjectImportError, .currentProjectSaveFailed)
+        }
+        XCTAssertTrue(store.isDirty)
+    }
+
+    @MainActor
+    func testImportProjectDocumentsAddsConvertedFilesAndSyncsTheOutline() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Import Target", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let sourceURL = parent.appendingPathComponent("Appendix.md")
+        try "# Appendix\n\nImported body text.\n".write(to: sourceURL, atomically: true, encoding: .utf8)
+        let conversion = ProjectImportConversion(
+            source: ProjectImportSource(url: sourceURL, title: "Appendix", kind: .chapter),
+            templateMarkdown: try String(contentsOf: sourceURL, encoding: .utf8)
+        )
+
+        let result = try store.importProjectDocuments([conversion], decisions: [:])
+
+        XCTAssertEqual(result.importedPaths, ["Appendix.md"])
+        XCTAssertEqual(result.selectedPath, "Appendix.md")
+        XCTAssertTrue(store.chapters.map(\.relativePath).contains("Appendix.md"))
+        XCTAssertTrue(store.outlineNodes.contains { $0.title == "Appendix" })
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Appendix.md").path))
+    }
+
+    @MainActor
+    func testDismissRecoveryClearsAPendingRecoveryRequest() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Recovery Book", kind: .fiction)
+        try PublicationDisk.prepare(at: root, projectName: "Recovery Book", projectKind: .fiction)
+        _ = try ProjectCompatibilityManager.captureKnownGoodSnapshot(at: root)
+        let outlineURL = WritingProjectDisk.metadataURL(at: root).appendingPathComponent("outline.json")
+        try Data("{broken".utf8).write(to: outlineURL, options: .atomic)
+        let store = WritingProjectStore()
+        XCTAssertThrowsError(try store.openProject(at: root))
+        XCTAssertNotNil(store.recoveryRequest)
+
+        store.dismissRecovery()
+
+        XCTAssertNil(store.recoveryRequest)
+    }
+
+    @MainActor
+    func testRestoreProjectThrowsWhenThereIsNoPendingRecoveryRequest() {
+        let store = WritingProjectStore()
+        let backup = ProjectMetadataBackup(
+            directoryName: "does-not-matter",
+            createdAt: Date(),
+            reason: .knownGood,
+            formatVersion: KistulentzProjectFormat.currentVersion
+        )
+        XCTAssertThrowsError(try store.restoreProject(from: backup)) { error in
+            XCTAssertEqual(error as? ProjectCompatibilityError, .missingBackup("does-not-matter"))
+        }
+    }
+
+    @MainActor
+    func testOpeningAFutureFormatProjectThrowsWithoutOfferingRecovery() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Future Book", kind: .fiction)
+        let manifestURL = WritingProjectDisk.metadataURL(at: root).appendingPathComponent("project.json")
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: manifestURL)) as? [String: Any])
+        object["formatVersion"] = 99
+        try JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys])
+            .write(to: manifestURL, options: .atomic)
+        let store = WritingProjectStore()
+
+        XCTAssertThrowsError(try store.openProject(at: root)) { error in
+            XCTAssertEqual(
+                error as? ProjectCompatibilityError,
+                .unsupportedProjectVersion(found: 99, supported: KistulentzProjectFormat.currentVersion)
+            )
+        }
+        // Recovery isn't offered for a future-format project: an older Kistulentz has no
+        // meaningful backup to restore, and the fix is to open it with a newer version instead.
+        XCTAssertNil(store.recoveryRequest)
+        XCTAssertFalse(store.isOpen)
+    }
+
+    @MainActor
     func testFailedLateProjectLoadLeavesAFreshStoreClosed() throws {
         let parent = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: parent) }
