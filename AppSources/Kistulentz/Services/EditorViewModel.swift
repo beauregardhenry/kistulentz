@@ -34,15 +34,24 @@ final class EditorViewModel: ObservableObject {
     private let service: WritingAIService
     private let rewriteService: SelectionRewriteService
     private let dismissalStore: DismissedSuggestionStore
+    private let structuralAnalyzerOverride: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)?
 
+    /// `structuralAnalyzerOverride` is nil in production, in which case `runStructuralAnalyzer`
+    /// below calls straight through to the real, shared Benepar singleton -- which can't be
+    /// swapped once `.shared` is referenced directly, so a default *value* pointing at it (rather
+    /// than a branch taken in a method body) would hit Swift's actor-isolation check on this
+    /// `@MainActor` type's init. Tests inject a fake analyzer the same way
+    /// `ReferenceLibraryStore.structuralAnalyzer` does.
     init(
         dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore(),
         service: WritingAIService = WritingAIService(),
-        rewriteService: SelectionRewriteService = SelectionRewriteService()
+        rewriteService: SelectionRewriteService = SelectionRewriteService(),
+        structuralAnalyzer: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)? = nil
     ) {
         self.dismissalStore = dismissalStore
         self.service = service
         self.rewriteService = rewriteService
+        self.structuralAnalyzerOverride = structuralAnalyzer
     }
 
     var allIssues: [WritingIssue] {
@@ -158,7 +167,7 @@ final class EditorViewModel: ObservableObject {
             }
             guard !Task.isCancelled, self.analysisRequestID == requestID, self.currentText == text else { return }
             self.isAnalyzingStructure = true
-            let parsed = await BeneparService.shared.analyzeIfAvailable(
+            let parsed = await self.runStructuralAnalyzer(
                 text: text,
                 maximumSentences: 60,
                 includeIssues: true,
@@ -192,7 +201,7 @@ final class EditorViewModel: ObservableObject {
             guard let self, !Task.isCancelled else { return }
             switch result {
             case .success(let reference):
-                let structure = await BeneparService.shared.analyzeIfAvailable(
+                let structure = await self.runStructuralAnalyzer(
                     text: ReferenceStructuralSampler.text(from: reference),
                     maximumSentences: 80,
                     includeIssues: false,
@@ -365,6 +374,23 @@ final class EditorViewModel: ObservableObject {
         dismissedSuggestions.append(dismissal)
         saveDismissals()
         return true
+    }
+
+    private func runStructuralAnalyzer(
+        text: String,
+        maximumSentences: Int,
+        includeIssues: Bool,
+        waitForAvailability: Bool
+    ) async -> BeneparAnalysis? {
+        if let structuralAnalyzerOverride {
+            return await structuralAnalyzerOverride(text, maximumSentences, includeIssues, waitForAvailability)
+        }
+        return await BeneparService.shared.analyzeIfAvailable(
+            text: text,
+            maximumSentences: maximumSentences,
+            includeIssues: includeIssues,
+            waitForAvailability: waitForAvailability
+        )
     }
 
     private func isDismissed(_ issue: WritingIssue) -> Bool {
