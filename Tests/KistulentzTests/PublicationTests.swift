@@ -347,6 +347,57 @@ final class PublicationTests: XCTestCase {
         XCTAssertEqual(try WritingProjectDisk.readChapter("Draft.md", at: root), original)
     }
 
+    @MainActor
+    func testPublicationPlanRequiresAnOpenProject() {
+        let store = WritingProjectStore()
+
+        XCTAssertThrowsError(try store.publicationStore.publicationPlan(sources: [])) { error in
+            XCTAssertEqual(error as? PublicationExportError, .missingProject)
+        }
+    }
+
+    @MainActor
+    func testPublicationPlanRequiresAKnownProfileID() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Profile Book", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+
+        XCTAssertThrowsError(try store.publicationStore.publicationPlan(sources: [], profileID: UUID())) { error in
+            XCTAssertEqual(error as? PublicationExportError, .missingProfile)
+        }
+    }
+
+    @MainActor
+    func testCopyingACoverAndPrintCoverPersistRelativePathsAcrossReopen() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Cover Book", kind: .nonfiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let assetsSource = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: assetsSource) }
+        let coverImage = assetsSource.appendingPathComponent("cover.png")
+        try Data([0x89, 0x50, 0x4E, 0x47]).write(to: coverImage)
+        let printCoverPDF = assetsSource.appendingPathComponent("print-cover.pdf")
+        try Data("%PDF-1.4".utf8).write(to: printCoverPDF)
+
+        store.publicationStore.copyPublicationCover(from: coverImage)
+        store.publicationStore.copyPrintCover(from: printCoverPDF)
+
+        XCTAssertNil(store.errorMessage)
+        let coverPath = try XCTUnwrap(store.publicationStore.publicationArchive.metadata.coverImageRelativePath)
+        let printCoverPath = try XCTUnwrap(store.publicationStore.publicationArchive.metadata.printCoverPDFRelativePath)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent(coverPath).path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent(printCoverPath).path))
+
+        let reopened = WritingProjectStore()
+        try reopened.openProject(at: root)
+        XCTAssertEqual(reopened.publicationStore.publicationArchive.metadata.coverImageRelativePath, coverPath)
+        XCTAssertEqual(reopened.publicationStore.publicationArchive.metadata.printCoverPDFRelativePath, printCoverPath)
+    }
+
     private func temporaryDirectory() -> URL {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("Kistulentz-Publication-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)

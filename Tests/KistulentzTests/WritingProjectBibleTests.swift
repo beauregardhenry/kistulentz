@@ -102,6 +102,41 @@ final class WritingProjectBibleTests: XCTestCase {
         XCTAssertFalse(undoManager.canUndo)
     }
 
+    /// `updateBibleText` on an open project is the live-typing entry point that routes through
+    /// `ManuscriptEditCoordinator`'s `.bibleEditing` trigger -- distinct from `applyBibleUpdate`,
+    /// which every other Bible test in this file uses and which deliberately bypasses the
+    /// coordinator. No test exercised `.bibleEditing` at all: not the once-per-session baseline
+    /// snapshot, and not the debounced disk save.
+    @MainActor
+    func testEditingTheBibleWhileOpenSnapshotsOnceThenSavesAfterTheDebounce() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let projectRoot = try WritingProjectDisk.createProject(in: root, name: "BibleLive", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: projectRoot)
+        let original = store.bibleText
+
+        store.updateBibleText(original + "\nFirst edit.\n")
+
+        XCTAssertTrue(
+            store.snapshots.contains { $0.chapterPath == ManuscriptProjectDisk.bibleFileName },
+            "the first edit in a session must snapshot the pre-edit Bible text"
+        )
+        let snapshotCountAfterFirstEdit = store.snapshots.count
+
+        store.updateBibleText(original + "\nFirst edit.\nSecond edit.\n")
+
+        XCTAssertEqual(
+            store.snapshots.count, snapshotCountAfterFirstEdit,
+            "a second edit in the same session must not snapshot again"
+        )
+
+        try await waitUntil {
+            (try? ManuscriptProjectDisk.loadBible(at: projectRoot)) == store.bibleText
+        }
+        XCTAssertEqual(try ManuscriptProjectDisk.loadBible(at: projectRoot), store.bibleText)
+    }
+
     @MainActor
     func testBibleChangeSummaryUsesAccurateSingularAndPluralLanguage() {
         let store = WritingProjectStore()
@@ -122,4 +157,19 @@ final class WritingProjectBibleTests: XCTestCase {
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
     }
+
+    @MainActor
+    private func waitUntil(
+        timeout: Duration = .seconds(2),
+        condition: @escaping @MainActor () -> Bool
+    ) async throws {
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: timeout)
+        while !condition() {
+            if clock.now >= deadline { throw WaitTimedOut() }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+    }
 }
+
+private struct WaitTimedOut: Error {}
