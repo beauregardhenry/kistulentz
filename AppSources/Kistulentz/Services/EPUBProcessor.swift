@@ -413,14 +413,17 @@ private final class XHTMLTextParser: NSObject, XMLParserDelegate {
         qualifiedName qName: String?
     ) {
         let name = localName(elementName)
+        // `<title>` always lives inside `<head>`, which is itself a skipped element, so this has
+        // to run before the `skippedDepth > 0` short-circuit below — otherwise it never fires and
+        // every chapter's title silently falls back to "Section N".
+        if name == "title" {
+            title = titleBuffer.trimmingCharacters(in: .whitespacesAndNewlines)
+            isCapturingTitle = false
+        }
         if skippedDepth > 0 {
             skippedDepth -= 1
             if skippedDepth == 0, name == "head" { isCapturingTitle = false }
             return
-        }
-        if name == "title" {
-            title = titleBuffer.trimmingCharacters(in: .whitespacesAndNewlines)
-            isCapturingTitle = false
         }
         if blockElements.contains(name), !text.hasSuffix("\n") { text += "\n" }
     }
