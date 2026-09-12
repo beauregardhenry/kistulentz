@@ -271,6 +271,37 @@ final class WritingProjectTests: XCTestCase {
         XCTAssertEqual(core.errorMessage, ExpectedSearchError.failed.localizedDescription)
     }
 
+    /// Every other `SearchStore` test above injects a fake `searcher`, so `SearchStore`'s own
+    /// default -- the real, disk-backed, `Task.detached`/`withTaskCancellationHandler`-wrapped
+    /// `searchDisk` actually used in production -- has never run. This constructs the store
+    /// without overriding it.
+    @MainActor
+    func testSearchStoreWithTheRealDefaultSearcherFindsMatchesOnDisk() async throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Search", kind: .nonfiction)
+        try WritingProjectDisk.writeChapter(
+            "# Draft\n\nThe lighthouse appears here.\n",
+            relativePath: "Draft.md",
+            at: root
+        )
+        let core = WritingProjectStore()
+        try core.openProject(at: root)
+        let search = SearchStore(
+            debounceDuration: .zero,
+            projectRoot: { [weak core] in core?.rootURL },
+            chapters: { [weak core] in core?.chapters ?? [] },
+            saveCurrentDocument: { [weak core] in core?.saveNow() },
+            reportError: { [weak core] error in core?.errorMessage = error.localizedDescription }
+        )
+
+        search.search("lighthouse")
+        try await waitUntil { !search.isSearching }
+
+        XCTAssertNil(core.errorMessage)
+        XCTAssertEqual(search.searchResults.first?.chapterPath, "Draft.md")
+    }
+
     @MainActor
     private func makeSearchStore(
         core: WritingProjectStore,
@@ -339,6 +370,102 @@ final class WritingProjectTests: XCTestCase {
         store.restore(first)
         XCTAssertEqual(store.text, "# Draft\n\nFirst version.\n")
         XCTAssertGreaterThan(store.snapshots.count, countBeforeRestore)
+    }
+
+    /// The restore above only ever restores a snapshot of the *currently selected* chapter.
+    /// `restore(_:)` also has a branch for a snapshot belonging to some other chapter, which must
+    /// flush the chapter being left before switching selection to the one being restored.
+    @MainActor
+    func testRestoringASnapshotFromAnotherChapterSwitchesSelectionAndSavesThePendingEdit() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "CrossChapterRestore", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nOriginal chapter one.\n")
+        store.saveNow()
+        store.createSnapshot(name: "Chapter1-Original", reason: "Named snapshot")
+        let chapterOneSnapshot = try XCTUnwrap(store.snapshots.first { $0.name == "Chapter1-Original" })
+        store.updateText("# Chapter 1\n\nEdited chapter one.\n")
+        store.saveNow()
+
+        store.createChapter(named: "Chapter 2")
+        XCTAssertEqual(store.selectedChapterPath, "Chapter 2.md")
+        store.updateText("# Chapter 2\n\nUnsaved chapter two edit.\n")
+
+        store.restore(chapterOneSnapshot)
+
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.selectedChapterPath, "Chapter 1.md", "restoring a snapshot from another chapter must switch selection to it")
+        XCTAssertEqual(store.text, "# Chapter 1\n\nOriginal chapter one.\n")
+        XCTAssertEqual(
+            try WritingProjectDisk.readChapter("Chapter 2.md", at: root),
+            "# Chapter 2\n\nUnsaved chapter two edit.\n",
+            "the pending edit on the chapter being left must be saved before switching away from it"
+        )
+    }
+
+    /// `restore(_:)` special-cases a Bible snapshot: rather than treating it as a chapter, it
+    /// routes through `applyBibleUpdate`. No existing test restored a Bible snapshot.
+    @MainActor
+    func testRestoringABibleSnapshotRoutesThroughApplyBibleUpdate() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "BibleRestore", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let originalBible = store.bibleText
+        store.applyBibleUpdate(
+            originalBible + "\nFirst bible fact.\n",
+            reason: "Before first update",
+            summary: "Added a fact.",
+            forceSnapshot: true
+        )
+        let bibleSnapshot = try XCTUnwrap(store.snapshots.first { $0.chapterPath == ManuscriptProjectDisk.bibleFileName })
+        store.applyBibleUpdate(
+            originalBible + "\nFirst bible fact.\nSecond bible fact.\n",
+            reason: "Before second update",
+            summary: "Added another fact.",
+            forceSnapshot: true
+        )
+
+        store.restore(bibleSnapshot)
+
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.bibleText, originalBible, "restoring must roll the Bible back to the snapshot's content")
+        XCTAssertEqual(try ManuscriptProjectDisk.loadBible(at: root), originalBible)
+        XCTAssertEqual(store.lastBibleUpdate?.summary, "Restored Bible snapshot “\(bibleSnapshot.name)”.")
+    }
+
+    /// `currentContent(for:)` special-cases the Bible file and the manuscript report before
+    /// falling back to the live in-memory buffer (for the selected chapter) or disk (for any
+    /// other chapter) -- none of its four branches had a direct test.
+    @MainActor
+    func testCurrentContentDispatchesToBibleReportSelectedChapterOrDisk() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "CurrentContent", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+
+        store.updateBibleText("Unsaved Bible edit.")
+        XCTAssertEqual(try store.currentContent(for: ManuscriptProjectDisk.bibleFileName), "Unsaved Bible edit.")
+
+        store.manuscriptReportText = "Unsaved report content."
+        XCTAssertEqual(try store.currentContent(for: ManuscriptProjectDisk.reportFileName), "Unsaved report content.")
+
+        store.updateText("# Chapter 1\n\nUnsaved chapter edit.\n")
+        let selectedPath = try XCTUnwrap(store.selectedChapterPath)
+        XCTAssertEqual(try store.currentContent(for: selectedPath), "# Chapter 1\n\nUnsaved chapter edit.\n")
+        store.saveNow()
+
+        store.createChapter(named: "Chapter 2")
+        XCTAssertEqual(store.selectedChapterPath, "Chapter 2.md")
+        XCTAssertEqual(
+            try store.currentContent(for: "Chapter 1.md"),
+            "# Chapter 1\n\nUnsaved chapter edit.\n",
+            "a chapter other than the one selected must be read from disk"
+        )
     }
 
     @MainActor
