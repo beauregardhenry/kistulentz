@@ -109,6 +109,7 @@
 		B0068AC701780783E6F9EA43 /* SelectionReplacementPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6D6120FE63E3735B10F3C9 /* SelectionReplacementPlanner.swift */; };
 		B029AAADC5365B01A99E3ABF /* HTMLImportSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7C72C2DC7E5F88CDED24D /* HTMLImportSanitizer.swift */; };
 		B03D8246A24BFC97FE50CCA2 /* ReferenceLibraryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3A2106CCC89E183BE9736 /* ReferenceLibraryModels.swift */; };
+		B101D6FF039EE07C0F76262C /* ManuscriptInsightsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E29A5F95F311B1BE6F716AC /* ManuscriptInsightsUITests.swift */; };
 		B173EB1B34D0F5C8E336A2BE /* AITellEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D4FBEDFFCBA46B28157CFB /* AITellEngine.swift */; };
 		B25FA76C64EC094F2F85BDC2 /* ReferenceLibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8578D0CED65BEEF7C3415F0 /* ReferenceLibraryUITests.swift */; };
 		B46BD697883ADD042538E94E /* ProjectResearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9C60286EDA37AA18C72E0 /* ProjectResearchStore.swift */; };
@@ -206,6 +207,7 @@
 		5A1A52BDB37D2F37CEA1ED98 /* KistulentzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KistulentzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C8A785CAD9F8CC1666C3042 /* ResearchExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchExchange.swift; sourceTree = "<group>"; };
 		5E161A4D8B79F2110B2A66D7 /* PublicationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationModels.swift; sourceTree = "<group>"; };
+		5E29A5F95F311B1BE6F716AC /* ManuscriptInsightsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptInsightsUITests.swift; sourceTree = "<group>"; };
 		601E1E1C30A1010B24902668 /* RevisionDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionDiff.swift; sourceTree = "<group>"; };
 		61FDBBC4C9041761499E1484 /* ManuscriptMetricsAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptMetricsAnalyzer.swift; sourceTree = "<group>"; };
 		678E87EABC1CF8D34F49A191 /* PublicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationStore.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				B14B494DF143122940DB50B4 /* EditingRecoveryUITests.swift */,
 				74A55D33B59EF54732880896 /* KistulentzUITestCase.swift */,
 				40D73AC6FEE05ACF6CFCAF0F /* KistulentzUITests.swift */,
+				5E29A5F95F311B1BE6F716AC /* ManuscriptInsightsUITests.swift */,
 				991BF1DF1477DB325ECF31A8 /* OnboardingLocalSetupUITests.swift */,
 				DE3649DC5ED3EF02CD25E47D /* ProjectImportAssistantUITests.swift */,
 				48DB393CDF0A3B98091B9CE1 /* ProjectOrganizationUITests.swift */,
@@ -763,6 +766,7 @@
 				BC941FE12EAADB4281BE192E /* EditingRecoveryUITests.swift in Sources */,
 				F3255E0A2613E7B7ED400C2F /* KistulentzUITestCase.swift in Sources */,
 				3643EF4A1345405A0E89329E /* KistulentzUITests.swift in Sources */,
+				B101D6FF039EE07C0F76262C /* ManuscriptInsightsUITests.swift in Sources */,
 				53D2B581875DF846959E07DE /* OnboardingLocalSetupUITests.swift in Sources */,
 				994B1B87CDADE3077AEE2BE6 /* ProjectImportAssistantUITests.swift in Sources */,
 				29F12E3386851BFEB801C0C9 /* ProjectOrganizationUITests.swift in Sources */,
