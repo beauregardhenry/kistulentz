@@ -2,5 +2,5 @@
 # Coverage instrumentation differs between Apple silicon and Intel builds. Raised automatically by
 # .github/workflows/coverage-ratchet.yml on every push to main; don't bump it from a feature
 # branch (see the header of this script). Lower one only deliberately, with a reason in the commit.
-arm64=87.09
+arm64=88.03
 x86_64=85.88
