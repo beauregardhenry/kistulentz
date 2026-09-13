@@ -6,6 +6,7 @@ struct KistulentzApp: App {
     @NSApplicationDelegateAdaptor(KistulentzAppDelegate.self) private var appDelegate
     @StateObject private var settings = AppSettings()
     @StateObject private var beneparPack = BeneparLanguagePackManager()
+    @StateObject private var customFonts: CustomFontStore
     @StateObject private var referenceLibrary: ReferenceLibraryStore
     @StateObject private var researchLibrary: ResearchLibraryStore
     @StateObject private var draftRecovery = DraftRecoveryManager.shared
@@ -31,6 +32,10 @@ struct KistulentzApp: App {
         _researchLibrary = StateObject(
             wrappedValue: ResearchLibraryStore(defaults: defaults)
         )
+        // .process scope registers a font only for this run, not the system-wide, persists-across-
+        // launches registration a real "Add Font File" click uses -- a UI test exercising that
+        // button must never leave a real font behind in Font Book on whatever Mac runs it.
+        _customFonts = StateObject(wrappedValue: CustomFontStore(scope: .process))
 
         let text: String
         if let path = environment["KISTULENTZ_UI_TEST_DOCUMENT_PATH"],
@@ -45,6 +50,7 @@ struct KistulentzApp: App {
 #else
         _referenceLibrary = StateObject(wrappedValue: ReferenceLibraryStore())
         _researchLibrary = StateObject(wrappedValue: ResearchLibraryStore())
+        _customFonts = StateObject(wrappedValue: CustomFontStore())
 #endif
     }
 
@@ -90,6 +96,7 @@ struct KistulentzApp: App {
                 .environmentObject(settings)
                 .environmentObject(beneparPack)
                 .environmentObject(referenceLibrary)
+                .environmentObject(customFonts)
                 .frame(width: 540)
         }
 
