@@ -774,6 +774,136 @@ final class AIRequestBuildingTests: XCTestCase {
         XCTAssertTrue(result.findings.isEmpty)
     }
 
+    // MARK: - WritingAIService
+
+    func testWritingReviewRejectsAnEmptyDocumentBeforeContactingAProvider() async {
+        AIRequestBuildingMockURLProtocol.handler = { _ in
+            XCTFail("An empty review must not contact a provider.")
+            throw URLError(.badServerResponse)
+        }
+        var request = makeRequest(purpose: .polish(targetGrade: 8))
+        request.primaryText = " \n\t "
+
+        do {
+            _ = try await WritingAIService(session: mockSession()).review(request: request, apiKey: "sk-test-key")
+            XCTFail("Whitespace-only prose must be rejected.")
+        } catch let error as WritingAIError {
+            guard case .emptyDocument = error else {
+                return XCTFail("Expected emptyDocument, got \(error).")
+            }
+        } catch {
+            XCTFail("Expected a WritingAIError, got \(error).")
+        }
+    }
+
+    func testWritingReviewRejectsAnOversizedUTF8DocumentBeforeContactingAProvider() async {
+        AIRequestBuildingMockURLProtocol.handler = { _ in
+            XCTFail("An oversized review must not contact a provider.")
+            throw URLError(.badServerResponse)
+        }
+        var request = makeRequest(purpose: .polish(targetGrade: 8))
+        // Each scalar occupies four UTF-8 bytes, exercising the byte limit rather than String.count.
+        request.primaryText = String(repeating: "😀", count: 40_001)
+
+        do {
+            _ = try await WritingAIService(session: mockSession()).review(request: request, apiKey: "sk-test-key")
+            XCTFail("A review over the provider-safe byte limit must be rejected.")
+        } catch let error as WritingAIError {
+            guard case .documentTooLarge = error else {
+                return XCTFail("Expected documentTooLarge, got \(error).")
+            }
+        } catch {
+            XCTFail("Expected a WritingAIError, got \(error).")
+        }
+    }
+
+    func testWritingReviewRejectsTheWrongRequestPurposeBeforeContactingAProvider() async {
+        AIRequestBuildingMockURLProtocol.handler = { _ in
+            XCTFail("A non-polish request must not contact the writing-review endpoint.")
+            throw URLError(.badServerResponse)
+        }
+        let request = makeRequest(
+            purpose: .selectionRewrite(goal: SelectionRewriteGoal(kind: .shorten), targetGrade: 8)
+        )
+
+        do {
+            _ = try await WritingAIService(session: mockSession()).review(request: request, apiKey: "sk-test-key")
+            XCTFail("WritingAIService must accept only polish requests.")
+        } catch let error as WritingAIError {
+            guard case .invalidResponse = error else {
+                return XCTFail("Expected invalidResponse, got \(error).")
+            }
+        } catch {
+            XCTFail("Expected a WritingAIError, got \(error).")
+        }
+    }
+
+    func testWritingReviewDecodesFencedJSONAndPreservesProviderProposalsExactly() async throws {
+        AIRequestBuildingMockURLProtocol.handler = { request in
+            let body: [String: Any] = [
+                "summary": "Two optional edits.",
+                "gradeEstimate": 7.5,
+                "polishedText": "# Draft\n\nA clearer line.",
+                "suggestions": [
+                    [
+                        "original": "A unclear line.",
+                        "replacement": "A clearer line.",
+                        "explanation": "Correct the article and improve clarity.",
+                        "category": "grammar"
+                    ],
+                    [
+                        "original": "very unique",
+                        "replacement": "unique",
+                        "explanation": "Remove the unnecessary modifier.",
+                        "category": "concision"
+                    ]
+                ]
+            ]
+            let json = String(data: try JSONSerialization.data(withJSONObject: body), encoding: .utf8)!
+            return (self.okResponse(for: request), self.openAIEnvelope(text: "```json\n\(json)\n```"))
+        }
+
+        let review = try await WritingAIService(session: mockSession()).review(
+            request: makeRequest(purpose: .polish(targetGrade: 8)),
+            apiKey: "sk-test-key"
+        )
+
+        XCTAssertEqual(review.summary, "Two optional edits.")
+        XCTAssertEqual(review.gradeEstimate, 7.5)
+        XCTAssertEqual(review.polishedText, "# Draft\n\nA clearer line.")
+        XCTAssertEqual(review.suggestions.count, 2)
+        XCTAssertEqual(review.suggestions.map(\.original), ["A unclear line.", "very unique"])
+        XCTAssertEqual(review.suggestions.map(\.replacement), ["A clearer line.", "unique"])
+    }
+
+    func testWritingReviewRejectsMalformedAndSchemaViolatingProviderResponses() async {
+        let invalidResponses = [
+            "not JSON",
+            #"{"summary":"Missing required fields"}"#,
+            #"{"summary":"Bad category","gradeEstimate":8,"polishedText":"Draft","suggestions":[{"original":"a","replacement":"b","explanation":"c"}]}"#,
+            #"{"summary":12,"gradeEstimate":"eight","polishedText":[],"suggestions":{}}"#
+        ]
+
+        for raw in invalidResponses {
+            AIRequestBuildingMockURLProtocol.handler = { request in
+                (self.okResponse(for: request), self.openAIEnvelope(text: raw))
+            }
+            do {
+                _ = try await WritingAIService(session: mockSession()).review(
+                    request: makeRequest(purpose: .polish(targetGrade: 8)),
+                    apiKey: "sk-test-key"
+                )
+                XCTFail("Malformed response should be rejected: \(raw)")
+            } catch let error as WritingAIError {
+                guard case .invalidResponse = error else {
+                    return XCTFail("Expected invalidResponse, got \(error).")
+                }
+            } catch {
+                XCTFail("Expected a WritingAIError, got \(error).")
+            }
+        }
+    }
+
     // MARK: - Fixture helpers
 
     private func makeRequest(

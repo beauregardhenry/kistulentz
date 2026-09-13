@@ -95,7 +95,7 @@ final class ManuscriptAnalyzerComponentTests: XCTestCase {
         XCTAssertTrue(result.contains("path=\"doc1.md\""))
     }
 
-    func testContextStopsAddingDocumentSectionsOnceTheCharacterBudgetIsExhausted() {
+    func testContextSharesTheCharacterBudgetAcrossEverySelectedDocument() {
         let longText = String(repeating: "x", count: 20_000)
         let documents = (1...10).map {
             ManuscriptDocument(relativePath: "doc\($0).md", title: "Doc \($0)", text: longText)
@@ -104,8 +104,10 @@ final class ManuscriptAnalyzerComponentTests: XCTestCase {
         let result = ManuscriptAnalyzer.context(documents: documents, report: "", bible: "", maximumCharacters: 8_000)
 
         let sectionCount = result.components(separatedBy: "<manuscript_section").count - 1
-        XCTAssertGreaterThan(sectionCount, 0)
-        XCTAssertLessThan(sectionCount, documents.count)
+        XCTAssertEqual(sectionCount, documents.count)
+        XCTAssertLessThanOrEqual(result.count, 8_000)
+        XCTAssertTrue(result.contains("title=\"Doc 1\""))
+        XCTAssertTrue(result.contains("title=\"Doc 10\""))
     }
 
     func testContextEvenlySamplesUpToSixtyDocumentsWhenMoreAreProvided() {
@@ -117,11 +119,11 @@ final class ManuscriptAnalyzerComponentTests: XCTestCase {
 
         let sectionCount = result.components(separatedBy: "<manuscript_section").count - 1
         XCTAssertEqual(sectionCount, 60)
-        // Even sampling across 120 documents down to 60 picks every other document by index.
+        // Sampling includes both endpoints so the AI context cannot omit the manuscript ending.
         XCTAssertTrue(result.contains("title=\"Doc 1\""))
-        XCTAssertTrue(result.contains("title=\"Doc 119\""))
+        XCTAssertTrue(result.contains("title=\"Doc 120\""))
         XCTAssertFalse(result.contains("title=\"Doc 2\""))
-        XCTAssertFalse(result.contains("title=\"Doc 120\""))
+        XCTAssertFalse(result.contains("title=\"Doc 119\""))
     }
 
     private func findingValues(_ findings: [ManuscriptFinding]) -> [String] {

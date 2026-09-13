@@ -3,6 +3,41 @@ import XCTest
 @testable import Kistulentz
 
 final class ProjectCompatibilityTests: XCTestCase {
+    func testFrozenUpgradeFixtureMatrixCoversEveryPriorProjectFormatAndPreservesMarkdownBytes() throws {
+        let fixturesRoot = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Fixtures/UpgradeProjects", isDirectory: true)
+        let fixtureURLs = try FileManager.default.contentsOfDirectory(
+            at: fixturesRoot,
+            includingPropertiesForKeys: [.isDirectoryKey],
+            options: [.skipsHiddenFiles]
+        ).filter { (try? $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true }
+        var coveredVersions: Set<Int> = []
+
+        for fixture in fixtureURLs {
+            let manifestURL = fixture.appendingPathComponent(".kistulentz/project.json")
+            let version = try integerField("formatVersion", in: manifestURL)
+            coveredVersions.insert(version)
+            let root = temporaryDirectory()
+            try FileManager.default.removeItem(at: root)
+            defer { try? FileManager.default.removeItem(at: root) }
+            try FileManager.default.copyItem(at: fixture, to: root)
+            let markdownBefore = try markdownFingerprints(at: root)
+
+            _ = try ProjectCompatibilityManager.prepareForOpen(at: root)
+
+            XCTAssertEqual(try markdownFingerprints(at: root), markdownBefore, fixture.lastPathComponent)
+            XCTAssertEqual(try WritingProjectDisk.loadManifest(at: root).formatVersion, KistulentzProjectFormat.currentVersion)
+        }
+
+        XCTAssertEqual(
+            coveredVersions,
+            Set(1..<KistulentzProjectFormat.currentVersion),
+            "Every prior project schema must retain a frozen on-disk fixture before the format version advances."
+        )
+    }
+
     @MainActor
     func testFrozenV09ProjectFixtureUpgradesAndReopensWithoutChangingMarkdown() throws {
         let fixture = URL(fileURLWithPath: #filePath)
@@ -191,5 +226,19 @@ final class ProjectCompatibilityTests: XCTestCase {
             JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any]
         )
         return try XCTUnwrap(object[key] as? Int)
+    }
+
+    private func markdownFingerprints(at root: URL) throws -> [String: Data] {
+        guard let enumerator = FileManager.default.enumerator(
+            at: root,
+            includingPropertiesForKeys: [.isRegularFileKey],
+            options: [.skipsHiddenFiles]
+        ) else { return [:] }
+        var result: [String: Data] = [:]
+        for case let url as URL in enumerator where url.pathExtension.caseInsensitiveCompare("md") == .orderedSame {
+            let relative = String(url.path.dropFirst(root.path.count + 1))
+            result[relative] = try Data(contentsOf: url)
+        }
+        return result
     }
 }
