@@ -73,6 +73,17 @@ struct OpenPanelConfiguration: Equatable {
         allowsMultipleSelection: true,
         allowedContentTypes: [.data, .image, .pdf, .plainText]
     )
+
+    static let customFontFiles = OpenPanelConfiguration(
+        title: "Add Font Files",
+        message: "Choose TrueType or OpenType font files to make available throughout Kistulentz.",
+        prompt: "Add",
+        canChooseFiles: true,
+        canChooseDirectories: false,
+        canCreateDirectories: false,
+        allowsMultipleSelection: true,
+        allowedContentTypes: [.font]
+    )
 }
 
 struct SavePanelConfiguration: Equatable {

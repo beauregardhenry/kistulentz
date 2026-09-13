@@ -5,6 +5,8 @@ struct SettingsView: View {
     @Environment(\.openWindow) private var openWindow
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
+    @EnvironmentObject private var customFonts: CustomFontStore
+    @State private var isAddingCustomFont = false
     @State private var openAIKey = ""
     @State private var anthropicKey = ""
     @State private var statusMessage: String?
@@ -89,6 +91,46 @@ struct SettingsView: View {
                     .truncationMode(.tail)
                     .foregroundStyle(.secondary)
                     .padding(.top, 2)
+            }
+
+            Section("Custom Fonts") {
+                Text("Added fonts become available everywhere in Kistulentz that offers a font choice, including the editor above and publication layouts, without installing them through Font Book separately.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                if customFonts.fonts.isEmpty {
+                    Text("No custom fonts added yet.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } else {
+                    ForEach(customFonts.fonts) { font in
+                        HStack {
+                            Text(font.familyName)
+                            Spacer()
+                            Button("Remove", role: .destructive) {
+                                customFonts.removeFont(font)
+                            }
+                            .buttonStyle(.borderless)
+                            .controlSize(.small)
+                        }
+                    }
+                }
+
+                Button("Add Font File…") {
+                    isAddingCustomFont = true
+                    Task {
+                        defer { isAddingCustomFont = false }
+                        guard let urls = await MacFilePanel.chooseItems(
+                            configuration: .customFontFiles,
+                            uiTestEnvironmentKey: "KISTULENTZ_UI_TEST_CUSTOM_FONT_PATHS"
+                        ) else { return }
+                        for url in urls {
+                            customFonts.addFont(from: url)
+                        }
+                    }
+                }
+                .disabled(isAddingCustomFont)
+                .accessibilityIdentifier("AddCustomFont")
             }
 
             Section("System Check & Support") {
@@ -321,6 +363,14 @@ struct SettingsView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(beneparPack.errorMessage ?? "")
+        }
+        .alert("Custom fonts", isPresented: Binding(
+            get: { customFonts.errorMessage != nil },
+            set: { if !$0 { customFonts.errorMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(customFonts.errorMessage ?? "")
         }
         .alert("Kistulentz Settings", isPresented: Binding(
             get: { errorMessage != nil },
