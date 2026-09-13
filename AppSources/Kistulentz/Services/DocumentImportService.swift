@@ -92,7 +92,14 @@ enum DocumentImportService {
             return DocumentImportSaveResult(markdownURL: outputURL, assetFolderURL: assetFolderURL)
         } catch {
             if createdAssetFolder, let assetFolderURL {
-                try? fileManager.removeItem(at: assetFolderURL)
+                do {
+                    try fileManager.removeItem(at: assetFolderURL)
+                } catch let cleanupError {
+                    throw DocumentImportError.saveFailedAndCleanupIncomplete(
+                        saveReason: error.localizedDescription,
+                        cleanupReason: cleanupError.localizedDescription
+                    )
+                }
             }
             throw error
         }

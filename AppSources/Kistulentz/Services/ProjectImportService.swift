@@ -283,8 +283,27 @@ enum ProjectImportOutputService {
                 selectedPath: outputURL.lastPathComponent
             )
         } catch {
-            if createdAssetFolder { try? FileManager.default.removeItem(at: assetFolder) }
-            if !existedBefore { try? FileManager.default.removeItem(at: outputURL) }
+            var rollbackFailures: [String] = []
+            if createdAssetFolder {
+                do {
+                    try FileManager.default.removeItem(at: assetFolder)
+                } catch let rollbackError {
+                    rollbackFailures.append("removing \(assetFolder.lastPathComponent): \(rollbackError.localizedDescription)")
+                }
+            }
+            if !existedBefore {
+                do {
+                    try FileManager.default.removeItem(at: outputURL)
+                } catch let rollbackError {
+                    rollbackFailures.append("removing \(outputURL.lastPathComponent): \(rollbackError.localizedDescription)")
+                }
+            }
+            guard rollbackFailures.isEmpty else {
+                throw ProjectImportError.importFailedAndRollbackIncomplete(
+                    originalReason: error.localizedDescription,
+                    details: rollbackFailures.joined(separator: "; ")
+                )
+            }
             throw error
         }
     }
@@ -326,7 +345,14 @@ enum ProjectImportOutputService {
             }
             return result
         } catch {
-            try? FileManager.default.removeItem(at: root)
+            do {
+                try FileManager.default.removeItem(at: root)
+            } catch let rollbackError {
+                throw ProjectImportError.importFailedAndRollbackIncomplete(
+                    originalReason: error.localizedDescription,
+                    details: "removing the new project folder: \(rollbackError.localizedDescription)"
+                )
+            }
             throw error
         }
     }

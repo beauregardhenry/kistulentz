@@ -402,6 +402,24 @@ final class DocumentImportTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: output.path))
     }
 
+    // The asset folder created above is a brand-new directory for every call, so there's no way
+    // to force its own cleanup (a delete) to fail without also preventing it from ever being
+    // created in the first place -- unlike a rollback that overwrites a file that already
+    // existed, locking a path before it exists can't simulate "created, then undeletable." This
+    // confirms the new error case's message instead, the same way similarly-unconstructible
+    // rollback fixes elsewhere in this codebase are verified.
+    func testSaveFailedAndCleanupIncompleteErrorDescriptionNamesBothFailuresDistinctly() {
+        let error = DocumentImportError.saveFailedAndCleanupIncomplete(
+            saveReason: "Blocked.md is a directory",
+            cleanupReason: "Blocked-assets could not be removed"
+        )
+
+        let description = try? XCTUnwrap(error.errorDescription)
+
+        XCTAssertTrue(description?.contains("Blocked.md is a directory") == true)
+        XCTAssertTrue(description?.contains("Blocked-assets could not be removed") == true)
+    }
+
     private func makeDOCX(in root: URL) throws -> URL {
         let package = root.appendingPathComponent("docx-package", isDirectory: true)
         let word = package.appendingPathComponent("word", isDirectory: true)
