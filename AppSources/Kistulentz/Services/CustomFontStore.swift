@@ -51,6 +51,13 @@ final class CustomFontStore: ObservableObject {
         }
     }
 
+    /// The managed copy's on-disk location for one of this store's own records -- used to bundle
+    /// an app-wide custom font into a project so the project can travel with its own copy of the
+    /// font file (see `ProjectFontDisk`).
+    func fileURL(for record: CustomFontRecord) -> URL {
+        CustomFontDisk.fileURL(for: record, at: rootURL)
+    }
+
     func removeFont(_ record: CustomFontRecord) {
         do {
             try CustomFontDisk.removeFont(record, at: rootURL, scope: scope)

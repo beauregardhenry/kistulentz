@@ -43,6 +43,9 @@ enum WritingProjectLoader {
             projectName: originalManifest.name,
             projectKind: originalManifest.kind
         )
+        // .process scope only -- opening a project must never leave a permanent, system-wide font
+        // registration behind on whichever Mac happens to open it.
+        ProjectFontDisk.registerBundledFonts(at: root)
 
         let discoveredChapters = try WritingProjectDisk.loadChapters(
             at: root,

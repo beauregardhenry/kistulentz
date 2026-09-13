@@ -29,6 +29,7 @@ struct EditorWorkspace: View {
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
     @EnvironmentObject private var researchLibrary: ResearchLibraryStore
     @EnvironmentObject private var draftRecovery: DraftRecoveryManager
+    @EnvironmentObject private var customFonts: CustomFontStore
     @Environment(\.undoManager) private var undoManager
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var viewModel = EditorViewModel()
@@ -163,6 +164,13 @@ struct EditorWorkspace: View {
             projectStore.attachUndoManager(
                 suppliedUndoManager ?? undoManager ?? NSApp.keyWindow?.undoManager
             )
+            let customFontsStore = customFonts
+            projectStore.publicationStore.availableCustomFonts = { [weak customFontsStore] in
+                customFontsStore?.fonts ?? []
+            }
+            projectStore.publicationStore.customFontFileURL = { [weak customFontsStore] record in
+                customFontsStore?.fileURL(for: record) ?? URL(fileURLWithPath: record.storedFilename)
+            }
 #if UI_TEST_HOST
             configureUITestProjectIfNeeded()
 #endif

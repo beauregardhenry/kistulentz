@@ -69,6 +69,7 @@ struct KistulentzApp: App {
                 .environmentObject(referenceLibrary)
                 .environmentObject(researchLibrary)
                 .environmentObject(draftRecovery)
+                .environmentObject(customFonts)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
@@ -83,6 +84,7 @@ struct KistulentzApp: App {
                 .environmentObject(referenceLibrary)
                 .environmentObject(researchLibrary)
                 .environmentObject(draftRecovery)
+                .environmentObject(customFonts)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
