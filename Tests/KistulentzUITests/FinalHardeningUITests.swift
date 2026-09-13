@@ -118,7 +118,7 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         let restore = app.buttons["Restore…"]
         XCTAssertTrue(restore.waitForExistence(timeout: 3))
         restore.click()
-        let confirm = app.buttons["Restore Snapshot"]
+        let confirm = app.sheets.firstMatch.buttons["Restore Snapshot"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 3))
         confirm.click()
         waitUntil(description: "Restoring a snapshot should put its exact bytes in the editor") {
@@ -167,7 +167,7 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         installBeneparFromSettings()
         let failure = app.staticTexts["The simulated English language-pack download failed. Try again."]
         XCTAssertTrue(failure.waitForExistence(timeout: 5))
-        app.buttons["OK"].click()
+        app.sheets.firstMatch.buttons["OK"].click()
         XCTAssertTrue(app.buttons["InstallBeneparPack"].waitForExistence(timeout: 3))
 
         installBeneparFromSettings()
@@ -177,7 +177,7 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         XCTAssertTrue(status.label.contains("ui-test") || value(of: status).contains("ui-test"))
 
         remove.click()
-        let confirmRemoval = app.buttons["Remove"].firstMatch
+        let confirmRemoval = app.sheets.firstMatch.buttons["Remove"]
         XCTAssertTrue(confirmRemoval.waitForExistence(timeout: 3))
         confirmRemoval.click()
         XCTAssertTrue(app.buttons["InstallBeneparPack"].waitForExistence(timeout: 5))
@@ -283,7 +283,7 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         let install = app.buttons["InstallBeneparPack"]
         XCTAssertTrue(install.waitForExistence(timeout: 5))
         install.click()
-        let confirm = app.buttons["Download and Install"]
+        let confirm = app.sheets.firstMatch.buttons["Download and Install"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 3))
         confirm.click()
     }
