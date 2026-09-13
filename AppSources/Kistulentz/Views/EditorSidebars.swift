@@ -94,16 +94,20 @@ private struct GradeComparisonCard: View {
 
     private let maximumGrade = 18.0
 
-    private var isOnTarget: Bool {
-        gradeLevel <= Double(targetGrade) + 1
+    private var targetStatus: ReadabilityTargetStatus {
+        .classify(gradeLevel: gradeLevel, targetGrade: targetGrade)
     }
 
     private var statusColor: Color {
-        isOnTarget ? .green : .orange
+        targetStatus == .onTarget ? .green : .orange
     }
 
     private var statusTitle: String {
-        isOnTarget ? "On target" : "Revise for clarity"
+        switch targetStatus {
+        case .onTarget: "On target"
+        case .aboveTarget: "Revise for clarity"
+        case .belowTarget: "Below target"
+        }
     }
 
     private var differenceDescription: String {
@@ -240,7 +244,6 @@ struct ReviewSidebar: View {
     let alignment: ReferenceAlignment
     let isLoadingReference: Bool
     let onRunReview: () -> Void
-    let onOpenSettings: () -> Void
     let onChooseReference: () -> Void
     let onRemoveReference: () -> Void
     let onSelect: (WritingIssue) -> Void
@@ -276,8 +279,8 @@ struct ReviewSidebar: View {
                 }
                 .buttonStyle(.borderless)
                 .disabled(isReviewing)
-                .help(hasAPIKey ? "Run a new AI review" : "Run a safe local polish")
-                .accessibilityLabel(hasAPIKey ? "Run a new AI review" : "Run a safe local polish")
+                .help("Run a safe local polish")
+                .accessibilityLabel("Run a safe local polish")
             }
             .padding(16)
 
@@ -303,24 +306,6 @@ struct ReviewSidebar: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(12)
                         .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 11))
-                    } else if !hasAPIKey {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Label("Local Polish is ready", systemImage: "checkmark.shield")
-                                .font(.caption.weight(.semibold))
-                            Text("Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            HStack {
-                                Button("Polish Locally", action: onRunReview)
-                                    .buttonStyle(.borderedProminent)
-                                    .controlSize(.small)
-                                Button("Set Up Deeper AI…", action: onOpenSettings)
-                                    .buttonStyle(.bordered)
-                                    .controlSize(.small)
-                            }
-                        }
-                        .padding(12)
-                        .background(.background.opacity(0.75), in: RoundedRectangle(cornerRadius: 11))
                     } else if let review {
                         VStack(alignment: .leading, spacing: 8) {
                             HStack {
@@ -351,12 +336,18 @@ struct ReviewSidebar: View {
                         .padding(12)
                         .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 11))
                     } else {
-                        Button(action: onRunReview) {
-                            Label("Polish with \(provider.title)", systemImage: "wand.and.stars")
-                                .frame(maxWidth: .infinity)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Label("Local Polish is ready", systemImage: "checkmark.shield")
+                                .font(.caption.weight(.semibold))
+                            Text("Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Button("Polish Locally", action: onRunReview)
+                                .buttonStyle(.borderedProminent)
+                                .controlSize(.small)
                         }
-                        .buttonStyle(.borderedProminent)
-                        .padding(.bottom, 4)
+                        .padding(12)
+                        .background(.background.opacity(0.75), in: RoundedRectangle(cornerRadius: 11))
                     }
 
                     ForEach(issues) { issue in
@@ -375,7 +366,7 @@ struct ReviewSidebar: View {
                             "No local flags",
                             systemImage: "checkmark.circle",
                             description: Text(hasAPIKey
-                                ? "Run an AI review for deeper grammar and rewriting suggestions."
+                                ? "Select a passage to try an AI rewrite for deeper grammar and phrasing suggestions."
                                 : "Local analysis is clear. Set up Ollama or a cloud provider only when you want generative rewriting.")
                         )
                         .padding(.top, 12)

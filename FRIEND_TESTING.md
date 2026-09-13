@@ -98,8 +98,9 @@ Only complete this section if you already use one of these providers.
   **Test Connection**. The connection test should not send manuscript text.
 - If you use Ollama, open Ollama first. Kistulentz should detect it and list installed models. Any
   model download must ask permission, show progress, and offer Cancel.
-- Start Polish, Rewrite, or Deepen w/ AI. Before anything is sent, confirm the request preview names
-  the provider and model and shows the exact writing and optional context.
+- Start a Rewrite or Deepen w/ AI. Before anything is sent, confirm the request preview names
+  the provider and model and shows the exact writing and optional context. (Polish always runs
+  locally, even with a provider configured, so it never shows this preview.)
 - Remove or redact optional material, then cancel. Nothing should be sent and no writing should
   change.
 - On another test, approve the request and review the result before applying it. The proposed change

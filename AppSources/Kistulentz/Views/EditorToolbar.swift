@@ -262,9 +262,7 @@ struct EditorToolbar: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(viewModel.isReviewing)
-            .help(settings.isProviderReady(settings.provider)
-                ? "Review with \(settings.provider.title) (⇧⌘R)"
-                : "Polish locally on this Mac (⇧⌘R)")
+            .help("Polish locally on this Mac (⇧⌘R)")
         }
         .padding(.horizontal, 16)
         .frame(height: 55)

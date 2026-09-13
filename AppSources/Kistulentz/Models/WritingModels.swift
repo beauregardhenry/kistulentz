@@ -121,6 +121,25 @@ struct AnalysisResult: Equatable {
     static let empty = AnalysisResult(stats: .empty, issues: [])
 }
 
+/// Whether a document's measured reading grade is close enough to the author's target grade to
+/// call it "on target", or meaningfully harder or easier than intended.
+enum ReadabilityTargetStatus: Equatable {
+    case onTarget
+    case aboveTarget
+    case belowTarget
+
+    /// `tolerance` is how many grades away from `targetGrade` still counts as "on target," in
+    /// either direction. Prose far simpler than the target is just as much a mismatch with the
+    /// intended audience as prose far harder than it, so the tolerance is symmetric: a document
+    /// several grades below a 12th-grade target isn't "on target" just because it isn't too hard.
+    static func classify(gradeLevel: Double, targetGrade: Int, tolerance: Double = 1) -> ReadabilityTargetStatus {
+        let difference = gradeLevel - Double(targetGrade)
+        if difference > tolerance { return .aboveTarget }
+        if difference < -tolerance { return .belowTarget }
+        return .onTarget
+    }
+}
+
 struct AIReview: Decodable {
     let summary: String
     let gradeEstimate: Double
