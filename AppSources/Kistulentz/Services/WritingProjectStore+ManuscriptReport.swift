@@ -14,6 +14,7 @@ extension WritingProjectStore {
 
     func applyAIReport(_ response: AIManuscriptMarkdownResponse, provider: AIProvider, model: String) {
         guard let rootURL, let manifest else { return }
+        let previousAIReportMarkdown = manuscriptCache.aiReportMarkdown
         do {
             let ai = """
             ## AI-Deepened Editorial Notes
@@ -23,7 +24,17 @@ extension WritingProjectStore {
             \(response.markdown.trimmingCharacters(in: .whitespacesAndNewlines))
             """
             manuscriptCache.aiReportMarkdown = ai
-            try ManuscriptProjectDisk.saveCache(manuscriptCache, at: rootURL)
+            do {
+                try ManuscriptProjectDisk.saveCache(manuscriptCache, at: rootURL)
+            } catch {
+                // The cache mutation above only lives in memory until the save above
+                // succeeds. Leaving it in place on a failed save would mean the next
+                // *successful* local analysis (applyLocalManuscriptAnalysis, which reads
+                // and re-saves this same field) silently persists this AI report anyway --
+                // even though the user was just told applying it failed.
+                manuscriptCache.aiReportMarkdown = previousAIReportMarkdown
+                throw error
+            }
             let current = (try? ManuscriptProjectDisk.loadReport(at: rootURL)) ?? manuscriptReportText
             let local = manuscriptAnalysis?.reportMarkdown ?? "## Local Analysis\n\nWaiting for the next local analysis."
             manuscriptReportText = ManuscriptReportManager.compose(
