@@ -30,21 +30,19 @@ enum PublicationExporter {
         let outputURL = uniqueOutputURL(plan: plan, directory: packageURL)
         try Task.checkCancellation()
         let rendered = preview(plan: plan, root: root)
-        do {
-            try Task.checkCancellation()
-            switch plan.format {
-            case .epub:
-                try EPUBPublicationWriter.write(rendered, to: outputURL, root: root)
-            case .printPDF, .readerPDF:
-                try PDFPublicationWriter.write(rendered, to: outputURL, root: root)
-            case .docx:
-                try DOCXPublicationWriter.write(rendered, to: outputURL, root: root)
-            }
-            try Task.checkCancellation()
-        } catch {
-            try? FileManager.default.removeItem(at: packageURL)
-            throw error
+        // No do/catch here: the `defer` above already removes packageURL on any early throw,
+        // so a second try?-wrapped removal in a catch block here would just be a harmless,
+        // redundant no-op (the directory is already gone) -- not a second safety net.
+        try Task.checkCancellation()
+        switch plan.format {
+        case .epub:
+            try EPUBPublicationWriter.write(rendered, to: outputURL, root: root)
+        case .printPDF, .readerPDF:
+            try PDFPublicationWriter.write(rendered, to: outputURL, root: root)
+        case .docx:
+            try DOCXPublicationWriter.write(rendered, to: outputURL, root: root)
         }
+        try Task.checkCancellation()
         let values = try outputValues(at: outputURL)
         try Task.checkCancellation()
         let validatorRuns = PublicationExternalValidation.evaluate(plan: plan, outputURL: outputURL)
@@ -55,24 +53,19 @@ enum PublicationExporter {
             byteCount: values.byteCount,
             validatorRuns: validatorRuns
         )
-        let package: PublicationPackageURLs
-        do {
-            try Task.checkCancellation()
-            package = try PublicationPackageWriter.finish(
-                packageURL: packageURL,
-                primaryURL: outputURL,
-                plan: plan,
-                root: root,
-                sha256: values.sha256,
-                byteCount: values.byteCount,
-                report: completedPreflight,
-                validatorRuns: validatorRuns
-            )
-            try Task.checkCancellation()
-        } catch {
-            try? FileManager.default.removeItem(at: packageURL)
-            throw error
-        }
+        try Task.checkCancellation()
+        // Same as above: the `defer` already covers cleanup on any throw from here.
+        let package = try PublicationPackageWriter.finish(
+            packageURL: packageURL,
+            primaryURL: outputURL,
+            plan: plan,
+            root: root,
+            sha256: values.sha256,
+            byteCount: values.byteCount,
+            report: completedPreflight,
+            validatorRuns: validatorRuns
+        )
+        try Task.checkCancellation()
         let result = PublicationExportResult(
             outputURL: outputURL,
             sha256: values.sha256,

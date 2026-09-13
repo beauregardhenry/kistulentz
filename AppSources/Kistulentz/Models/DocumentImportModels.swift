@@ -258,6 +258,7 @@ enum DocumentImportError: LocalizedError, Equatable {
     case unresolvedTrackedChanges
     case sourceWouldBeOverwritten
     case markdownExtensionRequired
+    case saveFailedAndCleanupIncomplete(saveReason: String, cleanupReason: String)
 
     var errorDescription: String? {
         switch self {
@@ -270,6 +271,8 @@ enum DocumentImportError: LocalizedError, Equatable {
         case .unresolvedTrackedChanges: "Accept or reject every tracked change before saving the Markdown copy."
         case .sourceWouldBeOverwritten: "Choose a different location so the original document remains untouched."
         case .markdownExtensionRequired: "The imported copy must be saved with an .md extension."
+        case .saveFailedAndCleanupIncomplete(let saveReason, let cleanupReason):
+            "Saving the Markdown copy failed (\(saveReason)), and Kistulentz could not clean up the partial attempt (\(cleanupReason)). Check the destination folder for leftover files before trying again."
         }
     }
 }
