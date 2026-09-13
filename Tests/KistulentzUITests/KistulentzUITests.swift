@@ -46,7 +46,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         cancel.click()
         XCTAssertTrue(title.waitForExistence(timeout: 2))
 
-        app.buttons["Close"].firstMatch.click()
+        app.buttons["Close Research Library"].firstMatch.click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
@@ -485,10 +485,12 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(libraryItem.waitForExistence(timeout: 3))
         libraryItem.click()
 
-        XCTAssertTrue(app.staticTexts["Create a Reference Library"].waitForExistence(timeout: 5))
+        let chooseFolder = app.buttons["Choose Library Folder"]
+        XCTAssertTrue(chooseFolder.waitForExistence(timeout: 5))
         let cancel = app.buttons["Cancel"]
         XCTAssertTrue(cancel.isHittable)
         cancel.click()
+        XCTAssertFalse(chooseFolder.waitForExistence(timeout: 2))
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 

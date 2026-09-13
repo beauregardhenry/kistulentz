@@ -6,6 +6,7 @@ class KistulentzUITestCase: XCTestCase {
     var testRoot: URL!
     var editCommandURL: URL!
     var statusURL: URL!
+    var defaultsSuiteName: String!
 
     private var launchEnvironment: [String: String] = [:]
     private var launchArguments: [String] = []
@@ -17,8 +18,13 @@ class KistulentzUITestCase: XCTestCase {
         testRoot = FileManager.default.temporaryDirectory
             .appendingPathComponent("Kistulentz-UI-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: testRoot, withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(
+            at: testRoot.appendingPathComponent("Home", isDirectory: true),
+            withIntermediateDirectories: true
+        )
         editCommandURL = testRoot.appendingPathComponent("Editor Command.txt")
         statusURL = testRoot.appendingPathComponent("UI Test Status.txt")
+        defaultsSuiteName = "com.beauhenry.kistulentz.ui-tests.\(testRoot.lastPathComponent)"
     }
 
     override func tearDownWithError() throws {
@@ -29,6 +35,11 @@ class KistulentzUITestCase: XCTestCase {
         app = nil
         editCommandURL = nil
         statusURL = nil
+        if let defaultsSuiteName {
+            UserDefaults(suiteName: defaultsSuiteName)?
+                .removePersistentDomain(forName: defaultsSuiteName)
+        }
+        defaultsSuiteName = nil
         if let testRoot {
             try? FileManager.default.removeItem(at: testRoot)
         }
@@ -292,6 +303,7 @@ class KistulentzUITestCase: XCTestCase {
             .path
         application.launchEnvironment["KISTULENTZ_UI_TEST_EDIT_COMMAND_PATH"] = editCommandURL.path
         application.launchEnvironment["KISTULENTZ_UI_TEST_STATUS_PATH"] = statusURL.path
+        application.launchEnvironment["KISTULENTZ_UI_TEST_DEFAULTS_SUITE"] = defaultsSuiteName
         for (key, value) in launchEnvironment {
             application.launchEnvironment[key] = value
         }

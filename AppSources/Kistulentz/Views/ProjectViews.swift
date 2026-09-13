@@ -64,6 +64,7 @@ struct ProjectSidebar: View {
                         .foregroundStyle(.secondary)
                     TextField("Search manuscript", text: $searchText)
                         .textFieldStyle(.plain)
+                        .accessibilityIdentifier("ProjectSearchField")
                     if searchStore.isSearching {
                         ProgressView().controlSize(.mini)
                     } else if !searchText.isEmpty {
@@ -233,6 +234,7 @@ struct ProjectSidebar: View {
                     }
                     .buttonStyle(.plain)
                     .background(.background.opacity(0.6), in: RoundedRectangle(cornerRadius: 7))
+                    .accessibilityIdentifier("ProjectSearchResult-\(result.id)")
                 }
 
                 if !searchStore.isSearching && searchStore.searchResults.isEmpty {
@@ -524,6 +526,7 @@ struct NamedSnapshotSheet: View {
                 .foregroundStyle(.secondary)
             TextField("Snapshot name", text: $name)
                 .textFieldStyle(.roundedBorder)
+                .accessibilityIdentifier("SnapshotName")
             HStack {
                 Spacer()
                 Button("Cancel") { dismiss() }
@@ -533,6 +536,7 @@ struct NamedSnapshotSheet: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .accessibilityIdentifier("CreateNamedSnapshot")
             }
         }
         .padding(20)

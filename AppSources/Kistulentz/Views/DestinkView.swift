@@ -18,6 +18,7 @@ struct DestinkView: View {
     @State private var selectedTier: DestinkTier?
     @State private var isRunning = false
     @State private var runID = UUID()
+    @State private var analysisTask: Task<Void, Never>?
 
     init(
         currentDocument: ManuscriptDocument,
@@ -82,18 +83,22 @@ struct DestinkView: View {
                     }
                 }
                 .frame(width: 230)
+                .accessibilityIdentifier("DestinkScope")
 
                 if isRunning {
                     ProgressView().controlSize(.small)
                     Text("Checking locally…")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                    Button("Cancel", role: .cancel) { cancelRun() }
+                        .accessibilityIdentifier("CancelDestinkAnalysis")
                 } else {
                     Button {
-                        runID = UUID()
+                        startRun()
                     } label: {
                         Label("Run Again", systemImage: "arrow.clockwise")
                     }
+                    .accessibilityIdentifier("RunDestinkAnalysis")
                 }
 
                 Spacer()
@@ -127,10 +132,11 @@ struct DestinkView: View {
             }
         }
         .frame(minWidth: 940, minHeight: 680)
-        .task(id: runID) { await run() }
+        .onAppear { startRun() }
+        .onDisappear { analysisTask?.cancel() }
         .onChange(of: scope) { _, _ in
             report = nil
-            runID = UUID()
+            startRun()
         }
     }
 
@@ -169,6 +175,7 @@ struct DestinkView: View {
                 }
             }
             .frame(width: 250)
+            .accessibilityIdentifier("DestinkCategory")
         }
         .padding(16)
     }
@@ -232,6 +239,7 @@ struct DestinkView: View {
                 }
                 .buttonStyle(.borderless)
                 .accessibilityLabel("Show \(finding.message) in \(document.title)")
+                .accessibilityIdentifier("ShowDestinkFinding-\(finding.id)")
             }
             Text(finding.message)
                 .font(.headline)
@@ -264,21 +272,48 @@ struct DestinkView: View {
     }
 
     @MainActor
-    private func run() async {
-        let id = runID
+    private func startRun() {
+        analysisTask?.cancel()
+        let id = UUID()
+        runID = id
+        analysisTask = Task { await run(id: id) }
+    }
+
+    @MainActor
+    private func cancelRun() {
+        runID = UUID()
+        analysisTask?.cancel()
+        analysisTask = nil
+        isRunning = false
+    }
+
+    @MainActor
+    private func run(id: UUID) async {
         isRunning = true
+#if UI_TEST_HOST
+        if let value = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_DESTINK_DELAY_MS"],
+           let milliseconds = Int(value), milliseconds > 0 {
+            do {
+                try await Task.sleep(for: .milliseconds(milliseconds))
+            } catch {
+                if runID == id { isRunning = false }
+                return
+            }
+        }
+#endif
         let documents = documentsForRun()
         let result = await DestinkService.analyze(
             documents: documents,
             useBenepar: beneparPack.isInstalled
         )
-        guard !Task.isCancelled else {
+        guard !Task.isCancelled, runID == id else {
             // Only clear the spinner when no later run has already claimed it.
             if runID == id { isRunning = false }
             return
         }
         report = result
         isRunning = false
+        analysisTask = nil
     }
 }
 
