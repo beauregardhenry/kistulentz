@@ -120,6 +120,7 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         restore.click()
         let confirm = app.sheets.firstMatch.buttons["Restore Snapshot"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 3))
+        waitForHittable(confirm, timeout: 3)
         confirm.click()
         waitUntil(description: "Restoring a snapshot should put its exact bytes in the editor") {
             self.value(of: self.editor) == original
@@ -167,7 +168,10 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         installBeneparFromSettings()
         let failure = app.staticTexts["The simulated English language-pack download failed. Try again."]
         XCTAssertTrue(failure.waitForExistence(timeout: 5))
-        app.sheets.firstMatch.buttons["OK"].click()
+        let acknowledgeFailure = app.sheets.firstMatch.buttons["OK"]
+        XCTAssertTrue(acknowledgeFailure.waitForExistence(timeout: 3))
+        waitForHittable(acknowledgeFailure, timeout: 3)
+        acknowledgeFailure.click()
         XCTAssertTrue(app.buttons["InstallBeneparPack"].waitForExistence(timeout: 3))
 
         installBeneparFromSettings()
@@ -179,6 +183,7 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         remove.click()
         let confirmRemoval = app.sheets.firstMatch.buttons["Remove"]
         XCTAssertTrue(confirmRemoval.waitForExistence(timeout: 3))
+        waitForHittable(confirmRemoval, timeout: 3)
         confirmRemoval.click()
         XCTAssertTrue(app.buttons["InstallBeneparPack"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["English language pack removed. Native analysis remains active."].exists)
@@ -279,12 +284,21 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         menuItem.click()
     }
 
+    private func waitForHittable(_ element: XCUIElement, timeout: TimeInterval) {
+        let deadline = Date().addingTimeInterval(timeout)
+        while !element.isHittable && Date() < deadline {
+            usleep(50_000) // 50ms
+        }
+        XCTAssertTrue(element.isHittable, "The confirmation control did not become clickable in time.")
+    }
+
     private func installBeneparFromSettings() {
         let install = app.buttons["InstallBeneparPack"]
         XCTAssertTrue(install.waitForExistence(timeout: 5))
         install.click()
         let confirm = app.sheets.firstMatch.buttons["Download and Install"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 3))
+        waitForHittable(confirm, timeout: 3)
         confirm.click()
     }
 
