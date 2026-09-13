@@ -8,6 +8,8 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.17.3] - 2026-09-13
+
 ### Fixed
 
 - The readability grade indicator showed "On target" (green) for a document far *below* the
@@ -18,6 +20,9 @@ merged changes are recorded under [Unreleased].
   configured (even one set up only for an unrelated feature like Selection Rewrite), instead of
   always running its local, rule-based review. Polish now always runs locally regardless of
   provider configuration; AI-assisted rewriting stays available separately through Rewrite.
+- The De-stink toolbar button rendered in a muted grey rather than the accent-tinted look of
+  every other toolbar control, because it was the only one implemented as a plain borderless
+  button rather than a borderless-style menu. Its resting tint now matches its siblings.
 
 ## [0.17.2] - 2026-09-12
 
