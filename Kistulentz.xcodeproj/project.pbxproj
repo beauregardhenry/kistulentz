@@ -92,6 +92,7 @@
 		8E7B2C6ECB11BC5C3CF09FB3 /* SampleProjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A93226CDB001FFC2B892B6 /* SampleProjectBuilder.swift */; };
 		91FF98E6F439D05C5CC13805 /* ManuscriptInsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CB0C6F47B37AC25F7A25D /* ManuscriptInsightsView.swift */; };
 		93E50B339FCA545CD1F75C08 /* ProjectImportAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015FC573E72F2B6FDBDDB83 /* ProjectImportAssistantView.swift */; };
+		950C73EDFCED8B5052E063DC /* ImportAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B44E5D3918BC6ECCAEF65D /* ImportAssetWriter.swift */; };
 		9815FB08E87C018AE9DEF9CC /* WritingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9574BEAADCBDB2E2FEC32D0 /* WritingModels.swift */; };
 		994B1B87CDADE3077AEE2BE6 /* ProjectImportAssistantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3649DC5ED3EF02CD25E47D /* ProjectImportAssistantUITests.swift */; };
 		9A92C1B55400F357A9185B20 /* AIRequestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B9AEEF4455C1778E2B9131 /* AIRequestModels.swift */; };
@@ -173,6 +174,7 @@
 		110FDF6E4D12C6CD265D1C5F /* OutlineAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineAIService.swift; sourceTree = "<group>"; };
 		12A25120820814E56D5BA055 /* SuggestionApplicationPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionApplicationPlanner.swift; sourceTree = "<group>"; };
 		1601CFDB20F7B82318E12E8A /* ProjectStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStyleManager.swift; sourceTree = "<group>"; };
+		18B44E5D3918BC6ECCAEF65D /* ImportAssetWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAssetWriter.swift; sourceTree = "<group>"; };
 		1A946007C0F84A79BFC2D259 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		1E1C73DA9043C83D5E0A90D9 /* EditorWorkspacePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorWorkspacePresentation.swift; sourceTree = "<group>"; };
 		220516FC7D3B4CE1BEA4B904 /* ReferenceLibraryAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibraryAnalysis.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				510EAE424BD75A7491E6F947 /* EPUBProcessor.swift */,
 				221959931CAF37D35550433F /* EPUBPublicationWriter.swift */,
 				6FA7C72C2DC7E5F88CDED24D /* HTMLImportSanitizer.swift */,
+				18B44E5D3918BC6ECCAEF65D /* ImportAssetWriter.swift */,
 				1A946007C0F84A79BFC2D259 /* KeychainStore.swift */,
 				F3449E169D6C405421B9DE60 /* LocalPolishService.swift */,
 				E1B20BB2830AC3D69796E3B5 /* MacFilePanel.swift */,
@@ -670,6 +673,7 @@
 				44B75014B523E52B2CD73C0A /* EditorWorkspace.swift in Sources */,
 				1F6049D9EEF4B63209DBEDBD /* EditorWorkspacePresentation.swift in Sources */,
 				B029AAADC5365B01A99E3ABF /* HTMLImportSanitizer.swift in Sources */,
+				950C73EDFCED8B5052E063DC /* ImportAssetWriter.swift in Sources */,
 				B50BE6E9F874323C7B383844 /* KeychainStore.swift in Sources */,
 				CE01E6A328AC398315AC1467 /* KistulentzApp.swift in Sources */,
 				F76C2FF3341DFD7BEE06E6B7 /* LocalPolishService.swift in Sources */,
