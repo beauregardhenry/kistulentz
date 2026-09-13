@@ -135,6 +135,49 @@ final class DocumentImportTests: XCTestCase {
         XCTAssertTrue(draft.assets.isEmpty)
     }
 
+    func testDataURIImagesAreExtractedAsAssetsWithTheRightExtension() throws {
+        // A minimal 1x1 transparent PNG.
+        let pngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGNgAAACAAFVvHolAAAAAElFTkSuQmCC"
+        let html = """
+        <html><body>
+        <img src="data:image/png;base64,\(pngBase64)" alt="Embedded diagram">
+        <img src="data:image/jpeg;base64,\(pngBase64)" alt="Embedded photo">
+        </body></html>
+        """
+
+        let sanitized = HTMLImportSanitizer.prepare(html, sourceURL: URL(fileURLWithPath: "/tmp/Article.html"))
+
+        XCTAssertEqual(sanitized.assets.count, 2)
+        // Images are matched back-to-front internally so overlapping replacements don't
+        // invalidate later ranges; look each asset up by alt text rather than assuming
+        // document order survived into the assets array.
+        let diagram = try XCTUnwrap(sanitized.assets.first { $0.altText == "Embedded diagram" })
+        let photo = try XCTUnwrap(sanitized.assets.first { $0.altText == "Embedded photo" })
+        XCTAssertEqual(diagram.data, Data(base64Encoded: pngBase64))
+        XCTAssertTrue(diagram.suggestedFilename.hasSuffix(".png"))
+        // image/jpeg is the one subtype that doesn't map straight onto its file extension.
+        XCTAssertTrue(photo.suggestedFilename.hasSuffix(".jpg"))
+        XCTAssertFalse(sanitized.html.contains("[Image omitted"))
+    }
+
+    func testMalformedDataURIImageIsOmittedRatherThanCrashing() throws {
+        let html = #"<html><body><img src="data:image/png;base64,A" alt="Broken"></body></html>"#
+
+        let sanitized = HTMLImportSanitizer.prepare(html, sourceURL: URL(fileURLWithPath: "/tmp/Article.html"))
+
+        XCTAssertTrue(sanitized.assets.isEmpty)
+        XCTAssertTrue(sanitized.html.contains("[Image omitted during import: Broken]"))
+    }
+
+    func testNonImageDataURIFallsThroughToOmittedRatherThanBeingTreatedAsAnAsset() throws {
+        let html = #"<html><body><img src="data:text/plain;base64,SGVsbG8=" alt="Not an image"></body></html>"#
+
+        let sanitized = HTMLImportSanitizer.prepare(html, sourceURL: URL(fileURLWithPath: "/tmp/Article.html"))
+
+        XCTAssertTrue(sanitized.assets.isEmpty)
+        XCTAssertTrue(sanitized.html.contains("[Image omitted during import: Not an image]"))
+    }
+
     func testRTFAndRTFDImportAsMarkdownCopies() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
