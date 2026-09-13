@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Safer project transitions, publishing, and background work.")
+                    Text("Safer imports, storage, and long-project work.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,20 +25,20 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Projects open as one complete change",
-                    detail: "Kistulentz now finishes validating a project before replacing the one on screen, so a late loading error cannot leave two projects mixed together.",
-                    systemImage: "folder.badge.gearshape",
+                    "Changes commit only after they are safely stored",
+                    detail: "Snapshots, reference indexes, and publication settings now keep their last known-good state when a disk or permission error interrupts a save.",
+                    systemImage: "externaldrive.badge.checkmark",
                     identifier: "WhatsNewStorageSafety"
                 )
                 whatsNewItem(
-                    "Publishing can be cancelled safely",
-                    detail: "Publish & Export now keeps its work in a dedicated coordinator, ignores obsolete results, and removes incomplete export packages after cancellation or failure.",
-                    systemImage: "shippingbox.and.arrow.backward",
+                    "Untrusted imports are handled more defensively",
+                    detail: "Kistulentz rejects malformed EPUB, bibliography, rich-text, and office files; strips executable HTML links and events; and prevents imported paths from escaping their library.",
+                    systemImage: "doc.badge.ellipsis",
                     identifier: "WhatsNewCancellation"
                 )
                 whatsNewItem(
-                    "Modern concurrency safeguards",
-                    detail: "The app and complete test suite now build in Swift 6 mode, with stronger checks around asynchronous imports, analysis, and system callbacks.",
+                    "Long projects receive fuller, cancellable analysis",
+                    detail: "AI context sampling now retains the manuscript ending and respects its size budget, while large De-stink reviews can be cancelled without trapping the editor.",
                     systemImage: "checkmark.shield",
                     identifier: "WhatsNewRegressionSafety"
                 )
