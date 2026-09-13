@@ -847,6 +847,27 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertTrue(try WritingProjectDisk.readChapter("Chapter 2.md", at: root).contains("commence walking"))
     }
 
+    // applyRevisionChangeSet's own rollback (when a later chapter's write fails mid-loop) tries
+    // to restore every chapter to its `before` content via a single try? per file. An end-to-end
+    // test of "one chapter's write fails AND that same chapter's own restore also fails" isn't
+    // practically constructible without an injectable failure seam: whichever chapter is locked
+    // to force its write to fail is, for that exact reason, never actually modified in the first
+    // place, so its own restore attempt failing is harmless rather than a genuine data-loss case
+    // (the same limitation already disclosed for the Benepar and outline-reorganization rollback
+    // fixes elsewhere in this codebase). This test instead confirms the escalated error itself
+    // names both failures distinctly, the same way those other fixes were verified.
+    func testSystemicRevisionRollbackErrorDescriptionNamesBothFailuresDistinctly() {
+        let error = SystemicRevisionError.applyFailedAndRollbackIncomplete(
+            applyReason: "Chapter 2.md could not be written",
+            rollbackReason: "Chapter 1.md could not be restored"
+        )
+
+        let description = try? XCTUnwrap(error.errorDescription)
+
+        XCTAssertTrue(description?.contains("Chapter 2.md could not be written") == true)
+        XCTAssertTrue(description?.contains("Chapter 1.md could not be restored") == true)
+    }
+
     @MainActor
     func testRevisionStatusesAndGoalsPersistAcrossProjectReopen() throws {
         let parent = temporaryDirectory()

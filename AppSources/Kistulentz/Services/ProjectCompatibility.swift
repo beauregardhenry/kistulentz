@@ -49,6 +49,7 @@ enum ProjectCompatibilityError: LocalizedError, Equatable {
     case missingBackup(String)
     case emptyBackup(String)
     case recoveryFailed(String)
+    case migrationFailedAndRollbackIncomplete(migrationReason: String, rollbackReason: String)
 
     var errorDescription: String? {
         switch self {
@@ -62,6 +63,8 @@ enum ProjectCompatibilityError: LocalizedError, Equatable {
             "The recovery snapshot \(name) does not contain project metadata."
         case .recoveryFailed(let detail):
             "Kistulentz could not restore the project metadata: \(detail)"
+        case .migrationFailedAndRollbackIncomplete(let migrationReason, let rollbackReason):
+            "Kistulentz could not finish updating this project to the current format (\(migrationReason)), and restoring it from the pre-migration backup also failed (\(rollbackReason)). This project's metadata files may now be at inconsistent versions. Choose the pre-migration snapshot from the recovery options before continuing."
         }
     }
 }
@@ -133,7 +136,20 @@ enum ProjectCompatibilityManager {
             }
             _ = try inspectedVersions(at: root)
         } catch {
-            try? restoreJSONFiles(from: backup, at: root, removingMissingKnownFiles: false)
+            do {
+                try restoreJSONFiles(from: backup, at: root, removingMissingKnownFiles: false)
+            } catch let rollbackError {
+                // restoreJSONFiles restores its backed-up files one at a time and stops at the
+                // first failure, so a locked or otherwise-unwritable file downstream of the one
+                // that failed migration can leave earlier, already-migrated files stuck at their
+                // new version instead of being put back. The pre-migration backup itself is
+                // untouched either way, so surface both failures distinctly rather than silently
+                // implying migration was cleanly undone.
+                throw ProjectCompatibilityError.migrationFailedAndRollbackIncomplete(
+                    migrationReason: error.localizedDescription,
+                    rollbackReason: rollbackError.localizedDescription
+                )
+            }
             throw error
         }
 

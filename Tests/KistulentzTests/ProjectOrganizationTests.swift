@@ -571,6 +571,45 @@ final class ProjectOrganizationTests: XCTestCase {
         XCTAssertEqual(store.outlineNode(id: chapterID)?.children.map(\.kind), [.scene])
     }
 
+    // applyHeadingSplit's own rollback restores the chapter's original content and deletes any
+    // scene files it managed to create before the failure. An end-to-end test of "the chapter's
+    // own restore also fails" isn't practically constructible without an injectable failure seam
+    // (locking the chapter file to force that restore to fail would also block the split's own
+    // write to it, so it would never actually reach the modified state that makes a failed
+    // restore dangerous -- the same limitation already disclosed for the Benepar,
+    // systemic-revision, and file-organization rollback fixes). This test instead confirms the
+    // escalated error names both failures distinctly.
+    func testHeadingSplitRollbackErrorDescriptionNamesBothFailuresDistinctly() {
+        let error = ProjectOutlineError.splitFailedAndRollbackIncomplete(
+            splitReason: "Dock.md already exists",
+            rollbackReason: "Chapter 1.md could not be restored"
+        )
+
+        let description = try? XCTUnwrap(error.errorDescription)
+
+        XCTAssertTrue(description?.contains("Dock.md already exists") == true)
+        XCTAssertTrue(description?.contains("Chapter 1.md could not be restored") == true)
+    }
+
+    // ProjectFileOrganizer.execute()'s own rollback (when a later move in the same plan fails)
+    // moves every already-completed move back to its source. Undoing in exactly reverse order
+    // is inherently self-consistent for any straightforward set of moves -- each step exactly
+    // retraces its own move, so nothing else in the set can be occupying its destination. Making
+    // one of those reversals fail without an injectable seam would need a lock that also blocks
+    // the forward move it's reversing, which would prevent that move from ever completing in the
+    // first place. This test instead confirms the escalated error names both failures distinctly.
+    func testFileOrganizationRollbackErrorDescriptionNamesBothFailuresDistinctly() {
+        let error = ProjectOutlineError.moveFailedAndRollbackIncomplete(
+            moveReason: "Part One/Missing.md could not be created",
+            rollbackReason: "One.md: a file already exists at the destination"
+        )
+
+        let description = try? XCTUnwrap(error.errorDescription)
+
+        XCTAssertTrue(description?.contains("Part One/Missing.md could not be created") == true)
+        XCTAssertTrue(description?.contains("One.md: a file already exists at the destination") == true)
+    }
+
     func testOutlineSynopsisAIRequestIsExplicitAndTreatsContextAsUntrusted() {
         let preview = AIRequestPreview(
             purpose: .outlineSynopsis(projectKind: .nonfiction, nodeKind: .section, title: "Evidence"),

@@ -377,9 +377,26 @@ extension WritingProjectStore {
                 )
                 editCoordinator.editLanded(.externalChange)
             } catch {
-                try? WritingProjectDisk.writeChapter(original, relativePath: plan.chapterPath, at: rootURL)
-                for path in createdPaths { try? FileManager.default.removeItem(at: rootURL.appendingPathComponent(path)) }
+                var rollbackFailures: [String] = []
+                do {
+                    try WritingProjectDisk.writeChapter(original, relativePath: plan.chapterPath, at: rootURL)
+                } catch let rollbackError {
+                    rollbackFailures.append("restoring \(plan.chapterPath): \(rollbackError.localizedDescription)")
+                }
+                for path in createdPaths {
+                    do {
+                        try FileManager.default.removeItem(at: rootURL.appendingPathComponent(path))
+                    } catch let rollbackError {
+                        rollbackFailures.append("removing \(path): \(rollbackError.localizedDescription)")
+                    }
+                }
                 outlineNodes = beforeNodes
+                guard rollbackFailures.isEmpty else {
+                    throw ProjectOutlineError.splitFailedAndRollbackIncomplete(
+                        splitReason: error.localizedDescription,
+                        rollbackReason: rollbackFailures.joined(separator: "; ")
+                    )
+                }
                 throw error
             }
         } catch {

@@ -192,6 +192,8 @@ enum ProjectOutlineError: LocalizedError, Equatable, Sendable {
     case invalidDestination(String)
     case fileConflict(String)
     case filesChanged
+    case moveFailedAndRollbackIncomplete(moveReason: String, rollbackReason: String)
+    case splitFailedAndRollbackIncomplete(splitReason: String, rollbackReason: String)
 
     var errorDescription: String? {
         switch self {
@@ -202,6 +204,10 @@ enum ProjectOutlineError: LocalizedError, Equatable, Sendable {
         case .invalidDestination(let path): "The proposed destination is not a safe project-relative path: \(path)"
         case .fileConflict(let path): "A file or folder already exists at \(path). Edit the destination before continuing."
         case .filesChanged: "The affected Markdown files changed after this operation. Kistulentz left them untouched instead of risking lost work."
+        case .moveFailedAndRollbackIncomplete(let moveReason, let rollbackReason):
+            "Organizing files failed (\(moveReason)), and Kistulentz could not move every file back to where it started (\(rollbackReason)). Check Project Organization and your project's chapter list before continuing."
+        case .splitFailedAndRollbackIncomplete(let splitReason, let rollbackReason):
+            "Splitting this chapter failed (\(splitReason)), and Kistulentz could not fully undo the attempt (\(rollbackReason)). Check this chapter and its snapshot history before continuing."
         }
     }
 }

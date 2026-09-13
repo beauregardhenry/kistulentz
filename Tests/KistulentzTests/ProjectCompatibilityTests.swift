@@ -205,6 +205,48 @@ final class ProjectCompatibilityTests: XCTestCase {
         XCTAssertEqual(store.text, expectedMarkdown)
     }
 
+    func testMigrationEscalatesTheErrorWhenItsOwnAutomaticRollbackAlsoFails() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Locked Rollback", kind: .fiction)
+        let projectURL = WritingProjectDisk.metadataURL(at: root).appendingPathComponent("project.json")
+        let outlineURL = WritingProjectDisk.metadataURL(at: root).appendingPathComponent("outline.json")
+        try setIntegerField("formatVersion", to: 1, in: projectURL)
+        try setIntegerField("formatVersion", to: 1, in: outlineURL)
+
+        // project.json is migrated before outline.json, so it's already been bumped to the
+        // current version by the time outline.json's update fails here. The automatic rollback
+        // (restoreJSONFiles) restores its backed-up files in alphabetical order and stops at the
+        // first failure -- "outline.json" sorts before "project.json" -- so locking outline.json
+        // blocks its own restore *and*, because the rollback never gets to project.json, leaves
+        // project.json's already-bumped version un-rolled-back too.
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: outlineURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: outlineURL.path) }
+
+        XCTAssertThrowsError(try ProjectCompatibilityManager.prepareForOpen(at: root)) { error in
+            guard case ProjectCompatibilityError.migrationFailedAndRollbackIncomplete = error else {
+                return XCTFail("Expected migrationFailedAndRollbackIncomplete, got \(error)")
+            }
+        }
+        // This is the real-world consequence the escalated error above is disclosing -- the fix
+        // makes the error tell the truth about it, not undo it (restoreJSONFiles's own recovery
+        // logic is unchanged; it stops at the first failure the same way it always has).
+        XCTAssertEqual(try integerField("formatVersion", in: projectURL), KistulentzProjectFormat.currentVersion)
+        XCTAssertEqual(try integerField("formatVersion", in: outlineURL), 1)
+    }
+
+    func testMigrationRollbackErrorDescriptionNamesBothFailuresDistinctly() {
+        let error = ProjectCompatibilityError.migrationFailedAndRollbackIncomplete(
+            migrationReason: "outline.json could not be updated",
+            rollbackReason: "the backup copy of outline.json is missing"
+        )
+
+        let description = try? XCTUnwrap(error.errorDescription)
+
+        XCTAssertTrue(description?.contains("outline.json could not be updated") == true)
+        XCTAssertTrue(description?.contains("the backup copy of outline.json is missing") == true)
+    }
+
     private func temporaryDirectory() -> URL {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent("Kistulentz-Compatibility-Test-\(UUID().uuidString)", isDirectory: true)

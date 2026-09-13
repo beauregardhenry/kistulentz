@@ -237,6 +237,7 @@ enum SystemicRevisionError: LocalizedError, Equatable {
     case overlappingChanges(String)
     case noConcreteChanges
     case filesChanged
+    case applyFailedAndRollbackIncomplete(applyReason: String, rollbackReason: String)
 
     var errorDescription: String? {
         switch self {
@@ -245,6 +246,8 @@ enum SystemicRevisionError: LocalizedError, Equatable {
         case .overlappingChanges(let path): "Two proposed changes overlap in \(path). Choose only one of them."
         case .noConcreteChanges: "No selected findings contain safe, concrete replacements."
         case .filesChanged: "One or more affected files changed after this revision. Kistulentz left them untouched instead of risking lost work."
+        case .applyFailedAndRollbackIncomplete(let applyReason, let rollbackReason):
+            "Applying the systemic revision failed (\(applyReason)), and Kistulentz could not fully restore every chapter's original text (\(rollbackReason)). Compare the affected chapters against their snapshot history before continuing."
         }
     }
 }
