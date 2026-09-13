@@ -3,4 +3,4 @@
 # .github/workflows/coverage-ratchet.yml on every push to main; don't bump it from a feature
 # branch (see the header of this script). Lower one only deliberately, with a reason in the commit.
 arm64=88.03
-x86_64=85.88
+x86_64=89.57
