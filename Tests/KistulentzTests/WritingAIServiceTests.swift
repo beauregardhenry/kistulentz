@@ -2,38 +2,10 @@ import Foundation
 import XCTest
 @testable import Kistulentz
 
-/// Covers `WritingAIService`'s own guard clauses and pure helpers -- the parts that never reach
-/// the network, so no mock session is needed. `AIRequestTests` already covers the request/response
-/// round trip against a mocked `URLSession`.
+/// Covers `WritingAIService.referenceContext`, the one piece of this namespace still in use --
+/// several other AI-backed request types (Selection Rewrite, Beta Reader, Outline Synopsis) build
+/// their reference material through it.
 final class WritingAIServiceTests: XCTestCase {
-    func testReviewRejectsARequestThatIsNotAPolishRequest() async {
-        let service = WritingAIService()
-        let request = makeRequest(purpose: .referenceDeepening, primaryText: "Some manuscript text.")
-
-        await assertThrows(.invalidResponse) {
-            try await service.review(request: request, apiKey: nil)
-        }
-    }
-
-    func testReviewRejectsABlankDocument() async {
-        let service = WritingAIService()
-        let request = makeRequest(purpose: .polish(targetGrade: 8), primaryText: "   \n  ")
-
-        await assertThrows(.emptyDocument) {
-            try await service.review(request: request, apiKey: nil)
-        }
-    }
-
-    func testReviewRejectsADocumentOverTheSizeLimit() async {
-        let service = WritingAIService()
-        let oversized = String(repeating: "a", count: 160_001)
-        let request = makeRequest(purpose: .polish(targetGrade: 8), primaryText: oversized)
-
-        await assertThrows(.documentTooLarge) {
-            try await service.review(request: request, apiKey: nil)
-        }
-    }
-
     func testReferenceContextIncludesProfileSubjectsExcerptsAndLearnedInsights() {
         let chapter = ReferenceChapter(
             id: 0,
@@ -88,39 +60,5 @@ final class WritingAIServiceTests: XCTestCase {
         XCTAssertTrue(WritingAIError.invalidResponse.errorDescription?.contains("could not read") ?? false)
         XCTAssertEqual(WritingAIError.network("timed out").errorDescription, "The review could not connect: timed out")
         XCTAssertEqual(WritingAIError.api(status: 429, message: "rate limited").errorDescription, "The provider returned error 429: rate limited")
-    }
-
-    // MARK: - Helpers
-
-    private func makeRequest(purpose: AIRequestPurpose, primaryText: String) -> AIRequestPreview {
-        AIRequestPreview(
-            purpose: purpose,
-            provider: .ollama,
-            model: "local-model",
-            primaryLabel: "Markdown draft",
-            primaryText: primaryText,
-            styleGuide: nil,
-            includesStyleGuide: false,
-            referenceContext: nil,
-            includesReferenceContext: false,
-            sourceRange: nil,
-            sourceText: primaryText
-        )
-    }
-
-    private func assertThrows(
-        _ expected: WritingAIError,
-        file: StaticString = #filePath,
-        line: UInt = #line,
-        _ operation: () async throws -> AIReview
-    ) async {
-        do {
-            _ = try await operation()
-            XCTFail("expected \(expected) to be thrown", file: file, line: line)
-        } catch let error as WritingAIError {
-            XCTAssertEqual(error.errorDescription, expected.errorDescription, file: file, line: line)
-        } catch {
-            XCTFail("expected a WritingAIError, got \(error)", file: file, line: line)
-        }
     }
 }

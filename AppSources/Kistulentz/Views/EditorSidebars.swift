@@ -234,11 +234,7 @@ private struct StatCell: View {
 
 struct ReviewSidebar: View {
     let issues: [WritingIssue]
-    let review: AIReview?
-    let blockedAISuggestionCount: Int
-    let isReviewing: Bool
     let isRewriting: Bool
-    let provider: AIProvider
     let hasAPIKey: Bool
     let reference: EPUBReference?
     let alignment: ReferenceAlignment
@@ -251,7 +247,6 @@ struct ReviewSidebar: View {
     let onDecline: (WritingIssue) -> Void
     let onRewrite: (WritingIssue) -> Void
     let onApplyAll: () -> Void
-    let onReviewPolishedDraft: () -> Void
 
     private var hasApplicableSuggestions: Bool {
         issues.contains { $0.replacement != nil && $0.replacement != $0.excerpt }
@@ -278,7 +273,6 @@ struct ReviewSidebar: View {
                     Image(systemName: "arrow.clockwise")
                 }
                 .buttonStyle(.borderless)
-                .disabled(isReviewing)
                 .help("Run a safe local polish")
                 .accessibilityLabel("Run a safe local polish")
             }
@@ -296,59 +290,18 @@ struct ReviewSidebar: View {
                         onRemove: onRemoveReference
                     )
 
-                    if isReviewing {
-                        HStack(spacing: 10) {
-                            ProgressView().controlSize(.small)
-                            Text("\(provider.title) is polishing your draft…")
-                                .font(.callout)
-                                .foregroundStyle(.secondary)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(12)
-                        .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 11))
-                    } else if let review {
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack {
-                                Label("AI review", systemImage: "sparkles")
-                                    .font(.caption.weight(.semibold))
-                                    .foregroundStyle(Color.accentColor)
-                                Spacer()
-                                Text("Grade \(review.gradeEstimate, format: .number.precision(.fractionLength(1)))")
-                                    .font(.caption.monospacedDigit())
-                                    .foregroundStyle(.secondary)
-                            }
-                            Text(review.summary)
-                                .font(.callout)
-                                .foregroundStyle(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                            if blockedAISuggestionCount > 0 {
-                                Label(
-                                    "Kistulentz withheld \(blockedAISuggestionCount) AI suggestion\(blockedAISuggestionCount == 1 ? "" : "s") that conflicted with local rules.",
-                                    systemImage: "shield.checkered"
-                                )
-                                .font(.caption)
-                                .foregroundStyle(.orange)
-                            }
-                            Button("Review polished draft…", action: onReviewPolishedDraft)
-                                .buttonStyle(.borderedProminent)
-                                .controlSize(.small)
-                        }
-                        .padding(12)
-                        .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 11))
-                    } else {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Label("Local Polish is ready", systemImage: "checkmark.shield")
-                                .font(.caption.weight(.semibold))
-                            Text("Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Button("Polish Locally", action: onRunReview)
-                                .buttonStyle(.borderedProminent)
-                                .controlSize(.small)
-                        }
-                        .padding(12)
-                        .background(.background.opacity(0.75), in: RoundedRectangle(cornerRadius: 11))
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Local Polish is ready", systemImage: "checkmark.shield")
+                            .font(.caption.weight(.semibold))
+                        Text("Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Button("Polish Locally", action: onRunReview)
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.small)
                     }
+                    .padding(12)
+                    .background(.background.opacity(0.75), in: RoundedRectangle(cornerRadius: 11))
 
                     ForEach(issues) { issue in
                         IssueCard(

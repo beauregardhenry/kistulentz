@@ -260,14 +260,9 @@ struct EditorToolbar: View {
             .accessibilityValue(viewModel.referenceBook?.title ?? "No reference selected")
 
             Button(action: actions.runReview) {
-                if viewModel.isReviewing {
-                    ProgressView().controlSize(.small)
-                } else {
-                    Label("Polish", systemImage: "wand.and.stars")
-                }
+                Label("Polish", systemImage: "wand.and.stars")
             }
             .buttonStyle(.borderedProminent)
-            .disabled(viewModel.isReviewing)
             .help("Polish locally on this Mac (⇧⌘R)")
         }
         .padding(.horizontal, 16)
