@@ -104,6 +104,9 @@ final class BeneparLanguagePackManager: ObservableObject {
     private let catalogURL: URL
     private let fileManager: FileManager
     private let session: URLSession
+#if UI_TEST_HOST
+    private var uiInstallAttempt = 0
+#endif
 
     init(
         rootURL: URL = BeneparLanguagePackLocator.defaultRootURL(),
@@ -144,6 +147,40 @@ final class BeneparLanguagePackManager: ObservableObject {
         errorMessage = nil
         activityMessage = "Checking the English language pack…"
 #if UI_TEST_HOST
+        if let sequence = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_BENEPAR_INSTALL_SEQUENCE"],
+           !sequence.isEmpty {
+            let outcomes = sequence.split(separator: ",").map {
+                $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            }
+            let outcome = outcomes[min(uiInstallAttempt, outcomes.count - 1)]
+            uiInstallAttempt += 1
+            if let delayValue = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_BENEPAR_INSTALL_DELAY_MS"],
+               let delayMilliseconds = UInt64(delayValue) {
+                do {
+                    try await Task.sleep(for: .milliseconds(delayMilliseconds))
+                } catch {
+                    activityMessage = "English language-pack installation cancelled."
+                    isInstalling = false
+                    return
+                }
+            }
+            if outcome == "success" {
+                do {
+                    try installUITestPack()
+                    refresh()
+                    activityMessage = "English structural analysis is ready."
+                } catch {
+                    errorMessage = error.localizedDescription
+                    activityMessage = ""
+                }
+            } else {
+                errorMessage = "The simulated English language-pack download failed. Try again."
+                refresh()
+                activityMessage = ""
+            }
+            isInstalling = false
+            return
+        }
         if let delayValue = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_BENEPAR_INSTALL_DELAY_MS"],
            let delayMilliseconds = UInt64(delayValue) {
             do {
@@ -223,6 +260,33 @@ final class BeneparLanguagePackManager: ObservableObject {
         }
         isInstalling = false
     }
+
+#if UI_TEST_HOST
+    private func installUITestPack() throws {
+        let runtime = rootURL.appendingPathComponent("bin/python", isDirectory: false)
+        let model = rootURL.appendingPathComponent("model", isDirectory: true)
+        try fileManager.createDirectory(
+            at: runtime.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+        try fileManager.createDirectory(at: model, withIntermediateDirectories: true)
+        try "#!/bin/sh\nexit 0\n".write(to: runtime, atomically: true, encoding: .utf8)
+        try fileManager.setAttributes([.posixPermissions: 0o755], ofItemAtPath: runtime.path)
+        let manifest = BeneparLanguagePackManifest(
+            schemaVersion: BeneparLanguagePackLocator.schemaVersion,
+            identifier: BeneparLanguagePackLocator.identifier,
+            version: "ui-test",
+            architecture: BeneparLanguagePackLocator.architecture,
+            pythonRelativePath: "bin/python",
+            modelRelativePath: "model",
+            installedBytes: 1
+        )
+        try JSONEncoder().encode(manifest).write(
+            to: rootURL.appendingPathComponent("manifest.json"),
+            options: .atomic
+        )
+    }
+#endif
 
     func remove() async {
         do {

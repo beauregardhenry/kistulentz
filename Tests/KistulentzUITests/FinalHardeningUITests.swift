@@ -118,9 +118,8 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         let restore = app.buttons["Restore…"]
         XCTAssertTrue(restore.waitForExistence(timeout: 3))
         restore.click()
-        let confirm = app.buttons["Restore Snapshot"]
+        let confirm = app.sheets.firstMatch.buttons["Restore Snapshot"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 3))
-        // Wait for button to be hittable before clicking - dialog may take time to become interactive
         waitForHittable(confirm, timeout: 3)
         confirm.click()
         waitUntil(description: "Restoring a snapshot should put its exact bytes in the editor") {
@@ -169,7 +168,10 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         installBeneparFromSettings()
         let failure = app.staticTexts["The simulated English language-pack download failed. Try again."]
         XCTAssertTrue(failure.waitForExistence(timeout: 5))
-        app.buttons["OK"].click()
+        let acknowledgeFailure = app.sheets.firstMatch.buttons["OK"]
+        XCTAssertTrue(acknowledgeFailure.waitForExistence(timeout: 3))
+        waitForHittable(acknowledgeFailure, timeout: 3)
+        acknowledgeFailure.click()
         XCTAssertTrue(app.buttons["InstallBeneparPack"].waitForExistence(timeout: 3))
 
         installBeneparFromSettings()
@@ -179,8 +181,9 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         XCTAssertTrue(status.label.contains("ui-test") || value(of: status).contains("ui-test"))
 
         remove.click()
-        let confirmRemoval = app.buttons["Remove"].firstMatch
+        let confirmRemoval = app.sheets.firstMatch.buttons["Remove"]
         XCTAssertTrue(confirmRemoval.waitForExistence(timeout: 3))
+        waitForHittable(confirmRemoval, timeout: 3)
         confirmRemoval.click()
         XCTAssertTrue(app.buttons["InstallBeneparPack"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["English language pack removed. Native analysis remains active."].exists)
@@ -286,15 +289,15 @@ final class FinalHardeningUITests: KistulentzUITestCase {
         while !element.isHittable && Date() < deadline {
             usleep(50_000) // 50ms
         }
+        XCTAssertTrue(element.isHittable, "The confirmation control did not become clickable in time.")
     }
 
     private func installBeneparFromSettings() {
         let install = app.buttons["InstallBeneparPack"]
         XCTAssertTrue(install.waitForExistence(timeout: 5))
         install.click()
-        let confirm = app.buttons["Download and Install"]
+        let confirm = app.sheets.firstMatch.buttons["Download and Install"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 3))
-        // Wait for button to be hittable before clicking - dialog may take time to become interactive
         waitForHittable(confirm, timeout: 3)
         confirm.click()
     }

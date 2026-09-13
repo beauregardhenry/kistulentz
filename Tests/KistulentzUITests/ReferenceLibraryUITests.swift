@@ -63,7 +63,7 @@ final class ReferenceLibraryUITests: KistulentzUITestCase {
         XCTAssertFalse(app.staticTexts["Preview Reference Analysis"].waitForExistence(timeout: 3))
 
         app.buttons["Use Selected"].click()
-        XCTAssertFalse(app.staticTexts["Reference Library"].waitForExistence(timeout: 3))
+        XCTAssertFalse(importMenu.waitForExistence(timeout: 3))
         waitUntil(description: "The combined reference should be visible in the editor toolbar") {
             let control = self.app.descendants(matching: .any)["ReferenceMenu"].firstMatch
             return control.label.contains("2 combined references")
@@ -113,7 +113,7 @@ final class ReferenceLibraryUITests: KistulentzUITestCase {
         let done = app.buttons["Done"]
         XCTAssertTrue(done.isEnabled)
         done.click()
-        XCTAssertFalse(app.staticTexts["Reference Library"].waitForExistence(timeout: 3))
+        XCTAssertFalse(done.waitForExistence(timeout: 3))
         XCTAssertTrue(app.windows.firstMatch.exists)
 
         let indexURL = library.appendingPathComponent(".kistulentz/library.json")
@@ -132,6 +132,6 @@ final class ReferenceLibraryUITests: KistulentzUITestCase {
         let item = app.menuItems["Reference Library…"]
         XCTAssertTrue(item.waitForExistence(timeout: 3))
         item.click()
-        XCTAssertTrue(app.staticTexts["Create a Reference Library"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Choose Library Folder"].waitForExistence(timeout: 5))
     }
 }

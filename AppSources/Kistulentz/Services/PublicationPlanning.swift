@@ -45,7 +45,15 @@ enum PublicationDisk {
         if source == destination.standardizedFileURL {
             return "\(WritingProjectDisk.metadataDirectoryName)/\(assetsDirectoryName)/\(fileName)"
         }
-        if FileManager.default.fileExists(atPath: destination.path) { try FileManager.default.removeItem(at: destination) }
+        if FileManager.default.fileExists(atPath: destination.path) {
+            let values = try destination.resourceValues(forKeys: [.isDirectoryKey])
+            guard values.isDirectory != true else {
+                throw PublicationExportError.outputCreationFailed(
+                    "A folder already occupies the managed publication asset name \(fileName)."
+                )
+            }
+            try FileManager.default.removeItem(at: destination)
+        }
         try FileManager.default.copyItem(at: source, to: destination)
         return "\(WritingProjectDisk.metadataDirectoryName)/\(assetsDirectoryName)/\(fileName)"
     }

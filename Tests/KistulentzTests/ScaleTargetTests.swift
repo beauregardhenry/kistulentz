@@ -204,6 +204,103 @@ final class ScaleTargetTests: XCTestCase {
         XCTAssertLessThan(cancelledReport.completedDocumentCount, cancellationDocuments.count)
     }
 
+    func testRepeatedProjectEditSnapshotSearchAndReopenEndurance() throws {
+        try XCTSkipUnless(scaleTestsEnabled, "Run with KISTULENTZ_RUN_SCALE_TESTS=1.")
+        let parent = temporaryDirectory("Endurance")
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Repeated Lifecycle", kind: .nonfiction)
+        let path = "Draft.md"
+        let started = ContinuousClock.now
+
+        for cycle in 0..<100 {
+            let manifest = try WritingProjectDisk.loadManifest(at: root)
+            let chapters = try WritingProjectDisk.loadChapters(at: root, manifest: manifest)
+            let prior = try WritingProjectDisk.readChapter(path, at: root)
+            _ = try WritingProjectDisk.createSnapshot(
+                chapterPath: path,
+                content: prior,
+                name: "Cycle \(cycle)",
+                reason: "Endurance checkpoint",
+                at: root
+            )
+            let marker = "ENDURANCE-CYCLE-\(cycle)"
+            let updated = prior + "\n\(marker)\n"
+            try WritingProjectDisk.writeChapter(updated, relativePath: path, at: root)
+
+            _ = try ProjectCompatibilityManager.prepareForOpen(at: root)
+            XCTAssertEqual(try WritingProjectDisk.readChapter(path, at: root), updated)
+            let reopenedManifest = try WritingProjectDisk.loadManifest(at: root)
+            let reopenedChapters = try WritingProjectDisk.loadChapters(at: root, manifest: reopenedManifest)
+            let matches = try WritingProjectDisk.search(marker, chapters: reopenedChapters, at: root)
+            XCTAssertEqual(matches.count, 1, "cycle \(cycle)")
+            XCTAssertEqual(chapters.map(\.relativePath), reopenedChapters.map(\.relativePath))
+        }
+
+        Self.assertWithinBudget(
+            "project-lifecycle-100-cycles",
+            since: started,
+            environmentKey: "KISTULENTZ_BUDGET_PROJECT_LIFECYCLE_SECONDS",
+            defaultSeconds: 15
+        )
+        XCTAssertEqual(try WritingProjectDisk.loadSnapshots(at: root).count, 100)
+        XCTAssertTrue(try WritingProjectDisk.readChapter(path, at: root).contains("ENDURANCE-CYCLE-99"))
+    }
+
+    func testRepeatedPublicationExportEnduranceLeavesReadablePackagesAndNoStagingDirectories() throws {
+        try XCTSkipUnless(scaleTestsEnabled, "Run with KISTULENTZ_RUN_SCALE_TESTS=1.")
+        let root = temporaryDirectory("Publication-Endurance")
+        let outputRoot = temporaryDirectory("Publication-Outputs")
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outputRoot)
+        }
+        try "# Opening\n\nA stable chapter for repeated export.\n".write(
+            to: root.appendingPathComponent("Opening.md"), atomically: true, encoding: .utf8
+        )
+        var archive = PublicationArchive(projectName: "Endurance Book", projectKind: .fiction)
+        archive.metadata.authors = ["Test Author"]
+        var profile = try XCTUnwrap(archive.profiles.first(where: { $0.kind == .fictionBook }))
+        profile.includeCover = false
+        profile.includeBibliography = false
+        let plan = PublicationPlanBuilder.build(
+            projectName: "Endurance Book",
+            root: root,
+            outline: [OutlineNode(title: "Opening", kind: .chapter, relativePath: "Opening.md")],
+            archive: archive,
+            bibliography: ProjectBibliographyArchive(),
+            librarySources: [],
+            profile: profile,
+            format: .epub
+        )
+        let started = ContinuousClock.now
+        let stagingBefore = try Set(FileManager.default.contentsOfDirectory(atPath: FileManager.default.temporaryDirectory.path)
+            .filter { $0.hasPrefix("Kistulentz-EPUB-") })
+
+        for cycle in 0..<20 {
+            let output = outputRoot.appendingPathComponent("Cycle-\(cycle)", isDirectory: true)
+            try FileManager.default.createDirectory(at: output, withIntermediateDirectories: false)
+            let result = try PublicationExporter.export(
+                plan: plan,
+                root: root,
+                outputDirectory: output,
+                allowingWarnings: true
+            )
+            XCTAssertTrue(FileManager.default.fileExists(atPath: result.outputURL.path))
+            XCTAssertGreaterThan(result.byteCount, 0)
+            XCTAssertEqual(result.sha256.count, 64)
+        }
+
+        Self.assertWithinBudget(
+            "publication-export-20-cycles",
+            since: started,
+            environmentKey: "KISTULENTZ_BUDGET_PUBLICATION_ENDURANCE_SECONDS",
+            defaultSeconds: 20
+        )
+        let stagingAfter = try Set(FileManager.default.contentsOfDirectory(atPath: FileManager.default.temporaryDirectory.path)
+            .filter { $0.hasPrefix("Kistulentz-EPUB-") })
+        XCTAssertEqual(stagingAfter, stagingBefore)
+    }
+
     private func temporaryDirectory(_ suffix: String) -> URL {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent("Kistulentz-Scale-\(suffix)-\(UUID().uuidString)", isDirectory: true)

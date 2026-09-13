@@ -68,6 +68,7 @@ struct ManuscriptInsightsView: View {
             }
             .pickerStyle(.segmented)
             .labelsHidden()
+            .accessibilityIdentifier("ManuscriptInsightsTab")
             .padding(.horizontal, 16)
             .padding(.bottom, 12)
 
@@ -200,6 +201,7 @@ struct ManuscriptInsightsView: View {
             ))
             .font(.system(size: 13.5, design: .monospaced))
             .padding(10)
+            .accessibilityIdentifier("ProjectBibleEditor")
         }
     }
 
@@ -276,6 +278,7 @@ struct ManuscriptInsightsView: View {
                         }
                     }
                     .frame(width: 190)
+                    .accessibilityIdentifier("BetaReaderScope")
                     Button(action: runLocalBeta) {
                         if isRunningLocalBeta {
                             ProgressView().controlSize(.small)
@@ -285,6 +288,7 @@ struct ManuscriptInsightsView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .disabled(isRunningLocalBeta || !scopeIsAvailable)
+                    .accessibilityIdentifier("RunLocalBetaReader")
                     Button(action: prepareAIBeta) {
                         Label("Deepen w/ AI", systemImage: "sparkles")
                     }
@@ -304,6 +308,7 @@ struct ManuscriptInsightsView: View {
                         LazyVStack(alignment: .leading, spacing: 14) {
                             ForEach(feedback) { item in
                                 BetaFeedbackCard(feedback: item)
+                                    .accessibilityIdentifier("BetaReaderFeedback-\(item.id.uuidString)")
                             }
                         }
                         .padding(16)
@@ -584,12 +589,14 @@ private struct CustomBetaReaderEditor: View {
                 .font(.headline)
             TextField("Reader name", text: $name)
                 .textFieldStyle(.roundedBorder)
+                .accessibilityIdentifier("CustomBetaReaderName")
             Text("What should this reader pay attention to?")
                 .font(.caption.weight(.semibold))
             TextEditor(text: $focus)
                 .font(.body)
                 .frame(height: 110)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(.separator))
+                .accessibilityIdentifier("CustomBetaReaderFocus")
             Picker("Best for", selection: $audience) {
                 ForEach(BetaReaderAudience.allCases) { value in
                     Text(value.title).tag(value)
@@ -609,6 +616,7 @@ private struct CustomBetaReaderEditor: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || focus.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .accessibilityIdentifier("SaveCustomBetaReader")
             }
         }
         .padding(20)

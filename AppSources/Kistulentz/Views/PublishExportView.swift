@@ -58,7 +58,6 @@ struct PublishExportView: View {
             }
         }
         .frame(minWidth: 1040, minHeight: 720)
-        .accessibilityIdentifier("PublishExportView")
         .onAppear { model.load(sources: researchLibrary.sources) }
         .onChange(of: researchLibrary.sources) { _, sources in model.updateSources(sources) }
         .onDisappear {
@@ -98,6 +97,7 @@ struct PublishExportView: View {
                     Picker("Format", selection: $model.format) {
                         ForEach(PublicationExportFormat.allCases) { Text($0.title).tag($0) }
                     }
+                    .accessibilityIdentifier("PublicationFormatPicker")
                     .onChange(of: model.format) { _, _ in model.refreshPlan(preservingTemporaryPlan: true) }
                 }
                 VStack(alignment: .leading, spacing: 7) {

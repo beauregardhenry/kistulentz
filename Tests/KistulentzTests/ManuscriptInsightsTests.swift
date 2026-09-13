@@ -200,6 +200,146 @@ final class ManuscriptInsightsTests: XCTestCase {
         }
     }
 
+    func testLocalBetaReaderReportsEmptyScopesWithoutInventingStrengths() {
+        let profile = BetaReaderProfile(
+            name: "Complete Reader",
+            focus: "structure character continuity evidence clarity",
+            audience: .general
+        )
+
+        let result = BetaReaderEngine.read(
+            profile: profile,
+            scope: .selection,
+            projectName: "Empty",
+            kind: .fiction,
+            documents: [],
+            targetGrade: 8
+        )
+
+        XCTAssertTrue(result.concerns.contains("This scope contains no prose to assess yet."))
+        XCTAssertFalse(result.strengths.contains { $0.contains("enough for") })
+        XCTAssertTrue(result.questions.contains { $0.contains("clear purpose") })
+        XCTAssertTrue(result.questions.contains { $0.contains("project Bible") })
+        XCTAssertTrue(result.questions.contains { $0.contains("central person's") })
+        XCTAssertEqual(result.source, .local)
+    }
+
+    func testLocalBetaReaderSurfacesImbalancedSectionsAndHighReadingGrade() {
+        let short = ManuscriptDocument(relativePath: "Short.md", title: "Short", text: "Mara waits.")
+        let denseSentence = Array(repeating: "interdisciplinary", count: 90).joined(separator: " ") + "."
+        let long = ManuscriptDocument(
+            relativePath: "Long.md",
+            title: "Long",
+            text: Array(repeating: "Mara says, \"We must leave this harbor right now.\"", count: 100).joined(separator: "\n")
+                + "\n\n"
+                + Array(repeating: denseSentence, count: 8).joined(separator: "\n\n")
+        )
+        let profile = BetaReaderProfile(
+            name: "Structure and Character",
+            focus: "overall structure momentum character emotion relationship clarity accessibility",
+            audience: .general
+        )
+
+        let result = BetaReaderEngine.read(
+            profile: profile,
+            scope: .manuscript,
+            projectName: "Uneven",
+            kind: .fiction,
+            documents: [short, long],
+            targetGrade: 1
+        )
+
+        XCTAssertTrue(result.concerns.contains { $0.contains("above the grade 1 target") })
+        XCTAssertTrue(result.concerns.contains { $0.contains("Section lengths range") })
+        XCTAssertTrue(result.strengths.contains { $0.contains("Dialogue or quoted speech") })
+        XCTAssertLessThanOrEqual(result.strengths.count, 6)
+        XCTAssertLessThanOrEqual(result.concerns.count, 6)
+        XCTAssertLessThanOrEqual(result.questions.count, 6)
+        XCTAssertEqual(Set(result.strengths).count, result.strengths.count)
+        XCTAssertEqual(Set(result.concerns).count, result.concerns.count)
+        XCTAssertEqual(Set(result.questions).count, result.questions.count)
+    }
+
+    func testLocalBetaReaderSeparatesEvidenceAndContinuitySignals() {
+        let documents = [
+            ManuscriptDocument(
+                relativePath: "One.md",
+                title: "One",
+                text: "# One\n\nResearch shows 72% of Harbor residents support the policy. Mara arrived in 2024."
+            ),
+            ManuscriptDocument(
+                relativePath: "Two.md",
+                title: "Two",
+                text: "# Two\n\nResearch shows 81% of Harbor residents support the policy. Maraa arrived in 2025."
+            )
+        ]
+
+        let evidence = BetaReaderEngine.read(
+            profile: BetaReaderProfile(name: "Evidence", focus: "evidence claims sources skeptical", audience: .nonfiction),
+            scope: .manuscript,
+            projectName: "Policy",
+            kind: .nonfiction,
+            documents: documents,
+            targetGrade: 12
+        )
+        let continuity = BetaReaderEngine.read(
+            profile: BetaReaderProfile(name: "Continuity", focus: "continuity chronology terminology", audience: .general),
+            scope: .manuscript,
+            projectName: "Policy",
+            kind: .nonfiction,
+            documents: documents,
+            targetGrade: 12
+        )
+
+        XCTAssertTrue(evidence.concerns.contains { $0.contains("claim-style") })
+        XCTAssertTrue(evidence.questions.contains { $0.contains("sourced fact") })
+        XCTAssertTrue(continuity.questions.contains { $0.contains("project Bible") })
+        XCTAssertTrue(evidence.summary.contains("does not simulate a human reader"))
+        XCTAssertTrue(continuity.summary.contains("does not simulate a human reader"))
+    }
+
+    func testManuscriptContextRespectsItsBudgetAndSamplesBeginningMiddleAndEnd() {
+        let longReport = "REPORT-BEGIN " + String(repeating: "r", count: 20_000) + " REPORT-END"
+        let longBible = "BIBLE-BEGIN " + String(repeating: "b", count: 20_000) + " BIBLE-END"
+        let documents = (0..<100).map { index in
+            ManuscriptDocument(
+                relativePath: "Section-\(index).md",
+                title: "Section \(index)",
+                text: "DOC-\(index)-BEGIN " + String(repeating: "word ", count: 2_000) + " DOC-\(index)-END"
+            )
+        }
+
+        let context = ManuscriptAnalyzer.context(
+            documents: documents,
+            report: longReport,
+            bible: longBible,
+            maximumCharacters: 80_000
+        )
+
+        XCTAssertLessThanOrEqual(context.count, 81_000, "Markup overhead must remain tightly bounded.")
+        XCTAssertTrue(context.contains("REPORT-BEGIN"))
+        XCTAssertTrue(context.contains("REPORT-END"))
+        XCTAssertTrue(context.contains("BIBLE-BEGIN"))
+        XCTAssertTrue(context.contains("BIBLE-END"))
+        XCTAssertTrue(context.contains("path=\"Section-0.md\""))
+        XCTAssertTrue(context.contains("path=\"Section-99.md\""), "Even sampling must retain the manuscript ending.")
+        XCTAssertTrue(context.contains("[…middle excerpt…]"))
+        XCTAssertTrue(context.contains("[…ending excerpt…]"))
+    }
+
+    func testManuscriptContextUsesTheMinimumSafeBudgetForTinyRequests() {
+        let context = ManuscriptAnalyzer.context(
+            documents: [ManuscriptDocument(relativePath: "Draft.md", title: "Draft", text: String(repeating: "draft ", count: 4_000))],
+            report: String(repeating: "report ", count: 3_000),
+            bible: String(repeating: "bible ", count: 3_000),
+            maximumCharacters: 10
+        )
+
+        XCTAssertGreaterThan(context.count, 1_000)
+        XCTAssertLessThan(context.count, 9_000)
+        XCTAssertTrue(context.contains("<local_manuscript_report>"))
+    }
+
     func testManuscriptModelIdentitiesRemainStableAcrossCaseAndLocationChanges() {
         let entity = ManuscriptEntity(
             name: "North Harbor",

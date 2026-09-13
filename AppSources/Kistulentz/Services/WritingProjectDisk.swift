@@ -193,8 +193,9 @@ enum WritingProjectDisk {
 
         let id = UUID()
         let fileName = "\(id.uuidString).md"
+        let snapshotURL = historyURL(at: root).appendingPathComponent(fileName)
         try content.write(
-            to: historyURL(at: root).appendingPathComponent(fileName),
+            to: snapshotURL,
             atomically: true,
             encoding: .utf8
         )
@@ -208,7 +209,14 @@ enum WritingProjectDisk {
             fileName: fileName
         )
         index.snapshots.append(snapshot)
-        try saveSnapshotIndex(index, at: root)
+        do {
+            try saveSnapshotIndex(index, at: root)
+        } catch {
+            // The index is the commit point. Do not strand an unreferenced manuscript copy when
+            // its index cannot be written (for example, disk-full or permission failures).
+            try? FileManager.default.removeItem(at: snapshotURL)
+            throw error
+        }
         return snapshot
     }
 

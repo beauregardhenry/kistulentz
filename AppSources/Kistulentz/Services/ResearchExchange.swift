@@ -7,15 +7,23 @@ enum ResearchExchange {
         let sources: [ResearchSource]
         switch ext {
         case "bib", "bibtex":
-            sources = parseBibTeX(String(data: data, encoding: .utf8) ?? "")
+            guard let text = String(data: data, encoding: .utf8), hasBalancedBibTeXDelimiters(text) else {
+                throw ResearchLibraryError.unsupportedImport
+            }
+            sources = parseBibTeX(text)
         case "ris":
-            sources = parseRIS(String(data: data, encoding: .utf8) ?? "")
+            guard let text = String(data: data, encoding: .utf8), hasCompleteRISRecords(text) else {
+                throw ResearchLibraryError.unsupportedImport
+            }
+            sources = parseRIS(text)
         case "json", "csljson":
             sources = try parseCSLJSON(data)
         default:
             if let parsed = try? parseCSLJSON(data), !parsed.isEmpty { sources = parsed }
-            else if let text = String(data: data, encoding: .utf8), text.contains("TY  -") { sources = parseRIS(text) }
-            else if let text = String(data: data, encoding: .utf8), text.contains("@") { sources = parseBibTeX(text) }
+            else if let text = String(data: data, encoding: .utf8),
+                    text.contains("TY  -"), hasCompleteRISRecords(text) { sources = parseRIS(text) }
+            else if let text = String(data: data, encoding: .utf8),
+                    text.contains("@"), hasBalancedBibTeXDelimiters(text) { sources = parseBibTeX(text) }
             else { throw ResearchLibraryError.unsupportedImport }
         }
         guard !sources.isEmpty else { throw ResearchLibraryError.unsupportedImport }
@@ -153,6 +161,56 @@ enum ResearchExchange {
                 keywords: (item["keyword"] as? String)?.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) } ?? []
             )
         }
+    }
+
+    private static func hasCompleteRISRecords(_ text: String) -> Bool {
+        var insideRecord = false
+        var completed = 0
+        for line in text.components(separatedBy: .newlines) {
+            guard line.count >= 5, line.dropFirst(2).hasPrefix("  -") else { continue }
+            switch String(line.prefix(2)) {
+            case "TY":
+                guard !insideRecord else { return false }
+                insideRecord = true
+            case "ER":
+                guard insideRecord else { return false }
+                insideRecord = false
+                completed += 1
+            default:
+                continue
+            }
+        }
+        return completed > 0 && !insideRecord
+    }
+
+    private static func hasBalancedBibTeXDelimiters(_ text: String) -> Bool {
+        var braces = 0
+        var parentheses = 0
+        var escaped = false
+        var foundRecord = false
+        for character in text {
+            if escaped {
+                escaped = false
+                continue
+            }
+            if character == "\\" {
+                escaped = true
+                continue
+            }
+            switch character {
+            case "@": foundRecord = true
+            case "{": braces += 1
+            case "}":
+                braces -= 1
+                if braces < 0 { return false }
+            case "(": parentheses += 1
+            case ")":
+                parentheses -= 1
+                if parentheses < 0 { return false }
+            default: break
+            }
+        }
+        return foundRecord && braces == 0 && parentheses == 0
     }
 
     private static func parseBibTeX(_ text: String) -> [ResearchSource] {

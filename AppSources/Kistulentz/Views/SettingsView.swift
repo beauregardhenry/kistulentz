@@ -63,6 +63,7 @@ struct SettingsView: View {
                             Text("Grade \(grade)").tag(grade)
                         }
                     }
+                    .accessibilityIdentifier("TargetReadingGrade")
 
                     Picker("Font", selection: $settings.editorFontName) {
                         Text("System Default").tag("")
@@ -110,6 +111,7 @@ struct SettingsView: View {
                             systemImage: beneparPack.isInstalled ? "checkmark.circle.fill" : "circle"
                         )
                         .foregroundStyle(beneparPack.isInstalled ? Color.green : Color.secondary)
+                        .accessibilityIdentifier("BeneparPackStatus")
                     }
                 }
 
@@ -128,11 +130,13 @@ struct SettingsView: View {
                         Button("Remove English Pack…", role: .destructive) {
                             showingLanguagePackRemovalConfirmation = true
                         }
+                        .accessibilityIdentifier("RemoveBeneparPack")
                     } else {
                         Button("Install English Pack…") {
                             showingLanguagePackConfirmation = true
                         }
                         .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("InstallBeneparPack")
                     }
                     Spacer()
                     Text("Native analysis always remains available")

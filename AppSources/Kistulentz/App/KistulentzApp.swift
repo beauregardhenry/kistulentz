@@ -6,8 +6,8 @@ struct KistulentzApp: App {
     @NSApplicationDelegateAdaptor(KistulentzAppDelegate.self) private var appDelegate
     @StateObject private var settings = AppSettings()
     @StateObject private var beneparPack = BeneparLanguagePackManager()
-    @StateObject private var referenceLibrary = ReferenceLibraryStore()
-    @StateObject private var researchLibrary = ResearchLibraryStore()
+    @StateObject private var referenceLibrary: ReferenceLibraryStore
+    @StateObject private var researchLibrary: ResearchLibraryStore
     @StateObject private var draftRecovery = DraftRecoveryManager.shared
 #if UI_TEST_HOST
     @State private var uiTestDocument: MarkdownDocument
@@ -17,6 +17,21 @@ struct KistulentzApp: App {
     init() {
 #if UI_TEST_HOST
         let environment = ProcessInfo.processInfo.environment
+        let defaults: UserDefaults
+        if let suiteName = environment["KISTULENTZ_UI_TEST_DEFAULTS_SUITE"],
+           !suiteName.isEmpty,
+           let isolatedDefaults = UserDefaults(suiteName: suiteName) {
+            defaults = isolatedDefaults
+        } else {
+            defaults = .standard
+        }
+        _referenceLibrary = StateObject(
+            wrappedValue: ReferenceLibraryStore(defaults: defaults)
+        )
+        _researchLibrary = StateObject(
+            wrappedValue: ResearchLibraryStore(defaults: defaults)
+        )
+
         let text: String
         if let path = environment["KISTULENTZ_UI_TEST_DOCUMENT_PATH"],
            let loaded = try? String(contentsOfFile: path, encoding: .utf8) {
@@ -27,6 +42,9 @@ struct KistulentzApp: App {
             text = MarkdownDocument().text
         }
         _uiTestDocument = State(initialValue: MarkdownDocument(text: text))
+#else
+        _referenceLibrary = StateObject(wrappedValue: ReferenceLibraryStore())
+        _researchLibrary = StateObject(wrappedValue: ResearchLibraryStore())
 #endif
     }
 

@@ -8,6 +8,45 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.18.0] - 2026-09-13
+
+### Fixed
+
+- Snapshot creation now removes an uncommitted manuscript copy when its history index cannot be
+  saved. Reference-library regeneration commits its JSON index only after every derived Markdown
+  file succeeds, and publication settings remain at their last persisted value after a failed
+  save.
+- A publication cover collision with an existing folder is refused without deleting that folder
+  or its contents.
+- Managed research attachments can no longer use corrupt relative paths to read or delete files
+  outside their library. Imported asset names also remove path traversal, separators, and control
+  characters before anything is written.
+- HTML import strips executable link schemes and event-handler attributes. Malformed BibTeX, RIS,
+  CSL-JSON, ODT, RTF, and RTFD inputs are rejected without producing partial sources or Markdown.
+- Long-manuscript AI context now stays within its requested character budget, distributes space
+  across every selected section, and always samples both the beginning and ending.
+- Large De-stink reviews now expose a working Cancel action and discard obsolete background
+  results instead of continuing to occupy the editor.
+
+### Testing
+
+- Added transactional failure tests for snapshots, publication metadata and assets, reference
+  indexes, imported assets, and managed research attachments.
+- Added hostile and malformed import coverage for HTML, EPUB, bibliography exchange, office,
+  rich-text, path traversal, filename collisions, and temporary-file cleanup.
+- Added provider-boundary tests for empty, oversized, wrong-purpose, malformed, schema-invalid,
+  and fenced-JSON writing requests, plus deeper local beta-reader and manuscript-context coverage.
+- Added a frozen upgrade-fixture matrix covering every prior project schema without changing
+  manuscript Markdown.
+- Added opt-in endurance tests for repeated edit/snapshot/search/reopen cycles, repeated publication
+  exports, 2,000-document projects, 5,000-book reference libraries, and 1,000-file imports.
+- Added nine end-to-end interface journeys covering project search, Bible and beta-reader
+  persistence, named snapshots, reading-grade preferences, English-pack failure and retry, DOCX
+  and PDF publication, De-stink filtering/navigation, and large-analysis cancellation. UI tests now
+  use isolated preferences so they cannot open or modify a tester's real libraries.
+- The verified suite now contains 629 Swift tests and 51 macOS interface tests. App-source line
+  coverage outside the view layer is 88.85%.
+
 ## [0.17.3] - 2026-09-13
 
 ### Fixed

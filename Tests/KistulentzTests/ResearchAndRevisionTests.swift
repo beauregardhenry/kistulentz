@@ -100,6 +100,48 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertEqual(ResearchLibraryDisk.attachmentURL(linked, at: root), original.standardizedFileURL)
     }
 
+    func testCorruptManagedAttachmentPathsCannotReadOrDeleteOutsideTheLibrary() throws {
+        let parent = temporaryDirectory()
+        let root = parent.appendingPathComponent("Library", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: parent) }
+        try ResearchLibraryDisk.prepare(at: root)
+        let sentinel = parent.appendingPathComponent("outside.txt")
+        try "private author data".write(to: sentinel, atomically: true, encoding: .utf8)
+        let attachment = ResearchAttachment(
+            displayName: "outside.txt",
+            kind: .text,
+            storage: .managedCopy,
+            storedRelativePath: "../outside.txt",
+            originalPath: sentinel.path,
+            extractedTextRelativePath: "../outside.txt",
+            extractionStatus: .extracted
+        )
+
+        XCTAssertNil(ResearchLibraryDisk.loadExtractedText(for: attachment, at: root))
+        XCTAssertNotEqual(ResearchLibraryDisk.attachmentURL(attachment, at: root), sentinel)
+        try ResearchLibraryDisk.removeManagedAttachment(attachment, at: root)
+        try ResearchLibraryDisk.removeExtractedText(relativePath: "../outside.txt", at: root)
+
+        XCTAssertEqual(try String(contentsOf: sentinel, encoding: .utf8), "private author data")
+    }
+
+    func testMalformedResearchExchangeFilesAreRejectedWithoutPartialSources() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let fixtures: [(String, Data)] = [
+            ("broken.bib", Data("@book{missing, title={Never closes}".utf8)),
+            ("broken.ris", Data("TY  - BOOK\nTI  - Missing terminator".utf8)),
+            ("broken.json", Data(#"[{"id":"x","title":12}]"#.utf8)),
+            ("binary.bib", Data([0xFF, 0xFE, 0x00, 0xD8]))
+        ]
+
+        for (name, data) in fixtures {
+            let url = root.appendingPathComponent(name)
+            try data.write(to: url)
+            XCTAssertThrowsError(try ResearchExchange.importSources(from: url), name)
+        }
+    }
+
     func testPlainTextAttachmentExtractsLocally() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }

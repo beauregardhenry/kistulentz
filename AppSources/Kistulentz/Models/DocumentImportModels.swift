@@ -232,11 +232,19 @@ struct DocumentImportSaveResult: Equatable, Sendable {
 enum DocumentImportFilename {
     static func safe(_ proposed: String) -> String {
         let fallback = "attachment"
-        let clean = proposed
+        var clean = proposed
+            .unicodeScalars
+            .filter { !CharacterSet.controlCharacters.contains($0) }
+            .map(String.init)
+            .joined()
             .replacingOccurrences(of: "/", with: "-")
             .replacingOccurrences(of: "\\", with: "-")
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        return clean.isEmpty || clean == "." || clean == ".." ? fallback : clean
+        while clean.contains("..") {
+            clean = clean.replacingOccurrences(of: "..", with: ".")
+        }
+        clean = clean.trimmingCharacters(in: CharacterSet(charactersIn: "."))
+        return clean.isEmpty ? fallback : clean
     }
 }
 

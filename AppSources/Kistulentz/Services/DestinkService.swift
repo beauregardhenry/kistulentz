@@ -17,6 +17,7 @@ enum DestinkService {
         for document in documents {
             guard !Task.isCancelled else { break }
             let local = DestinkEngine.analyze(document.text)
+            guard !Task.isCancelled else { break }
             let parsed = useBenepar
                 ? await benepar.destinkIfAvailable(
                     text: document.text,
@@ -53,12 +54,19 @@ enum DestinkEngine {
     static func analyze(_ text: String) -> [DestinkFinding] {
         guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return [] }
         let prose = markdownProse(text)
+        guard !Task.isCancelled else { return [] }
         var findings = leakageFindings(in: text)
+        guard !Task.isCancelled else { return [] }
         findings += phraseFindings(in: prose, original: text)
+        guard !Task.isCancelled else { return [] }
         findings += syntacticFindings(in: prose, original: text)
+        guard !Task.isCancelled else { return [] }
         findings += formattingFindings(in: text)
+        guard !Task.isCancelled else { return [] }
         findings += discourseFindings(in: prose, original: text)
+        guard !Task.isCancelled else { return [] }
         findings += nativeAITellFindings(in: prose, original: text, existing: findings)
+        guard !Task.isCancelled else { return [] }
         findings += claudeCooccurrenceFinding(in: text, findings: findings)
         return normalized(findings, in: text)
     }

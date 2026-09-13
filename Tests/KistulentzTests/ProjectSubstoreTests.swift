@@ -242,6 +242,48 @@ final class ProjectSubstoreTests: XCTestCase {
         }
     }
 
+    @MainActor
+    func testPublicationStoreCommitsMetadataAndHistoryOnlyAfterPersistenceSucceeds() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let manifest = WritingProjectManifest(name: "Transactional", kind: .nonfiction)
+        var persisted = PublicationArchive(projectName: manifest.name, projectKind: manifest.kind)
+        var errors: [Error] = []
+        var shouldFail = false
+        var persistence = PublicationPersistence.live
+        persistence.load = { _ in persisted }
+        persistence.save = { archive, _ in
+            if shouldFail { throw ExpectedPersistenceError.failed }
+            persisted = archive
+        }
+        let store = PublicationStore(
+            projectRoot: { root },
+            projectManifest: { manifest },
+            projectOutline: { [] },
+            bibliography: { ProjectBibliographyArchive() },
+            saveCurrentDocument: {},
+            saveProjectOutline: {},
+            reportError: { errors.append($0) },
+            persistence: persistence
+        )
+        try store.load(at: root)
+
+        var accepted = persisted
+        accepted.metadata.subtitle = "Persisted subtitle"
+        store.updatePublicationArchive(accepted)
+        XCTAssertEqual(store.publicationArchive.metadata.subtitle, "Persisted subtitle")
+        XCTAssertEqual(persisted.metadata.subtitle, "Persisted subtitle")
+
+        shouldFail = true
+        var rejected = accepted
+        rejected.metadata.subtitle = "Must roll back"
+        store.updatePublicationArchive(rejected)
+
+        XCTAssertEqual(store.publicationArchive.metadata.subtitle, "Persisted subtitle")
+        XCTAssertEqual(persisted.metadata.subtitle, "Persisted subtitle")
+        XCTAssertEqual(errors.count, 1)
+    }
+
     private func temporaryDirectory() -> URL {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent("KistulentzSubstoreTests-\(UUID().uuidString)", isDirectory: true)

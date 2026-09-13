@@ -91,6 +91,67 @@ final class EPUBReferenceTests: XCTestCase {
         }
     }
 
+    func testEPUBRejectsContainerAndManifestPathsThatEscapeTheArchive() throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-EPUB-Path-Test-\(UUID().uuidString)", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let package = root.appendingPathComponent("package", isDirectory: true)
+        let meta = package.appendingPathComponent("META-INF", isDirectory: true)
+        try FileManager.default.createDirectory(at: meta, withIntermediateDirectories: true)
+        try """
+        <?xml version="1.0"?>
+        <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+          <rootfiles><rootfile full-path="../outside.opf" media-type="application/oebps-package+xml"/></rootfiles>
+        </container>
+        """.write(to: meta.appendingPathComponent("container.xml"), atomically: true, encoding: .utf8)
+        let epub = root.appendingPathComponent("escaping-container.epub")
+        try zip(package, to: epub)
+
+        XCTAssertThrowsError(try EPUBProcessor.load(url: epub)) { error in
+            guard case EPUBError.unsafeArchive = error else {
+                return XCTFail("Expected unsafeArchive, got \(error).")
+            }
+        }
+    }
+
+    func testEPUBRejectsRemoteAndMissingSpineContentWithoutLeakingTemporaryFiles() throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("Kistulentz-EPUB-Manifest-Test-\(UUID().uuidString)", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let package = root.appendingPathComponent("package", isDirectory: true)
+        let meta = package.appendingPathComponent("META-INF", isDirectory: true)
+        let book = package.appendingPathComponent("Book", isDirectory: true)
+        try FileManager.default.createDirectory(at: meta, withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: book, withIntermediateDirectories: true)
+        try """
+        <?xml version="1.0"?>
+        <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+          <rootfiles><rootfile full-path="Book/content.opf" media-type="application/oebps-package+xml"/></rootfiles>
+        </container>
+        """.write(to: meta.appendingPathComponent("container.xml"), atomically: true, encoding: .utf8)
+        try """
+        <?xml version="1.0"?>
+        <package xmlns="http://www.idpf.org/2007/opf" version="3.0">
+          <metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title>Unsafe</dc:title></metadata>
+          <manifest><item id="remote" href="https://example.com/chapter.xhtml" media-type="application/xhtml+xml"/></manifest>
+          <spine><itemref idref="remote"/></spine>
+        </package>
+        """.write(to: book.appendingPathComponent("content.opf"), atomically: true, encoding: .utf8)
+        let epub = root.appendingPathComponent("remote-spine.epub")
+        try zip(package, to: epub)
+
+        let temporaryBefore = try Set(FileManager.default.contentsOfDirectory(atPath: FileManager.default.temporaryDirectory.path)
+            .filter { $0.hasPrefix("Kistulentz-EPUB-") })
+        XCTAssertThrowsError(try EPUBProcessor.load(url: epub)) { error in
+            guard case EPUBError.unsafeArchive = error else {
+                return XCTFail("Expected unsafeArchive, got \(error).")
+            }
+        }
+        let temporaryAfter = try Set(FileManager.default.contentsOfDirectory(atPath: FileManager.default.temporaryDirectory.path)
+            .filter { $0.hasPrefix("Kistulentz-EPUB-") })
+        XCTAssertEqual(temporaryAfter, temporaryBefore)
+    }
+
     private func makeFixtureEPUB() throws -> URL {
         let testsDirectory = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent()
@@ -113,5 +174,15 @@ final class EPUBReferenceTests: XCTestCase {
             throw CocoaError(.fileWriteUnknown)
         }
         return outputURL
+    }
+
+    private func zip(_ directory: URL, to output: URL) throws {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/zip")
+        process.currentDirectoryURL = directory
+        process.arguments = ["-X", "-q", "-r", output.path, "."]
+        try process.run()
+        process.waitUntilExit()
+        XCTAssertEqual(process.terminationStatus, 0)
     }
 }

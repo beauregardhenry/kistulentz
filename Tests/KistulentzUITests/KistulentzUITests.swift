@@ -46,7 +46,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         cancel.click()
         XCTAssertTrue(title.waitForExistence(timeout: 2))
 
-        app.buttons["Close"].firstMatch.click()
+        app.buttons["Close Research Library"].firstMatch.click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
@@ -485,10 +485,12 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(libraryItem.waitForExistence(timeout: 3))
         libraryItem.click()
 
-        XCTAssertTrue(app.staticTexts["Create a Reference Library"].waitForExistence(timeout: 5))
+        let chooseFolder = app.buttons["Choose Library Folder"]
+        XCTAssertTrue(chooseFolder.waitForExistence(timeout: 5))
         let cancel = app.buttons["Cancel"]
         XCTAssertTrue(cancel.isHittable)
         cancel.click()
+        XCTAssertFalse(chooseFolder.waitForExistence(timeout: 2))
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 
@@ -502,7 +504,7 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
         whatsNewItem.click()
 
-        let title = app.staticTexts["What’s New in Kistulentz 0.17.3"]
+        let title = app.staticTexts["What’s New in Kistulentz 0.18.0"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
         let safetySummary = app.descendants(matching: .any)["WhatsNewStorageSafety"].firstMatch
         XCTAssertTrue(safetySummary.exists)

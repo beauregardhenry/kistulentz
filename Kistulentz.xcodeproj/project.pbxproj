@@ -35,6 +35,7 @@
 		29F12E3386851BFEB801C0C9 /* ProjectOrganizationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB393CDF0A3B98091B9CE1 /* ProjectOrganizationUITests.swift */; };
 		2A63AEAD0200AF2613725E51 /* WritingProjectStore+ChaptersEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE139835916E6597FF14B63 /* WritingProjectStore+ChaptersEditing.swift */; };
 		2AE589117F0D10DAC6F20C8C /* SystemicRevision.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03D15CAC596197DD6998E4B /* SystemicRevision.swift */; };
+		2CF30A3B9A242BAC93B784FC /* FinalHardeningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DFF729B584613C912F073B /* FinalHardeningUITests.swift */; };
 		2EDFB8E1FBA17AFCBDA41967 /* ProjectImportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89397C231BF45396C044F16E /* ProjectImportModels.swift */; };
 		2EFFB795F5ECF3BD06F29C3D /* ManuscriptEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE35BD89B38C2E2AD7A7AB /* ManuscriptEditCoordinator.swift */; };
 		2FA967D5C6A93FB4476D5B12 /* WritingProjectStore+Outline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57D790511A3C4BC7D87B10 /* WritingProjectStore+Outline.swift */; };
@@ -277,6 +278,7 @@
 		CED3AE612CCEF6208E69CA7A /* CitationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitationFormatter.swift; sourceTree = "<group>"; };
 		D8578D0CED65BEEF7C3415F0 /* ReferenceLibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibraryUITests.swift; sourceTree = "<group>"; };
 		D88A8ECEC32BE102F9EAC6CC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		D8DFF729B584613C912F073B /* FinalHardeningUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalHardeningUITests.swift; sourceTree = "<group>"; };
 		DA89347419D93DE62C3FD1D1 /* ManuscriptReportRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptReportRenderer.swift; sourceTree = "<group>"; };
 		DB21EB85D8683AC3A6913D76 /* PolishedDraftPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishedDraftPlanner.swift; sourceTree = "<group>"; };
 		DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeWritingService.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			children = (
 				E09C2AAE84EF5C60524176B9 /* AccessibilityProviderUITests.swift */,
 				B14B494DF143122940DB50B4 /* EditingRecoveryUITests.swift */,
+				D8DFF729B584613C912F073B /* FinalHardeningUITests.swift */,
 				74A55D33B59EF54732880896 /* KistulentzUITestCase.swift */,
 				40D73AC6FEE05ACF6CFCAF0F /* KistulentzUITests.swift */,
 				5E29A5F95F311B1BE6F716AC /* ManuscriptInsightsUITests.swift */,
@@ -764,6 +767,7 @@
 			files = (
 				2FDC58B9CA679A2D5BD949DC /* AccessibilityProviderUITests.swift in Sources */,
 				BC941FE12EAADB4281BE192E /* EditingRecoveryUITests.swift in Sources */,
+				2CF30A3B9A242BAC93B784FC /* FinalHardeningUITests.swift in Sources */,
 				F3255E0A2613E7B7ED400C2F /* KistulentzUITestCase.swift in Sources */,
 				3643EF4A1345405A0E89329E /* KistulentzUITests.swift in Sources */,
 				B101D6FF039EE07C0F76262C /* ManuscriptInsightsUITests.swift in Sources */,

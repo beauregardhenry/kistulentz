@@ -78,7 +78,8 @@ enum ResearchLibraryDisk {
 
     static func attachmentURL(_ attachment: ResearchAttachment, at root: URL) -> URL {
         if attachment.storage == .managedCopy, let path = attachment.storedRelativePath {
-            return root.appendingPathComponent(path)
+            return safeManagedURL(relativePath: path, at: root)
+                ?? root.appendingPathComponent(".kistulentz/Attachments/invalid-managed-attachment")
         }
         return URL(fileURLWithPath: attachment.originalPath)
     }
@@ -95,23 +96,24 @@ enum ResearchLibraryDisk {
     }
 
     static func loadExtractedText(for attachment: ResearchAttachment, at root: URL) -> String? {
-        guard let path = attachment.extractedTextRelativePath else { return nil }
-        return try? String(contentsOf: root.appendingPathComponent(path), encoding: .utf8)
+        guard let path = attachment.extractedTextRelativePath,
+              let url = safeManagedURL(relativePath: path, at: root) else { return nil }
+        return try? String(contentsOf: url, encoding: .utf8)
     }
 
     static func removeManagedAttachment(_ attachment: ResearchAttachment, at root: URL) throws {
-        if let stored = attachment.storedRelativePath {
-            let url = root.appendingPathComponent(stored)
+        if let stored = attachment.storedRelativePath,
+           let url = safeManagedURL(relativePath: stored, at: root) {
             if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }
         }
-        if let extracted = attachment.extractedTextRelativePath {
-            let url = root.appendingPathComponent(extracted)
+        if let extracted = attachment.extractedTextRelativePath,
+           let url = safeManagedURL(relativePath: extracted, at: root) {
             if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }
         }
     }
 
     static func removeExtractedText(relativePath: String, at root: URL) throws {
-        let url = root.appendingPathComponent(relativePath)
+        guard let url = safeManagedURL(relativePath: relativePath, at: root) else { return }
         if FileManager.default.fileExists(atPath: url.path) {
             try FileManager.default.removeItem(at: url)
         }
@@ -119,6 +121,23 @@ enum ResearchLibraryDisk {
 
     private static func indexURL(at root: URL) -> URL {
         root.appendingPathComponent(metadataDirectory, isDirectory: true).appendingPathComponent(indexFile)
+    }
+
+    private static func safeManagedURL(relativePath: String, at root: URL) -> URL? {
+        let normalized = relativePath.replacingOccurrences(of: "\\", with: "/")
+        let components = normalized.split(separator: "/", omittingEmptySubsequences: false)
+        guard !normalized.isEmpty,
+              !normalized.hasPrefix("/"),
+              !normalized.hasPrefix("~"),
+              URL(string: normalized)?.scheme == nil,
+              !components.contains("..") else { return nil }
+        let standardizedRoot = root.standardizedFileURL.resolvingSymlinksInPath()
+        let candidate = standardizedRoot
+            .appendingPathComponent(normalized)
+            .standardizedFileURL
+            .resolvingSymlinksInPath()
+        guard candidate.path.hasPrefix(standardizedRoot.path + "/") else { return nil }
+        return candidate
     }
 
     private static func uniqueDestination(for fileName: String, in directory: URL) -> URL {

@@ -398,6 +398,27 @@ final class PublicationTests: XCTestCase {
         XCTAssertEqual(reopened.publicationStore.publicationArchive.metadata.printCoverPDFRelativePath, printCoverPath)
     }
 
+    func testPublicationAssetCollisionWithADirectoryFailsWithoutDeletingItsContents() throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+        let source = outside.appendingPathComponent("cover.png")
+        try Data([0x89, 0x50, 0x4E, 0x47]).write(to: source)
+        let collision = WritingProjectDisk.metadataURL(at: root)
+            .appendingPathComponent("publication-assets/cover.png", isDirectory: true)
+        try FileManager.default.createDirectory(at: collision, withIntermediateDirectories: true)
+        let sentinel = collision.appendingPathComponent("do-not-delete.txt")
+        try "author data".write(to: sentinel, atomically: true, encoding: .utf8)
+
+        XCTAssertThrowsError(
+            try PublicationDisk.copyPublicationAsset(from: source, preferredName: "cover", at: root)
+        )
+        XCTAssertEqual(try String(contentsOf: sentinel, encoding: .utf8), "author data")
+    }
+
     private func temporaryDirectory() -> URL {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("Kistulentz-Publication-Test-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
