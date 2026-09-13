@@ -109,6 +109,31 @@ final class ReferenceLibraryTests: XCTestCase {
         XCTAssertEqual(reopened.books.first?.title, "Corrected Title")
     }
 
+    func testFailedKnowledgeBaseRegenerationDoesNotCommitTheNewIndex() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let original = book(title: "Persisted", author: "Writer", genres: ["Fiction"])
+        try ReferenceLibraryDisk.regenerateKnowledgeBase(
+            ReferenceLibraryIndex(books: [original], insights: []),
+            at: root
+        )
+
+        let replacement = book(title: "Uncommitted", author: "Writer", genres: ["Fiction"])
+        let blockedOutput = root.appendingPathComponent("Books/\(replacement.id.uuidString).md", isDirectory: true)
+        try FileManager.default.createDirectory(at: blockedOutput, withIntermediateDirectories: true)
+
+        XCTAssertThrowsError(
+            try ReferenceLibraryDisk.regenerateKnowledgeBase(
+                ReferenceLibraryIndex(books: [replacement], insights: []),
+                at: root
+            )
+        )
+
+        let reopened = try ReferenceLibraryDisk.load(from: root)
+        XCTAssertEqual(reopened.books.map(\.id), [original.id])
+        XCTAssertTrue(FileManager.default.fileExists(atPath: blockedOutput.path))
+    }
+
     @MainActor
     func testLoadsThousandsAndBuildsCombinedChoices() throws {
         let root = temporaryDirectory()

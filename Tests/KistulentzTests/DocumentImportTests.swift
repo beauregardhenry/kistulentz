@@ -104,6 +104,37 @@ final class DocumentImportTests: XCTestCase {
         XCTAssertTrue(draft.notices.contains { $0.title == "Remote images were not downloaded" })
     }
 
+    func testHTMLImportStripsExecutableLinksEventsAndEscapingLocalImages() throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+        try Data([0x89, 0x50, 0x4E, 0x47]).write(to: outside.appendingPathComponent("private.png"))
+        let source = root.appendingPathComponent("Unsafe.html")
+        try """
+        <html><body onload="sendSecrets()">
+        <h1>Safe text</h1>
+        <a href="javascript:sendSecrets()" onclick="sendSecrets()">unsafe action</a>
+        <a href="https://example.com/essay">safe essay</a>
+        <img src="../\(outside.lastPathComponent)/private.png" alt="private file">
+        <img src="file:///etc/passwd" alt="system file">
+        </body></html>
+        """.write(to: source, atomically: true, encoding: .utf8)
+
+        let draft = try DocumentImportService.load(from: source)
+        let markdown = draft.renderedMarkdown(decisions: [:])
+
+        XCTAssertTrue(markdown.contains("unsafe action"))
+        XCTAssertFalse(markdown.lowercased().contains("javascript:"))
+        XCTAssertFalse(markdown.contains("sendSecrets"))
+        XCTAssertTrue(markdown.contains("https://example.com/essay"))
+        XCTAssertTrue(markdown.contains("private file"))
+        XCTAssertTrue(markdown.contains("system file"))
+        XCTAssertTrue(draft.assets.isEmpty)
+    }
+
     func testRTFAndRTFDImportAsMarkdownCopies() throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
@@ -266,6 +297,66 @@ final class DocumentImportTests: XCTestCase {
         XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: root.path).sorted(), [
             "Malformed.docx", "malformed-package"
         ])
+    }
+
+    func testMalformedODTRTFAndRTFDPackagesFailWithoutCreatingMarkdown() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+
+        let odtPackage = root.appendingPathComponent("bad-odt", isDirectory: true)
+        try FileManager.default.createDirectory(at: odtPackage, withIntermediateDirectories: true)
+        try "application/vnd.oasis.opendocument.text".write(
+            to: odtPackage.appendingPathComponent("mimetype"), atomically: true, encoding: .utf8
+        )
+        let odt = root.appendingPathComponent("Malformed.odt")
+        try runZip(arguments: ["-Xqr", odt.path, "mimetype"], in: odtPackage)
+
+        let rtf = root.appendingPathComponent("Malformed.rtf")
+        try Data([0x00, 0x01, 0x02, 0x03, 0x04]).write(to: rtf)
+
+        let rtfd = root.appendingPathComponent("Malformed.rtfd", isDirectory: true)
+        try FileManager.default.createDirectory(at: rtfd, withIntermediateDirectories: true)
+        try "not rtf".write(to: rtfd.appendingPathComponent("unexpected.txt"), atomically: true, encoding: .utf8)
+
+        for source in [odt, rtf, rtfd] {
+            XCTAssertThrowsError(try DocumentImportService.load(from: source), source.lastPathComponent)
+        }
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Malformed.md").path))
+    }
+
+    func testAssetNamesAreSanitizedAndDeduplicatedCaseInsensitively() {
+        let assets = [
+            DocumentImportAsset(suggestedFilename: "../Résumé.PNG", altText: "One", data: Data([1])),
+            DocumentImportAsset(suggestedFilename: "résumé.png", altText: "Two", data: Data([2])),
+            DocumentImportAsset(suggestedFilename: "RESUME.PNG", altText: "Three", data: Data([3])),
+            DocumentImportAsset(suggestedFilename: "..", altText: "Four", data: Data([4]))
+        ]
+
+        let unique = DocumentImportService.uniqueAssets(assets)
+        let names = unique.map(\.suggestedFilename)
+
+        XCTAssertEqual(Set(names.map { $0.lowercased() }).count, names.count)
+        XCTAssertTrue(names.allSatisfy { !$0.contains("/") && !$0.contains("..") })
+        XCTAssertEqual(unique.map(\.data), assets.map(\.data))
+    }
+
+    func testFailedMarkdownWriteCleansUpCopiedImportAssets() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let source = root.appendingPathComponent("Source.html")
+        try "<p>Draft</p>".write(to: source, atomically: true, encoding: .utf8)
+        let draft = DocumentImportDraft(
+            sourceURL: source,
+            format: .html,
+            templateMarkdown: "Draft\n",
+            assets: [DocumentImportAsset(suggestedFilename: "image.png", altText: "Image", data: Data([1, 2, 3]))]
+        )
+        let output = root.appendingPathComponent("Blocked.md", isDirectory: true)
+        try FileManager.default.createDirectory(at: output, withIntermediateDirectories: true)
+
+        XCTAssertThrowsError(try DocumentImportService.save(draft, decisions: [:], to: output))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Blocked-assets").path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: output.path))
     }
 
     private func makeDOCX(in root: URL) throws -> URL {

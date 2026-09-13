@@ -89,8 +89,6 @@ enum ReferenceLibraryDisk {
     }
 
     static func regenerateKnowledgeBase(_ index: ReferenceLibraryIndex, at root: URL) throws {
-        try saveIndex(index, to: root)
-
         var bookFiles: [String: String] = [:]
         for book in index.books {
             bookFiles["\(book.id.uuidString).md"] = render(book: book, insights: index.insights)
@@ -129,6 +127,9 @@ enum ReferenceLibraryDisk {
 
         try masterMarkdown(index, authors: authorGroups, genres: genreGroups)
             .write(to: root.appendingPathComponent("Kistulentz Library.md"), atomically: true, encoding: .utf8)
+        // The JSON index is the source of truth. Commit it only after every derived Markdown file
+        // succeeds so a failed regeneration cannot make an incomplete library appear authoritative.
+        try saveIndex(index, to: root)
         try? FileManager.default.removeItem(at: recoveryJournalURL(at: root))
     }
 

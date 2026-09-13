@@ -1,5 +1,17 @@
 import Foundation
 
+struct PublicationPersistence {
+    var load: (URL) throws -> PublicationArchive
+    var save: (PublicationArchive, URL) throws -> Void
+    var copyAsset: (URL, String, URL) throws -> String
+
+    static var live: PublicationPersistence { PublicationPersistence(
+        load: PublicationDisk.load,
+        save: { try PublicationDisk.save($0, at: $1) },
+        copyAsset: { try PublicationDisk.copyPublicationAsset(from: $0, preferredName: $1, at: $2) }
+    ) }
+}
+
 /// Export profiles, metadata, and publication history for the open project.
 /// Extracted out of `WritingProjectStore`. Needs the still-combined store for
 /// project identity/outline/save orchestration, and the research store for
@@ -16,6 +28,7 @@ final class PublicationStore: ObservableObject {
     private let saveCurrentDocument: () -> Void
     private let saveProjectOutline: () -> Void
     private let reportError: (Error) -> Void
+    private let persistence: PublicationPersistence
 
     init(
         projectRoot: @escaping () -> URL?,
@@ -24,7 +37,8 @@ final class PublicationStore: ObservableObject {
         bibliography: @escaping () -> ProjectBibliographyArchive,
         saveCurrentDocument: @escaping () -> Void,
         saveProjectOutline: @escaping () -> Void,
-        reportError: @escaping (Error) -> Void
+        reportError: @escaping (Error) -> Void,
+        persistence: PublicationPersistence = .live
     ) {
         self.projectRoot = projectRoot
         self.projectManifest = projectManifest
@@ -33,10 +47,11 @@ final class PublicationStore: ObservableObject {
         self.saveCurrentDocument = saveCurrentDocument
         self.saveProjectOutline = saveProjectOutline
         self.reportError = reportError
+        self.persistence = persistence
     }
 
     func load(at root: URL) throws {
-        publicationArchive = try PublicationDisk.load(at: root)
+        publicationArchive = try persistence.load(root)
     }
 
     func replaceContents(_ archive: PublicationArchive) {
@@ -50,7 +65,7 @@ final class PublicationStore: ObservableObject {
     func updatePublicationArchive(_ archive: PublicationArchive) {
         guard let rootURL = projectRoot() else { return }
         do {
-            try PublicationDisk.save(archive, at: rootURL)
+            try persistence.save(archive, rootURL)
             publicationArchive = archive
         } catch {
             reportError(error)
@@ -88,7 +103,7 @@ final class PublicationStore: ObservableObject {
         guard let rootURL = projectRoot() else { return }
         do {
             var archive = publicationArchive
-            archive.metadata.coverImageRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "cover", at: rootURL)
+            archive.metadata.coverImageRelativePath = try persistence.copyAsset(url, "cover", rootURL)
             updatePublicationArchive(archive)
         } catch {
             reportError(error)
@@ -99,7 +114,7 @@ final class PublicationStore: ObservableObject {
         guard let rootURL = projectRoot() else { return }
         do {
             var archive = publicationArchive
-            archive.metadata.printCoverPDFRelativePath = try PublicationDisk.copyPublicationAsset(from: url, preferredName: "print-cover", at: rootURL)
+            archive.metadata.printCoverPDFRelativePath = try persistence.copyAsset(url, "print-cover", rootURL)
             updatePublicationArchive(archive)
         } catch {
             reportError(error)

@@ -35,7 +35,9 @@ enum HTMLImportSanitizer {
         for attributePattern in [
             #"(?is)\sstyle\s*=\s*([\"']).*?\1"#,
             #"(?is)\sbackground\s*=\s*([\"']).*?\1"#,
-            #"(?is)\ssrcset\s*=\s*([\"']).*?\1"#
+            #"(?is)\ssrcset\s*=\s*([\"']).*?\1"#,
+            #"(?is)\son[a-z0-9_-]+\s*=\s*([\"']).*?\1"#,
+            #"(?is)\shref\s*=\s*([\"'])\s*(?:javascript|data|file|vbscript)\s*:.*?\1"#
         ] {
             html = replacing(pattern: attributePattern, in: html, with: "")
         }

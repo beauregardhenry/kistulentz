@@ -657,6 +657,55 @@ final class WritingProjectTests: XCTestCase {
         )
     }
 
+    func testFailedSnapshotIndexWriteDoesNotLeaveAnOrphanedManuscriptCopy() throws {
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try WritingProjectDisk.prepareExistingProject(at: root, name: "Snapshot Failure", kind: .nonfiction)
+        _ = try WritingProjectDisk.createSnapshot(
+            chapterPath: "Draft.md",
+            content: "# Draft\n\nPersisted.\n",
+            name: "Persisted",
+            reason: "Test",
+            at: root
+        )
+        let history = WritingProjectDisk.metadataURL(at: root).appendingPathComponent("history", isDirectory: true)
+        let index = history.appendingPathComponent("index.json")
+        let markdownBefore = try Set(FileManager.default.contentsOfDirectory(atPath: history.path).filter { $0.hasSuffix(".md") })
+        try FileManager.default.removeItem(at: index)
+        try FileManager.default.createDirectory(at: index, withIntermediateDirectories: false)
+
+        XCTAssertThrowsError(try WritingProjectDisk.createSnapshot(
+            chapterPath: "Draft.md",
+            content: "# Draft\n\nUncommitted.\n",
+            name: "Must fail",
+            reason: "Test",
+            at: root
+        ))
+
+        let markdownAfter = try Set(FileManager.default.contentsOfDirectory(atPath: history.path).filter { $0.hasSuffix(".md") })
+        XCTAssertEqual(markdownAfter, markdownBefore)
+    }
+
+    func testLargeRevisionDiffUsesBoundedPathAndKeepsStableEdges() {
+        let prefix = (0..<350).map { "Shared prefix \($0)" }
+        let oldMiddle = (0..<400).map { "Old middle \($0)" }
+        let newMiddle = (0..<450).map { "New middle \($0)" }
+        let suffix = (0..<350).map { "Shared suffix \($0)" }
+
+        let diff = RevisionDiff.compare(
+            old: (prefix + oldMiddle + suffix).joined(separator: "\n"),
+            new: (prefix + newMiddle + suffix).joined(separator: "\n")
+        )
+
+        XCTAssertEqual(diff.first?.kind, .unchanged)
+        XCTAssertEqual(diff.first?.text, "Shared prefix 0")
+        XCTAssertEqual(diff.last?.kind, .unchanged)
+        XCTAssertEqual(diff.last?.text, "Shared suffix 349")
+        XCTAssertEqual(diff.filter { $0.kind == .removed }.count, oldMiddle.count)
+        XCTAssertEqual(diff.filter { $0.kind == .added }.count, newMiddle.count)
+        XCTAssertEqual(diff.map(\.id), Array(diff.indices))
+    }
+
     @MainActor
     func testHighlightVisibilityPersistsInSettings() throws {
         let suiteName = "WritingProjectHighlightTests.\(UUID().uuidString)"
