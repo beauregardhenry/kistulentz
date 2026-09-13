@@ -6,14 +6,10 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var structuralProfile: StructuralProfile?
     @Published private(set) var isUsingBenepar = false
     @Published private(set) var isAnalyzingStructure = false
-    @Published private(set) var aiReview: AIReview?
-    @Published private(set) var aiIssues: [WritingIssue] = []
     @Published private(set) var systemIssues: [WritingIssue] = []
-    @Published private(set) var blockedAISuggestionCount = 0
     @Published private(set) var referenceBook: EPUBReference?
     @Published private(set) var referenceAlignment = ReferenceAlignment.empty
     @Published private(set) var isLoadingReference = false
-    @Published private(set) var isReviewing = false
     @Published private(set) var isRewriting = false
     @Published var rewritePresentation: SelectionRewritePresentation?
     @Published private(set) var dismissedSuggestions: [DismissedSuggestion] = []
@@ -23,15 +19,11 @@ final class EditorViewModel: ObservableObject {
 
     private var analysisTask: Task<Void, Never>?
     private var analysisRequestID = UUID()
-    private var reviewTask: Task<Void, Never>?
     private var rewriteTask: Task<Void, Never>?
     private var referenceTask: Task<Void, Never>?
-    private var reviewedTextFingerprints: Set<ReviewedTextFingerprint> = []
-    private var reviewTargetGrade: Int?
     private var currentText = ""
     private var currentDocumentKey: String?
     private var hasConfiguredDocument = false
-    private let service: WritingAIService
     private let rewriteService: SelectionRewriteService
     private let dismissalStore: DismissedSuggestionStore
     private let structuralAnalyzerOverride: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)?
@@ -44,19 +36,17 @@ final class EditorViewModel: ObservableObject {
     /// `ReferenceLibraryStore.structuralAnalyzer` does.
     init(
         dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore(),
-        service: WritingAIService = WritingAIService(),
         rewriteService: SelectionRewriteService = SelectionRewriteService(),
         structuralAnalyzer: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)? = nil
     ) {
         self.dismissalStore = dismissalStore
-        self.service = service
         self.rewriteService = rewriteService
         self.structuralAnalyzerOverride = structuralAnalyzer
     }
 
     var allIssues: [WritingIssue] {
         ProjectStyleManager.filteringLearnedSuppressions(
-            analysis.issues + systemIssues + referenceAlignment.issues + aiIssues,
+            analysis.issues + systemIssues + referenceAlignment.issues,
             decisions: styleDecisions
         )
         .filter { !isDismissed($0) }
@@ -113,24 +103,12 @@ final class EditorViewModel: ObservableObject {
         currentText = text
         if previousText != text {
             systemIssues = []
-            if isReviewing {
-                reviewTask?.cancel()
-                isReviewing = false
-            }
             if isRewriting {
                 rewriteTask?.cancel()
                 isRewriting = false
             }
         }
         pruneDismissals(for: text)
-        if aiReview != nil {
-            let fingerprint = ReviewedTextFingerprint(text)
-            if reviewTargetGrade == targetGrade, reviewedTextFingerprints.contains(fingerprint) {
-                refreshAIReviewIssues(in: text)
-            } else {
-                clearAIReview()
-            }
-        }
         analysisTask?.cancel()
         isAnalyzingStructure = false
         let requestID = UUID()
@@ -216,7 +194,6 @@ final class EditorViewModel: ObservableObject {
                     draftStructure: self.structuralProfile
                 )
                 self.isLoadingReference = false
-                self.clearAIReview()
             case .failure(let error):
                 self.errorMessage = error.localizedDescription
                 self.isLoadingReference = false
@@ -229,7 +206,6 @@ final class EditorViewModel: ObservableObject {
         referenceBook = reference
         referenceAlignment = ReferenceComparison.analyze(draft: draft, against: reference)
         isLoadingReference = false
-        clearAIReview()
     }
 
     func clearReference() {
@@ -237,51 +213,6 @@ final class EditorViewModel: ObservableObject {
         referenceBook = nil
         referenceAlignment = .empty
         isLoadingReference = false
-        clearAIReview()
-    }
-
-    func runAIReview(request: AIRequestPreview, matching sourceText: String, settings: AppSettings) {
-        guard !isReviewing else { return }
-        isReviewing = true
-        errorMessage = nil
-
-        reviewTask?.cancel()
-        reviewTask = Task { [weak self] in
-            guard let self else { return }
-            do {
-                let review = try await service.review(
-                    request: request,
-                    apiKey: settings.apiKey(for: request.provider)
-                )
-                guard !Task.isCancelled else { return }
-                guard self.currentText == sourceText else {
-                    self.isReviewing = false
-                    return
-                }
-                let targetGrade: Int
-                if case .polish(let requestedGrade) = request.purpose {
-                    targetGrade = requestedGrade
-                } else {
-                    targetGrade = settings.targetGrade
-                }
-                let suggestions = Self.makeIssues(
-                    from: review.suggestions,
-                    in: sourceText,
-                    targetGrade: targetGrade
-                )
-                self.aiReview = review
-                self.aiIssues = suggestions.issues
-                self.blockedAISuggestionCount = suggestions.blockedCount
-                self.reviewTargetGrade = targetGrade
-                self.reviewedTextFingerprints = [ReviewedTextFingerprint(sourceText)]
-                self.isReviewing = false
-            } catch is CancellationError {
-                self.isReviewing = false
-            } catch {
-                self.errorMessage = error.localizedDescription
-                self.isReviewing = false
-            }
-        }
     }
 
     func runSelectionRewrite(request: AIRequestPreview, settings: AppSettings) {
@@ -315,44 +246,6 @@ final class EditorViewModel: ObservableObject {
                 self.isRewriting = false
             }
         }
-    }
-
-    func clearAIReview() {
-        reviewTask?.cancel()
-        isReviewing = false
-        aiReview = nil
-        aiIssues = []
-        blockedAISuggestionCount = 0
-        reviewTargetGrade = nil
-        reviewedTextFingerprints = []
-    }
-
-    func preserveAIReview(afterAccepting issue: WritingIssue, in text: String) {
-        guard let aiReview, let reviewTargetGrade else { return }
-        currentText = text
-        let result = Self.makeIssues(
-            from: aiReview.suggestions,
-            in: text,
-            targetGrade: reviewTargetGrade
-        )
-        var refreshed = result.issues
-        if issue.source == .ai {
-            refreshed.removeAll {
-                $0.category == issue.category
-                    && $0.excerpt == issue.excerpt
-                    && $0.replacement == issue.replacement
-            }
-        }
-        aiIssues = refreshed
-        blockedAISuggestionCount = result.blockedCount
-        reviewedTextFingerprints.insert(ReviewedTextFingerprint(text))
-    }
-
-    func preserveAIReview(afterApplying text: String) {
-        guard aiReview != nil else { return }
-        currentText = text
-        reviewedTextFingerprints.insert(ReviewedTextFingerprint(text))
-        refreshAIReviewIssues(in: text)
     }
 
     func focus(on issue: WritingIssue) {
@@ -407,70 +300,6 @@ final class EditorViewModel: ObservableObject {
     private func saveDismissals() {
         guard let currentDocumentKey else { return }
         dismissalStore.save(dismissedSuggestions, for: currentDocumentKey)
-    }
-
-    private func refreshAIReviewIssues(in text: String) {
-        guard let aiReview, let reviewTargetGrade else { return }
-        let result = Self.makeIssues(
-            from: aiReview.suggestions,
-            in: text,
-            targetGrade: reviewTargetGrade
-        )
-        aiIssues = result.issues
-        blockedAISuggestionCount = result.blockedCount
-    }
-
-    private static func makeIssues(
-        from suggestions: [AISuggestion],
-        in text: String,
-        targetGrade: Int
-    ) -> (issues: [WritingIssue], blockedCount: Int) {
-        let source = text as NSString
-        var blockedCount = 0
-        let issues = suggestions.compactMap { suggestion -> WritingIssue? in
-            var range = source.range(of: suggestion.original)
-            if range.location == NSNotFound {
-                range = source.range(of: suggestion.original, options: [.caseInsensitive])
-            }
-            guard range.location != NSNotFound else { return nil }
-            let excerpt = source.substring(with: range)
-            guard SuggestionRuleValidator.introducedCategories(
-                replacing: range,
-                in: text,
-                with: suggestion.replacement,
-                targetGrade: targetGrade
-            ).isEmpty else {
-                blockedCount += 1
-                return nil
-            }
-
-            let category: IssueCategory
-            switch suggestion.category.lowercased() {
-            case "spelling": category = .spelling
-            case "grammar": category = .grammar
-            default: category = .aiSuggestion
-            }
-
-            return WritingIssue(
-                category: category,
-                range: range,
-                excerpt: excerpt,
-                message: suggestion.explanation,
-                replacement: suggestion.replacement,
-                source: .ai
-            )
-        }
-        return (issues, blockedCount)
-    }
-}
-
-private struct ReviewedTextFingerprint: Hashable {
-    let utf16Length: Int
-    let hash: Int
-
-    init(_ text: String) {
-        utf16Length = (text as NSString).length
-        hash = text.hashValue
     }
 }
 

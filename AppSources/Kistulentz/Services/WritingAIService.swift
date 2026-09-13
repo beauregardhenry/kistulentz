@@ -1,36 +1,11 @@
 import Foundation
 
-struct WritingAIService {
-    private let client: StructuredAIClient
-
-    init(session: URLSession = .shared) {
-        client = StructuredAIClient(session: session)
-    }
-
-    func review(request: AIRequestPreview, apiKey: String?) async throws -> AIReview {
-        guard case .polish = request.purpose else {
-            throw WritingAIError.invalidResponse
-        }
-        guard !request.primaryText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            throw WritingAIError.emptyDocument
-        }
-        guard request.primaryText.utf8.count <= 160_000 else {
-            throw WritingAIError.documentTooLarge
-        }
-
-        let raw = try await client.generate(
-            provider: request.provider,
-            model: request.model,
-            apiKey: apiKey,
-            instructions: request.instructions,
-            input: request.input,
-            schemaName: "writing_review",
-            schema: Self.reviewSchema,
-            maxTokens: 8_000
-        )
-        return try Self.decodeReview(from: raw)
-    }
-
+/// Just `referenceContext` now -- the request-preview/response round trip this used to own for
+/// AI-backed Polish requests was removed once Polish started always running locally (nothing
+/// constructs an `AIRequestPurpose.polish` request anymore). `referenceContext` itself is still
+/// live: several other AI-backed request types (Selection Rewrite, Beta Reader, Outline Synopsis)
+/// build their reference material through it.
+enum WritingAIService {
     static func referenceContext(
         _ reference: EPUBReference,
         relevantTo text: String,
@@ -53,46 +28,6 @@ struct WritingAIService {
         \(learnedInsights)
         """
     }
-
-    private static func decodeReview(from rawText: String) throws -> AIReview {
-        let cleaned = rawText
-            .replacingOccurrences(of: "```json", with: "")
-            .replacingOccurrences(of: "```", with: "")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let data = cleaned.data(using: .utf8),
-              let review = try? JSONDecoder().decode(AIReview.self, from: data) else {
-            throw WritingAIError.invalidResponse
-        }
-        return review
-    }
-
-    private static var reviewSchema: [String: Any] { [
-        "type": "object",
-        "properties": [
-            "summary": ["type": "string"],
-            "gradeEstimate": ["type": "number"],
-            "polishedText": ["type": "string"],
-            "suggestions": [
-                "type": "array",
-                "items": [
-                    "type": "object",
-                    "properties": [
-                        "original": ["type": "string"],
-                        "replacement": ["type": "string"],
-                        "explanation": ["type": "string"],
-                        "category": [
-                            "type": "string",
-                            "enum": ["spelling", "grammar", "clarity", "concision", "tone"]
-                        ]
-                    ],
-                    "required": ["original", "replacement", "explanation", "category"],
-                    "additionalProperties": false
-                ]
-            ]
-        ],
-        "required": ["summary", "gradeEstimate", "polishedText", "suggestions"],
-        "additionalProperties": false
-    ] }
 }
 
 enum WritingAIError: LocalizedError {

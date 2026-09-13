@@ -131,11 +131,7 @@ struct EditorWorkspace: View {
 
                     ReviewSidebar(
                         issues: viewModel.allIssues,
-                        review: viewModel.aiReview,
-                        blockedAISuggestionCount: viewModel.blockedAISuggestionCount,
-                        isReviewing: viewModel.isReviewing,
                         isRewriting: viewModel.isRewriting,
-                        provider: settings.provider,
                         hasAPIKey: settings.isProviderReady(settings.provider),
                         reference: viewModel.referenceBook,
                         alignment: viewModel.referenceAlignment,
@@ -147,8 +143,7 @@ struct EditorWorkspace: View {
                         onApply: apply,
                         onDecline: decline,
                         onRewrite: prepareRewrite,
-                        onApplyAll: prepareApplyAll,
-                        onReviewPolishedDraft: preparePolishedDraftReview
+                        onApplyAll: prepareApplyAll
                     )
                     .frame(minWidth: 280, idealWidth: 320, maxWidth: 380)
                 }
@@ -215,7 +210,6 @@ struct EditorWorkspace: View {
             if !projectStore.preservesUndoAcrossFileRelocation {
                 undoManager?.removeAllActions()
             }
-            viewModel.clearAIReview()
             viewModel.configureDocument(url: newValue, text: projectStore.text)
             viewModel.scheduleAnalysis(
                 text: projectStore.text,
@@ -1093,8 +1087,6 @@ struct EditorWorkspace: View {
 
     private func executeAIRequest(_ request: AIRequestPreview) {
         switch request.purpose {
-        case .polish:
-            viewModel.runAIReview(request: request, matching: activeText, settings: settings)
         case .selectionRewrite:
             viewModel.runSelectionRewrite(request: request, settings: settings)
         case .referenceDeepening, .manuscriptReport, .manuscriptBible, .betaReader, .outlineSynopsis, .systemicRevision:
@@ -1151,20 +1143,6 @@ struct EditorWorkspace: View {
         viewModel.rewritePresentation = nil
     }
 
-    private func preparePolishedDraftReview() {
-        guard let review = viewModel.aiReview else { return }
-        let plan = PolishedDraftPlanner.plan(
-            original: activeText,
-            polished: review.polishedText,
-            targetGrade: settings.targetGrade
-        )
-        guard !plan.changes.isEmpty else {
-            viewModel.errorMessage = "The polished draft already matches this document."
-            return
-        }
-        polishedDraftPlan = plan
-    }
-
     private func applyPolishedChanges(_ changeIDs: Set<UUID>, from plan: PolishedDraftPlan) {
         guard activeText == plan.sourceText else {
             polishedDraftPlan = nil
@@ -1183,7 +1161,6 @@ struct EditorWorkspace: View {
             undoManager: undoManager,
             actionName: changeIDs.count == 1 ? "Apply Polished Passage" : "Apply Polished Passages"
         )
-        viewModel.preserveAIReview(afterApplying: result)
         polishedDraftPlan = nil
     }
 
@@ -1205,7 +1182,6 @@ struct EditorWorkspace: View {
             undoManager: undoManager,
             actionName: plan.origin == .local ? "Use Local Polish" : "Use Polished Draft"
         )
-        viewModel.preserveAIReview(afterApplying: plan.polishedText)
         polishedDraftPlan = nil
     }
 
@@ -1243,7 +1219,6 @@ struct EditorWorkspace: View {
             actionName: "Accept Suggestion"
         )
         styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
-        viewModel.preserveAIReview(afterAccepting: issue, in: plan.resultText)
     }
 
     private func decline(_ issue: WritingIssue) {
@@ -1292,7 +1267,6 @@ struct EditorWorkspace: View {
         for issue in appliedIssues {
             styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
         }
-        viewModel.preserveAIReview(afterApplying: plan.resultText)
         pendingApplyAllPlan = nil
     }
 
@@ -1350,7 +1324,6 @@ struct EditorWorkspace: View {
 
     private func activateProject() {
         undoManager?.removeAllActions()
-        viewModel.clearAIReview()
         viewModel.configureDocument(url: projectStore.selectedFileURL, text: projectStore.text)
         viewModel.scheduleAnalysis(
             text: projectStore.text,
@@ -1362,7 +1335,6 @@ struct EditorWorkspace: View {
     private func closeProject() {
         projectStore.closeProject()
         undoManager?.removeAllActions()
-        viewModel.clearAIReview()
         viewModel.configureDocument(url: fileURL, text: document.text)
         viewModel.scheduleAnalysis(
             text: document.text,

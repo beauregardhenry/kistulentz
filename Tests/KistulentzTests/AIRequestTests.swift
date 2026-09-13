@@ -11,7 +11,7 @@ final class AIRequestTests: XCTestCase {
 
     func testPreviewIncludesOnlyEnabledOptionalMaterial() {
         var preview = AIRequestPreview(
-            purpose: .polish(targetGrade: 8),
+            purpose: .selectionRewrite(goal: SelectionRewriteGoal(kind: .shorten), targetGrade: 8),
             provider: .openAI,
             model: "test-model",
             primaryLabel: "Draft",
@@ -464,63 +464,6 @@ final class AIRequestTests: XCTestCase {
     }
 
     @MainActor
-    func testAIReviewSurvivesKnownApplyUndoAndRedoTextStates() async throws {
-        let session = mockSession()
-        AIRequestMockURLProtocol.handler = { request in
-            let review = #"{"summary":"Clearer.","gradeEstimate":5,"polishedText":"We moved fast.","suggestions":[{"original":"quickly","replacement":"fast","explanation":"Use a direct word.","category":"concision"}]}"#
-            let body: [String: Any] = [
-                "message": ["role": "assistant", "content": review]
-            ]
-            return (
-                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
-                try JSONSerialization.data(withJSONObject: body)
-            )
-        }
-
-        let suite = "AIReviewUndoTests.\(UUID().uuidString)"
-        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
-        defer { defaults.removePersistentDomain(forName: suite) }
-        let settings = AppSettings(defaults: defaults)
-        settings.provider = .ollama
-        settings.ollamaModel = "local-model"
-
-        let original = "We moved quickly."
-        let accepted = "We moved fast."
-        let viewModel = EditorViewModel(service: WritingAIService(session: session))
-        viewModel.configureDocument(url: nil, text: original)
-        let request = AIRequestPreview(
-            purpose: .polish(targetGrade: 8),
-            provider: .ollama,
-            model: "local-model",
-            primaryLabel: "Markdown draft",
-            primaryText: original,
-            styleGuide: nil,
-            includesStyleGuide: false,
-            referenceContext: nil,
-            includesReferenceContext: false,
-            sourceRange: nil,
-            sourceText: original
-        )
-
-        viewModel.runAIReview(request: request, matching: original, settings: settings)
-        while viewModel.isReviewing { await Task.yield() }
-        XCTAssertNotNil(viewModel.aiReview)
-        XCTAssertEqual(viewModel.aiIssues.count, 1)
-
-        viewModel.preserveAIReview(afterApplying: accepted)
-        viewModel.scheduleAnalysis(text: original, targetGrade: 8, immediately: true)
-        XCTAssertNotNil(viewModel.aiReview)
-        XCTAssertEqual(viewModel.aiIssues.count, 1)
-
-        viewModel.scheduleAnalysis(text: accepted, targetGrade: 8, immediately: true)
-        XCTAssertNotNil(viewModel.aiReview)
-        XCTAssertTrue(viewModel.aiIssues.isEmpty)
-
-        viewModel.scheduleAnalysis(text: "A manually changed draft.", targetGrade: 8, immediately: true)
-        XCTAssertNil(viewModel.aiReview)
-    }
-
-    @MainActor
     func testSelectionRewritePublishesThreeAlternativesAndClearsBusyState() async throws {
         let session = mockSession()
         AIRequestMockURLProtocol.handler = { request in
@@ -571,34 +514,6 @@ final class AIRequestTests: XCTestCase {
 
         XCTAssertNil(viewModel.rewritePresentation)
         XCTAssertEqual(viewModel.errorMessage, WritingAIError.invalidResponse.localizedDescription)
-    }
-
-    @MainActor
-    func testEditingWhileAIReviewIsRunningCancelsItAndIgnoresItsStaleResponse() async throws {
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [DelayedOllamaURLProtocol.self]
-        let session = URLSession(configuration: configuration)
-        let (settings, suite) = try ollamaSettings()
-        defer { UserDefaults(suiteName: suite)?.removePersistentDomain(forName: suite) }
-        let original = "The original draft."
-        let request = AIRequestPreview(
-            purpose: .polish(targetGrade: 8), provider: .ollama, model: "local-model",
-            primaryLabel: "Draft", primaryText: original, styleGuide: nil,
-            includesStyleGuide: false, referenceContext: nil, includesReferenceContext: false,
-            sourceRange: nil, sourceText: original
-        )
-        let viewModel = EditorViewModel(service: WritingAIService(session: session))
-        viewModel.configureDocument(url: nil, text: original)
-
-        viewModel.runAIReview(request: request, matching: original, settings: settings)
-        XCTAssertTrue(viewModel.isReviewing)
-        viewModel.scheduleAnalysis(text: "The author changed the draft.", targetGrade: 8, immediately: true)
-        await waitUntil { DelayedOllamaURLProtocol.wasStopped }
-
-        XCTAssertFalse(viewModel.isReviewing)
-        XCTAssertNil(viewModel.aiReview)
-        XCTAssertTrue(viewModel.aiIssues.isEmpty)
-        XCTAssertNil(viewModel.errorMessage)
     }
 
     @MainActor

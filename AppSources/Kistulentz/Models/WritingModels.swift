@@ -139,18 +139,3 @@ enum ReadabilityTargetStatus: Equatable {
         return .onTarget
     }
 }
-
-struct AIReview: Decodable {
-    let summary: String
-    let gradeEstimate: Double
-    let polishedText: String
-    let suggestions: [AISuggestion]
-}
-
-struct AISuggestion: Decodable, Identifiable {
-    var id: String { "\(original)|\(replacement)|\(explanation)" }
-    let original: String
-    let replacement: String
-    let explanation: String
-    let category: String
-}

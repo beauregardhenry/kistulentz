@@ -78,7 +78,6 @@ final class AIRequestModelsTests: XCTestCase {
 
     func testAIRequestPurposeTitlesAndActionTitlesForEveryCase() {
         let cases: [(AIRequestPurpose, title: String, actionTitle: String)] = [
-            (.polish(targetGrade: 8), "Preview Polish Request", "Run Polish"),
             (
                 .selectionRewrite(goal: SelectionRewriteGoal(kind: .shorten), targetGrade: 8),
                 "Preview Shorten",
@@ -107,20 +106,6 @@ final class AIRequestModelsTests: XCTestCase {
             XCTAssertEqual(purpose.title, expectedTitle)
             XCTAssertEqual(purpose.actionTitle, expectedActionTitle)
         }
-    }
-
-    func testPolishInstructionsAppendTheStyleGuideAndReferenceParagraphsOnlyWhenRequested() {
-        let bare = AIRequestBuilder.instructions(for: .polish(targetGrade: 8), hasStyleGuide: false, hasReference: false)
-        XCTAssertFalse(bare.contains("Follow the user's project style guide"))
-        XCTAssertFalse(bare.contains("A reference profile and selected excerpts"))
-
-        let withStyleGuide = AIRequestBuilder.instructions(for: .polish(targetGrade: 8), hasStyleGuide: true, hasReference: false)
-        XCTAssertTrue(withStyleGuide.contains("Follow the user's project style guide"))
-        XCTAssertFalse(withStyleGuide.contains("A reference profile and selected excerpts"))
-
-        let withReference = AIRequestBuilder.instructions(for: .polish(targetGrade: 8), hasStyleGuide: false, hasReference: true)
-        XCTAssertFalse(withReference.contains("Follow the user's project style guide"))
-        XCTAssertTrue(withReference.contains("A reference profile and selected excerpts"))
     }
 
     func testSelectionRewriteInstructionsAppendTheStyleGuideAndReferenceSentencesOnlyWhenRequested() {
