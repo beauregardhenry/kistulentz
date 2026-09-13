@@ -93,6 +93,12 @@ enum HTMLImportSanitizer {
         let metadata = String(source[..<comma]).lowercased()
         guard metadata.contains(";base64") else { return nil }
         let encoded = String(source[source.index(after: comma)...])
+        // Base64 can't encode fewer bytes than 3/4 of its own length, so anything already
+        // over that bound is guaranteed to decode past maximumImageBytes. Reject it before
+        // asking Data(base64Encoded:) to allocate and decode a blob only to throw it away --
+        // an attacker-supplied import shouldn't be able to force a multi-gigabyte decode just
+        // because the eventual image is too large to keep.
+        guard encoded.utf8.count <= (maximumImageBytes / 3 + 1) * 4 else { return nil }
         guard let data = Data(base64Encoded: encoded, options: .ignoreUnknownCharacters),
               !data.isEmpty,
               data.count <= maximumImageBytes else { return nil }
