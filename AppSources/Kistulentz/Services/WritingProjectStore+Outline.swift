@@ -377,27 +377,20 @@ extension WritingProjectStore {
                 )
                 editCoordinator.editLanded(.externalChange)
             } catch {
-                var rollbackFailures: [String] = []
-                do {
-                    try WritingProjectDisk.writeChapter(original, relativePath: plan.chapterPath, at: rootURL)
-                } catch let rollbackError {
-                    rollbackFailures.append("restoring \(plan.chapterPath): \(rollbackError.localizedDescription)")
-                }
-                for path in createdPaths {
-                    do {
-                        try FileManager.default.removeItem(at: rootURL.appendingPathComponent(path))
-                    } catch let rollbackError {
-                        rollbackFailures.append("removing \(path): \(rollbackError.localizedDescription)")
-                    }
-                }
+                // outlineNodes doesn't depend on whether the rollback below succeeds -- it's an
+                // in-memory reset, independent of the disk attempts -- so it's safe to apply
+                // before RollbackTracker.run, which always throws and never returns here.
                 outlineNodes = beforeNodes
-                guard rollbackFailures.isEmpty else {
-                    throw ProjectOutlineError.splitFailedAndRollbackIncomplete(
-                        splitReason: error.localizedDescription,
-                        rollbackReason: rollbackFailures.joined(separator: "; ")
-                    )
+                let restoreStep = (
+                    label: "restoring \(plan.chapterPath)",
+                    attempt: { try WritingProjectDisk.writeChapter(original, relativePath: plan.chapterPath, at: rootURL) }
+                )
+                let removalSteps = createdPaths.map { path in
+                    (label: "removing \(path)", attempt: { try FileManager.default.removeItem(at: rootURL.appendingPathComponent(path)) })
                 }
-                throw error
+                try RollbackTracker.run(after: error, steps: [restoreStep] + removalSteps) { splitReason, rollbackReason in
+                    ProjectOutlineError.splitFailedAndRollbackIncomplete(splitReason: splitReason, rollbackReason: rollbackReason)
+                }
             }
         } catch {
             errorMessage = error.localizedDescription

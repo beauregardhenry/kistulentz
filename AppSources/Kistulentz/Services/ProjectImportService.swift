@@ -267,28 +267,22 @@ enum ProjectImportOutputService {
                 selectedPath: outputURL.lastPathComponent
             )
         } catch {
-            var rollbackFailures: [String] = []
+            var steps: [(label: String, attempt: () throws -> Void)] = []
             if !createdAssetURLs.isEmpty {
-                do {
-                    try FileManager.default.removeItem(at: assetFolder)
-                } catch let rollbackError {
-                    rollbackFailures.append("removing \(assetFolder.lastPathComponent): \(rollbackError.localizedDescription)")
-                }
+                steps.append((
+                    label: "removing \(assetFolder.lastPathComponent)",
+                    attempt: { try FileManager.default.removeItem(at: assetFolder) }
+                ))
             }
             if !existedBefore {
-                do {
-                    try FileManager.default.removeItem(at: outputURL)
-                } catch let rollbackError {
-                    rollbackFailures.append("removing \(outputURL.lastPathComponent): \(rollbackError.localizedDescription)")
-                }
+                steps.append((
+                    label: "removing \(outputURL.lastPathComponent)",
+                    attempt: { try FileManager.default.removeItem(at: outputURL) }
+                ))
             }
-            guard rollbackFailures.isEmpty else {
-                throw ProjectImportError.importFailedAndRollbackIncomplete(
-                    originalReason: error.localizedDescription,
-                    details: rollbackFailures.joined(separator: "; ")
-                )
+            try RollbackTracker.run(after: error, steps: steps) { originalReason, details in
+                ProjectImportError.importFailedAndRollbackIncomplete(originalReason: originalReason, details: details)
             }
-            throw error
         }
     }
 
@@ -329,15 +323,12 @@ enum ProjectImportOutputService {
             }
             return result
         } catch {
-            do {
-                try FileManager.default.removeItem(at: root)
-            } catch let rollbackError {
-                throw ProjectImportError.importFailedAndRollbackIncomplete(
-                    originalReason: error.localizedDescription,
-                    details: "removing the new project folder: \(rollbackError.localizedDescription)"
-                )
+            try RollbackTracker.run(
+                after: error,
+                steps: [(label: "removing the new project folder", attempt: { try FileManager.default.removeItem(at: root) })]
+            ) { originalReason, details in
+                ProjectImportError.importFailedAndRollbackIncomplete(originalReason: originalReason, details: details)
             }
-            throw error
         }
     }
 
