@@ -311,7 +311,7 @@ class KistulentzUITestCase: XCTestCase {
             "-ApplePersistenceIgnoreState", "YES",
             "-hasCompletedOnboarding", completedOnboarding ? "YES" : "NO",
             "-hasAcknowledgedEnglishPackPrompt", acknowledgedEnglishPack ? "YES" : "NO",
-            "-lastSeenAppVersion", "0.18.0"
+            "-lastSeenAppVersion", "0.18.1"
         ]
         application.launchArguments += launchArguments
         return application

@@ -5,15 +5,15 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.18.0 FRIEND PREVIEW
-- Interrupted snapshot, reference-library, and publication saves keep their last
-  known-good state instead of exposing or stranding a partial change.
-- Malformed or unsafe HTML, EPUB, bibliography, rich-text, and office imports are
-  rejected more defensively, including unsafe attachment paths and filenames.
-- Long-manuscript context now retains the ending while respecting its size limit,
-  and large De-stink reviews have a working Cancel action.
-- Expanded upgrade, import, recovery, publication, provider, and large-project
-  regression coverage protects the complete interface as well as the core logic.
+NEW IN 0.18.1 FRIEND PREVIEW
+- Dragging an outline item to reorganize a project now correctly reverts if the
+  change can't be fully saved, instead of drifting out of sync with disk.
+- A failed "Deepen with AI" manuscript report can no longer sneak back in on your
+  next edit after being reported as failed.
+- Opening a project that needs upgrading, reorganizing files, applying a systemic
+  revision, and splitting a chapter now each report clearly when an automatic
+  undo of a failed change couldn't fully complete.
+- HTML import is hardened against oversized embedded images.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
