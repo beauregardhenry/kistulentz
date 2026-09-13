@@ -88,12 +88,14 @@ extension WritingProjectStore {
             errorMessage = ProjectOutlineError.invalidHierarchy.localizedDescription
             return
         }
+        let previous = outlineNodes
         outlineNodes = updated
         do {
             saveOutlineNow()
             try syncChaptersWithOutline(preferredSelection: selectedChapterPath)
             editCoordinator.editLanded(.externalChange)
         } catch {
+            outlineNodes = previous
             errorMessage = error.localizedDescription
         }
     }
@@ -104,12 +106,14 @@ extension WritingProjectStore {
             errorMessage = ProjectOutlineError.invalidHierarchy.localizedDescription
             return
         }
+        let previous = outlineNodes
         outlineNodes = updated
         do {
             saveOutlineNow()
             try syncChaptersWithOutline(preferredSelection: selectedChapterPath)
             editCoordinator.editLanded(.externalChange)
         } catch {
+            outlineNodes = previous
             errorMessage = error.localizedDescription
         }
     }

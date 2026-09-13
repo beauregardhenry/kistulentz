@@ -309,6 +309,191 @@ final class ProjectOrganizationTests: XCTestCase {
     }
 
     @MainActor
+    func testMoveOutlineNodeOntoNestsAsAChildAndRollsBackWhenSyncFails() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Onto Move", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+
+        store.moveOutlineNode(chapterID, onto: partID)
+
+        XCTAssertNil(store.errorMessage)
+        let part = try XCTUnwrap(store.outlineNode(id: partID))
+        XCTAssertEqual(part.children.map(\.id), [chapterID])
+
+        // Undo the successful move, then force the next attempt's disk sync to fail so the
+        // rollback path (not just the happy path) gets exercised.
+        store.moveOutlineNode(chapterID, toParent: nil)
+        XCTAssertNil(store.errorMessage)
+        let beforeFailedMove = store.outlineNodes
+        let manifestURL = root.appendingPathComponent(".kistulentz/project.json")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: manifestURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: manifestURL.path) }
+
+        store.moveOutlineNode(chapterID, onto: partID)
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(store.outlineNodes, beforeFailedMove)
+        XCTAssertTrue(try XCTUnwrap(store.outlineNode(id: partID)).children.isEmpty)
+    }
+
+    @MainActor
+    func testMoveOutlineNodeToParentRollsBackTheOutlineTreeWhenSyncFails() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "ToParent Move", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        let beforeFailedMove = store.outlineNodes
+        let manifestURL = root.appendingPathComponent(".kistulentz/project.json")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: manifestURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: manifestURL.path) }
+
+        store.moveOutlineNode(chapterID, toParent: partID)
+
+        XCTAssertNotNil(store.errorMessage)
+        // Before the fix, outlineNodes stayed at the moved tree even though syncChaptersWithOutline
+        // (and therefore the on-disk manifest/chapter list) never caught up, leaving the in-memory
+        // outline silently diverged from what was actually saved.
+        XCTAssertEqual(store.outlineNodes, beforeFailedMove)
+        XCTAssertTrue(try XCTUnwrap(store.outlineNode(id: partID)).children.isEmpty)
+    }
+
+    @MainActor
+    func testMoveOutlineNodeEarlierAndLaterReorderSiblingsThroughTheStore() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Sibling Move", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let firstID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let secondID = try XCTUnwrap(store.addOutlineItem(kind: .chapter, title: "Chapter 2", parentID: nil))
+
+        store.moveOutlineNodeEarlier(secondID)
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.outlineNodes.map(\.id), [secondID, firstID])
+
+        store.moveOutlineNodeLater(secondID)
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.outlineNodes.map(\.id), [firstID, secondID])
+
+        // Moving the first node earlier (there's nothing before it) is a silent no-op, not an error.
+        store.moveOutlineNodeEarlier(firstID)
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.outlineNodes.map(\.id), [firstID, secondID])
+    }
+
+    @MainActor
+    func testOutlineWordCountAndWarningCountAggregateOverDescendantFiles() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Counts", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nFour words exactly here.\n")
+        store.saveNow()
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let chapterPath = try XCTUnwrap(store.outlineNode(id: chapterID)?.relativePath)
+        let node = try XCTUnwrap(store.outlineNode(id: chapterID))
+
+        // "Chapter 1 Four words exactly here." -- the word count includes the heading text itself.
+        XCTAssertEqual(store.outlineWordCount(for: node), 6)
+        XCTAssertEqual(store.outlineWarningCount(for: node), 0)
+
+        store.manuscriptAnalysis = ManuscriptAnalysis(
+            projectName: "Counts",
+            kind: .fiction,
+            chapters: [],
+            entities: [],
+            keyTerms: [],
+            repeatedPhrases: [],
+            timelineMarkers: [],
+            claimChecks: [],
+            continuityChecks: [
+                ManuscriptFinding(title: "Timeline", detail: "Inconsistent date.", chapterPath: chapterPath),
+                ManuscriptFinding(title: "Elsewhere", detail: "Different chapter.", chapterPath: "Somewhere Else.md")
+            ],
+            totalWords: 0,
+            totalSentences: 0,
+            overallGrade: 0,
+            averageSentenceWords: 0,
+            averageParagraphWords: 0,
+            dialogueRatio: 0,
+            citationCount: 0,
+            adverbCount: 0,
+            passiveVoiceCount: 0,
+            structuralProfile: nil,
+            reportMarkdown: "",
+            generatedBibleBlock: ""
+        )
+
+        XCTAssertEqual(store.outlineWarningCount(for: node), 1)
+    }
+
+    @MainActor
+    func testSelectOutlineNodeSwitchesToTheNodesChapterAndIgnoresAnUnknownID() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Select", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let secondID = try XCTUnwrap(store.addOutlineItem(kind: .chapter, title: "Chapter 2", parentID: nil))
+        let secondPath = try XCTUnwrap(store.outlineNode(id: secondID)?.relativePath)
+
+        store.selectOutlineNode(secondID)
+        XCTAssertEqual(store.selectedChapterPath, secondPath)
+
+        store.selectOutlineNode(UUID())
+        // An unknown ID is a silent no-op: the selection stays exactly where it was.
+        XCTAssertEqual(store.selectedChapterPath, secondPath)
+    }
+
+    @MainActor
+    func testApplySuggestedSynopsisTrimsWhitespaceAndPersistsOntoTheNode() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Apply Synopsis", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+
+        store.applySuggestedSynopsis("  A tidy summary.  \n", to: chapterID)
+
+        XCTAssertEqual(store.outlineNode(id: chapterID)?.metadata.suggestedSynopsis, "A tidy summary.")
+
+        // An unknown ID is a silent no-op, not a crash.
+        store.applySuggestedSynopsis("Ignored", to: UUID())
+        XCTAssertEqual(store.outlineNode(id: chapterID)?.metadata.suggestedSynopsis, "A tidy summary.")
+    }
+
+    @MainActor
+    func testOutlineAIContextIncludesThePassageAndBibleAndThrowsForAnUnknownID() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "AI Context", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText("# Chapter 1\n\nMara reaches the harbor before dawn.\n")
+        store.bibleText = "Mara is a courier who trusts no one."
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+
+        let context = try store.outlineAIContext(for: chapterID)
+
+        XCTAssertTrue(context.contains("Mara reaches the harbor before dawn."))
+        XCTAssertTrue(context.contains("Mara is a courier who trusts no one."))
+        XCTAssertTrue(context.contains(#"type="chapter""#))
+
+        XCTAssertThrowsError(try store.outlineAIContext(for: UUID())) { error in
+            XCTAssertEqual(error as? ProjectOutlineError, .missingNode)
+        }
+    }
+
+    @MainActor
     func testStoreSplitsHeadingsIntoFictionScenesAndUndoesSafely() throws {
         let parent = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: parent) }
