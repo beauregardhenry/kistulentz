@@ -55,6 +55,7 @@
 		46E512870B9AD0C3A00D15DA /* MacFilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B20BB2830AC3D69796E3B5 /* MacFilePanel.swift */; };
 		49C4AC6262B912B8DECC7EFC /* PolishedDraftPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB21EB85D8683AC3A6913D76 /* PolishedDraftPlanner.swift */; };
 		4B944C3FF9265FDC24E966BE /* SystemCheckModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F3C07ECD3F4AF85FCA46B8 /* SystemCheckModels.swift */; };
+		4BDD3C5B18DA75AC632ABA1D /* RollbackTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC9D05C9214DDB043CB84F /* RollbackTracker.swift */; };
 		4DA560CFC8C2A16F548652E0 /* PublicationRendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C3552A307E75EDE45C5F42 /* PublicationRendering.swift */; };
 		4F110798601563EA748950E7 /* ResearchLibraryWorkflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69306D8A1E3CBABD46A8143E /* ResearchLibraryWorkflowUITests.swift */; };
 		50EF860DF7387F8DA9416C68 /* EPUBReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B167CE1322E5DC463653C /* EPUBReference.swift */; };
@@ -184,6 +185,7 @@
 		24AE35BD89B38C2E2AD7A7AB /* ManuscriptEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptEditCoordinator.swift; sourceTree = "<group>"; };
 		2645F1F1CC73FDAF73B40DD5 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		2842A9ED061DB062FD251A1F /* EditorSidebars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSidebars.swift; sourceTree = "<group>"; };
+		2ACC9D05C9214DDB043CB84F /* RollbackTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollbackTracker.swift; sourceTree = "<group>"; };
 		2C95FFF5D4FBC6796A12669A /* WritingProjectStore+EditPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WritingProjectStore+EditPipeline.swift"; sourceTree = "<group>"; };
 		2D70091B9F2DC5C09B6DCA53 /* PublishExportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishExportViewModel.swift; sourceTree = "<group>"; };
 		2DE139835916E6597FF14B63 /* WritingProjectStore+ChaptersEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WritingProjectStore+ChaptersEditing.swift"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				FF9D0C2D3E3901A6CF257EF4 /* ResearchLibraryStore.swift */,
 				0A994D61E58E05351FAD207E /* ResearchMetadataLookup.swift */,
 				601E1E1C30A1010B24902668 /* RevisionDiff.swift */,
+				2ACC9D05C9214DDB043CB84F /* RollbackTracker.swift */,
 				B3A93226CDB001FFC2B892B6 /* SampleProjectBuilder.swift */,
 				C650B1A545CACE4B69EBE945 /* SearchStore.swift */,
 				8A6D6120FE63E3735B10F3C9 /* SelectionReplacementPlanner.swift */,
@@ -733,6 +736,7 @@
 				BE5386E5BD939E111D26AF3B /* ResearchModels.swift in Sources */,
 				69BAFDA48A04A75C9BCE8828 /* ResearchViews.swift in Sources */,
 				D6F95F4815C237AAC644A157 /* RevisionDiff.swift in Sources */,
+				4BDD3C5B18DA75AC632ABA1D /* RollbackTracker.swift in Sources */,
 				8E7B2C6ECB11BC5C3CF09FB3 /* SampleProjectBuilder.swift in Sources */,
 				C0C93A5C34CA3F4EC4611CC4 /* SearchStore.swift in Sources */,
 				B0068AC701780783E6F9EA43 /* SelectionReplacementPlanner.swift in Sources */,

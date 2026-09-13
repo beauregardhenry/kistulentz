@@ -136,21 +136,23 @@ enum ProjectCompatibilityManager {
             }
             _ = try inspectedVersions(at: root)
         } catch {
-            do {
-                try restoreJSONFiles(from: backup, at: root, removingMissingKnownFiles: false)
-            } catch let rollbackError {
-                // restoreJSONFiles restores its backed-up files one at a time and stops at the
-                // first failure, so a locked or otherwise-unwritable file downstream of the one
-                // that failed migration can leave earlier, already-migrated files stuck at their
-                // new version instead of being put back. The pre-migration backup itself is
-                // untouched either way, so surface both failures distinctly rather than silently
-                // implying migration was cleanly undone.
-                throw ProjectCompatibilityError.migrationFailedAndRollbackIncomplete(
-                    migrationReason: error.localizedDescription,
-                    rollbackReason: rollbackError.localizedDescription
+            // restoreJSONFiles restores its backed-up files one at a time and stops at the first
+            // failure, so a locked or otherwise-unwritable file downstream of the one that failed
+            // migration can leave earlier, already-migrated files stuck at their new version
+            // instead of being put back. The pre-migration backup itself is untouched either way,
+            // so surface both failures distinctly rather than silently implying migration was
+            // cleanly undone.
+            try RollbackTracker.run(
+                after: error,
+                steps: [("restoring the pre-migration backup", {
+                    try restoreJSONFiles(from: backup, at: root, removingMissingKnownFiles: false)
+                })]
+            ) { migrationReason, rollbackReason in
+                ProjectCompatibilityError.migrationFailedAndRollbackIncomplete(
+                    migrationReason: migrationReason,
+                    rollbackReason: rollbackReason
                 )
             }
-            throw error
         }
 
         return ProjectMigrationResult(

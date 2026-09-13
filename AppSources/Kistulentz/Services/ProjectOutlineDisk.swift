@@ -480,27 +480,22 @@ enum ProjectFileOrganizer {
             }
             return completed
         } catch {
-            var rollbackFailures: [String] = []
-            for move in completed.reversed() {
-                let source = root.appendingPathComponent(move.destinationPath)
-                let destination = root.appendingPathComponent(move.sourcePath)
-                do {
-                    try FileManager.default.createDirectory(
-                        at: destination.deletingLastPathComponent(),
-                        withIntermediateDirectories: true
-                    )
-                    try FileManager.default.moveItem(at: source, to: destination)
-                } catch let rollbackError {
-                    rollbackFailures.append("\(move.destinationPath): \(rollbackError.localizedDescription)")
+            try RollbackTracker.run(
+                after: error,
+                steps: completed.reversed().map { move in
+                    (label: move.destinationPath, attempt: {
+                        let source = root.appendingPathComponent(move.destinationPath)
+                        let destination = root.appendingPathComponent(move.sourcePath)
+                        try FileManager.default.createDirectory(
+                            at: destination.deletingLastPathComponent(),
+                            withIntermediateDirectories: true
+                        )
+                        try FileManager.default.moveItem(at: source, to: destination)
+                    })
                 }
+            ) { moveReason, rollbackReason in
+                ProjectOutlineError.moveFailedAndRollbackIncomplete(moveReason: moveReason, rollbackReason: rollbackReason)
             }
-            guard rollbackFailures.isEmpty else {
-                throw ProjectOutlineError.moveFailedAndRollbackIncomplete(
-                    moveReason: error.localizedDescription,
-                    rollbackReason: rollbackFailures.joined(separator: "; ")
-                )
-            }
-            throw error
         }
     }
 

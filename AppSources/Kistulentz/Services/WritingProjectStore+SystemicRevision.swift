@@ -144,21 +144,14 @@ extension WritingProjectStore {
                     try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL)
                 }
             } catch {
-                var rollbackFailures: [String] = []
-                for (path, content) in before {
-                    do {
-                        try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL)
-                    } catch let rollbackError {
-                        rollbackFailures.append("\(path): \(rollbackError.localizedDescription)")
+                try RollbackTracker.run(
+                    after: error,
+                    steps: before.map { path, content in
+                        (label: path, attempt: { try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL) })
                     }
+                ) { applyReason, rollbackReason in
+                    SystemicRevisionError.applyFailedAndRollbackIncomplete(applyReason: applyReason, rollbackReason: rollbackReason)
                 }
-                guard rollbackFailures.isEmpty else {
-                    throw SystemicRevisionError.applyFailedAndRollbackIncomplete(
-                        applyReason: error.localizedDescription,
-                        rollbackReason: rollbackFailures.joined(separator: "; ")
-                    )
-                }
-                throw error
             }
             for id in checked.includedChanges.compactMap(\.findingID) {
                 if let index = revisionArchive.findings.firstIndex(where: { $0.id == id }) { revisionArchive.findings[index].status = .resolved }
