@@ -229,6 +229,11 @@ final class KistulentzUITests: KistulentzUITestCase {
     }
 
     func testMajorProjectWorkspacesKeepTheirExitControlsUsableAtTheMinimumWindowSize() throws {
+        // This test opens and closes four major workspaces in sequence, which takes
+        // noticeably longer than the shared 60s default on slower CI hardware (the
+        // Intel runner used for the release smoke test in particular). Give it more
+        // room so a slow runner doesn't get flagged as a hang.
+        executionTimeAllowance = 120
         let project = try makeProject(
             name: "Workspace Exit Fixture",
             documents: [("Draft.md", "# Draft\n\nA stable project passage.\n")],
