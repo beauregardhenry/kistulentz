@@ -250,31 +250,15 @@ enum ProjectImportOutputService {
             named: outputURL.deletingPathExtension().lastPathComponent + "-assets",
             in: parent
         )
-        var references: [UUID: String] = [:]
-        var files: [(DocumentImportAsset, URL)] = []
-        var reserved: Set<String> = []
-        for conversion in conversions {
-            for asset in conversion.assets {
-                let proposed = DocumentImportFilename.safe(
-                    conversion.source.title + "-" + asset.suggestedFilename
-                )
-                let name = uniqueFilename(proposed, reserved: &reserved)
-                references[asset.id] = assetFolder.lastPathComponent + "/" + name
-                files.append((asset, assetFolder.appendingPathComponent(name)))
-            }
-        }
+        let assetPlan = ImportAssetWriter.plan(assetSpecs(for: conversions), in: assetFolder)
 
-        var createdAssetFolder = false
+        var createdAssetURLs: [URL] = []
         do {
-            if !files.isEmpty {
-                try FileManager.default.createDirectory(at: assetFolder, withIntermediateDirectories: false)
-                createdAssetFolder = true
-                for (asset, url) in files { try asset.data.write(to: url, options: .atomic) }
-            }
+            createdAssetURLs = try ImportAssetWriter.write(assetPlan, to: assetFolder)
             let markdown = ProjectImportMarkdown.combinedDocument(
                 from: conversions,
                 decisions: decisions,
-                assetReferences: references
+                assetReferences: assetPlan.references
             )
             try markdown.write(to: outputURL, atomically: true, encoding: .utf8)
             return ProjectImportWriteResult(
@@ -284,7 +268,7 @@ enum ProjectImportOutputService {
             )
         } catch {
             var rollbackFailures: [String] = []
-            if createdAssetFolder {
+            if !createdAssetURLs.isEmpty {
                 do {
                     try FileManager.default.removeItem(at: assetFolder)
                 } catch let rollbackError {
@@ -391,30 +375,17 @@ enum ProjectImportOutputService {
             sources: conversions.map(\.source)
         )
 
-        let assetCount = conversions.reduce(0) { $0 + $1.assets.count }
         let assetFolder = uniqueDirectory(named: "Imported Assets", in: root)
-        var assetReferences: [UUID: String] = [:]
-        var assetFiles: [(DocumentImportAsset, URL)] = []
-        var reservedAssets: Set<String> = []
-        if assetCount > 0 {
-            for conversion in conversions {
-                for asset in conversion.assets {
-                    let proposed = DocumentImportFilename.safe(
-                        conversion.source.title + "-" + asset.suggestedFilename
-                    )
-                    let name = uniqueFilename(proposed, reserved: &reservedAssets)
-                    assetReferences[asset.id] = assetFolder.lastPathComponent + "/" + name
-                    assetFiles.append((asset, assetFolder.appendingPathComponent(name)))
-                }
-            }
-        }
+        let assetPlan = ImportAssetWriter.plan(assetSpecs(for: conversions), in: assetFolder)
 
         var createdURLs: [URL] = []
         do {
-            if !assetFiles.isEmpty {
-                try FileManager.default.createDirectory(at: assetFolder, withIntermediateDirectories: false)
+            // Track the asset folder as a single unit (like writeCombinedMarkdown does) rather
+            // than each file inside it individually -- FileManager.removeItem already removes a
+            // directory and its contents in one call, so per-file entries would just mean more
+            // (equally reliable, but more confusingly reported on partial failure) rollback steps.
+            if !(try ImportAssetWriter.write(assetPlan, to: assetFolder)).isEmpty {
                 createdURLs.append(assetFolder)
-                for (asset, url) in assetFiles { try asset.data.write(to: url, options: .atomic) }
             }
             for (conversion, path) in zip(conversions, paths) {
                 let target = root.appendingPathComponent(path)
@@ -423,7 +394,7 @@ enum ProjectImportOutputService {
                 }
                 let markdown = conversion.renderedMarkdown(
                     decisions: decisions,
-                    assetReferences: assetReferences
+                    assetReferences: assetPlan.references
                 )
                 try markdown.write(to: target, atomically: true, encoding: .utf8)
                 createdURLs.append(target)
@@ -481,6 +452,16 @@ enum ProjectImportOutputService {
         let required = Set(conversions.flatMap(\.reviewCards).map(\.id))
         guard Set(decisions.keys).isSuperset(of: required) else {
             throw ProjectImportError.unresolvedTrackedChanges
+        }
+    }
+
+    private static func assetSpecs(
+        for conversions: [ProjectImportConversion]
+    ) -> [(id: UUID, proposedName: String, asset: DocumentImportAsset)] {
+        conversions.flatMap { conversion in
+            conversion.assets.map { asset in
+                (id: asset.id, proposedName: conversion.source.title + "-" + asset.suggestedFilename, asset: asset)
+            }
         }
     }
 
