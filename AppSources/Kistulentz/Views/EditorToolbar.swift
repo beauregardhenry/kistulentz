@@ -198,6 +198,12 @@ struct EditorToolbar: View {
                 Label("De-stink", systemImage: "doc.text.magnifyingglass")
             }
             .buttonStyle(.borderless)
+            // Every other icon control in this toolbar is a Menu styled .borderlessButton, which
+            // macOS tints in the accent color by default; a plain Button's .borderless style does
+            // not pick that up on its own and renders in the muted label color instead, standing
+            // out against its siblings. This is the only single-action (non-menu) control in the
+            // row, so it needs its tint set explicitly to match.
+            .tint(.accentColor)
             .help("Check this prose locally for stock phrasing and structural writing tics")
 
             Menu {
