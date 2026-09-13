@@ -1,3 +1,4 @@
+import CoreText
 import XCTest
 @testable import Kistulentz
 
@@ -282,6 +283,47 @@ final class ProjectSubstoreTests: XCTestCase {
         XCTAssertEqual(store.publicationArchive.metadata.subtitle, "Persisted subtitle")
         XCTAssertEqual(persisted.metadata.subtitle, "Persisted subtitle")
         XCTAssertEqual(errors.count, 1)
+    }
+
+    @MainActor
+    func testUpdatePublicationArchiveBundlesACustomFontReferencedByTheSelectedProfile() throws {
+        let root = temporaryDirectory()
+        let appFontsRoot = temporaryDirectory()
+        defer {
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: appFontsRoot)
+        }
+        let systemFontURL = URL(fileURLWithPath: "/System/Library/Fonts/Supplemental/Chalkduster.ttf")
+        try XCTSkipUnless(FileManager.default.fileExists(atPath: systemFontURL.path), "Fixture font is not present on this system.")
+        let sourceCopy = appFontsRoot.appendingPathComponent("Chalkduster.ttf")
+        try FileManager.default.copyItem(at: systemFontURL, to: sourceCopy)
+        let appRecord = try CustomFontDisk.addFont(from: sourceCopy, at: appFontsRoot, scope: .process)
+
+        let manifest = WritingProjectManifest(name: "Fonted", kind: .nonfiction)
+        var persisted = PublicationArchive(projectName: manifest.name, projectKind: manifest.kind)
+        var persistence = PublicationPersistence.live
+        persistence.load = { _ in persisted }
+        persistence.save = { archive, _ in persisted = archive }
+        let store = PublicationStore(
+            projectRoot: { root },
+            projectManifest: { manifest },
+            projectOutline: { [] },
+            bibliography: { ProjectBibliographyArchive() },
+            saveCurrentDocument: {},
+            saveProjectOutline: {},
+            reportError: { _ in },
+            persistence: persistence
+        )
+        try store.load(at: root)
+        store.availableCustomFonts = { [appRecord] }
+        store.customFontFileURL = { CustomFontDisk.fileURL(for: $0, at: appFontsRoot) }
+
+        var archive = store.publicationArchive
+        archive.profiles[0].layout.bodyFontName = appRecord.familyName
+        store.updatePublicationArchive(archive)
+
+        let projectFontManifest = try CustomFontDisk.loadManifest(at: ProjectFontDisk.fontsRootURL(at: root))
+        XCTAssertEqual(projectFontManifest.fonts.map(\.familyName), [appRecord.familyName])
     }
 
     private func temporaryDirectory() -> URL {

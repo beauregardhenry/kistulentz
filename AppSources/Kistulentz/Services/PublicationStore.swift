@@ -30,6 +30,14 @@ final class PublicationStore: ObservableObject {
     private let reportError: (Error) -> Void
     private let persistence: PublicationPersistence
 
+    /// Late-bound, not a constructor parameter: `PublicationStore` is created before the
+    /// app-wide `CustomFontStore` environment object is available (see `EditorWorkspace`'s
+    /// `onAppear`), so these default to no-ops and are wired up once the environment is ready.
+    /// Nothing else about project-font bundling depends on this timing -- until it's configured,
+    /// saving a publication archive just doesn't bundle anything yet.
+    var availableCustomFonts: () -> [CustomFontRecord] = { [] }
+    var customFontFileURL: (CustomFontRecord) -> URL = { record in URL(fileURLWithPath: record.storedFilename) }
+
     init(
         projectRoot: @escaping () -> URL?,
         projectManifest: @escaping () -> WritingProjectManifest?,
@@ -67,6 +75,12 @@ final class PublicationStore: ObservableObject {
         do {
             try persistence.save(archive, rootURL)
             publicationArchive = archive
+            ProjectFontDisk.bundleReferencedFonts(
+                in: archive,
+                at: rootURL,
+                availableCustomFonts: availableCustomFonts(),
+                fileURL: customFontFileURL
+            )
         } catch {
             reportError(error)
         }

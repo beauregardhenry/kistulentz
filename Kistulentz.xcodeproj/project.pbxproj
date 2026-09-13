@@ -105,6 +105,7 @@
 		9D8C8897D71CD17395547353 /* DocumentImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8B8342F93E2DC3C19B12B3 /* DocumentImportService.swift */; };
 		9DB0F986E76D8E766D8CB20C /* ResearchLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D0C2D3E3901A6CF257EF4 /* ResearchLibraryStore.swift */; };
 		9EAB26C1023C38B3AB3D2D70 /* WritingProjectStore+SystemicRevision.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5F050C31C6577D7541D27 /* WritingProjectStore+SystemicRevision.swift */; };
+		9F24E6B22E1AD2AB50D04BB0 /* ProjectFontDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE848714DDE1705A9ECC3382 /* ProjectFontDisk.swift */; };
 		A05825C4863D7CBF94BF9258 /* DestinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B975EAF5795EFF284DBCC /* DestinkService.swift */; };
 		A0773EAFDEC0353260397E53 /* ResearchMetadataLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A994D61E58E05351FAD207E /* ResearchMetadataLookup.swift */; };
 		A25774097144DFD6839E17CB /* DocumentFormatImporters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4397AF6077BFDC201F046FE0 /* DocumentFormatImporters.swift */; };
@@ -314,6 +315,7 @@
 		F7D53813363B2D9BA69512F2 /* CustomFontUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontUITests.swift; sourceTree = "<group>"; };
 		FD618094D220DB7B46829DB6 /* ProjectCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCompatibility.swift; sourceTree = "<group>"; };
 		FDA7E5BF3F1A9BC1325B4B57 /* BetaReaderEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaReaderEngine.swift; sourceTree = "<group>"; };
+		FE848714DDE1705A9ECC3382 /* ProjectFontDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFontDisk.swift; sourceTree = "<group>"; };
 		FF47BDC543DF0B6E7BC9A938 /* AttributedMarkdownImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedMarkdownImporter.swift; sourceTree = "<group>"; };
 		FF9D0C2D3E3901A6CF257EF4 /* ResearchLibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchLibraryStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -507,6 +509,7 @@
 				22A2910B127816E39CF382BD /* PDFPublicationWriter.swift */,
 				DB21EB85D8683AC3A6913D76 /* PolishedDraftPlanner.swift */,
 				FD618094D220DB7B46829DB6 /* ProjectCompatibility.swift */,
+				FE848714DDE1705A9ECC3382 /* ProjectFontDisk.swift */,
 				E6E64ACEF8BB6A0CECE7A087 /* ProjectImportAssistantViewModel.swift */,
 				B218DC089BFAB80E07C273EF /* ProjectImportService.swift */,
 				71A23F8AD7B8467DFADF39D6 /* ProjectOutlineDisk.swift */,
@@ -714,6 +717,7 @@
 				49C4AC6262B912B8DECC7EFC /* PolishedDraftPlanner.swift in Sources */,
 				6FE00B6949D80DA39461CDE7 /* PolishedDraftReviewView.swift in Sources */,
 				08EB204AF9E777EE701D4A94 /* ProjectCompatibility.swift in Sources */,
+				9F24E6B22E1AD2AB50D04BB0 /* ProjectFontDisk.swift in Sources */,
 				93E50B339FCA545CD1F75C08 /* ProjectImportAssistantView.swift in Sources */,
 				4244850BA859EE08CD8A90A3 /* ProjectImportAssistantViewModel.swift in Sources */,
 				2EDFB8E1FBA17AFCBDA41967 /* ProjectImportModels.swift in Sources */,

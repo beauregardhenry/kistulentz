@@ -32,6 +32,13 @@ enum CustomFontDisk {
             .appendingPathComponent("CustomFonts", isDirectory: true)
     }
 
+    /// The on-disk location of a previously-added font's managed copy, given the root it was added
+    /// under. Exposed so other code (project-level font bundling) can find the actual font bytes
+    /// behind a record without duplicating knowledge of this root's internal layout.
+    static func fileURL(for record: CustomFontRecord, at root: URL) -> URL {
+        root.appendingPathComponent(filesDirectoryName).appendingPathComponent(record.storedFilename)
+    }
+
     static func loadManifest(at root: URL) throws -> CustomFontManifest {
         let url = root.appendingPathComponent(manifestFileName)
         guard FileManager.default.fileExists(atPath: url.path) else { return CustomFontManifest() }
