@@ -144,7 +144,20 @@ extension WritingProjectStore {
                     try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL)
                 }
             } catch {
-                for (path, content) in before { try? WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL) }
+                var rollbackFailures: [String] = []
+                for (path, content) in before {
+                    do {
+                        try WritingProjectDisk.writeChapter(content, relativePath: path, at: rootURL)
+                    } catch let rollbackError {
+                        rollbackFailures.append("\(path): \(rollbackError.localizedDescription)")
+                    }
+                }
+                guard rollbackFailures.isEmpty else {
+                    throw SystemicRevisionError.applyFailedAndRollbackIncomplete(
+                        applyReason: error.localizedDescription,
+                        rollbackReason: rollbackFailures.joined(separator: "; ")
+                    )
+                }
                 throw error
             }
             for id in checked.includedChanges.compactMap(\.findingID) {

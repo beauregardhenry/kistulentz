@@ -480,14 +480,25 @@ enum ProjectFileOrganizer {
             }
             return completed
         } catch {
+            var rollbackFailures: [String] = []
             for move in completed.reversed() {
                 let source = root.appendingPathComponent(move.destinationPath)
                 let destination = root.appendingPathComponent(move.sourcePath)
-                try? FileManager.default.createDirectory(
-                    at: destination.deletingLastPathComponent(),
-                    withIntermediateDirectories: true
+                do {
+                    try FileManager.default.createDirectory(
+                        at: destination.deletingLastPathComponent(),
+                        withIntermediateDirectories: true
+                    )
+                    try FileManager.default.moveItem(at: source, to: destination)
+                } catch let rollbackError {
+                    rollbackFailures.append("\(move.destinationPath): \(rollbackError.localizedDescription)")
+                }
+            }
+            guard rollbackFailures.isEmpty else {
+                throw ProjectOutlineError.moveFailedAndRollbackIncomplete(
+                    moveReason: error.localizedDescription,
+                    rollbackReason: rollbackFailures.joined(separator: "; ")
                 )
-                try? FileManager.default.moveItem(at: source, to: destination)
             }
             throw error
         }
