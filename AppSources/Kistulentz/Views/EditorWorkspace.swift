@@ -29,7 +29,6 @@ struct EditorWorkspace: View {
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
     @EnvironmentObject private var researchLibrary: ResearchLibraryStore
     @EnvironmentObject private var draftRecovery: DraftRecoveryManager
-    @Environment(\.openSettings) private var openSettings
     @Environment(\.undoManager) private var undoManager
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var viewModel = EditorViewModel()
@@ -142,7 +141,6 @@ struct EditorWorkspace: View {
                         alignment: viewModel.referenceAlignment,
                         isLoadingReference: viewModel.isLoadingReference,
                         onRunReview: runReview,
-                        onOpenSettings: { openSettings() },
                         onChooseReference: { presentation.present(.referenceLibrary) },
                         onRemoveReference: viewModel.clearReference,
                         onSelect: viewModel.focus,
@@ -900,31 +898,13 @@ struct EditorWorkspace: View {
         }
     }
 
+    // Polish always runs locally, regardless of whether an AI provider is configured -- it used
+    // to silently switch to sending the draft to whatever provider was set up (even one configured
+    // for an unrelated feature, like Selection Rewrite), which meant a provider being ready
+    // elsewhere in Settings could change what this specific action did without the author asking
+    // for that. AI-assisted rewriting stays available, but only through actions the author invokes
+    // explicitly for that purpose, like Selection Rewrite.
     private func runReview() {
-        guard settings.isProviderReady(settings.provider) else {
-            runLocalPolish()
-            return
-        }
-        let style = projectStore.isOpen ? styleLearningStore.styleText : nil
-        let reference = viewModel.referenceBook.map {
-            WritingAIService.referenceContext($0, relevantTo: activeText)
-        }
-        pendingAIRequest = AIRequestPreview(
-            purpose: .polish(targetGrade: settings.targetGrade),
-            provider: settings.provider,
-            model: settings.model(for: settings.provider),
-            primaryLabel: "Markdown draft",
-            primaryText: activeText,
-            styleGuide: style,
-            includesStyleGuide: style?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false,
-            referenceContext: reference,
-            includesReferenceContext: reference != nil,
-            sourceRange: nil,
-            sourceText: activeText
-        )
-    }
-
-    private func runLocalPolish() {
         let styleDecisions = projectStore.rootURL.flatMap {
             try? ProjectStyleManager.loadDecisions(at: $0)
         } ?? []

@@ -58,4 +58,35 @@ final class ReadabilityEngineTests: XCTestCase {
 
         XCTAssertEqual(result.stats.words, 5)
     }
+
+    func testReadabilityTargetStatusFlagsWritingFarSimplerThanTheTargetAsBelowNotOnTarget() {
+        // A 5th-grade document against a 12th-grade target is a mismatch with the intended
+        // audience, not a success -- it must not read as "on target" just because it isn't too
+        // hard.
+        XCTAssertEqual(
+            ReadabilityTargetStatus.classify(gradeLevel: 5, targetGrade: 12),
+            .belowTarget
+        )
+    }
+
+    func testReadabilityTargetStatusFlagsWritingFarHarderThanTheTargetAsAboveTarget() {
+        XCTAssertEqual(
+            ReadabilityTargetStatus.classify(gradeLevel: 12, targetGrade: 5),
+            .aboveTarget
+        )
+    }
+
+    func testReadabilityTargetStatusTreatsGradeLevelsWithinToleranceAsOnTarget() {
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 8, targetGrade: 8), .onTarget)
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 9, targetGrade: 8), .onTarget)
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 7, targetGrade: 8), .onTarget)
+    }
+
+    func testReadabilityTargetStatusTreatsTheToleranceBoundaryItselfAsOnTarget() {
+        // The boundary is inclusive in both directions.
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 9, targetGrade: 8, tolerance: 1), .onTarget)
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 7, targetGrade: 8, tolerance: 1), .onTarget)
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 9.01, targetGrade: 8, tolerance: 1), .aboveTarget)
+        XCTAssertEqual(ReadabilityTargetStatus.classify(gradeLevel: 6.99, targetGrade: 8, tolerance: 1), .belowTarget)
+    }
 }

@@ -8,6 +8,17 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+### Fixed
+
+- The readability grade indicator showed "On target" (green) for a document far *below* the
+  target grade — e.g. 5th-grade writing against a 12th-grade target — because it only checked
+  whether the current grade was too high, never too low. It now shows "Below target" when the
+  gap runs the other way, using the same tolerance in both directions.
+- **Polish** used to silently switch to sending the draft to whichever AI provider happened to be
+  configured (even one set up only for an unrelated feature like Selection Rewrite), instead of
+  always running its local, rule-based review. Polish now always runs locally regardless of
+  provider configuration; AI-assisted rewriting stays available separately through Rewrite.
+
 ## [0.17.2] - 2026-09-12
 
 Primarily an internal quality release — most of it is test coverage, dead-code removal, and
