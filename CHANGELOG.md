@@ -8,6 +8,32 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.18.1] - 2026-09-13
+
+### Fixed
+
+- Dragging an outline item onto another item or a new parent now correctly rolls back the
+  in-memory outline if the follow-up chapter-list sync fails, matching how reordering a sibling
+  with Move Earlier/Later already behaved.
+- A failed "Deepen with AI" manuscript report no longer gets silently written to disk on the
+  next successful analysis after the user was told the request failed.
+- Project-format migration on open, file reorganization, systemic revision, and heading splits
+  now report it distinctly when an automatic rollback from a failed attempt cannot fully
+  complete, instead of a message implying the change was cleanly undone.
+- HTML import now rejects an oversized embedded image by its encoded size before decoding it,
+  rather than after.
+
+### Testing
+
+- Added end-to-end coverage for every rollback path above, including a genuine reproduction of
+  project-migration-then-rollback both failing at once.
+- Added coverage for HTML-import embedded images: successful, malformed, and non-image data URIs.
+- Removed dead AI-review "Polish" code path (superseded by always-local Polish) along with its
+  now-obsolete tests, and extracted two shared helpers (asset writing during import, rollback
+  bookkeeping) that had previously been hand-copied across several call sites.
+- The verified suite now contains 643 Swift tests and 51 macOS interface tests. App-source line
+  coverage outside the view layer is approximately 89.6%.
+
 ## [0.18.0] - 2026-09-13
 
 ### Fixed
