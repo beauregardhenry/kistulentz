@@ -17,9 +17,19 @@ Kistulentz requires macOS Sequoia 15 or later. Xcode 26 or newer is needed to ru
 swift test --disable-sandbox
 ```
 
-Pull requests and pushes to `main` run the same SwiftPM tests in CI, check the coverage ratchet, build and verify the universal application bundle, and run the bounded macOS UI regression suite.
+Pull requests and pushes to `main` run the same SwiftPM tests in CI, check for banned patterns, check the coverage and test count ratchets, build and verify the universal application bundle, and run the bounded macOS UI regression suite.
 
 `swift test` reports `no such module 'XCTest'` when only the Command Line Tools are installed, because XCTest ships with Xcode.
+
+## Banned patterns
+
+`as!`, `fatalError(`, `print(`, and `TODO`/`FIXME` comment markers hold at zero in `AppSources/Kistulentz`. None of these have a legitimate use in shipped app code: a forced downcast or `fatalError` should be a real, reported error instead; a `print(` is leftover debug output; a `TODO`/`FIXME` is deferred work that should become a tracked issue instead of a comment nobody revisits.
+
+```sh
+./scripts/check-banned-patterns.sh
+```
+
+This is a fixed floor of zero, not a ratchet against a baseline file — there's no legitimate reason for any of these counts to ever be nonzero, so the check just fails the moment one appears. (`try!` is deliberately not included: every current use compiles a literal, known-good `NSRegularExpression` pattern at static-initialization time, a well-established safe idiom, not the same risk as the four patterns above.)
 
 ## Test coverage
 
@@ -33,6 +43,16 @@ swift test --enable-code-coverage --disable-sandbox
 The check prints the current percentage and the five least-covered files. Don't run `--update` and commit the result yourself: a `coverage-ratchet` GitHub Actions job re-measures on every push to `main` and commits the raised baseline itself, so two PRs open at the same time never both edit `coverage-baseline.txt` and conflict with each other. Your PR only needs the plain form above to pass.
 
 Lowering the baseline is allowed but never incidental: do it in its own commit with `./scripts/check-coverage.sh --update` and say why.
+
+## Test count
+
+The Swift and Xcode UI test counts only move up too, the same shape as coverage: CI fails if either drops below the floor in [test-count-baseline.txt](test-count-baseline.txt). Coverage mostly catches a deleted test as well, since removing one usually lowers the percentage, but a raw count is a more direct signal and catches a test quietly commented out or `.skip`ped even when coverage barely moves.
+
+```sh
+./scripts/check-test-count.sh
+```
+
+The check counts `func test...()` methods statically, so it needs no build products and runs in seconds. As with coverage, don't run `--update` and commit the result yourself: a `test-count-ratchet` GitHub Actions job re-measures on every push to `main` and commits the raised baseline itself. Lowering it is allowed but never incidental: do it in its own commit with `./scripts/check-test-count.sh --update` and say why.
 
 To build the Mac application:
 
