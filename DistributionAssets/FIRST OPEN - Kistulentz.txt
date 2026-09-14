@@ -5,15 +5,13 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.18.1 FRIEND PREVIEW
-- Dragging an outline item to reorganize a project now correctly reverts if the
-  change can't be fully saved, instead of drifting out of sync with disk.
-- A failed "Deepen with AI" manuscript report can no longer sneak back in on your
-  next edit after being reported as failed.
-- Opening a project that needs upgrading, reorganizing files, applying a systemic
-  revision, and splitting a chapter now each report clearly when an automatic
-  undo of a failed change couldn't fully complete.
-- HTML import is hardened against oversized embedded images.
+NEW IN 0.19.0 FRIEND PREVIEW
+- Settings can now add your own TrueType or OpenType font files. Added fonts
+  become available everywhere Kistulentz offers a font choice, including the
+  editor and publication layouts, without a separate Font Book install.
+- A font referenced by a project's publication layout now travels with that
+  project: it's copied into the project's own hidden metadata folder, so
+  opening the project on a different Mac has access to it automatically.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
@@ -71,6 +69,13 @@ discarded recovery journals are removed.
 Custom beta-reader definitions are stored in hidden project metadata; beta
 feedback is shown only for the current in-app session. None of these automatic
 project features contact an AI provider.
+
+Custom fonts added through Settings are copied into a local Kistulentz folder
+in Application Support and registered for use across the app; removing one
+deletes its copy. A font referenced by a project's publication layout is also
+copied into that project's hidden .kistulentz folder, so opening the project
+on another Mac has access to it. None of this contacts an AI provider or
+leaves your Mac.
 
 Reordering Parts, Chapters, Scenes, or Sections on the Corkboard or Outliner does
 not move files in Finder. The separate Organize Files to Match Outline command
