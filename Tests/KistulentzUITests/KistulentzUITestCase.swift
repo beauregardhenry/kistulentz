@@ -51,6 +51,7 @@ class KistulentzUITestCase: XCTestCase {
     func launch(
         completedOnboarding: Bool = true,
         acknowledgedEnglishPack: Bool = true,
+        suppressLandingPage: Bool = true,
         environment: [String: String] = [:],
         arguments: [String] = []
     ) -> XCUIApplication {
@@ -58,7 +59,8 @@ class KistulentzUITestCase: XCTestCase {
         launchArguments = arguments
         app = makeApplication(
             completedOnboarding: completedOnboarding,
-            acknowledgedEnglishPack: acknowledgedEnglishPack
+            acknowledgedEnglishPack: acknowledgedEnglishPack,
+            suppressLandingPage: suppressLandingPage
         )
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
@@ -70,11 +72,13 @@ class KistulentzUITestCase: XCTestCase {
     @MainActor
     func relaunch(
         completedOnboarding: Bool = true,
-        acknowledgedEnglishPack: Bool = true
+        acknowledgedEnglishPack: Bool = true,
+        suppressLandingPage: Bool = true
     ) -> XCUIApplication {
         app = makeApplication(
             completedOnboarding: completedOnboarding,
-            acknowledgedEnglishPack: acknowledgedEnglishPack
+            acknowledgedEnglishPack: acknowledgedEnglishPack,
+            suppressLandingPage: suppressLandingPage
         )
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
@@ -294,7 +298,8 @@ class KistulentzUITestCase: XCTestCase {
 
     @MainActor private func makeApplication(
         completedOnboarding: Bool,
-        acknowledgedEnglishPack: Bool
+        acknowledgedEnglishPack: Bool,
+        suppressLandingPage: Bool
     ) -> XCUIApplication {
         let application = XCUIApplication()
         application.launchEnvironment["KISTULENTZ_UI_TESTING"] = "1"
@@ -304,6 +309,9 @@ class KistulentzUITestCase: XCTestCase {
         application.launchEnvironment["KISTULENTZ_UI_TEST_EDIT_COMMAND_PATH"] = editCommandURL.path
         application.launchEnvironment["KISTULENTZ_UI_TEST_STATUS_PATH"] = statusURL.path
         application.launchEnvironment["KISTULENTZ_UI_TEST_DEFAULTS_SUITE"] = defaultsSuiteName
+        // Almost every test expects to land directly in the editor; only a test specifically
+        // exercising the landing page itself opts out of the suppression.
+        application.launchEnvironment["KISTULENTZ_UI_TEST_SUPPRESS_LANDING_PAGE"] = suppressLandingPage ? "1" : "0"
         for (key, value) in launchEnvironment {
             application.launchEnvironment[key] = value
         }

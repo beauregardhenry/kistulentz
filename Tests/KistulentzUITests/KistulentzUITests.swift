@@ -512,6 +512,23 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertFalse(title.waitForExistence(timeout: 2))
     }
 
+    func testTheLandingPageAppearsOnEveryLaunchNotJustTheFirst() {
+        // completedOnboarding: true, suppressLandingPage: false -- this is specifically the normal,
+        // already-onboarded, repeat-launch case, not first-run onboarding. The landing page should
+        // still greet every launch, in front of whatever document this launch opens.
+        launch(completedOnboarding: true, acknowledgedEnglishPack: true, suppressLandingPage: false)
+
+        let title = app.staticTexts["Welcome to Kistulentz"]
+        XCTAssertTrue(title.waitForExistence(timeout: 8))
+        XCTAssertTrue(app.buttons["Create a Project"].exists)
+        XCTAssertTrue(app.buttons["Open a Document"].exists)
+        XCTAssertTrue(app.buttons["Import Documents"].exists)
+
+        app.buttons["Continue to Editor"].click()
+        XCTAssertFalse(title.waitForExistence(timeout: 2))
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+    }
+
     private var referenceControl: XCUIElement {
         app.descendants(matching: .any)["ReferenceMenu"].firstMatch
     }

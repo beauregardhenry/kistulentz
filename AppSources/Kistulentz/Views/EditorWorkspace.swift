@@ -31,6 +31,7 @@ struct EditorWorkspace: View {
     @EnvironmentObject private var draftRecovery: DraftRecoveryManager
     @EnvironmentObject private var customFonts: CustomFontStore
     @Environment(\.undoManager) private var undoManager
+    @Environment(\.openSettings) private var openSettings
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var viewModel = EditorViewModel()
     @StateObject private var undoCoordinator = DocumentUndoCoordinator()
@@ -483,6 +484,22 @@ struct EditorWorkspace: View {
         }
     }
 
+    /// Whichever of the shared alert's four error sources is currently active. At most one is
+    /// ever non-nil at a time in practice, but the order mirrors the alert's own precedence.
+    private var activeErrorMessage: String? {
+        viewModel.errorMessage
+            ?? projectStore.errorMessage
+            ?? documentImport.errorMessage
+            ?? draftRecovery.errorMessage
+    }
+
+    /// Whether the active error came from an AI provider request (a missing/invalid API key, a
+    /// provider HTTP error, an unreachable Ollama, or a network failure reaching one) -- in which
+    /// case Settings, where every provider is configured, is the obvious next stop.
+    private var activeErrorIsProviderRelated: Bool {
+        activeErrorMessage.map(WritingAIError.looksLikeProviderRelatedMessage) ?? false
+    }
+
     var body: some View {
         projectConfiguredView.alert("Kistulentz", isPresented: Binding(
             get: {
@@ -501,14 +518,11 @@ struct EditorWorkspace: View {
             }
         )) {
             Button("OK", role: .cancel) {}
+            if activeErrorIsProviderRelated {
+                Button("Open Settings") { openSettings() }
+            }
         } message: {
-            Text(
-                viewModel.errorMessage
-                    ?? projectStore.errorMessage
-                    ?? documentImport.errorMessage
-                    ?? draftRecovery.errorMessage
-                    ?? ""
-            )
+            Text(activeErrorMessage ?? "")
         }
         .confirmationDialog(
             "Apply all safe suggestions?",
@@ -739,6 +753,13 @@ struct EditorWorkspace: View {
         presentNextStartupStep()
     }
 
+    /// Welcome now doubles as Kistulentz's landing page: once onboarding is complete, it's shown
+    /// again on every later launch, in front of whatever document or project macOS's own window
+    /// restoration reopens -- "Continue to Editor" is how you dismiss it and get to that work. The
+    /// mandatory first-run branch (`!hasCompletedOnboarding`) is untouched and always wins: a user
+    /// who has never onboarded always sees Welcome, independent of the landing-page suppression
+    /// switch below (which exists only to keep existing tests landing straight in the editor, the
+    /// way they did before repeat-launch landing pages existed).
     private func presentNextStartupStep() {
         beneparPack.refresh()
         if !beneparPack.isInstalled, settings.claimEnglishPackPrompt() {
@@ -747,7 +768,22 @@ struct EditorWorkspace: View {
             presentation.present(.welcome)
         } else if settings.shouldPresentWhatsNew(for: AppSettings.appVersion()) {
             presentation.present(.whatsNew)
+        } else if Self.shouldPresentLandingPageOnLaunch {
+            presentation.present(.welcome)
         }
+    }
+
+    /// Always true in production. Almost every existing interface test launches expecting to land
+    /// directly in the editor -- exercising that setup, not this screen -- so the shared test
+    /// harness suppresses the landing page by default via this environment variable, the same
+    /// `#if UI_TEST_HOST` + env var convention used for every other test-only escape hatch in this
+    /// app (see `MacFilePanel`, `KistulentzApp`'s font-registration scope, and so on).
+    private static var shouldPresentLandingPageOnLaunch: Bool {
+#if UI_TEST_HOST
+        ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_SUPPRESS_LANDING_PAGE"] != "1"
+#else
+        true
+#endif
     }
 
     private func finishEnglishPackPrompt() {

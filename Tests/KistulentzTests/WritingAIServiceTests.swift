@@ -61,4 +61,37 @@ final class WritingAIServiceTests: XCTestCase {
         XCTAssertEqual(WritingAIError.network("timed out").errorDescription, "The review could not connect: timed out")
         XCTAssertEqual(WritingAIError.api(status: 429, message: "rate limited").errorDescription, "The provider returned error 429: rate limited")
     }
+
+    /// `looksLikeProviderRelatedMessage` is what the shared error alert (`EditorWorkspace`) uses to
+    /// decide whether to offer an "Open Settings" button, working only from an already-flattened
+    /// `String` -- every catch site across the app stores `error.localizedDescription`, not the
+    /// original `WritingAIError`, by the time an error reaches that alert.
+    func testLooksLikeProviderRelatedMessageRecognizesEveryActionableCaseAndRejectsTheRest() {
+        let actionable: [WritingAIError] = [
+            .missingModel,
+            .missingAPIKey("Anthropic"),
+            .ollamaUnavailable,
+            .invalidResponse,
+            .network("timed out"),
+            .api(status: 429, message: "You have no credits remaining.")
+        ]
+        for error in actionable {
+            let message = error.errorDescription ?? ""
+            XCTAssertTrue(
+                WritingAIError.looksLikeProviderRelatedMessage(message),
+                "Expected \(error) to be recognized as provider-related: \(message)"
+            )
+        }
+
+        let notActionable: [WritingAIError] = [.emptyDocument, .emptySelection, .documentTooLarge, .selectionTooLarge]
+        for error in notActionable {
+            let message = error.errorDescription ?? ""
+            XCTAssertFalse(
+                WritingAIError.looksLikeProviderRelatedMessage(message),
+                "Did not expect \(error) to be recognized as provider-related: \(message)"
+            )
+        }
+
+        XCTAssertFalse(WritingAIError.looksLikeProviderRelatedMessage("That passage has changed, so the suggestion can no longer be declined."))
+    }
 }
