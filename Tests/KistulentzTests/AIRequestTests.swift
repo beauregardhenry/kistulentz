@@ -262,7 +262,19 @@ final class AIRequestTests: XCTestCase {
             try await task.value
             XCTFail("A cancelled model pull must not finish successfully.")
         } catch is CancellationError {
-            XCTAssertTrue(DelayedOllamaURLProtocol.wasStopped)
+            // URLSession invokes stopLoading() as part of tearing down a cancelled task, but on
+            // an independent callback chain from the one that delivers CancellationError to this
+            // await -- nothing guarantees stopLoading() has already run by the time we get here.
+            // A loaded CI runner can reorder the two; polling briefly (instead of asserting
+            // immediately) waits for the real completion rather than a timing assumption.
+            var stopped = DelayedOllamaURLProtocol.wasStopped
+            var attempts = 0
+            while !stopped, attempts < 50 {
+                try await Task.sleep(for: .milliseconds(10))
+                stopped = DelayedOllamaURLProtocol.wasStopped
+                attempts += 1
+            }
+            XCTAssertTrue(stopped, "Expected the underlying URLProtocol to be stopped after cancellation.")
         }
     }
 
