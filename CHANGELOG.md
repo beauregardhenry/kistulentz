@@ -8,6 +8,26 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.19.0] - 2026-09-13
+
+### Added
+
+- Settings now has a "Custom Fonts" section for adding your own TrueType or OpenType font
+  files. Added fonts become available everywhere Kistulentz offers a font choice, including
+  the editor and publication layouts, without a separate Font Book install.
+- A font a project's publication layout references is now bundled into that project's own
+  hidden metadata folder, so opening the project on a different Mac gives access to the font
+  file without separately adding it there first.
+
+### Testing
+
+- Added coverage for adding, removing, and re-registering custom fonts (including duplicate
+  detection and rollback on a failed manifest save), for bundling a referenced font into a
+  project and re-registering a project's already-bundled fonts, and an end-to-end interface
+  test for the Settings Add/Remove flow.
+- The verified suite now contains 656 Swift tests and 52 macOS interface tests. App-source line
+  coverage outside the view layer is approximately 89.4%.
+
 ## [0.18.1] - 2026-09-13
 
 ### Fixed
