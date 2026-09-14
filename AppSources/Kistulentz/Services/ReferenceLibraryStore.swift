@@ -21,12 +21,10 @@ final class ReferenceLibraryStore: ObservableObject {
 
     private static let locationKey = "referenceLibraryFolder"
     private let defaults: UserDefaults
-    private var importTask: Task<Void, Never>?
-    private var importOperationID: UUID?
+    private let importOperation = CancellableOperationController()
     private var saveTask: Task<Void, Never>?
     private var deepeningTask: Task<Void, Never>?
-    private var structuralAnalysisTask: Task<Void, Never>?
-    private var structuralAnalysisOperationID: UUID?
+    private let structuralAnalysisOperation = CancellableOperationController()
     private let deepeningService: ReferenceDeepeningService
     private let persistence = ReferenceLibraryPersistence()
     private let languagePackAvailableOverride: (() throws -> Bool)?
@@ -136,9 +134,6 @@ final class ReferenceLibraryStore: ObservableObject {
             errorMessage = "Choose a Reference Library folder before importing EPUBs."
             return
         }
-        importTask?.cancel()
-        let operationID = UUID()
-        importOperationID = operationID
         isImporting = true
         importCompleted = 0
         importTotal = 0
@@ -146,17 +141,16 @@ final class ReferenceLibraryStore: ObservableObject {
         currentImportName = "Finding EPUB files…"
         errorMessage = nil
 
-        importTask = Task { [weak self] in
+        importOperation.start { [weak self] token in
             guard let self else { return }
             let discovered = await Task.detached(priority: .userInitiated) {
                 Self.discoverEPUBs(in: urls)
             }.value
-            guard !Task.isCancelled, self.importOperationID == operationID else { return }
+            guard self.importOperation.accepts(token) else { return }
             self.importTotal = discovered.count
 
             if discovered.isEmpty {
-                self.importOperationID = nil
-                self.importTask = nil
+                _ = self.importOperation.finish(token)
                 self.isImporting = false
                 self.currentImportName = ""
                 self.errorMessage = "No EPUB files were found in that selection."
@@ -164,13 +158,13 @@ final class ReferenceLibraryStore: ObservableObject {
             }
 
             for url in discovered {
-                guard !Task.isCancelled, self.importOperationID == operationID else { return }
+                guard self.importOperation.accepts(token) else { return }
                 self.currentImportName = url.lastPathComponent
 #if UI_TEST_HOST
                 if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_REFERENCE_IMPORT_DELAY_MS"],
                    let delay = UInt64(rawDelay), delay > 0 {
                     try? await Task.sleep(for: .milliseconds(delay))
-                    guard !Task.isCancelled, self.importOperationID == operationID else { return }
+                    guard self.importOperation.accepts(token) else { return }
                 }
 #endif
                 let standardizedPath = url.standardizedFileURL.path
@@ -206,7 +200,7 @@ final class ReferenceLibraryStore: ObservableObject {
                     }
                 }.value
 
-                guard !Task.isCancelled, self.importOperationID == operationID else { return }
+                guard self.importOperation.accepts(token) else { return }
                 switch result {
                 case .success(let book):
                     if let position = self.books.firstIndex(where: { $0.id == book.id }) {
@@ -228,9 +222,7 @@ final class ReferenceLibraryStore: ObservableObject {
 
             }
 
-            guard self.importOperationID == operationID else { return }
-            self.importOperationID = nil
-            self.importTask = nil
+            guard self.importOperation.finish(token) else { return }
             self.isImporting = false
             self.currentImportName = ""
             self.persist(regenerateKnowledgeBase: true)
@@ -238,9 +230,7 @@ final class ReferenceLibraryStore: ObservableObject {
     }
 
     func cancelImport() {
-        importTask?.cancel()
-        importTask = nil
-        importOperationID = nil
+        _ = importOperation.cancel()
         isImporting = false
         currentImportName = ""
         persist(regenerateKnowledgeBase: true)
@@ -271,20 +261,16 @@ final class ReferenceLibraryStore: ObservableObject {
             return
         }
 
-        structuralAnalysisTask?.cancel()
-        let operationID = UUID()
-        structuralAnalysisOperationID = operationID
         isAnalyzingStructure = true
         structuralAnalysisCompleted = 0
         structuralAnalysisTotal = requestedIDs.count
         currentStructuralAnalysisName = "Preparing selected references…"
         errorMessage = nil
 
-        structuralAnalysisTask = Task { [weak self] in
+        structuralAnalysisOperation.start { [weak self] token in
             guard let self else { return }
             for id in requestedIDs {
-                guard !Task.isCancelled,
-                      self.structuralAnalysisOperationID == operationID else { return }
+                guard self.structuralAnalysisOperation.accepts(token) else { return }
                 guard let book = self.books.first(where: { $0.id == id }) else { continue }
                 self.currentStructuralAnalysisName = book.title
                 let analysis = await self.runStructuralAnalyzer(
@@ -293,7 +279,7 @@ final class ReferenceLibraryStore: ObservableObject {
                     includeIssues: false,
                     waitForAvailability: true
                 )
-                guard !Task.isCancelled, self.structuralAnalysisOperationID == operationID else { return }
+                guard self.structuralAnalysisOperation.accepts(token) else { return }
                 guard let analysis else {
                     self.errorMessage = "Benepar could not finish \(book.title). Native reference analysis remains available."
                     break
@@ -311,9 +297,7 @@ final class ReferenceLibraryStore: ObservableObject {
                 }
                 self.structuralAnalysisCompleted += 1
             }
-            guard self.structuralAnalysisOperationID == operationID else { return }
-            self.structuralAnalysisOperationID = nil
-            self.structuralAnalysisTask = nil
+            guard self.structuralAnalysisOperation.finish(token) else { return }
             self.isAnalyzingStructure = false
             self.currentStructuralAnalysisName = ""
             self.persist(regenerateKnowledgeBase: true)
@@ -321,9 +305,7 @@ final class ReferenceLibraryStore: ObservableObject {
     }
 
     func cancelStructuralAnalysis() {
-        structuralAnalysisTask?.cancel()
-        structuralAnalysisTask = nil
-        structuralAnalysisOperationID = nil
+        _ = structuralAnalysisOperation.cancel()
         isAnalyzingStructure = false
         currentStructuralAnalysisName = ""
         persist(regenerateKnowledgeBase: true)

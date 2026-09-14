@@ -124,14 +124,15 @@ swift test --disable-sandbox
 The canonical application continues to build with Swift Package Manager. `Kistulentz.xcodeproj` is a minimal UI-test host generated from `project.yml`; maintainers can regenerate it with `./scripts/regenerate-xcode-project.sh` after installing XcodeGen.
 
 The test suite uses XCTest, which ships with Xcode. On a Mac with only the Command Line Tools, `swift build` and `swift run` work but `swift test` reports `no such module 'XCTest'`.
-Before sharing a release candidate, build its ZIP and DMG and run the local integrity checks:
+Before sharing a release candidate, build its ZIP, DMG, SPDX software bill of materials, and
+checksums, then run the local integrity checks:
 
 ```sh
 ./scripts/package-release.sh
 ./scripts/verify-release.sh dist/Kistulentz.app --release-assets
 ```
 
-Maintainers can run the **Test or publish release** GitHub Actions workflow manually. It runs macOS UI regressions, tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing it. Pushing an annotated upstream version tag that matches `CFBundleShortVersionString`, such as `v0.19.0`, runs the same gates and publishes the verified ZIP, DMG, and checksums as a GitHub Release.
+Maintainers can run the **Test or publish release** GitHub Actions workflow manually. It runs macOS UI regressions, tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing it. Pushing an annotated upstream version tag that matches `CFBundleShortVersionString`, such as `v0.20.0`, runs the same gates, records GitHub build-provenance and SBOM attestations, and publishes the verified ZIP, DMG, SBOM, and checksums as a GitHub Release.
 
 The manual **Test 1.0 scale targets** workflow exercises the approved large-work targets on native Apple silicon and Intel runners. See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [ACCESSIBILITY.md](ACCESSIBILITY.md) before publishing a release candidate.
 

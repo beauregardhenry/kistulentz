@@ -58,7 +58,7 @@ enum ProjectStyleManager {
         Kistulentz will summarize accepted and declined suggestions here. You can clear these observations from inside the app.
         \(endMarker)
         """
-        try template.write(to: url, atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: template, to: url)
     }
 
     static func loadStyle(at root: URL) throws -> String {
@@ -66,7 +66,7 @@ enum ProjectStyleManager {
     }
 
     static func saveStyle(_ text: String, at root: URL) throws {
-        try text.write(to: WritingProjectDisk.styleURL(at: root), atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: text, to: WritingProjectDisk.styleURL(at: root))
     }
 
     static func record(
@@ -226,6 +226,6 @@ enum ProjectStyleManager {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
-        try encoder.encode(archive).write(to: archiveURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(archive), to: archiveURL(at: root))
     }
 }

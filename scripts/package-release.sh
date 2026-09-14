@@ -12,6 +12,8 @@ APP_PATH="$DIST_ROOT/$APP_NAME.app"
 ZIP_PATH="$RELEASE_ROOT/$RELEASE_NAME.zip"
 DMG_PATH="$RELEASE_ROOT/$RELEASE_NAME.dmg"
 CHECKSUM_PATH="$RELEASE_ROOT/SHA256SUMS.txt"
+SBOM_NAME="$APP_NAME-$VERSION.spdx.json"
+SBOM_PATH="$RELEASE_ROOT/$SBOM_NAME"
 RELEASE_NOTES_PATH="$PROJECT_ROOT/DistributionAssets/RELEASE NOTES - $APP_NAME $VERSION.md"
 mkdir -p "$BUILD_ROOT"
 STAGING_ROOT="$(mktemp -d "$BUILD_ROOT/kistulentz-release.XXXXXX")"
@@ -42,7 +44,10 @@ if [[ -f "$RELEASE_NOTES_PATH" ]]; then
 fi
 ln -s /Applications "$PAYLOAD_ROOT/Applications"
 
-rm -f "$ZIP_PATH" "$DMG_PATH" "$CHECKSUM_PATH"
+rm -f "$ZIP_PATH" "$DMG_PATH" "$CHECKSUM_PATH" "$SBOM_PATH"
+
+"$PROJECT_ROOT/scripts/generate-sbom.sh" "$PAYLOAD_ROOT/$SBOM_NAME" >/dev/null
+cp "$PAYLOAD_ROOT/$SBOM_NAME" "$SBOM_PATH"
 
 ditto -c -k --norsrc --noextattr --noqtn --noacl --keepParent "$PAYLOAD_ROOT" "$ZIP_PATH"
 hdiutil create \
@@ -54,8 +59,9 @@ hdiutil create \
     "$DMG_PATH"
 
 cd "$RELEASE_ROOT"
-shasum -a 256 "${ZIP_PATH:t}" "${DMG_PATH:t}" > "${CHECKSUM_PATH:t}"
+shasum -a 256 "${ZIP_PATH:t}" "${DMG_PATH:t}" "${SBOM_PATH:t}" > "${CHECKSUM_PATH:t}"
 
 print "$ZIP_PATH"
 print "$DMG_PATH"
 print "$CHECKSUM_PATH"
+print "$SBOM_PATH"

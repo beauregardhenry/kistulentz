@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Safer imports, storage, and long-project work.")
+                    Text("Safer files, bounded imports, and verifiable releases.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,20 +25,20 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Changes commit only after they are safely stored",
-                    detail: "Snapshots, reference indexes, and publication settings now keep their last known-good state when a disk or permission error interrupts a save.",
+                    "One safe commit path protects local work",
+                    detail: "Manuscripts, project metadata, imports, recovery copies, references, and publication settings keep their last known-good file when a disk or permission error interrupts a save.",
                     systemImage: "externaldrive.badge.checkmark",
                     identifier: "WhatsNewStorageSafety"
                 )
                 whatsNewItem(
-                    "Untrusted imports are handled more defensively",
-                    detail: "Kistulentz rejects malformed EPUB, bibliography, rich-text, and office files; strips executable HTML links and events; and prevents imported paths from escaping their library.",
+                    "Compressed document imports have strict limits",
+                    detail: "DOCX, ODT, and EPUB files are checked for unsafe paths, links, collisions, extreme compression, oversized entries, and excessive expanded data before their contents are trusted.",
                     systemImage: "doc.badge.ellipsis",
                     identifier: "WhatsNewCancellation"
                 )
                 whatsNewItem(
-                    "Long projects receive fuller, cancellable analysis",
-                    detail: "AI context sampling now retains the manuscript ending and respects its size budget, while large De-stink reviews can be cancelled without trapping the editor.",
+                    "Long work cancels cleanly; releases are verifiable",
+                    detail: "Import, export, and structural-analysis work rejects stale results consistently. Release packages now include an SPDX bill of materials and tagged builds receive GitHub attestations.",
                     systemImage: "checkmark.shield",
                     identifier: "WhatsNewRegressionSafety"
                 )

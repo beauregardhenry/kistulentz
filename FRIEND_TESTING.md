@@ -1,4 +1,4 @@
-# Kistulentz 0.19.0 friend preview guide
+# Kistulentz 0.20.0 friend preview guide
 
 Thank you for testing Kistulentz. The most useful feedback is not whether every feature works
 once, but whether the app feels safe and predictable while you work on real writing.
@@ -9,7 +9,7 @@ You do not need to complete every section. Choose the workflows closest to the w
 
 - Use macOS Sequoia 15 or later on an Apple-silicon or Intel Mac.
 - Download Kistulentz only from the
-  [official 0.19.0 release](https://github.com/beauregardhenry/kistulentz/releases/tag/v0.19.0).
+  [official 0.20.0 release](https://github.com/beauregardhenry/kistulentz/releases/tag/v0.20.0).
 - Test with copies of important documents and project folders. Keep your normal backup.
 - You do not need an OpenAI or Anthropic key. Local analysis and Local Polish work without one.
 - If Kistulentz hangs, overwrites the wrong text, loses work, or leaves you trapped in a screen,
@@ -52,6 +52,8 @@ Open **Project Import Assistant…** from the Projects folder menu.
 - Convert again and review the Markdown preview and every formatting warning.
 - Try a deliberately damaged disposable file and confirm Kistulentz reports the failure without
   creating a partial Markdown document or preventing the remaining imports from completing.
+- Try an unusually compressed or malformed DOCX, ODT, or EPUB only if you have a disposable test
+  file. Kistulentz should reject it with a useful safety message instead of hanging or expanding it.
 - If tracked changes are present, accept or reject each one before finishing.
 - Try a combined Markdown file and, separately, a new project with individual documents.
 - Confirm the original documents were not modified.
@@ -90,6 +92,8 @@ changes. Report anything missing or misleading, even when Kistulentz displays a 
   clearly identifies which choice you made.
 - Cancel a large attachment index or EPUB import, close the library, reopen it, and confirm the
   completed records remain usable while the cancelled item is clearly incomplete.
+- Start a second import or analysis before the first finishes. The newer request should win; an
+  older result must never appear later and replace it.
 
 Do not test with DRM-protected or image-only EPUBs unless you specifically want to check the error
 message; those books do not expose readable text for analysis.

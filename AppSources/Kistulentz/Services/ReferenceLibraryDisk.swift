@@ -42,7 +42,7 @@ enum ReferenceLibraryDisk {
         data.append(0x0A)
         let url = recoveryJournalURL(at: root)
         if !FileManager.default.fileExists(atPath: url.path) {
-            try data.write(to: url, options: .atomic)
+            try AtomicFileWriter.write(data: data, to: url)
             return
         }
         let handle = try FileHandle(forWritingTo: url)
@@ -85,7 +85,7 @@ enum ReferenceLibraryDisk {
         let url = root
             .appendingPathComponent(metadataDirectory, isDirectory: true)
             .appendingPathComponent(indexFile)
-        try data.write(to: url, options: .atomic)
+        try AtomicFileWriter.write(data: data, to: url)
     }
 
     static func regenerateKnowledgeBase(_ index: ReferenceLibraryIndex, at root: URL) throws {
@@ -125,8 +125,10 @@ enum ReferenceLibraryDisk {
         }
         try writeManagedFiles(insightFiles, directory: root.appendingPathComponent("AI Insights", isDirectory: true))
 
-        try masterMarkdown(index, authors: authorGroups, genres: genreGroups)
-            .write(to: root.appendingPathComponent("Kistulentz Library.md"), atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(
+            text: masterMarkdown(index, authors: authorGroups, genres: genreGroups),
+            to: root.appendingPathComponent("Kistulentz Library.md")
+        )
         // The JSON index is the source of truth. Commit it only after every derived Markdown file
         // succeeds so a failed regeneration cannot make an incomplete library appear authoritative.
         try saveIndex(index, to: root)
@@ -317,11 +319,7 @@ enum ReferenceLibraryDisk {
             }
         }
         for (name, markdown) in files {
-            try markdown.write(
-                to: directory.appendingPathComponent(name),
-                atomically: true,
-                encoding: .utf8
-            )
+            try AtomicFileWriter.write(text: markdown, to: directory.appendingPathComponent(name))
         }
     }
 

@@ -24,11 +24,7 @@ final class ProjectResearchStore: ObservableObject {
         reportError: @escaping (Error) -> Void,
         saveBibliography: @escaping BibliographySaver = ProjectResearchDisk.save,
         saveNotes: @escaping NotesSaver = { text, root in
-            try text.write(
-                to: ProjectResearchDisk.notesURL(at: root),
-                atomically: true,
-                encoding: .utf8
-            )
+            try AtomicFileWriter.write(text: text, to: ProjectResearchDisk.notesURL(at: root))
         }
     ) {
         self.projectRoot = projectRoot

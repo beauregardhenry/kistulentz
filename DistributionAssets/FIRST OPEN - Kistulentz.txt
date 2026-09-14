@@ -5,13 +5,17 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.19.0 FRIEND PREVIEW
-- Settings can now add your own TrueType or OpenType font files. Added fonts
-  become available everywhere Kistulentz offers a font choice, including the
-  editor and publication layouts, without a separate Font Book install.
-- A font referenced by a project's publication layout now travels with that
-  project: it's copied into the project's own hidden metadata folder, so
-  opening the project on a different Mac has access to it automatically.
+NEW IN 0.20.0 FRIEND PREVIEW
+- Manuscripts, project metadata, imports, recovery copies, references, and
+  publication settings now share one tested safe-write path. An interrupted
+  save or full disk keeps the last known-good file intact.
+- DOCX, ODT, and EPUB archives now have strict limits for entry count, expanded
+  size, compression ratio, paths, links, and filename collisions before their
+  contents are trusted.
+- Long import, export, and structural-analysis work now shares consistent
+  cancellation and stale-result handling.
+- Release packages now include an SPDX software bill of materials, and tagged
+  GitHub builds publish verifiable provenance and SBOM attestations.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

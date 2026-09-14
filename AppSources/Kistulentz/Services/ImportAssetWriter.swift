@@ -53,7 +53,7 @@ enum ImportAssetWriter {
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: false)
         var created = [folder]
         for file in plan.files {
-            try file.asset.data.write(to: file.destination, options: .atomic)
+            try AtomicFileWriter.write(data: file.asset.data, to: file.destination)
             created.append(file.destination)
         }
         return created

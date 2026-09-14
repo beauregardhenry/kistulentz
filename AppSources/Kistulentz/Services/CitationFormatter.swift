@@ -155,7 +155,7 @@ enum ProjectResearchDisk {
             ## Notes
 
             """
-            try text.write(to: notesURL, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(text: text, to: notesURL)
         }
     }
 

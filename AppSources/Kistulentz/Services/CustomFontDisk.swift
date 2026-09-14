@@ -52,7 +52,10 @@ enum CustomFontDisk {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        try encoder.encode(manifest).write(to: root.appendingPathComponent(manifestFileName), options: .atomic)
+        try AtomicFileWriter.write(
+            data: encoder.encode(manifest),
+            to: root.appendingPathComponent(manifestFileName)
+        )
     }
 
     /// Copies `sourceURL` into managed storage and registers it. Rolls the copy and registration
