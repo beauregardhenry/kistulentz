@@ -25,6 +25,10 @@ jobs:
         run: |
           xcodebuild -version
           swift --version
+      - name: Check for banned patterns
+        run: ./scripts/check-banned-patterns.sh
+      - name: Check the test count ratchet
+        run: ./scripts/check-test-count.sh
       - name: Run SwiftPM tests
         run: swift test --enable-code-coverage --disable-sandbox
       - name: Check the coverage ratchet
