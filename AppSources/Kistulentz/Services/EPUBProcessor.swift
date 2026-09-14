@@ -3,9 +3,6 @@ import Foundation
 import NaturalLanguage
 
 struct EPUBProcessor {
-    private static let maximumArchiveBytes: UInt64 = 250_000_000
-    private static let maximumExtractedBytes: Int64 = 600_000_000
-    private static let maximumEntries = 25_000
     private static let maximumAnalyzedCharacters = 2_500_000
     private static let maximumContainerBytes = 2_000_000
     private static let maximumPackageBytes = 10_000_000
@@ -17,16 +14,15 @@ struct EPUBProcessor {
             if didAccess { url.stopAccessingSecurityScopedResource() }
         }
 
-        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
-        let archiveSize = (attributes[.size] as? NSNumber)?.uint64Value ?? 0
-        guard archiveSize > 0, archiveSize <= maximumArchiveBytes else {
-            throw EPUBError.archiveTooLarge
+        let inspection: SafeArchiveInspection
+        do {
+            inspection = try SafeArchiveReader.inspect(url, policy: .epub)
+        } catch {
+            throw archiveError(from: error)
         }
-
-        let listingData = try runUnzip(arguments: ["-Z1", url.path])
-        let entries = try validateArchiveListing(listingData)
-        try validateArchiveMetadata(try runUnzip(arguments: ["-Z", "-l", url.path]))
-        guard entries.contains(where: { $0.caseInsensitiveCompare("META-INF/container.xml") == .orderedSame }) else {
+        guard inspection.paths.contains(where: {
+            $0.caseInsensitiveCompare("META-INF/container.xml") == .orderedSame
+        }) else {
             throw EPUBError.invalidContainer
         }
 
@@ -35,8 +31,16 @@ struct EPUBProcessor {
         try FileManager.default.createDirectory(at: extractionRoot, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: extractionRoot) }
 
-        _ = try runUnzip(arguments: ["-qq", "-o", url.path, "-d", extractionRoot.path])
-        try validateExtractedContents(at: extractionRoot)
+        do {
+            try SafeArchiveReader.extract(
+                url,
+                to: extractionRoot,
+                inspection: inspection,
+                policy: .epub
+            )
+        } catch {
+            throw archiveError(from: error)
+        }
 
         let containerURL = extractionRoot
             .appendingPathComponent("META-INF", isDirectory: true)
@@ -97,89 +101,19 @@ struct EPUBProcessor {
         )
     }
 
-    private static func runUnzip(arguments: [String]) throws -> Data {
-        let process = Process()
-        let pipe = Pipe()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-        process.arguments = arguments
-        process.standardOutput = pipe
-        process.standardError = pipe
-
-        do {
-            try process.run()
-        } catch {
-            throw EPUBError.unavailable
+    private static func archiveError(from error: Error) -> EPUBError {
+        guard let error = error as? ArchiveSafetyError else {
+            return .extractionFailed(error.localizedDescription)
         }
-
-        let output = pipe.fileHandleForReading.readDataToEndOfFile()
-        process.waitUntilExit()
-        guard process.terminationStatus == 0 else {
-            let message = String(data: output, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
-            throw EPUBError.extractionFailed(message?.nonEmpty)
-        }
-        return output
-    }
-
-    private static func validateArchiveListing(_ data: Data) throws -> [String] {
-        guard let listing = String(data: data, encoding: .utf8) else {
-            throw EPUBError.invalidContainer
-        }
-        let entries = listing
-            .split(whereSeparator: \.isNewline)
-            .map(String.init)
-        guard !entries.isEmpty, entries.count <= maximumEntries else {
-            throw EPUBError.unsafeArchive
-        }
-
-        for entry in entries {
-            let normalized = entry.replacingOccurrences(of: "\\", with: "/")
-            let components = normalized.split(separator: "/", omittingEmptySubsequences: false)
-            guard normalized.utf8.count <= 1_024,
-                  !normalized.hasPrefix("/"),
-                  !normalized.hasPrefix("~"),
-                  !components.contains("..") else {
-                throw EPUBError.unsafeArchive
-            }
-        }
-        return entries
-    }
-
-    private static func validateArchiveMetadata(_ data: Data) throws {
-        guard let listing = String(data: data, encoding: .utf8) else {
-            throw EPUBError.invalidContainer
-        }
-        var totalBytes: Int64 = 0
-        for line in listing.split(whereSeparator: \.isNewline) {
-            let fields = line.split(whereSeparator: \.isWhitespace)
-            guard fields.count >= 4, let marker = fields.first?.first else { continue }
-            if marker == "l" { throw EPUBError.unsafeArchive }
-            guard marker == "-" || marker == "d" else { continue }
-            guard let size = Int64(fields[3]), size >= 0 else { throw EPUBError.unsafeArchive }
-            totalBytes += size
-            guard totalBytes <= maximumExtractedBytes else { throw EPUBError.archiveTooLarge }
-        }
-    }
-
-    private static func validateExtractedContents(at root: URL) throws {
-        guard let enumerator = FileManager.default.enumerator(
-            at: root,
-            includingPropertiesForKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey],
-            options: [.skipsHiddenFiles]
-        ) else {
-            throw EPUBError.invalidContainer
-        }
-
-        var totalBytes: Int64 = 0
-        var entryCount = 0
-        for case let fileURL as URL in enumerator {
-            entryCount += 1
-            guard entryCount <= maximumEntries else { throw EPUBError.unsafeArchive }
-            let values = try fileURL.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
-            guard values.isSymbolicLink != true else { throw EPUBError.unsafeArchive }
-            if values.isRegularFile == true {
-                totalBytes += Int64(values.fileSize ?? 0)
-                guard totalBytes <= maximumExtractedBytes else { throw EPUBError.archiveTooLarge }
-            }
+        switch error {
+        case .unavailable:
+            return .unavailable
+        case .archiveTooLarge, .entryTooLarge:
+            return .archiveTooLarge
+        case .unsafeArchive:
+            return .unsafeArchive
+        case .extractionFailed(let detail):
+            return .extractionFailed(detail)
         }
     }
 

@@ -38,12 +38,11 @@ enum ResearchLibraryDisk {
         encoder.dateEncodingStrategy = .iso8601
         // The JSON index is the source of truth. Write the generated Markdown first so a
         // failure cannot commit a new index that the in-memory store never published.
-        try renderKnowledgeBase(archive).write(
-            to: root.appendingPathComponent(knowledgeBaseFileName),
-            atomically: true,
-            encoding: .utf8
+        try AtomicFileWriter.write(
+            text: renderKnowledgeBase(archive),
+            to: root.appendingPathComponent(knowledgeBaseFileName)
         )
-        try encoder.encode(archive).write(to: indexURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(archive), to: indexURL(at: root))
     }
 
     static func addAttachment(
@@ -87,11 +86,7 @@ enum ResearchLibraryDisk {
     static func saveExtractedText(_ text: String, for attachmentID: UUID, at root: URL) throws -> String {
         try prepare(at: root)
         let relativePath = "\(extractedTextDirectory)/\(attachmentID.uuidString).txt"
-        try text.write(
-            to: root.appendingPathComponent(relativePath),
-            atomically: true,
-            encoding: .utf8
-        )
+        try AtomicFileWriter.write(text: text, to: root.appendingPathComponent(relativePath))
         return relativePath
     }
 

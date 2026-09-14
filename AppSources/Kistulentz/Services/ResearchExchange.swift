@@ -33,17 +33,17 @@ enum ResearchExchange {
     static func exportCSLJSON(_ sources: [ResearchSource], to url: URL) throws {
         let values = sources.map(cslObject)
         let data = try JSONSerialization.data(withJSONObject: values, options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes])
-        try data.write(to: url, options: .atomic)
+        try AtomicFileWriter.write(data: data, to: url)
     }
 
     static func exportBibTeX(_ sources: [ResearchSource], to url: URL) throws {
         let value = sources.map(bibTeX).joined(separator: "\n\n") + "\n"
-        try value.write(to: url, atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: value, to: url)
     }
 
     static func exportRIS(_ sources: [ResearchSource], to url: URL) throws {
         let value = sources.map(ris).joined(separator: "\n")
-        try value.write(to: url, atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: value, to: url)
     }
 
     static func normalizedCitationKey(_ value: String) -> String {

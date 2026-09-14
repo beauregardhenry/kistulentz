@@ -291,7 +291,7 @@ enum PublicationPackageWriter {
             report: report,
             validatorRuns: validatorRuns
         )
-        try markdown.write(to: reportMarkdownURL, atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: markdown, to: reportMarkdownURL)
         try PublicationReadinessReportWriter.writePDF(markdown: markdown, to: reportPDFURL)
 
         let manifest = Manifest(
@@ -309,7 +309,10 @@ enum PublicationPackageWriter {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
-        try encoder.encode(manifest).write(to: packageURL.appendingPathComponent("package-manifest.json"), options: .atomic)
+        try AtomicFileWriter.write(
+            data: encoder.encode(manifest),
+            to: packageURL.appendingPathComponent("package-manifest.json")
+        )
         try writeChecksums(in: packageURL)
         return PublicationPackageURLs(
             package: packageURL,
@@ -343,6 +346,6 @@ enum PublicationPackageWriter {
             let values = try PublicationExporter.outputValues(at: file)
             return "\(values.sha256)  \(file.lastPathComponent)"
         }
-        try (lines.joined(separator: "\n") + "\n").write(to: checksumURL, atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: lines.joined(separator: "\n") + "\n", to: checksumURL)
     }
 }

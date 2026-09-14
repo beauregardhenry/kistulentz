@@ -229,7 +229,7 @@ enum ProjectCompatibilityManager {
             throw ProjectCompatibilityError.corruptMetadata(displayName)
         }
         let data = try JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys])
-        try data.write(to: url, options: .atomic)
+        try AtomicFileWriter.write(data: data, to: url)
     }
 
     private static func jsonObject(at url: URL, displayName: String) throws -> [String: Any] {
@@ -318,7 +318,7 @@ enum ProjectCompatibilityManager {
             let destination = destinationRoot.appendingPathComponent(relativePath)
             try manager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
             let data = try Data(contentsOf: source)
-            try data.write(to: destination, options: .atomic)
+            try AtomicFileWriter.write(data: data, to: destination)
         }
     }
 

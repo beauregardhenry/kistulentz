@@ -8,6 +8,35 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.20.0] - 2026-09-14
+
+### Changed
+
+- Manuscript, project, import, recovery, reference, research, diagnostics, and publication
+  persistence now uses one atomic writer with explicit staging, commit, and cleanup behavior.
+- Long document import, project import, publication export, reference import, and structural
+  analysis operations now share one cancellation and stale-result boundary.
+- Large publication, organization, and research screens have begun moving self-contained editors
+  and sheets into focused components without changing their workflows.
+
+### Security
+
+- DOCX, ODT, and EPUB readers now reject traversal and absolute paths, symbolic links, canonical
+  filename collisions, excessive entry counts, oversized entries, excessive expanded data, and
+  extreme compression ratios before reading or extracting archive contents.
+- Tagged release builds now publish SLSA build-provenance and SPDX SBOM attestations through
+  GitHub Actions. The ZIP and DMG include an SPDX 2.3 software bill of materials, which is also a
+  separately checksummed release asset.
+
+### Testing
+
+- Added deterministic archive-security tests for traversal, symlinks, collisions, entry and total
+  size limits, extreme compression, and malformed metadata.
+- Added disk-full, interrupted-commit, rollback-cleanup, unsafe-destination, cancellation, and
+  stale-result tests for the new shared primitives.
+- Added opt-in timing budgets for rapid typing and large paste analysis alongside the existing
+  large-project search, Project Polish, reference filtering, and publication measurements.
+
 ## [0.19.0] - 2026-09-13
 
 ### Added

@@ -115,7 +115,7 @@ struct SystemCheckView: View {
         )
         guard let destination = await MacFilePanel.chooseSaveDestination(configuration: configuration) else { return }
         do {
-            try report.markdown().write(to: destination, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(text: report.markdown(), to: destination)
             message = "Diagnostic report exported."
         } catch {
             errorMessage = error.localizedDescription

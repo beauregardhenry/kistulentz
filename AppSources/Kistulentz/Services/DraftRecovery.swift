@@ -24,7 +24,7 @@ enum DraftRecoveryDisk {
         )
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        try encoder.encode(entry).write(to: entryURL(entry.id, in: directory), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(entry), to: entryURL(entry.id, in: directory))
     }
 
     static func loadAll(from directory: URL) -> [DraftRecoveryEntry] {
@@ -70,7 +70,7 @@ enum DraftRecoveryDisk {
         guard let data = entry.recoveredText.data(using: .utf8) else {
             throw CocoaError(.fileWriteInapplicableStringEncoding)
         }
-        try data.write(to: url, options: .atomic)
+        try AtomicFileWriter.write(data: data, to: url)
     }
 
     private static func entryURL(_ id: UUID, in directory: URL) -> URL {

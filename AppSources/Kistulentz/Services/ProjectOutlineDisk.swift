@@ -24,7 +24,7 @@ enum ProjectOutlineDisk {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         encoder.dateEncodingStrategy = .iso8601
-        try encoder.encode(archive).write(to: outlineURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(archive), to: outlineURL(at: root))
     }
 
     static func reconcile(

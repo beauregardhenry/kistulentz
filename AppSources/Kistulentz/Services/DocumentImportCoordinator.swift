@@ -18,8 +18,7 @@ final class DocumentImportCoordinator: ObservableObject {
 
     private let loader: Loader
     private let saver: Saver
-    private var task: Task<Void, Never>?
-    private var operationID: UUID?
+    private let operationController = CancellableOperationController()
 
     init(
         loader: @escaping Loader = { url in
@@ -76,9 +75,7 @@ final class DocumentImportCoordinator: ObservableObject {
     }
 
     func cancel() {
-        task?.cancel()
-        task = nil
-        operationID = nil
+        operationController.cancel()
         isRunning = false
     }
 
@@ -88,29 +85,25 @@ final class DocumentImportCoordinator: ObservableObject {
     ) {
         cancel()
         errorMessage = nil
-        let id = UUID()
-        operationID = id
         isRunning = true
-        task = Task { [weak self] in
+        operationController.start { [weak self] token in
             do {
                 let value = try await operation()
-                guard let self, !Task.isCancelled, self.operationID == id else { return }
+                guard let self, self.operationController.accepts(token) else { return }
                 completion(value)
-                self.finish(id)
+                self.finish(token)
             } catch is CancellationError {
-                self?.finish(id)
+                self?.finish(token)
             } catch {
-                guard let self, self.operationID == id else { return }
+                guard let self, self.operationController.accepts(token) else { return }
                 self.errorMessage = error.localizedDescription
-                self.finish(id)
+                self.finish(token)
             }
         }
     }
 
-    private func finish(_ id: UUID) {
-        guard operationID == id else { return }
-        task = nil
-        operationID = nil
+    private func finish(_ token: CancellableOperationController.Token) {
+        guard operationController.finish(token) else { return }
         isRunning = false
     }
 }

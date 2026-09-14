@@ -20,7 +20,7 @@ final class ProjectImportAssistantViewModel: ObservableObject {
     @Published private(set) var currentSourceName = ""
     @Published var errorMessage: String?
 
-    private var conversionTask: Task<Void, Never>?
+    private let conversionOperation = CancellableOperationController()
 
     var hasResults: Bool {
         !conversions.isEmpty || !failures.isEmpty || isConverting
@@ -163,8 +163,7 @@ final class ProjectImportAssistantViewModel: ObservableObject {
     }
 
     func cancelConversion() {
-        conversionTask?.cancel()
-        conversionTask = nil
+        conversionOperation.cancel()
         isConverting = false
         currentSourceName = ""
     }
@@ -251,17 +250,19 @@ final class ProjectImportAssistantViewModel: ObservableObject {
 
     private func convert(_ targets: [ProjectImportSource]) {
         guard !targets.isEmpty else { return }
+        conversionOperation.cancel()
         isConverting = true
         completedCount = sources.count - targets.count
-        conversionTask = Task { @MainActor in
+        conversionOperation.start { [weak self] token in
+            guard let self else { return }
             for source in targets {
-                guard !Task.isCancelled else { break }
+                guard self.conversionOperation.accepts(token) else { break }
                 currentSourceName = source.url.lastPathComponent
 #if UI_TEST_HOST
                 if let rawDelay = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_IMPORT_DELAY_MS"],
                    let delay = Int(rawDelay), delay > 0 {
                     try? await Task.sleep(for: .milliseconds(delay))
-                    guard !Task.isCancelled else { break }
+                    guard self.conversionOperation.accepts(token) else { break }
                 }
 #endif
                 let outcome: (ProjectImportConversion?, String?) = await Task.detached(priority: .userInitiated) {
@@ -271,7 +272,7 @@ final class ProjectImportAssistantViewModel: ObservableObject {
                         return (nil, error.localizedDescription)
                     }
                 }.value
-                guard !Task.isCancelled else { break }
+                guard self.conversionOperation.accepts(token) else { break }
                 if let conversion = outcome.0 {
                     conversions[source.id] = conversion
                     selectedSourceID = selectedSourceID ?? source.id
@@ -283,10 +284,11 @@ final class ProjectImportAssistantViewModel: ObservableObject {
                 }
                 completedCount += 1
             }
-            isConverting = false
-            currentSourceName = ""
-            if selectedSourceID.flatMap({ conversions[$0] ?? nil }) == nil {
-                selectedSourceID = orderedConversions.first?.id ?? failures.values.first?.id
+            guard self.conversionOperation.finish(token) else { return }
+            self.isConverting = false
+            self.currentSourceName = ""
+            if self.selectedSourceID.flatMap({ self.conversions[$0] ?? nil }) == nil {
+                self.selectedSourceID = self.orderedConversions.first?.id ?? self.failures.values.first?.id
             }
         }
     }

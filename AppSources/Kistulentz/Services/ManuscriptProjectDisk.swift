@@ -10,13 +10,17 @@ enum ManuscriptProjectDisk {
         let manager = FileManager.default
         let reportURL = reportURL(at: root)
         if !manager.fileExists(atPath: reportURL.path) {
-            try ManuscriptReportManager.template(projectName: projectName, kind: kind)
-                .write(to: reportURL, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(
+                text: ManuscriptReportManager.template(projectName: projectName, kind: kind),
+                to: reportURL
+            )
         }
         let bibleURL = bibleURL(at: root)
         if !manager.fileExists(atPath: bibleURL.path) {
-            try ManuscriptBibleManager.template(projectName: projectName, kind: kind)
-                .write(to: bibleURL, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(
+                text: ManuscriptBibleManager.template(projectName: projectName, kind: kind),
+                to: bibleURL
+            )
         }
     }
 
@@ -25,7 +29,7 @@ enum ManuscriptProjectDisk {
     }
 
     static func saveReport(_ text: String, at root: URL) throws {
-        try text.write(to: reportURL(at: root), atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: text, to: reportURL(at: root))
     }
 
     static func loadBible(at root: URL) throws -> String {
@@ -33,7 +37,7 @@ enum ManuscriptProjectDisk {
     }
 
     static func saveBible(_ text: String, at root: URL) throws {
-        try text.write(to: bibleURL(at: root), atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: text, to: bibleURL(at: root))
     }
 
     static func loadCache(at root: URL) throws -> ManuscriptProjectCache {
@@ -47,7 +51,7 @@ enum ManuscriptProjectDisk {
     static func saveCache(_ cache: ManuscriptProjectCache, at root: URL) throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        try encoder.encode(cache).write(to: cacheURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(cache), to: cacheURL(at: root))
     }
 
     static func loadCustomBetaReaders(at root: URL) throws -> [BetaReaderProfile] {
@@ -64,7 +68,7 @@ enum ManuscriptProjectDisk {
         })
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        try encoder.encode(archive).write(to: betaReadersURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(archive), to: betaReadersURL(at: root))
     }
 
     static func reportURL(at root: URL) -> URL {

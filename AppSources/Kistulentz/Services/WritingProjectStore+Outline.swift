@@ -608,7 +608,7 @@ extension WritingProjectStore {
             }
             try WritingProjectDisk.writeChapter(plan.resultingChapterMarkdown, relativePath: plan.chapterPath, at: rootURL)
             for (path, section) in zip(createdPaths, plan.includedSections) {
-                try section.markdown.write(to: rootURL.appendingPathComponent(path), atomically: true, encoding: .utf8)
+                try AtomicFileWriter.write(text: section.markdown, to: rootURL.appendingPathComponent(path))
             }
             outlineNodes = afterNodes
             try ProjectOutlineDisk.save(ProjectOutlineArchive(nodes: afterNodes), at: rootURL)

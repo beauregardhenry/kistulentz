@@ -29,7 +29,7 @@ enum PublicationDisk {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
-        try encoder.encode(archive).write(to: archiveURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(archive), to: archiveURL(at: root))
     }
 
     static func copyPublicationAsset(from sourceURL: URL, preferredName: String, at root: URL) throws -> String {

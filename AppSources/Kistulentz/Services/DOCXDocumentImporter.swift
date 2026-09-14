@@ -79,35 +79,14 @@ private struct DOCXRelationship {
 }
 
 private final class DOCXArchiveReader {
-    private static let maximumArchiveBytes: UInt64 = 250_000_000
-    private static let maximumEntryBytes = 50_000_000
     let url: URL
     let entries: Set<String>
+    private let inspection: SafeArchiveInspection
 
     init(url: URL) throws {
         self.url = url
-        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
-        let size = (attributes[.size] as? NSNumber)?.uint64Value ?? 0
-        guard size > 0, size <= Self.maximumArchiveBytes else {
-            throw DocumentImportError.documentTooLarge
-        }
-        let listing = try Self.run(arguments: ["-Z1", url.path])
-        guard let listingText = String(data: listing, encoding: .utf8) else {
-            throw DocumentImportError.unsafeArchive
-        }
-        let names = listingText.split(whereSeparator: \.isNewline).map(String.init)
-        guard !names.isEmpty, names.count <= 25_000 else { throw DocumentImportError.unsafeArchive }
-        for name in names {
-            let normalized = name.replacingOccurrences(of: "\\", with: "/")
-            let components = normalized.split(separator: "/", omittingEmptySubsequences: false)
-            guard normalized.utf8.count <= 1_024,
-                  !normalized.hasPrefix("/"),
-                  !normalized.hasPrefix("~"),
-                  !components.contains("..") else {
-                throw DocumentImportError.unsafeArchive
-            }
-        }
-        entries = Set(names)
+        inspection = try DocumentImportService.inspectArchive(at: url)
+        entries = inspection.paths
     }
 
     func data(for entry: String, required: Bool = true) throws -> Data? {
@@ -115,30 +94,12 @@ private final class DOCXArchiveReader {
             if required { throw DocumentImportError.unreadableDocument }
             return nil
         }
-        let data = try Self.run(arguments: ["-p", url.path, entry])
-        guard data.count <= Self.maximumEntryBytes else { throw DocumentImportError.documentTooLarge }
-        return data
-    }
-
-    private static func run(arguments: [String]) throws -> Data {
-        let process = Process()
-        let output = Pipe()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-        process.arguments = arguments
-        process.standardOutput = output
-        process.standardError = output
-        do {
-            try process.run()
-        } catch {
-            throw DocumentImportError.extractionFailed(error.localizedDescription)
-        }
-        let data = output.fileHandleForReading.readDataToEndOfFile()
-        process.waitUntilExit()
-        guard process.terminationStatus == 0 else {
-            let message = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
-            throw DocumentImportError.extractionFailed(message?.isEmpty == false ? message! : "The system unzip utility failed.")
-        }
-        return data
+        return try DocumentImportService.archiveData(
+            for: entry,
+            in: url,
+            inspection: inspection,
+            required: required
+        )
     }
 }
 

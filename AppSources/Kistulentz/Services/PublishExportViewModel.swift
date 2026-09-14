@@ -123,8 +123,7 @@ final class PublishExportViewModel: ObservableObject {
 
     private let dependencies: Dependencies
     private var sources: [ResearchSource] = []
-    private var exportTask: Task<Void, Never>?
-    private var exportOperationID: UUID?
+    private let exportOperation = CancellableOperationController()
 
     convenience init(store: WritingProjectStore, publicationStore: PublicationStore) {
         self.init(dependencies: .live(store: store, publicationStore: publicationStore))
@@ -310,10 +309,8 @@ final class PublishExportViewModel: ObservableObject {
               let outputDirectory else { return }
         showingWarningConfirmation = false
         errorMessage = nil
-        let id = UUID()
-        exportOperationID = id
         isExporting = true
-        exportTask = Task { [weak self, dependencies] in
+        exportOperation.start { [weak self, dependencies] token in
             do {
                 let result = try await dependencies.export(
                     plan,
@@ -321,28 +318,26 @@ final class PublishExportViewModel: ObservableObject {
                     outputDirectory,
                     allowingWarnings
                 )
-                guard let self, !Task.isCancelled, self.exportOperationID == id else { return }
+                guard let self, self.exportOperation.accepts(token) else { return }
                 dependencies.recordExport(result, plan)
                 self.draft = dependencies.loadArchive()
                 self.lastExportURL = result.packageURL ?? result.outputURL
                 self.lastReportURL = result.reportPDFURL
                 self.preflight = result.preflight
                 self.pane = .history
-                self.finishExport(id)
+                self.finishExport(token)
             } catch is CancellationError {
-                self?.finishExport(id)
+                self?.finishExport(token)
             } catch {
-                guard let self, self.exportOperationID == id else { return }
+                guard let self, self.exportOperation.accepts(token) else { return }
                 self.errorMessage = error.localizedDescription
-                self.finishExport(id)
+                self.finishExport(token)
             }
         }
     }
 
     func cancelExport() {
-        exportTask?.cancel()
-        exportTask = nil
-        exportOperationID = nil
+        exportOperation.cancel()
         isExporting = false
     }
 
@@ -402,10 +397,8 @@ final class PublishExportViewModel: ObservableObject {
         .joined(separator: "\n\n––––––––––––––––––––\n\n")
     }
 
-    private func finishExport(_ id: UUID) {
-        guard exportOperationID == id else { return }
-        exportTask = nil
-        exportOperationID = nil
+    private func finishExport(_ token: CancellableOperationController.Token) {
+        guard exportOperation.finish(token) else { return }
         isExporting = false
     }
 }

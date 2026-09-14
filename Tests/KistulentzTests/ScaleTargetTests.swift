@@ -204,6 +204,58 @@ final class ScaleTargetTests: XCTestCase {
         XCTAssertLessThan(cancelledReport.completedDocumentCount, cancellationDocuments.count)
     }
 
+    @MainActor
+    func testTypingBurstAndLargePasteAnalysisBudgets() async throws {
+        try XCTSkipUnless(scaleTestsEnabled, "Run with KISTULENTZ_RUN_SCALE_TESTS=1.")
+        let viewModel = EditorViewModel(structuralAnalyzer: { _, _, _, _ in nil })
+        let startingText = String(
+            repeating: "A clear sentence helps the reader understand the argument. ",
+            count: 1_000
+        )
+
+        var typedText = startingText
+        let typingStarted = ContinuousClock.now
+        for index in 0..<100 {
+            typedText += "Word\(index) "
+            viewModel.scheduleAnalysis(text: typedText, targetGrade: 8)
+        }
+        Self.assertWithinBudget(
+            "editor-typing-burst-100-updates",
+            since: typingStarted,
+            environmentKey: "KISTULENTZ_BUDGET_TYPING_BURST_SECONDS",
+            defaultSeconds: 2
+        )
+
+        let typingSettlementStarted = ContinuousClock.now
+        await waitUntil(timeoutIterations: 1_200) {
+            viewModel.analysis.stats.characters == typedText.count
+        }
+        Self.assertWithinBudget(
+            "editor-typing-burst-final-analysis",
+            since: typingSettlementStarted,
+            environmentKey: "KISTULENTZ_BUDGET_TYPING_SETTLEMENT_SECONDS",
+            defaultSeconds: 30
+        )
+        XCTAssertEqual(viewModel.analysis.stats.characters, typedText.count)
+
+        let pastedText = String(
+            repeating: "The local editor preserves the author's work and reports a useful result. ",
+            count: 3_000
+        )
+        let pasteStarted = ContinuousClock.now
+        viewModel.scheduleAnalysis(text: pastedText, targetGrade: 8, immediately: true)
+        await waitUntil(timeoutIterations: 1_200) {
+            viewModel.analysis.stats.characters == pastedText.count
+        }
+        Self.assertWithinBudget(
+            "editor-large-paste-analysis",
+            since: pasteStarted,
+            environmentKey: "KISTULENTZ_BUDGET_LARGE_PASTE_SECONDS",
+            defaultSeconds: 30
+        )
+        XCTAssertEqual(viewModel.analysis.stats.characters, pastedText.count)
+    }
+
     func testRepeatedProjectEditSnapshotSearchAndReopenEndurance() throws {
         try XCTSkipUnless(scaleTestsEnabled, "Run with KISTULENTZ_RUN_SCALE_TESTS=1.")
         let parent = temporaryDirectory("Endurance")
@@ -306,6 +358,17 @@ final class ScaleTargetTests: XCTestCase {
             .appendingPathComponent("Kistulentz-Scale-\(suffix)-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
+    }
+
+    @MainActor
+    private func waitUntil(
+        timeoutIterations: Int,
+        condition: @escaping @MainActor () -> Bool
+    ) async {
+        for _ in 0..<timeoutIterations {
+            if condition() { return }
+            try? await Task.sleep(for: .milliseconds(25))
+        }
     }
 
     private static func assertWithinBudget(

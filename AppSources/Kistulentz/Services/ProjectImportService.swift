@@ -260,7 +260,7 @@ enum ProjectImportOutputService {
                 decisions: decisions,
                 assetReferences: assetPlan.references
             )
-            try markdown.write(to: outputURL, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(text: markdown, to: outputURL)
             return ProjectImportWriteResult(
                 rootURL: outputURL,
                 importedPaths: [outputURL.lastPathComponent],
@@ -387,7 +387,7 @@ enum ProjectImportOutputService {
                     decisions: decisions,
                     assetReferences: assetPlan.references
                 )
-                try markdown.write(to: target, atomically: true, encoding: .utf8)
+                try AtomicFileWriter.write(text: markdown, to: target)
                 createdURLs.append(target)
             }
 

@@ -48,7 +48,7 @@ enum WritingProjectDisk {
         var chapterPaths = try scanMarkdownPaths(at: root)
         if chapterPaths.isEmpty {
             let starterURL = root.appendingPathComponent(kind.starterFileName)
-            try kind.starterText.write(to: starterURL, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(text: kind.starterText, to: starterURL)
             chapterPaths = [kind.starterFileName]
         }
         let manifest = WritingProjectManifest(
@@ -80,7 +80,7 @@ enum WritingProjectDisk {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         encoder.dateEncodingStrategy = .iso8601
-        try encoder.encode(manifest).write(to: manifestURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(manifest), to: manifestURL(at: root))
     }
 
     static func loadChapters(at root: URL, manifest: WritingProjectManifest) throws -> [ProjectChapter] {
@@ -142,7 +142,7 @@ enum WritingProjectDisk {
         guard let data = text.data(using: .utf8) else {
             throw CocoaError(.fileWriteInapplicableStringEncoding)
         }
-        try data.write(to: chapterURL(relativePath, at: root), options: .atomic)
+        try AtomicFileWriter.write(data: data, to: chapterURL(relativePath, at: root))
     }
 
     static func createChapter(named name: String, at root: URL) throws -> String {
@@ -158,7 +158,7 @@ enum WritingProjectDisk {
             throw WritingProjectError.chapterAlreadyExists
         }
         let title = url.deletingPathExtension().lastPathComponent
-        try "# \(title)\n\n".write(to: url, atomically: true, encoding: .utf8)
+        try AtomicFileWriter.write(text: "# \(title)\n\n", to: url)
         return trimmed
     }
 
@@ -194,11 +194,7 @@ enum WritingProjectDisk {
         let id = UUID()
         let fileName = "\(id.uuidString).md"
         let snapshotURL = historyURL(at: root).appendingPathComponent(fileName)
-        try content.write(
-            to: snapshotURL,
-            atomically: true,
-            encoding: .utf8
-        )
+        try AtomicFileWriter.write(text: content, to: snapshotURL)
         let title = name?.trimmingCharacters(in: .whitespacesAndNewlines)
         let snapshot = ProjectSnapshot(
             id: id,
@@ -332,7 +328,7 @@ enum WritingProjectDisk {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
-        try encoder.encode(index).write(to: historyIndexURL(at: root), options: .atomic)
+        try AtomicFileWriter.write(data: encoder.encode(index), to: historyIndexURL(at: root))
     }
 
     private static func loadChapterIndex(at root: URL) -> ChapterIndex {
@@ -345,9 +341,9 @@ enum WritingProjectDisk {
         try prepareDirectories(at: root)
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
-        try encoder.encode(index).write(
-            to: metadataURL(at: root).appendingPathComponent(chapterIndexFileName),
-            options: .atomic
+        try AtomicFileWriter.write(
+            data: encoder.encode(index),
+            to: metadataURL(at: root).appendingPathComponent(chapterIndexFileName)
         )
     }
 

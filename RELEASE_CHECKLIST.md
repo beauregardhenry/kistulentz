@@ -16,7 +16,7 @@ Use this checklist for every staged release. Do not publish when a data-loss, ac
 - Test 1.0 scale targets workflow passes at the approved limits
 - Universal app contains arm64 and x86_64 executables
 - Ad-hoc signature and designated requirement verify
-- ZIP, DMG, contents, and SHA-256 checksums pass `verify-release.sh`
+- ZIP, DMG, SPDX software bill of materials, contents, and SHA-256 checksums pass `verify-release.sh`
 
 ## Manual clean-install and upgrade testing
 
@@ -42,4 +42,4 @@ Use this checklist for every staged release. Do not publish when a data-loss, ac
 - Export and inspect the privacy-safe diagnostic report
 - Validate EPUB with EPUBCheck when installed and perform the documented external/manual checks
 - Verify release notes describe limitations, ad-hoc signing, Sequoia requirement, and lack of automatic updates
-- Create and push the annotated version tag from the verified commit, confirm the release workflow publishes the DMG, ZIP, and checksums, then download and verify the public release assets
+- Create and push the annotated version tag from the verified commit, confirm the release workflow publishes the DMG, ZIP, SBOM, and checksums with GitHub provenance and SBOM attestations, then download and verify the public release assets

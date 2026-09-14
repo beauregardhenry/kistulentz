@@ -35,6 +35,10 @@ enum DocumentImportService {
         case .rtfd:
             draft = try AttributedDocumentImporter.load(from: url, format: .rtfd, documentType: .rtfd)
         case .odt:
+            let inspection = try inspectArchive(at: url)
+            guard inspection.paths.contains("mimetype"), inspection.paths.contains("content.xml") else {
+                throw DocumentImportError.unreadableDocument
+            }
             draft = try AttributedDocumentImporter.load(from: url, format: .odt, documentType: .openDocument)
         }
 
@@ -88,7 +92,7 @@ enum DocumentImportService {
                 decisions: decisions,
                 assetFolderName: assetFolderURL?.lastPathComponent
             )
-            try markdown.write(to: outputURL, atomically: true, encoding: .utf8)
+            try AtomicFileWriter.write(text: markdown, to: outputURL)
             return DocumentImportSaveResult(markdownURL: outputURL, assetFolderURL: assetFolderURL)
         } catch {
             if createdAssetFolder, let assetFolderURL {
@@ -139,5 +143,51 @@ enum DocumentImportService {
     static func uniqueNotices(_ notices: [DocumentImportNotice]) -> [DocumentImportNotice] {
         var titles: Set<String> = []
         return notices.filter { titles.insert($0.title).inserted }
+    }
+
+    static func inspectArchive(at url: URL) throws -> SafeArchiveInspection {
+        do {
+            return try SafeArchiveReader.inspect(url, policy: .documentImport)
+        } catch {
+            throw importError(from: error)
+        }
+    }
+
+    static func archiveData(
+        for entry: String,
+        in url: URL,
+        inspection: SafeArchiveInspection,
+        required: Bool
+    ) throws -> Data? {
+        do {
+            return try SafeArchiveReader.data(
+                for: entry,
+                in: url,
+                inspection: inspection,
+                required: required
+            )
+        } catch {
+            if !required, (error as? ArchiveSafetyError) == .unsafeArchive,
+               inspection.entry(named: entry) == nil {
+                return nil
+            }
+            throw importError(from: error)
+        }
+    }
+
+    private static func importError(from error: Error) -> DocumentImportError {
+        guard let error = error as? ArchiveSafetyError else {
+            return .extractionFailed(error.localizedDescription)
+        }
+        switch error {
+        case .archiveTooLarge, .entryTooLarge:
+            return .documentTooLarge
+        case .unsafeArchive:
+            return .unsafeArchive
+        case .unavailable:
+            return .extractionFailed("Kistulentz could not access the archive tools on this Mac.")
+        case .extractionFailed(let detail):
+            return .extractionFailed(detail ?? "The system unzip utility failed.")
+        }
     }
 }

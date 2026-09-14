@@ -64,6 +64,11 @@ jobs:
     name: Universal package and integrity checks
     needs: [native-tests, macos-ui-tests, intel-ui-smoke]
     runs-on: macos-15
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -90,14 +95,35 @@ jobs:
           fi
       - name: Build ZIP, DMG, and checksums
         run: ./scripts/package-release.sh
+      - name: Read packaged version
+        id: packaged-version
+        run: echo "version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' scripts/Info.plist)" >> "$GITHUB_OUTPUT"
       - name: Verify universal app and release assets
         run: ./scripts/verify-release.sh dist/Kistulentz.app --release-assets
+      - name: Attest release build provenance
+        if: github.event_name == 'push'
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            dist/releases/*.zip
+            dist/releases/*.dmg
+            dist/releases/*.spdx.json
+            dist/releases/SHA256SUMS.txt
+      - name: Attest the release SBOM
+        if: github.event_name == 'push'
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            dist/releases/*.zip
+            dist/releases/*.dmg
+          sbom-path: dist/releases/Kistulentz-${{ steps.packaged-version.outputs.version }}.spdx.json
       - uses: actions/upload-artifact@v7
         with:
           name: Kistulentz-release-candidate
           path: |
             dist/releases/*.zip
             dist/releases/*.dmg
+            dist/releases/*.spdx.json
             dist/releases/SHA256SUMS.txt
           if-no-files-found: error
 
@@ -123,6 +149,7 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             dist/releases/*.zip \
             dist/releases/*.dmg \
+            dist/releases/*.spdx.json \
             dist/releases/SHA256SUMS.txt \
             --repo "$GITHUB_REPOSITORY" \
             --verify-tag \
