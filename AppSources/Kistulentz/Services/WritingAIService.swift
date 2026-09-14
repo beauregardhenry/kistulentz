@@ -67,3 +67,25 @@ enum WritingAIError: LocalizedError {
         }
     }
 }
+
+extension WritingAIError {
+    /// The fixed prefixes above, in one place, so the error alert (`EditorWorkspace`) can decide
+    /// whether to offer an "Open Settings" button. Call sites across the app catch a generic
+    /// `Error` and store only its already-flattened `localizedDescription`, so by the time an
+    /// error reaches that shared alert there's no `WritingAIError` case left to switch on --
+    /// matching against these literal, first-party message prefixes (not arbitrary user or
+    /// provider text) is what lets the alert recognize "this came from an AI provider call"
+    /// without threading a second flag through every catch site in the app.
+    private static let providerRelatedMessagePrefixes = [
+        "The provider returned error",
+        "The provider returned a response Kistulentz could not read",
+        "Add your ",
+        "Choose a model in Settings.",
+        "Kistulentz could not reach Ollama",
+        "The review could not connect:"
+    ]
+
+    static func looksLikeProviderRelatedMessage(_ message: String) -> Bool {
+        providerRelatedMessagePrefixes.contains { message.hasPrefix($0) }
+    }
+}
