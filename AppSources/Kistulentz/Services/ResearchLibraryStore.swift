@@ -188,8 +188,12 @@ final class ResearchLibraryStore: ObservableObject {
             do {
                 try persist(updatedSources)
             } catch {
-                try? persistence.removeManagedAttachment(attachment, rootURL)
-                throw error
+                try RollbackTracker.run(
+                    after: error,
+                    steps: [("removing the copied attachment", { try self.persistence.removeManagedAttachment(attachment, rootURL) })]
+                ) { originalReason, rollbackReason in
+                    ResearchLibraryError.attachmentAddFailedAndRollbackIncomplete(originalReason: originalReason, rollbackReason: rollbackReason)
+                }
             }
             indexingAttachmentIDs.insert(attachment.id)
             defer { indexingAttachmentIDs.remove(attachment.id) }
@@ -218,8 +222,14 @@ final class ResearchLibraryStore: ObservableObject {
                 do {
                     try persist(indexedSources)
                 } catch {
-                    if let extractedTextPath { try? persistence.removeExtractedText(extractedTextPath, rootURL) }
-                    throw error
+                    try RollbackTracker.run(
+                        after: error,
+                        steps: [("removing the extracted text", {
+                            if let extractedTextPath { try self.persistence.removeExtractedText(extractedTextPath, rootURL) }
+                        })]
+                    ) { originalReason, rollbackReason in
+                        ResearchLibraryError.attachmentAddFailedAndRollbackIncomplete(originalReason: originalReason, rollbackReason: rollbackReason)
+                    }
                 }
             }
         } catch {

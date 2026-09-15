@@ -390,6 +390,7 @@ enum ResearchLibraryError: LocalizedError, Equatable {
     case unreadableAttachment(String)
     case metadataNotFound
     case invalidIdentifier
+    case attachmentAddFailedAndRollbackIncomplete(originalReason: String, rollbackReason: String)
 
     var errorDescription: String? {
         switch self {
@@ -401,6 +402,8 @@ enum ResearchLibraryError: LocalizedError, Equatable {
         case .unreadableAttachment(let name): "Kistulentz could not extract readable text from \(name)."
         case .metadataNotFound: "No matching metadata was found. You can still enter the source manually."
         case .invalidIdentifier: "Enter a valid DOI or ISBN."
+        case .attachmentAddFailedAndRollbackIncomplete(let originalReason, let rollbackReason):
+            "Adding that attachment failed (\(originalReason)), and Kistulentz could not fully undo the partial attempt (\(rollbackReason)). Check this source's attachments before continuing."
         }
     }
 }
