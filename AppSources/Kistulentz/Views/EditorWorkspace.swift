@@ -2,12 +2,18 @@ import AppKit
 import SwiftUI
 import UniformTypeIdentifiers
 
-private enum ProjectFolderAction {
+// `internal` (module-visible), not `private`, on this type and the properties below that are
+// used from more than one of EditorWorkspace's extension files (+Startup, +ProjectLifecycle,
+// +EditingActions, +UITestHarness) -- Swift's `private` is file-scoped, so state and helpers
+// shared across those files must be at least `internal`, the same tradeoff already made when
+// WritingProjectStore was split into per-concern files. Nothing here is exposed outside the
+// module: `internal` still fully protects it from other targets.
+enum ProjectFolderAction {
     case createInParent
     case openExisting
 }
 
-private struct PendingProjectConfiguration: Identifiable {
+struct PendingProjectConfiguration: Identifiable {
     enum Mode {
         case createInParent
         case prepareExisting
@@ -24,39 +30,39 @@ struct EditorWorkspace: View {
     let fileURL: URL?
     let suppliedUndoManager: UndoManager?
 
-    @EnvironmentObject private var settings: AppSettings
-    @EnvironmentObject private var beneparPack: BeneparLanguagePackManager
+    @EnvironmentObject var settings: AppSettings
+    @EnvironmentObject var beneparPack: BeneparLanguagePackManager
     @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
-    @EnvironmentObject private var researchLibrary: ResearchLibraryStore
-    @EnvironmentObject private var draftRecovery: DraftRecoveryManager
+    @EnvironmentObject var researchLibrary: ResearchLibraryStore
+    @EnvironmentObject var draftRecovery: DraftRecoveryManager
     @EnvironmentObject private var customFonts: CustomFontStore
-    @Environment(\.undoManager) private var undoManager
+    @Environment(\.undoManager) var undoManager
     @Environment(\.openSettings) private var openSettings
     @Environment(\.scenePhase) private var scenePhase
-    @StateObject private var viewModel = EditorViewModel()
-    @StateObject private var undoCoordinator = DocumentUndoCoordinator()
-    @StateObject private var projectStore: WritingProjectStore
-    @ObservedObject private var styleLearningStore: StyleLearningStore
-    @StateObject private var draftRecoveryCoordinator = DraftRecoveryCoordinator()
-    @StateObject private var presentation = EditorWorkspacePresentation()
-    @StateObject private var documentImport = DocumentImportCoordinator()
-    @State private var polishedDraftPlan: PolishedDraftPlan?
-    @State private var pendingApplyAllPlan: SuggestionApplicationPlan?
+    @StateObject var viewModel = EditorViewModel()
+    @StateObject var undoCoordinator = DocumentUndoCoordinator()
+    @StateObject var projectStore: WritingProjectStore
+    @ObservedObject var styleLearningStore: StyleLearningStore
+    @StateObject var draftRecoveryCoordinator = DraftRecoveryCoordinator()
+    @StateObject var presentation = EditorWorkspacePresentation()
+    @StateObject var documentImport = DocumentImportCoordinator()
+    @State var polishedDraftPlan: PolishedDraftPlan?
+    @State var pendingApplyAllPlan: SuggestionApplicationPlan?
     @State private var showingReferenceImporter = false
     @State private var selectedLibraryReferences: Set<String> = []
     @State private var isWriteMode = false
-    @State private var showingProjectFolderImporter = false
-    @State private var projectFolderAction: ProjectFolderAction = .openExisting
-    @State private var pendingProjectConfiguration: PendingProjectConfiguration?
-    @State private var destinkManuscriptDocuments: [ManuscriptDocument]?
-    @State private var editorSelection = NSRange(location: 0, length: 0)
-    @State private var pendingAIRequest: AIRequestPreview?
-    @State private var pendingProjectPolishApply: RevisionChangeSet?
-    @State private var didPresentStartup = false
+    @State var showingProjectFolderImporter = false
+    @State var projectFolderAction: ProjectFolderAction = .openExisting
+    @State var pendingProjectConfiguration: PendingProjectConfiguration?
+    @State var destinkManuscriptDocuments: [ManuscriptDocument]?
+    @State var editorSelection = NSRange(location: 0, length: 0)
+    @State var pendingAIRequest: AIRequestPreview?
+    @State var pendingProjectPolishApply: RevisionChangeSet?
+    @State var didPresentStartup = false
 #if UI_TEST_HOST
-    @State private var didConfigureUITestProject = false
-    @State private var lastUITestEditCommand = ""
-    @State private var uiTestEditUndoManager = UndoManager()
+    @State var didConfigureUITestProject = false
+    @State var lastUITestEditCommand = ""
+    @State var uiTestEditUndoManager = UndoManager()
 #endif
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
@@ -547,11 +553,11 @@ struct EditorWorkspace: View {
         }
     }
 
-    private var activeText: String {
+    var activeText: String {
         projectStore.isOpen ? projectStore.text : document.text
     }
 
-    private var activeTextBinding: Binding<String> {
+    var activeTextBinding: Binding<String> {
         if projectStore.isOpen {
             return Binding(
                 get: { projectStore.text },
@@ -561,7 +567,7 @@ struct EditorWorkspace: View {
         return $document.text
     }
 
-    private var activeFileURL: URL? {
+    var activeFileURL: URL? {
         projectStore.isOpen ? projectStore.selectedFileURL : fileURL
     }
 
@@ -609,7 +615,7 @@ struct EditorWorkspace: View {
         )
     }
 
-    private func configureDraftRecovery() {
+    func configureDraftRecovery() {
         draftRecoveryCoordinator.configure(
             title: activeFileURL?.lastPathComponent ?? "Untitled.md",
             fileURL: activeFileURL,
@@ -618,7 +624,7 @@ struct EditorWorkspace: View {
         )
     }
 
-    private func applyPendingProjectPolishIfNeeded() {
+    func applyPendingProjectPolishIfNeeded() {
         guard let changeSet = pendingProjectPolishApply else { return }
         pendingProjectPolishApply = nil
         Task { @MainActor in
@@ -637,782 +643,11 @@ struct EditorWorkspace: View {
         }
     }
 
-#if UI_TEST_HOST
-    private func configureUITestProjectIfNeeded() {
-        guard !didConfigureUITestProject else { return }
-        didConfigureUITestProject = true
-        let environment = ProcessInfo.processInfo.environment
-        guard let path = environment["KISTULENTZ_UI_TEST_PROJECT_PATH"], !path.isEmpty else { return }
-
-        let root = URL(fileURLWithPath: path, isDirectory: true)
-        do {
-            if WritingProjectDisk.hasManifest(at: root) {
-                try projectStore.openProject(at: root)
-            } else {
-                let name = environment["KISTULENTZ_UI_TEST_PROJECT_NAME"]
-                    ?? root.lastPathComponent
-                let kind = WritingProjectKind(
-                    rawValue: environment["KISTULENTZ_UI_TEST_PROJECT_KIND"] ?? "fiction"
-                ) ?? .fiction
-                try projectStore.prepareAndOpenProject(at: root, name: name, kind: kind)
-            }
-        } catch {
-            projectStore.errorMessage = error.localizedDescription
-        }
-    }
-
-    /// XCTest's macOS keyboard driver can select text in the AppKit editor while silently
-    /// discarding replacement characters on headless runners. This file-backed command is
-    /// available only in the UI-test host and exercises the same binding, undo coordinator,
-    /// autosave, and recovery pipeline as a user edit without changing production launches.
-    @MainActor
-    private func monitorUITestEditCommand() async {
-        guard let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_EDIT_COMMAND_PATH"] else {
-            return
-        }
-        let url = URL(fileURLWithPath: path)
-        while !Task.isCancelled {
-            if let replacement = try? String(contentsOf: url, encoding: .utf8),
-               !replacement.isEmpty,
-               replacement != lastUITestEditCommand {
-                lastUITestEditCommand = replacement
-                if replacement == "__KISTULENTZ_UNDO__" {
-                    uiTestEditUndoManager.undo()
-                    continue
-                }
-                if replacement == "__KISTULENTZ_REDO__" {
-                    uiTestEditUndoManager.redo()
-                    continue
-                }
-                if replacement == "__KISTULENTZ_PROJECT_UNDO__" {
-                    let manager = suppliedUndoManager ?? projectStore.projectUndoManager
-                    manager?.undo()
-                    writeUITestProjectUndoStatus(manager: manager, operation: "undo")
-                    continue
-                }
-                if replacement == "__KISTULENTZ_PROJECT_REDO__" {
-                    let manager = suppliedUndoManager ?? projectStore.projectUndoManager
-                    manager?.redo()
-                    writeUITestProjectUndoStatus(manager: manager, operation: "redo")
-                    continue
-                }
-                if replacement == "__KISTULENTZ_PROJECT_UNDO_STATUS__" {
-                    let manager = suppliedUndoManager ?? projectStore.projectUndoManager
-                    writeUITestProjectUndoStatus(manager: manager, operation: "status")
-                    continue
-                }
-                if projectStore.isOpen {
-                    projectStore.prepareForProgrammaticEdit(reason: "Before UI test edit")
-                }
-                projectStore.attachUndoManager(uiTestEditUndoManager)
-                undoCoordinator.replaceText(
-                    with: replacement,
-                    binding: activeTextBinding,
-                    undoManager: uiTestEditUndoManager,
-                    actionName: "UI Test Edit"
-                )
-            }
-            try? await Task.sleep(for: .milliseconds(100))
-        }
-    }
-
-    private func writeUITestProjectUndoStatus(manager: UndoManager?, operation: String) {
-        guard let statusPath = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_STATUS_PATH"] else {
-            return
-        }
-        let status = [
-            "operation=\(operation)",
-            "manager=\(manager != nil)",
-            "canUndo=\(manager?.canUndo == true)",
-            "canRedo=\(manager?.canRedo == true)",
-            "undoName=\(manager?.undoActionName ?? "none")",
-            "redoName=\(manager?.redoActionName ?? "none")",
-            "grouping=\(manager?.groupingLevel ?? -1)",
-            "error=\(projectStore.errorMessage ?? "none")",
-            "text=\(projectStore.text.debugDescription)"
-        ].joined(separator: ",")
-        try? status.write(
-            to: URL(fileURLWithPath: statusPath),
-            atomically: true,
-            encoding: .utf8
-        )
-    }
-#endif
-
-    private func presentStartupIfNeeded() {
-        guard !didPresentStartup else { return }
-        didPresentStartup = true
-        if !draftRecovery.pendingEntries.isEmpty {
-            presentation.present(.draftRecovery)
-        } else {
-            presentNextStartupStep()
-        }
-    }
-
-    private func presentWelcomeAfterRecovery() {
-        presentNextStartupStep()
-    }
-
-    /// Welcome now doubles as Kistulentz's landing page: once onboarding is complete, it's shown
-    /// again on every later launch, in front of whatever document or project macOS's own window
-    /// restoration reopens -- "Continue to Editor" is how you dismiss it and get to that work. The
-    /// mandatory first-run branch (`!hasCompletedOnboarding`) is untouched and always wins: a user
-    /// who has never onboarded always sees Welcome, independent of the landing-page suppression
-    /// switch below (which exists only to keep existing tests landing straight in the editor, the
-    /// way they did before repeat-launch landing pages existed).
-    private func presentNextStartupStep() {
-        beneparPack.refresh()
-        if !beneparPack.isInstalled, settings.claimEnglishPackPrompt() {
-            presentation.present(.englishPackPrompt)
-        } else if !settings.hasCompletedOnboarding {
-            presentation.present(.welcome)
-        } else if settings.shouldPresentWhatsNew(for: AppSettings.appVersion()) {
-            presentation.present(.whatsNew)
-        } else if Self.shouldPresentLandingPageOnLaunch {
-            presentation.present(.welcome)
-        }
-    }
-
-    /// Always true in production. Almost every existing interface test launches expecting to land
-    /// directly in the editor -- exercising that setup, not this screen -- so the shared test
-    /// harness suppresses the landing page by default via this environment variable, the same
-    /// `#if UI_TEST_HOST` + env var convention used for every other test-only escape hatch in this
-    /// app (see `MacFilePanel`, `KistulentzApp`'s font-registration scope, and so on).
-    private static var shouldPresentLandingPageOnLaunch: Bool {
-#if UI_TEST_HOST
-        ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_SUPPRESS_LANDING_PAGE"] != "1"
-#else
-        true
-#endif
-    }
-
-    private func finishEnglishPackPrompt() {
-        settings.acknowledgeEnglishPackPrompt()
-        presentation.dismiss(.englishPackPrompt)
-        Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(180))
-            presentNextStartupStep()
-        }
-    }
-
-    private func completeWelcome() {
-        settings.completeOnboarding()
-        settings.acknowledgeWhatsNew(for: AppSettings.appVersion())
-        presentation.dismiss(.welcome)
-    }
-
-    private func finishWhatsNew() {
-        settings.acknowledgeWhatsNew(for: AppSettings.appVersion())
-        presentation.dismiss(.whatsNew)
-    }
-
-    private func beginProjectFromWelcome() {
-        completeWelcome()
-        requestProjectFolder(.createInParent)
-    }
-
-    private func requestProjectFolder(_ action: ProjectFolderAction) {
-        projectFolderAction = action
-#if UI_TEST_HOST
-        if let path = ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_PROJECT_FOLDER_PATH"],
-           !path.isEmpty {
-            handleProjectFolderResult(.success([URL(fileURLWithPath: path, isDirectory: true)]))
-            return
-        }
-#endif
-        showingProjectFolderImporter = true
-    }
-
-    private func openDocumentFromWelcome() {
-        completeWelcome()
-        let panel = NSOpenPanel()
-        panel.title = "Open a Markdown Document"
-        panel.prompt = "Open"
-        panel.allowedContentTypes = [.markdownDocument, .plainText]
-        panel.canChooseFiles = true
-        panel.canChooseDirectories = false
-        panel.allowsMultipleSelection = false
-        guard panel.runModal() == .OK, let url = panel.url else { return }
-        openImportedMarkdown(url)
-    }
-
-    private func beginImportFromWelcome() {
-        completeWelcome()
-        presentation.present(.projectImportAssistant)
-    }
-
-    private func createSampleProject(_ kind: WritingProjectKind) {
-        completeWelcome()
-        let panel = NSOpenPanel()
-        panel.title = "Choose a Folder for the \(kind.title) Sample"
-        panel.message = "Kistulentz will create a new editable sample-project folder here without replacing existing files."
-        panel.prompt = "Create Sample Here"
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.canCreateDirectories = true
-        panel.allowsMultipleSelection = false
-        guard panel.runModal() == .OK, let parent = panel.url else { return }
-
-        do {
-            let root = try SampleProjectBuilder.create(in: parent, kind: kind)
-            try projectStore.openProject(at: root)
-            activateProject()
-        } catch {
-            projectStore.errorMessage = error.localizedDescription
-        }
-    }
-
-    private func chooseDocumentForImport() {
-        let panel = NSOpenPanel()
-        panel.title = "Import a Document"
-        panel.message = "Choose a plain-text, Word, RTF, RTFD, HTML, or OpenDocument file. Kistulentz will create a separate Markdown copy."
-        panel.prompt = "Import"
-        panel.allowedContentTypes = DocumentImportFormat.importableContentTypes
-        panel.canChooseFiles = true
-        panel.canChooseDirectories = false
-        panel.treatsFilePackagesAsDirectories = false
-        panel.allowsMultipleSelection = false
-
-        guard panel.runModal() == .OK, let url = panel.url else { return }
-        documentImport.load(from: url)
-    }
-
-    private func saveImportedDocument(
-        _ draft: DocumentImportDraft,
-        decisions: [UUID: DocumentTrackedChangeDecision]
-    ) {
-        documentImport.clearDraft()
-        Task { @MainActor in
-            await Task.yield()
-            let panel = NSSavePanel()
-            panel.title = "Save Markdown Copy"
-            panel.message = "The original \(draft.format.title) document will remain unchanged."
-            panel.prompt = "Save Copy"
-            panel.allowedContentTypes = [.markdownDocument]
-            panel.nameFieldStringValue = draft.suggestedMarkdownFilename
-            panel.canCreateDirectories = true
-            panel.isExtensionHidden = false
-
-            guard panel.runModal() == .OK, let outputURL = panel.url else { return }
-            documentImport.save(draft, decisions: decisions, to: outputURL) { result in
-                openImportedMarkdown(result.markdownURL)
-            }
-        }
-    }
-
-    private func openImportedMarkdown(_ url: URL) {
-#if UI_TEST_HOST
-        if ProcessInfo.processInfo.environment["KISTULENTZ_UI_TEST_DISABLE_AUTO_OPEN"] == "1" {
-            return
-        }
-#endif
-        let configuration = NSWorkspace.OpenConfiguration()
-        configuration.activates = true
-        NSWorkspace.shared.open(
-            [url],
-            withApplicationAt: Bundle.main.bundleURL,
-            configuration: configuration
-        ) { _, error in
-            if let error {
-                Task { @MainActor in viewModel.errorMessage = error.localizedDescription }
-            }
-        }
-    }
-
-    private func completeProjectImport(_ completion: ProjectImportCompletion) {
-        presentation.dismiss(.projectImportAssistant)
-        switch completion {
-        case .markdown(let url):
-            openImportedMarkdown(url)
-        case .project(let root):
-            do {
-                if projectStore.rootURL?.standardizedFileURL != root.standardizedFileURL {
-                    try projectStore.openProject(at: root)
-                }
-                activateProject()
-            } catch {
-                projectStore.errorMessage = error.localizedDescription
-            }
-        }
-    }
-
-    // Polish always runs locally, regardless of whether an AI provider is configured -- it used
-    // to silently switch to sending the draft to whatever provider was set up (even one configured
-    // for an unrelated feature, like Selection Rewrite), which meant a provider being ready
-    // elsewhere in Settings could change what this specific action did without the author asking
-    // for that. AI-assisted rewriting stays available, but only through actions the author invokes
-    // explicitly for that purpose, like Selection Rewrite.
-    private func runReview() {
-        let styleDecisions = projectStore.rootURL.flatMap {
-            try? ProjectStyleManager.loadDecisions(at: $0)
-        } ?? []
-        let result = LocalPolishService.polish(
-            text: activeText,
-            targetGrade: settings.targetGrade,
-            issues: viewModel.visibleLocalIssues,
-            styleDecisions: styleDecisions
-        )
-        guard let plan = result.plan else {
-            let advisory = result.advisoryCount == 0
-                ? "No local correction is needed."
-                : "\(result.advisoryCount) advisory highlight\(result.advisoryCount == 1 ? " remains" : "s remain") for your judgment."
-            viewModel.errorMessage = "Local Polish found no concrete change it could make safely. \(advisory) Set up Ollama for private generative rewriting, or connect OpenAI or Anthropic for cloud rewriting."
-            return
-        }
-        polishedDraftPlan = plan
-    }
-
-    private func insertCitation(_ source: ResearchSource, locator: String) {
-        let citation = CitationFormatter.markdownCitation(for: source, locator: locator)
-        let current = activeText as NSString
-        let selectionStart = editorSelection.location == NSNotFound
-            ? current.length
-            : min(max(0, editorSelection.location), current.length)
-        let selectionLength = min(max(0, editorSelection.length), current.length - selectionStart)
-        let safeLocation = selectionStart + selectionLength
-        let range = NSRange(location: safeLocation, length: 0)
-        let updated = current.replacingCharacters(in: range, with: citation)
-        if projectStore.isOpen { projectStore.prepareForProgrammaticEdit(reason: "Before inserting citation") }
-        undoCoordinator.replaceText(
-            with: updated,
-            binding: activeTextBinding,
-            undoManager: undoManager,
-            actionName: "Insert Citation"
-        )
-        editorSelection = NSRange(location: safeLocation + (citation as NSString).length, length: 0)
-    }
-
-    private func navigateToRevisionFinding(_ finding: SystemicRevisionFinding) {
-        guard let path = finding.chapterPath else { return }
-        projectStore.selectChapter(path)
-        Task { @MainActor in
-            await Task.yield()
-            let source = projectStore.text as NSString
-            guard !finding.excerpt.isEmpty else { return }
-            let range = source.range(of: finding.excerpt)
-            guard range.location != NSNotFound else { return }
-            editorSelection = range
-            viewModel.focus(on: range)
-        }
-    }
-
-    private var destinkCurrentDocument: ManuscriptDocument {
-        ManuscriptDocument(
-            relativePath: projectStore.selectedChapterPath ?? fileURL?.lastPathComponent ?? "Untitled.md",
-            title: projectStore.isOpen
-                ? projectStore.selectedChapterTitle
-                : (fileURL?.deletingPathExtension().lastPathComponent ?? "Untitled"),
-            text: activeText
-        )
-    }
-
-    /// Load the manuscript once, when the review is opened, instead of on every re-render of the
-    /// sheet's builder — reading every chapter from disk is main-thread work.
-    private func presentDestinker() {
-        destinkManuscriptDocuments = projectStore.isOpen
-            ? (try? projectStore.betaReadersStore.documents(for: .manuscript, selection: nil))
-            : nil
-        presentation.present(.destinker)
-    }
-
-    private func navigateToDestinkFinding(_ path: String, range: NSRange) {
-        if projectStore.isOpen, path != projectStore.selectedChapterPath {
-            projectStore.selectChapter(path)
-        }
-        Task { @MainActor in
-            await Task.yield()
-            let source = activeText as NSString
-            guard range.location >= 0, NSMaxRange(range) <= source.length else { return }
-            editorSelection = range
-            viewModel.focus(on: range)
-        }
-    }
-
-    private var selectedPassage: (range: NSRange, text: String)? {
-        let source = activeText as NSString
-        guard editorSelection.location != NSNotFound,
-              editorSelection.length > 0,
-              NSMaxRange(editorSelection) <= source.length else { return nil }
-        return (editorSelection, source.substring(with: editorSelection))
-    }
-
-    private func prepareRewrite(_ goal: SelectionRewriteGoal) {
-        guard let selectedPassage else {
-            viewModel.errorMessage = "Select a passage before choosing a rewrite."
-            return
-        }
-        prepareRewrite(goal, passage: selectedPassage)
-    }
-
-    private func prepareRewrite(
-        _ goal: SelectionRewriteGoal,
-        passage selectedPassage: (range: NSRange, text: String)
-    ) {
-        guard validateSelectedProvider() else { return }
-        if goal.kind == .matchReferences, viewModel.referenceBook == nil {
-            viewModel.errorMessage = "Choose at least one reference before matching its craft profile."
-            return
-        }
-
-        let style = projectStore.isOpen ? styleLearningStore.styleText : nil
-        let reference = viewModel.referenceBook.map {
-            WritingAIService.referenceContext($0, relevantTo: selectedPassage.text, maxCharacters: 16_000)
-        }
-        pendingAIRequest = AIRequestPreview(
-            purpose: .selectionRewrite(goal: goal, targetGrade: settings.targetGrade),
-            provider: settings.provider,
-            model: settings.model(for: settings.provider),
-            primaryLabel: "Selected Markdown",
-            primaryText: selectedPassage.text,
-            styleGuide: style,
-            includesStyleGuide: style?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false,
-            referenceContext: reference,
-            includesReferenceContext: reference != nil,
-            sourceRange: selectedPassage.range,
-            sourceText: selectedPassage.text
-        )
-    }
-
-    private func prepareRewrite(_ issue: WritingIssue) {
-        let source = activeText as NSString
-        let range: NSRange
-        if issue.range.location != NSNotFound,
-           NSMaxRange(issue.range) <= source.length,
-           source.substring(with: issue.range) == issue.excerpt {
-            range = issue.range
-        } else {
-            let relocated = source.range(of: issue.excerpt)
-            guard relocated.location != NSNotFound,
-                  source.range(of: issue.excerpt, options: [], range: NSRange(
-                    location: NSMaxRange(relocated),
-                    length: source.length - NSMaxRange(relocated)
-                  )).location == NSNotFound else {
-                viewModel.errorMessage = "That passage changed, so Kistulentz cannot rewrite it safely."
-                return
-            }
-            range = relocated
-        }
-
-        let kind: SelectionRewriteKind
-        switch issue.category {
-        case .spelling, .grammar:
-            kind = .correct
-        case .adverb, .passiveVoice:
-            kind = .strengthenVerbs
-        case .referenceVoice where viewModel.referenceBook != nil:
-            kind = .matchReferences
-        case .hardSentence, .veryHardSentence, .structuralComplexity, .complexPhrase,
-             .aiTell, .aiSuggestion, .referenceVoice, .continuity:
-            kind = .simplify
-        }
-
-        editorSelection = range
-        viewModel.focus(on: range)
-        prepareRewrite(
-            SelectionRewriteGoal(
-                kind: kind,
-                requestedTone: nil,
-                issueInstruction: issue.message
-            ),
-            passage: (range, source.substring(with: range))
-        )
-    }
-
-    private func validateSelectedProvider() -> Bool {
-        let provider = settings.provider
-        guard settings.isProviderReady(provider) else {
-            viewModel.errorMessage = provider.requiresAPIKey
-                ? "Add your \(provider.title) API key and choose a model in Settings first."
-                : "Open Settings, detect the Ollama models already on this Mac, and choose one first."
-            return false
-        }
-        return true
-    }
-
-    private func executeAIRequest(_ request: AIRequestPreview) {
-        switch request.purpose {
-        case .selectionRewrite:
-            viewModel.runSelectionRewrite(request: request, settings: settings)
-        case .referenceDeepening, .manuscriptReport, .manuscriptBible, .betaReader, .outlineSynopsis, .systemicRevision:
-            break
-        }
-    }
-
-    private func applyRewrite(
-        _ alternative: RewriteAlternative,
-        presentation: SelectionRewritePresentation
-    ) {
-        guard let result = SelectionReplacementPlanner.replace(
-            in: activeText,
-            range: presentation.sourceRange,
-            expected: presentation.sourceText,
-            with: alternative.text
-        ) else {
-            viewModel.errorMessage = "That passage changed after the alternatives were created. Select it again and rerun the rewrite."
-            viewModel.rewritePresentation = nil
-            return
-        }
-        let localConflicts = SuggestionRuleValidator.introducedCategories(
-            replacing: presentation.sourceRange,
-            in: activeText,
-            with: alternative.text,
-            targetGrade: settings.targetGrade
-        )
-        let documentConflicts = SuggestionRuleValidator.introducedCategories(
-            original: activeText,
-            replacement: result,
-            targetGrade: settings.targetGrade
-        )
-        let conflicts = IssueCategory.allCases.filter { category in
-            localConflicts.contains(category) || documentConflicts.contains(category)
-        }
-        guard conflicts.isEmpty else {
-            viewModel.errorMessage = "That alternative introduces a new local flag (\(conflicts.map(\.title).joined(separator: ", "))), so Kistulentz did not apply it."
-            return
-        }
-
-        projectStore.prepareForProgrammaticEdit(reason: "Before selection rewrite")
-        undoCoordinator.replaceText(
-            with: result,
-            binding: activeTextBinding,
-            undoManager: undoManager,
-            actionName: presentation.goal.title
-        )
-        let replacementRange = NSRange(
-            location: presentation.sourceRange.location,
-            length: (alternative.text as NSString).length
-        )
-        editorSelection = replacementRange
-        viewModel.focus(on: replacementRange)
-        viewModel.rewritePresentation = nil
-    }
-
-    private func applyPolishedChanges(_ changeIDs: Set<UUID>, from plan: PolishedDraftPlan) {
-        guard activeText == plan.sourceText else {
-            polishedDraftPlan = nil
-            viewModel.errorMessage = "The document changed while the polished draft was open. Reopen it to review an updated comparison."
-            return
-        }
-        guard !changeIDs.isEmpty, let result = plan.applying(changeIDs: changeIDs) else {
-            viewModel.errorMessage = "Select at least one safe passage to apply."
-            return
-        }
-
-        projectStore.prepareForProgrammaticEdit(reason: "Before applying polished passages")
-        undoCoordinator.replaceText(
-            with: result,
-            binding: activeTextBinding,
-            undoManager: undoManager,
-            actionName: changeIDs.count == 1 ? "Apply Polished Passage" : "Apply Polished Passages"
-        )
-        polishedDraftPlan = nil
-    }
-
-    private func replaceWithPolishedDraft(from plan: PolishedDraftPlan) {
-        guard activeText == plan.sourceText else {
-            polishedDraftPlan = nil
-            viewModel.errorMessage = "The document changed while the polished draft was open. Reopen it to review an updated comparison."
-            return
-        }
-        guard plan.isFullReplacementSafe else {
-            viewModel.errorMessage = "Resolve or decline the passages that conflict with local rules before replacing the document."
-            return
-        }
-
-        projectStore.prepareForProgrammaticEdit(reason: "Before polished draft")
-        undoCoordinator.replaceText(
-            with: plan.polishedText,
-            binding: activeTextBinding,
-            undoManager: undoManager,
-            actionName: plan.origin == .local ? "Use Local Polish" : "Use Polished Draft"
-        )
-        polishedDraftPlan = nil
-    }
-
-    private func apply(_ issue: WritingIssue) {
-        if let replacement = issue.replacement {
-            let conflicts = SuggestionRuleValidator.introducedCategories(
-                original: issue.excerpt,
-                replacement: replacement,
-                targetGrade: settings.targetGrade
-            )
-            guard conflicts.isEmpty else {
-                viewModel.errorMessage = "That suggestion now conflicts with a local rule, so Kistulentz did not apply it."
-                return
-            }
-        }
-        let plan = SuggestionApplicationPlanner.planSingle(issue: issue, in: activeText)
-        guard plan.hasChanges else {
-            viewModel.errorMessage = "That passage has changed, so the suggestion can no longer be applied."
-            return
-        }
-        guard SuggestionRuleValidator.isSafe(
-            original: activeText,
-            replacement: plan.resultText,
-            targetGrade: settings.targetGrade
-        ) else {
-            viewModel.errorMessage = "That suggestion creates a new local flag in its surrounding passage, so Kistulentz did not apply it."
-            return
-        }
-
-        projectStore.prepareForProgrammaticEdit(reason: "Before accepting suggestion")
-        undoCoordinator.replaceText(
-            with: plan.resultText,
-            binding: activeTextBinding,
-            undoManager: undoManager,
-            actionName: "Accept Suggestion"
-        )
-        styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
-    }
-
-    private func decline(_ issue: WritingIssue) {
-        if viewModel.decline(issue, in: activeText) {
-            styleLearningStore.recordStyleDecision(action: .declined, issue: issue)
-        }
-    }
-
-    private func prepareApplyAll() {
-        let safeIssues = viewModel.allIssues.filter { issue in
-            guard let replacement = issue.replacement else { return true }
-            return SuggestionRuleValidator.isSafe(
-                original: issue.excerpt,
-                replacement: replacement,
-                targetGrade: settings.targetGrade
-            )
-        }
-        let plan = SuggestionApplicationPlanner.plan(issues: safeIssues, in: activeText)
-        guard plan.hasChanges else {
-            viewModel.errorMessage = plan.conflictCount > 0 || plan.staleCount > 0
-                ? "The available replacements overlap or no longer match this draft. Apply them one at a time."
-                : "No current suggestions include a concrete replacement."
-            return
-        }
-        guard SuggestionRuleValidator.isSafe(
-            original: activeText,
-            replacement: plan.resultText,
-            targetGrade: settings.targetGrade
-        ) else {
-            viewModel.errorMessage = "Applying those suggestions together would create a new local flag. Apply them one at a time instead."
-            return
-        }
-        pendingApplyAllPlan = plan
-    }
-
-    private func applyAll(_ plan: SuggestionApplicationPlan) {
-        let appliedIDs = Set(plan.appliedIssueIDs)
-        let appliedIssues = viewModel.allIssues.filter { appliedIDs.contains($0.id) }
-        projectStore.prepareForProgrammaticEdit(reason: "Before applying all suggestions")
-        undoCoordinator.replaceText(
-            with: plan.resultText,
-            binding: activeTextBinding,
-            undoManager: undoManager,
-            actionName: "Apply All Suggestions"
-        )
-        for issue in appliedIssues {
-            styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
-        }
-        pendingApplyAllPlan = nil
-    }
-
-    private func handleProjectFolderResult(_ result: Result<[URL], Error>) {
-        switch result {
-        case .success(let urls):
-            guard let url = urls.first else { return }
-            switch projectFolderAction {
-            case .createInParent:
-                pendingProjectConfiguration = PendingProjectConfiguration(
-                    url: url,
-                    initialName: "Untitled Project",
-                    mode: .createInParent
-                )
-            case .openExisting:
-                if WritingProjectDisk.hasManifest(at: url) {
-                    do {
-                        try projectStore.openProject(at: url)
-                        activateProject()
-                    } catch {
-                        if projectStore.recoveryRequest == nil {
-                            projectStore.errorMessage = error.localizedDescription
-                        }
-                    }
-                } else {
-                    pendingProjectConfiguration = PendingProjectConfiguration(
-                        url: url,
-                        initialName: url.lastPathComponent,
-                        mode: .prepareExisting
-                    )
-                }
-            }
-        case .failure(let error):
-            projectStore.errorMessage = error.localizedDescription
-        }
-    }
-
-    private func configureProject(
-        _ configuration: PendingProjectConfiguration,
-        name: String,
-        kind: WritingProjectKind
-    ) {
-        do {
-            switch configuration.mode {
-            case .createInParent:
-                try projectStore.createProject(in: configuration.url, name: name, kind: kind)
-            case .prepareExisting:
-                try projectStore.prepareAndOpenProject(at: configuration.url, name: name, kind: kind)
-            }
-            activateProject()
-        } catch {
-            projectStore.errorMessage = error.localizedDescription
-        }
-    }
-
-    private func activateProject() {
-        undoManager?.removeAllActions()
-        viewModel.configureDocument(url: projectStore.selectedFileURL, text: projectStore.text)
-        viewModel.scheduleAnalysis(
-            text: projectStore.text,
-            targetGrade: settings.targetGrade,
-            immediately: true
-        )
-    }
-
-    private func closeProject() {
-        projectStore.closeProject()
-        undoManager?.removeAllActions()
-        viewModel.configureDocument(url: fileURL, text: document.text)
-        viewModel.scheduleAnalysis(
-            text: document.text,
-            targetGrade: settings.targetGrade,
-            immediately: true
-        )
-    }
-
     private func selectSearchResult(_ result: ProjectSearchResult) {
         projectStore.selectChapter(result.chapterPath)
         Task { @MainActor in
             await Task.yield()
             viewModel.focus(on: result.range)
         }
-    }
-
-    private func applyAllButtonTitle(for plan: SuggestionApplicationPlan) -> String {
-        "Apply \(plan.appliedCount) \(plan.appliedCount == 1 ? "Change" : "Changes")"
-    }
-
-    private func applyAllMessage(for plan: SuggestionApplicationPlan) -> String {
-        var parts = [
-            "Kistulentz will apply \(plan.appliedCount) concrete, non-overlapping \(plan.appliedCount == 1 ? "change" : "changes") as one edit."
-        ]
-        if plan.conflictCount > 0 {
-            parts.append("\(plan.conflictCount) overlapping \(plan.conflictCount == 1 ? "suggestion" : "suggestions") will be skipped.")
-        }
-        if plan.staleCount > 0 {
-            parts.append("\(plan.staleCount) changed \(plan.staleCount == 1 ? "passage" : "passages") will be skipped.")
-        }
-        if plan.advisoryCount > 0 {
-            parts.append("Advisory highlights without replacement text will remain.")
-        }
-        parts.append("You can undo the entire edit with Command-Z.")
-        return parts.joined(separator: " ")
     }
 }

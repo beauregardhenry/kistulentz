@@ -94,7 +94,9 @@
 		7C0434CF5A6BFA606B7C485A /* SystemicRevisionAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C96024BC31CCE6EF3D49C18 /* SystemicRevisionAIService.swift */; };
 		8077508959AA5DF55B6D8A9B /* ManuscriptModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BD45FA66DC05235762B243 /* ManuscriptModels.swift */; };
 		81C1692B8B8CBAAB06AD5768 /* StyleLearningStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3685997EC62A7705FAB90FB9 /* StyleLearningStore.swift */; };
+		84CAC29CDC0EF500E108685E /* EditorWorkspace+UITestHarness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6753C3158604E1C81731976D /* EditorWorkspace+UITestHarness.swift */; };
 		85E9283B36DB276D15167513 /* DocumentImportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DE2AAE52463D58F856497 /* DocumentImportModels.swift */; };
+		893E8275420E54E0813E5110 /* EditorWorkspace+Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F275D368D1A7ED38477450F4 /* EditorWorkspace+Startup.swift */; };
 		8C6893AFBE1F61525FE3D120 /* CitationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3AE612CCEF6208E69CA7A /* CitationFormatter.swift */; };
 		8CC709FEBDDEE8D160B0752F /* ReferenceDeepeningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6803C51B55851DEEE36A /* ReferenceDeepeningService.swift */; };
 		8E7B2C6ECB11BC5C3CF09FB3 /* SampleProjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A93226CDB001FFC2B892B6 /* SampleProjectBuilder.swift */; };
@@ -117,6 +119,7 @@
 		A596CE23AE4EFFE3776B6020 /* BeneparLanguagePack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AB853B50483904D5F5ABC1 /* BeneparLanguagePack.swift */; };
 		A7418D51CF49839BE2562961 /* AIRequestViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF499D28203EAEC8BEE7F5 /* AIRequestViews.swift */; };
 		A853920442BA125F23692032 /* NativeWritingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */; };
+		A9EC6B7488C436D9D8462AB6 /* EditorWorkspace+ProjectLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */; };
 		B0068AC701780783E6F9EA43 /* SelectionReplacementPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6D6120FE63E3735B10F3C9 /* SelectionReplacementPlanner.swift */; };
 		B029AAADC5365B01A99E3ABF /* HTMLImportSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7C72C2DC7E5F88CDED24D /* HTMLImportSanitizer.swift */; };
 		B03D8246A24BFC97FE50CCA2 /* ReferenceLibraryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3A2106CCC89E183BE9736 /* ReferenceLibraryModels.swift */; };
@@ -147,6 +150,7 @@
 		D6F95F4815C237AAC644A157 /* RevisionDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E1E1C30A1010B24902668 /* RevisionDiff.swift */; };
 		D74CC5C9596BC2C5812D5356 /* ReferenceLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69AF877F1E25736EB3DF3D /* ReferenceLibraryView.swift */; };
 		D7C7D5810780E26D4B63BBCD /* SystemicRevisionCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733268E410156100D2A50952 /* SystemicRevisionCenterView.swift */; };
+		E44DBC30C895AAD30B18F7EF /* EditorWorkspace+EditingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3EFB11C4A5E392DFAF6713 /* EditorWorkspace+EditingActions.swift */; };
 		E65E18ACF1C9367268940A0C /* DismissedSuggestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DCAC428503B6BD251220B0 /* DismissedSuggestionStore.swift */; };
 		E9E16A08AAE1B606EDEEEB37 /* MarkdownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C9555A83C0FD8962A6B8F7 /* MarkdownTextView.swift */; };
 		EC954E7B8C12E900FC541D45 /* PDFPublicationWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2910B127816E39CF382BD /* PDFPublicationWriter.swift */; };
@@ -226,6 +230,7 @@
 		5E29A5F95F311B1BE6F716AC /* ManuscriptInsightsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptInsightsUITests.swift; sourceTree = "<group>"; };
 		601E1E1C30A1010B24902668 /* RevisionDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionDiff.swift; sourceTree = "<group>"; };
 		61FDBBC4C9041761499E1484 /* ManuscriptMetricsAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptMetricsAnalyzer.swift; sourceTree = "<group>"; };
+		6753C3158604E1C81731976D /* EditorWorkspace+UITestHarness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+UITestHarness.swift"; sourceTree = "<group>"; };
 		678E87EABC1CF8D34F49A191 /* PublicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationStore.swift; sourceTree = "<group>"; };
 		68BD45FA66DC05235762B243 /* ManuscriptModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptModels.swift; sourceTree = "<group>"; };
 		68D9A10CD7BCB05C05CDF7CF /* BeneparModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeneparModels.swift; sourceTree = "<group>"; };
@@ -272,6 +277,7 @@
 		9A76A44C3827341485A46ABC /* WritingProjectStore+ManuscriptReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WritingProjectStore+ManuscriptReport.swift"; sourceTree = "<group>"; };
 		9BF2C72FD1C54454E86BB2D3 /* DocumentImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentImportView.swift; sourceTree = "<group>"; };
 		9C96024BC31CCE6EF3D49C18 /* SystemicRevisionAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemicRevisionAIService.swift; sourceTree = "<group>"; };
+		9D3EFB11C4A5E392DFAF6713 /* EditorWorkspace+EditingActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+EditingActions.swift"; sourceTree = "<group>"; };
 		9F7BA9BC8E5F4F54AD80FA09 /* ProjectPolishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPolishService.swift; sourceTree = "<group>"; };
 		A024E8F98C19AAFC35E5211D /* NaturalLanguage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguage.framework; path = System/Library/Frameworks/NaturalLanguage.framework; sourceTree = SDKROOT; };
 		A03365D66A7EDA1FA4818455 /* OutlineModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineModels.swift; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 		B4CA17B557581871CCA40E02 /* CustomFontModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontModels.swift; sourceTree = "<group>"; };
 		B9574BEAADCBDB2E2FEC32D0 /* WritingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingModels.swift; sourceTree = "<group>"; };
 		BBE34B0450654CCF9FFF9FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+ProjectLifecycle.swift"; sourceTree = "<group>"; };
 		C4F4A0B4362B6AD91D05AF74 /* PublicationReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationReadiness.swift; sourceTree = "<group>"; };
 		C650B1A545CACE4B69EBE945 /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		C85B167CE1322E5DC463653C /* EPUBReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBReference.swift; sourceTree = "<group>"; };
@@ -319,6 +326,7 @@
 		EA1AFBBBE274BD941C155112 /* DraftRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRecovery.swift; sourceTree = "<group>"; };
 		EABE7CC18AE3B138252D31D1 /* ProjectOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectOrganizationView.swift; sourceTree = "<group>"; };
 		EFB409943689F23B71858018 /* ExportProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportProfileEditor.swift; sourceTree = "<group>"; };
+		F275D368D1A7ED38477450F4 /* EditorWorkspace+Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+Startup.swift"; sourceTree = "<group>"; };
 		F2D4FBEDFFCBA46B28157CFB /* AITellEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITellEngine.swift; sourceTree = "<group>"; };
 		F3449E169D6C405421B9DE60 /* LocalPolishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPolishService.swift; sourceTree = "<group>"; };
 		F7797044776CE677D1474747 /* ProviderConnectionTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderConnectionTester.swift; sourceTree = "<group>"; };
@@ -460,6 +468,10 @@
 				2842A9ED061DB062FD251A1F /* EditorSidebars.swift */,
 				A0EF2288BB7798EF32F92306 /* EditorToolbar.swift */,
 				7DDB77A0B027A0F419D7D4D5 /* EditorWorkspace.swift */,
+				9D3EFB11C4A5E392DFAF6713 /* EditorWorkspace+EditingActions.swift */,
+				C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */,
+				F275D368D1A7ED38477450F4 /* EditorWorkspace+Startup.swift */,
+				6753C3158604E1C81731976D /* EditorWorkspace+UITestHarness.swift */,
 				EFB409943689F23B71858018 /* ExportProfileEditor.swift */,
 				365CB0C6F47B37AC25F7A25D /* ManuscriptInsightsView.swift */,
 				90C9555A83C0FD8962A6B8F7 /* MarkdownTextView.swift */,
@@ -711,6 +723,10 @@
 				2FD157088F29CAE3598660FB /* EditorSidebars.swift in Sources */,
 				46D6496A213762D87ECBDF7E /* EditorToolbar.swift in Sources */,
 				1E0C675F65F56620A3F50001 /* EditorViewModel.swift in Sources */,
+				E44DBC30C895AAD30B18F7EF /* EditorWorkspace+EditingActions.swift in Sources */,
+				A9EC6B7488C436D9D8462AB6 /* EditorWorkspace+ProjectLifecycle.swift in Sources */,
+				893E8275420E54E0813E5110 /* EditorWorkspace+Startup.swift in Sources */,
+				84CAC29CDC0EF500E108685E /* EditorWorkspace+UITestHarness.swift in Sources */,
 				44B75014B523E52B2CD73C0A /* EditorWorkspace.swift in Sources */,
 				1F6049D9EEF4B63209DBEDBD /* EditorWorkspacePresentation.swift in Sources */,
 				7BB6FE71E565C25AE568738E /* ExportProfileEditor.swift in Sources */,
