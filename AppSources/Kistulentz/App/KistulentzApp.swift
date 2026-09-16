@@ -114,10 +114,43 @@ struct KistulentzApp: App {
 
 }
 
+/// A DocumentGroup-based Mac app can fall back to AppKit's own generic "nothing to resume, so ask
+/// the user" panel -- the plain system Open dialog, complete with its own "New Document" button --
+/// ahead of anything Kistulentz itself ever draws, Welcome landing page included. Reported
+/// directly, then reproduced against a real installed build through repeated quit/relaunch cycles
+/// (identically reproducible in Apple's own TextEdit under the same "nothing to resume" condition,
+/// confirming this is normal AppKit/DocumentGroup behavior, not a Kistulentz-specific defect).
+///
+/// What actually helps, verified empirically against a real build:
+/// - Registering NSQuitAlwaysKeepsWindows as a genuine NSUserDefaults default (not an Info.plist
+///   declaration, which measurably did not change anything) reliably fixes resuming a document
+///   across a normal quit/relaunch, once one has ever existed -- including for a user whose own
+///   System Settings has "Close windows when quitting applications" on, which otherwise disables
+///   window resumption process-wide for every app unless an app registers its own override.
+/// - `applicationShouldOpenUntitledFile` returning true is the classic, documented AppKit hook for
+///   exactly this case, kept as a defensive measure even though it did not, on its own, change the
+///   observed behavior for SwiftUI's DocumentGroup in testing.
+///
+/// What this does NOT fix: a truly first-ever launch (nothing has ever existed to resume) can
+/// still show the system panel once. `DocumentGroupLaunchScene` -- Apple's real, purpose-built
+/// replacement for this fallback -- was investigated and ruled out: it is
+/// `@available(iOS 18.0, visionOS 2.0, *)` and explicitly `@available(macOS, unavailable)`,
+/// confirmed directly against this SDK's SwiftUI.swiftinterface. Eliminating the residual
+/// first-launch case on macOS would mean replacing DocumentGroup with hand-rolled window and file
+/// management -- a real rewrite, scoped separately, not folded into this fix.
 @MainActor
 final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
+    override init() {
+        super.init()
+        UserDefaults.standard.register(defaults: ["NSQuitAlwaysKeepsWindows": true])
+    }
+
     func applicationWillTerminate(_ notification: Notification) {
         DraftRecoveryManager.shared.endSession()
+    }
+
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        true
     }
 }
 

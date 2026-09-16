@@ -18,6 +18,9 @@ NEW IN 0.21.0 FRIEND PREVIEW
 INSTALL
 1. Drag Kistulentz into the Applications folder.
 2. Open Kistulentz from Applications.
+3. If the very first launch shows a plain macOS file browser instead of Kistulentz's own
+   Welcome screen, click New Document once. This is a known macOS behavior for document-based
+   apps when there is nothing yet to reopen; it will not happen again after this first time.
 
 FIRST-OPEN SECURITY MESSAGE
 Beau Henry does not yet have an Apple Developer account, so Apple cannot verify
