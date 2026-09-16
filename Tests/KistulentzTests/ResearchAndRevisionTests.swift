@@ -460,6 +460,80 @@ final class ResearchAndRevisionTests: XCTestCase {
         XCTAssertEqual(try ResearchLibraryDisk.load(from: root).sources.first?.attachments, [])
     }
 
+    /// Genuine reproduction of both the attachment-index save and its own rollback failing at
+    /// once -- the same shape as the 7 other rollback sites fixed earlier this session, now closed
+    /// on `ResearchLibraryStore.addAttachment` too. Before this fix, the rollback's `try?` would
+    /// have silently swallowed the second failure and reported only the first.
+    @MainActor
+    func testResearchStoreEscalatesDistinctlyWhenAttachmentIndexSaveAndItsRollbackBothFail() async throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreAttachmentDoubleFailure.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Evidence".write(to: original, atomically: true, encoding: .utf8)
+        let source = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+
+        var persistence = ResearchLibraryPersistence.live
+        persistence.save = { _, _ in throw ExpectedResearchStoreError.writeFailed }
+        persistence.removeManagedAttachment = { _, _ in throw ExpectedResearchStoreError.rollbackFailed }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        await store.addAttachment(from: original, sourceID: source.id, storage: .managedCopy)
+
+        let message = try XCTUnwrap(store.errorMessage)
+        XCTAssertTrue(message.contains("Adding that attachment failed"))
+        XCTAssertTrue(message.contains("removing the copied attachment"))
+    }
+
+    /// Same genuine double-failure reproduction, for the second persist call in the same method
+    /// (recording the extraction result) and its own rollback (removing the extracted-text file).
+    @MainActor
+    func testResearchStoreEscalatesDistinctlyWhenIndexingUpdateSaveAndItsRollbackBothFail() async throws {
+        let root = temporaryDirectory()
+        let outside = temporaryDirectory()
+        let suiteName = "ResearchStoreIndexingDoubleFailure.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer {
+            defaults.removePersistentDomain(forName: suiteName)
+            try? FileManager.default.removeItem(at: root)
+            try? FileManager.default.removeItem(at: outside)
+        }
+
+        let original = outside.appendingPathComponent("evidence.txt")
+        try "Evidence".write(to: original, atomically: true, encoding: .utf8)
+        let source = sampleSource()
+        try ResearchLibraryDisk.save(ResearchLibraryArchive(sources: [source]), to: root)
+
+        var persistence = ResearchLibraryPersistence.live
+        let liveSave = persistence.save
+        var saveCallCount = 0
+        persistence.save = { archive, root in
+            saveCallCount += 1
+            // Let the first persist (recording the newly-added attachment) succeed, matching real
+            // usage -- only the second persist (recording the extraction result) fails here.
+            if saveCallCount > 1 { throw ExpectedResearchStoreError.writeFailed }
+            try liveSave(archive, root)
+        }
+        persistence.removeExtractedText = { _, _ in throw ExpectedResearchStoreError.rollbackFailed }
+        let store = ResearchLibraryStore(persistence: persistence, defaults: defaults)
+        try store.open(at: root)
+
+        await store.addAttachment(from: original, sourceID: source.id, storage: .managedCopy)
+
+        let message = try XCTUnwrap(store.errorMessage)
+        XCTAssertTrue(message.contains("Adding that attachment failed"))
+        XCTAssertTrue(message.contains("removing the extracted text"))
+    }
+
     @MainActor
     func testCancellingResearchAttachmentIndexingLeavesARecoverableUnindexedAttachment() async throws {
         let root = temporaryDirectory()
@@ -1216,4 +1290,5 @@ final class ResearchAndRevisionTests: XCTestCase {
 private enum ExpectedResearchStoreError: Error {
     case writeFailed
     case extractionFailed
+    case rollbackFailed
 }

@@ -22,9 +22,9 @@ enum SystemicRevisionDisk {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
-        try encoder.encode(archive).write(
-            to: WritingProjectDisk.metadataURL(at: root).appendingPathComponent(fileName),
-            options: .atomic
+        try AtomicFileWriter.write(
+            data: encoder.encode(archive),
+            to: WritingProjectDisk.metadataURL(at: root).appendingPathComponent(fileName)
         )
     }
 }
