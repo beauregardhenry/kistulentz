@@ -274,6 +274,8 @@ private extension IssueCategory {
             NSColor.systemOrange.withAlphaComponent(0.20)
         case .continuity:
             NSColor.systemPink.withAlphaComponent(0.20)
+        case .avoidedWord:
+            NSColor.systemBrown.withAlphaComponent(0.25)
         }
     }
 }

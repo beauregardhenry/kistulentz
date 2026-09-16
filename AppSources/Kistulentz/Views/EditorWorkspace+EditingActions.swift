@@ -170,7 +170,7 @@ extension EditorWorkspace {
         case .referenceVoice where viewModel.referenceBook != nil:
             kind = .matchReferences
         case .hardSentence, .veryHardSentence, .structuralComplexity, .complexPhrase,
-             .aiTell, .aiSuggestion, .referenceVoice, .continuity:
+             .aiTell, .aiSuggestion, .referenceVoice, .continuity, .avoidedWord:
             kind = .simplify
         }
 

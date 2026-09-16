@@ -42,7 +42,6 @@ struct EditorWorkspace: View {
     @StateObject var viewModel = EditorViewModel()
     @StateObject var undoCoordinator = DocumentUndoCoordinator()
     @StateObject var projectStore: WritingProjectStore
-    @ObservedObject var styleLearningStore: StyleLearningStore
     @StateObject var draftRecoveryCoordinator = DraftRecoveryCoordinator()
     @StateObject var presentation = EditorWorkspacePresentation()
     @StateObject var documentImport = DocumentImportCoordinator()
@@ -67,6 +66,24 @@ struct EditorWorkspace: View {
 
     private let epubType = UTType(importedAs: "org.idpf.epub-container")
 
+    // Deliberately NOT a stored `@ObservedObject` property -- that was tried and measurably
+    // failed: `@StateObject` uniquely ignores `wrappedValue` on every init after the first,
+    // keeping `projectStore` itself alive across SwiftUI's routine view-struct re-inits, but
+    // reading `projectStore`'s own `styleLearningStore` at init time (even via
+    // `_projectStore.wrappedValue`, before `@StateObject` has actually installed its persistence
+    // for this render) does not reliably return that same kept-alive instance -- confirmed
+    // directly by comparing `ObjectIdentifier`s at runtime: `projectStore.styleLearningStore`
+    // and a stored `@ObservedObject` seeded that way were two different objects, the second one
+    // never touched by `WritingProjectStore.install()`. A computed property has no such
+    // trap -- it re-resolves `projectStore.styleLearningStore` (a plain, stable stored property
+    // read, not an init-time snapshot) on every access, always returning the one real instance
+    // `projectStore` itself mutates. `.onChange`/`.onAppear` below don't need this to be an
+    // independently-tracked `@ObservedObject` to see updates: they still re-run on every
+    // `EditorWorkspace` re-render, which `projectStore`'s own `@StateObject` tracking already
+    // triggers whenever `WritingProjectStore.install()` changes its other `@Published` state
+    // alongside `styleLearningStore` (which project open/close always does).
+    var styleLearningStore: StyleLearningStore { projectStore.styleLearningStore }
+
     init(
         document: Binding<MarkdownDocument>,
         fileURL: URL?,
@@ -75,9 +92,7 @@ struct EditorWorkspace: View {
         _document = document
         self.fileURL = fileURL
         self.suppliedUndoManager = suppliedUndoManager
-        let store = WritingProjectStore()
-        _projectStore = StateObject(wrappedValue: store)
-        _styleLearningStore = ObservedObject(wrappedValue: store.styleLearningStore)
+        _projectStore = StateObject(wrappedValue: WritingProjectStore())
     }
 
     private var editorLayout: some View {
@@ -184,6 +199,7 @@ struct EditorWorkspace: View {
             reopenLastProjectIfNeeded()
             viewModel.configureDocument(url: activeFileURL, text: activeText)
             viewModel.updateStyleDecisions(styleLearningStore.styleDecisions)
+            viewModel.updateAvoidedWords(ProjectStyleManager.avoidedWords(from: styleLearningStore.styleText))
             configureDraftRecovery()
             viewModel.scheduleAnalysis(
                 text: activeText,
@@ -199,6 +215,10 @@ struct EditorWorkspace: View {
 #endif
         .onChange(of: styleLearningStore.styleDecisions) { _, newValue in
             viewModel.updateStyleDecisions(newValue)
+        }
+        .onChange(of: styleLearningStore.styleText) { _, newValue in
+            viewModel.updateAvoidedWords(ProjectStyleManager.avoidedWords(from: newValue))
+            viewModel.scheduleAnalysis(text: activeText, targetGrade: settings.targetGrade, immediately: true)
         }
         .onChange(of: document.text) { _, newValue in
             if !projectStore.isOpen {
