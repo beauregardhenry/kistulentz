@@ -8,6 +8,22 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.22.0] - 2026-09-16
+
+### Fixed
+
+- Kistulentz now reliably reopens a document or project across a normal quit and relaunch,
+  including for a user whose own System Settings has "Close windows when quitting
+  applications" turned on. Without this, AppKit's own "nothing to resume" fallback for a
+  document-based app — the plain system Open panel, with its own "New Document" button — could
+  appear at launch instead of anything Kistulentz itself draws, ahead of the Welcome landing
+  page. A truly first-ever launch (nothing has ever existed to resume) can still show that
+  system panel once; FIRST OPEN's install notes now say what to do if that happens.
+
+### Testing
+
+- The verified suite now contains 682 Swift tests and 53 macOS interface tests.
+
 ## [0.21.0] - 2026-09-15
 
 ### Added
