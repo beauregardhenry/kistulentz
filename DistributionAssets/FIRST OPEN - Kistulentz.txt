@@ -5,17 +5,15 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.20.0 FRIEND PREVIEW
-- Manuscripts, project metadata, imports, recovery copies, references, and
-  publication settings now share one tested safe-write path. An interrupted
-  save or full disk keeps the last known-good file intact.
-- DOCX, ODT, and EPUB archives now have strict limits for entry count, expanded
-  size, compression ratio, paths, links, and filename collisions before their
-  contents are trusted.
-- Long import, export, and structural-analysis work now shares consistent
-  cancellation and stale-result handling.
-- Release packages now include an SPDX software bill of materials, and tagged
-  GitHub builds publish verifiable provenance and SBOM attestations.
+NEW IN 0.21.0 FRIEND PREVIEW
+- The Welcome screen now greets every launch, not just the first, in front of
+  whatever document or project the previous session left open.
+- An AI provider error (a missing key, a provider outage, an unreachable
+  Ollama) now offers an Open Settings button directly in the alert.
+- A file-chooser sheet left open when Kistulentz quits no longer reappears
+  the next time the app opens.
+- The De-stink toolbar icon no longer changes color with your System
+  Settings accent color choice.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

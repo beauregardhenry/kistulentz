@@ -8,6 +8,41 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.21.0] - 2026-09-15
+
+### Added
+
+- An AI provider error (a missing or invalid API key, a provider HTTP error, an unreachable
+  Ollama, or a network failure reaching one) now offers an "Open Settings" button directly in
+  the alert.
+- The Welcome screen now doubles as a landing page: it reappears on every launch, not only the
+  first, in front of whatever document or project the previous session left open.
+
+### Fixed
+
+- A file-chooser sheet (the Research Library folder picker and others) left open when Kistulentz
+  quits no longer reappears on the next launch ahead of anything the app itself draws.
+- The De-stink toolbar icon no longer tracks the System Settings accent color; it now renders
+  the same as every other icon in that row regardless of the chosen accent color.
+- Adding a Research Library attachment now reports distinctly when an automatic rollback from a
+  failed attempt cannot fully complete, instead of silently leaving an orphaned file behind.
+
+### Changed
+
+- Systemic revision persistence now uses the same shared atomic writer as other project
+  metadata.
+- `EditorWorkspace.swift`, the largest file in the app, is split into per-concern files with no
+  change in behavior.
+
+### Testing
+
+- Added CI checks that hold `as!`, `fatalError(`, `print(`, and TODO/FIXME comment markers at a
+  fixed floor of zero, and that the Swift and Xcode UI test counts only move up, the same shape
+  as the existing coverage ratchet.
+- Added a genuine reproduction of the Research Library attachment rollback also failing, not
+  just the attachment add itself failing.
+- The verified suite now contains 680 Swift tests and 53 macOS interface tests.
+
 ## [0.20.0] - 2026-09-14
 
 ### Changed
