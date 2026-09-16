@@ -8,6 +8,23 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.22.1] - 2026-09-16
+
+### Fixed
+
+- Fixed the actual root cause of 0.22.0's own launch-reliability fix falling short:
+  `KistulentzAppDelegate` never implemented `applicationSupportsSecureRestorableState`. Since
+  macOS 12, AppKit treats an app delegate that omits this method as opting out of state
+  restoration entirely, so there was never anything to resume — meaning the system "nothing to
+  resume" Open panel appeared on every single launch, not only a genuine first-ever one, which
+  is exactly what 0.22.0 was supposed to have already fixed. Confirmed directly against a real
+  installed build, both before this fix (the panel appeared every launch) and after (a saved
+  document now reopens automatically, with no system panel).
+
+### Testing
+
+- The verified suite now contains 683 Swift tests and 53 macOS interface tests.
+
 ## [0.22.0] - 2026-09-16
 
 ### Fixed
