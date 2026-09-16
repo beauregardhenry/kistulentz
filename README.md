@@ -132,7 +132,7 @@ checksums, then run the local integrity checks:
 ./scripts/verify-release.sh dist/Kistulentz.app --release-assets
 ```
 
-Maintainers can run the **Test or publish release** GitHub Actions workflow manually. It runs macOS UI regressions, tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing it. Pushing an annotated upstream version tag that matches `CFBundleShortVersionString`, such as `v0.20.0`, runs the same gates, records GitHub build-provenance and SBOM attestations, and publishes the verified ZIP, DMG, SBOM, and checksums as a GitHub Release.
+Maintainers can run the **Test or publish release** GitHub Actions workflow manually. It runs macOS UI regressions, tests natively on Apple silicon and Intel, then builds and verifies the universal package without publishing it. Pushing an annotated upstream version tag that matches `CFBundleShortVersionString`, such as `v0.21.0`, runs the same gates, records GitHub build-provenance and SBOM attestations, and publishes the verified ZIP, DMG, SBOM, and checksums as a GitHub Release.
 
 The manual **Test 1.0 scale targets** workflow exercises the approved large-work targets on native Apple silicon and Intel runners. See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [ACCESSIBILITY.md](ACCESSIBILITY.md) before publishing a release candidate.
 
