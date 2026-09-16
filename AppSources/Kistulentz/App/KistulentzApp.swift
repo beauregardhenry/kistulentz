@@ -143,13 +143,34 @@ struct KistulentzApp: App {
 ///   exactly this case, kept as a defensive measure even though it did not, on its own, change the
 ///   observed behavior for SwiftUI's DocumentGroup in testing.
 ///
-/// What this does NOT fix: a truly first-ever launch (nothing has ever existed to resume) can
-/// still show the system panel once. `DocumentGroupLaunchScene` -- Apple's real, purpose-built
-/// replacement for this fallback -- was investigated and ruled out: it is
-/// `@available(iOS 18.0, visionOS 2.0, *)` and explicitly `@available(macOS, unavailable)`,
-/// confirmed directly against this SDK's SwiftUI.swiftinterface. Eliminating the residual
-/// first-launch case on macOS would mean replacing DocumentGroup with hand-rolled window and file
-/// management -- a real rewrite, scoped separately, not folded into this fix.
+/// What was, until now, still unfixed: quitting with every window already closed -- not just a
+/// genuine first-ever launch -- reliably hit the exact same fallback on every subsequent launch,
+/// reported directly and reproduced live (close a window's red traffic-light button, quit from
+/// the Dock or the app menu, relaunch: the system panel, every time). The distinction AppKit is
+/// making is real, not a bug on its own terms -- restoration remembers what was open *at quit
+/// time*; a window the user explicitly closed first was, correctly, nothing to restore -- but a
+/// document-based app is still expected to fall back to its own blank-document UI in that case,
+/// not to AppKit's raw system panel, and DocumentGroup was doing the latter.
+///
+/// `applicationWillFinishLaunching` explicitly calling
+/// `NSDocumentController.shared.openUntitledDocumentAndDisplay(true)` fixes this: called at this
+/// point, ahead of DocumentGroup's own "is there anything to resume" decision, it gives AppKit a
+/// document to work with before that decision ever runs, so the fallback panel has no "nothing
+/// to resume" condition left to trigger on. Verified directly, repeatedly, against a real
+/// installed build: the exact close-then-quit sequence above, for both a plain document and a
+/// project, now reopens Kistulentz's own Welcome screen (with the prior document or project
+/// correctly showing underneath it) instead of the system panel -- and the same holds even with
+/// `lastOpenedProjectURL` and `~/Library/Saved Application State/` both cleared first, suggesting
+/// this also retires the previously-documented "truly first-ever launch can still show the
+/// system panel once" residual case, though that was not verified against a fully wiped fresh
+/// install. `applicationShouldOpenUntitledFile` returning true remains alongside this as the
+/// classic, documented AppKit hook for the same intent, kept as a defensive measure even though,
+/// on its own, it did not change the observed behavior for SwiftUI's DocumentGroup in testing.
+///
+/// `DocumentGroupLaunchScene` -- Apple's real, purpose-built replacement for this fallback -- was
+/// investigated and ruled out earlier: it is `@available(iOS 18.0, visionOS 2.0, *)` and
+/// explicitly `@available(macOS, unavailable)`, confirmed directly against this SDK's
+/// SwiftUI.swiftinterface.
 @MainActor
 final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
     override init() {
@@ -159,6 +180,10 @@ final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         DraftRecoveryManager.shared.endSession()
+    }
+
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        _ = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(true)
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
