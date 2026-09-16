@@ -5,15 +5,10 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.21.0 FRIEND PREVIEW
-- The Welcome screen now greets every launch, not just the first, in front of
-  whatever document or project the previous session left open.
-- An AI provider error (a missing key, a provider outage, an unreachable
-  Ollama) now offers an Open Settings button directly in the alert.
-- A file-chooser sheet left open when Kistulentz quits no longer reappears
-  the next time the app opens.
-- The De-stink toolbar icon no longer changes color with your System
-  Settings accent color choice.
+NEW IN 0.22.0 FRIEND PREVIEW
+- Kistulentz now reliably reopens your last document or project after quitting
+  and relaunching, including if your own System Settings has "Close windows
+  when quitting applications" turned on.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
