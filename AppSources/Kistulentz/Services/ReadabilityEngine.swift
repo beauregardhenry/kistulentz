@@ -48,13 +48,14 @@ struct ReadabilityEngine {
         "lovely", "only", "silly", "ugly", "weekly"
     ]
 
-    static func analyze(_ text: String, targetGrade: Int) -> AnalysisResult {
+    static func analyze(_ text: String, targetGrade: Int, avoidedWords: [String] = []) -> AnalysisResult {
         let readableText = strippingMarkdown(from: text)
         let stats = calculateStats(for: readableText, targetGrade: targetGrade)
         var issues = sentenceIssues(in: text, targetGrade: targetGrade)
         issues.append(contentsOf: regexIssues(in: text))
         issues.append(contentsOf: phraseIssues(in: text))
         issues.append(contentsOf: AITellEngine.analyze(text))
+        issues.append(contentsOf: avoidedWordIssues(in: text, avoiding: avoidedWords))
         return AnalysisResult(stats: stats, issues: issues.sorted(by: issueSort))
     }
 
@@ -167,6 +168,43 @@ struct ReadabilityEngine {
                     excerpt: excerpt,
                     message: "Use a simpler alternative.",
                     replacement: preservingCapitalization(of: replacement, matching: excerpt)
+                ))
+            }
+        }
+        return issues
+    }
+
+    /// Flags any occurrence of a word or phrase from the project's own "Words to avoid" list
+    /// (`ProjectStyleManager.avoidedWords`). Advisory only -- there's no single safe rewrite for
+    /// an avoided word any more than there is for an AI-tell phrase, so this carries no
+    /// `replacement`, matching `AITellEngine`'s issues.
+    ///
+    /// Unlike `markdownRegexes`/`simplerPhrasePatterns` above, these patterns are genuinely
+    /// dynamic -- sourced from the project's own editable style guide, not a fixed list -- so
+    /// they can't be precompiled once at process start the same way. `analyze` runs from a
+    /// detached task on every debounced keystroke, and a mutable cache keyed by the last list
+    /// seen would be exactly the kind of shared mutable state Swift's strict concurrency checking
+    /// (correctly) refuses to allow here; a project's avoid list is short enough in practice that
+    /// recompiling it per pass is the simpler, still-cheap choice.
+    private static func avoidedWordIssues(in text: String, avoiding words: [String]) -> [WritingIssue] {
+        guard !words.isEmpty else { return [] }
+        let source = text as NSString
+        let fullRange = NSRange(location: 0, length: source.length)
+        var issues: [WritingIssue] = []
+        for word in words {
+            let trimmed = word.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { continue }
+            let pattern = #"\b"# + NSRegularExpression.escapedPattern(for: trimmed) + #"\b"#
+            guard let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) else {
+                continue
+            }
+            for match in regex.matches(in: text, range: fullRange) {
+                issues.append(WritingIssue(
+                    category: .avoidedWord,
+                    range: match.range,
+                    excerpt: source.substring(with: match.range),
+                    message: "\"\(trimmed)\" is on this project's avoid list (Kistulentz Style.md). Consider an alternative.",
+                    source: .local
                 ))
             }
         }

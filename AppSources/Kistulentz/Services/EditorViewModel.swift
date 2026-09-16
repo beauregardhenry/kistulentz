@@ -23,6 +23,7 @@ final class EditorViewModel: ObservableObject {
     private var referenceTask: Task<Void, Never>?
     private var currentText = ""
     private var currentDocumentKey: String?
+    private var avoidedWords: [String] = []
     private var hasConfiguredDocument = false
     private let rewriteService: SelectionRewriteService
     private let dismissalStore: DismissedSuggestionStore
@@ -73,6 +74,15 @@ final class EditorViewModel: ObservableObject {
         styleDecisions = decisions
     }
 
+    /// Keeps the live editor's local "avoid list" check (`ReadabilityEngine.avoidedWordIssues`,
+    /// via `scheduleAnalysis`) in sync with the project's own "### Words to avoid" section
+    /// (`ProjectStyleManager.avoidedWords`). Called whenever a project opens and whenever
+    /// `StyleLearningStore.styleText` changes, so editing that list takes effect on the very next
+    /// analysis pass rather than only after reopening the project.
+    func updateAvoidedWords(_ words: [String]) {
+        avoidedWords = words
+    }
+
     func configureDocument(url: URL?, text: String) {
         let nextKey = url.map { $0.resolvingSymlinksInPath().standardizedFileURL.path }
         currentText = text
@@ -119,8 +129,9 @@ final class EditorViewModel: ObservableObject {
             }
             guard let self, !Task.isCancelled, self.analysisRequestID == requestID else { return }
             let reference = self.referenceBook
+            let avoidedWords = self.avoidedWords
             let computed = await Task.detached(priority: .userInitiated) {
-                let result = ReadabilityEngine.analyze(text, targetGrade: targetGrade)
+                let result = ReadabilityEngine.analyze(text, targetGrade: targetGrade, avoidedWords: avoidedWords)
                 let alignment = reference.map {
                     ReferenceComparison.analyze(draft: text, against: $0)
                 } ?? .empty

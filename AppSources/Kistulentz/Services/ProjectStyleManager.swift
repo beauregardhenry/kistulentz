@@ -48,6 +48,10 @@ enum ProjectStyleManager {
 
         Record preferred spellings, capitalization, punctuation, terminology, and words to avoid.
 
+        ### Words to avoid
+
+        List each word or short phrase as its own bullet below. Kistulentz's local checks will flag any of them while you write, the same way it already flags adverbs or passive voice.
+
         ## Project rules
 
         Add any rules that Kistulentz should follow when reviewing this manuscript.
@@ -67,6 +71,40 @@ enum ProjectStyleManager {
 
     static func saveStyle(_ text: String, at root: URL) throws {
         try AtomicFileWriter.write(text: text, to: WritingProjectDisk.styleURL(at: root))
+    }
+
+    /// The project's own "words to avoid" list, defined under the style guide's "### Words to
+    /// avoid" heading as a plain Markdown bullet list -- one word or short phrase per bullet.
+    /// Reading only bulleted lines there, rather than every line under the heading, means the
+    /// template's own instructional sentence isn't itself mistaken for a word to avoid; a line
+    /// left as plain prose is simply ignored. Case-insensitive duplicates collapse to the first
+    /// written form. This is the only part of the style guide that feeds Kistulentz's local,
+    /// offline checks -- the rest of the file (voice, tone, project rules) is read only by
+    /// optional AI-backed editing, since those sections are freeform prose no local, non-AI
+    /// check can act on.
+    static func avoidedWords(from styleText: String) -> [String] {
+        let heading = "### Words to avoid"
+        let lines = styleText.components(separatedBy: .newlines)
+        guard let headingIndex = lines.firstIndex(where: {
+            $0.trimmingCharacters(in: .whitespaces) == heading
+        }) else { return [] }
+
+        var words: [String] = []
+        var seen = Set<String>()
+        for line in lines[(headingIndex + 1)...] {
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.hasPrefix("#") { break }
+            guard let bulletRange = trimmed.range(of: #"^[-*•]\s+"#, options: .regularExpression) else {
+                continue
+            }
+            let word = trimmed[bulletRange.upperBound...].trimmingCharacters(in: .whitespaces)
+            guard !word.isEmpty else { continue }
+            let key = word.lowercased()
+            guard !seen.contains(key) else { continue }
+            seen.insert(key)
+            words.append(word)
+        }
+        return words
     }
 
     static func record(

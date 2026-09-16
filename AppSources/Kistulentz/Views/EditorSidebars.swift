@@ -9,7 +9,8 @@ struct ReadabilitySidebar: View {
     let onSelect: (WritingIssue) -> Void
 
     private let categories: [IssueCategory] = [
-        .adverb, .passiveVoice, .structuralComplexity, .complexPhrase, .aiTell, .hardSentence, .veryHardSentence
+        .adverb, .passiveVoice, .structuralComplexity, .complexPhrase, .aiTell, .avoidedWord,
+        .hardSentence, .veryHardSentence
     ]
 
     var body: some View {

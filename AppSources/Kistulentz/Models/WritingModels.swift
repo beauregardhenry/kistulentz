@@ -14,6 +14,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
     case aiSuggestion
     case referenceVoice
     case continuity
+    case avoidedWord
 
     var id: String { rawValue }
 
@@ -31,6 +32,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .aiSuggestion: "AI suggestion"
         case .referenceVoice: "Reference voice"
         case .continuity: "Continuity"
+        case .avoidedWord: "Avoided word"
         }
     }
 
@@ -48,6 +50,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .aiSuggestion: "AI"
         case .referenceVoice: "Voice"
         case .continuity: "Continuity"
+        case .avoidedWord: "Avoided"
         }
     }
 
@@ -65,6 +68,7 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .aiSuggestion: Color(red: 0.21, green: 0.63, blue: 0.58)
         case .referenceVoice: Color(red: 0.95, green: 0.56, blue: 0.25)
         case .continuity: Color(red: 0.90, green: 0.39, blue: 0.62)
+        case .avoidedWord: Color(red: 0.60, green: 0.47, blue: 0.31)
         }
     }
 }

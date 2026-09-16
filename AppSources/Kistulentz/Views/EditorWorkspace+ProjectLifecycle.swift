@@ -146,6 +146,14 @@ extension EditorWorkspace {
     func activateProject() {
         undoManager?.removeAllActions()
         viewModel.configureDocument(url: projectStore.selectedFileURL, text: projectStore.text)
+        // Set directly here, before scheduling analysis, rather than relying on
+        // `.onChange(of: styleLearningStore.styleText)` alone: that's a reactive SwiftUI update
+        // that runs on the next view-update pass, not synchronously with the `styleText` mutation
+        // `WritingProjectStore.install` just made -- late enough that this call's own
+        // `scheduleAnalysis` below could otherwise capture the previous project's (or no
+        // project's) stale avoided-words list. The `.onChange` handler stays, for the separate
+        // case of editing the style guide while this same project stays open.
+        viewModel.updateAvoidedWords(ProjectStyleManager.avoidedWords(from: styleLearningStore.styleText))
         viewModel.scheduleAnalysis(
             text: projectStore.text,
             targetGrade: settings.targetGrade,
@@ -161,6 +169,11 @@ extension EditorWorkspace {
         settings.clearLastOpenedProject()
         undoManager?.removeAllActions()
         viewModel.configureDocument(url: fileURL, text: document.text)
+        // Same reasoning as activateProject(): set directly here rather than relying only on
+        // `.onChange(of: styleLearningStore.styleText)`'s next reactive pass, so this call's own
+        // scheduleAnalysis below doesn't momentarily keep flagging the closed project's avoid
+        // list against the plain document now showing.
+        viewModel.updateAvoidedWords(ProjectStyleManager.avoidedWords(from: styleLearningStore.styleText))
         viewModel.scheduleAnalysis(
             text: document.text,
             targetGrade: settings.targetGrade,
