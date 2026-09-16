@@ -8,6 +8,22 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.22.2] - 2026-09-16
+
+### Fixed
+
+- Kistulentz now remembers which project you had open and reopens it automatically after
+  quitting and relaunching, the same way document resume already worked. A project is a folder
+  loaded on top of the window's single underlying document, invisible to AppKit's own window
+  restoration — quitting while a project was open silently lost it on relaunch, back to whatever
+  plain document had last been open (or the system Open-panel fallback again, if there'd never
+  been one). This was a real, previously-missing feature, not a regression from 0.22.0 or 0.22.1.
+  A project that's since been moved or deleted is forgotten silently, with no error dialog.
+
+### Testing
+
+- The verified suite now contains 687 Swift tests and 53 macOS interface tests.
+
 ## [0.22.1] - 2026-09-16
 
 ### Fixed
