@@ -151,10 +151,14 @@ extension EditorWorkspace {
             targetGrade: settings.targetGrade,
             immediately: true
         )
+        if let rootURL = projectStore.rootURL {
+            settings.recordOpenedProject(url: rootURL)
+        }
     }
 
     func closeProject() {
         projectStore.closeProject()
+        settings.clearLastOpenedProject()
         undoManager?.removeAllActions()
         viewModel.configureDocument(url: fileURL, text: document.text)
         viewModel.scheduleAnalysis(

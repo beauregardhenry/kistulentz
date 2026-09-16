@@ -5,6 +5,33 @@ import Foundation
 // (English pack prompt, Welcome, What's New, and Welcome's own "Create a Project"/"Open a
 // Document"/"Import Documents"/sample actions). No behavior change from the move itself.
 extension EditorWorkspace {
+    /// A Kistulentz project is a folder loaded on top of the window's single underlying
+    /// document; macOS's own window restoration only ever knows about that document, never the
+    /// project, so it's silently lost across a normal quit/relaunch unless Kistulentz reopens it
+    /// itself. Called from `onAppear` before `configureDraftRecovery()`, so recovery is evaluated
+    /// against the reopened project rather than whatever blank/default document preceded it. A
+    /// project that no longer exists at its saved location (moved, deleted, on an unmounted
+    /// volume) fails silently -- the stale reference is cleared and launch continues as if there
+    /// were none, rather than surfacing an error for something the user didn't just ask to do.
+    ///
+    /// Suppressed entirely under UI_TEST_HOST: tests that need a project open already have their
+    /// own explicit, per-test mechanism (`configureUITestProjectIfNeeded`), and this automatic
+    /// path reading whatever a previous local run happened to leave in the real, shared
+    /// UserDefaults domain would make launch state nondeterministic between test runs.
+    func reopenLastProjectIfNeeded() {
+#if UI_TEST_HOST
+        return
+#else
+        guard !projectStore.isOpen, let url = settings.lastOpenedProjectURL else { return }
+        do {
+            try projectStore.openProject(at: url)
+            activateProject()
+        } catch {
+            settings.clearLastOpenedProject()
+        }
+#endif
+    }
+
     func presentStartupIfNeeded() {
         guard !didPresentStartup else { return }
         didPresentStartup = true

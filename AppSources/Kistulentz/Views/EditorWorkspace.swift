@@ -181,6 +181,7 @@ struct EditorWorkspace: View {
 #if UI_TEST_HOST
             configureUITestProjectIfNeeded()
 #endif
+            reopenLastProjectIfNeeded()
             viewModel.configureDocument(url: activeFileURL, text: activeText)
             viewModel.updateStyleDecisions(styleLearningStore.styleDecisions)
             configureDraftRecovery()
