@@ -8,6 +8,29 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.0] - 2026-09-16
+
+### Added
+
+- Kistulentz Style.md has a new "### Words to avoid" section: list a word or short phrase as
+  its own bullet, and Kistulentz's local checks will flag it while you write — no AI, no
+  network — the same way it already flags adverbs or passive voice. Previously, nothing in the
+  style guide fed the local, offline checks at all; only optional AI-backed Rewrite/Deepen
+  requests ever read it, despite the file's own text inviting "words to avoid" since it was
+  first introduced.
+
+### Fixed
+
+- Fixed a real, independent bug found while verifying the above: "Edit Kistulentz Style…"
+  could open to a blank editor instead of a project's real style guide, and any style-guide
+  content became invisible to Kistulentz at runtime past the first render. The underlying
+  `styleLearningStore` reference was silently rebinding to a disconnected, never-populated
+  object on every subsequent view update.
+
+### Testing
+
+- The verified suite now contains 701 Swift tests and 53 macOS interface tests.
+
 ## [0.22.2] - 2026-09-16
 
 ### Fixed

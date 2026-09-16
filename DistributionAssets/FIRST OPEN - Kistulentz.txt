@@ -5,10 +5,12 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.22.2 FRIEND PREVIEW
-- Kistulentz now remembers which project you had open and reopens it automatically
-  after quitting and relaunching, the same way it already did for a single document.
-  Previously, quitting while a project was open lost it on the next launch.
+NEW IN 0.23.0 FRIEND PREVIEW
+- Kistulentz Style.md now has a "Words to avoid" section: list a word or short
+  phrase per bullet, and Kistulentz's local checks will flag it while you write,
+  entirely on your Mac, the same way it already flags adverbs or passive voice.
+- Fixed a bug where "Edit Kistulentz Style..." could open to a blank editor
+  instead of your project's real style guide.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
