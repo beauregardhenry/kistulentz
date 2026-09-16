@@ -5,11 +5,10 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.22.1 FRIEND PREVIEW
-- Fixed a bug where Kistulentz could show a plain macOS file browser instead of your
-  last document or project on every single launch. It now reliably reopens what you
-  had open after quitting and relaunching, including if your own System Settings has
-  "Close windows when quitting applications" turned on.
+NEW IN 0.22.2 FRIEND PREVIEW
+- Kistulentz now remembers which project you had open and reopens it automatically
+  after quitting and relaunching, the same way it already did for a single document.
+  Previously, quitting while a project was open lost it on the next launch.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
