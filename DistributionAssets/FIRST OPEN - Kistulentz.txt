@@ -5,12 +5,10 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.0 FRIEND PREVIEW
-- Kistulentz Style.md now has a "Words to avoid" section: list a word or short
-  phrase per bullet, and Kistulentz's local checks will flag it while you write,
-  entirely on your Mac, the same way it already flags adverbs or passive voice.
-- Fixed a bug where "Edit Kistulentz Style..." could open to a blank editor
-  instead of your project's real style guide.
+NEW IN 0.23.1 FRIEND PREVIEW
+- Fixed a bug where quitting Kistulentz with every window already closed (not
+  just a first-ever launch) could show a plain macOS file browser instead of
+  Kistulentz's own Welcome screen on the next launch, every time.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
