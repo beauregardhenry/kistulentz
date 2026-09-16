@@ -8,6 +8,20 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.1] - 2026-09-16
+
+### Fixed
+
+- Fixed a bug where quitting Kistulentz with every window already closed (not just a genuine
+  first-ever launch) reliably showed AppKit's own system Open panel on the next launch instead
+  of Kistulentz's own Welcome screen, every time. `KistulentzAppDelegate` now explicitly opens a
+  document ahead of AppKit's own "is there anything to resume" decision, so that fallback has
+  nothing left to trigger on.
+
+### Testing
+
+- The verified suite now contains 701 Swift tests and 53 macOS interface tests.
+
 ## [0.23.0] - 2026-09-16
 
 ### Added
