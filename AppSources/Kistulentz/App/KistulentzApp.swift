@@ -122,9 +122,21 @@ struct KistulentzApp: App {
 /// confirming this is normal AppKit/DocumentGroup behavior, not a Kistulentz-specific defect).
 ///
 /// What actually helps, verified empirically against a real build:
+/// - `applicationSupportsSecureRestorableState` returning true is the load-bearing fix. Since
+///   macOS 12, AppKit treats an app delegate that omits this method as opting out of state
+///   restoration -- without it, there is never anything to resume, so the "nothing to resume"
+///   system panel appears on every single launch, not only a genuine first-ever one. This was
+///   missed in the first pass at this fix (0.22.0): NSQuitAlwaysKeepsWindows and
+///   applicationShouldOpenUntitledFile both only matter once restorable state exists in the first
+///   place, and without this method it never did. Confirmed directly against a real installed
+///   build: before this method existed, a saved document never reopened after a clean quit from
+///   the menu -- the system panel appeared every time instead. After adding it, the same
+///   quit/relaunch cycle reopens the last saved document automatically, with no system panel (a
+///   ~/Library/Saved Application State/ directory for this bundle ID still does not appear either
+///   way on this OS version -- DocumentGroup's document-resume path evidently does not depend on
+///   that particular directory existing, whatever the underlying mechanism actually is).
 /// - Registering NSQuitAlwaysKeepsWindows as a genuine NSUserDefaults default (not an Info.plist
-///   declaration, which measurably did not change anything) reliably fixes resuming a document
-///   across a normal quit/relaunch, once one has ever existed -- including for a user whose own
+///   declaration, which measurably did not change anything) additionally covers a user whose own
 ///   System Settings has "Close windows when quitting applications" on, which otherwise disables
 ///   window resumption process-wide for every app unless an app registers its own override.
 /// - `applicationShouldOpenUntitledFile` returning true is the classic, documented AppKit hook for
@@ -150,6 +162,10 @@ final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        true
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         true
     }
 }
