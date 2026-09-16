@@ -124,6 +124,7 @@ final class AppSettings: ObservableObject {
         static let editorFontName = "editorFontName"
         static let editorFontSize = "editorFontSize"
         static let lastSeenAppVersion = "lastSeenAppVersion"
+        static let lastOpenedProjectURL = "lastOpenedProjectURL"
     }
 
     /// The lowest and highest editor font size a user can choose in Settings. Kept in one place
@@ -179,6 +180,16 @@ final class AppSettings: ObservableObject {
     @Published private(set) var hasAcknowledgedEnglishPackPrompt: Bool
     @Published private(set) var lastSeenAppVersion: String?
 
+    /// The most recently opened project's folder, so launch can reopen it automatically. A
+    /// document-based Mac app's own window restoration only ever knows about the single generic
+    /// Markdown document each window represents at the macOS level -- a Kistulentz project is a
+    /// folder loaded on top of that window, invisible to AppKit, so without this, closing the app
+    /// while a project is open silently loses the project on relaunch (the window still resumes,
+    /// but back to whatever plain document it last represented, or nothing at all). Set on
+    /// `activateProject()`, cleared on an explicit `closeProject()` so relaunch doesn't reopen a
+    /// project the user chose to leave.
+    @Published private(set) var lastOpenedProjectURL: URL?
+
     @Published private(set) var hasOpenAIKey = false
     @Published private(set) var hasAnthropicKey = false
 
@@ -214,6 +225,7 @@ final class AppSettings: ObservableObject {
             forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt
         )
         lastSeenAppVersion = defaults.string(forKey: DefaultsKey.lastSeenAppVersion)
+        lastOpenedProjectURL = defaults.url(forKey: DefaultsKey.lastOpenedProjectURL)
 
         refreshKeyStatus()
     }
@@ -319,6 +331,16 @@ final class AppSettings: ObservableObject {
     func acknowledgeEnglishPackPrompt() {
         hasAcknowledgedEnglishPackPrompt = true
         defaults.set(true, forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt)
+    }
+
+    func recordOpenedProject(url: URL) {
+        lastOpenedProjectURL = url
+        defaults.set(url, forKey: DefaultsKey.lastOpenedProjectURL)
+    }
+
+    func clearLastOpenedProject() {
+        lastOpenedProjectURL = nil
+        defaults.removeObject(forKey: DefaultsKey.lastOpenedProjectURL)
     }
 
     func claimEnglishPackPrompt() -> Bool {
