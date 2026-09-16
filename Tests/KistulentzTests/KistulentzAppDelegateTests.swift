@@ -15,6 +15,14 @@ import XCTest
 /// insufficient on its own -- including the miss in the first pass at this fix (0.22.0), which
 /// shipped without applicationSupportsSecureRestorableState and so never actually stopped the panel
 /// from reappearing on every launch.
+///
+/// `applicationWillFinishLaunching` (calling `NSDocumentController.shared.openUntitledDocumentAndDisplay`,
+/// added to fix the system panel reliably reappearing after quitting with every window already
+/// closed) is deliberately not exercised here at all: unlike the other three hooks, it asks
+/// AppKit to open and display a real document window, which would try to touch the real window
+/// server from inside a headless test run rather than just returning a value -- exactly the kind
+/// of side effect this file otherwise avoids. It's verified the same way as everything else in
+/// this delegate: real quit/relaunch cycles against a real installed build.
 final class KistulentzAppDelegateTests: XCTestCase {
     @MainActor
     func testInitRegistersNSQuitAlwaysKeepsWindowsDefault() {
