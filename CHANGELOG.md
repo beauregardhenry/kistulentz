@@ -8,6 +8,18 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.2] - 2026-09-16
+
+### Added
+
+- Kistulentz now has its own app icon (a navy rounded-square mark with an orange quill-feather
+  "K"), used by both the manual application build and the Xcode project. Previously there was no
+  custom icon at all; every build fell back to the generic macOS app icon.
+
+### Testing
+
+- The verified suite now contains 701 Swift tests and 53 macOS interface tests.
+
 ## [0.23.1] - 2026-09-16
 
 ### Fixed
