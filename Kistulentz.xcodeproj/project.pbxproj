@@ -143,6 +143,7 @@
 		C3CF3271B8E4E65F2716A4A2 /* ProjectViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D51A2687756EA1DD3BEB7 /* ProjectViews.swift */; };
 		C415544E31566731D4A37F26 /* ProjectPolishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F2F91AF54DBD01DA7AB0D /* ProjectPolishUITests.swift */; };
 		C83303A4E814184FD2430CCE /* BetaReadersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7486A93573E099EAA065B8F3 /* BetaReadersStore.swift */; };
+		C91F1D94CC81C0F0B750B9A2 /* KistulentzIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */; };
 		CB63632BD182D057FD7E50FC /* ResearchExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A785CAD9F8CC1666C3042 /* ResearchExchange.swift */; };
 		CE01E6A328AC398315AC1467 /* KistulentzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAEA223A3F644E2CDAD62A /* KistulentzApp.swift */; };
 		CF27B912BD86BB02966738F1 /* PublicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E87EABC1CF8D34F49A191 /* PublicationStore.swift */; };
@@ -295,6 +296,7 @@
 		B3A93226CDB001FFC2B892B6 /* SampleProjectBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProjectBuilder.swift; sourceTree = "<group>"; };
 		B40912B39C188C95FEE4899C /* ManuscriptProjectDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptProjectDisk.swift; sourceTree = "<group>"; };
 		B4CA17B557581871CCA40E02 /* CustomFontModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontModels.swift; sourceTree = "<group>"; };
+		B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KistulentzIcon.png; sourceTree = "<group>"; };
 		B9574BEAADCBDB2E2FEC32D0 /* WritingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingModels.swift; sourceTree = "<group>"; };
 		BBE34B0450654CCF9FFF9FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+ProjectLifecycle.swift"; sourceTree = "<group>"; };
@@ -496,6 +498,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A1D4EB1E5DD82E05E5A9382F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D12D582DCAA1E2C8D532F459 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +609,7 @@
 				ED569C0303D4C05A80F0FA5A /* Assets.xcassets */,
 				7419F51ACF1ECA891BEFF67F /* App */,
 				503833C358C36AA9F0A4CB79 /* Models */,
+				A1D4EB1E5DD82E05E5A9382F /* Resources */,
 				D12D582DCAA1E2C8D532F459 /* Services */,
 				9A7EA7B2DC7475AC655AE9AA /* Views */,
 			);
@@ -691,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F9CCA5911A2DD09EB585CB /* Assets.xcassets in Resources */,
+				C91F1D94CC81C0F0B750B9A2 /* KistulentzIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

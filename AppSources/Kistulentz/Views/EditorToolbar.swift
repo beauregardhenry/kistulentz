@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct EditorToolbarActions {
@@ -37,18 +38,7 @@ struct EditorToolbar: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            HStack(spacing: 9) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 7)
-                        .fill(Color.accentColor)
-                        .frame(width: 29, height: 29)
-                    Image(systemName: "pencil.and.outline")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.white)
-                }
-                Text("Kistulentz")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-            }
+            KistulentzBrandMark()
 
             Divider().frame(height: 20)
 
@@ -269,5 +259,44 @@ struct EditorToolbar: View {
         }
         .padding(.horizontal, 16)
         .frame(height: 55)
+    }
+}
+
+/// The orange quill-K icon shown at the toolbar's leading edge, next to the "Kistulentz" text
+/// label. Falls back to a plain SF Symbol badge if the bundled artwork can't be located -- the
+/// packaged .app always carries it (both `scripts/build-app.sh` and the Xcode build copy
+/// `AppSources/Kistulentz/Resources/KistulentzIcon.png` into `Contents/Resources`), but a bare
+/// `swift run` during local development does not assemble a resource bundle at all. The
+/// "Kistulentz" label stays a native Text rather than baked into the image, so it always renders
+/// crisp and legible regardless of icon size -- an earlier attempt at a single combined
+/// icon+wordmark image forced a tradeoff between icon size and text legibility that this avoids.
+private struct KistulentzBrandMark: View {
+    private static let bundledIcon: NSImage? = {
+        guard let url = Bundle.main.resourceURL?.appendingPathComponent("KistulentzIcon.png"),
+            let image = NSImage(contentsOf: url)
+        else { return nil }
+        return image
+    }()
+
+    var body: some View {
+        HStack(spacing: 9) {
+            if let icon = Self.bundledIcon {
+                Image(nsImage: icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 29, height: 29)
+            } else {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(Color.accentColor)
+                        .frame(width: 29, height: 29)
+                    Image(systemName: "pencil.and.outline")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.white)
+                }
+            }
+            Text("Kistulentz")
+                .font(.system(size: 16, weight: .semibold, design: .rounded))
+        }
     }
 }
