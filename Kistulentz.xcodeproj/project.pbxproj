@@ -137,6 +137,7 @@
 		BCDF80C5D860B901D3B8EE3A /* ResearchLibraryDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2569E9DDDCBA5008E04E398 /* ResearchLibraryDisk.swift */; };
 		BDCFAE2375CA998AABACE65C /* DraftRecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C84CA3730D9167F4D26BF /* DraftRecoveryView.swift */; };
 		BE5386E5BD939E111D26AF3B /* ResearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FAF0DF08A5EF48A9D2D2C9 /* ResearchModels.swift */; };
+		C039CC7EC8380A0487C7ECE4 /* KistulentzWordmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F1796F9D69A4FF4E8EF615 /* KistulentzWordmark.png */; };
 		C0C93A5C34CA3F4EC4611CC4 /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650B1A545CACE4B69EBE945 /* SearchStore.swift */; };
 		C11E34F174FE595DF5FD596D /* ManuscriptContinuityAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3727F767155488BB63516C /* ManuscriptContinuityAnalyzer.swift */; };
 		C24DFDE3853FC0D2CDE1BFFA /* BeneparService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AA46D7A39C9BDA6DF421E /* BeneparService.swift */; };
@@ -299,6 +300,7 @@
 		BBE34B0450654CCF9FFF9FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+ProjectLifecycle.swift"; sourceTree = "<group>"; };
 		C4F4A0B4362B6AD91D05AF74 /* PublicationReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationReadiness.swift; sourceTree = "<group>"; };
+		C5F1796F9D69A4FF4E8EF615 /* KistulentzWordmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KistulentzWordmark.png; sourceTree = "<group>"; };
 		C650B1A545CACE4B69EBE945 /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		C85B167CE1322E5DC463653C /* EPUBReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBReference.swift; sourceTree = "<group>"; };
 		CAB7B6BF47EF9038FA438714 /* AtomicFileWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicFileWriter.swift; sourceTree = "<group>"; };
@@ -496,6 +498,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A1D4EB1E5DD82E05E5A9382F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C5F1796F9D69A4FF4E8EF615 /* KistulentzWordmark.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D12D582DCAA1E2C8D532F459 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +609,7 @@
 				ED569C0303D4C05A80F0FA5A /* Assets.xcassets */,
 				7419F51ACF1ECA891BEFF67F /* App */,
 				503833C358C36AA9F0A4CB79 /* Models */,
+				A1D4EB1E5DD82E05E5A9382F /* Resources */,
 				D12D582DCAA1E2C8D532F459 /* Services */,
 				9A7EA7B2DC7475AC655AE9AA /* Views */,
 			);
@@ -691,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F9CCA5911A2DD09EB585CB /* Assets.xcassets in Resources */,
+				C039CC7EC8380A0487C7ECE4 /* KistulentzWordmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct EditorToolbarActions {
@@ -37,18 +38,7 @@ struct EditorToolbar: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            HStack(spacing: 9) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 7)
-                        .fill(Color.accentColor)
-                        .frame(width: 29, height: 29)
-                    Image(systemName: "pencil.and.outline")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.white)
-                }
-                Text("Kistulentz")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-            }
+            KistulentzWordmark()
 
             Divider().frame(height: 20)
 
@@ -269,5 +259,42 @@ struct EditorToolbar: View {
         }
         .padding(.horizontal, 16)
         .frame(height: 55)
+    }
+}
+
+/// The combined orange quill-K icon and "kistulentz" wordmark shown at the toolbar's leading
+/// edge. Falls back to a plain SF Symbol badge if the bundled artwork can't be located -- the
+/// packaged .app always carries it (both `scripts/build-app.sh` and the Xcode build copy
+/// `AppSources/Kistulentz/Resources/KistulentzWordmark.png` into `Contents/Resources`), but a
+/// bare `swift run` during local development does not assemble a resource bundle at all.
+private struct KistulentzWordmark: View {
+    private static let bundledImage: NSImage? = {
+        guard let url = Bundle.main.resourceURL?.appendingPathComponent("KistulentzWordmark.png"),
+            let image = NSImage(contentsOf: url)
+        else { return nil }
+        return image
+    }()
+
+    var body: some View {
+        if let image = Self.bundledImage {
+            Image(nsImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 44)
+                .accessibilityLabel("Kistulentz")
+        } else {
+            HStack(spacing: 9) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(Color.accentColor)
+                        .frame(width: 29, height: 29)
+                    Image(systemName: "pencil.and.outline")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.white)
+                }
+                Text("Kistulentz")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+            }
+        }
     }
 }
