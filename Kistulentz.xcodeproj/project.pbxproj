@@ -75,6 +75,7 @@
 		633BE0AA0C3A4B34D6C67913 /* ProviderConnectionTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7797044776CE677D1474747 /* ProviderConnectionTester.swift */; };
 		6441B6E4DBB8E9DB61F76515 /* BetaReaderEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7E5BF3F1A9BC1325B4B57 /* BetaReaderEngine.swift */; };
 		662EADC20456D96CE1F6214B /* ManuscriptMetricsAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FDBBC4C9041761499E1484 /* ManuscriptMetricsAnalyzer.swift */; };
+		66F9CCA5911A2DD09EB585CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED569C0303D4C05A80F0FA5A /* Assets.xcassets */; };
 		67A14A09FE300D1A640C3CD5 /* ProjectStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1601CFDB20F7B82318E12E8A /* ProjectStyleManager.swift */; };
 		690D362BE4F1DDFB694A8BFA /* ProjectPolishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C7F91FBD497884E2336DC /* ProjectPolishView.swift */; };
 		6993E9D0CB8141D0925D094E /* PublicationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E161A4D8B79F2110B2A66D7 /* PublicationModels.swift */; };
@@ -325,6 +326,7 @@
 		E8993A0F8D66A09C84A4E07B /* DraftRecoveryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRecoveryModels.swift; sourceTree = "<group>"; };
 		EA1AFBBBE274BD941C155112 /* DraftRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRecovery.swift; sourceTree = "<group>"; };
 		EABE7CC18AE3B138252D31D1 /* ProjectOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectOrganizationView.swift; sourceTree = "<group>"; };
+		ED569C0303D4C05A80F0FA5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFB409943689F23B71858018 /* ExportProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportProfileEditor.swift; sourceTree = "<group>"; };
 		F275D368D1A7ED38477450F4 /* EditorWorkspace+Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+Startup.swift"; sourceTree = "<group>"; };
 		F2D4FBEDFFCBA46B28157CFB /* AITellEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITellEngine.swift; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 		D7F0A9A4695AFF8ED8253F25 /* Kistulentz */ = {
 			isa = PBXGroup;
 			children = (
+				ED569C0303D4C05A80F0FA5A /* Assets.xcassets */,
 				7419F51ACF1ECA891BEFF67F /* App */,
 				503833C358C36AA9F0A4CB79 /* Models */,
 				D12D582DCAA1E2C8D532F459 /* Services */,
@@ -610,6 +613,7 @@
 			buildConfigurationList = C3EA92F2464591390B23C863 /* Build configuration list for PBXNativeTarget "Kistulentz" */;
 			buildPhases = (
 				B7FE16FF12FF6DF9286C637F /* Sources */,
+				BF523BD8EE65BE7181BC1528 /* Resources */,
 				15E73B28C37D2A4E2298E5AB /* Frameworks */,
 			);
 			buildRules = (
@@ -680,6 +684,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF523BD8EE65BE7181BC1528 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F9CCA5911A2DD09EB585CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B7FE16FF12FF6DF9286C637F /* Sources */ = {

@@ -46,6 +46,8 @@
     </array>
     <key>CFBundleExecutable</key>
     <string>Kistulentz</string>
+    <key>CFBundleIconFile</key>
+    <string>Kistulentz.icns</string>
     <key>CFBundleIdentifier</key>
     <string>com.beauhenry.kistulentz</string>
     <key>CFBundleGetInfoString</key>
