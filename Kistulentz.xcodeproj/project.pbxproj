@@ -137,13 +137,13 @@
 		BCDF80C5D860B901D3B8EE3A /* ResearchLibraryDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2569E9DDDCBA5008E04E398 /* ResearchLibraryDisk.swift */; };
 		BDCFAE2375CA998AABACE65C /* DraftRecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C84CA3730D9167F4D26BF /* DraftRecoveryView.swift */; };
 		BE5386E5BD939E111D26AF3B /* ResearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FAF0DF08A5EF48A9D2D2C9 /* ResearchModels.swift */; };
-		C039CC7EC8380A0487C7ECE4 /* KistulentzWordmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F1796F9D69A4FF4E8EF615 /* KistulentzWordmark.png */; };
 		C0C93A5C34CA3F4EC4611CC4 /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650B1A545CACE4B69EBE945 /* SearchStore.swift */; };
 		C11E34F174FE595DF5FD596D /* ManuscriptContinuityAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3727F767155488BB63516C /* ManuscriptContinuityAnalyzer.swift */; };
 		C24DFDE3853FC0D2CDE1BFFA /* BeneparService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AA46D7A39C9BDA6DF421E /* BeneparService.swift */; };
 		C3CF3271B8E4E65F2716A4A2 /* ProjectViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D51A2687756EA1DD3BEB7 /* ProjectViews.swift */; };
 		C415544E31566731D4A37F26 /* ProjectPolishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F2F91AF54DBD01DA7AB0D /* ProjectPolishUITests.swift */; };
 		C83303A4E814184FD2430CCE /* BetaReadersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7486A93573E099EAA065B8F3 /* BetaReadersStore.swift */; };
+		C91F1D94CC81C0F0B750B9A2 /* KistulentzIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */; };
 		CB63632BD182D057FD7E50FC /* ResearchExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A785CAD9F8CC1666C3042 /* ResearchExchange.swift */; };
 		CE01E6A328AC398315AC1467 /* KistulentzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAEA223A3F644E2CDAD62A /* KistulentzApp.swift */; };
 		CF27B912BD86BB02966738F1 /* PublicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E87EABC1CF8D34F49A191 /* PublicationStore.swift */; };
@@ -296,11 +296,11 @@
 		B3A93226CDB001FFC2B892B6 /* SampleProjectBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProjectBuilder.swift; sourceTree = "<group>"; };
 		B40912B39C188C95FEE4899C /* ManuscriptProjectDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptProjectDisk.swift; sourceTree = "<group>"; };
 		B4CA17B557581871CCA40E02 /* CustomFontModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontModels.swift; sourceTree = "<group>"; };
+		B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KistulentzIcon.png; sourceTree = "<group>"; };
 		B9574BEAADCBDB2E2FEC32D0 /* WritingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingModels.swift; sourceTree = "<group>"; };
 		BBE34B0450654CCF9FFF9FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+ProjectLifecycle.swift"; sourceTree = "<group>"; };
 		C4F4A0B4362B6AD91D05AF74 /* PublicationReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationReadiness.swift; sourceTree = "<group>"; };
-		C5F1796F9D69A4FF4E8EF615 /* KistulentzWordmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KistulentzWordmark.png; sourceTree = "<group>"; };
 		C650B1A545CACE4B69EBE945 /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
 		C85B167CE1322E5DC463653C /* EPUBReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBReference.swift; sourceTree = "<group>"; };
 		CAB7B6BF47EF9038FA438714 /* AtomicFileWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicFileWriter.swift; sourceTree = "<group>"; };
@@ -501,7 +501,7 @@
 		A1D4EB1E5DD82E05E5A9382F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C5F1796F9D69A4FF4E8EF615 /* KistulentzWordmark.png */,
+				B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -702,7 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F9CCA5911A2DD09EB585CB /* Assets.xcassets in Resources */,
-				C039CC7EC8380A0487C7ECE4 /* KistulentzWordmark.png in Resources */,
+				C91F1D94CC81C0F0B750B9A2 /* KistulentzIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
