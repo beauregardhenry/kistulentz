@@ -5,9 +5,9 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.3 FRIEND PREVIEW
-- Kistulentz's app icon now has a fully transparent background, matching macOS's own
-  rounded-corner mask without any visible sliver at the corners.
+NEW IN 0.23.4 FRIEND PREVIEW
+- The toolbar now shows Kistulentz's own orange quill-K icon instead of a generic
+  placeholder icon.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

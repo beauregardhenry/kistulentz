@@ -8,6 +8,18 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.4] - 2026-09-17
+
+### Changed
+
+- The toolbar's leading icon is now Kistulentz's own orange quill-K mark instead of a generic
+  placeholder (a plain rounded square with an SF Symbol pencil icon). The "Kistulentz" text next
+  to it is unchanged and stays a native text label, not part of the icon artwork.
+
+### Testing
+
+- The verified suite now contains 701 Swift tests and 53 macOS interface tests.
+
 ## [0.23.3] - 2026-09-17
 
 ### Fixed
