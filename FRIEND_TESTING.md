@@ -1,4 +1,4 @@
-# Kistulentz 0.23.3 friend preview guide
+# Kistulentz 0.23.4 friend preview guide
 
 Thank you for testing Kistulentz. The most useful feedback is not whether every feature works
 once, but whether the app feels safe and predictable while you work on real writing.
@@ -9,7 +9,7 @@ You do not need to complete every section. Choose the workflows closest to the w
 
 - Use macOS Sequoia 15 or later on an Apple-silicon or Intel Mac.
 - Download Kistulentz only from the
-  [official 0.23.3 release](https://github.com/beauregardhenry/kistulentz/releases/tag/v0.23.3).
+  [official 0.23.4 release](https://github.com/beauregardhenry/kistulentz/releases/tag/v0.23.4).
 - Test with copies of important documents and project folders. Keep your normal backup.
 - You do not need an OpenAI or Anthropic key. Local analysis and Local Polish work without one.
 - If Kistulentz hangs, overwrites the wrong text, loses work, or leaves you trapped in a screen,
