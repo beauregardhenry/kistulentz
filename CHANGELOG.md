@@ -8,6 +8,19 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.3] - 2026-09-17
+
+### Fixed
+
+- Replaced the app icon's source artwork with a version that has a real transparent background
+  around the rounded-square mark, instead of a flat white export margin. The previous source's
+  corners were opaque white inset from the canvas edge, which macOS's own rounded-corner mask
+  (applied on top at render time) could reveal as a faint white sliver at each corner.
+
+### Testing
+
+- The verified suite now contains 701 Swift tests and 53 macOS interface tests.
+
 ## [0.23.2] - 2026-09-16
 
 ### Added
