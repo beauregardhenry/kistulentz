@@ -6,6 +6,7 @@ struct EditorToolbarActions {
     let showProjectImportAssistant: () -> Void
     let createProject: () -> Void
     let openProject: () -> Void
+    let showWritingGrowth: () -> Void
     let showNewChapter: () -> Void
     let showStyleEditor: () -> Void
     let showNamedSnapshot: () -> Void
@@ -68,6 +69,14 @@ struct EditorToolbar: View {
                     actions.openProject()
                 } label: {
                     Label("Open Project…", systemImage: "folder")
+                }
+
+                Divider()
+
+                Button {
+                    actions.showWritingGrowth()
+                } label: {
+                    Label("Your Writing Growth…", systemImage: "chart.line.uptrend.xyaxis")
                 }
 
                 if projectStore.isOpen {
