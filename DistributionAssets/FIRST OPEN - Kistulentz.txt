@@ -5,9 +5,14 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.4 FRIEND PREVIEW
-- The toolbar now shows Kistulentz's own orange quill-K icon instead of a generic
-  placeholder icon.
+NEW IN 0.23.5 FRIEND PREVIEW
+- A new Practice Mode (toggle it in the highlights menu) withholds one-click fixes for flags
+  with a craft judgment behind them -- adverbs, passive voice, hard sentences, and similar --
+  showing a question instead, so you practice the edit yourself.
+- Every local flag now has an optional "Why this matters" explanation of the underlying craft
+  principle, not just what's wrong.
+- Kistulentz now tracks how your accepted and declined flags trend over time, across every
+  project. See "Your Writing Growth..." in the Projects menu.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

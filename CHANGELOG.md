@@ -8,6 +8,28 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.5] - 2026-09-18
+
+### Added
+
+- Practice Mode (toggle it in the toolbar's highlights menu): withholds one-click fixes --
+  Accept, per-issue Rewrite, Apply All, and Polish -- for flag categories with a craft judgment
+  behind them (adverbs, passive voice, hard sentences, structural complexity, complex phrases,
+  AI-sounding phrasing, reference voice, avoided words), showing a diagnostic question instead so
+  the author practices the edit themselves. Objective categories (spelling, grammar, continuity,
+  an already-reviewed AI suggestion) stay fixable either way. Decline remains available always.
+- A "Why this matters" disclosure on every local flag, explaining the underlying craft principle
+  behind the category rather than just restating what's wrong. Collapsed by default so the
+  Suggestions sidebar stays scannable.
+- Cross-project writing growth tracking ("Your Writing Growth..." in the Projects menu): how many
+  suggestions of each category have been accepted vs. declined, bucketed by month, independent of
+  any single project's lifecycle. Local only; never included in exports, publication packaging,
+  or any AI request preview.
+
+### Testing
+
+- The verified suite now contains 716 Swift tests and 53 macOS interface tests.
+
 ## [0.23.4] - 2026-09-17
 
 ### Changed
