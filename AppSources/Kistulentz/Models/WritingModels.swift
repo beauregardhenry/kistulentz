@@ -100,6 +100,43 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
             nil
         }
     }
+
+    /// The craft principle behind this category, shown on demand (an expandable "Why this
+    /// matters" disclosure in `IssueCard`) rather than always-on, so the sidebar stays scannable.
+    /// This is deliberately a *reason*, not a restatement of the category's `title` or `message` --
+    /// every case gets one, including the objective categories `practicePrompt` skips, because
+    /// understanding why a typo or a grammar slip costs a reader's trust is itself worth knowing,
+    /// even though there's no craft judgment to practice on the fix itself.
+    var whyThisMatters: String {
+        switch self {
+        case .hardSentence:
+            "Long, dense sentences ask a reader to hold several ideas in mind before any of them resolve. Most readers start skimming once that load gets too high, so the ideas land softer than they should."
+        case .veryHardSentence:
+            "At this length, most readers lose the thread before reaching the point. Splitting it up doesn't dumb the idea down -- it usually sharpens it, because you're forced to decide what in it actually matters."
+        case .adverb:
+            "An adverb often patches over a vague verb instead of replacing it. \"Walked quickly\" and \"ran\" describe roughly the same thing, but the second one shows it -- the reader pictures the motion instead of being told its speed."
+        case .passiveVoice:
+            "Passive voice hides who's doing the action, which can drain a sentence of its energy and its accountability. Naming the actor usually makes the sentence more concrete and easier to follow."
+        case .structuralComplexity:
+            "A sentence can be grammatically correct and still ask too much of its shape -- clauses nested inside clauses, or a subject separated from its verb by a long detour. The reader has to untangle the structure before they can absorb the meaning."
+        case .complexPhrase:
+            "A longer or more formal phrase can feel more precise, but it usually just adds friction. The plainer version almost always says the same thing faster."
+        case .aiTell:
+            "Constructions like \"not just X, but Y,\" stacked qualifiers, or a rhetorical wind-up before the actual point show up disproportionately in AI-generated text. Leaning on them is a good way to sound like everyone else's first draft instead of your own."
+        case .spelling:
+            "A misspelled word breaks a reader's attention for a moment they don't get back. It's rarely about the word itself -- it's the interruption."
+        case .grammar:
+            "A grammar slip is a small thing that reads as a big thing -- it signals the sentence wasn't checked, which makes a reader trust the rest of it a little less."
+        case .aiSuggestion:
+            "This suggestion was generated from the exact request you approved. Review it the way you'd review any collaborator's draft -- a starting point, not a final word."
+        case .referenceVoice:
+            "Matching a reference's voice isn't about copying its words -- it's noticing what choices make that voice distinct (sentence length, formality, how it handles tension) and asking whether your passage is making similar choices on purpose."
+        case .continuity:
+            "A reader builds a mental model of your story or argument as they go. Inconsistencies quietly damage their trust in that model, even when they can't name exactly what felt off."
+        case .avoidedWord:
+            "You already decided this word doesn't belong in this project's voice. The flag isn't new information -- it's a reminder of a choice you already made."
+        }
+    }
 }
 
 enum IssueSource: String, Codable {
