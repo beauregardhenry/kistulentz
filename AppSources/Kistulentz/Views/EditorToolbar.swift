@@ -119,6 +119,16 @@ struct EditorToolbar: View {
                     Label(isWriteMode ? "Exit Write Mode" : "Enter Write Mode", systemImage: isWriteMode ? "sidebar.left" : "text.page")
                 }
                 Divider()
+                Button {
+                    settings.isPracticeModeEnabled.toggle()
+                } label: {
+                    if settings.isPracticeModeEnabled {
+                        Label("Practice Mode", systemImage: "checkmark")
+                    } else {
+                        Text("Practice Mode")
+                    }
+                }
+                Divider()
                 Text("Visible highlights")
                 ForEach(IssueCategory.allCases) { category in
                     Button {
@@ -255,7 +265,10 @@ struct EditorToolbar: View {
                 Label("Polish", systemImage: "wand.and.stars")
             }
             .buttonStyle(.borderedProminent)
-            .help("Polish locally on this Mac (⇧⌘R)")
+            .disabled(settings.isPracticeModeEnabled)
+            .help(settings.isPracticeModeEnabled
+                ? "Polish is off in Practice Mode -- fix flagged passages yourself"
+                : "Polish locally on this Mac (⇧⌘R)")
         }
         .padding(.horizontal, 16)
         .frame(height: 55)

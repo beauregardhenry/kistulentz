@@ -125,6 +125,7 @@ final class AppSettings: ObservableObject {
         static let editorFontSize = "editorFontSize"
         static let lastSeenAppVersion = "lastSeenAppVersion"
         static let lastOpenedProjectURL = "lastOpenedProjectURL"
+        static let isPracticeModeEnabled = "isPracticeModeEnabled"
     }
 
     /// The lowest and highest editor font size a user can choose in Settings. Kept in one place
@@ -160,6 +161,16 @@ final class AppSettings: ObservableObject {
                 forKey: DefaultsKey.hiddenHighlightCategories
             )
         }
+    }
+
+    /// When on, flags whose category has a craft judgment behind it (see
+    /// `IssueCategory.practicePrompt`) show their diagnosis and a prompt instead of a one-click
+    /// fix -- Accept, per-issue Rewrite, Apply All, and Polish all withhold the replacement for
+    /// those categories so the author practices the edit rather than outsourcing it. Categories
+    /// without a craft judgment (spelling, grammar, continuity, an AI suggestion already reviewed
+    /// through its own explicit flow) are unaffected either way.
+    @Published var isPracticeModeEnabled: Bool {
+        didSet { defaults.set(isPracticeModeEnabled, forKey: DefaultsKey.isPracticeModeEnabled) }
     }
 
     /// The editor's font, by font family name (as offered by the Settings picker, sourced from
@@ -226,6 +237,7 @@ final class AppSettings: ObservableObject {
         )
         lastSeenAppVersion = defaults.string(forKey: DefaultsKey.lastSeenAppVersion)
         lastOpenedProjectURL = defaults.url(forKey: DefaultsKey.lastOpenedProjectURL)
+        isPracticeModeEnabled = defaults.bool(forKey: DefaultsKey.isPracticeModeEnabled)
 
         refreshKeyStatus()
     }
