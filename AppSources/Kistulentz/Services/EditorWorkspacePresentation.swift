@@ -24,6 +24,7 @@ final class EditorWorkspacePresentation: ObservableObject {
         case projectOrganization
         case namedSnapshot
         case toneRequest
+        case writingGrowth
 
         var id: String { rawValue }
     }

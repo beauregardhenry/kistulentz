@@ -10,6 +10,7 @@ struct KistulentzApp: App {
     @StateObject private var referenceLibrary: ReferenceLibraryStore
     @StateObject private var researchLibrary: ResearchLibraryStore
     @StateObject private var draftRecovery = DraftRecoveryManager.shared
+    @StateObject private var writingGrowth: WritingGrowthStore
 #if UI_TEST_HOST
     @State private var uiTestDocument: MarkdownDocument
     @State private var uiTestUndoManager = UndoManager()
@@ -36,6 +37,7 @@ struct KistulentzApp: App {
         // launches registration a real "Add Font File" click uses -- a UI test exercising that
         // button must never leave a real font behind in Font Book on whatever Mac runs it.
         _customFonts = StateObject(wrappedValue: CustomFontStore(scope: .process))
+        _writingGrowth = StateObject(wrappedValue: WritingGrowthStore(defaults: defaults))
 
         let text: String
         if let path = environment["KISTULENTZ_UI_TEST_DOCUMENT_PATH"],
@@ -51,6 +53,7 @@ struct KistulentzApp: App {
         _referenceLibrary = StateObject(wrappedValue: ReferenceLibraryStore())
         _researchLibrary = StateObject(wrappedValue: ResearchLibraryStore())
         _customFonts = StateObject(wrappedValue: CustomFontStore())
+        _writingGrowth = StateObject(wrappedValue: WritingGrowthStore())
 #endif
     }
 
@@ -70,6 +73,7 @@ struct KistulentzApp: App {
                 .environmentObject(researchLibrary)
                 .environmentObject(draftRecovery)
                 .environmentObject(customFonts)
+                .environmentObject(writingGrowth)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {
@@ -85,6 +89,7 @@ struct KistulentzApp: App {
                 .environmentObject(researchLibrary)
                 .environmentObject(draftRecovery)
                 .environmentObject(customFonts)
+                .environmentObject(writingGrowth)
                 .frame(minWidth: 1_120, minHeight: 680)
         }
         .commands {

@@ -36,6 +36,7 @@ struct EditorWorkspace: View {
     @EnvironmentObject var researchLibrary: ResearchLibraryStore
     @EnvironmentObject var draftRecovery: DraftRecoveryManager
     @EnvironmentObject private var customFonts: CustomFontStore
+    @EnvironmentObject var writingGrowth: WritingGrowthStore
     @Environment(\.undoManager) var undoManager
     @Environment(\.openSettings) private var openSettings
     @Environment(\.scenePhase) private var scenePhase
@@ -469,6 +470,9 @@ struct EditorWorkspace: View {
                 projectStore.createSnapshot(name: name, reason: "Named snapshot")
             }
         }
+        .sheet(isPresented: presentation.binding(for: .writingGrowth)) {
+            WritingGrowthView(store: writingGrowth)
+        }
         .sheet(item: $pendingAIRequest) { preview in
             AIRequestPreviewView(preview: preview) { confirmed in
                 pendingAIRequest = nil
@@ -615,6 +619,7 @@ struct EditorWorkspace: View {
                 showProjectImportAssistant: { presentation.present(.projectImportAssistant) },
                 createProject: { requestProjectFolder(.createInParent) },
                 openProject: { requestProjectFolder(.openExisting) },
+                showWritingGrowth: { presentation.present(.writingGrowth) },
                 showNewChapter: { presentation.present(.newChapter) },
                 showStyleEditor: { presentation.present(.styleEditor) },
                 showNamedSnapshot: { presentation.present(.namedSnapshot) },

@@ -146,6 +146,7 @@
 		C91F1D94CC81C0F0B750B9A2 /* KistulentzIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */; };
 		CB63632BD182D057FD7E50FC /* ResearchExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A785CAD9F8CC1666C3042 /* ResearchExchange.swift */; };
 		CE01E6A328AC398315AC1467 /* KistulentzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAEA223A3F644E2CDAD62A /* KistulentzApp.swift */; };
+		CE61755026CA4AB1C6827CDD /* WritingGrowthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581E05ED2C551833A3622727 /* WritingGrowthStore.swift */; };
 		CF27B912BD86BB02966738F1 /* PublicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E87EABC1CF8D34F49A191 /* PublicationStore.swift */; };
 		D432A1E325E7C20E6BCFB69A /* WritingProjectStore+ManuscriptReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A44C3827341485A46ABC /* WritingProjectStore+ManuscriptReport.swift */; };
 		D69D2E5C8FB03A8F682443AE /* PublishExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855093FE7D8365D60785CF7E /* PublishExportView.swift */; };
@@ -160,6 +161,7 @@
 		EDCCFB9AF57D74EBE397B75E /* ReferenceLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786AD3519E304425BDF4931 /* ReferenceLibraryStore.swift */; };
 		EF885437043D4CE2BB308C8E /* SystemicRevisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99000452466132E776DA42D4 /* SystemicRevisionModels.swift */; };
 		EFCA08B11E2FF35C064D02ED /* SuggestionApplicationPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A25120820814E56D5BA055 /* SuggestionApplicationPlanner.swift */; };
+		F2ED65B47001CDB54EB716A8 /* WritingGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783BAB8A0BE2120D6C8B75C /* WritingGrowthView.swift */; };
 		F3255E0A2613E7B7ED400C2F /* KistulentzUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A55D33B59EF54732880896 /* KistulentzUITestCase.swift */; };
 		F76C2FF3341DFD7BEE06E6B7 /* LocalPolishService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3449E169D6C405421B9DE60 /* LocalPolishService.swift */; };
 		F786B18690C0C5B57D8F6FB8 /* ProjectOrganizationSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CFEA6228D6971FD2E077F6 /* ProjectOrganizationSheets.swift */; };
@@ -226,6 +228,7 @@
 		54DCAC428503B6BD251220B0 /* DismissedSuggestionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissedSuggestionStore.swift; sourceTree = "<group>"; };
 		55D8979222872882274A18A9 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
 		57AB853B50483904D5F5ABC1 /* BeneparLanguagePack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeneparLanguagePack.swift; sourceTree = "<group>"; };
+		581E05ED2C551833A3622727 /* WritingGrowthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingGrowthStore.swift; sourceTree = "<group>"; };
 		5A1A52BDB37D2F37CEA1ED98 /* KistulentzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KistulentzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C8A785CAD9F8CC1666C3042 /* ResearchExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchExchange.swift; sourceTree = "<group>"; };
 		5E161A4D8B79F2110B2A66D7 /* PublicationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationModels.swift; sourceTree = "<group>"; };
@@ -288,6 +291,7 @@
 		A2569E9DDDCBA5008E04E398 /* ResearchLibraryDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchLibraryDisk.swift; sourceTree = "<group>"; };
 		A30D8AD8BE97FF10BBFB241D /* DOCXDocumentImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOCXDocumentImporter.swift; sourceTree = "<group>"; };
 		A42C58CB8ADB9A57F43D5792 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A783BAB8A0BE2120D6C8B75C /* WritingGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingGrowthView.swift; sourceTree = "<group>"; };
 		ABB5CDDE90D447D851AFDABB /* WritingProjectStore+Snapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WritingProjectStore+Snapshots.swift"; sourceTree = "<group>"; };
 		ADE5F050C31C6577D7541D27 /* WritingProjectStore+SystemicRevision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WritingProjectStore+SystemicRevision.swift"; sourceTree = "<group>"; };
 		B14B494DF143122940DB50B4 /* EditingRecoveryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingRecoveryUITests.swift; sourceTree = "<group>"; };
@@ -494,6 +498,7 @@
 				8D624AFF53B572659CB53FDA /* SystemCheckView.swift */,
 				733268E410156100D2A50952 /* SystemicRevisionCenterView.swift */,
 				2645F1F1CC73FDAF73B40DD5 /* WelcomeView.swift */,
+				A783BAB8A0BE2120D6C8B75C /* WritingGrowthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				E03D15CAC596197DD6998E4B /* SystemicRevision.swift */,
 				9C96024BC31CCE6EF3D49C18 /* SystemicRevisionAIService.swift */,
 				9153F2852C4C73843241ECF7 /* WritingAIService.swift */,
+				581E05ED2C551833A3622727 /* WritingGrowthStore.swift */,
 				44A8955A8F710EF73BEA998B /* WritingProjectDisk.swift */,
 				F78431DDD420B740B3B9F3CA /* WritingProjectLoader.swift */,
 				429484D47BAC14AD1157350C /* WritingProjectStore.swift */,
@@ -840,6 +846,8 @@
 				EF885437043D4CE2BB308C8E /* SystemicRevisionModels.swift in Sources */,
 				0602239F716600964CA1B330 /* WelcomeView.swift in Sources */,
 				0550E111C6277CBA17061448 /* WritingAIService.swift in Sources */,
+				CE61755026CA4AB1C6827CDD /* WritingGrowthStore.swift in Sources */,
+				F2ED65B47001CDB54EB716A8 /* WritingGrowthView.swift in Sources */,
 				9815FB08E87C018AE9DEF9CC /* WritingModels.swift in Sources */,
 				55E5B777974FE30151997ADE /* WritingProjectDisk.swift in Sources */,
 				69CB3DF5D233A2A85FCC6972 /* WritingProjectLoader.swift in Sources */,
