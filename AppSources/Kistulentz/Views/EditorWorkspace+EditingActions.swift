@@ -341,6 +341,7 @@ extension EditorWorkspace {
 
     func prepareApplyAll() {
         let safeIssues = viewModel.allIssues.filter { issue in
+            if settings.isPracticeModeEnabled, issue.category.practicePrompt != nil { return false }
             guard let replacement = issue.replacement else { return true }
             return SuggestionRuleValidator.isSafe(
                 original: issue.excerpt,

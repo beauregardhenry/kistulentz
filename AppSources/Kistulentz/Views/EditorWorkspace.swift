@@ -156,6 +156,7 @@ struct EditorWorkspace: View {
                         issues: viewModel.allIssues,
                         isRewriting: viewModel.isRewriting,
                         hasAPIKey: settings.isProviderReady(settings.provider),
+                        isPracticeModeEnabled: settings.isPracticeModeEnabled,
                         reference: viewModel.referenceBook,
                         alignment: viewModel.referenceAlignment,
                         isLoadingReference: viewModel.isLoadingReference,

@@ -237,6 +237,7 @@ struct ReviewSidebar: View {
     let issues: [WritingIssue]
     let isRewriting: Bool
     let hasAPIKey: Bool
+    let isPracticeModeEnabled: Bool
     let reference: EPUBReference?
     let alignment: ReferenceAlignment
     let isLoadingReference: Bool
@@ -250,7 +251,10 @@ struct ReviewSidebar: View {
     let onApplyAll: () -> Void
 
     private var hasApplicableSuggestions: Bool {
-        issues.contains { $0.replacement != nil && $0.replacement != $0.excerpt }
+        issues.contains {
+            $0.replacement != nil && $0.replacement != $0.excerpt
+                && !(isPracticeModeEnabled && $0.category.practicePrompt != nil)
+        }
     }
 
     var body: some View {
@@ -292,14 +296,20 @@ struct ReviewSidebar: View {
                     )
 
                     VStack(alignment: .leading, spacing: 8) {
-                        Label("Local Polish is ready", systemImage: "checkmark.shield")
-                            .font(.caption.weight(.semibold))
-                        Text("Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
+                        Label(
+                            isPracticeModeEnabled ? "Local Polish is off in Practice Mode" : "Local Polish is ready",
+                            systemImage: "checkmark.shield"
+                        )
+                        .font(.caption.weight(.semibold))
+                        Text(isPracticeModeEnabled
+                            ? "Fix flagged passages yourself while Practice Mode is on. Turn it off in the highlights menu to use Local Polish again."
+                            : "Kistulentz can review and apply concrete built-in corrections without sending text anywhere. Advisory changes that require rewriting stay as highlights.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                         Button("Polish Locally", action: onRunReview)
                             .buttonStyle(.borderedProminent)
                             .controlSize(.small)
+                            .disabled(isPracticeModeEnabled)
                     }
                     .padding(12)
                     .background(.background.opacity(0.75), in: RoundedRectangle(cornerRadius: 11))
@@ -308,6 +318,7 @@ struct ReviewSidebar: View {
                         IssueCard(
                             issue: issue,
                             canRewrite: hasAPIKey && !isRewriting,
+                            isPracticeModeEnabled: isPracticeModeEnabled,
                             onSelect: onSelect,
                             onApply: onApply,
                             onDecline: onDecline,
@@ -456,10 +467,18 @@ private struct ReferenceBadge: View {
 private struct IssueCard: View {
     let issue: WritingIssue
     let canRewrite: Bool
+    let isPracticeModeEnabled: Bool
     let onSelect: (WritingIssue) -> Void
     let onApply: (WritingIssue) -> Void
     let onDecline: (WritingIssue) -> Void
     let onRewrite: (WritingIssue) -> Void
+
+    /// Non-nil exactly when this specific card should withhold its fix: Practice Mode is on and
+    /// this issue's category has a craft judgment worth practicing (`IssueCategory.practicePrompt`
+    /// is nil for objective corrections like spelling/grammar, which stay fixable either way).
+    private var practicePrompt: String? {
+        isPracticeModeEnabled ? issue.category.practicePrompt : nil
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -494,7 +513,17 @@ private struct IssueCard: View {
             }
             .buttonStyle(.plain)
 
-            if let replacement = issue.replacement {
+            if let practicePrompt {
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Text(practicePrompt)
+                        .font(.system(size: 12.5, weight: .medium))
+                        .italic()
+                        .lineLimit(3)
+                }
+            } else if let replacement = issue.replacement {
                 HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "arrow.turn.down.right")
                         .font(.caption)
@@ -510,7 +539,9 @@ private struct IssueCard: View {
                 Button("Decline") { onDecline(issue) }
                     .buttonStyle(.bordered)
                     .controlSize(.mini)
-                if issue.replacement != nil {
+                if practicePrompt != nil {
+                    // Withhold the fix -- the prompt above is the only response for this card.
+                } else if issue.replacement != nil {
                     Button("Accept") { onApply(issue) }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.mini)

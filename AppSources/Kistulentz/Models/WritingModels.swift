@@ -71,6 +71,35 @@ enum IssueCategory: String, Codable, CaseIterable, Identifiable {
         case .avoidedWord: Color(red: 0.60, green: 0.47, blue: 0.31)
         }
     }
+
+    /// A question to show in Practice Mode (`AppSettings.isPracticeModeEnabled`) instead of a
+    /// one-click fix, for a category where there's a craft judgment worth practicing. `nil` for
+    /// categories that are corrections of an objective error (spelling, grammar), a factual
+    /// consistency check rather than a style choice (continuity), or a suggestion the author
+    /// already asked for explicitly through its own review flow (an AI suggestion) -- withholding
+    /// those wouldn't teach anything, only add friction.
+    var practicePrompt: String? {
+        switch self {
+        case .hardSentence, .veryHardSentence:
+            "This sentence is hard to follow. Where would you split it, or what would you cut?"
+        case .adverb:
+            "Can you cut this adverb and reach for a stronger verb instead?"
+        case .passiveVoice:
+            "Who's doing the action here? Try rewriting with them as the subject."
+        case .structuralComplexity:
+            "This sentence's shape is doing a lot of work. What's the simplest way to say it?"
+        case .complexPhrase:
+            "Is there a plainer way to say this?"
+        case .aiTell:
+            "This phrasing is a familiar pattern. What would you actually say here?"
+        case .referenceVoice:
+            "How does this compare to the voice you're matching? What would close the gap?"
+        case .avoidedWord:
+            "This is a word you've chosen to avoid. What's your replacement?"
+        case .spelling, .grammar, .aiSuggestion, .continuity:
+            nil
+        }
+    }
 }
 
 enum IssueSource: String, Codable {
