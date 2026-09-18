@@ -513,6 +513,15 @@ private struct IssueCard: View {
             }
             .buttonStyle(.plain)
 
+            DisclosureGroup("Why this matters") {
+                Text(issue.category.whyThisMatters)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+            }
+            .font(.caption2.weight(.medium))
+
             if let practicePrompt {
                 HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "questionmark.circle")
