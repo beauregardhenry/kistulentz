@@ -148,32 +148,69 @@ struct KistulentzApp: App {
 ///   exactly this case, kept as a defensive measure even though it did not, on its own, change the
 ///   observed behavior for SwiftUI's DocumentGroup in testing.
 ///
-/// What was, until now, still unfixed: quitting with every window already closed -- not just a
-/// genuine first-ever launch -- reliably hit the exact same fallback on every subsequent launch,
-/// reported directly and reproduced live (close a window's red traffic-light button, quit from
-/// the Dock or the app menu, relaunch: the system panel, every time). The distinction AppKit is
-/// making is real, not a bug on its own terms -- restoration remembers what was open *at quit
-/// time*; a window the user explicitly closed first was, correctly, nothing to restore -- but a
-/// document-based app is still expected to fall back to its own blank-document UI in that case,
-/// not to AppKit's raw system panel, and DocumentGroup was doing the latter.
+/// A previous fix for quitting with every window already closed -- not just a genuine first-ever
+/// launch -- was to have `applicationWillFinishLaunching` unconditionally call
+/// `NSDocumentController.shared.openUntitledDocumentAndDisplay(true)`, ahead of DocumentGroup's
+/// own "is there anything to resume" decision, so that decision never had a "nothing to resume"
+/// condition left to trigger on. That fixed the system panel, but reproduced live against a real
+/// installed build, it created a different, easy-to-miss regression: when restoration *did* have
+/// something to resume (a normal quit with a saved document still open), secure state restoration
+/// reopened that document *and* this unconditional call opened a second, genuinely blank untitled
+/// document on top of it -- two separate `NSDocument`s, stacked at the exact same frame, so it
+/// visually looked like a single window in every screenshot. Confirmed as two distinct windows via
+/// `NSApplication`'s own window list (one carrying the restored document's file proxy icon, one
+/// without), not a rendering artifact.
 ///
-/// `applicationWillFinishLaunching` explicitly calling
-/// `NSDocumentController.shared.openUntitledDocumentAndDisplay(true)` fixes this: called at this
-/// point, ahead of DocumentGroup's own "is there anything to resume" decision, it gives AppKit a
-/// document to work with before that decision ever runs, so the fallback panel has no "nothing
-/// to resume" condition left to trigger on. Verified directly, repeatedly, against a real
-/// installed build: the exact close-then-quit sequence above, for both a plain document and a
-/// project, now reopens Kistulentz's own Welcome screen (with the prior document or project
-/// correctly showing underneath it) instead of the system panel -- and the same holds even with
-/// `lastOpenedProjectURL` and `~/Library/Saved Application State/` both cleared first, suggesting
-/// this also retires the previously-documented "truly first-ever launch can still show the
-/// system panel once" residual case, though that was not verified against a fully wiped fresh
-/// install. `applicationShouldOpenUntitledFile` returning true remains alongside this as the
-/// classic, documented AppKit hook for the same intent, kept as a defensive measure even though,
-/// on its own, it did not change the observed behavior for SwiftUI's DocumentGroup in testing.
+/// The natural-looking fix -- move the same call to `applicationDidFinishLaunching`, guarded by
+/// `NSDocumentController.shared.documents.isEmpty` -- turned out to still be wrong, confirmed with
+/// temporary debug logging of `documents.count` at each lifecycle point against a real installed
+/// build: state restoration is asynchronous and had not completed by the time
+/// `applicationDidFinishLaunching` ran (`documents.count` was still 0 there in both scenarios), so
+/// the guard passed regardless of whether something was about to be restored, and the duplicate
+/// returned. `NSApplication.didFinishRestoringWindowsNotification` is the actual, correct signal
+/// for "restoration has finished" -- but logging confirmed it only fires when restoration *found*
+/// something to restore; when a quit genuinely left nothing open, it never fires at all, so relying
+/// on it alone would silently reintroduce the original system-panel bug for that case.
 ///
-/// `DocumentGroupLaunchScene` -- Apple's real, purpose-built replacement for this fallback -- was
-/// investigated and ruled out earlier: it is `@available(iOS 18.0, visionOS 2.0, *)` and
+/// A second attempt fixed that: listen for `didFinishRestoringWindowsNotification` and a 600ms
+/// fallback timer, whichever runs first opens an untitled document if `documents` is still empty
+/// at that point, with a flag making the other one a no-op. That passed every test with a *blank*
+/// restored document -- but re-tested against a real saved file (which needs an actual disk read
+/// plus this app's own analysis pipeline before it is registered), the duplicate came back. Temporary
+/// debug logging of `documents.count` at each step showed why: by the time either signal fired --
+/// sometimes even by the very start of `applicationDidFinishLaunching` -- a second, blank document
+/// already existed alongside the restoring real one. Neither signal's closure had run yet at that
+/// point, which rules out this delegate's own code as the source; the remaining explanation is that
+/// SwiftUI's `DocumentGroup` opens its own blank document very early in launch as part of its normal
+/// scene-creation behavior, independent of and racing with restoration. Flipping
+/// `applicationShouldOpenUntitledFile` to false to test that theory made no observed difference,
+/// confirming DocumentGroup's own behavior isn't gated by that hook.
+///
+/// Since the extra document isn't one this delegate creates, tracking "the one I opened" (the first
+/// attempt's flag) can't detect it. The actual fix settles on documents' *state* instead, from both
+/// signals: if nothing is open at all, open an untitled document by hand (the "quit with zero
+/// windows" case); if a file-backed document and an untouched blank one are both open, close the
+/// blank one, whoever created it. Verified directly against a real installed build: quit with a
+/// saved document open, relaunch, exactly one window, the restored file, even though the blank
+/// document reliably appeared alongside it before settling ran; quit with every window closed,
+/// relaunch, exactly one window (a fresh blank one, no system panel). `applicationShouldOpenUntitledFile`
+/// returning true remains alongside this as the classic, documented AppKit hook for the same intent,
+/// kept as a defensive measure even though it has no observed effect of its own either way.
+///
+/// A separate, related gap: reactivating an already-running Kistulentz with zero windows open --
+/// clicking its Dock icon after closing every window without quitting, the classic "close the
+/// window, don't quit" habit -- goes through neither `applicationWillFinishLaunching` nor
+/// `applicationDidFinishLaunching` (the process never relaunches; nothing about launching runs
+/// again). Reproduced live: without handling it, AppKit falls back to the same raw system "Open"
+/// panel this whole delegate exists to avoid, just reached through the one lifecycle event that
+/// was never covered. `applicationShouldHandleReopen(_:hasVisibleWindows:)` is the hook for
+/// exactly this event; when there are no visible windows, it opens an untitled document itself
+/// (the same call as the launch-time fix) and returns `false` so AppKit does not also run its own
+/// default reopen handling on top of it. Verified directly: close every window without quitting,
+/// reactivate via the Dock, Kistulentz's own Welcome/editor UI appears -- no system panel.
+///
+/// `DocumentGroupLaunchScene` -- Apple's real, purpose-built replacement for this whole fallback --
+/// was investigated and ruled out earlier: it is `@available(iOS 18.0, visionOS 2.0, *)` and
 /// explicitly `@available(macOS, unavailable)`, confirmed directly against this SDK's
 /// SwiftUI.swiftinterface.
 @MainActor
@@ -187,12 +224,60 @@ final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
         DraftRecoveryManager.shared.endSession()
     }
 
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        _ = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(true)
+    /// Settles what documents should be open once launch has had a chance to settle, checked both
+    /// when secure state restoration signals it has finished and, since that notification never
+    /// fires when a quit genuinely left nothing to restore, from a bounded fallback timer too. See
+    /// this type's doc comment for why neither signal alone is sufficient.
+    ///
+    /// The settling logic itself is keyed off actual document state rather than which signal fired
+    /// first, which matters because the untitled document that shows up alongside a slow-to-restore
+    /// real one is not one this delegate opens itself -- logging confirmed SwiftUI's `DocumentGroup`
+    /// can create its own blank document very early in launch, before either signal below runs, races
+    /// restoration, and isn't gated by `applicationShouldOpenUntitledFile` (confirmed by observing no
+    /// change with that hook returning `false`). So rather than tracking "the one I opened," settling
+    /// prunes any blank, untouched, untitled document whenever a real, file-backed one is also open --
+    /// whoever created it -- and only opens an untitled document itself when nothing is open at all.
+    private var restorationObserver: NSObjectProtocol?
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        restorationObserver = NotificationCenter.default.addObserver(
+            forName: NSApplication.didFinishRestoringWindowsNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            // `queue: .main` above guarantees this closure runs on the main thread, but its type
+            // (unlike DispatchQueue.main's) isn't recognized by the compiler as MainActor-isolated,
+            // so a synchronous call to a MainActor method here needs an explicit, zero-cost assertion
+            // of what's already true at runtime rather than an unnecessary `Task { @MainActor in }` hop.
+            MainActor.assumeIsolated {
+                self?.settleLaunchDocuments()
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) { [weak self] in
+            self?.settleLaunchDocuments()
+        }
+    }
+
+    private func settleLaunchDocuments() {
+        let documents = NSDocumentController.shared.documents
+        guard !documents.isEmpty else {
+            _ = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(true)
+            return
+        }
+        guard documents.count > 1, documents.contains(where: { $0.fileURL != nil }) else { return }
+        for document in documents where document.fileURL == nil && !document.isDocumentEdited {
+            document.close()
+        }
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         true
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
+        guard !hasVisibleWindows else { return true }
+        _ = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(true)
+        return false
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
