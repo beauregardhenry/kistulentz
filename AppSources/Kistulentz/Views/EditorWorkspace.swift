@@ -58,6 +58,7 @@ struct EditorWorkspace: View {
     @State var editorSelection = NSRange(location: 0, length: 0)
     @State var pendingAIRequest: AIRequestPreview?
     @State var pendingProjectPolishApply: RevisionChangeSet?
+    @State var selfEditExercisePresentation: SelfEditExercisePresentation?
     @State var didPresentStartup = false
 #if UI_TEST_HOST
     @State var didConfigureUITestProject = false
@@ -514,6 +515,9 @@ struct EditorWorkspace: View {
                 onReplaceAll: { replaceWithPolishedDraft(from: plan) }
             )
         }
+        .sheet(item: $selfEditExercisePresentation) { presentation in
+            SelfEditExerciseView(exercises: presentation.exercises)
+        }
     }
 
     /// Whichever of the shared alert's four error sources is currently active. At most one is
@@ -620,6 +624,11 @@ struct EditorWorkspace: View {
                 createProject: { requestProjectFolder(.createInParent) },
                 openProject: { requestProjectFolder(.openExisting) },
                 showWritingGrowth: { presentation.present(.writingGrowth) },
+                showSelfEditExercises: {
+                    selfEditExercisePresentation = SelfEditExercisePresentation(
+                        exercises: SelfEditExerciseSampler.sample(from: viewModel.allIssues)
+                    )
+                },
                 showNewChapter: { presentation.present(.newChapter) },
                 showStyleEditor: { presentation.present(.styleEditor) },
                 showNamedSnapshot: { presentation.present(.namedSnapshot) },

@@ -7,6 +7,7 @@ struct EditorToolbarActions {
     let createProject: () -> Void
     let openProject: () -> Void
     let showWritingGrowth: () -> Void
+    let showSelfEditExercises: () -> Void
     let showNewChapter: () -> Void
     let showStyleEditor: () -> Void
     let showNamedSnapshot: () -> Void
@@ -136,6 +137,12 @@ struct EditorToolbar: View {
                     } else {
                         Text("Practice Mode")
                     }
+                }
+                Divider()
+                Button {
+                    actions.showSelfEditExercises()
+                } label: {
+                    Label("Self-Edit Exercises…", systemImage: "pencil.and.outline")
                 }
                 Divider()
                 Text("Visible highlights")
