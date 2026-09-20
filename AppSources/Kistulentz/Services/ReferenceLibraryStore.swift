@@ -117,7 +117,12 @@ final class ReferenceLibraryStore: ObservableObject {
         books.first(where: { $0.id == id })
     }
 
-    func updateBook(id: UUID, title: String, author: String, genres: [String]) {
+    /// Awaits the save before returning, unlike most other mutations in this store: a manual
+    /// title/author/genre correction has no incremental checkpoint backing it the way an EPUB
+    /// import or a structural-analysis pass does (see `persist(regenerateKnowledgeBase:)`'s own
+    /// doc comment), so it exists only in memory until this specific write lands. Reported as the
+    /// same class of bug as the one fixed in `deepen(...)`'s success path.
+    func updateBook(id: UUID, title: String, author: String, genres: [String]) async {
         guard let index = books.firstIndex(where: { $0.id == id }) else { return }
         let cleanTitle = normalized(title, fallback: books[index].title)
         let cleanAuthor = normalized(author, fallback: "Unknown Author")
@@ -126,7 +131,7 @@ final class ReferenceLibraryStore: ObservableObject {
         books[index].author = cleanAuthor
         books[index].genres = cleanGenres
         books[index].updatedAt = Date()
-        persist(regenerateKnowledgeBase: true)
+        await persist(regenerateKnowledgeBase: true).value
     }
 
     func importEPUBs(from urls: [URL]) {
@@ -471,12 +476,13 @@ final class ReferenceLibraryStore: ObservableObject {
         }
     }
 
-    /// Returns the spawned save `Task` so a caller with real data at stake -- currently just
-    /// `deepen(...)`'s success path -- can `await ... .value` and know the write has genuinely
-    /// landed on disk before reporting the operation done, rather than just requested. Every other
-    /// call site discards the return value and keeps the original fire-and-forget behavior: the
-    /// store's own `isSaving` is enough for those, since nothing user-generated and unrecoverable
-    /// is riding on that specific write landing before the caller's own "done" state does.
+    /// Returns the spawned save `Task` so a caller with real data at stake -- `deepen(...)`'s
+    /// success path and `updateBook(...)` -- can `await ... .value` and know the write has
+    /// genuinely landed on disk before reporting the operation done, rather than just requested.
+    /// Every other call site discards the return value and keeps the original fire-and-forget
+    /// behavior: `importEPUBs` and `analyzeStructure` already checkpoint each item individually as
+    /// they go, and `setLocation`/`cancelImport`/`cancelStructuralAnalysis` don't carry unsaved,
+    /// unrecoverable input -- so `isSaving` alone is enough for those.
     @discardableResult
     private func persist(regenerateKnowledgeBase: Bool) -> Task<Void, Never> {
         guard let rootURL else { return Task {} }
