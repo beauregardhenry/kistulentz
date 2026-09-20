@@ -8,6 +8,20 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.8] - 2026-09-20
+
+### Fixed
+
+- Deepen w/ AI (Reference Library) and manual book-metadata corrections now wait for the save to
+  actually land on disk before reporting the action done, instead of reporting done as soon as the
+  save was requested. Closes a narrow window where quitting Kistulentz at just the wrong moment
+  could silently lose a freshly generated AI insight or an edited title/author/genre correction,
+  with no error shown.
+
+### Testing
+
+- The verified suite now contains 754 Swift tests and 54 macOS interface tests.
+
 ## [0.23.7] - 2026-09-20
 
 ### Changed
