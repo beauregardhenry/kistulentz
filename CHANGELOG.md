@@ -8,6 +8,27 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.6] - 2026-09-20
+
+### Added
+
+- Self-Edit Exercises (toolbar's highlights menu): a small, session-scoped set of the writer's own
+  currently-flagged passages to attempt a fix on before Kistulentz reveals its own suggestion for
+  comparison. Drawn only from issues already flagged in the open document, restricted to the same
+  craft-judgment categories Practice Mode already treats as worth practicing. The writer's attempt
+  is never overwritten, and finishing or skipping an exercise never affects the underlying flag.
+
+### Fixed
+
+- Closing every window without quitting, then reactivating Kistulentz from the Dock, no longer
+  falls back to macOS's raw system "Open" panel -- it opens Kistulentz's own blank document instead.
+- Quitting with a saved document open and relaunching no longer sometimes opens a second, genuinely
+  blank window alongside the restored one.
+
+### Testing
+
+- The verified suite now contains 745 Swift tests and 54 macOS interface tests.
+
 ## [0.23.5] - 2026-09-18
 
 ### Added

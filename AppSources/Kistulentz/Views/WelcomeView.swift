@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Safer files, bounded imports, and verifiable releases.")
+                    Text("A new way to practice self-editing, and a smoother launch.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,22 +25,22 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "One safe commit path protects local work",
-                    detail: "Manuscripts, project metadata, imports, recovery copies, references, and publication settings keep their last known-good file when a disk or permission error interrupts a save.",
-                    systemImage: "externaldrive.badge.checkmark",
-                    identifier: "WhatsNewStorageSafety"
+                    "Self-Edit Exercises",
+                    detail: "A new entry in the toolbar's highlights menu, next to Practice Mode. It samples a small set of your own currently-flagged passages, lets you attempt a fix yourself, then reveals Kistulentz's own suggestion for comparison only after your attempt.",
+                    systemImage: "pencil.and.outline",
+                    identifier: "WhatsNewSelfEditExercises"
                 )
                 whatsNewItem(
-                    "Compressed document imports have strict limits",
-                    detail: "DOCX, ODT, and EPUB files are checked for unsafe paths, links, collisions, extreme compression, oversized entries, and excessive expanded data before their contents are trusted.",
-                    systemImage: "doc.badge.ellipsis",
-                    identifier: "WhatsNewCancellation"
+                    "Reopening from the Dock shows Kistulentz, not a file browser",
+                    detail: "Closing every window without quitting, then reactivating from the Dock, now opens Kistulentz's own blank document instead of falling back to a plain macOS file browser.",
+                    systemImage: "dock.rectangle",
+                    identifier: "WhatsNewDockReopen"
                 )
                 whatsNewItem(
-                    "Long work cancels cleanly; releases are verifiable",
-                    detail: "Import, export, and structural-analysis work rejects stale results consistently. Release packages now include an SPDX bill of materials and tagged builds receive GitHub attestations.",
-                    systemImage: "checkmark.shield",
-                    identifier: "WhatsNewRegressionSafety"
+                    "No more duplicate windows on relaunch",
+                    detail: "Quitting with a saved document open and relaunching no longer sometimes opens a second, genuinely blank window stacked on top of the one that was restored.",
+                    systemImage: "macwindow.on.rectangle",
+                    identifier: "WhatsNewLaunchWindow"
                 )
             }
 
