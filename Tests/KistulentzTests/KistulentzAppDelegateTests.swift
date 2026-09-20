@@ -30,6 +30,10 @@ import XCTest
 /// value -- exactly the kind of side effect this file otherwise avoids. They're verified the same
 /// way as everything else in this delegate: real quit/relaunch/reactivation cycles against a real
 /// installed build, recorded in the delegate's own doc comment.
+///
+/// `settleLaunchDocuments()`'s actual decision -- given whatever documents are open, open one,
+/// close some, or do nothing -- is covered by `LaunchDocumentSettlementTests`, against the pure
+/// `LaunchDocumentSettlement.decide` this method calls into rather than through this file.
 final class KistulentzAppDelegateTests: XCTestCase {
     @MainActor
     func testInitRegistersNSQuitAlwaysKeepsWindowsDefault() {

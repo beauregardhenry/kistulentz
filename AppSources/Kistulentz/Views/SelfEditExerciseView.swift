@@ -5,21 +5,17 @@ import SwiftUI
 /// attempt and never touches the underlying `WritingIssue` -- skipping or finishing an exercise has
 /// no effect on how that flag continues to appear in the regular editor view.
 struct SelfEditExerciseView: View {
-    let exercises: [SelfEditExercise]
+    @StateObject private var session: SelfEditExerciseSession
     @Environment(\.dismiss) private var dismiss
 
-    @State private var index = 0
-    @State private var attempts: [UUID: String] = [:]
-    @State private var revealed: Set<UUID> = []
-
-    private var current: SelfEditExercise? {
-        exercises.indices.contains(index) ? exercises[index] : nil
+    init(exercises: [SelfEditExercise]) {
+        _session = StateObject(wrappedValue: SelfEditExerciseSession(exercises: exercises))
     }
 
     private func attemptBinding(for exercise: SelfEditExercise) -> Binding<String> {
         Binding(
-            get: { attempts[exercise.id] ?? "" },
-            set: { attempts[exercise.id] = $0 }
+            get: { session.attempt(for: exercise) },
+            set: { session.setAttempt($0, for: exercise) }
         )
     }
 
@@ -27,13 +23,13 @@ struct SelfEditExerciseView: View {
         VStack(spacing: 0) {
             header
             Divider()
-            if let current {
+            if let current = session.current {
                 ScrollView {
                     SelfEditExerciseCard(
                         exercise: current,
                         attempt: attemptBinding(for: current),
-                        isRevealed: revealed.contains(current.id),
-                        onReveal: { revealed.insert(current.id) }
+                        isRevealed: session.isRevealed(current),
+                        onReveal: { session.reveal(current) }
                     )
                     .padding(20)
                 }
@@ -55,8 +51,8 @@ struct SelfEditExerciseView: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Self-Edit Exercises").font(.headline)
-                if !exercises.isEmpty {
-                    Text("Exercise \(index + 1) of \(exercises.count)")
+                if !session.exercises.isEmpty {
+                    Text("Exercise \(session.index + 1) of \(session.exercises.count)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -70,18 +66,18 @@ struct SelfEditExerciseView: View {
 
     private var footer: some View {
         HStack {
-            Button("Previous") { index -= 1 }
-                .disabled(index == 0)
+            Button("Previous") { session.goToPrevious() }
+                .disabled(session.index == 0)
             Spacer()
-            Button(index == exercises.count - 1 ? "Finish" : "Next") {
-                if index == exercises.count - 1 {
+            Button(session.isAtLastExercise ? "Finish" : "Next") {
+                if session.isAtLastExercise {
                     dismiss()
                 } else {
-                    index += 1
+                    session.goToNext()
                 }
             }
             .buttonStyle(.borderedProminent)
-            .disabled(exercises.isEmpty)
+            .disabled(session.exercises.isEmpty)
         }
         .padding(14)
     }
@@ -150,7 +146,6 @@ private struct SelfEditExerciseCard: View {
                     .buttonStyle(.bordered)
             }
         }
-        .accessibilityIdentifier("SelfEditExerciseCard")
     }
 
     private func labeledBlock(title: String, @ViewBuilder content: () -> some View) -> some View {
