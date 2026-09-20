@@ -5,21 +5,18 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.5 FRIEND PREVIEW
-- A new Practice Mode (toggle it in the highlights menu) withholds one-click fixes for flags
-  with a craft judgment behind them -- adverbs, passive voice, hard sentences, and similar --
-  showing a question instead, so you practice the edit yourself.
-- Every local flag now has an optional "Why this matters" explanation of the underlying craft
-  principle, not just what's wrong.
-- Kistulentz now tracks how your accepted and declined flags trend over time, across every
-  project. See "Your Writing Growth..." in the Projects menu.
+NEW IN 0.23.6 FRIEND PREVIEW
+- Self-Edit Exercises (toolbar's highlights menu, next to Practice Mode): a small set of your own
+  currently-flagged passages to attempt a fix on before Kistulentz reveals its own suggestion for
+  comparison. Never invents or fetches examples, and never changes how a flag appears afterward.
+- Closing every window without quitting, then reopening Kistulentz from the Dock, now shows
+  Kistulentz's own blank document instead of a plain macOS file browser.
+- Quitting with a saved document open and relaunching no longer sometimes opens a second, blank
+  window alongside the one that was restored.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
 2. Open Kistulentz from Applications.
-3. If the very first launch shows a plain macOS file browser instead of Kistulentz's own
-   Welcome screen, click New Document once. This is a known macOS behavior for document-based
-   apps when there is nothing yet to reopen; it will not happen again after this first time.
 
 FIRST-OPEN SECURITY MESSAGE
 Beau Henry does not yet have an Apple Developer account, so Apple cannot verify
