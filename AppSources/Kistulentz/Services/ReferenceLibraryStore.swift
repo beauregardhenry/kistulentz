@@ -428,8 +428,13 @@ final class ReferenceLibraryStore: ObservableObject {
                     markdown: result.markdown,
                     createdAt: Date()
                 ))
+                // Awaited, unlike every other `persist` call site: a freshly generated AI insight
+                // exists only in memory until this completes, so `isDeepening` flipping false before
+                // the save actually lands would tell the rest of the app (and the user deciding
+                // whether it's safe to quit) that the insight is durable when it might still be
+                // silently lost. Confirmed as a real gap, not just test flakiness -- see persist(_:).
+                await self.persist(regenerateKnowledgeBase: true).value
                 self.isDeepening = false
-                self.persist(regenerateKnowledgeBase: true)
             } catch is CancellationError {
                 self.isDeepening = false
             } catch {
@@ -466,12 +471,19 @@ final class ReferenceLibraryStore: ObservableObject {
         }
     }
 
-    private func persist(regenerateKnowledgeBase: Bool) {
-        guard let rootURL else { return }
+    /// Returns the spawned save `Task` so a caller with real data at stake -- currently just
+    /// `deepen(...)`'s success path -- can `await ... .value` and know the write has genuinely
+    /// landed on disk before reporting the operation done, rather than just requested. Every other
+    /// call site discards the return value and keeps the original fire-and-forget behavior: the
+    /// store's own `isSaving` is enough for those, since nothing user-generated and unrecoverable
+    /// is riding on that specific write landing before the caller's own "done" state does.
+    @discardableResult
+    private func persist(regenerateKnowledgeBase: Bool) -> Task<Void, Never> {
+        guard let rootURL else { return Task {} }
         let snapshot = ReferenceLibraryIndex(books: books, insights: insights)
         isSaving = true
         saveTask?.cancel()
-        saveTask = Task { [weak self] in
+        let task = Task { [weak self] in
             do {
                 try await self?.persistence.save(
                     snapshot,
@@ -486,6 +498,8 @@ final class ReferenceLibraryStore: ObservableObject {
                 self?.errorMessage = "The reference library could not be saved: \(error.localizedDescription)"
             }
         }
+        saveTask = task
+        return task
     }
 
     nonisolated private static func discoverEPUBs(in urls: [URL]) -> [URL] {
