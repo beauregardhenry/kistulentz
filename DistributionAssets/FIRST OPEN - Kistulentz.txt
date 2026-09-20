@@ -5,14 +5,10 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.6 FRIEND PREVIEW
-- Self-Edit Exercises (toolbar's highlights menu, next to Practice Mode): a small set of your own
-  currently-flagged passages to attempt a fix on before Kistulentz reveals its own suggestion for
-  comparison. Never invents or fetches examples, and never changes how a flag appears afterward.
-- Closing every window without quitting, then reopening Kistulentz from the Dock, now shows
-  Kistulentz's own blank document instead of a plain macOS file browser.
-- Quitting with a saved document open and relaunching no longer sometimes opens a second, blank
-  window alongside the one that was restored.
+NEW IN 0.23.7 FRIEND PREVIEW
+- Self-Edit Exercises now adapt to your writing growth: practice leans toward the categories
+  you've been declining most across projects, instead of sampling uniformly at random. A category
+  you rarely need to decline still turns up sometimes, just less often.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
