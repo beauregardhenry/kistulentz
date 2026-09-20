@@ -128,7 +128,6 @@ private struct SelfEditExerciseCard: View {
                     .overlay {
                         RoundedRectangle(cornerRadius: 8).stroke(Color.secondary.opacity(0.25))
                     }
-                    .accessibilityIdentifier("SelfEditAttemptField")
             }
 
             if isRevealed {

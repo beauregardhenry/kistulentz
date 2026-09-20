@@ -29,22 +29,35 @@ final class SelfEditExerciseUITests: KistulentzUITestCase {
         XCTAssertTrue(menuItem.waitForExistence(timeout: 3))
         menuItem.click()
 
-        XCTAssertTrue(app.staticTexts["Self-Edit Exercises"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["due to the fact that"].waitForExistence(timeout: 5))
-        XCTAssertFalse(app.staticTexts["because"].exists)
+        // Everything below is scoped to the sheet itself, not the whole app: the regular sidebar
+        // behind this modal sheet already shows this same flagged passage and its "because"
+        // replacement as part of the ordinary IssueCard flow, so an unscoped text query would
+        // match those instead. A plain `.sheet(item:)` presentation is exposed the same way
+        // `app.sheets` already reaches `confirmationDialog` presentations elsewhere in this suite
+        // (see FinalHardeningUITests).
+        //
+        // The attempt field is found by type, not by its `.accessibilityIdentifier` -- confirmed
+        // directly against a real installed build that `TextEditor` on macOS doesn't reliably
+        // surface a custom identifier on its underlying `AXTextArea` the way `app.textViews[id]`
+        // needs (a known SwiftUI/AppKit bridging gap, not something this view's own code controls).
+        // Since the sheet holds exactly one text view, matching by type alone is unambiguous.
+        let sheet = app.sheets.firstMatch
+        XCTAssertTrue(sheet.staticTexts["Self-Edit Exercises"].waitForExistence(timeout: 5))
+        XCTAssertTrue(sheet.staticTexts["due to the fact that"].waitForExistence(timeout: 3))
+        XCTAssertFalse(sheet.staticTexts["because"].exists)
 
-        let attemptField = app.textViews["SelfEditAttemptField"]
+        let attemptField = sheet.textViews.firstMatch
         XCTAssertTrue(attemptField.waitForExistence(timeout: 3))
         attemptField.click()
         attemptField.typeText("because")
 
-        app.buttons["Reveal Kistulentz's Suggestion"].click()
+        sheet.buttons["Reveal Kistulentz's Suggestion"].click()
 
-        XCTAssertTrue(app.staticTexts["because"].waitForExistence(timeout: 3))
+        XCTAssertTrue(sheet.staticTexts["because"].waitForExistence(timeout: 3))
         XCTAssertEqual(attemptField.value as? String, "because")
 
-        app.buttons["Done"].click()
-        XCTAssertFalse(app.staticTexts["Self-Edit Exercises"].waitForExistence(timeout: 2))
+        sheet.buttons["Done"].click()
+        XCTAssertFalse(app.sheets.firstMatch.waitForExistence(timeout: 2))
         XCTAssertTrue(app.windows.firstMatch.exists)
     }
 }
