@@ -361,13 +361,12 @@ final class ReferenceLibraryTests: XCTestCase {
         defaults.set(root.path, forKey: "referenceLibraryFolder")
         let store = ReferenceLibraryStore(defaults: defaults)
 
-        store.updateBook(
+        await store.updateBook(
             id: original.id,
             title: "   ",
             author: "   ",
             genres: [" Mystery ", "mystery", "", "  Thriller  "]
         )
-        await waitUntil { !store.isSaving }
 
         let corrected = try XCTUnwrap(store.book(id: original.id))
         XCTAssertEqual(corrected.title, "Original Title")
@@ -656,7 +655,7 @@ final class ReferenceLibraryTests: XCTestCase {
     }
 
     @MainActor
-    func testUpdateBookOnAnUnknownIDIsANoOp() throws {
+    func testUpdateBookOnAnUnknownIDIsANoOp() async throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
         let existing = book(title: "Existing", author: "Author", genres: ["Fiction"])
@@ -667,7 +666,7 @@ final class ReferenceLibraryTests: XCTestCase {
         defaults.set(root.path, forKey: "referenceLibraryFolder")
         let store = ReferenceLibraryStore(defaults: defaults)
 
-        store.updateBook(id: UUID(), title: "New Title", author: "New Author", genres: ["New"])
+        await store.updateBook(id: UUID(), title: "New Title", author: "New Author", genres: ["New"])
 
         XCTAssertEqual(store.books.count, 1)
         XCTAssertEqual(store.books.first?.id, existing.id)
@@ -716,7 +715,7 @@ final class ReferenceLibraryTests: XCTestCase {
     }
 
     @MainActor
-    func testCleanedGenresFallsBackToUnclassifiedWhenEveryValueIsBlank() throws {
+    func testCleanedGenresFallsBackToUnclassifiedWhenEveryValueIsBlank() async throws {
         let root = temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
         let existing = book(title: "Existing", author: "Author", genres: ["Fiction"])
@@ -727,7 +726,7 @@ final class ReferenceLibraryTests: XCTestCase {
         defaults.set(root.path, forKey: "referenceLibraryFolder")
         let store = ReferenceLibraryStore(defaults: defaults)
 
-        store.updateBook(id: existing.id, title: existing.title, author: existing.author, genres: ["  ", ""])
+        await store.updateBook(id: existing.id, title: existing.title, author: existing.author, genres: ["  ", ""])
 
         XCTAssertEqual(store.book(id: existing.id)?.genres, ["Unclassified"])
     }
@@ -772,8 +771,7 @@ final class ReferenceLibraryTests: XCTestCase {
         try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: indexURL.path)
         defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: indexURL.path) }
 
-        store.updateBook(id: existing.id, title: "New Title", author: existing.author, genres: existing.genres)
-        await waitUntil { !store.isSaving }
+        await store.updateBook(id: existing.id, title: "New Title", author: existing.author, genres: existing.genres)
 
         XCTAssertNotNil(store.errorMessage)
         XCTAssertTrue(store.errorMessage?.contains("could not be saved") ?? false)

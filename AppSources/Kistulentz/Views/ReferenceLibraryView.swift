@@ -482,12 +482,14 @@ private struct BookMetadataEditor: View {
                     .font(.headline)
                 Spacer()
                 Button("Save Corrections") {
-                    library.updateBook(
-                        id: book.id,
-                        title: title,
-                        author: author,
-                        genres: genres.components(separatedBy: ",")
-                    )
+                    Task {
+                        await library.updateBook(
+                            id: book.id,
+                            title: title,
+                            author: author,
+                            genres: genres.components(separatedBy: ",")
+                        )
+                    }
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
