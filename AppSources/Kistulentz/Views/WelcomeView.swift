@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("A new way to practice self-editing, and a smoother launch.")
+                    Text("Self-Edit Exercises now target your actual weak spots.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,22 +25,10 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Self-Edit Exercises",
-                    detail: "A new entry in the toolbar's highlights menu, next to Practice Mode. It samples a small set of your own currently-flagged passages, lets you attempt a fix yourself, then reveals Kistulentz's own suggestion for comparison only after your attempt.",
-                    systemImage: "pencil.and.outline",
-                    identifier: "WhatsNewSelfEditExercises"
-                )
-                whatsNewItem(
-                    "Reopening from the Dock shows Kistulentz, not a file browser",
-                    detail: "Closing every window without quitting, then reactivating from the Dock, now opens Kistulentz's own blank document instead of falling back to a plain macOS file browser.",
-                    systemImage: "dock.rectangle",
-                    identifier: "WhatsNewDockReopen"
-                )
-                whatsNewItem(
-                    "No more duplicate windows on relaunch",
-                    detail: "Quitting with a saved document open and relaunching no longer sometimes opens a second, genuinely blank window stacked on top of the one that was restored.",
-                    systemImage: "macwindow.on.rectangle",
-                    identifier: "WhatsNewLaunchWindow"
+                    "Self-Edit Exercises adapt to your writing growth",
+                    detail: "Practice now leans toward the categories you've been declining most across projects, instead of sampling uniformly at random. A category you rarely need to decline still turns up sometimes -- just less often.",
+                    systemImage: "target",
+                    identifier: "WhatsNewAdaptiveSelfEdit"
                 )
             }
 

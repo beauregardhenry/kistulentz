@@ -8,6 +8,19 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.7] - 2026-09-20
+
+### Changed
+
+- Self-Edit Exercises now sample adaptively instead of uniformly at random: practice leans toward
+  the categories a writer's cross-project writing growth history shows they keep declining, rather
+  than whatever a given document happens to flag most. A category with no recorded decisions yet
+  -- including every category on a fresh install -- falls back to plain uniform sampling.
+
+### Testing
+
+- The verified suite now contains 754 Swift tests and 54 macOS interface tests.
+
 ## [0.23.6] - 2026-09-20
 
 ### Added
