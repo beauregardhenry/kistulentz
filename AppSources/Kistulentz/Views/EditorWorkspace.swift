@@ -626,7 +626,10 @@ struct EditorWorkspace: View {
                 showWritingGrowth: { presentation.present(.writingGrowth) },
                 showSelfEditExercises: {
                     selfEditExercisePresentation = SelfEditExercisePresentation(
-                        exercises: SelfEditExerciseSampler.sample(from: viewModel.allIssues)
+                        exercises: SelfEditExerciseSampler.sample(
+                            from: viewModel.allIssues,
+                            weights: SelfEditExerciseSampler.weights(from: writingGrowth.months)
+                        )
                     )
                 },
                 showNewChapter: { presentation.present(.newChapter) },
