@@ -504,10 +504,10 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
         whatsNewItem.click()
 
-        let title = app.staticTexts["What’s New in Kistulentz 0.23.7"]
+        let title = app.staticTexts["What’s New in Kistulentz 0.23.8"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let adaptiveSelfEditSummary = app.descendants(matching: .any)["WhatsNewAdaptiveSelfEdit"].firstMatch
-        XCTAssertTrue(adaptiveSelfEditSummary.exists)
+        let reliableSavesSummary = app.descendants(matching: .any)["WhatsNewReliableSaves"].firstMatch
+        XCTAssertTrue(reliableSavesSummary.exists)
         app.buttons["Continue"].click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
     }

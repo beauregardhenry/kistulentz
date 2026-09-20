@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Self-Edit Exercises now target your actual weak spots.")
+                    Text("Reference Library saves are now more reliable.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,10 +25,10 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Self-Edit Exercises adapt to your writing growth",
-                    detail: "Practice now leans toward the categories you've been declining most across projects, instead of sampling uniformly at random. A category you rarely need to decline still turns up sometimes -- just less often.",
-                    systemImage: "target",
-                    identifier: "WhatsNewAdaptiveSelfEdit"
+                    "AI insights and manual corrections are now confirmed saved",
+                    detail: "Deepen w/ AI and manual book-metadata corrections in the Reference Library now wait for the save to actually finish before reporting done, closing a narrow window where quitting at just the wrong moment could silently lose the result.",
+                    systemImage: "checkmark.shield",
+                    identifier: "WhatsNewReliableSaves"
                 )
             }
 
