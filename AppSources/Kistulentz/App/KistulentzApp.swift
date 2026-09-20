@@ -213,6 +213,34 @@ struct KistulentzApp: App {
 /// was investigated and ruled out earlier: it is `@available(iOS 18.0, visionOS 2.0, *)` and
 /// explicitly `@available(macOS, unavailable)`, confirmed directly against this SDK's
 /// SwiftUI.swiftinterface.
+///
+/// The decision `settleLaunchDocuments()` makes from whatever `NSDocumentController` reports is
+/// pulled out as `LaunchDocumentSettlement.decide`, a pure function over plain document-state
+/// tuples rather than real `NSDocument`s. `App/` is deliberately still counted in this project's
+/// coverage baseline (see `check-coverage.sh`) precisely so untestable AppKit glue like this
+/// delegate stays under pressure to shrink rather than being written off wholesale; this is that
+/// pressure paying off; the AppKit calls this decision leads to remain here, thin and untested,
+/// since they're the part that actually has to touch real documents and windows.
+enum LaunchDocumentSettlement: Equatable {
+    case openUntitledDocument
+    case closeBlankDocuments
+    case doNothing
+
+    /// Mirrors the two `NSDocument` properties `settleLaunchDocuments()` actually reads --
+    /// `fileURL != nil` and `isDocumentEdited` -- without depending on `NSDocument` itself.
+    struct Document: Equatable {
+        let hasFileURL: Bool
+        let isEdited: Bool
+    }
+
+    static func decide(for documents: [Document]) -> LaunchDocumentSettlement {
+        guard !documents.isEmpty else { return .openUntitledDocument }
+        guard documents.contains(where: { $0.hasFileURL }) else { return .doNothing }
+        guard documents.contains(where: { !$0.hasFileURL && !$0.isEdited }) else { return .doNothing }
+        return .closeBlankDocuments
+    }
+}
+
 @MainActor
 final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
     override init() {
@@ -260,13 +288,17 @@ final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
 
     private func settleLaunchDocuments() {
         let documents = NSDocumentController.shared.documents
-        guard !documents.isEmpty else {
+        switch LaunchDocumentSettlement.decide(for: documents.map {
+            LaunchDocumentSettlement.Document(hasFileURL: $0.fileURL != nil, isEdited: $0.isDocumentEdited)
+        }) {
+        case .openUntitledDocument:
             _ = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(true)
-            return
-        }
-        guard documents.count > 1, documents.contains(where: { $0.fileURL != nil }) else { return }
-        for document in documents where document.fileURL == nil && !document.isDocumentEdited {
-            document.close()
+        case .closeBlankDocuments:
+            for document in documents where document.fileURL == nil && !document.isDocumentEdited {
+                document.close()
+            }
+        case .doNothing:
+            break
         }
     }
 

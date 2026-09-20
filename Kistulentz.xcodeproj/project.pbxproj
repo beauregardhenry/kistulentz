@@ -68,6 +68,7 @@
 		53D2B581875DF846959E07DE /* OnboardingLocalSetupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991BF1DF1477DB325ECF31A8 /* OnboardingLocalSetupUITests.swift */; };
 		55E5B777974FE30151997ADE /* WritingProjectDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8955A8F710EF73BEA998B /* WritingProjectDisk.swift */; };
 		5608145F81526E20BF85E8D3 /* ProjectOutlineDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A23F8AD7B8467DFADF39D6 /* ProjectOutlineDisk.swift */; };
+		5671D2C0D4B6DAD587CC614E /* SelfEditExerciseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D700EF7969A63FA7A7D83 /* SelfEditExerciseSession.swift */; };
 		57C948958E03A88B5CC49B87 /* CustomFontStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E490574F5FF619487EC616C1 /* CustomFontStore.swift */; };
 		58D42C7233EDD2775BA35549 /* ProjectImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218DC089BFAB80E07C273EF /* ProjectImportService.swift */; };
 		6028B3DBD576779E2907E105 /* ReferenceAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CA85E9449B741B78BD361B /* ReferenceAnalysis.swift */; };
@@ -332,6 +333,7 @@
 		E09C2AAE84EF5C60524176B9 /* AccessibilityProviderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityProviderUITests.swift; sourceTree = "<group>"; };
 		E1B20BB2830AC3D69796E3B5 /* MacFilePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFilePanel.swift; sourceTree = "<group>"; };
 		E1CC0ACFD66F71700B1C6E43 /* ManuscriptAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuscriptAIService.swift; sourceTree = "<group>"; };
+		E38D700EF7969A63FA7A7D83 /* SelfEditExerciseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfEditExerciseSession.swift; sourceTree = "<group>"; };
 		E39C84CA3730D9167F4D26BF /* DraftRecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRecoveryView.swift; sourceTree = "<group>"; };
 		E490574F5FF619487EC616C1 /* CustomFontStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontStore.swift; sourceTree = "<group>"; };
 		E6E64ACEF8BB6A0CECE7A087 /* ProjectImportAssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectImportAssistantViewModel.swift; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 				C650B1A545CACE4B69EBE945 /* SearchStore.swift */,
 				8A6D6120FE63E3735B10F3C9 /* SelectionReplacementPlanner.swift */,
 				855A46364FFE630F1D29A3D4 /* SelectionRewriteService.swift */,
+				E38D700EF7969A63FA7A7D83 /* SelfEditExerciseSession.swift */,
 				3ED901F4419BD6614DC0C319 /* StructuredAIClient.swift */,
 				3685997EC62A7705FAB90FB9 /* StyleLearningStore.swift */,
 				12A25120820814E56D5BA055 /* SuggestionApplicationPlanner.swift */,
@@ -843,6 +846,7 @@
 				B0068AC701780783E6F9EA43 /* SelectionReplacementPlanner.swift in Sources */,
 				B4DE365172E25702643DE67D /* SelectionRewriteService.swift in Sources */,
 				F796AF0F26A0234AAE1AFEA4 /* SelfEditExerciseModels.swift in Sources */,
+				5671D2C0D4B6DAD587CC614E /* SelfEditExerciseSession.swift in Sources */,
 				B97ABD1B90196ED0DF4821AF /* SelfEditExerciseView.swift in Sources */,
 				B5542797088E606CC9ACC261 /* SettingsView.swift in Sources */,
 				02DC4FF91D12FF4617790593 /* StructuredAIClient.swift in Sources */,
