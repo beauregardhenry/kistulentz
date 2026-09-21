@@ -151,6 +151,7 @@
 		CE01E6A328AC398315AC1467 /* KistulentzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAEA223A3F644E2CDAD62A /* KistulentzApp.swift */; };
 		CE61755026CA4AB1C6827CDD /* WritingGrowthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581E05ED2C551833A3622727 /* WritingGrowthStore.swift */; };
 		CF27B912BD86BB02966738F1 /* PublicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E87EABC1CF8D34F49A191 /* PublicationStore.swift */; };
+		D164CD7356E346D92232D57E /* OpenProjectRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ECA9B47185746D74CA203B /* OpenProjectRegistry.swift */; };
 		D432A1E325E7C20E6BCFB69A /* WritingProjectStore+ManuscriptReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A44C3827341485A46ABC /* WritingProjectStore+ManuscriptReport.swift */; };
 		D69D2E5C8FB03A8F682443AE /* PublishExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855093FE7D8365D60785CF7E /* PublishExportView.swift */; };
 		D6F95F4815C237AAC644A157 /* RevisionDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E1E1C30A1010B24902668 /* RevisionDiff.swift */; };
@@ -267,6 +268,7 @@
 		824F4754B6ADB26BBC5EEE36 /* CustomFontDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontDisk.swift; sourceTree = "<group>"; };
 		855093FE7D8365D60785CF7E /* PublishExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishExportView.swift; sourceTree = "<group>"; };
 		855A46364FFE630F1D29A3D4 /* SelectionRewriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionRewriteService.swift; sourceTree = "<group>"; };
+		86ECA9B47185746D74CA203B /* OpenProjectRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenProjectRegistry.swift; sourceTree = "<group>"; };
 		8704D625C852CF53B6ACAAE3 /* ReferenceLibraryDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibraryDisk.swift; sourceTree = "<group>"; };
 		89397C231BF45396C044F16E /* ProjectImportModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectImportModels.swift; sourceTree = "<group>"; };
 		8A6519DEE1091B3D7390601A /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
@@ -562,6 +564,7 @@
 				B40912B39C188C95FEE4899C /* ManuscriptProjectDisk.swift */,
 				DA89347419D93DE62C3FD1D1 /* ManuscriptReportRenderer.swift */,
 				DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */,
+				86ECA9B47185746D74CA203B /* OpenProjectRegistry.swift */,
 				110FDF6E4D12C6CD265D1C5F /* OutlineAIService.swift */,
 				22A2910B127816E39CF382BD /* PDFPublicationWriter.swift */,
 				DB21EB85D8683AC3A6913D76 /* PolishedDraftPlanner.swift */,
@@ -793,6 +796,7 @@
 				70302F22D3D823F56ACA57F8 /* MarkdownDocument.swift in Sources */,
 				E9E16A08AAE1B606EDEEEB37 /* MarkdownTextView.swift in Sources */,
 				A853920442BA125F23692032 /* NativeWritingService.swift in Sources */,
+				D164CD7356E346D92232D57E /* OpenProjectRegistry.swift in Sources */,
 				217FB9DC1CA6040196ECD454 /* OutlineAIService.swift in Sources */,
 				00F66123B8254702099E0333 /* OutlineModels.swift in Sources */,
 				EC954E7B8C12E900FC541D45 /* PDFPublicationWriter.swift in Sources */,
