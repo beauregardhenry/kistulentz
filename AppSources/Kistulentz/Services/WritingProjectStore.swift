@@ -106,6 +106,7 @@ final class WritingProjectStore: ObservableObject {
 
     init() {
         editCoordinator.host = self
+        OpenProjectRegistry.shared.register(self)
     }
 
     // MARK: - Computed Properties

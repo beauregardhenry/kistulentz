@@ -249,6 +249,11 @@ final class KistulentzAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        // A backstop, not the primary save path: each window's own `EditorWorkspace.onDisappear`
+        // already calls `projectStore.saveNow()` on normal teardown. This flushes every open
+        // project directly too, in case a window's SwiftUI teardown doesn't run (or hasn't
+        // finished) before the process actually exits during Quit -- see OpenProjectRegistry.
+        OpenProjectRegistry.shared.flushAll()
         DraftRecoveryManager.shared.endSession()
     }
 
