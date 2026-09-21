@@ -508,6 +508,8 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(title.waitForExistence(timeout: 5))
         let quitSaveBackstopSummary = app.descendants(matching: .any)["WhatsNewQuitSaveBackstop"].firstMatch
         XCTAssertTrue(quitSaveBackstopSummary.exists)
+        let destinkRefreshSummary = app.descendants(matching: .any)["WhatsNewDestinkRefresh"].firstMatch
+        XCTAssertTrue(destinkRefreshSummary.exists)
         app.buttons["Continue"].click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
     }

@@ -10,7 +10,16 @@ merged changes are recorded under [Unreleased].
 
 ## [0.23.9] - 2026-09-21
 
-A small reliability hardening release -- no user-facing feature changes.
+A small release: reliability hardening plus a refresh of the De-stink phrase catalog.
+
+### Changed
+
+- De-stink Review's phrase catalog is refreshed against the current upstream `lex00/sentences`
+  de-stink linter, which has grown substantially since Kistulentz first adapted it in 0.16.0. New
+  phrases across 5 existing rules (assistant voice, discourse markers, stock frames, technical
+  vocabulary, fiction frames), 5 new excess-vocabulary words, and a new rule, Stock gesture
+  cluster, which flags a density-gated cluster of ordinary gesture and atmosphere words (blinked,
+  murmured, stillness, ...) that only reads as a tell when several show up together.
 
 ### Fixed
 
@@ -24,7 +33,7 @@ A small reliability hardening release -- no user-facing feature changes.
 
 ### Testing
 
-- The verified suite now contains 756 Swift tests and 54 macOS interface tests.
+- The verified suite now contains 759 Swift tests and 54 macOS interface tests.
 
 ## [0.23.8] - 2026-09-20
 
