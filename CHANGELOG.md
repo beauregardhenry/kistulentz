@@ -8,6 +8,24 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.9] - 2026-09-21
+
+A small reliability hardening release -- no user-facing feature changes.
+
+### Fixed
+
+- The systemic revision scan's "in progress" flag now clears after its archive save completes
+  rather than one line before it -- a defensive reorder, not an active bug fix (there was no
+  `await` between the two lines, so nothing could interleave), matching the save-then-report-done
+  pattern applied to the Reference Library fixes in 0.23.8.
+- Kistulentz now also saves the current chapter, Bible, and outline directly during app
+  termination, as a backstop alongside each project window's existing save-on-close path, in case
+  a window's own teardown doesn't run (or hasn't finished) before the process exits during Quit.
+
+### Testing
+
+- The verified suite now contains 756 Swift tests and 54 macOS interface tests.
+
 ## [0.23.8] - 2026-09-20
 
 ### Fixed

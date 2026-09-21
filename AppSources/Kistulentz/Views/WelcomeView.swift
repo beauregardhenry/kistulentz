@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Reference Library saves are now more reliable.")
+                    Text("A small reliability hardening release.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,10 +25,10 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "AI insights and manual corrections are now confirmed saved",
-                    detail: "Deepen w/ AI and manual book-metadata corrections in the Reference Library now wait for the save to actually finish before reporting done, closing a narrow window where quitting at just the wrong moment could silently lose the result.",
-                    systemImage: "checkmark.shield",
-                    identifier: "WhatsNewReliableSaves"
+                    "Extra safeguard for project saves when you quit",
+                    detail: "Kistulentz now also saves your current chapter, Bible, and outline directly when you quit, as a backstop alongside the normal save-on-close path.",
+                    systemImage: "shield.lefthalf.filled",
+                    identifier: "WhatsNewQuitSaveBackstop"
                 )
             }
 

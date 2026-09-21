@@ -5,10 +5,9 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.8 FRIEND PREVIEW
-- Reference Library saves are now more reliable: Deepen w/ AI and manual book-metadata corrections
-  now wait for the save to actually finish before reporting done, closing a narrow window where
-  quitting at just the wrong moment could silently lose the result.
+NEW IN 0.23.9 FRIEND PREVIEW
+- A small reliability hardening release: Kistulentz now also saves your current chapter, Bible,
+  and outline directly when you quit, as a backstop alongside the normal save-on-close path.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
