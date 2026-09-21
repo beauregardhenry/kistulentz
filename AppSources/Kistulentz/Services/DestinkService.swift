@@ -122,22 +122,22 @@ enum DestinkEngine {
     private static let phraseRules: [PhraseRule] = [
         PhraseRule(
             id: "claude-assistant-voice", name: "Assistant voice", severity: .medium, escalationAt: 3,
-            phrases: ["you're absolutely right", "you are absolutely right", "you're absolutely correct", "great question", "excellent question", "that's a great point", "great catch", "I appreciate your patience", "I apologize for the confusion", "happy to elaborate", "feel free to", "would you like me to", "a good starting point", "a solid starting point", "a great starting point", "there's no one-size-fits-all", "your mileage may vary", "reasonable people can disagree", "this matters because"],
+            phrases: ["you're absolutely right", "you are absolutely right", "you're absolutely correct", "great question", "excellent question", "that's a great point", "great catch", "I appreciate your patience", "I apologize for the confusion", "happy to elaborate", "feel free to", "would you like me to", "a good starting point", "a solid starting point", "a great starting point", "there's no one-size-fits-all", "your mileage may vary", "reasonable people can disagree", "this matters because", "production-ready"],
             explanation: "This sounds like a chat reply addressing a user rather than finished prose. State the point directly in the document's own voice."
         ),
         PhraseRule(
             id: "claude-discourse-markers", name: "Stock transition", severity: .low, escalationAt: 3,
-            phrases: ["the key insight is", "the trick is", "the catch is", "the upshot", "put differently", "said differently", "in other words", "more concretely", "zooming out", "taking a step back", "at a high level", "that said", "to be clear", "to be fair", "to be direct", "to be frank", "in practice", "in short", "in essence", "simply put", "long story short", "net-net", "worth calling out", "worth flagging", "one thing to note", "a few things to note", "key takeaways", "better posed", "double-click on", "lean into"],
+            phrases: ["the key insight is", "the trick is", "the catch is", "the upshot", "put differently", "said differently", "in other words", "more concretely", "concretely", "zooming out", "taking a step back", "at a high level", "that said", "to be clear", "to be fair", "to be direct", "to be frank", "in practice", "in short", "in essence", "simply put", "long story short", "net-net", "worth calling out", "worth flagging", "one thing to note", "a few things to note", "key takeaways", "better posed", "double-click on", "lean into", "tldr", "sit with", "worth sitting with", "the question I keep coming back to", "what I'd leave you with"],
             explanation: "The transition announces how to read the next sentence instead of letting the sentence do that work. Remove it when the connection remains clear."
         ),
         PhraseRule(
             id: "claude-stock-frames", name: "Stock urgency frame", severity: .low, escalationAt: 3,
-            phrases: ["isn't slowing down", "isn't going anywhere", "can't afford to", "stay on the sidelines", "wake-up call", "the stakes couldn't be higher", "makes the case for", "the case for", "wasn't built for", "wasn't designed for", "the pace it brings", "here's why that matters", "from day one", "after the fact", "humans in the loop", "human in the loop", "baked into", "built in from the start", "full stop", "plain and simple", "it's that simple", "let that sink in", "read that again", "if this resonates", "repost if"],
+            phrases: ["isn't slowing down", "isn't going anywhere", "can't afford to", "stay on the sidelines", "wake-up call", "the stakes couldn't be higher", "matters because", "makes the case for", "the case for", "wasn't built for", "wasn't designed for", "the pace it brings", "here's why that matters", "from day one", "after the fact", "humans in the loop", "human in the loop", "baked into", "built in from the start", "full stop", "plain and simple", "it's that simple", "let that sink in", "read that again", "most people won't read this far", "if this resonates", "repost if"],
             explanation: "This is a stock hook or sign-off that manufactures urgency. Say the concrete claim and let its consequences carry the emphasis."
         ),
         PhraseRule(
             id: "claude-technical-vocabulary", name: "Stock technical vocabulary", severity: .low, escalationAt: 4,
-            phrases: ["worth stating plainly", "battle-tested", "footgun", "escape hatch", "happy path", "blast radius", "table stakes", "north star", "single source of truth", "paper cut", "sharp edges", "cognitive load", "mental model", "first-class citizen", "batteries included", "guardrails", "moving parts", "seamless", "seamlessly", "performant", "idiomatic", "opinionated", "principled", "pragmatic", "composable", "ergonomics", "ergonomic", "affordance", "surface area", "future-proof", "non-trivial", "meticulously", "thoughtfully", "gracefully", "holistic", "orthogonal", "flesh out", "round out", "wire up", "thread through", "plumb through", "spiritually", "morally equivalent"],
+            phrases: ["worth stating plainly", "battle-tested", "footgun", "escape hatch", "happy path", "blast radius", "table stakes", "north star", "single source of truth", "paper cut", "paper cuts", "sharp edges", "cognitive load", "mental model", "first-class citizen", "batteries included", "guardrails", "moving parts", "seamless", "seamlessly", "performant", "idiomatic", "opinionated", "principled", "pragmatic", "composable", "ergonomics", "ergonomic", "affordance", "surface area", "future-proof", "non-trivial", "meticulously", "thoughtfully", "gracefully", "holistic", "orthogonal", "flesh out", "round out", "wire up", "thread through", "plumb through", "spiritually", "morally equivalent", "modulo"],
             explanation: "This phrase is common in generic technical prose. Prefer the specific behavior, cost, or constraint you mean."
         ),
         PhraseRule(
@@ -192,13 +192,18 @@ enum DestinkEngine {
         ),
         PhraseRule(
             id: "claude-fiction-frames", name: "Stock fiction frame", severity: .medium, escalationAt: 3,
-            phrases: ["something else entirely", "barely above a whisper", "voice barely audible", "a breath she didn't know", "a breath he didn't know", "smile didn't reach", "didn't reach his eyes", "didn't reach her eyes", "quiet for a long moment", "a sound like", "like a held breath", "trying to sound casual", "something flickered across", "something shifted in", "seen better days", "couldn't shake the feeling", "for what seemed like an eternity", "little did she know", "little did he know", "the air was thick with", "sent shivers down", "a mix of", "eyes gleamed with", "knuckles whitened", "let out a breath"],
+            phrases: ["something else entirely", "barely above a whisper", "voice barely audible", "a breath she didn't know", "a breath he didn't know", "didn't know she was holding", "didn't know he was holding", "smile didn't reach", "didn't reach his eyes", "didn't reach her eyes", "quiet for a long moment", "a sound like", "like a held breath", "trying to sound casual", "something flickered across", "something shifted in", "seen better days", "couldn't shake the feeling", "for what seemed like an eternity", "little did she know", "little did he know", "the air was thick with", "sent shivers down", "a mix of", "eyes gleamed with", "knuckles whitened", "let out a breath"],
             explanation: "This is a familiar generated-fiction frame. Replace the stock cue with the character's particular action, perception, or consequence."
         ),
         PhraseRule(
             id: "excess-vocabulary", name: "Excess LLM vocabulary", severity: .low, escalationAt: 3,
             phrases: excessVocabulary,
             explanation: "This word appears heavily in generated prose and often makes a sentence less specific. Prefer the ordinary word that names what happened."
+        ),
+        PhraseRule(
+            id: "claude-fiction-gestures", name: "Stock gesture cluster", severity: .candidate, escalationAt: 5,
+            phrases: claudeFictionGestures,
+            explanation: "Any one of these gesture, micro-action, or atmosphere words is ordinary. Several together on one page form the small cluster generated fiction reaches for. Vary the physical vocabulary or cut ones that aren't doing real work."
         ),
         PhraseRule(
             id: "demo/intensifier", name: "Filler intensifier", severity: .low, escalationAt: 3,
@@ -208,7 +213,26 @@ enum DestinkEngine {
     ]
 
     private static let excessVocabulary = [
-        "showcasing", "underscores", "underscoring", "surpassing", "commendable", "advancement", "advancements", "aligns", "avenue", "avenues", "bolster", "bolstered", "bolstering", "boasts", "burgeoning", "compelling", "crafted", "crafting", "culminating", "delineates", "discern", "discernible", "elucidate", "elucidates", "elucidating", "embracing", "emphasizing", "encapsulates", "encompass", "encompassing", "endeavors", "endeavours", "exceptional", "foundational", "formidable", "garnered", "garnering", "groundbreaking", "grappling", "groundwork", "hinges", "illuminates", "illuminating", "imperative", "impressive", "innovative", "interconnectedness", "interplay", "intricate", "intricacies", "intricately", "invaluable", "juxtaposed", "multifaceted", "necessitate", "noteworthy", "nuanced", "nuances", "orchestrating", "paving", "pinpoint", "pinpointing", "pioneering", "pivotal", "poised", "propelling", "realm", "realms", "renowned", "revolutionize", "revolutionizing", "scrutinize", "scrutinizing", "showcase", "showcased", "showcases", "spurred", "substantiated", "surmount", "surpass", "surpassed", "surpasses", "transformative", "unparalleled", "unraveling", "underexplored", "underscore", "underscored", "unexplored", "uncharted", "unveil", "unveiling", "unveils", "unveiled", "unlock", "unlocking", "versatility", "notable", "comprehensive", "crucial", "insights", "enhancing"
+        "showcasing", "underscores", "underscoring", "surpassing", "commendable", "advancement", "advancements", "aligns", "avenue", "avenues", "bolster", "bolstered", "bolstering", "boasts", "burgeoning", "comprehending", "compelling", "crafted", "crafting", "culminating", "delineates", "discern", "discernible", "elucidate", "elucidates", "elucidating", "embracing", "emphasizing", "emulating", "encapsulates", "encompass", "encompassing", "endeavors", "endeavours", "exceptional", "exceptionally", "foundational", "formidable", "garnered", "garnering", "groundbreaking", "grappling", "groundwork", "hinges", "illuminates", "illuminating", "imperative", "impressive", "innovative", "interconnectedness", "interplay", "intricate", "intricacies", "intricately", "invaluable", "juxtaposed", "multifaceted", "necessitate", "necessitating", "noteworthy", "nuanced", "nuances", "orchestrating", "paving", "pinpoint", "pinpointing", "pioneering", "pivotal", "poised", "propelling", "pronounced", "realm", "realms", "renowned", "revolutionize", "revolutionizing", "scrutinize", "scrutinizing", "showcase", "showcased", "showcases", "spurred", "substantiated", "surmount", "surpass", "surpassed", "surpasses", "transformative", "unparalleled", "unraveling", "underexplored", "underscore", "underscored", "unexplored", "uncharted", "unveil", "unveiling", "unveils", "unveiled", "unlock", "unlocking", "versatility", "notable", "comprehensive", "crucial", "insights", "enhancing"
+    ]
+
+    private static let claudeFictionGestures = [
+        "flicker", "flickers", "flickered", "flickering",
+        "lean", "leans", "leaned", "leaning",
+        "blink", "blinks", "blinked", "blinking",
+        "gesture", "gestures", "gestured", "gesturing",
+        "grinned", "nodded", "hummed",
+        "murmur", "murmurs", "murmured", "murmuring",
+        "whisper", "whispers", "whispered", "whispering",
+        "glance", "glances", "glanced", "glancing",
+        "mutter", "mutters", "muttered", "muttering",
+        "tilt", "tilts", "tilted", "tilting",
+        "flinch", "flinches", "flinched", "flinching",
+        "tremble", "trembles", "trembled", "trembling",
+        "clutch", "clutches", "clutched", "clutching",
+        "hiss", "hisses", "hissed", "hissing",
+        "breathe", "breathes", "breathed", "breathing",
+        "sternum", "stillness", "unhurried", "obsidian", "impossibly", "faintly", "momentarily"
     ]
 
     private static func phraseFindings(in prose: String, original: String) -> [DestinkFinding] {
