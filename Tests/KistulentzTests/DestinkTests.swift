@@ -19,6 +19,51 @@ final class DestinkTests: XCTestCase {
         }
     }
 
+    func testPhraseListAdditionsPortedFromUpstreamFire() {
+        let text = """
+        This is production-ready. TLDR: it's fine. Worth sitting with for a moment.
+        This matters because of the migration, and honestly it matters because of billing too.
+        Most people won't read this far, but paper cuts add up, modulo the edge cases.
+        She kept comprehending and emulating the design, exceptionally so, necessitating a pronounced shift.
+        """
+
+        let findings = DestinkEngine.analyze(text)
+        let idsByExcerpt = Dictionary(grouping: findings, by: { $0.excerpt.lowercased() }).mapValues { $0.map(\.ruleID) }
+
+        XCTAssertTrue(idsByExcerpt["production-ready"]?.contains("claude-assistant-voice") == true)
+        XCTAssertTrue(idsByExcerpt["tldr"]?.contains("claude-discourse-markers") == true)
+        XCTAssertTrue(idsByExcerpt["worth sitting with"]?.contains("claude-discourse-markers") == true)
+        XCTAssertTrue(idsByExcerpt["matters because"]?.contains("claude-stock-frames") == true)
+        XCTAssertTrue(idsByExcerpt["most people won't read this far"]?.contains("claude-stock-frames") == true)
+        XCTAssertTrue(idsByExcerpt["paper cuts"]?.contains("claude-technical-vocabulary") == true)
+        XCTAssertTrue(idsByExcerpt["modulo"]?.contains("claude-technical-vocabulary") == true)
+        XCTAssertTrue(idsByExcerpt["comprehending"]?.contains("excess-vocabulary") == true)
+        XCTAssertTrue(idsByExcerpt["emulating"]?.contains("excess-vocabulary") == true)
+        XCTAssertTrue(idsByExcerpt["exceptionally"]?.contains("excess-vocabulary") == true)
+        XCTAssertTrue(idsByExcerpt["necessitating"]?.contains("excess-vocabulary") == true)
+        XCTAssertTrue(idsByExcerpt["pronounced"]?.contains("excess-vocabulary") == true)
+    }
+
+    func testFictionFrameCompletionPhrasesFire() {
+        let text = "She let out a breath she didn't know she was holding, then straightened."
+
+        let findings = DestinkEngine.analyze(text).filter { $0.ruleID == "claude-fiction-frames" }
+
+        XCTAssertTrue(findings.contains { $0.excerpt.lowercased() == "didn't know she was holding" })
+    }
+
+    func testFictionGestureClusterStaysCandidateBelowDensityAndEscalatesAtDensity() {
+        let single = "He blinked once, then looked away."
+        let dense = "He blinked. She glanced away. He murmured something. She tilted her head. His hands trembled. The room fell into stillness."
+
+        let singleFindings = DestinkEngine.analyze(single).filter { $0.ruleID == "claude-fiction-gestures" }
+        XCTAssertEqual(singleFindings.map(\.severity), [.candidate])
+
+        let denseFindings = DestinkEngine.analyze(dense).filter { $0.ruleID == "claude-fiction-gestures" }
+        XCTAssertGreaterThanOrEqual(denseFindings.count, 5)
+        XCTAssertTrue(denseFindings.allSatisfy { $0.severity == .low })
+    }
+
     func testMarkdownCodeAndLinkTargetsDoNotBecomeProseFindings() {
         let text = "Use `robust` as a fixture. [Ordinary link](https://example.com/robust).\n\nThe robust claim remains."
 
