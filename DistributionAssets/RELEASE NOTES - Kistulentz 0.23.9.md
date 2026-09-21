@@ -1,7 +1,16 @@
-# Kistulentz 0.23.9 — Reliability Hardening
+# Kistulentz 0.23.9 — Reliability Hardening and a De-stink Refresh
 
-Version 0.23.9 is a small, backend-only reliability release. There are no new features and no
-change to how Kistulentz looks or behaves day to day.
+Version 0.23.9 is a small release: reliability hardening plus a refresh of the De-stink Review
+phrase catalog.
+
+## Changed
+
+- **De-stink Review's phrase catalog is refreshed from its upstream source.** Kistulentz adapted
+  the `lex00/sentences` de-stink linter's rule taxonomy back in 0.16.0; this pulls forward what's
+  new there since. New phrases across five existing rules, five new excess-vocabulary words, and a
+  new rule -- Stock gesture cluster -- that flags a cluster of ordinary gesture and atmosphere
+  words (blinked, murmured, stillness, and similar) that only reads as a tell when several of them
+  show up together on the page.
 
 ## Fixed
 

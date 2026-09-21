@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("A small reliability hardening release.")
+                    Text("Reliability hardening and a De-stink refresh.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -29,6 +29,12 @@ struct WhatsNewView: View {
                     detail: "Kistulentz now also saves your current chapter, Bible, and outline directly when you quit, as a backstop alongside the normal save-on-close path.",
                     systemImage: "shield.lefthalf.filled",
                     identifier: "WhatsNewQuitSaveBackstop"
+                )
+                whatsNewItem(
+                    "De-stink Review's phrase catalog is refreshed",
+                    detail: "New phrases across five existing rules, five new excess-vocabulary words, and a new Stock gesture cluster rule that catches ordinary gesture and atmosphere words (blinked, murmured, stillness) that only read as a tell together.",
+                    systemImage: "text.magnifyingglass",
+                    identifier: "WhatsNewDestinkRefresh"
                 )
             }
 
