@@ -26,8 +26,8 @@ extension WritingProjectStore {
                 }.value
                 guard let self, self.rootURL == rootURL else { return }
                 self.revisionArchive = SystemicRevisionAnalyzer.reconcile(findings, with: self.revisionArchive)
-                self.isScanningRevisions = false
                 self.saveRevisionArchive()
+                self.isScanningRevisions = false
             }
         } catch {
             isScanningRevisions = false
