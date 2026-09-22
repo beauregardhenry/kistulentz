@@ -5,13 +5,10 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.10 FRIEND PREVIEW
-- Show a Strong Example: on a flagged craft issue, ask Kistulentz to find a short excerpt from
-  your own Reference Library that handles it well, with a note on why it works.
-- Your Writing Growth now shows a calendar heatmap, a streak, and today's words against a goal
-  you set in Settings. The heatmap's color tracks writing quality, not raw word count.
-- Two new De-stink checks (anaphora and epistrophe), and Ollama requests no longer time out
-  early on longer local generations.
+NEW IN 0.24.0 FRIEND PREVIEW
+- The De-stink toolbar button now matches the weight and color of its toolbar neighbors
+  (Rewrite, Grade, Reference) instead of rendering slightly bolder.
+- Internal reliability and performance hardening; no other user-facing changes.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
