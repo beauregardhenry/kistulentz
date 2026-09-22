@@ -125,11 +125,19 @@ final class WritingActivityStore: ObservableObject {
         return archive
     }
 
-    static func dayKey(for date: Date, timeZone: TimeZone = .current) -> String {
+    /// Shared "yyyy-MM-dd" formatter, reused (not reconstructed) by every day-key call -- `dayKey`
+    /// is on the hot path for rendering the heatmap (once per visible day-square), and DateFormatter
+    /// construction is expensive enough to be worth caching. Safe to mutate `.timeZone` in place
+    /// since this type is `@MainActor`-isolated, so there's never concurrent access.
+    private static let dayKeyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = timeZone
-        return formatter.string(from: date)
+        return formatter
+    }()
+
+    static func dayKey(for date: Date, timeZone: TimeZone = .current) -> String {
+        dayKeyFormatter.timeZone = timeZone
+        return dayKeyFormatter.string(from: date)
     }
 
     // MARK: - Today
@@ -164,10 +172,8 @@ final class WritingActivityStore: ObservableObject {
 
     static func longestStreak(days: [String: DailyWritingActivity]) -> Int {
         let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = .current
-        let dates = days.keys.compactMap(formatter.date(from:)).sorted()
+        dayKeyFormatter.timeZone = .current
+        let dates = days.keys.compactMap(dayKeyFormatter.date(from:)).sorted()
         guard !dates.isEmpty else { return 0 }
         var longest = 1
         var current = 1
