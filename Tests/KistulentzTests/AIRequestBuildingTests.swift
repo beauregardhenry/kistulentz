@@ -341,6 +341,82 @@ final class AIRequestBuildingTests: XCTestCase {
         }
     }
 
+    func testOllamaRequestUsesALongerTimeoutThanTheSessionDefault() async throws {
+        AIRequestBuildingMockURLProtocol.handler = { request in
+            // Local CPU inference can legitimately run past URLSession's 60-second default; this
+            // pins the per-request override that keeps a slow-but-working Ollama generation from
+            // being cut off and misreported as "Ollama isn't running".
+            XCTAssertEqual(request.timeoutInterval, 300)
+            return (self.okResponse(for: request), self.ollamaEnvelope(content: "ok"))
+        }
+
+        _ = try await StructuredAIClient(session: mockSession()).generate(
+            provider: .ollama,
+            model: "local-model",
+            apiKey: nil,
+            instructions: "Instructions.",
+            input: "Input.",
+            schemaName: "schema",
+            schema: ["type": "object"],
+            maxTokens: 100
+        )
+    }
+
+    func testGenerateWrapsAnOllamaTimeoutAsOllamaTimedOutNotOllamaUnavailable() async {
+        AIRequestBuildingMockURLProtocol.handler = { _ in
+            throw URLError(.timedOut)
+        }
+
+        do {
+            _ = try await StructuredAIClient(session: mockSession()).generate(
+                provider: .ollama,
+                model: "local-model",
+                apiKey: nil,
+                instructions: "Instructions.",
+                input: "Input.",
+                schemaName: "schema",
+                schema: ["type": "object"],
+                maxTokens: 100
+            )
+            XCTFail("A timeout while talking to Ollama must be surfaced.")
+        } catch let error as WritingAIError {
+            // A timeout is not "Ollama isn't running" -- Ollama was reached and was working the
+            // whole time, so this must stay distinct from .ollamaUnavailable (which points the
+            // writer at "go install Ollama", the wrong fix for a slow-but-working local model).
+            guard case .ollamaTimedOut = error else {
+                return XCTFail("Expected ollamaTimedOut, got \(error).")
+            }
+        } catch {
+            XCTFail("Expected a WritingAIError, got \(error).")
+        }
+    }
+
+    func testGenerateWrapsATimeoutAsRequestTimedOutForNonOllamaProviders() async {
+        AIRequestBuildingMockURLProtocol.handler = { _ in
+            throw URLError(.timedOut)
+        }
+
+        do {
+            _ = try await StructuredAIClient(session: mockSession()).generate(
+                provider: .openAI,
+                model: "gpt-test",
+                apiKey: "sk-test-key",
+                instructions: "Instructions.",
+                input: "Input.",
+                schemaName: "schema",
+                schema: ["type": "object"],
+                maxTokens: 100
+            )
+            XCTFail("A timeout must be surfaced.")
+        } catch let error as WritingAIError {
+            guard case .requestTimedOut = error else {
+                return XCTFail("Expected requestTimedOut, got \(error).")
+            }
+        } catch {
+            XCTFail("Expected a WritingAIError, got \(error).")
+        }
+    }
+
     func testAPIErrorMessageFallsBackThroughEveryShapeOfProviderErrorBody() async throws {
         AIRequestBuildingMockURLProtocol.handler = { request in
             let body: [String: Any] = ["error": ["message": "Rate limited."]]
