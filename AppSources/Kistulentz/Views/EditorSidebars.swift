@@ -241,6 +241,9 @@ struct ReviewSidebar: View {
     let reference: EPUBReference?
     let alignment: ReferenceAlignment
     let isLoadingReference: Bool
+    let hasReferenceBooks: Bool
+    let isFindingCraftExample: Bool
+    let craftExamples: [IssueCategory: CraftExampleService.Lookup]
     let onRunReview: () -> Void
     let onChooseReference: () -> Void
     let onRemoveReference: () -> Void
@@ -248,6 +251,7 @@ struct ReviewSidebar: View {
     let onApply: (WritingIssue) -> Void
     let onDecline: (WritingIssue) -> Void
     let onRewrite: (WritingIssue) -> Void
+    let onShowCraftExample: (WritingIssue) -> Void
     let onApplyAll: () -> Void
 
     private var hasApplicableSuggestions: Bool {
@@ -319,10 +323,14 @@ struct ReviewSidebar: View {
                             issue: issue,
                             canRewrite: hasAPIKey && !isRewriting,
                             isPracticeModeEnabled: isPracticeModeEnabled,
+                            hasReferenceBooks: hasReferenceBooks,
+                            canFindCraftExample: hasAPIKey && !isFindingCraftExample,
+                            craftExample: craftExamples[issue.category],
                             onSelect: onSelect,
                             onApply: onApply,
                             onDecline: onDecline,
-                            onRewrite: onRewrite
+                            onRewrite: onRewrite,
+                            onShowCraftExample: onShowCraftExample
                         )
                     }
 
@@ -468,10 +476,14 @@ private struct IssueCard: View {
     let issue: WritingIssue
     let canRewrite: Bool
     let isPracticeModeEnabled: Bool
+    let hasReferenceBooks: Bool
+    let canFindCraftExample: Bool
+    let craftExample: CraftExampleService.Lookup?
     let onSelect: (WritingIssue) -> Void
     let onApply: (WritingIssue) -> Void
     let onDecline: (WritingIssue) -> Void
     let onRewrite: (WritingIssue) -> Void
+    let onShowCraftExample: (WritingIssue) -> Void
 
     /// Non-nil exactly when this specific card should withhold its fix: Practice Mode is on and
     /// this issue's category has a craft judgment worth practicing (`IssueCategory.practicePrompt`
@@ -522,6 +534,34 @@ private struct IssueCard: View {
             }
             .font(.caption2.weight(.medium))
 
+            if hasReferenceBooks, issue.category.practicePrompt != nil, let craftExample {
+                switch craftExample {
+                case .found(_, let bookTitle, let bookAuthor, let excerpt, let whyItWorks):
+                    DisclosureGroup("A strong example") {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(excerpt.text)
+                                .font(.system(size: 12.5, design: .serif))
+                                .italic()
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text("— \(bookAuthor), \(bookTitle)")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                            Text(whyItWorks)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.top, 2)
+                        }
+                        .padding(.top, 2)
+                    }
+                    .font(.caption2.weight(.medium))
+                case .notFound:
+                    Text("No strong example found in your reference library yet.")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+
             if let practicePrompt {
                 HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "questionmark.circle")
@@ -545,6 +585,15 @@ private struct IssueCard: View {
 
             HStack(spacing: 7) {
                 Spacer()
+                if hasReferenceBooks, issue.category.practicePrompt != nil, craftExample == nil {
+                    Button("Show a Strong Example") { onShowCraftExample(issue) }
+                        .buttonStyle(.bordered)
+                        .controlSize(.mini)
+                        .disabled(!canFindCraftExample)
+                        .help(canFindCraftExample
+                            ? "Find a short excerpt from your reference library that handles this well"
+                            : "Connect or choose an AI provider to find an example")
+                }
                 Button("Decline") { onDecline(issue) }
                     .buttonStyle(.bordered)
                     .controlSize(.mini)

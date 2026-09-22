@@ -123,6 +123,7 @@
 		A7418D51CF49839BE2562961 /* AIRequestViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF499D28203EAEC8BEE7F5 /* AIRequestViews.swift */; };
 		A853920442BA125F23692032 /* NativeWritingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2B5529B6B65376DA273CF5 /* NativeWritingService.swift */; };
 		A9EC6B7488C436D9D8462AB6 /* EditorWorkspace+ProjectLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */; };
+		AB2D5B433A8C7C9ECB856416 /* CraftExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C85FB9983440CACAC7338F /* CraftExampleService.swift */; };
 		B0068AC701780783E6F9EA43 /* SelectionReplacementPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6D6120FE63E3735B10F3C9 /* SelectionReplacementPlanner.swift */; };
 		B029AAADC5365B01A99E3ABF /* HTMLImportSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7C72C2DC7E5F88CDED24D /* HTMLImportSanitizer.swift */; };
 		B03D8246A24BFC97FE50CCA2 /* ReferenceLibraryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3A2106CCC89E183BE9736 /* ReferenceLibraryModels.swift */; };
@@ -312,6 +313,7 @@
 		B65E2DA8CBF37F9BBA73D385 /* KistulentzIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KistulentzIcon.png; sourceTree = "<group>"; };
 		B9574BEAADCBDB2E2FEC32D0 /* WritingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingModels.swift; sourceTree = "<group>"; };
 		BBE34B0450654CCF9FFF9FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C2C85FB9983440CACAC7338F /* CraftExampleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CraftExampleService.swift; sourceTree = "<group>"; };
 		C31100543207703852E10009 /* EditorWorkspace+ProjectLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorWorkspace+ProjectLifecycle.swift"; sourceTree = "<group>"; };
 		C4F4A0B4362B6AD91D05AF74 /* PublicationReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationReadiness.swift; sourceTree = "<group>"; };
 		C650B1A545CACE4B69EBE945 /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				7486A93573E099EAA065B8F3 /* BetaReadersStore.swift */,
 				8F8FBD5607F08A28699626E9 /* CancellableOperationController.swift */,
 				CED3AE612CCEF6208E69CA7A /* CitationFormatter.swift */,
+				C2C85FB9983440CACAC7338F /* CraftExampleService.swift */,
 				824F4754B6ADB26BBC5EEE36 /* CustomFontDisk.swift */,
 				E490574F5FF619487EC616C1 /* CustomFontStore.swift */,
 				015B975EAF5795EFF284DBCC /* DestinkService.swift */,
@@ -747,6 +750,7 @@
 				C83303A4E814184FD2430CCE /* BetaReadersStore.swift in Sources */,
 				4B12D2974200CBD8EF1D27D7 /* CancellableOperationController.swift in Sources */,
 				8C6893AFBE1F61525FE3D120 /* CitationFormatter.swift in Sources */,
+				AB2D5B433A8C7C9ECB856416 /* CraftExampleService.swift in Sources */,
 				0F9D978D366FE7927F5D29CB /* CustomFontDisk.swift in Sources */,
 				4E210CB68E9639EFE0C21425 /* CustomFontModels.swift in Sources */,
 				57C948958E03A88B5CC49B87 /* CustomFontStore.swift in Sources */,

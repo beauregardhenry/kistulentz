@@ -12,6 +12,8 @@ final class EditorViewModel: ObservableObject {
     @Published private(set) var isLoadingReference = false
     @Published private(set) var isRewriting = false
     @Published var rewritePresentation: SelectionRewritePresentation?
+    @Published private(set) var isFindingCraftExample = false
+    @Published private(set) var craftExamples: [IssueCategory: CraftExampleService.Lookup] = [:]
     @Published private(set) var dismissedSuggestions: [DismissedSuggestion] = []
     @Published private(set) var styleDecisions: [ProjectStyleDecision] = []
     @Published var errorMessage: String?
@@ -20,12 +22,14 @@ final class EditorViewModel: ObservableObject {
     private var analysisTask: Task<Void, Never>?
     private var analysisRequestID = UUID()
     private var rewriteTask: Task<Void, Never>?
+    private var craftExampleTask: Task<Void, Never>?
     private var referenceTask: Task<Void, Never>?
     private var currentText = ""
     private var currentDocumentKey: String?
     private var avoidedWords: [String] = []
     private var hasConfiguredDocument = false
     private let rewriteService: SelectionRewriteService
+    private let craftExampleService: CraftExampleService
     private let dismissalStore: DismissedSuggestionStore
     private let structuralAnalyzerOverride: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)?
 
@@ -38,10 +42,12 @@ final class EditorViewModel: ObservableObject {
     init(
         dismissalStore: DismissedSuggestionStore = DismissedSuggestionStore(),
         rewriteService: SelectionRewriteService = SelectionRewriteService(),
+        craftExampleService: CraftExampleService = CraftExampleService(),
         structuralAnalyzer: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)? = nil
     ) {
         self.dismissalStore = dismissalStore
         self.rewriteService = rewriteService
+        self.craftExampleService = craftExampleService
         self.structuralAnalyzerOverride = structuralAnalyzer
     }
 
@@ -255,6 +261,43 @@ final class EditorViewModel: ObservableObject {
             } catch {
                 self.errorMessage = error.localizedDescription
                 self.isRewriting = false
+            }
+        }
+    }
+
+    /// Session-only cache, keyed by category: once a category has an entry (`.found` or `.none`),
+    /// repeat flags of the same category (an adverb flags constantly) show the cached result
+    /// instantly instead of re-issuing an AI request. Cleared implicitly on relaunch since it's
+    /// never persisted -- an intentional v1 scope decision, not an oversight.
+    func runCraftExample(
+        category: IssueCategory,
+        request: AIRequestPreview,
+        candidates: [CraftExampleService.Candidate],
+        settings: AppSettings
+    ) {
+        guard craftExamples[category] == nil,
+              !isFindingCraftExample,
+              case .craftExample = request.purpose else { return }
+
+        isFindingCraftExample = true
+        errorMessage = nil
+        craftExampleTask?.cancel()
+        craftExampleTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                let lookup = try await craftExampleService.find(
+                    request: request,
+                    candidates: candidates,
+                    apiKey: settings.apiKey(for: request.provider)
+                )
+                guard !Task.isCancelled else { return }
+                self.craftExamples[category] = lookup
+                self.isFindingCraftExample = false
+            } catch is CancellationError {
+                self.isFindingCraftExample = false
+            } catch {
+                self.errorMessage = error.localizedDescription
+                self.isFindingCraftExample = false
             }
         }
     }
