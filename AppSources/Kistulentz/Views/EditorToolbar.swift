@@ -213,15 +213,20 @@ struct EditorToolbar: View {
             } label: {
                 Label("De-stink", systemImage: "doc.text.magnifyingglass")
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.plain)
             // Every other icon control in this toolbar is a Menu styled .borderlessButton, and
             // none of them sets an explicit tint -- they render in whatever color SwiftUI's
             // default .borderlessButton menu style produces. An earlier version of this button
             // set .tint(.accentColor) on the theory that Menus are accent-tinted by default and
             // this Button needed to be told to match; that premise was wrong, and forcing the
             // accent color here instead made this the one control that visibly changes with the
-            // user's System Settings accent color choice while its siblings do not. Leaving this
-            // control untinted, the same as every sibling, is what actually matches them.
+            // user's System Settings accent color choice while its siblings do not.
+            //
+            // Untinted still wasn't enough: `.buttonStyle(.borderless)` on macOS renders its
+            // label with its own emphasis (visibly bolder/brighter than a Menu's borderlessButton
+            // label at rest), so De-stink still stood out next to Rewrite/Grade/Reference even
+            // once color stopped being the variable. `.plain` opts out of that automatic styling
+            // entirely and renders the Label exactly as specified, matching its siblings.
             .help("Check this prose locally for stock phrasing and structural writing tics")
 
             Menu {
