@@ -38,8 +38,10 @@ enum WritingAIError: LocalizedError {
     case missingModel
     case missingAPIKey(String)
     case ollamaUnavailable
+    case ollamaTimedOut
     case invalidResponse
     case network(String)
+    case requestTimedOut
     case api(status: Int, message: String)
 
     var errorDescription: String? {
@@ -58,10 +60,14 @@ enum WritingAIError: LocalizedError {
             "Add your \(provider) API key in Settings before using this command."
         case .ollamaUnavailable:
             "Kistulentz could not reach Ollama on this Mac. Open Ollama, make sure at least one model is installed, then try Detect Models in Settings."
+        case .ollamaTimedOut:
+            "Ollama is taking longer than usual to respond. It may still be loading the model or generating a long response -- wait a bit and try again, or choose a smaller or faster model in Settings."
         case .invalidResponse:
             "The provider returned a response Kistulentz could not read. Try again or choose another model."
         case .network(let message):
             "The review could not connect: \(message)"
+        case .requestTimedOut:
+            "The request took too long and timed out. Try again."
         case .api(let status, let message):
             "The provider returned error \(status): \(message)"
         }
@@ -82,7 +88,9 @@ extension WritingAIError {
         "Add your ",
         "Choose a model in Settings.",
         "Kistulentz could not reach Ollama",
-        "The review could not connect:"
+        "Ollama is taking longer than usual to respond",
+        "The review could not connect:",
+        "The request took too long and timed out."
     ]
 
     static func looksLikeProviderRelatedMessage(_ message: String) -> Bool {

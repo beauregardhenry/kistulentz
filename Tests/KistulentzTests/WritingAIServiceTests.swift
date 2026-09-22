@@ -57,8 +57,10 @@ final class WritingAIServiceTests: XCTestCase {
         XCTAssertEqual(WritingAIError.missingModel.errorDescription, "Choose a model in Settings.")
         XCTAssertTrue(WritingAIError.missingAPIKey("Anthropic").errorDescription?.contains("Anthropic") ?? false)
         XCTAssertTrue(WritingAIError.ollamaUnavailable.errorDescription?.contains("Ollama") ?? false)
+        XCTAssertTrue(WritingAIError.ollamaTimedOut.errorDescription?.contains("Ollama") ?? false)
         XCTAssertTrue(WritingAIError.invalidResponse.errorDescription?.contains("could not read") ?? false)
         XCTAssertEqual(WritingAIError.network("timed out").errorDescription, "The review could not connect: timed out")
+        XCTAssertTrue(WritingAIError.requestTimedOut.errorDescription?.contains("timed out") ?? false)
         XCTAssertEqual(WritingAIError.api(status: 429, message: "rate limited").errorDescription, "The provider returned error 429: rate limited")
     }
 
@@ -71,8 +73,10 @@ final class WritingAIServiceTests: XCTestCase {
             .missingModel,
             .missingAPIKey("Anthropic"),
             .ollamaUnavailable,
+            .ollamaTimedOut,
             .invalidResponse,
             .network("timed out"),
+            .requestTimedOut,
             .api(status: 429, message: "You have no credits remaining.")
         ]
         for error in actionable {

@@ -136,6 +136,12 @@ struct StructuredAIClient {
         var request = URLRequest(url: Self.ollamaBaseURL.appendingPathComponent("api/chat"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        // Local CPU inference on a larger model can legitimately take several minutes for a
+        // manuscript-length request -- far past URLSession's 60-second default. This overrides
+        // the session configuration's timeoutIntervalForRequest for this one request only; the
+        // cloud providers below keep the default, since a slow OpenAI/Anthropic response is more
+        // likely a real problem worth failing fast on than expected local-hardware latency.
+        request.timeoutInterval = 300
         request.httpBody = try JSONSerialization.data(withJSONObject: [
             "model": model,
             "messages": [
@@ -151,6 +157,11 @@ struct StructuredAIClient {
         do {
             data = try await perform(request)
         } catch let error as WritingAIError {
+            // A timeout is not "Ollama isn't running" -- even at the longer timeout above, still
+            // distinguished from other transport failures (connection refused, DNS, ...) so the
+            // error the writer sees points at the right fix (wait or pick a faster model) rather
+            // than "go install Ollama" when Ollama was reached and working the whole time.
+            if case .requestTimedOut = error { throw WritingAIError.ollamaTimedOut }
             if case .network = error { throw WritingAIError.ollamaUnavailable }
             throw error
         }
@@ -176,6 +187,8 @@ struct StructuredAIClient {
             throw CancellationError()
         } catch let error as URLError where error.code == .cancelled && Task.isCancelled {
             throw CancellationError()
+        } catch let error as URLError where error.code == .timedOut {
+            throw WritingAIError.requestTimedOut
         } catch let error as WritingAIError {
             throw error
         } catch {
