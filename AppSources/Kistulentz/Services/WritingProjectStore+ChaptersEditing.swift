@@ -19,6 +19,7 @@ extension WritingProjectStore {
         do {
             try WritingProjectDisk.writeChapter(text, relativePath: selectedChapterPath, at: rootURL)
             isDirty = false
+            onDidSaveChapter?("\(rootURL.path)#\(selectedChapterPath)", WritingProjectDisk.wordCount(in: text))
         } catch {
             errorMessage = error.localizedDescription
         }

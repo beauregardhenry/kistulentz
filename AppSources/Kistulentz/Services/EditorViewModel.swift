@@ -33,6 +33,12 @@ final class EditorViewModel: ObservableObject {
     private let dismissalStore: DismissedSuggestionStore
     private let structuralAnalyzerOverride: ((String, Int, Bool, Bool) async -> BeneparAnalysis?)?
 
+    /// Set externally by whoever owns this view model (`EditorWorkspace`, wiring the app-wide
+    /// `WritingActivityStore`) rather than constructor-injected: `viewModel` is created in a
+    /// `@StateObject` property initializer, before `@EnvironmentObject`s are available, the same
+    /// timing constraint `WritingProjectStore.onDidSaveChapter` already works around.
+    var onQualitySample: ((_ issueCount: Int, _ wordCount: Int) -> Void)?
+
     /// `structuralAnalyzerOverride` is nil in production, in which case `runStructuralAnalyzer`
     /// below calls straight through to the real, shared Benepar singleton -- which can't be
     /// swapped once `.shared` is referenced directly, so a default *value* pointing at it (rather
@@ -156,6 +162,7 @@ final class EditorViewModel: ObservableObject {
             self.referenceAlignment = alignment
             self.structuralProfile = nil
             self.isUsingBenepar = false
+            self.onQualitySample?(self.allIssues.count, result.stats.words)
 
             if !immediately {
                 try? await Task.sleep(for: .milliseconds(430))

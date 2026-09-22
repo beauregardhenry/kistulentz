@@ -5,6 +5,8 @@ import SwiftUI
 /// `WritingGrowthStore` for why this is a separate signal from the per-project style-learning log.
 struct WritingGrowthView: View {
     @ObservedObject var store: WritingGrowthStore
+    @EnvironmentObject private var writingActivity: WritingActivityStore
+    @EnvironmentObject private var settings: AppSettings
     @Environment(\.dismiss) private var dismiss
     @State private var showingClearConfirmation = false
 
@@ -35,6 +37,10 @@ struct WritingGrowthView: View {
             .padding(14)
             Divider()
 
+            WritingActivitySection(activityStore: writingActivity, dailyWordGoal: settings.dailyWordGoal)
+                .padding(16)
+            Divider()
+
             if recentMonths.isEmpty {
                 ContentUnavailableView(
                     "No Growth History Yet",
@@ -53,7 +59,7 @@ struct WritingGrowthView: View {
                 }
             }
         }
-        .frame(minWidth: 560, minHeight: 480)
+        .frame(minWidth: 560, minHeight: 620)
         .confirmationDialog(
             "Clear all writing growth history?",
             isPresented: $showingClearConfirmation,
@@ -131,6 +137,106 @@ private struct WritingGrowthCategoryRow: View {
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .frame(width: 150, alignment: .trailing)
+        }
+    }
+}
+
+/// A GitHub-style calendar heatmap of writing activity, colored by craft quality rather than raw
+/// volume -- see `WritingActivityStore` for why those are kept as two separate signals. A day's
+/// *presence* here (any fill at all) is a pure "did I show up" streak signal; the *color* on top of
+/// that is the only place quality shows up, ranked against the writer's own history so a messy
+/// early-draft day in one genre isn't penalized the same as a different writer's polished pass.
+private struct WritingActivitySection: View {
+    @ObservedObject var activityStore: WritingActivityStore
+    let dailyWordGoal: Int
+
+    private let weeksShown = 16
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top, spacing: 24) {
+                Label {
+                    Text("\(activityStore.currentStreak)-day streak")
+                        .font(.subheadline.weight(.semibold))
+                } icon: {
+                    Image(systemName: "flame.fill")
+                        .foregroundStyle(activityStore.currentStreak > 0 ? .orange : .secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Today: \(activityStore.today.wordsWritten) of \(dailyWordGoal) words")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    ProgressView(value: Double(activityStore.today.wordsWritten), total: Double(max(dailyWordGoal, 1)))
+                        .frame(width: 180)
+                }
+
+                Spacer()
+            }
+
+            heatmapGrid
+
+            HStack(spacing: 4) {
+                Text("Noisier").font(.caption2).foregroundStyle(.secondary)
+                ForEach(WritingHeatLevel.allCases, id: \.self) { level in
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(Self.color(for: level))
+                        .frame(width: 10, height: 10)
+                }
+                Text("Cleaner").font(.caption2).foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    private var heatmapGrid: some View {
+        let weeks = Self.recentWeeks(weeksShown: weeksShown, today: Date(), calendar: .current)
+        return HStack(alignment: .top, spacing: 3) {
+            ForEach(Array(weeks.enumerated()), id: \.offset) { _, week in
+                VStack(spacing: 3) {
+                    ForEach(week, id: \.self) { day in
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(fillColor(for: day))
+                            .frame(width: 11, height: 11)
+                    }
+                }
+            }
+        }
+    }
+
+    private func fillColor(for day: Date) -> Color {
+        guard day <= Date() else { return .clear }
+        guard activityStore.days[WritingActivityStore.dayKey(for: day)] != nil else {
+            return Color.secondary.opacity(0.12)
+        }
+        return Self.color(for: activityStore.heatLevel(for: day))
+    }
+
+    private static func color(for level: WritingHeatLevel) -> Color {
+        switch level {
+        case .none: Color.blue.opacity(0.35)
+        case .q1: Color.red.opacity(0.55)
+        case .q2: Color.orange.opacity(0.6)
+        case .q3: Color.green.opacity(0.55)
+        case .q4: Color.green.opacity(0.9)
+        }
+    }
+
+    /// `weeksShown` columns of 7 dates each (Sunday first), the last column ending on the Saturday
+    /// of the current week -- so today's cell lands wherever it falls in that final column, and any
+    /// remaining days later in the current week are simply future dates the caller renders blank.
+    private static func recentWeeks(weeksShown: Int, today: Date, calendar: Calendar) -> [[Date]] {
+        let startOfToday = calendar.startOfDay(for: today)
+        let weekday = calendar.component(.weekday, from: startOfToday)
+        guard let endOfThisWeek = calendar.date(byAdding: .day, value: 7 - weekday, to: startOfToday) else {
+            return []
+        }
+        return (0..<weeksShown).reversed().compactMap { weekOffset -> [Date]? in
+            guard let weekEnd = calendar.date(byAdding: .day, value: -7 * weekOffset, to: endOfThisWeek) else {
+                return nil
+            }
+            return (0..<7).reversed().compactMap { dayOffset in
+                calendar.date(byAdding: .day, value: -dayOffset, to: weekEnd)
+            }
         }
     }
 }
