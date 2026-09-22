@@ -38,7 +38,7 @@ enum PublicationArchiveUtility {
         guard process.terminationStatus == 0 else {
             let data = errorPipe.fileHandleForReading.readDataToEndOfFile()
             let message = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
-            throw PublicationExportError.archiveCreationFailed(message?.isEmpty == false ? message! : "The system ZIP utility failed.")
+            throw PublicationExportError.archiveCreationFailed(message.nonEmpty(or: "The system ZIP utility failed."))
         }
     }
 }

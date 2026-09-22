@@ -32,7 +32,7 @@ struct LibraryBook: Identifiable, Codable {
             id: id,
             fileName: URL(fileURLWithPath: sourcePath).lastPathComponent,
             title: title,
-            author: author.nonEmpty,
+            author: author.nonEmptyTrimmed,
             subjects: genres,
             chapters: excerpts.enumerated().map { index, excerpt in
                 ReferenceChapter(
@@ -128,7 +128,7 @@ struct ReferenceDeepening: Codable {
 }
 
 extension String {
-    fileprivate var nonEmpty: String? {
+    fileprivate var nonEmptyTrimmed: String? {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty ? nil : trimmed
     }

@@ -199,7 +199,7 @@ enum WritingProjectDisk {
         let snapshot = ProjectSnapshot(
             id: id,
             chapterPath: chapterPath,
-            name: title?.isEmpty == false ? title! : reason,
+            name: title.nonEmpty(or: reason),
             reason: reason,
             createdAt: now,
             fileName: fileName

@@ -366,14 +366,3 @@ private final class XHTMLTextParser: NSObject, XMLParserDelegate {
 private func localName(_ name: String) -> String {
     name.split(separator: ":").last.map { String($0).lowercased() } ?? name.lowercased()
 }
-
-private extension Optional where Wrapped == String {
-    var nonEmpty: String? {
-        guard let self, !self.isEmpty else { return nil }
-        return self
-    }
-}
-
-private extension String {
-    var nonEmpty: String? { isEmpty ? nil : self }
-}

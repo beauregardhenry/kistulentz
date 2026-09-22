@@ -283,7 +283,7 @@ private final class DOCXMarkdownRenderer {
                 .joined(separator: " ")
             guard !value.isEmpty else { continue }
             let author = node.attribute("author")?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let prefix = author?.isEmpty == false ? "Comment by \(author!): " : "Comment: "
+            let prefix = author?.nonEmpty.map { "Comment by \($0): " } ?? "Comment: "
             blocks.append("[^comment-\(id)]: \(prefix)\(value)")
         }
         if !usedComments.isEmpty {

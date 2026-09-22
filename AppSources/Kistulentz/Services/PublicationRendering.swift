@@ -330,7 +330,7 @@ final class PublicationRenderer {
 
     private func parentheticalCitation(_ source: ResearchSource, locator: String) -> String {
         let author = source.authors.first?.familyName.trimmingCharacters(in: .whitespacesAndNewlines)
-        let name = (author?.isEmpty == false ? author! : source.primaryCreatorName)
+        let name = author.nonEmpty(or: source.primaryCreatorName)
         let year = source.issuedYear.map(String.init) ?? "n.d."
         return [name, year, locator].filter { !$0.isEmpty }.joined(separator: ", ")
     }

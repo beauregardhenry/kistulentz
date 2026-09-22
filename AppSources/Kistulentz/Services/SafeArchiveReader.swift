@@ -335,7 +335,7 @@ enum SafeArchiveReader {
         guard process.terminationStatus == 0 else {
             let detail = String(data: output, encoding: .utf8)?
                 .trimmingCharacters(in: .whitespacesAndNewlines)
-            throw ArchiveSafetyError.extractionFailed(detail?.isEmpty == false ? detail : nil)
+            throw ArchiveSafetyError.extractionFailed(detail?.nonEmpty)
         }
         return output
     }
