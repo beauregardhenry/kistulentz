@@ -423,6 +423,15 @@ enum DestinkEngine {
             ))
         }
 
+        findings += repeatedEdgeFindings(
+            sentences: sentences, prose: prose, original: original,
+            ruleID: "discourse/anaphora", edge: "open with", descriptor: "opening", key: openingKey
+        )
+        findings += repeatedEdgeFindings(
+            sentences: sentences, prose: prose, original: original,
+            ruleID: "discourse/epistrophe", edge: "end with", descriptor: "ending", key: closingKey
+        )
+
         let normalizedSentences = sentences.map { range -> (String, NSRange) in
             let raw = (prose as NSString).substring(with: range)
             let value = raw.lowercased()
@@ -458,6 +467,95 @@ enum DestinkEngine {
             }
         }
         return findings
+    }
+
+    /// Shared run-builder for anaphora (repeated sentence openings) and epistrophe (repeated
+    /// sentence endings): both are the same shape -- a maximal run of 3+ CONSECUTIVE sentences
+    /// keying the same at one edge -- so they share this walker rather than duplicating it.
+    /// Deliberately simpler than a sliding window tolerant of gaps: two matching sentences a page
+    /// apart share a word but aren't a stylistic tic, and consecutive-only avoids over-flagging on
+    /// documents with any incidental repetition scattered throughout.
+    private static func repeatedEdgeFindings(
+        sentences: [NSRange],
+        prose: String,
+        original: String,
+        ruleID: String,
+        edge: String,
+        descriptor: String,
+        key: (String) -> (key: String, display: String)?
+    ) -> [DestinkFinding] {
+        var findings: [DestinkFinding] = []
+        var run: [(range: NSRange, key: String, display: String)] = []
+        func flush() {
+            if run.count >= 3 {
+                let range = run.dropFirst().reduce(run[0].range, { NSUnionRange($0, $1.range) })
+                let count = run.count
+                findings.append(makeFinding(
+                    ruleID: ruleID, tier: .discourse,
+                    severity: count >= 5 ? .high : .medium,
+                    range: range, text: original,
+                    message: "\(count) sentences in a row \(edge) \u{201c}\(run[0].display)\u{201d}",
+                    explanation: "Repeating the same \(descriptor) \(count) times in a stretch reads like a drumbeat, not a style. Rewrite at least some of these so they don't share it."
+                ))
+            }
+            run = []
+        }
+        for range in sentences {
+            let sentence = (prose as NSString).substring(with: range)
+            guard let found = key(sentence) else {
+                flush()
+                continue
+            }
+            if let last = run.last, last.key == found.key {
+                run.append((range, found.key, found.display))
+            } else {
+                flush()
+                run = [(range, found.key, found.display)]
+            }
+        }
+        flush()
+        return findings
+    }
+
+    // A leading markdown marker (bullet, ordered-list number, heading hashes, blockquote) is
+    // punctuation, not the sentence's first word -- without stripping it, three bullets or three
+    // headings in a row key on "-"/"#" and read as anaphora regardless of the prose beneath them.
+    private static let leadingMarkdownMarker = #"^\s*(?:[-*+]\s+|\d+[.)]\s+|#{1,6}\s+|>\s*)+"#
+
+    // Closed-class words that mean nothing as a same-edge key on their own ("A dog barked." and
+    // "A cat slept." don't open the same way just because both start with "A") and need a second
+    // word to disambiguate.
+    private static let repeatedEdgeAmbiguousWords: Set<String> = [
+        "a", "an", "the", "this", "that", "these", "those", "not",
+        "it", "he", "she", "they", "i", "we", "you", "there"
+    ]
+
+    private static func openingKey(_ sentence: String) -> (key: String, display: String)? {
+        let stripped = sentence.replacingOccurrences(of: leadingMarkdownMarker, with: "", options: .regularExpression)
+        let words = stripped.split(whereSeparator: \.isWhitespace).map(String.init)
+        guard let first = words.first else { return nil }
+        let normalizedFirst = first.lowercased().trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        guard !normalizedFirst.isEmpty else { return nil }
+        if repeatedEdgeAmbiguousWords.contains(normalizedFirst), words.count > 1 {
+            let display = words.prefix(2).joined(separator: " ")
+            return (display.lowercased(), display)
+        }
+        return (normalizedFirst, first)
+    }
+
+    private static func closingKey(_ sentence: String) -> (key: String, display: String)? {
+        let words = sentence.split(whereSeparator: \.isWhitespace).map(String.init)
+        guard let lastRaw = words.last else { return nil }
+        let last = lastRaw.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        guard !last.isEmpty else { return nil }
+        let normalizedLast = last.lowercased()
+        guard repeatedEdgeAmbiguousWords.contains(normalizedLast), words.count > 1 else {
+            return (normalizedLast, last)
+        }
+        let secondLast = words[words.count - 2].trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        guard !secondLast.isEmpty else { return (normalizedLast, last) }
+        let display = "\(secondLast) \(last)"
+        return (display.lowercased(), display)
     }
 
     private static func claudeCooccurrenceFinding(in text: String, findings: [DestinkFinding]) -> [DestinkFinding] {
@@ -571,9 +669,24 @@ enum DestinkEngine {
         )
     }
 
+    // A sentence that ends without real terminal punctuation -- a heading, a bare line before a
+    // blank-line paragraph break, or the very end of the document -- consumes no `.!?` for the
+    // NEXT sentence's `(?<=[.!?])` anchor to hold at. Without the bounded-lookbehind alternative
+    // below, that leaves no valid start position for the paragraph that follows one of those, and
+    // its first sentence is silently dropped from every discourse-tier rule that reads `sentences`
+    // (anaphora, epistrophe, punchy-fragments, countdown, repetition/dilution, staccato-register)
+    // -- found via `discourse/anaphora` firing on a bare 3-sentence paragraph but not on the same
+    // paragraph placed after a heading, where the paragraph's first sentence was missing entirely.
     private static func sentenceRanges(in text: String) -> [NSRange] {
         let source = text as NSString
-        guard let regex = try? NSRegularExpression(pattern: #"(?s)(?:^|(?<=[.!?]))\s*[^.!?\n][^.!?]*?(?:[.!?]+|(?=\n\s*\n)|$)"#) else { return [] }
+        // ICU regex (NSRegularExpression) rejects unbounded-length lookbehind -- `\s*` inside
+        // `(?<=...)` makes the whole pattern invalid, and since this was behind `try?`, that
+        // failure was silent: it returned zero sentences for every call, not just the paragraphs
+        // it was meant to fix. Bounded to 8 characters of intervening whitespace, comfortably
+        // more than the "\n\n" or "\n \n" a real paragraph break ever contains.
+        guard let regex = try? NSRegularExpression(
+            pattern: #"(?s)(?:^|(?<=[.!?])|(?<=\n\s{0,8}\n))\s*[^.!?\n][^.!?]*?(?:[.!?]+|(?=\n\s*\n)|$)"#
+        ) else { return [] }
         return regex.matches(in: text, range: NSRange(location: 0, length: source.length))
             .map(\.range)
             .filter { !source.substring(with: $0).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }

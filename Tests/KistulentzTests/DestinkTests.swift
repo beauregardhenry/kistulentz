@@ -115,6 +115,67 @@ final class DestinkTests: XCTestCase {
         XCTAssertEqual(findings.filter { $0.ruleID == "discourse/countdown" }.count, 1)
     }
 
+    func testASentenceRightAfterAHeadingIsNotDroppedFromDiscourseAnalysis() {
+        // Regression test for the bug that blocked discourse/anaphora from firing on any
+        // realistic document: a heading (or any line with no `.!?`) ending at a paragraph break
+        // left no valid start position for the very next sentence, silently dropping it from
+        // sentenceRanges -- and therefore from every discourse-tier rule, not just anaphora.
+        let text = """
+        # Heading with no punctuation
+
+        They assume the model is right. They assume the data is clean. They assume no one will check.
+        """
+
+        let findings = DestinkEngine.analyze(text).filter { $0.ruleID == "discourse/anaphora" }
+
+        XCTAssertEqual(findings.count, 1)
+        XCTAssertTrue(findings.first?.excerpt.hasPrefix("They assume the model is right") == true)
+    }
+
+    func testAnaphoraFlagsThreeConsecutiveSentencesSharingAnOpeningButNotTwo() {
+        let text = "They assume the model is right. They assume the data is clean. They assume no one will check."
+        let onlyTwo = "They assume the model is right. They assume the data is clean. Someone should check that."
+
+        let findings = DestinkEngine.analyze(text).filter { $0.ruleID == "discourse/anaphora" }
+        XCTAssertEqual(findings.count, 1)
+        XCTAssertEqual(findings.first?.severity, .medium)
+
+        XCTAssertFalse(DestinkEngine.analyze(onlyTwo).contains { $0.ruleID == "discourse/anaphora" })
+    }
+
+    func testAnaphoraDisambiguatesClosedClassOpenersWithASecondWord() {
+        let text = "A dog barked twice. A cat slept soundly. A bird sang loudly."
+        let realRepeat = "A dog barked twice. A dog howled at night. A dog ran off."
+
+        XCTAssertFalse(DestinkEngine.analyze(text).contains { $0.ruleID == "discourse/anaphora" })
+        XCTAssertTrue(DestinkEngine.analyze(realRepeat).contains { $0.ruleID == "discourse/anaphora" })
+    }
+
+    func testAnaphoraStripsLeadingMarkdownMarkersBeforeKeying() {
+        let text = "- The plan works.\n- The plan scales.\n- The plan ships."
+
+        let findings = DestinkEngine.analyze(text).filter { $0.ruleID == "discourse/anaphora" }
+
+        XCTAssertEqual(findings.count, 1)
+    }
+
+    func testAnaphoraEscalatesToHighAtFivePlus() {
+        let text = "It failed once. It failed twice. It failed again. It failed badly. It failed completely."
+
+        let findings = DestinkEngine.analyze(text).filter { $0.ruleID == "discourse/anaphora" }
+
+        XCTAssertEqual(findings.map(\.severity), [.high])
+    }
+
+    func testEpistropheFlagsThreeConsecutiveSentencesSharingAnEnding() {
+        let text = "We built it again. We shipped it again. We broke it again."
+
+        let findings = DestinkEngine.analyze(text).filter { $0.ruleID == "discourse/epistrophe" }
+
+        XCTAssertEqual(findings.count, 1)
+        XCTAssertEqual(findings.first?.severity, .medium)
+    }
+
     func testStaccatoRegisterRequiresDocumentLevelDensity() {
         let text = "This works.\n\nThat failed.\n\nWe moved.\n\nThey stayed.\n\nIt ended.\n\nNothing changed."
 
@@ -144,6 +205,32 @@ final class DestinkTests: XCTestCase {
         XCTAssertEqual(report.score, 50, accuracy: 0.001)
         XCTAssertEqual(report.score(for: .lexical), 10, accuracy: 0.001)
         XCTAssertEqual(report.score(for: .syntactic), 40, accuracy: 0.001)
+    }
+
+    func testBeneparTricolonFindingDecodesAndMergesAsANewAdditionWithNoLocalEquivalent() throws {
+        // Locks in the contract benepar_worker.py's handle_destink already ships under
+        // "tricolon/comma-series" (tree-backed 3+-item coordination, see that file's
+        // handle_destink for the detection itself) -- there is no equivalent Swift-side regex
+        // rule, so this documents/protects the merge path rather than re-testing the Python
+        // detection logic, which this test suite has no access to run.
+        let text = "She packed the tent, the stove, and the maps before dawn."
+        let range = (text as NSString).range(of: text)
+        let worker = BeneparWorkerDestinkFinding(
+            ruleId: "tricolon/comma-series",
+            tier: "syntactic",
+            severity: "candidate",
+            location: range.location,
+            length: range.length,
+            excerpt: text,
+            message: "Benepar found a three-or-more-part coordinated series",
+            explanation: "Tree-backed"
+        )
+        let parsed = try XCTUnwrap(worker.finding(in: text))
+        let local = DestinkEngine.analyze(text)
+
+        XCTAssertEqual(parsed.severity, .candidate)
+        let merged = DestinkEngine.merge(local: local, benepar: [parsed])
+        XCTAssertEqual(merged.filter { $0.ruleID == "tricolon/comma-series" }.count, 1)
     }
 
     func testBeneparFindingDecodesUTF16RangeAndMergesWithoutDuplicateRuleSpan() throws {
