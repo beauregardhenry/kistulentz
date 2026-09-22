@@ -85,6 +85,15 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
+                Stepper(value: $settings.dailyWordGoal, in: AppSettings.dailyWordGoalRange, step: 50) {
+                    Text("Daily word goal: \(settings.dailyWordGoal)")
+                }
+                .accessibilityIdentifier("DailyWordGoal")
+
+                Text("Shown against your actual word count for the day in Your Writing Growth\u{2026} Purely a personal target -- nothing in Kistulentz is gated on it.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
                 Text("The quick brown fox jumps over the lazy dog.")
                     .font(editorFontPreview)
                     .lineLimit(1)

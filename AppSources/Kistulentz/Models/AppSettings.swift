@@ -126,11 +126,15 @@ final class AppSettings: ObservableObject {
         static let lastSeenAppVersion = "lastSeenAppVersion"
         static let lastOpenedProjectURL = "lastOpenedProjectURL"
         static let isPracticeModeEnabled = "isPracticeModeEnabled"
+        static let dailyWordGoal = "dailyWordGoal"
     }
 
     /// The lowest and highest editor font size a user can choose in Settings. Kept in one place
     /// so the stored-value clamp in `init` and the Settings stepper's range can't drift apart.
     static let editorFontSizeRange: ClosedRange<Double> = 12...32
+
+    /// The lowest and highest daily word target a user can set in Settings, for the same reason.
+    static let dailyWordGoalRange: ClosedRange<Int> = 100...10_000
 
     private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
 
@@ -171,6 +175,12 @@ final class AppSettings: ObservableObject {
     /// through its own explicit flow) are unaffected either way.
     @Published var isPracticeModeEnabled: Bool {
         didSet { defaults.set(isPracticeModeEnabled, forKey: DefaultsKey.isPracticeModeEnabled) }
+    }
+
+    /// A writer's own daily word target, shown against `WritingActivityStore`'s tally of words
+    /// actually added that day. Purely informational -- nothing in the app gates on it.
+    @Published var dailyWordGoal: Int {
+        didSet { defaults.set(dailyWordGoal, forKey: DefaultsKey.dailyWordGoal) }
     }
 
     /// The editor's font, by font family name (as offered by the Settings picker, sourced from
@@ -231,6 +241,10 @@ final class AppSettings: ObservableObject {
         editorFontSize = savedFontSize == 0
             ? 17
             : min(max(savedFontSize, Self.editorFontSizeRange.lowerBound), Self.editorFontSizeRange.upperBound)
+        let savedWordGoal = defaults.integer(forKey: DefaultsKey.dailyWordGoal)
+        dailyWordGoal = savedWordGoal == 0
+            ? 500
+            : min(max(savedWordGoal, Self.dailyWordGoalRange.lowerBound), Self.dailyWordGoalRange.upperBound)
         hasCompletedOnboarding = defaults.bool(forKey: DefaultsKey.hasCompletedOnboarding)
         hasAcknowledgedEnglishPackPrompt = defaults.bool(
             forKey: DefaultsKey.hasAcknowledgedEnglishPackPrompt

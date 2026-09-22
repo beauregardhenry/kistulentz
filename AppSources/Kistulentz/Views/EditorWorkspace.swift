@@ -37,6 +37,7 @@ struct EditorWorkspace: View {
     @EnvironmentObject var draftRecovery: DraftRecoveryManager
     @EnvironmentObject private var customFonts: CustomFontStore
     @EnvironmentObject var writingGrowth: WritingGrowthStore
+    @EnvironmentObject var writingActivity: WritingActivityStore
     @Environment(\.undoManager) var undoManager
     @Environment(\.openSettings) private var openSettings
     @Environment(\.scenePhase) private var scenePhase
@@ -199,6 +200,13 @@ struct EditorWorkspace: View {
             }
             projectStore.publicationStore.customFontFileURL = { [weak customFontsStore] record in
                 customFontsStore?.fileURL(for: record) ?? URL(fileURLWithPath: record.storedFilename)
+            }
+            let activityStore = writingActivity
+            projectStore.onDidSaveChapter = { [weak activityStore] chapterKey, wordCount in
+                activityStore?.recordSave(chapterKey: chapterKey, wordCount: wordCount)
+            }
+            viewModel.onQualitySample = { [weak activityStore] issueCount, wordCount in
+                activityStore?.recordQualitySample(issueCount: issueCount, wordCount: wordCount)
             }
 #if UI_TEST_HOST
             configureUITestProjectIfNeeded()

@@ -44,6 +44,13 @@ final class WritingProjectStore: ObservableObject {
     var lastStructuralAnalysisWordCount = 0
     weak var projectUndoManager: UndoManager?
 
+    /// Set by whoever owns this store (`EditorWorkspace`, wiring the app-wide `WritingActivityStore`
+    /// the same way `projectUndoManager` above is wired externally) to hear about every chapter save,
+    /// keyed so the listener can tell chapters in different projects apart. Not a sub-store dependency
+    /// like the five below -- `WritingActivityStore` is an app-wide concern this project-scoped store
+    /// has no business knowing about directly.
+    var onDidSaveChapter: ((_ chapterKey: String, _ wordCount: Int) -> Void)?
+
     // MARK: - Why the other six concerns stay combined
     //
     // ChaptersEditing, Outline, SystemicRevision, ManuscriptReport, Bible, and
