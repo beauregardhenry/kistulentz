@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Reliability hardening and a De-stink refresh.")
+                    Text("Two new ways to see your own progress, plus two new De-stink checks.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,16 +25,22 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Extra safeguard for project saves when you quit",
-                    detail: "Kistulentz now also saves your current chapter, Bible, and outline directly when you quit, as a backstop alongside the normal save-on-close path.",
-                    systemImage: "shield.lefthalf.filled",
-                    identifier: "WhatsNewQuitSaveBackstop"
+                    "Show a Strong Example",
+                    detail: "On a flagged craft issue -- an adverb, passive voice, a stock phrase -- ask Kistulentz to find a short excerpt from your own Reference Library that handles the same thing well, with a one-line note on why it works.",
+                    systemImage: "text.book.closed",
+                    identifier: "WhatsNewCraftExamples"
                 )
                 whatsNewItem(
-                    "De-stink Review's phrase catalog is refreshed",
-                    detail: "New phrases across five existing rules, five new excess-vocabulary words, and a new Stock gesture cluster rule that catches ordinary gesture and atmosphere words (blinked, murmured, stillness) that only read as a tell together.",
+                    "A calendar heatmap, streak, and daily word goal",
+                    detail: "Your Writing Growth now shows which days you wrote, a streak for consecutive days, and today's words against a goal you set in Settings. The heatmap's color tracks how clean your writing was that day, not how much you wrote.",
+                    systemImage: "calendar",
+                    identifier: "WhatsNewWritingActivity"
+                )
+                whatsNewItem(
+                    "Two new De-stink checks: anaphora and epistrophe",
+                    detail: "De-stink Review now catches runs of consecutive sentences that all open the same way or all end the same way -- a rhetorical device when it's deliberate, a tic when it isn't.",
                     systemImage: "text.magnifyingglass",
-                    identifier: "WhatsNewDestinkRefresh"
+                    identifier: "WhatsNewAnaphoraEpistrophe"
                 )
             }
 
