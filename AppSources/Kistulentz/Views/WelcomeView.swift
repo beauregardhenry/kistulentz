@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Two new ways to see your own progress, plus two new De-stink checks.")
+                    Text("A small toolbar consistency fix, plus reliability work under the hood.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,22 +25,10 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Show a Strong Example",
-                    detail: "On a flagged craft issue -- an adverb, passive voice, a stock phrase -- ask Kistulentz to find a short excerpt from your own Reference Library that handles the same thing well, with a one-line note on why it works.",
-                    systemImage: "text.book.closed",
-                    identifier: "WhatsNewCraftExamples"
-                )
-                whatsNewItem(
-                    "A calendar heatmap, streak, and daily word goal",
-                    detail: "Your Writing Growth now shows which days you wrote, a streak for consecutive days, and today's words against a goal you set in Settings. The heatmap's color tracks how clean your writing was that day, not how much you wrote.",
-                    systemImage: "calendar",
-                    identifier: "WhatsNewWritingActivity"
-                )
-                whatsNewItem(
-                    "Two new De-stink checks: anaphora and epistrophe",
-                    detail: "De-stink Review now catches runs of consecutive sentences that all open the same way or all end the same way -- a rhetorical device when it's deliberate, a tic when it isn't.",
-                    systemImage: "text.magnifyingglass",
-                    identifier: "WhatsNewAnaphoraEpistrophe"
+                    "De-stink now matches its toolbar neighbors",
+                    detail: "The De-stink button rendered slightly bolder than Rewrite, Grade, and Reference beside it. It now matches their weight and color exactly.",
+                    systemImage: "doc.text.magnifyingglass",
+                    identifier: "WhatsNewDestinkToolbarFix"
                 )
             }
 

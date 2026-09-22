@@ -504,14 +504,10 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
         whatsNewItem.click()
 
-        let title = app.staticTexts["What’s New in Kistulentz 0.23.10"]
+        let title = app.staticTexts["What’s New in Kistulentz 0.24.0"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let craftExamplesSummary = app.descendants(matching: .any)["WhatsNewCraftExamples"].firstMatch
-        XCTAssertTrue(craftExamplesSummary.exists)
-        let writingActivitySummary = app.descendants(matching: .any)["WhatsNewWritingActivity"].firstMatch
-        XCTAssertTrue(writingActivitySummary.exists)
-        let anaphoraEpistropheSummary = app.descendants(matching: .any)["WhatsNewAnaphoraEpistrophe"].firstMatch
-        XCTAssertTrue(anaphoraEpistropheSummary.exists)
+        let destinkToolbarFixSummary = app.descendants(matching: .any)["WhatsNewDestinkToolbarFix"].firstMatch
+        XCTAssertTrue(destinkToolbarFixSummary.exists)
         app.buttons["Continue"].click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
     }

@@ -8,6 +8,29 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.24.0] - 2026-09-22
+
+A small release: a toolbar visual-consistency fix, plus internal reliability and performance
+hardening.
+
+### Fixed
+
+- The De-stink toolbar button rendered visibly bolder than its Menu siblings (Rewrite, Grade,
+  Reference). SwiftUI's `.borderless` button style applies its own automatic label emphasis that
+  a `Menu`'s `.borderlessButton` style does not; switching to `.plain` renders the label exactly
+  as authored, matching its neighbors.
+
+### Changed
+
+- `WritingActivityStore`'s day-key formatting now reuses a single cached `DateFormatter` instead
+  of allocating a new one on every call, and instead of independently duplicating the same format
+  setup in two separate places. Most impactful on the calendar heatmap, which calls it once per
+  visible day-square.
+
+### Testing
+
+- The verified suite now contains 801 Swift tests and 54 macOS interface tests.
+
 ## [0.23.10] - 2026-09-22
 
 Two new ways to see your own progress -- Craft Examples and a writing-activity heatmap -- plus
