@@ -5,9 +5,13 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.23.9 FRIEND PREVIEW
-- A small reliability hardening release: Kistulentz now also saves your current chapter, Bible,
-  and outline directly when you quit, as a backstop alongside the normal save-on-close path.
+NEW IN 0.23.10 FRIEND PREVIEW
+- Show a Strong Example: on a flagged craft issue, ask Kistulentz to find a short excerpt from
+  your own Reference Library that handles it well, with a note on why it works.
+- Your Writing Growth now shows a calendar heatmap, a streak, and today's words against a goal
+  you set in Settings. The heatmap's color tracks writing quality, not raw word count.
+- Two new De-stink checks (anaphora and epistrophe), and Ollama requests no longer time out
+  early on longer local generations.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

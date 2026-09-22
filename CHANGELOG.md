@@ -8,6 +8,43 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+## [0.23.10] - 2026-09-22
+
+Two new ways to see your own progress -- Craft Examples and a writing-activity heatmap -- plus
+two new De-stink checks and a reliability fix for Ollama.
+
+### Added
+
+- **Show a Strong Example.** On a flagged craft-judgment issue (an adverb, passive voice, a stock
+  phrase, and similar), ask Kistulentz to find a short excerpt from your own Reference Library
+  that handles the same craft element well, with a one-line note on why it works. Grounded by
+  having the AI select an excerpt by id from ones Kistulentz already holds verbatim, rather than
+  generating or reproducing quote text itself, so a hallucinated or misattributed quote is
+  structurally impossible.
+- **A calendar heatmap, streak, and daily word goal** in Your Writing Growth. A GitHub-style grid
+  shows which days you wrote, a counter tracks consecutive days, and today's word count is shown
+  against a goal you set in Settings. Presence on the heatmap (did you show up) and its color (how
+  clean the writing was, ranked against your own history) are deliberately separate signals, so
+  nothing here rewards raw word volume over writing quality.
+- **Two new De-stink checks: anaphora and epistrophe.** De-stink Review now flags 3 or more
+  consecutive sentences that all open the same way (anaphora) or all end the same way
+  (epistrophe) -- a rhetorical device when it's deliberate, a tic when it isn't.
+
+### Fixed
+
+- Ollama requests no longer inherit `URLSession`'s 60-second default timeout. Local CPU inference
+  on a larger model can legitimately take several minutes; a request that ran past 60 seconds was
+  previously misreported as "Kistulentz could not reach Ollama," even when Ollama was reached and
+  actively computing the whole time. Ollama requests now get a 300-second timeout, and a genuine
+  timeout is reported distinctly from an unreachable Ollama.
+- A sentence-splitting bug that silently dropped the first sentence of a paragraph immediately
+  following a heading (or other non-punctuated line) from every discourse-tier De-stink rule, not
+  only the two new ones above.
+
+### Testing
+
+- The verified suite now contains 801 Swift tests and 54 macOS interface tests.
+
 ## [0.23.9] - 2026-09-21
 
 A small release: reliability hardening plus a refresh of the De-stink phrase catalog.
