@@ -62,7 +62,7 @@ enum HTMLImportSanitizer {
                 if sourceValue.lowercased().hasPrefix("http://") || sourceValue.lowercased().hasPrefix("https://") {
                     omittedRemoteImages += 1
                 }
-                replacement = "<p>[Image omitted during import: \(escapedHTML(alt?.isEmpty == false ? alt! : "unavailable image"))]</p>"
+                replacement = "<p>[Image omitted during import: \(escapedHTML(alt.nonEmpty(or: "unavailable image")))]</p>"
             }
             html = (html as NSString).replacingCharacters(in: match.range, with: replacement)
         }
@@ -108,7 +108,7 @@ enum HTMLImportSanitizer {
         let ext = subtype == "jpeg" ? "jpg" : DocumentImportFilename.safe(subtype)
         return DocumentImportAsset(
             suggestedFilename: "image-\(number).\(ext)",
-            altText: alt?.isEmpty == false ? alt! : "Imported image \(number)",
+            altText: alt.nonEmpty(or: "Imported image \(number)"),
             data: data
         )
     }
@@ -131,7 +131,7 @@ enum HTMLImportSanitizer {
         let proposed = candidate.lastPathComponent.isEmpty ? "image-\(number).png" : candidate.lastPathComponent
         return DocumentImportAsset(
             suggestedFilename: proposed,
-            altText: alt?.isEmpty == false ? alt! : candidate.deletingPathExtension().lastPathComponent,
+            altText: alt.nonEmpty(or: candidate.deletingPathExtension().lastPathComponent),
             data: data
         )
     }

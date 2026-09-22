@@ -361,7 +361,3 @@ private struct OllamaPullResponse: Decodable {
     let total: Int64?
     let error: String?
 }
-
-private extension String {
-    var nonEmpty: String? { isEmpty ? nil : self }
-}
