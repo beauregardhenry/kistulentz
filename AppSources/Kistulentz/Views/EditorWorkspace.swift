@@ -32,7 +32,7 @@ struct EditorWorkspace: View {
 
     @EnvironmentObject var settings: AppSettings
     @EnvironmentObject var beneparPack: BeneparLanguagePackManager
-    @EnvironmentObject private var referenceLibrary: ReferenceLibraryStore
+    @EnvironmentObject var referenceLibrary: ReferenceLibraryStore
     @EnvironmentObject var researchLibrary: ResearchLibraryStore
     @EnvironmentObject var draftRecovery: DraftRecoveryManager
     @EnvironmentObject private var customFonts: CustomFontStore
@@ -162,6 +162,9 @@ struct EditorWorkspace: View {
                         reference: viewModel.referenceBook,
                         alignment: viewModel.referenceAlignment,
                         isLoadingReference: viewModel.isLoadingReference,
+                        hasReferenceBooks: !referenceLibrary.books.isEmpty,
+                        isFindingCraftExample: viewModel.isFindingCraftExample,
+                        craftExamples: viewModel.craftExamples,
                         onRunReview: runReview,
                         onChooseReference: { presentation.present(.referenceLibrary) },
                         onRemoveReference: viewModel.clearReference,
@@ -169,6 +172,7 @@ struct EditorWorkspace: View {
                         onApply: apply,
                         onDecline: decline,
                         onRewrite: prepareRewrite,
+                        onShowCraftExample: prepareCraftExample,
                         onApplyAll: prepareApplyAll
                     )
                     .frame(minWidth: 280, idealWidth: 320, maxWidth: 380)

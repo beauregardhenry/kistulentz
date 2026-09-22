@@ -186,6 +186,34 @@ extension EditorWorkspace {
         )
     }
 
+    /// Candidate pool is the writer's WHOLE reference library, not `viewModel.referenceBook` (the
+    /// transient "active reference for AI matching" selection) -- that state is UI-picker-only,
+    /// never persisted per project, so gating this feature behind it would make it unusable for
+    /// anyone who hasn't already engaged with reference matching in the current session.
+    func prepareCraftExample(_ issue: WritingIssue) {
+        guard validateSelectedProvider() else { return }
+        guard !referenceLibrary.books.isEmpty else {
+            viewModel.errorMessage = "Import a book into the Reference Library before asking for a craft example."
+            return
+        }
+        let candidates = CraftExampleService.candidates(from: referenceLibrary.books)
+        guard !candidates.isEmpty else {
+            viewModel.errorMessage = "No reference excerpts are available yet for a craft example."
+            return
+        }
+        pendingAIRequest = AIRequestPreview(
+            purpose: .craftExample(category: issue.category),
+            provider: settings.provider,
+            model: settings.model(for: settings.provider),
+            primaryLabel: "Flagged passage",
+            primaryText: CraftExampleService.primaryText(for: issue),
+            styleGuide: nil,
+            includesStyleGuide: false,
+            referenceContext: CraftExampleService.referenceContext(for: candidates),
+            includesReferenceContext: true
+        )
+    }
+
     func validateSelectedProvider() -> Bool {
         let provider = settings.provider
         guard settings.isProviderReady(provider) else {
@@ -201,6 +229,17 @@ extension EditorWorkspace {
         switch request.purpose {
         case .selectionRewrite:
             viewModel.runSelectionRewrite(request: request, settings: settings)
+        case .craftExample(let category):
+            // Recomputed rather than threaded through as extra state: candidates() is a pure,
+            // cheap function of referenceLibrary.books, so recomputing at confirm time avoids
+            // adding parallel state that could drift from what the preview actually showed.
+            let candidates = CraftExampleService.candidates(from: referenceLibrary.books)
+            viewModel.runCraftExample(
+                category: category,
+                request: request,
+                candidates: candidates,
+                settings: settings
+            )
         case .referenceDeepening, .manuscriptReport, .manuscriptBible, .betaReader, .outlineSynopsis, .systemicRevision:
             break
         }
