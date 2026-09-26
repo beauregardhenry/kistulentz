@@ -8,6 +8,13 @@ merged changes are recorded under [Unreleased].
 
 ## [Unreleased]
 
+### Fixed
+
+- The post-merge coverage and test-count ratchet workflows could race: both run on every push to
+  `main`, and when one merge raised both baselines, whichever pushed second was rejected because
+  `main` had already moved, failing that job without raising its baseline. Each now rebases its
+  one-line baseline commit onto the new `main` and retries. No app behavior change. (#122)
+
 ## [0.24.0] - 2026-09-22
 
 A small release: a toolbar visual-consistency fix, plus internal reliability and performance
