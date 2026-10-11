@@ -668,6 +668,381 @@ final class ProjectOrganizationTests: XCTestCase {
         XCTAssertTrue(result.synopsis.contains("leaves the conclusion open"))
     }
 
+    // MARK: - Outline accessors and placement errors
+
+    @MainActor
+    func testOutlineRowsAndChildrenReflectTheTreeInDisplayOrder() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Rows", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        store.moveOutlineNode(chapterID, toParent: partID)
+
+        XCTAssertEqual(store.outlineRows.map(\.node.title), ["Part One", "Chapter 1"])
+        XCTAssertEqual(store.outlineRows.map(\.depth), [0, 1])
+        XCTAssertEqual(store.outlineRows.map(\.parentID), [nil, partID])
+        XCTAssertEqual(store.outlineChildren(of: nil).map(\.id), [partID])
+        XCTAssertEqual(store.outlineChildren(of: partID).map(\.id), [chapterID])
+    }
+
+    @MainActor
+    func testAddOutlineItemRefusesAnInvalidPlacementWithoutCreatingAFile() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Placement", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let before = store.outlineNodes
+
+        // A scene belongs under a chapter, never at the top level.
+        XCTAssertNil(store.addOutlineItem(kind: .scene, title: "Lost Scene", parentID: nil))
+
+        XCTAssertEqual(store.errorMessage, ProjectOutlineError.invalidHierarchy.localizedDescription)
+        XCTAssertEqual(store.outlineNodes, before)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Lost Scene.md").path))
+    }
+
+    @MainActor
+    func testAddOutlineItemUnderAVanishedParentFailsWithoutLeavingAnOrphanFile() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Vanished", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let before = store.outlineNodes
+
+        // The parent was deleted (or never existed) between the UI choosing it and this call.
+        XCTAssertNil(store.addOutlineItem(kind: .chapter, title: "Orphan", parentID: UUID()))
+
+        XCTAssertEqual(store.errorMessage, ProjectOutlineError.missingNode.localizedDescription)
+        XCTAssertEqual(store.outlineNodes, before)
+        XCTAssertFalse(
+            FileManager.default.fileExists(atPath: root.appendingPathComponent("Orphan.md").path),
+            "a rejected item must not leave a stray Markdown file behind"
+        )
+    }
+
+    @MainActor
+    func testInvalidOutlineMovesReportTheHierarchyErrorAndLeaveTheTreeAlone() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Bad Moves", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partOneID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        let partTwoID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part Two", parentID: nil))
+        store.moveOutlineNode(chapterID, toParent: partOneID)
+        XCTAssertNil(store.errorMessage)
+        let before = store.outlineNodes
+
+        // A part can only live at the top level, so it cannot become a chapter's child...
+        store.moveOutlineNode(partTwoID, toParent: chapterID)
+        assertRejectedAndUnchanged(store, before, "a part under a chapter")
+
+        // ...nor a sibling of a chapter that sits inside another part...
+        store.moveOutlineNode(partTwoID, onto: chapterID)
+        assertRejectedAndUnchanged(store, before, "a part dropped onto a chapter inside a part")
+
+        // ...a node cannot be dropped onto itself...
+        store.moveOutlineNode(partOneID, onto: partOneID)
+        assertRejectedAndUnchanged(store, before, "a node dropped onto itself")
+
+        // ...and a target that no longer exists is refused rather than silently ignored.
+        store.moveOutlineNode(partTwoID, onto: UUID())
+        assertRejectedAndUnchanged(store, before, "a drop onto a vanished target")
+    }
+
+    @MainActor
+    private func assertRejectedAndUnchanged(
+        _ store: WritingProjectStore,
+        _ before: [OutlineNode],
+        _ scenario: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(
+            store.errorMessage, ProjectOutlineError.invalidHierarchy.localizedDescription,
+            scenario, file: file, line: line
+        )
+        XCTAssertEqual(store.outlineNodes, before, scenario, file: file, line: line)
+        store.errorMessage = nil
+    }
+
+    @MainActor
+    func testSiblingMoveRollsBackTheOutlineWhenTheChapterSyncFails() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Sibling Rollback", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let firstID = try XCTUnwrap(store.outlineNodes.first?.id)
+        _ = try XCTUnwrap(store.addOutlineItem(kind: .chapter, title: "Chapter 2", parentID: nil))
+        let before = store.outlineNodes
+        let manifestURL = root.appendingPathComponent(".kistulentz/project.json")
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: manifestURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: manifestURL.path) }
+
+        store.moveOutlineNodeLater(firstID)
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(store.outlineNodes, before, "the in-memory outline must not stay moved after the sync failed")
+    }
+
+    @MainActor
+    func testSavingTheOutlineReportsADiskFailureInsteadOfSilentlyLosingIt() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Outline Save", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let outlineURL = ProjectOutlineDisk.outlineURL(at: root)
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: outlineURL.path)
+        defer { try? FileManager.default.setAttributes([.immutable: false], ofItemAtPath: outlineURL.path) }
+
+        store.saveOutlineNow()
+
+        XCTAssertNotNil(store.errorMessage)
+    }
+
+    @MainActor
+    func testSyncFallsBackToTheFirstChapterWhenNeitherTheRequestedNorTheLastOpenedOneExists() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Fallback", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        _ = try XCTUnwrap(store.addOutlineItem(kind: .chapter, title: "Chapter 2", parentID: nil))
+        XCTAssertEqual(store.selectedChapterPath, "Chapter 2.md")
+        store.manifest?.lastOpenedChapter = "Deleted Long Ago.md"
+
+        try store.syncChaptersWithOutline(preferredSelection: "Also Missing.md")
+
+        XCTAssertEqual(store.selectedChapterPath, "Chapter 1.md")
+        XCTAssertEqual(store.manifest?.lastOpenedChapter, "Chapter 1.md")
+    }
+
+    // MARK: - Outline text and synopsis
+
+    @MainActor
+    func testSuggestingASynopsisForAnUnknownNodeReportsItInsteadOfDoingNothing() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Synopsis Missing", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+
+        store.suggestSynopsisLocally(for: UUID())
+
+        XCTAssertEqual(store.errorMessage, ProjectOutlineError.missingNode.localizedDescription)
+    }
+
+    @MainActor
+    func testOutlineTextUsesUnsavedTextForTheOpenChapterAndDiskForTheRest() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Outline Text", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let firstID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        store.moveOutlineNode(firstID, toParent: partID)
+        _ = try XCTUnwrap(store.addOutlineItem(kind: .chapter, title: "Chapter 2", parentID: partID))
+        let onDisk = try WritingProjectDisk.readChapter("Chapter 1.md", at: root)
+        XCTAssertEqual(store.selectedChapterPath, "Chapter 2.md")
+        store.updateText("# Chapter 2\n\nTyped but not yet saved.\n")
+
+        let text = try store.outlineText(for: partID)
+
+        XCTAssertEqual(text, [onDisk, "# Chapter 2\n\nTyped but not yet saved.\n"].joined(separator: "\n\n"))
+    }
+
+    // MARK: - File organization edge cases
+
+    @MainActor
+    func testOccupiedDestinationsAreFlaggedAndOrganizingRefusesToRun() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Occupied", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        store.moveOutlineNode(chapterID, toParent: partID)
+        let plan = try XCTUnwrap(store.fileOrganizationPlan())
+        XCTAssertFalse(store.validateFileOrganizationPlan(plan).hasConflicts)
+        try createMarkdown("someone else's file\n", at: "Part One/Chapter 1/Chapter 1.md", root: root)
+
+        XCTAssertTrue(store.validateFileOrganizationPlan(plan).hasConflicts)
+        store.organizeFiles(plan)
+
+        XCTAssertEqual(store.errorMessage, "Resolve every destination conflict before organizing files.")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Chapter 1.md").path))
+        XCTAssertEqual(
+            try String(contentsOf: root.appendingPathComponent("Part One/Chapter 1/Chapter 1.md"), encoding: .utf8),
+            "someone else's file\n"
+        )
+    }
+
+    @MainActor
+    func testValidatingAPlanWithNoOpenProjectReturnsItUnchanged() {
+        let plan = OutlineFileOrganizationPlan(moves: [])
+
+        XCTAssertEqual(WritingProjectStore().validateFileOrganizationPlan(plan), plan)
+    }
+
+    @MainActor
+    func testRedoingFileOrganizationReportsAnOccupiedDestinationInsteadOfOverwriting() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Redo Conflict", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let partID = try XCTUnwrap(store.addOutlineItem(kind: .part, title: "Part One", parentID: nil))
+        store.moveOutlineNode(chapterID, toParent: partID)
+        let undoManager = UndoManager()
+        store.attachUndoManager(undoManager)
+        store.organizeFiles(try XCTUnwrap(store.fileOrganizationPlan()))
+        undoManager.undo()
+        XCTAssertNil(store.errorMessage)
+        try createMarkdown("moved in while undone\n", at: "Part One/Chapter 1/Chapter 1.md", root: root)
+
+        undoManager.redo()
+
+        XCTAssertNotNil(store.errorMessage)
+        XCTAssertEqual(
+            try String(contentsOf: root.appendingPathComponent("Part One/Chapter 1/Chapter 1.md"), encoding: .utf8),
+            "moved in while undone\n"
+        )
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Chapter 1.md").path))
+    }
+
+    // MARK: - Heading split edge cases
+
+    private static let splitChapter = "# Chapter 1\n\nOpening.\n\n## Dock\n\nMara arrives.\n\n## Office\n\nThe ledger is gone.\n"
+
+    @MainActor
+    private func makeSplitStore(named name: String, chapter: String = ProjectOrganizationTests.splitChapter) throws
+        -> (store: WritingProjectStore, root: URL, chapterID: UUID, cleanup: () -> Void) {
+        let parent = temporaryDirectory()
+        let root = try WritingProjectDisk.createProject(in: parent, name: name, kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        store.updateText(chapter)
+        store.saveNow()
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        return (store, root, chapterID, { try? FileManager.default.removeItem(at: parent) })
+    }
+
+    @MainActor
+    func testHeadingSplitPlanRenamesSectionsThatCollideWithEachOtherOrExistingFiles() throws {
+        let chapter = "# Chapter 1\n\nOpening.\n\n## Dock\n\nOne.\n\n## Dock\n\nTwo.\n\n## Office\n\nThree.\n"
+        let (store, root, chapterID, cleanup) = try makeSplitStore(named: "Collisions", chapter: chapter)
+        defer { cleanup() }
+        try createMarkdown("already here\n", at: "Office.md", root: root)
+
+        let plan = try store.headingSplitPlan(for: chapterID)
+
+        XCTAssertEqual(plan.sections.map(\.fileName), ["Dock.md", "Dock 2.md", "Office 2.md"])
+    }
+
+    @MainActor
+    func testApplyHeadingSplitRejectsUnsafeOrConflictingFileNamesBeforeWritingAnything() throws {
+        let (store, root, chapterID, cleanup) = try makeSplitStore(named: "Unsafe Names")
+        defer { cleanup() }
+        let plan = try store.headingSplitPlan(for: chapterID)
+        let before = try WritingProjectDisk.readChapter("Chapter 1.md", at: root)
+        try createMarkdown("already here\n", at: "Taken.md", root: root)
+
+        func apply(_ names: [String]) -> String? {
+            var edited = plan
+            for (index, name) in names.enumerated() { edited.sections[index].fileName = name }
+            store.errorMessage = nil
+            store.applyHeadingSplit(edited)
+            return store.errorMessage
+        }
+
+        for unsafe in ["../Escape.md", "NoExtension", "Bad:Name.md", ".md", "sub/Nested.md"] {
+            let message = try XCTUnwrap(apply([unsafe, "Fine.md"]), "'\(unsafe)' should be rejected")
+            XCTAssertTrue(message.contains("not a safe project-relative path"), "'\(unsafe)': \(message)")
+        }
+        let duplicate = try XCTUnwrap(apply(["Same.md", "same.MD"]))
+        XCTAssertTrue(duplicate.contains("already exists"), duplicate)
+        let occupied = try XCTUnwrap(apply(["Taken.md", "Fresh.md"]))
+        XCTAssertTrue(occupied.contains("already exists"), occupied)
+
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Chapter 1.md", at: root), before)
+        for name in ["Escape.md", "Fine.md", "Same.md", "Fresh.md", "Nested.md"] {
+            XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent(name).path), name)
+        }
+        XCTAssertEqual(try String(contentsOf: root.appendingPathComponent("Taken.md"), encoding: .utf8), "already here\n")
+        XCTAssertEqual(store.outlineNode(id: chapterID)?.children, [])
+    }
+
+    @MainActor
+    func testApplyHeadingSplitSnapshotsTheChapterFirst() throws {
+        let parent = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: parent) }
+        let root = try WritingProjectDisk.createProject(in: parent, name: "Split Snapshot", kind: .fiction)
+        let store = WritingProjectStore()
+        try store.openProject(at: root)
+        // Written straight to disk so no earlier snapshot already holds this exact content (an
+        // identical latest snapshot is deliberately not duplicated).
+        try WritingProjectDisk.writeChapter(Self.splitChapter, relativePath: "Chapter 1.md", at: root)
+        try store.loadChapter("Chapter 1.md")
+        let chapterID = try XCTUnwrap(store.outlineNodes.first?.id)
+        let plan = try store.headingSplitPlan(for: chapterID)
+
+        store.applyHeadingSplit(plan)
+
+        XCTAssertNil(store.errorMessage)
+        let snapshot = try XCTUnwrap(store.snapshots.first { $0.reason == "Before splitting headings" })
+        XCTAssertEqual(snapshot.chapterPath, "Chapter 1.md")
+        XCTAssertEqual(try WritingProjectDisk.snapshotContent(snapshot, at: root), Self.splitChapter)
+    }
+
+    @MainActor
+    func testHeadingSplitUndoRefusesWhenTheChapterItselfWasEditedElsewhere() throws {
+        let (store, root, chapterID, cleanup) = try makeSplitStore(named: "Chapter Edited")
+        defer { cleanup() }
+        let undoManager = UndoManager()
+        store.attachUndoManager(undoManager)
+        store.applyHeadingSplit(try store.headingSplitPlan(for: chapterID))
+        XCTAssertNil(store.errorMessage)
+        let external = "# Chapter 1\n\nRewritten in another editor.\n"
+        try external.write(to: root.appendingPathComponent("Chapter 1.md"), atomically: true, encoding: .utf8)
+
+        undoManager.undo()
+
+        XCTAssertEqual(store.errorMessage, ProjectOutlineError.filesChanged.localizedDescription)
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Chapter 1.md", at: root), external)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Dock.md").path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: root.appendingPathComponent("Office.md").path))
+    }
+
+    @MainActor
+    func testHeadingSplitRedoRefusesWhenTheChapterChangedWhileTheSplitWasUndone() throws {
+        let (store, root, chapterID, cleanup) = try makeSplitStore(named: "Redo Changed")
+        defer { cleanup() }
+        let undoManager = UndoManager()
+        store.attachUndoManager(undoManager)
+        store.applyHeadingSplit(try store.headingSplitPlan(for: chapterID))
+        undoManager.undo()
+        XCTAssertNil(store.errorMessage)
+        let external = "# Chapter 1\n\nRewritten while the split was undone.\n"
+        try external.write(to: root.appendingPathComponent("Chapter 1.md"), atomically: true, encoding: .utf8)
+
+        undoManager.redo()
+
+        XCTAssertEqual(store.errorMessage, ProjectOutlineError.filesChanged.localizedDescription)
+        XCTAssertEqual(try WritingProjectDisk.readChapter("Chapter 1.md", at: root), external)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: root.appendingPathComponent("Dock.md").path))
+    }
+
     private func createMarkdown(_ text: String, at relativePath: String, root: URL) throws {
         let url = root.appendingPathComponent(relativePath)
         try FileManager.default.createDirectory(
