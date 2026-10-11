@@ -189,6 +189,27 @@ final class WritingActivityStore: ObservableObject {
         return longest
     }
 
+    // MARK: - Heatmap grid
+
+    /// `weeksShown` columns of 7 dates each (Sunday first), the last column ending on the Saturday
+    /// of the current week -- so today's cell lands wherever it falls in that final column, and any
+    /// remaining days later in the current week are simply future dates the caller renders blank.
+    nonisolated static func recentWeeks(weeksShown: Int, today: Date, calendar: Calendar) -> [[Date]] {
+        let startOfToday = calendar.startOfDay(for: today)
+        let weekday = calendar.component(.weekday, from: startOfToday)
+        guard let endOfThisWeek = calendar.date(byAdding: .day, value: 7 - weekday, to: startOfToday) else {
+            return []
+        }
+        return (0..<weeksShown).reversed().compactMap { weekOffset -> [Date]? in
+            guard let weekEnd = calendar.date(byAdding: .day, value: -7 * weekOffset, to: endOfThisWeek) else {
+                return nil
+            }
+            return (0..<7).reversed().compactMap { dayOffset in
+                calendar.date(byAdding: .day, value: -dayOffset, to: weekEnd)
+            }
+        }
+    }
+
     // MARK: - Heat level (self-relative quartiles)
 
     func density(for date: Date) -> Double? {

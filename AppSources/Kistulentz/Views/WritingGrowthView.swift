@@ -189,7 +189,7 @@ private struct WritingActivitySection: View {
     }
 
     private var heatmapGrid: some View {
-        let weeks = Self.recentWeeks(weeksShown: weeksShown, today: Date(), calendar: .current)
+        let weeks = WritingActivityStore.recentWeeks(weeksShown: weeksShown, today: Date(), calendar: .current)
         return HStack(alignment: .top, spacing: 3) {
             ForEach(Array(weeks.enumerated()), id: \.offset) { _, week in
                 VStack(spacing: 3) {
@@ -218,25 +218,6 @@ private struct WritingActivitySection: View {
         case .q2: Color.orange.opacity(0.6)
         case .q3: Color.green.opacity(0.55)
         case .q4: Color.green.opacity(0.9)
-        }
-    }
-
-    /// `weeksShown` columns of 7 dates each (Sunday first), the last column ending on the Saturday
-    /// of the current week -- so today's cell lands wherever it falls in that final column, and any
-    /// remaining days later in the current week are simply future dates the caller renders blank.
-    private static func recentWeeks(weeksShown: Int, today: Date, calendar: Calendar) -> [[Date]] {
-        let startOfToday = calendar.startOfDay(for: today)
-        let weekday = calendar.component(.weekday, from: startOfToday)
-        guard let endOfThisWeek = calendar.date(byAdding: .day, value: 7 - weekday, to: startOfToday) else {
-            return []
-        }
-        return (0..<weeksShown).reversed().compactMap { weekOffset -> [Date]? in
-            guard let weekEnd = calendar.date(byAdding: .day, value: -7 * weekOffset, to: endOfThisWeek) else {
-                return nil
-            }
-            return (0..<7).reversed().compactMap { dayOffset in
-                calendar.date(byAdding: .day, value: -dayOffset, to: weekEnd)
-            }
         }
     }
 }

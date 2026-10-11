@@ -60,28 +60,6 @@ extension WritingProjectStore {
         }
     }
 
-    func moveChapters(fromOffsets: IndexSet, toOffset: Int) {
-        var reordered = chapters
-        let moving = fromOffsets.sorted().map { reordered[$0] }
-        for index in fromOffsets.sorted(by: >) { reordered.remove(at: index) }
-        let removedBeforeDestination = fromOffsets.filter { $0 < toOffset }.count
-        let destination = max(0, min(reordered.count, toOffset - removedBeforeDestination))
-        reordered.insert(contentsOf: moving, at: destination)
-        chapters = reordered
-        let flatOutline = outlineNodes.allSatisfy { $0.relativePath != nil && $0.children.isEmpty }
-        if flatOutline {
-            let byPath = Dictionary(uniqueKeysWithValues: outlineNodes.compactMap { node in
-                node.relativePath.map { ($0, node) }
-            })
-            let reorderedOutline = chapters.compactMap { byPath[$0.relativePath] }
-            if reorderedOutline.count == outlineNodes.count {
-                outlineNodes = reorderedOutline
-                saveOutlineNow()
-            }
-        }
-        persistChapterOrder()
-    }
-
     func loadChapter(_ relativePath: String?) throws {
         guard let relativePath,
               chapters.contains(where: { $0.relativePath == relativePath }),
@@ -111,20 +89,6 @@ extension WritingProjectStore {
             title: title.map(String.init).flatMap { $0.isEmpty ? nil : $0 } ?? fallback,
             wordCount: WritingProjectDisk.wordCount(in: text)
         )
-    }
-
-    private func persistChapterOrder() {
-        guard let rootURL else { return }
-        do {
-            var updatedManifest = manifest
-            updatedManifest?.chapterOrder = chapters.map(\.relativePath)
-            if let updatedManifest {
-                try WritingProjectDisk.saveManifest(updatedManifest, at: rootURL)
-                manifest = updatedManifest
-            }
-        } catch {
-            errorMessage = error.localizedDescription
-        }
     }
 
 }

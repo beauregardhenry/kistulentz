@@ -10,8 +10,8 @@ final class EditorWorkspacePresentationTests: XCTestCase {
         presentation.present(.revisionHistory)
 
         XCTAssertEqual(presentation.activeSheet, .revisionHistory)
-        XCTAssertFalse(presentation.isPresenting(.projectPolish))
-        XCTAssertTrue(presentation.isPresenting(.revisionHistory))
+        XCTAssertFalse(presentation.binding(for: .projectPolish).wrappedValue)
+        XCTAssertTrue(presentation.binding(for: .revisionHistory).wrappedValue)
     }
 
     @MainActor
