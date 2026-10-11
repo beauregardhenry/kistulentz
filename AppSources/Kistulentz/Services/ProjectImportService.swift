@@ -92,10 +92,9 @@ enum ProjectImportConversionService {
         let size = (attributes[.size] as? NSNumber)?.uint64Value ?? 0
         guard size <= maximumMarkdownBytes else { throw DocumentImportError.documentTooLarge }
         let data = try Data(contentsOf: source.url, options: .mappedIfSafe)
-        let markdown = String(data: data, encoding: .utf8)
-            ?? String(data: data, encoding: .utf16)
-            ?? String(data: data, encoding: .isoLatin1)
-        guard let markdown else { throw ProjectImportError.unreadableMarkdown }
+        guard let markdown = DocumentImportService.decodedText(data) else {
+            throw ProjectImportError.unreadableMarkdown
+        }
         return ProjectImportConversion(
             source: source,
             templateMarkdown: markdown,
