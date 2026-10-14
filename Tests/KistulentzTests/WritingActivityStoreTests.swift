@@ -300,4 +300,103 @@ final class WritingActivityStoreTests: XCTestCase {
             )
         }
     }
+
+    // MARK: - recentWeeks (the heatmap's week grid)
+
+    private func gregorian(in timeZone: String = "UTC") throws -> Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = try XCTUnwrap(TimeZone(identifier: timeZone))
+        return calendar
+    }
+
+    /// A specific moment on a calendar day (not snapped to midnight) -- used as `today`.
+    private func moment(_ year: Int, _ month: Int, _ day: Int, hour: Int, in calendar: Calendar) throws -> Date {
+        try XCTUnwrap(calendar.date(from: DateComponents(year: year, month: month, day: day, hour: hour)))
+    }
+
+    /// Midnight at the start of the given calendar day -- what `recentWeeks` should produce.
+    private func day(_ year: Int, _ month: Int, _ day: Int, in calendar: Calendar) throws -> Date {
+        calendar.startOfDay(for: try moment(year, month, day, hour: 12, in: calendar))
+    }
+
+    func testRecentWeeksBuildsSundayToSaturdayColumnsOfSevenDays() throws {
+        let calendar = try gregorian()
+        // 2026-10-14 is a Wednesday.
+        let today = try moment(2026, 10, 14, hour: 15, in: calendar)
+        let weeks = WritingActivityStore.recentWeeks(weeksShown: 16, today: today, calendar: calendar)
+
+        XCTAssertEqual(weeks.count, 16)
+        for week in weeks {
+            XCTAssertEqual(week.count, 7)
+            XCTAssertEqual(calendar.component(.weekday, from: try XCTUnwrap(week.first)), 1, "each column starts on Sunday")
+            XCTAssertEqual(calendar.component(.weekday, from: try XCTUnwrap(week.last)), 7, "each column ends on Saturday")
+        }
+    }
+
+    func testRecentWeeksFinalColumnIsTheCurrentWeekWhereverTodayFallsInIt() throws {
+        let calendar = try gregorian()
+        // Oct 10, 2026 is a Saturday, Oct 11 a Sunday, Oct 14 a Wednesday.
+        let cases: [(today: Int, label: String)] = [(10, "Saturday"), (11, "Sunday"), (14, "Wednesday")]
+        let expectedWeekStart = [10: 4, 11: 11, 14: 11]
+
+        for (todayDay, label) in cases {
+            let today = try moment(2026, 10, todayDay, hour: 15, in: calendar)
+            let finalColumn = try XCTUnwrap(
+                WritingActivityStore.recentWeeks(weeksShown: 4, today: today, calendar: calendar).last
+            )
+            let start = try XCTUnwrap(expectedWeekStart[todayDay])
+            XCTAssertEqual(finalColumn.first, try day(2026, 10, start, in: calendar), "week start when today is a \(label)")
+            XCTAssertEqual(finalColumn.last, try day(2026, 10, start + 6, in: calendar), "week end when today is a \(label)")
+            XCTAssertTrue(finalColumn.contains(try day(2026, 10, todayDay, in: calendar)), "today is in the last column on a \(label)")
+        }
+    }
+
+    func testRecentWeeksIsOneUninterruptedRunOfConsecutiveMidnightsAcrossDaylightSavingChanges() throws {
+        // Chicago springs forward 2026-03-08 and falls back 2025-11-02; both land inside 16 weeks
+        // ending Tuesday 2026-03-10. A grid that stepped by 24-hour intervals instead of calendar
+        // days would drift off midnight, then skip or repeat a day.
+        let calendar = try gregorian(in: "America/Chicago")
+        let today = try moment(2026, 3, 10, hour: 15, in: calendar)
+        let flat = WritingActivityStore.recentWeeks(weeksShown: 16, today: today, calendar: calendar).flatMap { $0 }
+
+        XCTAssertEqual(flat.count, 16 * 7)
+        XCTAssertEqual(Set(flat).count, flat.count, "no day is repeated")
+        for date in flat {
+            XCTAssertEqual(calendar.startOfDay(for: date), date, "every cell is a local midnight")
+        }
+        for (earlier, later) in zip(flat, flat.dropFirst()) {
+            XCTAssertEqual(calendar.dateComponents([.day], from: earlier, to: later).day, 1)
+        }
+    }
+
+    func testRecentWeeksCrossesAYearBoundaryWithoutGaps() throws {
+        let calendar = try gregorian()
+        // Jan 3, 2026 is a Saturday, so the final column is Dec 28, 2025 through Jan 3, 2026.
+        let today = try moment(2026, 1, 3, hour: 9, in: calendar)
+        let weeks = WritingActivityStore.recentWeeks(weeksShown: 2, today: today, calendar: calendar)
+
+        XCTAssertEqual(weeks.first?.first, try day(2025, 12, 21, in: calendar))
+        XCTAssertEqual(weeks.last?.first, try day(2025, 12, 28, in: calendar))
+        XCTAssertEqual(weeks.last?.last, try day(2026, 1, 3, in: calendar))
+    }
+
+    func testRecentWeeksIgnoresTheTimeOfDayAndTheCalendarsFirstWeekday() throws {
+        var mondayFirst = try gregorian()
+        mondayFirst.firstWeekday = 2
+        let justAfterMidnight = try moment(2026, 10, 14, hour: 0, in: mondayFirst)
+        let lateEvening = try moment(2026, 10, 14, hour: 23, in: mondayFirst)
+
+        let morning = WritingActivityStore.recentWeeks(weeksShown: 3, today: justAfterMidnight, calendar: mondayFirst)
+        let evening = WritingActivityStore.recentWeeks(weeksShown: 3, today: lateEvening, calendar: mondayFirst)
+
+        XCTAssertEqual(morning, evening)
+        // The grid is deliberately Sunday-first (like GitHub's) even for a Monday-first locale.
+        XCTAssertEqual(mondayFirst.component(.weekday, from: try XCTUnwrap(morning.last?.first)), 1)
+    }
+
+    func testRecentWeeksWithNoWeeksRequestedIsEmpty() throws {
+        let calendar = try gregorian()
+        XCTAssertTrue(WritingActivityStore.recentWeeks(weeksShown: 0, today: Date(), calendar: calendar).isEmpty)
+        XCTAssertEqual(WritingActivityStore.recentWeeks(weeksShown: 1, today: Date(), calendar: calendar).count, 1)
+    }
 }

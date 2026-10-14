@@ -40,10 +40,6 @@ final class EditorWorkspacePresentation: ObservableObject {
         activeSheet = nil
     }
 
-    func isPresenting(_ sheet: Sheet) -> Bool {
-        activeSheet == sheet
-    }
-
     func binding(for sheet: Sheet) -> Binding<Bool> {
         Binding(
             get: { [weak self] in self?.activeSheet == sheet },

@@ -98,7 +98,9 @@ final class WritingProjectTests: XCTestCase {
         store.createChapter(named: "Chapter 2")
         store.updateText("# Chapter 2\n\nThe journey continues.\n")
         store.saveNow()
-        store.moveChapters(fromOffsets: IndexSet(integer: 1), toOffset: 0)
+        let secondChapterID = try XCTUnwrap(store.outlineNodes.first { $0.relativePath == "Chapter 2.md" }?.id)
+        store.moveOutlineNodeEarlier(secondChapterID)
+        XCTAssertNil(store.errorMessage)
         store.closeProject()
 
         let reopened = WritingProjectStore()
