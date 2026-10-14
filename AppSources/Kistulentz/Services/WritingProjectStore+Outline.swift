@@ -48,6 +48,12 @@ extension WritingProjectStore {
         guard let rootURL else { return nil }
         let cleanTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !cleanTitle.isEmpty else { return nil }
+        // Checked before any file is created: a parent that vanished since the UI chose it would
+        // otherwise fail only at append time, after its Markdown file was already on disk.
+        if let parentID, OutlineTree.node(id: parentID, in: outlineNodes) == nil {
+            errorMessage = ProjectOutlineError.missingNode.localizedDescription
+            return nil
+        }
         let parentKind = parentID.flatMap { OutlineTree.node(id: $0, in: outlineNodes)?.kind }
         guard OutlineTree.canPlace(kind, under: parentKind) else {
             errorMessage = ProjectOutlineError.invalidHierarchy.localizedDescription
