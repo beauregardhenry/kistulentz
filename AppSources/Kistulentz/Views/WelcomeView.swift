@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("A small toolbar consistency fix, plus reliability work under the hood.")
+                    Text("Two fixes for importing older files and editing your outline.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,10 +25,16 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "De-stink now matches its toolbar neighbors",
-                    detail: "The De-stink button rendered slightly bolder than Rewrite, Grade, and Reference beside it. It now matches their weight and color exactly.",
-                    systemImage: "doc.text.magnifyingglass",
-                    identifier: "WhatsNewDestinkToolbarFix"
+                    "Older text files import with their accents intact",
+                    detail: "Markdown, text, and HTML files saved in the older Latin-1 encoding used to import with garbled characters in the imported copy. They now keep their accents. Your original files were never changed.",
+                    systemImage: "doc.plaintext",
+                    identifier: "WhatsNewLegacyEncodingImport"
+                )
+                whatsNewItem(
+                    "No stray files when an outline item disappears",
+                    detail: "Adding a chapter, scene, or section under an outline item that was just removed no longer leaves an unlisted Markdown file behind. Kistulentz tells you the item no longer exists instead.",
+                    systemImage: "list.bullet.indent",
+                    identifier: "WhatsNewOutlineOrphanFix"
                 )
             }
 

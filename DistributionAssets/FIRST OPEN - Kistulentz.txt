@@ -5,10 +5,11 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.24.0 FRIEND PREVIEW
-- The De-stink toolbar button now matches the weight and color of its toolbar neighbors
-  (Rewrite, Grade, Reference) instead of rendering slightly bolder.
-- Internal reliability and performance hardening; no other user-facing changes.
+NEW IN 0.24.1 FRIEND PREVIEW
+- Older Latin-1 text files (Markdown, text, HTML) now import with their accents intact instead
+  of garbled characters. Your original files were never changed.
+- Adding an item under an outline entry that was just removed no longer leaves a stray
+  Markdown file in your project folder.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.

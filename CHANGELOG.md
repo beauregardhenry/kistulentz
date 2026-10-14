@@ -15,6 +15,40 @@ merged changes are recorded under [Unreleased].
   `main` had already moved, failing that job without raising its baseline. Each now rebases its
   one-line baseline commit onto the new `main` and retries. No app behavior change. (#122)
 
+## [0.24.1] - 2026-10-13
+
+A small release: two bug fixes found by new test coverage, plus internal cleanup.
+
+### Fixed
+
+- Markdown, plain-text, and HTML files saved in the older Latin-1 encoding no longer import with
+  garbled characters. Both text decoders tried UTF-16 before Latin-1, and Foundation's UTF-16
+  decoder accepts almost any bytes, so a file like `Café!` imported as unrelated characters and
+  the Latin-1 fallback was never reached. UTF-16 is now tried only when the file begins with a
+  byte-order mark. The original files were never modified; only the imported copy was affected.
+  One consequence: UTF-16 text with no byte-order mark is no longer recognized, which is rare
+  (Notepad and PowerShell both write the mark).
+- Adding a chapter, scene, or section under an outline item that no longer exists no longer
+  leaves a stray, unlisted Markdown file behind. The item's file was created before its parent
+  was checked, so a parent removed in between made the add fail after the file was already on
+  disk. Kistulentz now checks first and reports that the item no longer exists.
+
+### Changed
+
+- Removed two unused code paths: an old chapter-reorder method (chapter order is changed through
+  the outline) and a sheet-presentation helper that only tests called.
+- The calendar heatmap's week-grid date math moved into `WritingActivityStore`, where it is now
+  unit-tested, including across daylight-saving changes.
+- The repository no longer tracks the root `.DS_Store`, and the CI ratchet workflow retries its
+  baseline push when `main` has moved on.
+
+### Testing
+
+- The verified suite now contains 840 Swift tests and 54 macOS interface tests, up from 801 Swift
+  tests: new coverage for project import (markdown loading and encodings, discovery edge cases,
+  project-creation guards, rollback), outline editing (invalid placements and moves, rollback,
+  heading-split and file-organization conflicts, undo and redo refusals), and the heatmap grid.
+
 ## [0.24.0] - 2026-09-22
 
 A small release: a toolbar visual-consistency fix, plus internal reliability and performance
