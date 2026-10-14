@@ -111,9 +111,13 @@ enum DocumentImportService {
 
     static func decodedText(_ data: Data) -> String? {
         if let value = String(data: data, encoding: .utf8) { return value }
-        if let value = String(data: data, encoding: .utf16) { return value }
-        if let value = String(data: data, encoding: .utf16LittleEndian) { return value }
-        if let value = String(data: data, encoding: .utf16BigEndian) { return value }
+        // UTF-16 only when a byte-order mark says so. Foundation's .utf16 decoder accepts nearly
+        // any byte sequence, so trying it unconditionally turned every legacy Latin-1 file into
+        // mojibake and left the Latin-1 fallback below unreachable.
+        if data.starts(with: [0xFF, 0xFE]) || data.starts(with: [0xFE, 0xFF]),
+           let value = String(data: data, encoding: .utf16) {
+            return value
+        }
         return String(data: data, encoding: .isoLatin1)
     }
 
