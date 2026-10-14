@@ -4,6 +4,11 @@ name: Test count ratchet
 # relying on each PR to bump the file itself -- the same reason coverage-ratchet.yml exists and
 # owns coverage-baseline.txt the same way. Keeps the file out of feature branches entirely and
 # lets exactly one place -- post-merge, on main -- own writing to it.
+#
+# Pushing to main needs the repository's RATCHET_DEPLOY_KEY secret: the private half of a
+# write-enabled deploy key. The "main" ruleset requires pull requests and status checks, and a
+# deploy key is the one actor it lets bypass them. Without the secret this job still measures and
+# reports, but its push to main is rejected.
 
 on:
   push:
@@ -11,7 +16,7 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: test-count-ratchet-main
@@ -27,6 +32,10 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: main
+          # The ruleset on main requires pull requests, so the default token's push is rejected.
+          # Its only bypass is a deploy key, so push over SSH with one (see the header above).
+          # Unset, checkout falls back to the read-only token: the job measures but cannot push.
+          ssh-key: ${{ secrets.RATCHET_DEPLOY_KEY }}
       - name: Measure test counts and raise either baseline that climbed
         run: ./scripts/check-test-count.sh --update-if-higher
       - name: Commit and push the baseline if it changed
@@ -38,7 +47,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add test-count-baseline.txt
-          git commit -m "chore: ratchet test count baseline [skip ratchet]" -m "$(git diff --cached -- test-count-baseline.txt)"
+          git commit -m "chore: ratchet test count baseline [skip ratchet] [skip ci]" -m "$(git diff --cached -- test-count-baseline.txt)"
           # coverage-ratchet.yml runs on the same push, as may another merge. The two baseline files
           # never overlap, so rebasing this one-line commit onto the new main and retrying is safe;
           # a genuine conflict still fails the job loudly.
