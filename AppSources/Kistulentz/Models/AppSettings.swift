@@ -110,9 +110,50 @@ enum AIModelCatalog {
     }
 }
 
+/// How eagerly the optional English pack's parser runs while the writer types. The parser is a
+/// local language model in a long-lived Python process, so it is by far the heaviest thing
+/// Kistulentz does; this lets a writer trade how fresh its guidance is for how hard it works the Mac.
+enum StructuralAnalysisMode: String, CaseIterable, Identifiable, Hashable {
+    case responsive
+    case balanced
+    case off
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .responsive: "Responsive"
+        case .balanced: "Balanced"
+        case .off: "Off"
+        }
+    }
+
+    var detail: String {
+        switch self {
+        case .responsive:
+            "Parses about half a second after you pause. The freshest guidance, and the most processor use."
+        case .balanced:
+            "Parses about two seconds after you pause, so far fewer passes are wasted while you type."
+        case .off:
+            "No parsing while you type. De-stink Review and reference analysis still use the pack when you run them."
+        }
+    }
+
+    /// Quiet time, after the fast built-in pass, before the parser is started. `nil` means never.
+    /// `.responsive` keeps the original timing (220 ms for the built-in pass plus this 430 ms).
+    var pauseBeforeParsing: Duration? {
+        switch self {
+        case .responsive: .milliseconds(430)
+        case .balanced: .milliseconds(1_800)
+        case .off: nil
+        }
+    }
+}
+
 @MainActor
 final class AppSettings: ObservableObject {
     private enum DefaultsKey {
+        static let structuralAnalysisMode = "structuralAnalysisMode"
         static let provider = "selectedAIProvider"
         static let targetGrade = "targetReadingGrade"
         static let openAIModel = "openAIModel"
@@ -137,6 +178,10 @@ final class AppSettings: ObservableObject {
     static let dailyWordGoalRange: ClosedRange<Int> = 100...10_000
 
     private static let legacyBundleIdentifier = "com.beauhenry.kistuletz"
+
+    @Published var structuralAnalysisMode: StructuralAnalysisMode {
+        didSet { defaults.set(structuralAnalysisMode.rawValue, forKey: DefaultsKey.structuralAnalysisMode) }
+    }
 
     @Published var provider: AIProvider {
         didSet { defaults.set(provider.rawValue, forKey: DefaultsKey.provider) }
@@ -224,6 +269,9 @@ final class AppSettings: ObservableObject {
 
         Self.migrateLegacyDefaults(into: defaults)
 
+        structuralAnalysisMode = StructuralAnalysisMode(
+            rawValue: defaults.string(forKey: DefaultsKey.structuralAnalysisMode) ?? ""
+        ) ?? .balanced
         provider = AIProvider(rawValue: defaults.string(forKey: DefaultsKey.provider) ?? "") ?? .openAI
         let savedGrade = defaults.integer(forKey: DefaultsKey.targetGrade)
         targetGrade = savedGrade == 0 ? 8 : min(max(savedGrade, 4), 16)

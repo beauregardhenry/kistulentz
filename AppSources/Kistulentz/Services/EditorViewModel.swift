@@ -39,6 +39,11 @@ final class EditorViewModel: ObservableObject {
     /// timing constraint `WritingProjectStore.onDidSaveChapter` already works around.
     var onQualitySample: ((_ issueCount: Int, _ wordCount: Int) -> Void)?
 
+    /// How soon after the writer pauses the structural parser may start (or never, when `.off`).
+    /// Set externally from `AppSettings` for the same timing reason as `onQualitySample`, and
+    /// defaulting to the original timing so a view model nobody configures behaves as it always did.
+    var structuralAnalysisMode: StructuralAnalysisMode = .responsive
+
     /// `structuralAnalyzerOverride` is nil in production, in which case `runStructuralAnalyzer`
     /// below calls straight through to the real, shared Benepar singleton -- which can't be
     /// swapped once `.shared` is referenced directly, so a default *value* pointing at it (rather
@@ -164,8 +169,9 @@ final class EditorViewModel: ObservableObject {
             self.isUsingBenepar = false
             self.onQualitySample?(self.allIssues.count, result.stats.words)
 
+            guard let pause = self.structuralAnalysisMode.pauseBeforeParsing else { return }
             if !immediately {
-                try? await Task.sleep(for: .milliseconds(430))
+                try? await Task.sleep(for: pause)
             }
             guard !Task.isCancelled, self.analysisRequestID == requestID, self.currentText == text else { return }
             self.isAnalyzingStructure = true

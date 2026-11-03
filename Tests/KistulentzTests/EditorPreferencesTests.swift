@@ -99,4 +99,42 @@ final class EditorPreferencesTests: XCTestCase {
 
         XCTAssertEqual(resolved.familyName, "Helvetica")
     }
+
+    // MARK: - Structural analysis mode
+
+    @MainActor
+    func testStructuralAnalysisModeDefaultsToBalancedAndPersists() throws {
+        let suite = "EditorPreferencesTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        let settings = AppSettings(defaults: defaults)
+        XCTAssertEqual(settings.structuralAnalysisMode, .balanced)
+
+        settings.structuralAnalysisMode = .off
+        XCTAssertEqual(AppSettings(defaults: defaults).structuralAnalysisMode, .off)
+    }
+
+    @MainActor
+    func testAnUnrecognizedStoredStructuralAnalysisModeFallsBackToBalanced() throws {
+        let suite = "EditorPreferencesTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        defaults.set("turbo", forKey: "structuralAnalysisMode")
+
+        XCTAssertEqual(AppSettings(defaults: defaults).structuralAnalysisMode, .balanced)
+    }
+
+    func testStructuralAnalysisModesTradeFreshnessForEffortInOrder() throws {
+        XCTAssertEqual(StructuralAnalysisMode.allCases, [.responsive, .balanced, .off])
+        // Responsive is the original timing; Balanced waits meaningfully longer; Off never runs.
+        XCTAssertEqual(StructuralAnalysisMode.responsive.pauseBeforeParsing, .milliseconds(430))
+        let balanced = try XCTUnwrap(StructuralAnalysisMode.balanced.pauseBeforeParsing)
+        XCTAssertGreaterThan(balanced, .seconds(1))
+        XCTAssertNil(StructuralAnalysisMode.off.pauseBeforeParsing)
+        for mode in StructuralAnalysisMode.allCases {
+            XCTAssertFalse(mode.title.isEmpty)
+            XCTAssertFalse(mode.detail.isEmpty)
+        }
+    }
 }

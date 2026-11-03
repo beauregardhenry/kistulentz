@@ -208,6 +208,7 @@ struct EditorWorkspace: View {
             viewModel.onQualitySample = { [weak activityStore] issueCount, wordCount in
                 activityStore?.recordQualitySample(issueCount: issueCount, wordCount: wordCount)
             }
+            viewModel.structuralAnalysisMode = settings.structuralAnalysisMode
 #if UI_TEST_HOST
             configureUITestProjectIfNeeded()
 #endif
@@ -283,6 +284,14 @@ struct EditorWorkspace: View {
         }
         .onChange(of: settings.targetGrade) { _, newValue in
             viewModel.scheduleAnalysis(text: activeText, targetGrade: newValue, immediately: true)
+        }
+        .onChange(of: settings.structuralAnalysisMode) { _, newValue in
+            viewModel.structuralAnalysisMode = newValue
+            if newValue == .off {
+                Task { await BeneparService.shared.stopWorkerIfIdle() }
+            } else {
+                viewModel.scheduleAnalysis(text: activeText, targetGrade: settings.targetGrade, immediately: true)
+            }
         }
         .onChange(of: beneparPack.isInstalled) { _, isInstalled in
             guard isInstalled else { return }

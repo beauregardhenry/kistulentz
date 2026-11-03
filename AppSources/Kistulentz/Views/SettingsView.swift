@@ -170,6 +170,18 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
+                Picker("While you write", selection: $settings.structuralAnalysisMode) {
+                    ForEach(StructuralAnalysisMode.allCases) { mode in
+                        Text(mode.title).tag(mode)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .accessibilityIdentifier("StructuralAnalysisMode")
+
+                Text("\(settings.structuralAnalysisMode.detail) The language model unloads itself after three minutes without use, and starts again when needed.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
                 if !beneparPack.activityMessage.isEmpty {
                     Text(beneparPack.activityMessage)
                         .font(.caption)

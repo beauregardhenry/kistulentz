@@ -4,12 +4,58 @@ actor BeneparService {
     static let shared = BeneparService()
 
     private let rootURL: URL
+    private let idleTimeout: Duration
     private var worker: BeneparWorkerProcess?
     private var installationPath: String?
     private var isAnalyzing = false
+    private var activeRequests = 0
+    private var idleTask: Task<Void, Never>?
 
-    init(rootURL: URL = BeneparLanguagePackLocator.defaultRootURL()) {
+    /// `idleTimeout` is how long the worker may sit unused before it is shut down. The worker holds
+    /// a loaded language model, so leaving it resident all session costs memory for nothing while
+    /// the writer is reading, thinking, or in another app; the next request simply starts it again.
+    init(
+        rootURL: URL = BeneparLanguagePackLocator.defaultRootURL(),
+        idleTimeout: Duration = .seconds(180)
+    ) {
         self.rootURL = rootURL
+        self.idleTimeout = idleTimeout
+    }
+
+    func isWorkerRunning() -> Bool {
+        worker?.isRunning ?? false
+    }
+
+    /// Shuts the worker down now unless a request is using it. For when parsing has just been
+    /// turned off and waiting out the idle timeout would defeat the point.
+    func stopWorkerIfIdle() {
+        idleTask?.cancel()
+        unloadIfIdle()
+    }
+
+    private func beginRequest() {
+        activeRequests += 1
+        idleTask?.cancel()
+        idleTask = nil
+    }
+
+    private func endRequest() {
+        activeRequests -= 1
+        guard activeRequests == 0, worker != nil else { return }
+        idleTask?.cancel()
+        idleTask = Task { [idleTimeout] in
+            try? await Task.sleep(for: idleTimeout)
+            guard !Task.isCancelled else { return }
+            unloadIfIdle()
+        }
+    }
+
+    private func unloadIfIdle() {
+        guard activeRequests == 0 else { return }
+        worker?.close()
+        worker = nil
+        installationPath = nil
+        idleTask = nil
     }
 
     func analyzeIfAvailable(
@@ -50,6 +96,8 @@ actor BeneparService {
         maximumSentences: Int,
         includeIssues: Bool
     ) async throws -> BeneparAnalysis {
+        beginRequest()
+        defer { endRequest() }
         guard let installation = try BeneparLanguagePackLocator.locate(at: rootURL) else {
             throw BeneparLanguagePackError.invalidManifest("the pack is not installed")
         }
@@ -115,6 +163,8 @@ actor BeneparService {
     }
 
     func destink(text: String, maximumSentences: Int) async throws -> BeneparDestinkAnalysis {
+        beginRequest()
+        defer { endRequest() }
         guard let installation = try BeneparLanguagePackLocator.locate(at: rootURL) else {
             throw BeneparLanguagePackError.invalidManifest("the pack is not installed")
         }
@@ -146,6 +196,8 @@ actor BeneparService {
     }
 
     func reset() {
+        idleTask?.cancel()
+        idleTask = nil
         worker?.close()
         worker = nil
         installationPath = nil
