@@ -15,6 +15,44 @@ merged changes are recorded under [Unreleased].
   `main` had already moved, failing that job without raising its baseline. Each now rebases its
   one-line baseline commit onto the new `main` and retries. No app behavior change. (#122)
 
+## [0.25.0] - 2026-11-03
+
+A lighter touch on your Mac, a daily recap, and clearer practice.
+
+### Added
+
+- **Today's recap** in Your Writing Growth. A short card compares how clean today's writing was
+  (findings per 1,000 words) with your own usual day, within a 15% "about your usual" band, and
+  shows how many suggestions you applied and declined. It makes no comparison until you have
+  three other scored days, and it never judges how much you wrote: a test pins that writing
+  thousands more words cannot change the quality verdict.
+- **A "While you write" setting** under English structural analysis: *Responsive* (about half a
+  second after you pause, the old timing), *Balanced* (about two seconds), or *Off* (no parsing
+  while you type; De-stink Review and reference analysis still use the pack when you run them).
+- **Self-Edit Exercises say where they lean.** Exercises already favored the categories you
+  decline most; the screen now names them ("Leaning toward Adverb and Passive voice -- the
+  suggestions you decline most often"), but only once a category has at least three recorded
+  decisions and a 50% decline rate, and only if it appears in the current set.
+
+### Changed
+
+- The English pack's language model now unloads itself after three minutes without use, freeing
+  its memory while you read, think, or work in another app, and starts again on the next
+  request. Previously it stayed loaded for the whole session.
+- **Behavior change:** structural guidance now appears about two seconds after you pause rather
+  than about 0.65 seconds, because Balanced is the new default. Choose Responsive to keep the
+  old timing. The fast built-in checks are unchanged.
+- The CI baseline ratchets now push through a deploy key, which the protected `main` branch
+  allows to bypass its pull-request rule. Their pushes had been rejected since that rule was
+  added, so the test-count floor had stopped rising.
+
+### Testing
+
+- The verified suite now contains 865 Swift tests and 54 macOS interface tests, up from 840
+  Swift tests: coverage for the recap, the exercise focus, the new setting, and the language-model
+  worker's launch, request, idle-unload, and restart paths (exercised against a stand-in worker
+  process).
+
 ## [0.24.1] - 2026-10-13
 
 A small release: two bug fixes found by new test coverage, plus internal cleanup.

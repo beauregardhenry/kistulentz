@@ -504,12 +504,14 @@ final class KistulentzUITests: KistulentzUITestCase {
         XCTAssertTrue(whatsNewItem.waitForExistence(timeout: 3))
         whatsNewItem.click()
 
-        let title = app.staticTexts["What’s New in Kistulentz 0.24.1"]
+        let title = app.staticTexts["What’s New in Kistulentz 0.25.0"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let legacyEncodingSummary = app.descendants(matching: .any)["WhatsNewLegacyEncodingImport"].firstMatch
-        XCTAssertTrue(legacyEncodingSummary.exists)
-        let outlineOrphanSummary = app.descendants(matching: .any)["WhatsNewOutlineOrphanFix"].firstMatch
-        XCTAssertTrue(outlineOrphanSummary.exists)
+        let lighterParserSummary = app.descendants(matching: .any)["WhatsNewLighterParser"].firstMatch
+        XCTAssertTrue(lighterParserSummary.exists)
+        let dailyRecapSummary = app.descendants(matching: .any)["WhatsNewDailyRecap"].firstMatch
+        XCTAssertTrue(dailyRecapSummary.exists)
+        let exerciseFocusSummary = app.descendants(matching: .any)["WhatsNewExerciseFocus"].firstMatch
+        XCTAssertTrue(exerciseFocusSummary.exists)
         app.buttons["Continue"].click()
         XCTAssertFalse(title.waitForExistence(timeout: 2))
     }
