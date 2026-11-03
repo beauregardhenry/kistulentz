@@ -542,6 +542,105 @@ final class BeneparIntegrationTests: XCTestCase {
         ))
     }
 
+    // MARK: - Worker lifecycle (against a stand-in worker process)
+
+    /// A language pack whose "python" is a shell script that ignores the worker script it is handed
+    /// and answers every request line with a fixed, valid structural profile. That makes the real
+    /// process-launching, request/response, and shutdown code testable without the real model.
+    private func writeStandInWorkerPack(at root: URL) throws {
+        try writePack(at: root, version: "1.0.0")
+        let script = """
+        #!/bin/sh
+        while IFS= read -r line; do
+          id=$(printf '%s' "$line" | sed -n 's/.*"id":"\\([^"]*\\)".*/\\1/p')
+          printf '{"id":"%s","ok":true,"metrics":{"sentencesAnalyzed":1,"sentencesAvailable":1,"averageTreeDepth":4,"maximumTreeDepth":4,"averageClausesPerSentence":1,"subordinateSentenceRatio":0,"averageLongestNounPhraseWords":2,"longNounPhraseRatio":0,"coordinationRatio":0,"passiveCandidateRatio":0,"fragmentRatio":0},"issues":[]}\\n' "$id"
+        done
+        """
+        let python = root.appendingPathComponent("python/bin/python3")
+        try Data(script.utf8).write(to: python)
+        try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: python.path)
+    }
+
+    private func requireWorkerScript() throws {
+        guard BeneparService.workerURL() != nil else {
+            throw XCTSkip("benepar_worker.py is not reachable from this test's working directory.")
+        }
+    }
+
+    func testServiceAnalyzesThroughARealWorkerProcessAndCanBeReset() async throws {
+        try requireWorkerScript()
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try writeStandInWorkerPack(at: root)
+        let service = BeneparService(rootURL: root, idleTimeout: .seconds(60))
+        let startedRunning = await service.isWorkerRunning()
+        XCTAssertFalse(startedRunning, "no worker should exist before the first request")
+
+        let analysis = try await service.analyze(text: "Hello there.", maximumSentences: 4, includeIssues: true)
+
+        XCTAssertEqual(analysis.metrics.sentencesAnalyzed, 1)
+        let runningAfter = await service.isWorkerRunning()
+        XCTAssertTrue(runningAfter)
+
+        await service.reset()
+        let runningAfterReset = await service.isWorkerRunning()
+        XCTAssertFalse(runningAfterReset)
+    }
+
+    func testWorkerUnloadsAfterTheIdleTimeoutAndRestartsOnTheNextRequest() async throws {
+        try requireWorkerScript()
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try writeStandInWorkerPack(at: root)
+        let service = BeneparService(rootURL: root, idleTimeout: .milliseconds(300))
+
+        _ = try await service.analyze(text: "Hello there.", maximumSentences: 4, includeIssues: false)
+        let runningRightAfter = await service.isWorkerRunning()
+        XCTAssertTrue(runningRightAfter)
+
+        var unloaded = false
+        for _ in 0..<200 {
+            if await !service.isWorkerRunning() { unloaded = true; break }
+            try await Task.sleep(for: .milliseconds(25))
+        }
+        XCTAssertTrue(unloaded, "the worker should shut itself down once it has been idle")
+
+        let second = try await service.analyze(text: "Hello again.", maximumSentences: 4, includeIssues: false)
+        XCTAssertEqual(second.metrics.sentencesAnalyzed, 1, "the next request transparently starts a fresh worker")
+        let runningAgain = await service.isWorkerRunning()
+        XCTAssertTrue(runningAgain)
+        await service.reset()
+    }
+
+    func testStopWorkerIfIdleUnloadsAtOnceAndTheServiceStillWorks() async throws {
+        try requireWorkerScript()
+        let root = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: root) }
+        try writeStandInWorkerPack(at: root)
+        let service = BeneparService(rootURL: root, idleTimeout: .seconds(60))
+        _ = try await service.analyze(text: "Hello there.", maximumSentences: 4, includeIssues: false)
+
+        await service.stopWorkerIfIdle()
+
+        let running = await service.isWorkerRunning()
+        XCTAssertFalse(running)
+        let again = try await service.analyze(text: "Hello once more.", maximumSentences: 4, includeIssues: false)
+        XCTAssertEqual(again.metrics.sentencesAnalyzed, 1)
+        await service.reset()
+    }
+
+    func testAnalyzeIfAvailableReturnsNilWithoutAPackOrWithBlankText() async throws {
+        let empty = temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: empty) }
+        let service = BeneparService(rootURL: empty, idleTimeout: .seconds(60))
+
+        let noPack = await service.analyzeIfAvailable(text: "Hello there.", maximumSentences: 4, includeIssues: true)
+        let blank = await service.analyzeIfAvailable(text: "  \n ", maximumSentences: 4, includeIssues: true)
+
+        XCTAssertNil(noPack)
+        XCTAssertNil(blank)
+    }
+
     private func writePack(at root: URL, version: String) throws {
         let python = root.appendingPathComponent("python/bin/python3")
         let model = root.appendingPathComponent("nltk_data/models/benepar_en3", isDirectory: true)

@@ -140,6 +140,48 @@ final class EditorViewModelTests: XCTestCase {
     }
 
     @MainActor
+    func testStructuralAnalysisOffKeepsTheFastPassAndNeverStartsTheParser() async {
+        let calls = StructuralCallCounter()
+        let viewModel = EditorViewModel(structuralAnalyzer: { _, _, _, _ in
+            calls.record()
+            return nil
+        })
+        viewModel.structuralAnalysisMode = .off
+
+        viewModel.scheduleAnalysis(
+            text: "Although the rain had stopped, the road remained difficult to cross.",
+            targetGrade: 8,
+            immediately: true
+        )
+        await waitUntil { viewModel.analysis.stats.words > 0 }
+        try? await Task.sleep(for: .milliseconds(100))
+
+        XCTAssertEqual(calls.count, 0, "Off must not start the parser")
+        XCTAssertFalse(viewModel.isAnalyzingStructure)
+        XCTAssertNil(viewModel.structuralProfile)
+    }
+
+    @MainActor
+    func testTurningStructuralAnalysisBackOnRunsTheParserAgain() async {
+        let calls = StructuralCallCounter()
+        let viewModel = EditorViewModel(structuralAnalyzer: { _, _, _, _ in
+            calls.record()
+            return nil
+        })
+        let text = "Although the rain had stopped, the road remained difficult to cross."
+        viewModel.structuralAnalysisMode = .off
+        viewModel.scheduleAnalysis(text: text, targetGrade: 8, immediately: true)
+        await waitUntil { viewModel.analysis.stats.words > 0 }
+        XCTAssertEqual(calls.count, 0)
+
+        viewModel.structuralAnalysisMode = .balanced
+        viewModel.scheduleAnalysis(text: text, targetGrade: 8, immediately: true)
+        await waitUntil { calls.count == 1 }
+
+        XCTAssertEqual(calls.count, 1)
+    }
+
+    @MainActor
     private func waitUntil(
         timeoutIterations: Int = 200,
         condition: @escaping @MainActor () -> Bool
@@ -150,4 +192,14 @@ final class EditorViewModelTests: XCTestCase {
         }
         XCTFail("Timed out waiting for the editor view model operation to finish")
     }
+}
+
+/// Counts how many times a view model's injected structural analyzer ran. The analyzer closure is
+/// not main-actor isolated, so the count sits behind a lock.
+private final class StructuralCallCounter: @unchecked Sendable {
+    private let lock = NSLock()
+    private var value = 0
+
+    var count: Int { lock.withLock { value } }
+    func record() { lock.withLock { value += 1 } }
 }
