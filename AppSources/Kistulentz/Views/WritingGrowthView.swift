@@ -174,6 +174,8 @@ private struct WritingActivitySection: View {
                 Spacer()
             }
 
+            recapCard
+
             heatmapGrid
 
             HStack(spacing: 4) {
@@ -185,6 +187,26 @@ private struct WritingActivitySection: View {
                 }
                 Text("Cleaner").font(.caption2).foregroundStyle(.secondary)
             }
+        }
+    }
+
+    @ViewBuilder
+    private var recapCard: some View {
+        let lines = activityStore.todayRecap.summaryLines
+        if !lines.isEmpty {
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Today's recap").font(.caption.weight(.semibold))
+                ForEach(lines, id: \.self) { line in
+                    Text(line)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 8))
+            .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("TodayRecap")
         }
     }
 

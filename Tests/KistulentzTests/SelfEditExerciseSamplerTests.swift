@@ -232,3 +232,95 @@ final class SelfEditExerciseWeightsTests: XCTestCase {
         XCTAssertEqual(weights[.passiveVoice], SelfEditExerciseSampler.baselineWeight)
     }
 }
+
+/// Tests for `SelfEditExerciseSampler.focusCategories(from:limit:)` and the "why these exercises"
+/// note built from it -- the visible half of the decline-weighted sampling.
+final class SelfEditExerciseFocusTests: XCTestCase {
+    private func month(_ tallies: [IssueCategory: WritingGrowthTally]) -> [WritingGrowthMonth] {
+        [WritingGrowthMonth(key: "2026-01", tallies: tallies)]
+    }
+
+    private func exercise(_ category: IssueCategory) -> SelfEditExercise {
+        SelfEditExercise(issue: WritingIssue(
+            category: category,
+            range: NSRange(location: 0, length: 4),
+            excerpt: "text",
+            message: "message"
+        ))
+    }
+
+    func testThereIsNoFocusWithoutHistory() {
+        XCTAssertEqual(SelfEditExerciseSampler.focusCategories(from: []), [])
+    }
+
+    func testACategoryNeedsEnoughDecisionsBeforeItIsNamedAFocus() {
+        // 2 of 2 declined is a 100% rate, but two data points aren't a pattern yet.
+        let growth = month([.adverb: WritingGrowthTally(accepted: 0, declined: 2)])
+
+        XCTAssertEqual(SelfEditExerciseSampler.focusCategories(from: growth), [])
+    }
+
+    func testACategoryTheWriterMostlyAcceptsIsNotAFocus() {
+        let growth = month([.adverb: WritingGrowthTally(accepted: 8, declined: 2)])
+
+        XCTAssertEqual(SelfEditExerciseSampler.focusCategories(from: growth), [])
+    }
+
+    func testFocusCategoriesAreRankedByDeclineRateThenDeclinesThenName() {
+        let growth = month([
+            .adverb: WritingGrowthTally(accepted: 1, declined: 3),          // 75%
+            .passiveVoice: WritingGrowthTally(accepted: 0, declined: 4),    // 100%
+            .complexPhrase: WritingGrowthTally(accepted: 0, declined: 3),   // 100%, fewer declines
+            .aiTell: WritingGrowthTally(accepted: 3, declined: 3)           // 50%
+        ])
+
+        XCTAssertEqual(
+            SelfEditExerciseSampler.focusCategories(from: growth, limit: 4),
+            [.passiveVoice, .complexPhrase, .adverb, .aiTell]
+        )
+        XCTAssertEqual(SelfEditExerciseSampler.focusCategories(from: growth), [.passiveVoice, .complexPhrase])
+    }
+
+    func testCategoriesWithNothingToPracticeAreNeverAFocus() {
+        // Spelling is an objective correction, not a craft judgment, so it has no practice prompt.
+        XCTAssertNil(IssueCategory.spelling.practicePrompt)
+        let growth = month([.spelling: WritingGrowthTally(accepted: 0, declined: 9)])
+
+        XCTAssertEqual(SelfEditExerciseSampler.focusCategories(from: growth), [])
+    }
+
+    func testDecisionsAcrossMonthsCountTowardTheFocusThreshold() {
+        let growth = [
+            WritingGrowthMonth(key: "2026-01", tallies: [.adverb: WritingGrowthTally(accepted: 0, declined: 2)]),
+            WritingGrowthMonth(key: "2026-02", tallies: [.adverb: WritingGrowthTally(accepted: 0, declined: 1)])
+        ]
+
+        XCTAssertEqual(SelfEditExerciseSampler.focusCategories(from: growth), [.adverb])
+    }
+
+    func testThePresentationOnlyNamesAFocusThatActuallyAppearsInItsExercises() {
+        let presentation = SelfEditExercisePresentation(
+            exercises: [exercise(.adverb), exercise(.complexPhrase)],
+            focusCategories: [.passiveVoice, .adverb]
+        )
+
+        XCTAssertEqual(presentation.focusCategories, [.adverb])
+        XCTAssertEqual(
+            presentation.focusNote,
+            "Leaning toward Adverb -- the suggestions you decline most often."
+        )
+    }
+
+    func testTheFocusNoteJoinsTwoCategoriesAndIsAbsentWithNone() {
+        let both = SelfEditExercisePresentation(
+            exercises: [exercise(.adverb), exercise(.passiveVoice)],
+            focusCategories: [.adverb, .passiveVoice]
+        )
+        XCTAssertEqual(
+            both.focusNote,
+            "Leaning toward Adverb and Passive voice -- the suggestions you decline most often."
+        )
+
+        XCTAssertNil(SelfEditExercisePresentation(exercises: [exercise(.adverb)]).focusNote)
+    }
+}

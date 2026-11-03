@@ -6,6 +6,82 @@ struct DailyWritingActivity: Codable, Equatable {
     var wordsWritten = 0
     var issuesObserved = 0
     var wordsObserved = 0
+    /// Suggestions the writer applied or declined that day. Added after the first release of this
+    /// store, so days saved before then simply decode as zero rather than failing to load.
+    var suggestionsApplied = 0
+    var suggestionsDeclined = 0
+
+    private enum CodingKeys: String, CodingKey {
+        case wordsWritten, issuesObserved, wordsObserved, suggestionsApplied, suggestionsDeclined
+    }
+}
+
+extension DailyWritingActivity {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        wordsWritten = try container.decodeIfPresent(Int.self, forKey: .wordsWritten) ?? 0
+        issuesObserved = try container.decodeIfPresent(Int.self, forKey: .issuesObserved) ?? 0
+        wordsObserved = try container.decodeIfPresent(Int.self, forKey: .wordsObserved) ?? 0
+        suggestionsApplied = try container.decodeIfPresent(Int.self, forKey: .suggestionsApplied) ?? 0
+        suggestionsDeclined = try container.decodeIfPresent(Int.self, forKey: .suggestionsDeclined) ?? 0
+    }
+}
+
+/// A short, quality-first summary of one day: what was written, how the writer handled
+/// suggestions, and how clean the day's prose was *against that writer's own usual day*. Word
+/// count is reported but never judged -- the verdict is about findings per 1,000 words only, so
+/// nothing here rewards padding over careful editing.
+struct DailyRecap: Equatable {
+    enum QualityVerdict: Equatable {
+        case cleaner
+        case typical
+        case noisier
+    }
+
+    let wordsWritten: Int
+    let suggestionsApplied: Int
+    let suggestionsDeclined: Int
+    /// Findings per 1,000 words today, if anything was analyzed.
+    let findingsPer1000Words: Double?
+    /// The median of the writer's other scored days; nil until there are enough of them to mean anything.
+    let typicalFindingsPer1000Words: Double?
+    let verdict: QualityVerdict?
+
+    var hasActivity: Bool {
+        wordsWritten > 0 || suggestionsApplied > 0 || suggestionsDeclined > 0 || findingsPer1000Words != nil
+    }
+
+    /// The recap card's lines, quality first. Words written are deliberately not repeated here:
+    /// they already show as progress toward the daily goal, and are never judged.
+    var summaryLines: [String] {
+        var lines: [String] = []
+        if let today = findingsPer1000Words {
+            let current = Self.format(today)
+            if let typical = typicalFindingsPer1000Words, let verdict {
+                let phrase: String
+                switch verdict {
+                case .cleaner: phrase = "cleaner than usual"
+                case .typical: phrase = "about your usual"
+                case .noisier: phrase = "noisier than usual"
+                }
+                lines.append(
+                    "Findings per 1,000 words: \(current) today, against \(Self.format(typical)) on your usual day -- \(phrase)."
+                )
+            } else {
+                lines.append(
+                    "Findings per 1,000 words: \(current) today. A few more scored days and Kistulentz can compare it with your usual."
+                )
+            }
+        }
+        if suggestionsApplied > 0 || suggestionsDeclined > 0 {
+            lines.append("Suggestions: \(suggestionsApplied) applied, \(suggestionsDeclined) declined.")
+        }
+        return lines
+    }
+
+    private static func format(_ value: Double) -> String {
+        String(format: "%.1f", value)
+    }
 }
 
 /// A day's craft-quality bucket, ranked against the writer's *own* history rather than a fixed
@@ -93,6 +169,16 @@ final class WritingActivityStore: ObservableObject {
         mutateToday {
             $0.issuesObserved += issueCount
             $0.wordsObserved += wordCount
+        }
+    }
+
+    /// Counts one suggestion the writer applied or declined today.
+    func recordDecision(_ action: StyleDecisionAction) {
+        mutateToday {
+            switch action {
+            case .accepted: $0.suggestionsApplied += 1
+            case .declined: $0.suggestionsDeclined += 1
+            }
         }
     }
 
@@ -208,6 +294,46 @@ final class WritingActivityStore: ObservableObject {
                 calendar.date(byAdding: .day, value: -dayOffset, to: weekEnd)
             }
         }
+    }
+
+    // MARK: - Daily recap
+
+    /// How many *other* scored days the writer needs before "your usual day" means anything.
+    private static let minimumDaysForTypicalBaseline = 3
+
+    /// Today's density counts as typical within this fraction of the writer's usual (15% either way).
+    private static let typicalBand = 0.15
+
+    var todayRecap: DailyRecap { recap(for: currentDate()) }
+
+    func recap(for date: Date) -> DailyRecap {
+        let key = Self.dayKey(for: date)
+        let day = days[key] ?? DailyWritingActivity()
+        let today = density(of: days[key])
+        let others = days
+            .filter { $0.key != key }
+            .compactMap { density(of: $0.value) }
+            .sorted()
+        let typical = others.count >= Self.minimumDaysForTypicalBaseline
+            ? Self.percentile(others, 0.5)
+            : nil
+        return DailyRecap(
+            wordsWritten: day.wordsWritten,
+            suggestionsApplied: day.suggestionsApplied,
+            suggestionsDeclined: day.suggestionsDeclined,
+            findingsPer1000Words: today,
+            typicalFindingsPer1000Words: typical,
+            verdict: Self.verdict(today: today, typical: typical)
+        )
+    }
+
+    private static func verdict(today: Double?, typical: Double?) -> DailyRecap.QualityVerdict? {
+        guard let today, let typical else { return nil }
+        guard typical > 0 else { return today == 0 ? .typical : .noisier }
+        let ratio = today / typical
+        if ratio <= 1 - typicalBand { return .cleaner }
+        if ratio >= 1 + typicalBand { return .noisier }
+        return .typical
     }
 
     // MARK: - Heat level (self-relative quartiles)
