@@ -371,12 +371,14 @@ extension EditorWorkspace {
         )
         styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
         writingGrowth.record(category: issue.category, action: .accepted)
+        writingActivity.recordDecision(.accepted)
     }
 
     func decline(_ issue: WritingIssue) {
         if viewModel.decline(issue, in: activeText) {
             styleLearningStore.recordStyleDecision(action: .declined, issue: issue)
             writingGrowth.record(category: issue.category, action: .declined)
+            writingActivity.recordDecision(.declined)
         }
     }
 
@@ -421,6 +423,7 @@ extension EditorWorkspace {
         for issue in appliedIssues {
             styleLearningStore.recordStyleDecision(action: .accepted, issue: issue)
             writingGrowth.record(category: issue.category, action: .accepted)
+            writingActivity.recordDecision(.accepted)
         }
         pendingApplyAllPlan = nil
     }

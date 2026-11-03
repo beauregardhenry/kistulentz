@@ -8,8 +8,11 @@ struct SelfEditExerciseView: View {
     @StateObject private var session: SelfEditExerciseSession
     @Environment(\.dismiss) private var dismiss
 
-    init(exercises: [SelfEditExercise]) {
+    private let focusNote: String?
+
+    init(exercises: [SelfEditExercise], focusNote: String? = nil) {
         _session = StateObject(wrappedValue: SelfEditExerciseSession(exercises: exercises))
+        self.focusNote = focusNote
     }
 
     private func attemptBinding(for exercise: SelfEditExercise) -> Binding<String> {
@@ -55,6 +58,12 @@ struct SelfEditExerciseView: View {
                     Text("Exercise \(session.index + 1) of \(session.exercises.count)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                    if let focusNote {
+                        Text(focusNote)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .accessibilityIdentifier("SelfEditFocusNote")
+                    }
                 }
             }
             Spacer()

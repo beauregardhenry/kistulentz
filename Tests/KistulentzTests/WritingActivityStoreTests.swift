@@ -399,4 +399,146 @@ final class WritingActivityStoreTests: XCTestCase {
         XCTAssertTrue(WritingActivityStore.recentWeeks(weeksShown: 0, today: Date(), calendar: calendar).isEmpty)
         XCTAssertEqual(WritingActivityStore.recentWeeks(weeksShown: 1, today: Date(), calendar: calendar).count, 1)
     }
+
+    // MARK: - Suggestion decisions and the daily recap
+
+    @MainActor
+    func testRecordDecisionCountsAppliedAndDeclinedSuggestionsForToday() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let (store, defaults) = try makeStore(suiteName: suite)
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        store.recordDecision(.accepted)
+        store.recordDecision(.accepted)
+        store.recordDecision(.declined)
+
+        XCTAssertEqual(store.today.suggestionsApplied, 2)
+        XCTAssertEqual(store.today.suggestionsDeclined, 1)
+        XCTAssertEqual(store.today.wordsWritten, 0, "decisions are not words written")
+    }
+
+    @MainActor
+    func testDaysSavedBeforeDecisionCountersExistedStillLoadWithZeroes() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let key = WritingActivityStore.dayKey(for: Self.fixedDate())
+        let legacy = #"{"days":{"\#(key)":{"wordsWritten":120,"issuesObserved":3,"wordsObserved":900}}}"#
+        defaults.set(Data(legacy.utf8), forKey: "test.\(suite)")
+
+        let store = WritingActivityStore(defaults: defaults, storageKey: "test.\(suite)", currentDate: { Self.fixedDate() })
+
+        XCTAssertEqual(store.today.wordsWritten, 120)
+        XCTAssertEqual(store.today.issuesObserved, 3)
+        XCTAssertEqual(store.today.suggestionsApplied, 0)
+        XCTAssertEqual(store.today.suggestionsDeclined, 0)
+    }
+
+    /// A store whose previous days (offsets -n...-1) each have the given density and whose "today"
+    /// (offset 0) has `todayIssues` findings in 1,000 words.
+    @MainActor
+    private func storeWithHistory(
+        suite: String,
+        previousIssuesPerThousand: [Int],
+        todayIssues: Int?
+    ) throws -> (store: WritingActivityStore, defaults: UserDefaults) {
+        var offset = 0
+        let (store, defaults) = try makeStore(suiteName: suite, date: { Self.fixedDate(dayOffset: offset) })
+        for (index, issues) in previousIssuesPerThousand.enumerated() {
+            offset = -(previousIssuesPerThousand.count - index)
+            store.recordQualitySample(issueCount: issues, wordCount: 1_000)
+        }
+        offset = 0
+        if let todayIssues {
+            store.recordQualitySample(issueCount: todayIssues, wordCount: 1_000)
+        }
+        return (store, defaults)
+    }
+
+    @MainActor
+    func testRecapComparesTodaysDensityWithTheWritersOwnUsualDay() throws {
+        // The typical band is 15% either way of a usual 10: 8.5...11.5.
+        for (todayIssues, expected) in [(5, DailyRecap.QualityVerdict.cleaner), (8, .cleaner), (9, .typical), (10, .typical), (11, .typical), (12, .noisier), (15, .noisier)] {
+            let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+            let (store, defaults) = try storeWithHistory(
+                suite: suite, previousIssuesPerThousand: [10, 10, 10, 10], todayIssues: todayIssues
+            )
+            defer { defaults.removePersistentDomain(forName: suite) }
+
+            let recap = store.todayRecap
+
+            XCTAssertEqual(recap.typicalFindingsPer1000Words, 10)
+            XCTAssertEqual(recap.findingsPer1000Words, Double(todayIssues))
+            XCTAssertEqual(recap.verdict, expected, "\(todayIssues) findings per 1,000 words against a usual 10")
+        }
+    }
+
+    @MainActor
+    func testRecapNeedsEnoughPriorScoredDaysBeforeItJudgesAnything() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let (store, defaults) = try storeWithHistory(suite: suite, previousIssuesPerThousand: [10, 10], todayIssues: 5)
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        let recap = store.todayRecap
+
+        XCTAssertNil(recap.typicalFindingsPer1000Words)
+        XCTAssertNil(recap.verdict)
+        XCTAssertEqual(
+            recap.summaryLines,
+            ["Findings per 1,000 words: 5.0 today. A few more scored days and Kistulentz can compare it with your usual."]
+        )
+    }
+
+    @MainActor
+    func testRecapAgainstACleanHistoryCallsAnyFindingNoisier() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let (clean, defaultsA) = try storeWithHistory(suite: suite + "a", previousIssuesPerThousand: [0, 0, 0], todayIssues: 0)
+        let (messy, defaultsB) = try storeWithHistory(suite: suite + "b", previousIssuesPerThousand: [0, 0, 0], todayIssues: 4)
+        defer {
+            defaultsA.removePersistentDomain(forName: suite + "a")
+            defaultsB.removePersistentDomain(forName: suite + "b")
+        }
+
+        XCTAssertEqual(clean.todayRecap.verdict, .typical)
+        XCTAssertEqual(messy.todayRecap.verdict, .noisier)
+    }
+
+    @MainActor
+    func testRecapQualityVerdictIgnoresHowManyWordsWereWritten() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let (store, defaults) = try storeWithHistory(suite: suite, previousIssuesPerThousand: [10, 10, 10], todayIssues: 5)
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let before = store.todayRecap.verdict
+
+        store.recordSave(chapterKey: "book#1", wordCount: 100)
+        store.recordSave(chapterKey: "book#1", wordCount: 9_100) // +9,000 words in a day
+
+        XCTAssertEqual(store.todayRecap.wordsWritten, 9_000)
+        XCTAssertEqual(store.todayRecap.verdict, before, "volume must never change the quality verdict")
+        XCTAssertEqual(before, .cleaner)
+    }
+
+    @MainActor
+    func testRecapSummaryReadsQualityFirstThenSuggestions() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let (store, defaults) = try storeWithHistory(suite: suite, previousIssuesPerThousand: [10, 10, 10], todayIssues: 5)
+        defer { defaults.removePersistentDomain(forName: suite) }
+        for _ in 0..<7 { store.recordDecision(.accepted) }
+        for _ in 0..<3 { store.recordDecision(.declined) }
+
+        XCTAssertEqual(store.todayRecap.summaryLines, [
+            "Findings per 1,000 words: 5.0 today, against 10.0 on your usual day -- cleaner than usual.",
+            "Suggestions: 7 applied, 3 declined."
+        ])
+    }
+
+    @MainActor
+    func testAnEmptyDayHasNoRecap() throws {
+        let suite = "WritingActivityStoreTests.\(UUID().uuidString)"
+        let (store, defaults) = try makeStore(suiteName: suite)
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        XCTAssertFalse(store.todayRecap.hasActivity)
+        XCTAssertEqual(store.todayRecap.summaryLines, [])
+    }
 }

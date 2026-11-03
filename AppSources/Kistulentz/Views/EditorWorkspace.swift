@@ -537,7 +537,7 @@ struct EditorWorkspace: View {
             )
         }
         .sheet(item: $selfEditExercisePresentation) { presentation in
-            SelfEditExerciseView(exercises: presentation.exercises)
+            SelfEditExerciseView(exercises: presentation.exercises, focusNote: presentation.focusNote)
         }
     }
 
@@ -650,7 +650,8 @@ struct EditorWorkspace: View {
                         exercises: SelfEditExerciseSampler.sample(
                             from: viewModel.allIssues,
                             weights: SelfEditExerciseSampler.weights(from: writingGrowth.months)
-                        )
+                        ),
+                        focusCategories: SelfEditExerciseSampler.focusCategories(from: writingGrowth.months)
                     )
                 },
                 showNewChapter: { presentation.present(.newChapter) },
