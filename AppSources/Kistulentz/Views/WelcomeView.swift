@@ -17,7 +17,7 @@ struct WhatsNewView: View {
                     Text("What’s New in Kistulentz \(version)")
                         .font(.largeTitle.bold())
                         .accessibilityIdentifier("KistulentzWhatsNew")
-                    Text("Two fixes for importing older files and editing your outline.")
+                    Text("A lighter parser, a daily recap, and clearer practice.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
@@ -25,16 +25,22 @@ struct WhatsNewView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 whatsNewItem(
-                    "Older text files import with their accents intact",
-                    detail: "Markdown, text, and HTML files saved in the older Latin-1 encoding used to import with garbled characters in the imported copy. They now keep their accents. Your original files were never changed.",
-                    systemImage: "doc.plaintext",
-                    identifier: "WhatsNewLegacyEncodingImport"
+                    "A lighter touch on your Mac",
+                    detail: "The English pack's language model now unloads itself after three idle minutes, and a new While you write setting lets you choose Responsive, Balanced (the new default, about two seconds after you pause), or Off.",
+                    systemImage: "gauge.with.dots.needle.33percent",
+                    identifier: "WhatsNewLighterParser"
                 )
                 whatsNewItem(
-                    "No stray files when an outline item disappears",
-                    detail: "Adding a chapter, scene, or section under an outline item that was just removed no longer leaves an unlisted Markdown file behind. Kistulentz tells you the item no longer exists instead.",
-                    systemImage: "list.bullet.indent",
-                    identifier: "WhatsNewOutlineOrphanFix"
+                    "Today's recap in Your Writing Growth",
+                    detail: "See how clean today's writing was against your own usual day, and how many suggestions you applied or declined. It never judges how much you wrote.",
+                    systemImage: "chart.bar.doc.horizontal",
+                    identifier: "WhatsNewDailyRecap"
+                )
+                whatsNewItem(
+                    "Exercises now say where they lean",
+                    detail: "Self-Edit Exercises already favored the suggestions you decline most. They now tell you which ones, once there's enough history to say.",
+                    systemImage: "pencil.and.outline",
+                    identifier: "WhatsNewExerciseFocus"
                 )
             }
 

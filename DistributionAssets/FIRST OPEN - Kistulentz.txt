@@ -5,11 +5,13 @@ SYSTEM REQUIREMENTS
 - macOS Sequoia 15 or later
 - Apple silicon or Intel Mac
 
-NEW IN 0.24.1 FRIEND PREVIEW
-- Older Latin-1 text files (Markdown, text, HTML) now import with their accents intact instead
-  of garbled characters. Your original files were never changed.
-- Adding an item under an outline entry that was just removed no longer leaves a stray
-  Markdown file in your project folder.
+NEW IN 0.25.0 FRIEND PREVIEW
+- A lighter touch on your Mac: the English pack's language model unloads itself after three
+  idle minutes, and a new "While you write" setting (Responsive, Balanced, Off) controls how
+  eagerly it parses as you type. Balanced is the new default.
+- Today's recap in Your Writing Growth compares today's writing with your own usual day, and
+  never judges how much you wrote.
+- Self-Edit Exercises now say which suggestions they are leaning toward.
 
 INSTALL
 1. Drag Kistulentz into the Applications folder.
