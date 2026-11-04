@@ -76,6 +76,14 @@ cp "$PROJECT_ROOT/LanguagePacks/Benepar/NOTICE.md" "$APP_ROOT/Contents/Resources
 print -n "APPL????" > "$APP_ROOT/Contents/PkgInfo"
 
 chmod +x "$APP_ROOT/Contents/MacOS/Kistulentz"
-codesign --force --sign - --timestamp=none "$APP_ROOT"
+# Local builds stay ad-hoc signed. A release build passes a Developer ID Application identity in
+# KISTULENTZ_SIGN_IDENTITY (see package-release.sh and the release workflow), which signs with the
+# hardened runtime and a secure timestamp -- both of which Apple's notarization requires.
+SIGN_IDENTITY="${KISTULENTZ_SIGN_IDENTITY:--}"
+if [[ "$SIGN_IDENTITY" == "-" ]]; then
+    codesign --force --sign - --timestamp=none "$APP_ROOT"
+else
+    codesign --force --options runtime --timestamp --sign "$SIGN_IDENTITY" "$APP_ROOT"
+fi
 
 print "$APP_ROOT"
