@@ -44,6 +44,30 @@ ARCHITECTURES="$(lipo -archs "$EXECUTABLE_PATH")"
 [[ -f "$RESOURCES_PATH/LanguagePacks/Benepar/NOTICE.md" ]] || fail "Benepar notice is missing"
 codesign --verify --deep --strict "$APP_PATH"
 
+# A release signed with a Developer ID certificate and notarized must prove it. This is off for
+# local and ad-hoc builds and on whenever the release workflow has signing credentials
+# (KISTULENTZ_REQUIRE_DEVELOPER_ID=1), so a misconfigured certificate fails the build here instead of
+# shipping something Gatekeeper still blocks. KISTULENTZ_EXPECTED_TEAM_ID, when set, also pins
+# the signing team so a certificate from the wrong account cannot slip through.
+REQUIRE_DEVELOPER_ID="${KISTULENTZ_REQUIRE_DEVELOPER_ID:-0}"
+
+verify_developer_id_app() {
+    local app="$1" details
+    details="$(codesign -dvv "$app" 2>&1)"
+    [[ "$details" == *"Authority=Developer ID Application"* ]] || fail "$app is not signed with a Developer ID Application certificate"
+    [[ "$details" == *"(runtime)"* ]] || fail "$app is signed without the hardened runtime, which notarization requires"
+    [[ "$details" == *"Timestamp="* ]] || fail "$app has no secure timestamp"
+    if [[ -n "${KISTULENTZ_EXPECTED_TEAM_ID:-}" ]]; then
+        [[ "$details" == *"TeamIdentifier=$KISTULENTZ_EXPECTED_TEAM_ID"* ]] || fail "$app is not signed by team $KISTULENTZ_EXPECTED_TEAM_ID"
+    fi
+    xcrun stapler validate "$app" >/dev/null 2>&1 || fail "$app has no valid stapled notarization ticket"
+    spctl --assess --type execute --verbose=2 "$app" >/dev/null 2>&1 || fail "Gatekeeper rejects $app"
+}
+
+if [[ "$REQUIRE_DEVELOPER_ID" == "1" ]]; then
+    verify_developer_id_app "$APP_PATH"
+fi
+
 if [[ "$VERIFY_RELEASE_ASSETS" == "--release-assets" ]]; then
     VERSION="$(read_plist CFBundleShortVersionString)"
     RELEASE_ROOT="$PROJECT_ROOT/dist/releases"
@@ -68,6 +92,19 @@ if [[ "$VERIFY_RELEASE_ASSETS" == "--release-assets" ]]; then
     grep -q " $SBOM_NAME$" "$RELEASE_ROOT/SHA256SUMS.txt" || fail "software bill of materials is missing from checksums"
     hdiutil verify -quiet "$RELEASE_ROOT/$RELEASE_NAME.dmg"
     (cd "$RELEASE_ROOT" && shasum -a 256 -c SHA256SUMS.txt)
+
+    if [[ "$REQUIRE_DEVELOPER_ID" == "1" ]]; then
+        DMG="$RELEASE_ROOT/$RELEASE_NAME.dmg"
+        codesign --verify --strict "$DMG" || fail "the DMG's signature is invalid"
+        xcrun stapler validate "$DMG" >/dev/null 2>&1 || fail "the DMG has no valid stapled notarization ticket"
+        spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG" >/dev/null 2>&1 \
+            || fail "Gatekeeper rejects the DMG"
+        # The app a user gets from the ZIP must be the stapled one, not a pre-notarization copy.
+        UNZIPPED="$(mktemp -d)"
+        trap 'rm -rf "$UNZIPPED"' EXIT
+        ditto -x -k "$RELEASE_ROOT/$RELEASE_NAME.zip" "$UNZIPPED"
+        verify_developer_id_app "$(find "$UNZIPPED" -maxdepth 2 -name 'Kistulentz.app' -type d | head -1)"
+    fi
 fi
 
 print "Kistulentz release verification passed for $APP_PATH"

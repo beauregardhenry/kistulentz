@@ -43,3 +43,33 @@ Use this checklist for every staged release. Do not publish when a data-loss, ac
 - Validate EPUB with EPUBCheck when installed and perform the documented external/manual checks
 - Verify release notes describe limitations, ad-hoc signing, Sequoia requirement, and lack of automatic updates
 - Create and push the annotated version tag from the verified commit, confirm the release workflow publishes the DMG, ZIP, SBOM, and checksums with GitHub provenance and SBOM attestations, then download and verify the public release assets
+
+## Developer ID signing and notarization
+
+Releases are ad-hoc signed unless the protected GitHub **`release`** environment holds a complete
+set of signing credentials. When it does, the release workflow signs with the Developer ID
+certificate (hardened runtime, secure timestamp), notarizes and staples the app and the DMG, and
+`scripts/verify-release.sh` fails the build unless the result is a valid Developer ID signature for
+team `8K5724Q6WR` that Gatekeeper accepts. Nothing is signed or sent to Apple on local builds.
+
+One-time setup, done by the Apple Developer account holder:
+
+- Create a **Developer ID Application** certificate (Xcode > Settings > Accounts > Manage
+  Certificates), export it with its private key from Keychain Access as a password-protected `.p12`,
+  and store `base64 -i certificate.p12` as `MACOS_CERTIFICATE_P12` and its password as
+  `MACOS_CERTIFICATE_PASSWORD`.
+- Create an App Store Connect API key (Users and Access > Integrations > App Store Connect API)
+  and store the downloaded `.p8` file's text as `APPLE_API_KEY_P8`, plus `APPLE_API_KEY_ID` and
+  `APPLE_API_ISSUER_ID`.
+- Add all five as secrets of the `release` environment (Settings > Environments > release), and
+  restrict that environment to `v*` tags so a branch workflow can never read them.
+
+Before the first signed release, run **Test or publish release** manually (it builds and verifies
+without publishing). Confirm the log shows `Signing with: Developer ID Application: ...`, then
+download the DMG on a Mac that has never run Kistulentz and confirm it opens by double-click with
+no Privacy & Security detour. Only then drop the "Open Anyway" instructions from `README.md`,
+`FRIEND_TESTING.md`, and `DistributionAssets/FIRST OPEN - Kistulentz.txt`.
+
+The Developer ID certificate is valid for five years and the Apple Developer membership renews
+yearly (currently through 2027-10-31). Already-notarized releases keep working after either lapses;
+new releases can't be signed.

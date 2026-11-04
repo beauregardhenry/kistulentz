@@ -24,6 +24,44 @@ cleanup() {
 }
 trap cleanup EXIT
 
+# Developer ID signing and notarization are opt-in: with KISTULENTZ_NOTARIZE unset this script
+# produces exactly the ad-hoc-signed release it always has. Set to 1 (the release workflow does,
+# when its signing secrets exist) it also needs KISTULENTZ_SIGN_IDENTITY and an App Store Connect
+# API key, and it notarizes and staples both the app and the DMG.
+NOTARIZE="${KISTULENTZ_NOTARIZE:-0}"
+if [[ "$NOTARIZE" == "1" ]]; then
+    : "${KISTULENTZ_SIGN_IDENTITY:?KISTULENTZ_NOTARIZE=1 needs KISTULENTZ_SIGN_IDENTITY (a Developer ID Application identity)}"
+    : "${APPLE_API_KEY_PATH:?KISTULENTZ_NOTARIZE=1 needs APPLE_API_KEY_PATH (the App Store Connect .p8 key file)}"
+    : "${APPLE_API_KEY_ID:?KISTULENTZ_NOTARIZE=1 needs APPLE_API_KEY_ID}"
+    : "${APPLE_API_ISSUER_ID:?KISTULENTZ_NOTARIZE=1 needs APPLE_API_ISSUER_ID}"
+    [[ "$KISTULENTZ_SIGN_IDENTITY" != "-" ]] || {
+        print -u2 "KISTULENTZ_NOTARIZE=1 cannot be used with ad-hoc signing."
+        exit 1
+    }
+fi
+
+# Submits one file to Apple's notary service and waits. Fails unless the verdict is Accepted, and
+# prints Apple's log for a rejected submission so the reason is visible in the build output.
+notarize() {
+    local file="$1" result verdict submission_id
+    result="$(xcrun notarytool submit "$file" \
+        --key "$APPLE_API_KEY_PATH" \
+        --key-id "$APPLE_API_KEY_ID" \
+        --issuer "$APPLE_API_ISSUER_ID" \
+        --wait --output-format json)"
+    # Not named "status": that is a read-only special parameter in zsh.
+    verdict="$(print -r -- "$result" | plutil -extract status raw -o - - 2>/dev/null || true)"
+    if [[ "$verdict" != "Accepted" ]]; then
+        submission_id="$(print -r -- "$result" | plutil -extract id raw -o - - 2>/dev/null || true)"
+        print -u2 "Notarization of ${file:t} finished as '${verdict:-unknown}', not Accepted."
+        if [[ -n "$submission_id" ]]; then
+            xcrun notarytool log "$submission_id" \
+                --key "$APPLE_API_KEY_PATH" --key-id "$APPLE_API_KEY_ID" --issuer "$APPLE_API_ISSUER_ID" >&2 || true
+        fi
+        exit 1
+    fi
+}
+
 "$PROJECT_ROOT/scripts/build-app.sh"
 
 BUILT_ARCHS="$(lipo -archs "$APP_PATH/Contents/MacOS/$APP_NAME")"
@@ -31,6 +69,15 @@ if [[ "$BUILT_ARCHS" != *arm64* || "$BUILT_ARCHS" != *x86_64* ]]; then
     print -u2 "$RELEASE_NAME requires a universal build, but only '$BUILT_ARCHS' was produced."
     print -u2 "Install Xcode 26 or newer at /Applications/Xcode.app and run this script again."
     exit 1
+fi
+
+if [[ "$NOTARIZE" == "1" ]]; then
+    # Notarize and staple the app itself before it is copied into the payload, so the ZIP and the
+    # DMG both carry the stapled ticket and the app opens offline without a Gatekeeper warning.
+    ditto -c -k --keepParent "$APP_PATH" "$STAGING_ROOT/$APP_NAME-notarize.zip"
+    notarize "$STAGING_ROOT/$APP_NAME-notarize.zip"
+    xcrun stapler staple "$APP_PATH"
+    xcrun stapler validate "$APP_PATH"
 fi
 
 mkdir -p "$RELEASE_ROOT" "$PAYLOAD_ROOT"
@@ -57,6 +104,14 @@ hdiutil create \
     -ov \
     -format UDZO \
     "$DMG_PATH"
+
+if [[ "$NOTARIZE" == "1" ]]; then
+    # The disk image is its own distribution artifact, so it is signed, notarized, and stapled too.
+    codesign --force --timestamp --sign "$KISTULENTZ_SIGN_IDENTITY" "$DMG_PATH"
+    notarize "$DMG_PATH"
+    xcrun stapler staple "$DMG_PATH"
+    xcrun stapler validate "$DMG_PATH"
+fi
 
 cd "$RELEASE_ROOT"
 shasum -a 256 "${ZIP_PATH:t}" "${DMG_PATH:t}" "${SBOM_PATH:t}" > "${CHECKSUM_PATH:t}"
